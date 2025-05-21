@@ -1,27 +1,35 @@
 # Contributing to the Italian content of MDN Web Docs
 
-:tada: First of all, thanks for taking the time to contribute to [MDN Web Docs](https://developer.mozilla.org)! :tada:
+:tada: First of all, thank you for taking the time to contribute to [MDN Web Docs](https://developer.mozilla.org)! :tada:
 
 The following is a set of guidelines for contributing to the [Italian content of MDN Web Docs](https://github.com/mdn/translated-content-it), which is hosted within the [MDN Organization](https://github.com/mdn) on GitHub.
 
-## Machine-translated content
-
-Before we go any further, you should understand that **the Italian content is fully _machine_-translated from the English content**. This means that _manual_ updates will be overwritten by a newer machine-translation as soon as the corresponding English content changes. The translation process is fully automated: For every changed page, we pre-process the English content, pass it along with [this system prompt][prompt] to an [OpenAI model](https://platform.openai.com/docs/models), and post-process the resulting Italian content before committing and pushing it to this repository.
+> [!IMPORTANT]
+> Please understand that **the Italian content is fully _machine_-translated from the English content**.
+>
+> This means that _manual_ updates will be overwritten by a newer machine-translation as soon as the corresponding English content changes.
+>
+> The translation process is fully automated: For every changed page, we pre-process the English content, pass it along with [this system prompt][prompt] to an [OpenAI model](https://platform.openai.com/docs/models), and post-process the resulting Italian content before committing and pushing it to this repository.
 
 ## Contributing
 
 You can contribute to the Italian content in the following ways:
 
-1. Report issues you notice with the Italian content,
-2. Review issues reported by other users,
-3. Review the [the translation prompt][prompt].
+1. **Report issues** you see,
+2. **Review issues** reported by other users,
+3. **Review** the [the translation **prompt**][prompt].
 
 ### Reporting issues
 
 If you see any issues with the Italian content, please report them:
 
-- Use the "_Report a problem with this content_" links at the bottom of any Italian MDN page to create a GitHub issue.
+- Create a GitHub issue using the "_Report a problem with this content_" links at the bottom of any Italian MDN page.
 - Mention the issue [on Discord][discord] in the `#italian` channel.
+
+Please prioritize reporting the following types of issues:
+
+- Systematic and recurring errors affecting multiple MDN pages.
+- Major errors that significantly hinder accuracy or comprehension.
 
 ### Reviewing issues
 
