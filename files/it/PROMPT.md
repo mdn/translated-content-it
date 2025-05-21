@@ -15,7 +15,8 @@ Ensure that the translation is accurate, preserves technical terminology, and fo
 
 2. Language:
 
-   - Prefer formal language ("lei") over informal language ("tu").
+   - Prefer Italian textbook language over formal language ("lei") and informal language ("tu").
+     For example: "aiutare lo sviluppatore" instead of "aiutarti" or "aiutarla"
 
 3. Code blocks:
 
