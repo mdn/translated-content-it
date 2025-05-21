@@ -1,28 +1,40 @@
-# MDN repository template
+# Contributing to the translated content of MDN Web Docs
 
-Welcome! This is a "starter-kit" template to scaffold new MDN GitHub repositories.
-The template includes files that you need for consistency, such as [License](https://github.com/mdn/project-template/blob/main/LICENSE.md), [Security](https://github.com/mdn/project-template/blob/main/SECURITY.md), and [Code of conduct](https://github.com/mdn/project-template/blob/main/CODE_OF_CONDUCT.md) files.
-You should adjust other files as needed in your project.
+:tada: First of all, thanks for taking the time to contribute to [MDN Web Docs](https://developer.mozilla.org)' translated content! :tada:
 
-## Getting started
+The following is a set of guidelines for contributing to the [translated content of MDN Web Docs](https://github.com/mdn/translated-content-it), which is hosted within the [MDN Organization](https://github.com/mdn) on GitHub.
 
-1. Click the "Use this template" button at the top of the repository, and choose "Create a new repository".
-   This will open the "Create a new repository from project-template" form.
-2. Choose `mdn` in the "Owner" drop-down, give the repository a name in the "Repository name" field, and click the "Create repository from template" button.
-3. Copy the contents of `README-template.md` into the `README.md` file and adjust it to your project.
-4. Check for TODOs in the repository and adjust them to your project, e.g.:
+[Guidelines for peers can be found here](PEERS_GUIDELINES.md).
 
-```bash
-git clone git@github.com:mdn/<repo-name>.git && cd <repo-name>
-mv README-template.md README.md
-grep -r TODO .
-```
+## Locales
 
-## Configuring GitHub actions
+Before we go any further, you should be aware that we are only accepting updates to active locales — this means locales that have active community maintenance teams in place to review PRs, fix issues, make updates, etc. Currently the list of active locales is:
 
-For the `auto-merge` workflow, you need to add a personal access token to the repository.
-For more details, see the [documentation for the action](https://github.com/mdn/workflows#auto-merge).
+- `it`
 
-## Attribution
+If you want to just find a task and jump in, search by the label `l10n-it` in this repo's [issues list](https://github.com/mdn/translated-content-it/issues), or the main [content repo issues](https://github.com/mdn/content/issues).
 
-This template is on based on the [CNCF project template](https://github.com/cncf/project-template) distributed under an [Apache license 2.0](https://github.com/cncf/project-template/blob/main/LICENSE).
+## Code of Conduct
+
+Everyone participating in this project is expected to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+When contributing to the content you agree to license your contributions according to [our license](LICENSE.md).
+
+## Contribute to MDN Web Docs
+
+You can contribute to MDN Web Docs and be a part of our community through content contributions, engineering, or translation work.
+The MDN Web Docs project welcomes contributions from everyone who shares our goals and wants to contribute constructively and respectfully within our community.
+
+To find out how to get started, see the [CONTRIBUTING.md](CONTRIBUTING.md) document in this repository.
+By participating in and contributing to our projects and discussions, you acknowledge that you have read and agree to our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Get in touch
+
+You can communicate with the MDN Web Docs team and community using the [communication channels][main communication].
+
+Additionally, you can communicate with a specific localization team using their own available [communication channels][localization communication].
+
+[main communication]: https://developer.mozilla.org/docs/MDN/Community/Communication_channels
+[localization communication]: https://developer.mozilla.org/docs/MDN/Community/Contributing/Translated_content
