@@ -1,0 +1,62 @@
+name: "[via pagine MDN solamente // it]"
+description: Segnalazioni inviate tramite il link "Report a problem with this content on GitHub" presente nelle pagine MDN.
+labels: ["l10n-it", "needs triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Prima di iniziare
+
+        **Vuoi modificare questa pagina tu stesso?** Questo contenuto è open source!  
+        ↩ Torna indietro e usa il link _Edit on GitHub_ presente nella pagina.
+
+        **Il tuo problema riguarda la tabella di compatibilità dei browser?**  
+        ↩ Torna indietro e usa il link _Report problems with this compatibility data on GitHub_ presente nella pagina.
+
+        **Hai bisogno di aiuto con un browser?**  
+        🙋 Per assistenza su [Firefox](https://support.mozilla.org/it/kb/file-bug-report-or-feature-request-mozilla), [Chrome](https://support.google.com/chrome/answer/95315?hl=it&ref_topic=7439544), [Safari](https://www.apple.com/feedback/safari.html) o un altro browser, consulta il sito di supporto ufficiale.
+
+        ---
+  - type: input
+    id: mdn-url
+    attributes:
+      label: URL MDN
+      description: Impostato automaticamente. Non modificare.
+    validations:
+      required: true
+  - type: input
+    id: section
+    attributes:
+      label: A quale sezione o intestazione specifica si riferisce questo problema?
+  - type: textarea
+    id: problem
+    attributes:
+      label: Quali informazioni erano errate, poco chiare o incomplete?
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Cosa ti aspettavi di vedere?
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: Hai link, riferimenti o citazioni di supporto?
+      description: Collega informazioni che ci aiutino a confermare il problema.
+  - type: textarea
+    id: more-info
+    attributes:
+      label: Hai altro da condividere?
+      description: Ad esempio, passaggi per riprodurre un bug, screenshot, registrazioni dello schermo o codice di esempio.
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        Hai finito! I campi seguenti sono compilati automaticamente. Clicca su **Submit new issue**.
+  - type: textarea
+    id: metadata
+    attributes:
+      label: Metadati MDN
+      description: Impostati automaticamente. Non modificare.
