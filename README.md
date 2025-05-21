@@ -15,11 +15,12 @@ The following is a set of guidelines for contributing to the [Italian content of
 
 You can contribute to the Italian content in the following ways:
 
-1. **Report issues** you see,
-2. **Review issues** reported by other users,
-3. **Review** the [the translation **prompt**][prompt].
+1. **Report issues** you see.
+2. **Review issues** reported by other users.
+3. **Contribute** to the [translation **glossary**][glossary].
+4. **Review** the the [translation **prompt**][prompt].
 
-### Reporting issues
+### 1. Reporting issues
 
 If you see any issues with the Italian content, please report them:
 
@@ -31,7 +32,7 @@ Please prioritize reporting the following types of issues:
 - Systematic and recurring errors affecting multiple MDN pages.
 - Major errors that significantly hinder accuracy or comprehension.
 
-### Reviewing issues
+### 2. Reviewing issues
 
 If you see any [open issues here](https://github.com/mdn/translated-content-it/issues), please review them:
 
@@ -39,7 +40,20 @@ If you see any [open issues here](https://github.com/mdn/translated-content-it/i
 - Add comments to provide additional context, examples, or solutions.
 - Bring up the issue [on Discord][discord] in the `#italian` channel.
 
-### Reviewing the prompt
+### 3. Contributing to the glossary
+
+You can contribute to the [Italian translation glossary (Google Sheets)][glossary]:
+
+- Suggest a new glossary entry by commenting in the file.
+- Review the translations in the glossary, and provide feedback.
+- Create a [new "Glossary" issue](https://github.com/mdn/translated-content-it/issues/new?template=bug.yml&title=Glossary+-+<SUMMARIZE+THE+PROBLEM>).
+
+> [!NOTE]
+> The translation glossary is a **work in progress**.
+>
+> It will be used to improve translations by passing matching glossary entries along with the system prompt.
+
+### 4. Reviewing the prompt
 
 If you have experience with prompt engineering, please review [the system prompt][prompt], and provide feedback:
 
@@ -69,6 +83,7 @@ You can communicate with the MDN Web Docs team and community using the [communic
 Additionally, you can communicate with a specific localization team using their own available [communication channels][localization communication].
 
 [discord]: https://mdn.dev/discord
+[glossary]: https://docs.google.com/spreadsheets/d/1bPYgIAEAuwtMYw7fHRwmov5W14RDBOXdu1kHqFnKwdE/edit?usp=sharing
 [prompt]: ./files/it/PROMPT.md
 [main communication]: https://developer.mozilla.org/docs/MDN/Community/Communication_channels
 [localization communication]: https://developer.mozilla.org/docs/MDN/Community/Contributing/Translated_content
