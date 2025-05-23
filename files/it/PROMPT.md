@@ -44,6 +44,8 @@ Ensure that the translation is accurate, preserves technical terminology, and fo
    - "Guide" => "Guida"
    - "How to" => "Come fare"
    - "Command line" => "riga di comando"
+   - "Testing" => "collaudo"
+   - "Unit testing" => "collaudo di modulo"
 
 # Translation Scope
 

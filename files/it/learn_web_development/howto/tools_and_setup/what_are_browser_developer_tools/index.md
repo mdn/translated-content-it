@@ -56,7 +56,7 @@ Per iniziare, fai clic con il tasto destro (Ctrl-click) su un elemento HTML nell
 ![La sottofinestra degli strumenti di sviluppo del browser è aperta. La scheda inspector è selezionata. Un elemento link è cliccato con il tasto destro dal codice HTML disponibile nella scheda inspector. Appare un menu contestuale. Le opzioni di menu disponibili variano tra i browser, ma le più importanti sono generalmente le stesse.](dom_inspector.png)
 
 - **Delete Node** (a volte _Delete Element_). Cancella l'elemento attuale.
-- **Edit as HTML** (a volte _Add attribute_/_Edit text_). Ti permette di cambiare l'HTML e vedere i risultati al volo. Molto utile per il debugging e il testing.
+- **Edit as HTML** (a volte _Add attribute_/_Edit text_). Ti permette di cambiare l'HTML e vedere i risultati al volo. Molto utile per il debugging e il collaudo.
 - **:hover/:active/:focus**. Forza l'attivazione degli stati degli elementi, così puoi vedere come apparirebbe lo styling.
 - **Copy/Copy as HTML**. Copia l'HTML attualmente selezionato.
 - Alcuni browser offrono anche _Copy CSS Path_ e _Copy XPath_ disponibili, per permetterti di copiare il selettore CSS o l'espressione XPath che selezionerebbe l'elemento HTML corrente.

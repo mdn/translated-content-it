@@ -17,7 +17,7 @@ Ora introduciamo Vue, il terzo dei nostri framework. In questo articolo daremo u
         <p>
           Familiarità con i linguaggi core <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
-          <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, 
+          <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>,
           conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
@@ -28,7 +28,7 @@ Ora introduciamo Vue, il terzo dei nostri framework. In questo articolo daremo u
           I componenti Vue sono scritti come una combinazione di oggetti JavaScript che
           gestiscono i dati dell'app e una sintassi di template basata su HTML che mappa
           la struttura DOM sottostante. Per l'installazione, e per usare alcune delle
-          funzionalità più avanzate di Vue (come i componenti a file singolo o le funzioni di rendering), 
+          funzionalità più avanzate di Vue (come i componenti a file singolo o le funzioni di rendering),
           avrai bisogno di un terminale con node + npm installati.
         </p>
       </td>
@@ -92,7 +92,7 @@ Oppure, se preferisci usare yarn:
 yarn create vue@latest
 ```
 
-Questo comando ti darà un elenco di configurazioni di progetto che puoi utilizzare. Ci sono alcuni predefiniti, ma puoi scegliere le impostazioni specifiche per il tuo progetto. Queste opzioni ti consentono di configurare cose come TypeScript, linting, vue-router, testing, e altro.
+Questo comando ti darà un elenco di configurazioni di progetto che puoi utilizzare. Ci sono alcuni predefiniti, ma puoi scegliere le impostazioni specifiche per il tuo progetto. Queste opzioni ti consentono di configurare cose come TypeScript, linting, vue-router, collaudo, e altro.
 Procederemo attraverso le opzioni nei passaggi di inizializzazione qui sotto.
 
 ## Inizializzazione di un nuovo progetto

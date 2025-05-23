@@ -560,7 +560,7 @@ div p + p {
 }
 ```
 
-"Commentare" il codice è anche utile per disabilitare temporaneamente sezioni del codice per il testing. Nell'esempio qui sotto, le regole per `.special` sono disabilitate "commentando" il codice.
+"Commentare" il codice è anche utile per disabilitare temporaneamente sezioni del codice per il collaudo. Nell'esempio qui sotto, le regole per `.special` sono disabilitate "commentando" il codice.
 
 ```css
 /*.special {

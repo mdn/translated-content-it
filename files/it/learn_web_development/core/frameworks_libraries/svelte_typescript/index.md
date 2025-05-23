@@ -102,7 +102,7 @@ TypeScript ha anche alcune limitazioni:
 - Non vera tipizzazione statica: I tipi sono controllati solo al momento della compilazione e vengono rimossi dal codice generato.
 - Curva di apprendimento ripida: Anche se TypeScript è un superset di JavaScript e non un linguaggio completamente nuovo, c'è una considerevole curva di apprendimento, specialmente se non hai alcuna esperienza con linguaggi statici come Java o C#.
 - Più codice: Devi scrivere e mantenere più codice.
-- Nessun sostituto per i test automatici: Anche se i tipi possono aiutarti a rilevare diversi bug, TypeScript non è un vero sostituto per una suite completa di test automatizzati.
+- Nessun sostituto per i collaudi automatici: Anche se i tipi possono aiutarti a rilevare diversi bug, TypeScript non è un vero sostituto per una suite completa di test automatizzati.
 - Codice boilerplate: Lavorare con i tipi, le classi, le interfacce e i generici può condurre a codici base troppo ingegnerizzati.
 
 Sembra esserci un ampio consenso sul fatto che TypeScript sia particolarmente adatto per progetti su larga scala, con molti sviluppatori che lavorano sulla stessa base di codice. E infatti viene usato da diversi progetti su larga scala, come Angular 2, Vue 3, Ionic, Visual Studio Code, Jest, e persino il compilatore Svelte. Tuttavia, alcuni sviluppatori preferiscono usarlo anche su piccoli progetti come quello che stiamo sviluppando.

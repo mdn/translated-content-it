@@ -145,7 +145,7 @@ Le interrogazioni sulle funzionalità sono supportate in tutti i browser moderni
 
 ## Testare browser più vecchi
 
-Un modo è utilizzare uno strumento di test online come Sauce Labs, come dettagliato nel modulo [Testing](/it/docs/Learn_web_development/Extensions/Testing).
+Un modo è utilizzare uno strumento di test online come Sauce Labs, come dettagliato nel modulo [Collaudo](/it/docs/Learn_web_development/Extensions/Testing).
 
 ## Sommario
 

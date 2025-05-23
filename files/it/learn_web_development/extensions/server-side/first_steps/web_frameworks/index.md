@@ -227,7 +227,7 @@ I siti popolari che usano Django (dalla pagina principale di Django) includono: 
 
 [Flask](https://flask.palletsprojects.com/) è un microframework per Python.
 
-Sebbene minimalista, Flask può creare siti web seri sin da subito. Contiene un server di sviluppo e un debugger, e include supporto per il templating [Jinja2](https://github.com/pallets/jinja), cookie sicuri, [unit testing](https://en.wikipedia.org/wiki/Unit_testing) e smistamento delle richieste [RESTful](https://restapitutorial.com/). Ha una buona documentazione e una comunità attiva.
+Sebbene minimalista, Flask può creare siti web seri sin da subito. Contiene un server di sviluppo e un debugger, e include supporto per il templating [Jinja2](https://github.com/pallets/jinja), cookie sicuri, [collaudo di modulo](https://en.wikipedia.org/wiki/Unit_testing) e smistamento delle richieste [RESTful](https://restapitutorial.com/). Ha una buona documentazione e una comunità attiva.
 
 Flask è diventato estremamente popolare, in particolare per gli sviluppatori che devono fornire servizi web su sistemi piccoli e con risorse limitate (ad esempio, eseguire un server web su un [Raspberry Pi](https://www.raspberrypi.org/), [controller di droni](https://www.techuseful.com/drone-definitions-learning-the-drone-lingo/), ecc.)
 
@@ -301,7 +301,7 @@ Nei primi giorni del web, molte persone hanno imparato Perl grazie a una meravig
 Alcune delle funzionalità fornite da Mojolicious sono:
 
 - Un framework web in tempo reale, per far crescere facilmente prototipi singoli-file in applicazioni web MVC ben strutturate.
-- Routing RESTful, plugin, comandi, template in stile Perl, negoziazione del contenuto, gestione delle sessioni, validazione dei form, framework di testing, server di file statici, rilevamento CGI/[PSGI](https://plackperl.org/) e supporto Unicode di primo livello.
+- Routing RESTful, plugin, comandi, template in stile Perl, negoziazione del contenuto, gestione delle sessioni, validazione dei form, framework di collaudo, server di file statici, rilevamento CGI/[PSGI](https://plackperl.org/) e supporto Unicode di primo livello.
 - Una implementazione client/server HTTP e WebSocket full-stack con supporto IPv6, TLS, SNI, IDNA, proxy HTTP/SOCKS5, socket di dominio UNIX, Comet (long polling), keep-alive, pooling delle connessioni, timeout, cookie, multipart e compressione gzip.
 - Parser e generatori di JSON e HTML/XML con supporto per selettori CSS.
 - API pulita, portatile e orientata agli oggetti di puro-Perl senza magia nascosta.

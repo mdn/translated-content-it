@@ -53,7 +53,7 @@ Da una prospettiva di alto livello, puoi suddividere gli strumenti lato client n
 - **Ambiente** — Strumenti che ti aiutano a configurare il tuo ambiente di sviluppo, come installare ed eseguire altri strumenti.
 - **Rete di sicurezza** — Strumenti utili durante lo sviluppo del tuo codice.
 - **Trasformazione** — Strumenti che trasformano il codice in qualche modo, ad esempio, trasformando un linguaggio intermedio in JavaScript che un browser può comprendere.
-- **Post-sviluppo** — Strumenti utili dopo che hai scritto il tuo codice, come strumenti di testing e di distribuzione.
+- **Post-sviluppo** — Strumenti utili dopo che hai scritto il tuo codice, come strumenti di collaudo e di distribuzione.
 
 Esaminiamo ciascuna di queste categorie in dettaglio.
 
@@ -126,7 +126,7 @@ Generalmente, lo sviluppo web è pensato come tre linguaggi: [HTML](/it/docs/Lea
 
 ### Post-sviluppo
 
-Gli strumenti post-sviluppo assicurano che il tuo software arrivi sul web e continui a funzionare. Include i processi di distribuzione, i framework di testing, gli strumenti di auditing e altro ancora.
+Gli strumenti post-sviluppo assicurano che il tuo software arrivi sul web e continui a funzionare. Include i processi di distribuzione, i framework di collaudo, gli strumenti di auditing e altro ancora.
 
 Questa fase del processo di sviluppo è quella con cui desideri avere la minore quantità di interazione attiva possibile, in modo che una volta configurata, funzioni principalmente automaticamente, apparendo solo per dirti qualcosa se qualcosa è andato storto.
 

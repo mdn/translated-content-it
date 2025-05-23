@@ -29,7 +29,7 @@ Ora che avete creato (e testato) un fantastico sito web della [LocalLibrary](/it
 
 ## Panoramica
 
-Una volta completato il vostro sito (o abbastanza completato per iniziare il testing pubblico), dovrete ospitarlo in un luogo più pubblico e accessibile rispetto al vostro computer di sviluppo personale.
+Una volta completato il vostro sito (o abbastanza completato per iniziare il collaudo pubblico), dovrete ospitarlo in un luogo più pubblico e accessibile rispetto al vostro computer di sviluppo personale.
 
 Finora, avete lavorato in un [ambiente di sviluppo](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/development_environment), utilizzando Express/Node come server web per condividere il vostro sito con il browser/rete locale, e gestendo il vostro sito web con impostazioni di sviluppo (insicure) che espongono il debug e altre informazioni private. Prima di poter ospitare un sito web esternamente, dovrete innanzitutto:
 
@@ -82,7 +82,7 @@ Alcune delle cose da considerare quando si sceglie un host:
 - Benefici aggiuntivi. Alcuni fornitori offriranno nomi di dominio gratuiti e supporto per certificati TLS che altrimenti dovreste pagare.
 - Se il "livello gratuito" su cui fate affidamento scade nel tempo, e se il costo di migrare a un livello più costoso significa che sarebbe stato meglio utilizzare un altro servizio fin dall'inizio!
 
-La buona notizia è che quando iniziate ci sono parecchi siti che offrono ambienti informatici "gratuiti", pensati per la valutazione e il testing.
+La buona notizia è che quando iniziate ci sono parecchi siti che offrono ambienti informatici "gratuiti", pensati per la valutazione e il collaudo.
 Questi si presentano generalmente come ambienti limitati e con risorse relativamente contenute, ma è bene essere consapevoli che potrebbero scadere dopo un certo periodo introduttivo o avere altre limitazioni.
 Sono comunque eccellenti per testare siti a basso traffico in un ambiente ospitato e possono offrire una facile migrazione al pagamento per maggiori risorse quando il sito diventa più frequentato.
 Scelte popolari in questa categoria includono [Glitch](https://glitch.com/), [Python Anywhere](https://www.pythonanywhere.com/), [Amazon Web Services](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html), [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/), ecc.
@@ -591,7 +591,7 @@ L'applicazione della biblioteca locale è ora impostata e configurata per l'uso 
 Potete aggiungere dati tramite l'interfaccia del sito web, e dovrebbe funzionare come faceva durante lo sviluppo (anche se con meno informazioni di debug esposte per pagine non valide).
 
 > [!NOTE]
-> Se desiderate solo aggiungere alcuni dati per il test, potreste utilizzare lo script `populatedb` (con il vostro URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Usare un Database (con Mongoose) Testing — creare alcuni oggetti](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
+> Se desiderate solo aggiungere alcuni dati per il test, potreste utilizzare lo script `populatedb` (con il vostro URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Usare un Database (con Mongoose) Collaudo — creare alcuni oggetti](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
 
 ### Debugging di app Express su Glitch
 
