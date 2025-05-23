@@ -117,7 +117,7 @@ Per accenderlo, premi <kbd>Cmd</kbd> + <kbd>F5</kbd>. Se non hai mai usato VO pr
 
 Quando VO è acceso, la visualizzazione sarà per lo più uguale, ma vedrai una casella nera nell'angolo in basso a sinistra dello schermo che contiene informazioni su ciò che VO ha attualmente selezionato. La selezione corrente sarà anche evidenziata con un bordo nero — questo evidenziamento è noto come il **cursore VO**.
 
-![Una schermata di esempio che dimostra il testing dell'accessibilità usando VoiceOver sulla homepage di MDN. L'angolo in basso a sinistra dell'immagine è un'illuminazione delle informazioni selezionate sulla pagina web.](voiceover.png)
+![Una schermata di esempio che dimostra il collaudo dell'accessibilità usando VoiceOver sulla homepage di MDN. L'angolo in basso a sinistra dell'immagine è un'illuminazione delle informazioni selezionate sulla pagina web.](voiceover.png)
 
 Per usare VO, farai molto uso del "modificatore VO" — questo è un tasto o una combinazione di tasti che devi premere oltre ai veri e propri scorciatoie da tastiera VO affinché funzionino. L'uso di un modificatore come questo è comune con i lettori di schermo, per evitare che i loro comandi vadano in conflitto con altri comandi. Nel caso di VO, il modificatore può essere <kbd>CapsLock</kbd>, o <kbd>Ctrl</kbd> + <kbd>Option</kbd>.
 

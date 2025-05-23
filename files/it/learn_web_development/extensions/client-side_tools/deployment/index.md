@@ -163,18 +163,18 @@ Ora per un ultimo collegamento nella nostra toolchain: un test per garantire che
 
 ## Test
 
-Il testing in sé è un vasto argomento, anche nel regno dello sviluppo front-end. Ti mostrerò come aggiungere un test iniziale al tuo progetto e come utilizzare il test per impedire o consentire che la distribuzione del progetto avvenga.
+Il collaudo in sé è un vasto argomento, anche nel regno dello sviluppo front-end. Ti mostrerò come aggiungere un test iniziale al tuo progetto e come utilizzare il test per impedire o consentire che la distribuzione del progetto avvenga.
 
 Quando si affrontano i test, ci sono molti modi per approcciare il problema:
 
 - Test end-to-end, che coinvolgono il tuo visitatore che clicca su una cosa e qualche altra cosa che accade.
 - Test di integrazione, che fondamentalmente dice "un blocco di codice funziona ancora quando collegato a un altro blocco?"
 - Test unitari, dove piccoli e specifici pezzi di funzionalità vengono testati per vedere se fanno ciò che dovrebbero fare.
-- [E molti altri tipi](https://en.wikipedia.org/wiki/Functional_testing). Vedi anche il nostro [modulo di testing cross-browser](/it/docs/Learn_web_development/Extensions/Testing) per tante informazioni utili sul testing.
+- [E molti altri tipi](https://en.wikipedia.org/wiki/Functional_testing). Vedi anche il nostro [modulo di collaudo cross-browser](/it/docs/Learn_web_development/Extensions/Testing) per tante informazioni utili sul collaudo.
 
 Ricorda anche che i test non sono limitati a JavaScript; i test possono essere eseguiti contro il DOM renderizzato, le interazioni con l'utente, il CSS e persino l'aspetto di una pagina.
 
-Tuttavia, per questo progetto creeremo un piccolo test che verificherà se i dati delle API di GitHub sono nel formato corretto. Se non lo sono, il test fallirà e impedirà al progetto di diventare live. Fare qualsiasi altra cosa sarebbe oltre lo scopo di questo modulo — il testing è un argomento enorme che richiede realmente un proprio modulo separato. Speriamo che questa sezione ti renda almeno consapevole della necessità di test, e pianti il seme che ti ispira a saperne di più.
+Tuttavia, per questo progetto creeremo un piccolo test che verificherà se i dati delle API di GitHub sono nel formato corretto. Se non lo sono, il test fallirà e impedirà al progetto di diventare live. Fare qualsiasi altra cosa sarebbe oltre lo scopo di questo modulo — il collaudo è un argomento enorme che richiede realmente un proprio modulo separato. Speriamo che questa sezione ti renda almeno consapevole della necessità di test, e pianti il seme che ti ispira a saperne di più.
 
 Il test in sé non è importante. Ciò che è importante è come viene gestito il fallimento o il successo. Poiché stiamo già scrivendo un'azione di build personalizzata, possiamo aggiungere un passaggio prima della build che esegue il test. Se il test fallisce, la build fallirà, e la distribuzione non avverrà.
 

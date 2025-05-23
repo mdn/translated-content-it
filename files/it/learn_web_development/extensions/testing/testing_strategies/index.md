@@ -1,6 +1,6 @@
 ---
 title: Strategie per eseguire i test
-short-title: Strategie di testing
+short-title: Strategie di collaudo
 slug: Learn_web_development/Extensions/Testing/Testing_strategies
 l10n:
   sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
@@ -8,7 +8,7 @@ l10n:
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Testing/Introduction","Learn_web_development/Extensions/Testing/HTML_and_CSS", "Learn_web_development/Extensions/Testing")}}
 
-Questo articolo spiega come eseguire il testing cross-browser: come scegliere quali browser e dispositivi testare, come testare effettivamente quei browser e dispositivi, e come testare con gruppi di utenti.
+Questo articolo spiega come eseguire il collaudo cross-browser: come scegliere quali browser e dispositivi testare, come testare effettivamente quei browser e dispositivi, e come testare con gruppi di utenti.
 
 <table>
   <tbody>
@@ -21,7 +21,7 @@ Questo articolo spiega come eseguire il testing cross-browser: come scegliere qu
         dei principi di alto livello
         <a
           href="/it/docs/Learn_web_development/Extensions/Testing/Introduction"
-          >del testing cross-browser</a
+          >del collaudo cross-browser</a
         >.
       </td>
     </tr>
@@ -29,7 +29,7 @@ Questo articolo spiega come eseguire il testing cross-browser: come scegliere qu
       <th scope="row">Obiettivo:</th>
       <td>
         Acquisire una comprensione dei concetti di alto livello coinvolti nel
-        testing cross-browser.
+        collaudo cross-browser.
       </td>
     </tr>
   </tbody>
@@ -125,7 +125,7 @@ Quindi, la nostra tabella finale di supporto finirà per apparire così:
 
 ## Cosa stai per testare?
 
-Quando hai un nuovo elemento nel tuo codice che necessita di testing, prima di iniziare è bene scrivere una lista di requisiti di test che devono essere superati per essere accettati. Questi requisiti possono essere visivi o funzionali — entrambi si combinano per formare una funzionalità web utilizzabile.
+Quando hai un nuovo elemento nel tuo codice che necessita di collaudo, prima di iniziare è bene scrivere una lista di requisiti di test che devono essere superati per essere accettati. Questi requisiti possono essere visivi o funzionali — entrambi si combinano per formare una funzionalità web utilizzabile.
 
 Considera il seguente esempio (vedi il [codice sorgente](https://github.com/mdn/learning-area/blob/main/tools-testing/cross-browser-testing/strategies/hidden-info-panel.html), e anche l'[esempio live in esecuzione](https://mdn.github.io/learning-area/tools-testing/cross-browser-testing/strategies/hidden-info-panel.html)):
 
@@ -173,7 +173,7 @@ Le seguenti sono anche buone opzioni, se puoi ottenerle:
 
 La tua macchina di lavoro principale può anche essere un luogo dove installare altri strumenti per scopi specifici, come strumenti di auditing per l'accessibilità, lettori di schermo e emulatori/macchine virtuali.
 
-Alcune aziende più grandi hanno laboratori di dispositivi che vantano una selezione molto ampia di dispositivi differenti, consentendo agli sviluppatori di scovare bug su combinazioni molto specifiche di browser/dispositivi. Aziende più piccole e singoli individui generalmente non possono permettersi un laboratorio così sofisticato, quindi si arrangiano con laboratori più piccoli, emulatori, macchine virtuali e app di testing commerciali.
+Alcune aziende più grandi hanno laboratori di dispositivi che vantano una selezione molto ampia di dispositivi differenti, consentendo agli sviluppatori di scovare bug su combinazioni molto specifiche di browser/dispositivi. Aziende più piccole e singoli individui generalmente non possono permettersi un laboratorio così sofisticato, quindi si arrangiano con laboratori più piccoli, emulatori, macchine virtuali e app di collaudo commerciali.
 
 Parleremo di ciascuna delle altre opzioni qui sotto.
 
@@ -245,9 +245,9 @@ Avere più macchine virtuali è molto utile, in particolare per i test su Window
 
 ### Automazione e app commerciali
 
-Come menzionato nell'ultimo capitolo, puoi eliminare gran parte del dolore del testing su browser utilizzando qualche tipo di sistema di automazione. Puoi impostare il tuo sistema di automazione dei test ([Selenium](https://www.selenium.dev/) essendo l'app popolare di scelta), che richiede un po' di configurazione, ma può essere molto gratificante quando riesci a farlo funzionare.
+Come menzionato nell'ultimo capitolo, puoi eliminare gran parte del dolore del collaudo su browser utilizzando qualche tipo di sistema di automazione. Puoi impostare il tuo sistema di automazione dei test ([Selenium](https://www.selenium.dev/) essendo l'app popolare di scelta), che richiede un po' di configurazione, ma può essere molto gratificante quando riesci a farlo funzionare.
 
-Ci sono anche strumenti commerciali disponibili come [Sauce Labs](https://saucelabs.com/), [Browser Stack](https://www.browserstack.com/) e [LambdaTest](https://www.lambdatest.com/) che fanno questo tipo di cosa per te, senza dover preoccuparti della configurazione, se desideri investire un po' di denaro nel tuo testing.
+Ci sono anche strumenti commerciali disponibili come [Sauce Labs](https://saucelabs.com/), [Browser Stack](https://www.browserstack.com/) e [LambdaTest](https://www.lambdatest.com/) che fanno questo tipo di cosa per te, senza dover preoccuparti della configurazione, se desideri investire un po' di denaro nel tuo collaudo.
 
 Un'altra alternativa è usare strumenti di automazione dei test senza codice come [Endtest](https://www.endtest.io/).
 
@@ -281,7 +281,7 @@ Questi passaggi sono progettati per assicurarsi che il browser che stai testando
 
 ## Riepilogo
 
-Dopo aver letto questo articolo dovresti ora avere una buona idea di cosa puoi fare per identificare il tuo pubblico di riferimento/elenco di browser target, quindi eseguire efficacemente il testing cross-browser su quell'elenco.
+Dopo aver letto questo articolo dovresti ora avere una buona idea di cosa puoi fare per identificare il tuo pubblico di riferimento/elenco di browser target, quindi eseguire efficacemente il collaudo cross-browser su quell'elenco.
 
 Successivamente, rivolgeremo la nostra attenzione ai problemi di codice reali che i tuoi test potrebbero scoprire, iniziando con HTML e CSS.
 

@@ -1,11 +1,11 @@
 ---
-title: Come si configura un server di testing locale?
+title: Come si configura un server di collaudo locale?
 slug: Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server
 l10n:
   sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
 ---
 
-Questo articolo spiega come configurare un semplice server di testing locale sulla tua macchina e le basi su come utilizzarlo.
+Questo articolo spiega come configurare un semplice server di collaudo locale sulla tua macchina e le basi su come utilizzarlo.
 
 <table>
   <tbody>
@@ -23,7 +23,7 @@ Questo articolo spiega come configurare un semplice server di testing locale sul
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
-      <td>Imparerai come configurare un server di testing locale.</td>
+      <td>Imparerai come configurare un server di collaudo locale.</td>
     </tr>
   </tbody>
 </table>
@@ -34,7 +34,7 @@ Nel corso della maggior parte dell'area di apprendimento, ti diciamo di aprire d
 
 Se il percorso dell'indirizzo web inizia con `file://` seguito dal percorso del file sul tuo disco rigido locale, si sta utilizzando un file locale. Al contrario, se visualizzi uno dei nostri esempi ospitati su GitHub (o un esempio su un altro server remoto), l'indirizzo web inizierà con `http://` o `https://`, per indicare che il file è stato ricevuto tramite HTTP.
 
-## Il problema con il testing di file locali
+## Il problema con il collaudo di file locali
 
 Alcuni esempi non funzioneranno se li apri come file locali. Questo può accadere per vari motivi, il più probabile dei quali è:
 

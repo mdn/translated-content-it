@@ -16,13 +16,13 @@ Eseguire manualmente i test su diversi browser e dispositivi, più volte al gior
       <th scope="row">Prerequisiti:</th>
       <td>
         Familiarità con i linguaggi di base <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>, <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>;
-        un'idea dei principi di alto livello del <a href="/it/docs/Learn_web_development/Extensions/Testing/Introduction">testing cross-browser</a>.
+        un'idea dei principi di alto livello del <a href="/it/docs/Learn_web_development/Extensions/Testing/Introduction">collaudo cross-browser</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Fornire una comprensione di cosa implica il testing automatizzato, come può semplificare il lavoro e come utilizzare alcuni dei prodotti commerciali che lo rendono più facile.
+        Fornire una comprensione di cosa implica il collaudo automatizzato, come può semplificare il lavoro e come utilizzare alcuni dei prodotti commerciali che lo rendono più facile.
       </td>
     </tr>
   </tbody>
@@ -30,19 +30,19 @@ Eseguire manualmente i test su diversi browser e dispositivi, più volte al gior
 
 ## L'automazione facilita le cose
 
-In tutto questo modulo abbiamo dettagliato diversi modi per testare i tuoi siti web e app, spiegando quale potrebbe essere la portata del tuo testing cross-browser in termini di browser da testare, considerazioni sull'accessibilità e altro ancora. Sembra un sacco di lavoro, vero?
+In tutto questo modulo abbiamo dettagliato diversi modi per testare i tuoi siti web e app, spiegando quale potrebbe essere la portata del tuo collaudo cross-browser in termini di browser da testare, considerazioni sull'accessibilità e altro ancora. Sembra un sacco di lavoro, vero?
 
 Siamo d'accordo - testare tutto ciò di cui abbiamo parlato nei precedenti articoli manualmente può essere davvero noioso. Fortunatamente, ci sono strumenti che possono aiutarci ad automatizzare parte di questo compito. Ci sono due modi principali per automatizzare i test di cui abbiamo parlato in questo modulo:
 
 1. Utilizzare un task runner come [Grunt](https://gruntjs.com/) o [Gulp](https://gulpjs.com/), o [npm scripts](https://docs.npmjs.com/misc/scripts/) per eseguire test e pulire il codice durante il processo di build. Questo è un ottimo modo per eseguire compiti come l'analisi del codice (linting), la minimizzazione, l'aggiunta di prefissi CSS o la trascrizione di nuove funzionalità JavaScript per ottenere la massima portata cross-browser e così via.
-2. Usare un sistema di automazione del browser come [Selenium](https://www.selenium.dev/) per eseguire test specifici su browser installati e restituire i risultati, avvisandoti dei fallimenti nei browser appena si verificano. Le app commerciali di testing cross-browser come [Sauce Labs](https://saucelabs.com/) e [BrowserStack](https://www.browserstack.com/) si basano su Selenium, ma ti permettono di accedere alla loro configurazione da remoto utilizzando un'interfaccia, risparmiandoti la fatica di impostare il tuo sistema di test.
+2. Usare un sistema di automazione del browser come [Selenium](https://www.selenium.dev/) per eseguire test specifici su browser installati e restituire i risultati, avvisandoti dei fallimenti nei browser appena si verificano. Le app commerciali di collaudo cross-browser come [Sauce Labs](https://saucelabs.com/) e [BrowserStack](https://www.browserstack.com/) si basano su Selenium, ma ti permettono di accedere alla loro configurazione da remoto utilizzando un'interfaccia, risparmiandoti la fatica di impostare il tuo sistema di test.
 
-Vedremo come impostare il tuo sistema di testing basato su Selenium nel prossimo articolo. In questo articolo, vedremo come impostare un task runner e utilizzare le funzionalità di base dei sistemi commerciali come quelli menzionati sopra.
+Vedremo come impostare il tuo sistema di collaudo basato su Selenium nel prossimo articolo. In questo articolo, vedremo come impostare un task runner e utilizzare le funzionalità di base dei sistemi commerciali come quelli menzionati sopra.
 
 > [!NOTE]
 > Le due categorie sopra non sono mutuamente esclusive. È possibile configurare un task runner per accedere a un servizio come Sauce Labs o LambdaTest tramite un'API, eseguire test cross-browser e restituire i risultati. Lo vedremo di seguito.
 
-## Usare un task runner per automatizzare gli strumenti di testing
+## Usare un task runner per automatizzare gli strumenti di collaudo
 
 Come abbiamo detto sopra, puoi accelerare drasticamente compiti comuni come l'analisi del codice (linting) e la minimizzazione usando un task runner per eseguire tutto ciò di cui hai bisogno automaticamente a un certo punto nel tuo processo di build. Ad esempio, questo potrebbe essere ogni volta che salvi un file, o in un altro momento. In questa sezione vedremo come automatizzare l'esecuzione dei task con Node e Gulp, un'opzione accessibile ai principianti.
 
@@ -94,7 +94,7 @@ Con questo, sei pronto a proseguire.
 
 ### Impostare l'automazione con Gulp
 
-Vediamo come impostare Gulp e usarlo per automatizzare alcuni strumenti di testing.
+Vediamo come impostare Gulp e usarlo per automatizzare alcuni strumenti di collaudo.
 
 1. Per iniziare, crea un progetto npm di test usando la procedura dettagliata in fondo alla sezione precedente.
    Inoltre, aggiorna il file `package.json` con la riga: `"type": "module"` in modo che risulti simile a questo:
@@ -345,16 +345,16 @@ Ci sono molti altri task runner disponibili. Certamente non stiamo cercando di d
 - Grunt funziona in modo molto simile a Gulp, tranne che si basa su task specificati in un file di configurazione, piuttosto che su JavaScript scritto. Vedi [Getting started with Grunt per maggiori dettagli](https://gruntjs.com/getting-started).
 - Puoi anche eseguire task direttamente usando npm scripts situati all'interno del tuo file `package.json`, senza bisogno di installare alcun tipo di sistema di task runner extra. Questo funziona sul presupposto che cose come i plugin di Gulp siano fondamentalmente dei wrapper attorno a strumenti da riga di comando. Quindi, se riesci a capire come eseguire gli strumenti usando la riga di comando, puoi quindi eseguirli usando npm scripts. È un po' più complicato da gestire, ma può essere gratificante per coloro che hanno solide abilità con la riga di comando. [Why npm scripts?](https://css-tricks.com/why-npm-scripts/) fornisce una buona introduzione con una buona dose di ulteriori informazioni.
 
-## Usare servizi di testing commerciali per accelerare il testing del browser
+## Usare servizi di collaudo commerciali per accelerare il collaudo del browser
 
-Ora diamo uno sguardo ai servizi di testing di browser di terze parti e cosa possono fare per noi.
+Ora diamo uno sguardo ai servizi di collaudo di browser di terze parti e cosa possono fare per noi.
 
 Quando usi questi tipi di servizi, fornisci un URL della pagina che vuoi testare insieme a informazioni, come quali browser vuoi che venga testata. L'app quindi configura una nuova macchina virtuale con il sistema operativo e il browser a cui fai riferimento, e restituisce i risultati del test sotto forma di screenshot, video, file di log, testo, ecc. Questo è molto utile e decisamente più conveniente che dover configurare tutte le combinazioni di OS/browser da solo.
 
 Puoi quindi fare un passo avanti, usando un'API per accedere alle funzionalità in modo programmato, il che significa che tali app possono essere combinate con task runner, come i propri ambienti Selenium locali e altri, per creare test automatizzati.
 
 > [!NOTE]
-> Ci sono altri sistemi di testing di browser commerciali disponibili ma in questo articolo ci concentreremo su BrowserStack, Sauce Labs e TestingBot. Non stiamo dicendo che questi siano necessariamente i migliori strumenti disponibili, ma sono buoni strumenti che sono semplici da usare per i principianti.
+> Ci sono altri sistemi di collaudo di browser commerciali disponibili ma in questo articolo ci concentreremo su BrowserStack, Sauce Labs e TestingBot. Non stiamo dicendo che questi siano necessariamente i migliori strumenti disponibili, ma sono buoni strumenti che sono semplici da usare per i principianti.
 
 ### BrowserStack
 
@@ -364,7 +364,7 @@ Per iniziare:
 
 1. Crea un [account di prova su BrowserStack](https://www.browserstack.com/users/sign_up).
 2. Effettua l'accesso. Questo dovrebbe avvenire automaticamente dopo aver verificato il tuo indirizzo email.
-3. Clicca sul link _Live_ nel menu di navigazione in alto per andare su Testing Manuale Live.
+3. Clicca sul link _Live_ nel menu di navigazione in alto per andare su Collaudo Manuale Live.
 
 #### Le basi: Test manuali
 
@@ -719,7 +719,7 @@ Tratteremo l'esecuzione effettiva dei test automatizzati su TestingBot nel pross
 
 ## Riepilogo
 
-È stata una lunga corsa, ma sono sicuro che puoi cominciare a vedere i benefici di utilizzare strumenti di automazione per fare un po' del lavoro pesante in termini di testing.
+È stata una lunga corsa, ma sono sicuro che puoi cominciare a vedere i benefici di utilizzare strumenti di automazione per fare un po' del lavoro pesante in termini di collaudo.
 
 Nel prossimo articolo, vedremo come impostare il nostro sistema locale di automazione usando Selenium, e come combinarlo con servizi come Sauce Labs, BrowserStack e TestingBot.
 

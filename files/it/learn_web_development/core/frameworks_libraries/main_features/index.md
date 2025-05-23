@@ -281,13 +281,13 @@ Il **Glimmer VM** è unico per Ember. Non è né un DOM virtuale né un Incremen
 
 Come [menzionato nel capitolo precedente, il routing](/it/docs/Learn_web_development/Core/Frameworks_libraries/Introduction#routing) è una parte importante dell'esperienza web. Per evitare un'esperienza interrotta in app sufficientemente complesse con molte visualizzazioni, ciascuno dei framework trattati in questo modulo fornisce una libreria (o più di una libreria) che aiuta gli sviluppatori a implementare il routing lato client nelle loro applicazioni.
 
-## Testing
+## Collaudo
 
 Tutte le applicazioni traggono vantaggio da una copertura di test che assicura che il software continui a comportarsi come previsto, e le applicazioni web non fanno eccezione. L'ecosistema di ciascun framework fornisce strumenti che facilitano la scrittura dei test. Gli strumenti di test non sono integrati nei framework stessi, ma gli strumenti da riga di comando utilizzati per generare app del framework ti danno accesso agli strumenti di test appropriati.
 
-Ciascun framework ha ampi strumenti nel proprio ecosistema, con capacità sia di unit testing che di integrazione.
+Ciascun framework ha ampi strumenti nel proprio ecosistema, con capacità sia di collaudo di modulo che di integrazione.
 
-[Testing Library](https://testing-library.com/) è una suite di utility per il test che ha strumenti per molti ambienti JavaScript, tra cui React, Vue e Angular. La documentazione di Ember copre il [testing delle app Ember](https://guides.emberjs.com/release/testing/).
+[Testing Library](https://testing-library.com/) è una suite di utility per il test che ha strumenti per molti ambienti JavaScript, tra cui React, Vue e Angular. La documentazione di Ember copre il [collaudo delle app Ember](https://guides.emberjs.com/release/testing/).
 
 Ecco un rapido test per il nostro `CounterButton` scritto con l'aiuto di React Testing Library — testa diverse cose, come l'esistenza del pulsante e se il pulsante visualizza il testo corretto dopo essere stato cliccato 0, 1 e 2 volte:
 

@@ -21,7 +21,7 @@ La rilevazione delle funzionalità implica determinare se un browser supporta un
         dei principi generali
         <a
           href="/it/docs/Learn_web_development/Extensions/Testing/Introduction"
-          >del testing cross-browser</a
+          >del collaudo cross-browser</a
         >.
       </td>
     </tr>

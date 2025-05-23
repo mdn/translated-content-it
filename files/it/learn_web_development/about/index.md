@@ -64,14 +64,14 @@ Questo insieme di articoli non tenta di insegnare ogni argomento che un sviluppa
   - Fondamentali dello sviluppo web lato server
   - Prestazioni
   - Sicurezza e privacy
-  - Testing
+  - Collaudo
 
 ### Livello di dettaglio
 
 Gli argomenti presentati sono coperti in diversi livelli di dettaglio.
 
 - Alcuni sono coperti in profondità, ad esempio i fondamenti di HTML e CSS. È importante avere una chiara comprensione di questi prima che uno studente proceda troppo lontano nel suo percorso di apprendimento.
-- Alcuni sono coperti in modo più superficiale, ad esempio il controllo di versione o il testing. È importante capire cosa sono questi argomenti e iniziare con alcune basi, ma queste abilità possono essere ampliate mentre continui la tua carriera.
+- Alcuni sono coperti in modo più superficiale, ad esempio il controllo di versione o il collaudo. È importante capire cosa sono questi argomenti e iniziare con alcune basi, ma queste abilità possono essere ampliate mentre continui la tua carriera.
 
 ### Cosa non è coperto
 
