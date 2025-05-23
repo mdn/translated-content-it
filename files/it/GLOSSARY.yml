@@ -61,8 +61,10 @@ translate:
   authentication: autenticazione
   authorization: autorizzazione
   bandwidth: larghezza di banda
+  basics: basi
   block-level element: elemento a livello di blocco
   box model: modello a scatola
+  browser compatibility: compatibilità del browser
   build pipeline: pipeline di build
   caching: memorizzazione nella cache
   caption: didascalia
@@ -70,7 +72,7 @@ translate:
   client-side validation: validazione lato client
   color contrast: contrasto dei colori
   column header: intestazione di colonna
-  command line basics: basi della riga di comando
+  command line: riga di comando
   content sectioning: sezionamento del contenuto
   continuous delivery: consegna continua
   continuous integration: integrazione continua
@@ -94,9 +96,11 @@ translate:
   front-end developer: sviluppatore front-end
   grid framework: framework a griglia
   grid layout: layout a griglia
+  Guide: Guida
   heading element: elemento di intestazione
   HTML element: elemento HTML
   HTML validation: validazione HTML
+  How to: Come fare
   image alternative: alternativa dell'immagine
   implicit grid: griglia implicita
   inclusive design: design inclusivo
