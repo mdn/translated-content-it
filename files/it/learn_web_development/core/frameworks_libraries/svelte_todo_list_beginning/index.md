@@ -1,15 +1,15 @@
 ---
-title: Iniziale del nostro app di lista delle cose da fare con Svelte
+title: Iniziare la nostra app lista di cose da fare con Svelte
 slug: Learn_web_development/Core/Frameworks_libraries/Svelte_Todo_list_beginning
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: e6d43da6c6d28a6ac92cdd47882809ffbdf987ce
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/Svelte_getting_started","Learn_web_development/Core/Frameworks_libraries/Svelte_variables_props", "Learn_web_development/Core/Frameworks_libraries")}}
 
-Ora che abbiamo una comprensione di base su come funzionano le cose in Svelte, possiamo iniziare a costruire la nostra app di esempio: una lista delle cose da fare. In questo articolo, daremo prima uno sguardo alla funzionalità desiderata della nostra app, e poi creeremo un componente `Todos.svelte` e metteremo in atto il markup statico e gli stili, lasciando tutto pronto per iniziare a sviluppare le funzionalità della nostra app lista delle cose da fare, che approfondiremo negli articoli successivi.
+Ora che abbiamo una comprensione di base di come funzionano le cose in Svelte, possiamo iniziare a costruire la nostra app di esempio: una lista di cose da fare. In questo articolo daremo prima uno sguardo alle funzionalità desiderate della nostra app, poi creeremo un componente `Todos.svelte` e metteremo a posto il markup statico e gli stili, lasciando tutto pronto per iniziare a sviluppare le funzionalità della nostra app lista di cose da fare, che affronteremo negli articoli successivi.
 
-Vogliamo che i nostri utenti siano in grado di sfogliare, aggiungere e eliminare attività, e anche di segnarle come completate. Questa sarà la funzionalità di base che svilupperemo in questa serie di tutorial, e nel frattempo approfondiremo anche alcuni concetti più avanzati.
+Vogliamo che i nostri utenti siano in grado di sfogliare, aggiungere e eliminare compiti, e anche di segnarli come completati. Questa sarà la funzionalità di base che svilupperemo in questa serie di tutorial, e lungo il percorso esploreremo anche alcuni concetti più avanzati.
 
 <table>
   <tbody>
@@ -17,47 +17,46 @@ Vogliamo che i nostri utenti siano in grado di sfogliare, aggiungere e eliminare
       <th scope="row">Prerequisiti:</th>
       <td>
         <p>
-          Come minimo, è consigliato avere familiarità con i linguaggi core
+          Si raccomanda che siate almeno familiari con i fondamenti dei linguaggi
           <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
-          <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e
-          avere conoscenza del
+          <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e che abbiate conoscenze del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
             >terminale/riga di comando</a
           >.
         </p>
         <p>
-          Avrai bisogno di un terminale con node + npm installato per compilare e costruire la tua app.
+          Avrai bisogno di un terminale con node + npm installati per compilare e costruire la tua app.
         </p>
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparare come creare un componente Svelte, renderizzarlo all'interno di un altro componente, passargli dei dati usando le props e salvare il suo stato.
+        Imparare a creare un componente Svelte, renderizzarlo all'interno di un altro componente, passargli dati usando le props, e salvare il suo stato.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Codifica insieme a noi
+## Codice seguito insieme a noi
 
 ### Git
 
-Clona il repository GitHub (se non lo hai già fatto) con:
+Clonare il repo GitHub (se non l'hai già fatto) con:
 
 ```bash
 git clone https://github.com/opensas/mdn-svelte-tutorial.git
 ```
 
-Poi, per raggiungere lo stato attuale dell'app, esegui
+Poi per arrivare allo stato attuale dell'app, esegui
 
 ```bash
 cd mdn-svelte-tutorial/02-starting-our-todo-app
 ```
 
-Oppure scarica direttamente il contenuto della cartella:
+Oppure scaricare direttamente il contenuto della cartella:
 
 ```bash
 npx degit opensas/mdn-svelte-tutorial/02-starting-our-todo-app
@@ -67,35 +66,35 @@ Ricorda di eseguire `npm install && npm run dev` per avviare la tua app in modal
 
 ### REPL
 
-Per codificare insieme a noi usando il REPL, inizia da
+Per seguire il codice con noi usando il REPL, inizia qui:
 
 <https://svelte.dev/repl/b7b831ea3a354d3789cefbc31e2ca495?version=3.23.2>
 
-## Funzionalità dell'app lista delle cose da fare
+## Funzionalità dell'app lista di cose da fare
 
-Ecco come apparirà la nostra app lista delle cose da fare una volta che sarà pronta:
+Ecco come sarà la nostra app lista di cose da fare una volta pronta:
 
-![tipica app di lista delle cose da fare, con un titolo 'cosa deve essere fatto', un input per inserire più cose da fare, e una lista di cose da fare con caselle di controllo](01-todo-list-app.png)
+![un'app tipica di lista di cose da fare, con un titolo 'cosa deve essere fatto', un input per inserire altre attività e una lista di attività con checkbox](01-todo-list-app.png)
 
 Usando questa interfaccia utente, il nostro utente sarà in grado di:
 
-- Sfogliare le proprie attività
-- Segnare le attività come completate/in sospeso senza eliminarle
-- Rimuovere attività
-- Aggiungere nuove attività
-- Filtrare le attività per stato: tutte le attività, attività attive o completate
-- Modificare le attività
-- Segnare tutte le attività come attive/completate
-- Rimuovere tutte le attività completate
+- Sfogliare i propri compiti
+- Segnare i compiti come completati/in sospeso senza eliminarli
+- Rimuovere compiti
+- Aggiungere nuovi compiti
+- Filtrare i compiti per stato: tutti i compiti, compiti attivi o compiti completati
+- Modificare i compiti
+- Segnare tutti i compiti come attivi/completati
+- Rimuovere tutti i compiti completati
 
 ## Costruire il nostro primo componente
 
-Creiamo un componente `Todos.svelte`. Questo conterrà la nostra lista di attività.
+Creiamo un componente `Todos.svelte`. Questo conterrà la nostra lista di cose da fare.
 
 1. Crea una nuova cartella — `src/components`.
 
    > [!NOTE]
-   > Puoi mettere i tuoi componenti ovunque all'interno della cartella `src`, ma la cartella `components` è una convenzione riconosciuta da seguire, permettendoti di trovare facilmente i tuoi componenti.
+   > Puoi inserire i tuoi componenti ovunque all'interno della cartella `src`, ma la cartella `components` è una convenzione riconosciuta da seguire, consentendoti di trovare facilmente i tuoi componenti.
 
 2. Crea un file chiamato `src/components/Todos.svelte` con il seguente contenuto:
 
@@ -119,7 +118,7 @@ Creiamo un componente `Todos.svelte`. Questo conterrà la nostra lista di attivi
    <Todos />
    ```
 
-5. In modalità sviluppo, Svelte emetterà un avviso nella console del browser quando si specifica una prop che non esiste nel componente; in questo caso abbiamo una prop `name` specificata quando istanziamo il componente `App` all'interno di `src/main.js`, che non è usata all'interno di `App`. La console dovrebbe attualmente darti un messaggio simile a "\<App> è stato creato con una prop sconosciuta 'name'". Per eliminare questo avviso, rimuovi la prop `name` da `src/main.js`; ora dovrebbe apparire così:
+5. In modalità sviluppo, Svelte emetterà un avvertimento nella console del browser quando si specifica una prop che non esiste nel componente; in questo caso abbiamo una prop `name` specificata quando istanziamo il componente `App` all'interno di `src/main.js`, che non è utilizzato all'interno di `App`. La console dovrebbe attualmente darti un messaggio del tipo "\<App> è stato creato con prop sconosciuta 'name'". Per eliminare questo, rimuovi la prop `name` da `src/main.js`; ora dovrebbe apparire così:
 
    ```js
    import App from "./App.svelte";
@@ -131,13 +130,13 @@ Creiamo un componente `Todos.svelte`. Questo conterrà la nostra lista di attivi
    export default app;
    ```
 
-Ora, se controlli l'URL del tuo server di test, vedrai il nostro componente `Todos.svelte` renderizzato:
+Ora, se controlli l'URL del tuo server di test, vedrai il nostro componente `Todos.svelte` essere renderizzato:
 
-![rendering di componente di base con un titolo che dice 'Svelte to-do list'](02-todos-component-rendered.png)
+![renderizzazione di un componente di base con un titolo che dice 'Svelte to-do list'](02-todos-component-rendered.png)
 
-## Aggiungere il markup statico
+## Aggiungere markup statico
 
-Per il momento, inizieremo con una rappresentazione di markup statico della nostra app, così puoi vedere come apparirà. Copia e incolla il seguente contenuto nel nostro file componente `Todos.svelte`, sostituendo il contenuto esistente:
+Per il momento inizieremo con una rappresentazione di markup statico della nostra app, così puoi vedere come sarà. Copia e incolla quanto segue nel nostro file componente `Todos.svelte`, sostituendo il contenuto esistente:
 
 ```svelte
 <!-- Todos.svelte -->
@@ -260,25 +259,25 @@ Per il momento, inizieremo con una rappresentazione di markup statico della nost
 </div>
 ```
 
-Controlla di nuovo il rendering e vedrai qualcosa di simile a questo:
+Ricontrolla il rendering e vedrai qualcosa del genere:
 
-![Una app to-do list, ma non stilizzata, con un titolo `what needs to be done`, input, caselle di controllo, ecc.](03-unstyled-todo-app.png)
+![Un'app di lista di cose da fare, ma non stilizzata, con un titolo di `what needs to be done`, input, checkbox, ecc.](03-unstyled-todo-app.png)
 
-Il markup HTML sopra non è molto ben stilizzato ed è anche funzionalmente inutile. Tuttavia, diamo un'occhiata al markup e vediamo come si relaziona alle nostre funzionalità desiderate:
+Il markup HTML sopra non è molto ben stilizzato e inoltre non funziona. Ad ogni modo, diamo un'occhiata al markup e vediamo come si collega alle nostre funzionalità desiderate:
 
-- Un'etichetta e una casella di testo per inserire nuove attività
-- Tre pulsanti per filtrare per stato delle attività
-- Un'etichetta che mostra il numero totale di attività e le attività completate
-- Una lista non ordinata, che contiene un elemento di lista per ogni attività
-- Quando l'attività è in fase di modifica, l'elemento di lista ha un input e due pulsanti per annullare o salvare le modifiche
-- Se l'attività non è in fase di modifica, c'è una casella di controllo per impostare lo stato completato, e due pulsanti per modificare o eliminare l'attività
-- Infine, ci sono due pulsanti per selezionare/deselezionare tutte le attività e per rimuovere le attività completate
+- Una etichetta e un campo di testo per inserire nuovi compiti
+- Tre pulsanti per filtrare per stato del compito
+- Una etichetta che mostra il numero totale dei compiti e i compiti completati
+- Una lista non ordinata, che contiene un elemento della lista per ciascun compito
+- Quando il compito è in fase di modifica, l'elemento della lista ha un input e due pulsanti per annullare o salvare le modifiche
+- Se il compito non è in fase di modifica, c'è una casella di controllo per impostare lo stato completato, e due pulsanti per modificare o eliminare il compito
+- Infine ci sono due pulsanti per selezionare/deselezionare tutti i compiti e per rimuovere i compiti completati
 
-Negli articoli successivi metteremo in funzione tutte queste funzionalità, e anche di più.
+Negli articoli successivi faremo funzionare tutte queste caratteristiche, e anche di più.
 
-### Funzionalità di accessibilità della lista delle cose da fare
+### Caratteristiche di accessibilità della lista di cose da fare
 
-Potresti notare alcuni attributi insoliti qui. Ad esempio:
+Potresti notare alcuni attributi insoliti qui. Per esempio:
 
 ```svelte
 <button class="btn toggle-btn" aria-pressed="true">
@@ -288,9 +287,9 @@ Potresti notare alcuni attributi insoliti qui. Ad esempio:
 </button>
 ```
 
-Qui, `aria-pressed` dice alla tecnologia assistiva (come i lettori di schermo) che il pulsante può avere due stati: `premuto` o `non premuto`. Considerali come analoghi per acceso e spento. Impostare un valore di `true` significa che il pulsante è premuto per impostazione predefinita.
+Qui, `aria-pressed` informa la tecnologia assistiva (come i lettori di schermo) che il pulsante può trovarsi in uno di due stati: `premuto` o `non premuto`. Pensali come analoghi per acceso e spento. Impostare un valore di `true` significa che il pulsante è premuto per impostazione predefinita.
 
-La classe `visually-hidden` non ha ancora effetto, perché non abbiamo incluso alcun CSS. Una volta che abbiamo messo in atto i nostri stili, tuttavia, qualsiasi elemento con questa classe sarà nascosto agli utenti vedenti e comunque disponibile agli utenti di lettori di schermo — questo perché queste parole non sono necessarie per gli utenti vedenti; sono lì per fornire più informazioni su cosa fa il pulsante per gli utenti di lettori di schermo che non hanno il contesto visivo aggiuntivo per aiutarli.
+La classe `visually-hidden` non ha ancora effetto, perché non abbiamo incluso alcun CSS. Una volta sistemati i nostri stili, però, qualsiasi elemento con questa classe sarà nascosto agli utenti vedenti e ancora disponibile agli utenti con lettori di schermo — questo perché queste parole non sono necessarie agli utenti vedenti; sono lì per fornire maggiori informazioni su ciò che fa il pulsante agli utenti con lettori di schermo che non hanno il contesto visivo extra per aiutarli.
 
 Più in basso, puoi trovare il seguente elemento `<ul>`:
 
@@ -301,19 +300,19 @@ Più in basso, puoi trovare il seguente elemento `<ul>`:
   aria-labelledby="list-heading">
 ```
 
-L'attributo `role` aiuta la tecnologia assistiva a spiegare che tipo di valore semantico ha un elemento — o qual è il suo scopo. Un `<ul>` è trattato come una lista per impostazione predefinita, ma gli stili che stiamo per aggiungere romperanno quella funzionalità. Questo ruolo ripristinerà il significato di "lista" all'elemento `<ul>`. Se vuoi saperne di più sul perché ciò sia necessario, puoi dare un'occhiata all'articolo di Scott O'Hara ["Fixing Lists"](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html) (2019).
+L'attributo `role` aiuta la tecnologia assistiva a spiegare che tipo di valore semantico ha un elemento — o qual è il suo scopo. Un `<ul>` viene trattato come una lista per impostazione predefinita, ma gli stili che stiamo per aggiungere romperanno quella funzionalità. Questo ruolo ripristinerà il significato di "lista" all'elemento `<ul>`. Se vuoi saperne di più sul perché questo è necessario, puoi controllare l'articolo di Scott O'Hara ["Fixing Lists"](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html) (2019).
 
-L'attributo `aria-labelledby` dice alle tecnologie assistive che stiamo trattando il nostro `<h2>` con un `id` di `list-heading` come l'etichetta che descrive lo scopo della lista sottostante. Fare questa associazione dà alla lista un contesto più informativo, che potrebbe aiutare gli utenti di lettori di schermo a comprendere meglio il suo scopo.
+L'attributo `aria-labelledby` dice alle tecnologie assistive che stiamo trattando il nostro `<h2>` con un `id` di `list-heading` come etichetta che descrive lo scopo della lista sottostante. Fare questa associazione dà alla lista un contesto più informativo, che potrebbe aiutare gli utenti con lettori di schermo a capire meglio il suo scopo.
 
-Questo sembra il momento giusto per parlare di come Svelte gestisce l'accessibilità; facciamolo ora.
+Questo sembra un buon momento per parlare di come Svelte si occupa dell'accessibilità; facciamolo ora.
 
 ## Supporto all'accessibilità di Svelte
 
-Svelte pone una particolare enfasi sull'accessibilità. L'intenzione è di incoraggiare gli sviluppatori a scrivere codice più accessibile "di default". Essendo un compilatore, Svelte può analizzare staticamente i nostri template HTML per fornire avvisi di accessibilità quando i componenti vengono compilati.
+Svelte pone particolare enfasi sull'accessibilità. L'intenzione è di incoraggiare gli sviluppatori a scrivere codice più accessibile "per impostazione predefinita". Essendo un compilatore, Svelte può analizzare staticamente i nostri modelli HTML per fornire avvertimenti di accessibilità quando i componenti vengono compilati.
 
-L'accessibilità (abbreviata in a11y) non è sempre facile da ottenere giusta, ma Svelte aiuterà avvisandoti se scrivi un markup inaccessibile.
+L'accessibilità (abbreviata a11y) non è sempre facile da ottenere correttamente, ma Svelte aiuterà avvertendoti se scrivi markup inaccessibile.
 
-Ad esempio, se aggiungiamo un elemento `<img>` al nostro componente `todos.svelte` senza la sua prop `alt` corrispondente:
+Per esempio, se aggiungiamo un elemento `<img>` al nostro componente `todos.svelte` senza la sua corrispondente prop `alt`:
 
 ```svelte
 <h1>Svelte To-Do list</h1>
@@ -337,7 +336,7 @@ created public/build/bundle.js in 220ms
 
 Inoltre, il nostro editor può visualizzare questo avviso anche prima di chiamare il compilatore:
 
-![Una finestra di editor di codice che mostra un tag immagine, con un messaggio di errore popup che dice che l'elemento dovrebbe avere un attributo alt](04-svelte-accessibility-support.png)
+![Una finestra dell'editor di codice che mostra un tag immagine, con un messaggio di errore popup che dice che l'elemento dovrebbe avere un attributo alt](04-svelte-accessibility-support.png)
 
 Puoi dire a Svelte di ignorare questo avviso per il prossimo blocco di markup con un [commento](https://svelte.dev/docs/basic-markup#comments) che inizia con `svelte-ignore`, in questo modo:
 
@@ -347,45 +346,49 @@ Puoi dire a Svelte di ignorare questo avviso per il prossimo blocco di markup co
 ```
 
 > [!NOTE]
-> Con VS Code puoi aggiungere automaticamente questo commento di ignoranza cliccando sul link _Quick fix..._ o premendo <kbd>Ctrl</kbd> + <kbd>.</kbd>.
+> Con VS Code puoi automaticamente aggiungere questo commento ignorante cliccando sul link _Quick fix…_ o premendo <kbd>Ctrl</kbd> + <kbd>.</kbd>.
 
-Se vuoi disabilitare globalmente questo avviso, puoi aggiungere questo gestore `onwarn` al tuo file `rollup.config.js` all'interno della configurazione per il plugin `Svelte`, in questo modo:
+Se vuoi disabilitare globalmente questo avviso, puoi aggiungere questo handler `onwarn` al file `rollup.config.js` all'interno della configurazione per il plugin `Svelte`, in questo modo:
 
 ```js
-plugins: [
-  svelte({
-    dev: !production,
-    css: (css) => {
-      css.write("public/build/bundle.css");
-    },
-    // Warnings are normally passed straight to Rollup. You can
-    // optionally handle them here, for example to squelch
-    // warnings with a particular code
-    onwarn: (warning, handler) => {
-      // e.g. I don't care about screen readers -> please DON'T DO THIS!!!
-      if (warning.code === "a11y-missing-attribute") {
-        return;
-      }
-
-      // let Rollup handle all other warnings normally
-      handler(warning);
-    },
-  }),
-
+export default {
   // …
-];
+  plugins: [
+    svelte({
+      dev: !production,
+      css: (css) => {
+        css.write("public/build/bundle.css");
+      },
+      // Warnings are normally passed straight to Rollup. You can
+      // optionally handle them here, for example to squelch
+      // warnings with a particular code
+      onwarn: (warning, handler) => {
+        // e.g. I don't care about screen readers -> please DON'T DO THIS!!!
+        if (warning.code === "a11y-missing-attribute") {
+          return;
+        }
+
+        // let Rollup handle all other warnings normally
+        handler(warning);
+      },
+    }),
+
+    // …
+  ],
+  // …
+};
 ```
 
-Per design, questi avvisi sono implementati nel compilatore stesso, e non come un plugin che puoi scegliere di aggiungere al tuo progetto. L'idea è di controllare i problemi di a11y nel tuo markup per impostazione predefinita e permetterti di optare per specifici avvisi.
+Per design, questi avvertimenti sono implementati nel compilatore stesso, e non come un plug-in che puoi scegliere di aggiungere al tuo progetto. L'idea è di controllare le problematiche a11y nel tuo markup di default e darti la possibilità di rinunciare a specifici avvisi.
 
 > [!NOTE]
-> Dovresti disabilitare questi avvisi solo se hai buoni motivi per farlo, ad esempio mentre costruisci un prototipo rapido. È importante essere un buon cittadino del web e rendere le tue pagine accessibili al pubblico più ampio possibile.
+> Dovresti disabilitare questi avvertimenti solo se hai buone ragioni per farlo, ad esempio durante la costruzione di un prototipo veloce. È importante essere un buon cittadino del web e rendere le tue pagine accessibili al pubblico più ampio possibile.
 
-Le regole di accessibilità controllate da Svelte sono prese da [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#supported-rules), un plugin per ESLint che fornisce controlli statici per molte regole di accessibilità sugli elementi JSX. Svelte mira a implementare tutte nel suo compilatore, e la maggior parte è stata già portata su Svelte. Su GitHub puoi vedere [quali controlli di accessibilità mancano ancora](https://github.com/sveltejs/svelte/issues/820). Puoi controllare il significato di ciascuna regola cliccando sul suo link.
+Le regole di accessibilità verificate da Svelte sono prese da [eslint-plugin-jsx-a11y](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#supported-rules), un plugin per ESLint che fornisce controlli statici per molte regole di accessibilità sugli elementi JSX. Svelte punta a implementarle tutte nel suo compilatore, e la maggior parte di esse sono già state portate in Svelte. Su GitHub puoi vedere [quali controlli di accessibilità mancano ancora](https://github.com/sveltejs/svelte/issues/820). Puoi controllare il significato di ciascuna regola cliccando sul suo link.
 
-## Stile del nostro markup
+## Stilare il nostro markup
 
-Facciamo in modo che la lista delle cose da fare abbia un aspetto un po' migliore. Sostituisci i contenuti del file `public/global.css` con il seguente:
+Rendiamo la lista di cose da fare un po' più bella. Sostituisci i contenuti del file `public/global.css` con il seguente:
 
 ```css
 /* RESETS */
@@ -692,9 +695,9 @@ body {
 }
 ```
 
-Con il nostro markup in stile, tutto ora sembra migliore:
+Con il nostro markup stilato, ora tutto appare meglio:
 
-![La nostra app lista delle cose da fare, in stile, con un titolo 'cosa deve essere fatto', un input per inserire più cose da fare, e una lista di cose da fare con caselle di controllo](05-styled-todo-app.png)
+![La nostra app lista di cose da fare, stilizzata, con un titolo di 'cosa deve essere fatto', un input per inserire più attività e una lista di attività con caselle di controllo](05-styled-todo-app.png)
 
 ## Il codice finora
 
@@ -706,7 +709,7 @@ Per vedere lo stato del codice come dovrebbe essere alla fine di questo articolo
 cd mdn-svelte-tutorial/03-adding-dynamic-behavior
 ```
 
-Oppure scarica direttamente il contenuto della cartella:
+Oppure scaricare direttamente il contenuto della cartella:
 
 ```bash
 npx degit opensas/mdn-svelte-tutorial/03-adding-dynamic-behavior
@@ -720,8 +723,8 @@ Per vedere lo stato attuale del codice in un REPL, visita:
 
 <https://svelte.dev/repl/c862d964d48d473ca63ab91709a0a5a0?version=3.23.2>
 
-## Sommario
+## Riepilogo
 
-Con il nostro markup e stile in atto, la nostra app lista delle cose da fare sta iniziando a prendere forma, e abbiamo tutto pronto in modo da poter iniziare a concentrarci sulle funzionalità che dobbiamo implementare.
+Con il nostro markup e lo stile al loro posto, la nostra app lista di cose da fare sta iniziando a prendere forma, e abbiamo tutto pronto in modo da poter iniziare a concentrarci sulle funzionalità che dobbiamo implementare.
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/Svelte_getting_started","Learn_web_development/Core/Frameworks_libraries/Svelte_variables_props", "Learn_web_development/Core/Frameworks_libraries")}}

@@ -1,25 +1,25 @@
 ---
-title: Creare il modulo Autore
+title: Crea modulo Autore
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_author_form
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: f2dc3d5367203c860cf1a71ce0e972f018523849
 ---
 
-Questo sottoarticolo mostra come definire una pagina per creare oggetti di tipo `Author`.
+Questo subarticolo mostra come definire una pagina per creare oggetti `Author`.
 
-## Importare metodi di validazione e sanificazione
+## Importa metodi di validazione e sanificazione
 
-Come nel [modulo genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_genre_form), per utilizzare _express-validator_ dobbiamo _richiedere_ le funzioni che vogliamo utilizzare.
+Come con il [modulo genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_genre_form), per utilizzare _express-validator_ dobbiamo _richiedere_ le funzioni che vogliamo utilizzare.
 
-Apri **/controllers/authorController.js** e aggiungi la seguente riga in cima al file (sopra le funzioni del percorso):
+Apri **/controllers/authorController.js** e aggiungi la seguente linea in cima al file (sopra le funzioni di route):
 
 ```js
 const { body, validationResult } = require("express-validator");
 ```
 
-## Controller—route GET
+## Controller—rotta get
 
-Trova il metodo controller esportato `author_create_get()` e sostituiscilo con il seguente codice. Questo renderizza la vista **author_form.pug**, passando una variabile `title`.
+Trova il metodo del controller esportato `author_create_get()` e sostituiscilo con il seguente codice. Questo renderizza la vista **author_form.pug**, passando una variabile `title`.
 
 ```js
 // Display Author create form on GET.
@@ -28,9 +28,9 @@ exports.author_create_get = (req, res, next) => {
 };
 ```
 
-## Controller—route POST
+## Controller—rotta post
 
-Trova il metodo controller esportato `author_create_post()` e sostituiscilo con il seguente codice.
+Trova il metodo del controller esportato `author_create_post()` e sostituiscilo con il seguente codice.
 
 ```js
 // Handle Author create on POST.
@@ -80,30 +80,29 @@ exports.author_create_post = [
         errors: errors.array(),
       });
       return;
-    } else {
-      // Data from form is valid.
-
-      // Save author.
-      await author.save();
-      // Redirect to new author record.
-      res.redirect(author.url);
     }
+    // Data from form is valid.
+
+    // Save author.
+    await author.save();
+    // Redirect to new author record.
+    res.redirect(author.url);
   }),
 ];
 ```
 
 > [!WARNING]
-> Non convalidare mai i _nomi_ usando `isAlphanumeric()` (come abbiamo fatto sopra) poiché ci sono molti nomi che utilizzano altri set di caratteri.
-> Lo facciamo qui per dimostrare come viene utilizzato il validatore e come può essere concatenato con altri validatori e la segnalazione degli errori.
+> Non convalidare mai i _nomi_ utilizzando `isAlphanumeric()` (come abbiamo fatto sopra) poiché ci sono molti nomi che usano altri set di caratteri.
+> Lo facciamo qui per dimostrare come funziona il validatore e come può essere concatenato con altri validatori e segnalazione degli errori.
 
-La struttura e il comportamento di questo codice sono quasi esattamente gli stessi di quelli per creare un oggetto `Genre`. Per prima cosa, convalidiamo e sanifichiamo i dati. Se i dati non sono validi, riesponiamo il modulo insieme ai dati originariamente inseriti dall'utente e a un elenco di messaggi di errore. Se i dati sono validi, salviamo il nuovo record dell'autore e reindirizziamo l'utente alla pagina di dettaglio dell'autore.
+La struttura e il comportamento di questo codice sono quasi esattamente gli stessi della creazione di un oggetto `Genre`. Prima convalidiamo e sanifichiamo i dati. Se i dati sono non validi, visualizziamo nuovamente il modulo insieme ai dati inseriti originariamente dall'utente e a un elenco di messaggi di errore. Se i dati sono validi, salviamo il nuovo record autore e reindirizziamo l'utente alla pagina dei dettagli dell'autore.
 
-A differenza del gestore POST di `Genre`, non verifichiamo se l'oggetto `Author` esiste già prima di salvarlo. Si potrebbe sostenere che dovremmo farlo, anche se così com'è ora possiamo avere più autori con lo stesso nome.
+Diversamente dall'handler post per `Genre`, non verifichiamo se l'oggetto `Author` esiste già prima di salvarlo. Probabilmente dovremmo, ma così com'è ora possiamo avere più autori con lo stesso nome.
 
 Il codice di validazione dimostra diverse nuove funzionalità:
 
-- Possiamo concatenare i validatori, utilizzando `withMessage()` per specificare il messaggio di errore da mostrare se il metodo di validazione precedente fallisce.
-  Questo semplifica molto la fornitura di messaggi di errore specifici senza molta duplicazione di codice.
+- Possiamo concatenare i validatori, utilizzando `withMessage()` per specificare il messaggio di errore da visualizzare se il metodo di validazione precedente fallisce.
+  Questo rende molto facile fornire messaggi di errore specifici senza molta duplicazione di codice.
 
   ```js
   [
@@ -119,8 +118,8 @@ Il codice di validazione dimostra diverse nuove funzionalità:
   ];
   ```
 
-- Possiamo usare la funzione `optional()` per eseguire una successiva validazione solo se un campo è stato inserito (ciò ci permette di convalidare i campi opzionali).
-  Ad esempio, qui sotto verifichiamo che la data di nascita opzionale sia una data conforme a ISO8601 (l'oggetto `{ values: "falsy" }` passato significa che accetteremo una stringa vuota o `null` come valore vuoto).
+- Possiamo usare la funzione `optional()` per eseguire una convalida successiva solo se un campo è stato inserito (questo ci permette di convalidare campi opzionali).
+  Ad esempio, sotto controlliamo che la data di nascita opzionale sia conforme a ISO8601 (l'oggetto `{ values: "falsy" }` passato significa che accetteremo sia una stringa vuota che `null` come valore vuoto).
 
   ```js
   [
@@ -131,11 +130,11 @@ Il codice di validazione dimostra diverse nuove funzionalità:
   ];
   ```
 
-- I parametri vengono ricevuti dalla richiesta come stringhe. Possiamo usare `toDate()` (o `toBoolean()`) per convertirli nei tipi JavaScript corretti (come mostrato alla fine della concatenazione del validatore sopra).
+- I parametri vengono ricevuti dalla richiesta come stringhe. Possiamo usare `toDate()` (o `toBoolean()`) per convertirli nei tipi JavaScript appropriati (come mostrato alla fine della catena del validatore sopra).
 
 ## Vista
 
-Crea **/views/author_form.pug** e copia il testo qui sotto.
+Crea **/views/author_form.pug** e copia il testo sotto.
 
 ```pug
 extends layout
@@ -160,25 +159,25 @@ block content
         li!= error.msg
 ```
 
-La struttura e il comportamento per questa vista sono esattamente gli stessi del modello **genre_form.pug**, quindi non li descriveremo nuovamente.
+La struttura e il comportamento per questa vista sono esattamente gli stessi del template **genre_form.pug**, quindi non lo descriveremo di nuovo.
 
 > [!NOTE]
-> Alcuni browser non supportano l'`input type="date"`, quindi non si avrà il widget selezionatore di date o il placeholder predefinito `dd/mm/yyyy`, ma invece si avrà un campo di testo semplice vuoto. Una soluzione è aggiungere esplicitamente l'attributo `placeholder='dd/mm/yyyy'` in modo che su browser meno capaci si ricevano comunque informazioni sul formato di testo desiderato.
+> Alcuni browser non supportano il tipo di input `type="date"`, quindi non otterrai il widget del selettore di date o il segnaposto predefinito `gg/mm/aaaa`, ma otterrai invece un campo di testo vuoto. Una soluzione è aggiungere esplicitamente l'attributo `placeholder='gg/mm/aaaa'` in modo che su browser meno capaci tu ottenga comunque informazioni sul formato di testo desiderato.
 
-### Sfida: Aggiungere la data di morte
+### Sfida: Aggiunta della data di morte
 
-Il modello sopra manca di un campo per inserire la `date_of_death`. Crea il campo seguendo lo stesso schema del gruppo di moduli per la data di nascita!
+Il template sopra manca di un campo per inserire la `data_de_morte`. Crea il campo seguendo lo stesso schema del gruppo di moduli per la data di nascita!
 
-## Come si presenta?
+## Che aspetto ha?
 
-Esegui l'applicazione, apri il tuo browser su `http://localhost:3000/`, quindi seleziona il link _Create new author_. Se tutto è configurato correttamente, il tuo sito dovrebbe apparire come nello screenshot seguente. Dopo aver inserito un valore, dovrebbe essere salvato e verrai portato alla pagina di dettaglio dell'autore.
+Esegui l'applicazione, apri il tuo browser su `http://localhost:3000/`, quindi seleziona il link _Crea nuovo autore_. Se tutto è configurato correttamente, il tuo sito dovrebbe assomigliare alla seguente schermata. Dopo aver inserito un valore, dovrebbe essere salvato e verrai portato alla pagina dei dettagli dell'autore.
 
-![Pagina di Creazione Autore - Sito Local Library di Express](locallibary_express_author_create_empty.png)
+![Pagina di Creazione Autore - Sito di Biblioteca Locale Express](locallibary_express_author_create_empty.png)
 
 > [!NOTE]
-> Se sperimenti vari formati di input per le date, potresti scoprire che il formato `yyyy-mm-dd` si comporta in modo anomalo. Questo perché JavaScript tratta le stringhe di date come incluse nel tempo di 0 ore, ma inoltre tratta le stringhe di date in quel formato (lo standard ISO 8601) come incluse nel tempo 0 ore UTC, piuttosto che nel tempo locale. Se il tuo fuso orario è a ovest di UTC, la visualizzazione della data, essendo locale, sarà un giorno prima della data inserita. Questa è una delle numerose complessità (come i cognomi multilingue e i libri con più autori) che non stiamo affrontando qui.
+> Se fai esperimenti con vari formati di input per le date, potresti scoprire che il formato `aaaa-mm-gg` si comporta in modo anomalo. Questo perché JavaScript tratta le stringhe di data come incluse l'ora di 0 ore, ma tratta inoltre le stringhe di data in quel formato (lo standard ISO 8601) come incluse l'ora di 0 ore UTC, piuttosto dell'ora locale. Se il tuo fuso orario è a ovest di UTC, la visualizzazione della data, essendo locale, sarà un giorno prima della data inserita. Questa è una delle diverse complessità (come i cognomi composti da più parole e i libri con più autori) che non stiamo affrontando qui.
 
 ## Prossimi passi
 
-- Torna a [Tutorial Express Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
-- Procedi al prossimo sottoarticolo della parte 6: [Creare il modulo Libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_book_form).
+- Torna a [Parte 6 del tutorial su Express: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+- Procedi al successivo subarticolo della parte 6: [Crea modulo Libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_book_form).

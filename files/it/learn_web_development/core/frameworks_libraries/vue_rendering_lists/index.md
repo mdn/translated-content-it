@@ -2,12 +2,12 @@
 title: Rendering a list of Vue components
 slug: Learn_web_development/Core/Frameworks_libraries/Vue_rendering_lists
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: e6d43da6c6d28a6ac92cdd47882809ffbdf987ce
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/Vue_first_component","Learn_web_development/Core/Frameworks_libraries/Vue_methods_events_models", "Learn_web_development/Core/Frameworks_libraries")}}
 
-A questo punto abbiamo un componente completamente funzionante; siamo ora pronti per aggiungere più componenti `ToDoItem` alla nostra app. In questo articolo esamineremo come aggiungere un insieme di dati di elementi da fare al nostro componente `App.vue`, che poi cicleremo e visualizzeremo all'interno di componenti `ToDoItem` utilizzando la direttiva `v-for`.
+A questo punto abbiamo un componente completamente funzionante; siamo ora pronti ad aggiungere più componenti `ToDoItem` alla nostra app. In questo articolo vedremo come aggiungere una serie di dati di elementi da fare al nostro componente `App.vue`, che poi eseguiremo in un ciclo e visualizzeremo all'interno dei componenti `ToDoItem` utilizzando la direttiva `v-for`.
 
 <table>
   <tbody>
@@ -15,7 +15,7 @@ A questo punto abbiamo un componente completamente funzionante; siamo ora pronti
       <th scope="row">Prerequisiti:</th>
       <td>
         <p>
-          Familiarità con i linguaggi di base <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+          Familiarità con i linguaggi principali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
           <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>,
           conoscenza del
@@ -25,28 +25,33 @@ A questo punto abbiamo un componente completamente funzionante; siamo ora pronti
           >.
         </p>
         <p>
-          I componenti Vue sono scritti come una combinazione di oggetti JavaScript che gestiscono i dati dell'app e una sintassi template basata su HTML che mappa la struttura DOM sottostante. Per l'installazione e per utilizzare alcune delle funzioni più avanzate di Vue (come Componenti a File Singolo o funzioni di render), è necessario un terminale con node + npm installati.
+          I componenti Vue sono scritti come una combinazione di oggetti JavaScript che
+          gestiscono i dati dell'app e una sintassi di template basata su HTML che mappa
+          la struttura del DOM sottostante. Per l'installazione, e per utilizzare alcune delle
+          funzionalità più avanzate di Vue (come componenti a file singolo o funzioni di render),
+          avrai bisogno di un terminale con node + npm installato.
         </p>
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparare come ciclare attraverso un array di dati e renderizzarlo in più componenti.
+        Imparare come eseguire un loop su un array di dati e renderizzarlo in più
+        componenti.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Rendering di elenchi con v-for
+## Renderizzare liste con v-for
 
-Per essere un efficace elenco di cose da fare, dobbiamo essere in grado di renderizzare più elementi da fare. Per farlo, Vue ha una direttiva speciale, [`v-for`](https://vuejs.org/api/built-in-directives.html#v-for). Questa è una direttiva Vue incorporata che ci permette di includere un ciclo all'interno del nostro template, ripetendo il rendering di una caratteristica del template per ogni elemento di un array. Useremo questo per iterare attraverso un array di elementi da fare e mostrarli nella nostra app in componenti `ToDoItem` separati.
+Per essere una lista di cose da fare efficace, dobbiamo essere in grado di renderizzare più elementi da fare. Per fare ciò, Vue ha una direttiva speciale, [`v-for`](https://vuejs.org/api/built-in-directives.html#v-for). Questa è una direttiva Vue integrata che ci consente di includere un ciclo all'interno del nostro template, ripetendo il rendering di una caratteristica del template per ciascun elemento in un array. Useremo questo per iterare attraverso un array di elementi da fare e visualizzarli nella nostra app in separati componenti `ToDoItem`.
 
-### Aggiungere alcuni dati da renderizzare
+### Aggiunta di alcuni dati da renderizzare
 
-Per prima cosa dobbiamo ottenere un array di elementi da fare. Per farlo, aggiungeremo una proprietà `data` all'oggetto del componente `App.vue`, contenente un campo `ToDoItems` il cui valore è un array di elementi da fare. Anche se alla fine aggiungeremo un meccanismo per aggiungere nuovi elementi da fare, possiamo iniziare con alcuni mock di elementi da fare. Ogni elemento da fare sarà rappresentato da un oggetto con una proprietà `label` e una `done`.
+Prima di tutto, abbiamo bisogno di ottenere un array di elementi da fare. Per fare ciò, aggiungeremo una proprietà `data` all'oggetto del componente `App.vue`, contenente un campo `ToDoItems` il cui valore è un array di elementi da fare. Anche se alla fine aggiungeremo un meccanismo per aggiungere nuovi elementi da fare, possiamo iniziare con alcuni elementi fittizi. Ogni elemento da fare sarà rappresentato da un oggetto con una proprietà `label` e una `done`.
 
-Aggiungi alcuni esempi di elementi da fare, simili a quelli visti di seguito. In questo modo hai alcuni dati disponibili per il rendering utilizzando `v-for`.
+Aggiungi alcuni elementi da fare di esempio, simili a quelli mostrati sotto. In questo modo avrai alcuni dati disponibili per il rendering usando `v-for`.
 
 ```js
 export default {
@@ -67,17 +72,17 @@ export default {
 };
 ```
 
-Ora che abbiamo un elenco di elementi, possiamo usare la direttiva `v-for` per visualizzarli. Le direttive si applicano agli elementi come altri attributi. Nel caso di `v-for`, si utilizza una sintassi speciale simile a un ciclo [`for...in`](/it/docs/Web/JavaScript/Reference/Statements/for...in) in JavaScript — `v-for="item in items"` — dove `items` è l'array su cui si desidera iterare, e `item` è un riferimento all'elemento corrente nell'array.
+Ora che abbiamo un elenco di elementi, possiamo usare la direttiva `v-for` per visualizzarli. Le direttive sono applicate agli elementi come altri attributi. Nel caso di `v-for`, usi una sintassi speciale simile a un ciclo [`for...in`](/it/docs/Web/JavaScript/Reference/Statements/for...in) in JavaScript — `v-for="item in items"` — dove `items` è l'array su cui vuoi iterare, e `item` è un riferimento all'elemento corrente nell'array.
 
-`v-for` si attacca all'elemento che si desidera ripetere e rende quell'elemento e i suoi figli. In questo caso, vogliamo visualizzare un elemento `<li>` per ogni elemento da fare all'interno del nostro array `ToDoItems`. Poi vogliamo passare i dati di ogni elemento da fare a un componente `ToDoItem`.
+`v-for` si attacca all'elemento che vuoi ripetere e renderizza quell'elemento e i suoi figli. In questo caso, vogliamo visualizzare un elemento `<li>` per ogni elemento da fare all'interno del nostro array `ToDoItems`. Quindi vogliamo passare i dati di ciascun elemento da fare a un componente `ToDoItem`.
 
 ### Attributo Key
 
-Prima di farlo, c'è un altro elemento di sintassi da conoscere che è usato con `v-for`, l'attributo `key`. Per aiutare Vue a ottimizzare il rendering degli elementi nell'elenco, cerca di aggiungere patch agli elementi dell'elenco in modo da non ricrearli ogni volta che l'elenco cambia. Tuttavia, Vue ha bisogno di aiuto. Per assicurarsi che stia riutilizzando correttamente gli elementi dell'elenco, ha bisogno di una "chiave" unica sullo stesso elemento a cui si attacca `v-for`.
+Prima di farlo, c'è un altro elemento sintattico da conoscere che viene usato con `v-for`, l'attributo `key`. Per aiutare Vue a ottimizzare il rendering degli elementi nell'elenco, cerca di correggere gli elementi dell'elenco in modo da non doverli ricreare ogni volta che l'elenco cambia. Tuttavia, Vue ha bisogno di aiuto. Per garantire che riutilizzi in modo appropriato gli elementi dell'elenco, ha bisogno di un unico "key" sullo stesso elemento a cui si attacca `v-for`.
 
-Per assicurarsi che Vue possa confrontare accuratamente gli attributi `key`, devono essere valori stringa o numerici. Anche se sarebbe fantastico usare il campo nome, questo campo sarà eventualmente controllato dall'input dell'utente, il che significa che non possiamo garantire che i nomi siano unici. Tuttavia, possiamo utilizzare `nanoid()`, come abbiamo fatto nell'articolo precedente.
+Per garantire che Vue possa confrontare accuratamente gli attributi `key`, devono essere valori stringa o numerici. Anche se sarebbe fantastico usare il campo name, questo campo sarà eventualmente controllato dall'input dell'utente, il che significa che non possiamo garantire che i nomi siano unici. Possiamo però utilizzare `nanoid()`, come abbiamo fatto nell'articolo precedente.
 
-1. Importa `nanoid` nel tuo componente `App` nello stesso modo in cui lo hai fatto con il tuo componente `ToDoItem`, usando
+1. Importa `nanoid` nel tuo componente `App` nello stesso modo in cui hai fatto con il tuo componente `ToDoItem`, usando
 
    ```js
    import { nanoid } from "nanoid";
@@ -88,8 +93,8 @@ Per assicurarsi che Vue possa confrontare accuratamente gli attributi `key`, dev
    L'elemento `<script>` in `App.vue` dovrebbe ora avere il seguente contenuto:
 
    ```js
-   import ToDoItem from "./components/ToDoItem.vue";
    import { nanoid } from "nanoid";
+   import ToDoItem from "./components/ToDoItem.vue";
 
    export default {
      name: "app",
@@ -117,7 +122,7 @@ Per assicurarsi che Vue possa confrontare accuratamente gli attributi `key`, dev
    };
    ```
 
-3. Ora, aggiungi la direttiva `v-for` e l'attributo `key` all'elemento `<li>` nel tuo template `App.vue`, in questo modo:
+3. Ora, aggiungi la direttiva `v-for` e l'attributo `key` all'elemento `<li>` nel tuo template `App.vue`, come segue:
 
    ```html
    <ul>
@@ -127,9 +132,9 @@ Per assicurarsi che Vue possa confrontare accuratamente gli attributi `key`, dev
    </ul>
    ```
 
-   Quando apporti questa modifica, ogni espressione JavaScript tra i tag `<li>` avrà accesso al valore `item` oltre agli altri attributi del componente. Questo significa che possiamo passare i campi dei nostri oggetti item al nostro componente `ToDoItem` — basta ricordare di usare la sintassi `v-bind`. Questo è molto utile, poiché vogliamo che i nostri elementi da fare visualizzino le loro proprietà `label` come etichetta, non un'etichetta statica di "My Todo Item". Inoltre, vogliamo che il loro stato spuntato rifletta le loro proprietà `done`, non sia sempre impostato su `done="true"`.
+   Quando apporti questa modifica, ogni espressione JavaScript tra i tag `<li>` avrà accesso al valore `item` oltre agli altri attributi del componente. Ciò significa che possiamo passare i campi dei nostri oggetti item al nostro componente `ToDoItem` — ricorda solo di usare la sintassi `v-bind`. Questo è molto utile, poiché vogliamo che i nostri elementi da fare visualizzino le loro proprietà `label` come loro etichetta, non un'etichetta statica di "My Todo Item". Inoltre, vogliamo che il loro stato di selezione rifletta le loro proprietà `done`, non essere sempre impostato su `done="true"`.
 
-4. Aggiorna l'attributo `label="My ToDo Item"` a `:label="item.label"`, e l'attributo `:done="true"` a `:done="item.done"`, come visto nel contesto sotto:
+4. Aggiorna l'attributo `label="My ToDo Item"` a `:label="item.label"`, e l'attributo `:done="true"` a `:done="item.done"`, come si vede nel contesto qui sotto:
 
    ```html
    <ul>
@@ -139,20 +144,20 @@ Per assicurarsi che Vue possa confrontare accuratamente gli attributi `key`, dev
    </ul>
    ```
 
-Ora, quando guardi la tua app in esecuzione, mostrerà gli elementi da fare con i loro nomi corretti, e se ispezioni il codice sorgente, vedrai che gli input hanno tutti `id` unici, presi dall'oggetto nel componente `App`.
+Ora, quando guardi la tua app in esecuzione, mostrerà gli elementi da fare con i loro nomi corretti, e se ispezioni il codice sorgente vedrai che tutti gli input hanno `id` unici, presi dall'oggetto nel componente `App`.
 
 ![L'app con un elenco di elementi da fare renderizzati.](rendered-todo-items.png)
 
-## Opportunità per una leggera rifattorizzazione
+## Opportunità per un leggero refactor
 
-C'è un piccolo refactoring che possiamo fare qui. Invece di generare l'`id` per i checkbox all'interno del tuo componente `ToDoItem`, possiamo trasformare l'`id` in una prop. Anche se non è strettamente necessario, rende più facile per noi gestirlo poiché dobbiamo già creare un `id` univoco per ogni elemento da fare comunque.
+C'è un piccolo refactoring che possiamo fare qui. Invece di generare l'`id` per le checkbox all'interno del tuo componente `ToDoItem`, possiamo trasformare l'`id` in un prop. Anche se questo non è strettamente necessario, rende più facile per noi gestirlo poiché già dobbiamo creare un `id` unico per ciascun elemento da fare.
 
 1. Aggiungi una nuova prop al tuo componente `ToDoItem` — `id`.
-2. Rendila obbligatoria e rendi il suo tipo una `String`.
-3. Per evitare collisioni di nomi, rimuovi il campo `id` dal tuo attributo `data`.
-4. Non stai più usando `nanoid`, quindi devi rimuovere la linea `import { nanoid } from 'nanoid';`, altrimenti la tua app genererà un errore.
+2. Rendila obbligatoria, e imposta il suo tipo su `String`.
+3. Per prevenire conflitti di nome, rimuovi il campo `id` dal tuo attributo `data`.
+4. Non stai più usando `nanoid`, quindi devi rimuovere la riga `import { nanoid } from 'nanoid';`, altrimenti la tua app genererà un errore.
 
-Il contenuto `<script>` nel tuo componente `ToDoItem` dovrebbe ora apparire come segue:
+Il contenuto di `<script>` nel tuo componente `ToDoItem` dovrebbe ora assomigliare a questo:
 
 ```js
 export default {
@@ -169,7 +174,7 @@ export default {
 };
 ```
 
-Ora, nel tuo componente `App.vue`, passa `item.id` come prop al componente `ToDoItem`. Il tuo template `App.vue` dovrebbe ora apparire come segue:
+Ora, nel tuo componente `App.vue`, passa `item.id` come prop al componente `ToDoItem`. Il tuo template `App.vue` dovrebbe ora assomigliare a questo:
 
 ```html
 <template>
@@ -187,12 +192,12 @@ Ora, nel tuo componente `App.vue`, passa `item.id` come prop al componente `ToDo
 </template>
 ```
 
-Quando guardi il tuo sito renderizzato, dovrebbe apparire lo stesso, ma il nostro refactoring ora significa che il nostro `id` viene preso dai dati all'interno di `App.vue` e passato in `ToDoItem` come prop, proprio come tutto il resto, quindi le cose ora sono più logiche e coerenti.
+Quando guardi il tuo sito renderizzato, dovrebbe sembrare lo stesso, ma il nostro refactor ora significa che il nostro `id` viene preso dai dati all'interno di `App.vue` e passato in `ToDoItem` come prop, proprio come tutto il resto, quindi le cose ora sono più logiche e coerenti.
 
-## Sommario
+## Sintesi
 
-E questo ci porta alla fine di un altro articolo. Ora abbiamo dati di esempio in atto, e un ciclo che prende ciascun bit di dati e lo rende all'interno di un `ToDoItem` nella nostra app.
+E questo ci porta alla fine di un altro articolo. Ora abbiamo dati di esempio in posizione, e un ciclo che prende ogni bit di dati e lo renderizza all'interno di un `ToDoItem` nella nostra app.
 
-Quello di cui abbiamo veramente bisogno è la possibilità per i nostri utenti di inserire i propri elementi da fare nell'app, e per questo avremo bisogno di un `<input>` di testo, un evento che si attiva quando i dati sono inviati, un metodo da attivare all'invio per aggiungere i dati e ri-renderizzare l'elenco, e un modello per controllare i dati. Affronteremo questi aspetti nel prossimo articolo.
+Quello di cui abbiamo realmente bisogno ora è la possibilità di consentire ai nostri utenti di inserire i propri elementi da fare nell'app, e per questo avremo bisogno di un `<input>` di testo, un evento da attivare quando i dati vengono inviati, un metodo da attivare all'invio per aggiungere i dati e rirendere l'elenco, e un modello per controllare i dati. Tratteremo questi aspetti nel prossimo articolo.
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/Vue_first_component","Learn_web_development/Core/Frameworks_libraries/Vue_methods_events_models", "Learn_web_development/Core/Frameworks_libraries")}}

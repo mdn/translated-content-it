@@ -1,27 +1,27 @@
 ---
-title: "Express Tutorial Parte 7: Distribuzione in produzione"
-short-title: "7: Distribuire"
+title: "Tutorial Express Parte 7: Distribuzione in produzione"
+short-title: "7: Distribuzione"
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/deployment
 l10n:
-  sourceCommit: e488eba036b2fee56444fd579c3759ef45ff2ca8
+  sourceCommit: 3d53de838dbcb25b210ccd708c681771cdeb14e4
 ---
 
 {{PreviousMenu("Learn_web_development/Extensions/Server-side/Express_Nodejs/forms", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}
 
-Ora che avete creato (e testato) un fantastico sito web della [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website), vorrete installarlo su un server web pubblico in modo che possa essere accessibile dal personale della biblioteca e dai membri tramite Internet. Questo articolo fornisce una panoramica su come trovare un host per distribuire il vostro sito web e ciò che è necessario fare per preparare il vostro sito per il lancio in produzione.
+Ora che hai creato (e testato) un fantastico sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website), vorrai installarlo su un server web pubblico in modo che possa essere accessibile dal personale della biblioteca e dai membri tramite Internet. Questo articolo fornisce una panoramica di come trovare un host per distribuire il tuo sito web e cosa devi fare per preparare il sito per la produzione.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Completare tutti gli argomenti precedenti del tutorial, inclusa <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms">Express Tutorial Parte 6: Lavorare con i moduli</a>.
+        Completare tutti i precedenti argomenti del tutorial, inclusa la <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms">Tutorial Express Parte 6: Lavorare con i moduli</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparare dove e come si può distribuire un'app Express in produzione.
+        Imparare dove e come è possibile distribuire un'app Express in produzione.
       </td>
     </tr>
   </tbody>
@@ -29,105 +29,106 @@ Ora che avete creato (e testato) un fantastico sito web della [LocalLibrary](/it
 
 ## Panoramica
 
-Una volta completato il vostro sito (o abbastanza completato per iniziare il testing pubblico), dovrete ospitarlo in un luogo più pubblico e accessibile rispetto al vostro computer di sviluppo personale.
+Una volta che il tuo sito è finito (o "abbastanza finito" per iniziare i test pubblici) dovrai ospitarlo in un luogo più pubblico e accessibile rispetto al tuo computer di sviluppo personale.
 
-Finora, avete lavorato in un [ambiente di sviluppo](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/development_environment), utilizzando Express/Node come server web per condividere il vostro sito con il browser/rete locale, e gestendo il vostro sito web con impostazioni di sviluppo (insicure) che espongono il debug e altre informazioni private. Prima di poter ospitare un sito web esternamente, dovrete innanzitutto:
+Fino ad ora, hai lavorato in un [ambiente di sviluppo](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/development_environment), utilizzando Express/Node come server web per condividere il tuo sito con il browser/rete locale, e eseguendo il tuo sito web con impostazioni di sviluppo (non sicure) che espongono informazioni di debug e altre informazioni private. Prima che tu possa ospitare un sito web esternamente, dovrai prima:
 
-- Scegliere un ambiente per ospitare l'app Express.
-- Effettuare alcune modifiche alle impostazioni del vostro progetto.
-- Configurare un'infrastruttura a livello di produzione per servire il vostro sito web.
+- Scegliere un ambiente per l'hosting dell'app Express.
+- Fare alcune modifiche alle impostazioni del progetto.
+- Configurare un'infrastruttura a livello di produzione per servire il tuo sito web.
 
-Questo tutorial fornisce alcune indicazioni sulle opzioni disponibili per scegliere un sito di hosting, una breve panoramica di ciò che è necessario fare per preparare la vostra app Express per la produzione, e un esempio pratico di come installare il sito web LocalLibrary sul servizio di hosting cloud [Railway](https://railway.com/).
+Questo tutorial fornisce alcune indicazioni sulle opzioni per scegliere un sito di hosting, una breve panoramica di ciò che devi fare per preparare la tua app Express per la produzione, e un esempio pratico di come installare il sito web LocalLibrary sul servizio di cloud hosting [Railway](https://railway.com/).
 
-## Cos'è un ambiente di produzione?
+## Che cos'è un ambiente di produzione?
 
-L'ambiente di produzione è l'ambiente fornito dal computer server dove farete girare il sito web per il consumo esterno. L'ambiente include:
+L'ambiente di produzione è l'ambiente fornito dal computer server dove eseguirai il tuo sito web per il consumo esterno. L'ambiente include:
 
 - Hardware del computer su cui gira il sito web.
 - Sistema operativo (ad esempio, Linux o Windows).
-- Linguaggio di programmazione e librerie di framework sopra cui è scritto il sito web.
-- Infrastruttura del server web, eventualmente inclusa un server web, proxy inverso, bilanciatore del carico, ecc.
-- Database dai quali il vostro sito web dipende.
+- Runtime del linguaggio di programmazione e librerie del framework su cui è scritto il tuo sito web.
+- Infrastruttura del server web, che potrebbe includere un server web, reverse proxy, load balancer, ecc.
+- Database da cui il tuo sito web dipende.
 
-Il computer server potrebbe essere situato nei vostri locali e connesso a Internet tramite un collegamento veloce, ma è molto più comune usare un computer ospitato "nel cloud". Questo significa in realtà che il vostro codice viene eseguito su un qualche computer remoto (o forse un computer "virtuale") nel o nei data center della vostra compagnia di hosting. Il server remoto offrirà generalmente un certo livello garantito di risorse informatiche (ad esempio, CPU, RAM, memoria di archiviazione, ecc.) e connettività Internet a un determinato prezzo.
+Il computer server potrebbe essere situato nei tuoi locali e collegato a Internet tramite un collegamento veloce, ma è molto più comune utilizzare un computer ospitato "nel cloud". Cosa significa in realtà è che il tuo codice viene eseguito su qualche computer remoto (o possibilmente un computer "virtuale") nel data center della tua azienda di hosting. Il server remoto di solito offre un certo livello garantito di risorse di calcolo (ad esempio, CPU, RAM, memoria di archiviazione, ecc.) e connettività a Internet per un certo prezzo.
 
-Questo tipo di hardware di rete/informatica accessibile in remoto è definito _Infrastructure as a Service (IaaS)_. Molti fornitori IaaS offrono opzioni per preinstallare un sistema operativo particolare, sul quale dovete installare gli altri componenti del vostro ambiente di produzione. Altri fornitori permettono di selezionare ambienti più completi, che potrebbero includere un'installazione completa di Node.
-
-> [!NOTE]
-> Gli ambienti preconfigurati possono rendere molto facile impostare il vostro sito web perché riducono la configurazione, ma le opzioni disponibili potrebbero limitarvi a un server sconosciuto (o altri componenti) e potrebbero essere basate su una versione più vecchia del sistema operativo. Spesso è meglio installare i componenti da soli in modo da ottenere quelli desiderati, e quando avete bisogno di aggiornare parti del sistema, sapete da dove iniziare!
-
-Altri provider di hosting supportano Express come parte di un'offerta _Platform as a Service_ (_PaaS_). Utilizzando questo tipo di hosting non dovete preoccuparvi della maggior parte del vostro ambiente di produzione (server, bilanciatori del carico, ecc.) poiché la piattaforma ospitante si occupa di questi aspetti per voi. Questo rende la distribuzione piuttosto semplice perché dovete concentrarvi solo sulla vostra applicazione web e non su alcuna altra infrastruttura del server.
-
-Alcuni sviluppatori sceglieranno la maggiore flessibilità fornita da IaaS rispetto a PaaS, mentre altri apprezzeranno la minore manutenzione necessaria e la più facile scalabilità di PaaS. Quando iniziate, impostare il vostro sito web su un sistema PaaS è molto più semplice, ed è quindi ciò che faremo in questo tutorial.
+Questo tipo di hardware di calcolo/rete accessibile da remoto è definito come _Infrastructure as a Service (IaaS)_. Molti fornitori di IaaS offrono opzioni per preinstallare un particolare sistema operativo, sul quale devi installare gli altri componenti del tuo ambiente di produzione. Altri fornitori consentono di selezionare ambienti più completi, forse includendo un setup completo di Node.
 
 > [!NOTE]
-> Se sceglierete un provider di hosting amico di Node/Express, questi ultimi dovrebbero fornire istruzioni su come impostare un sito web Express usando diverse configurazioni di server web, server applicativo, proxy inverso, ecc. Ad esempio, ci sono molte guide passo per passo per varie configurazioni nei [documenti della comunità di DigitalOcean Node](https://www.digitalocean.com/community/tutorials?q=node).
+> Gli ambienti preconfigurati possono semplificare molto la configurazione del tuo sito web perché riducono la configurazione, ma le opzioni disponibili potrebbero limitarti a un server sconosciuto (o altri componenti) e potrebbero essere basati su una versione precedente del sistema operativo. Spesso è meglio installare i componenti da soli in modo da ottenere quelli che vuoi, e quando sarà necessario aggiornare parti del sistema, avrai un'idea di dove iniziare!
+
+Altri fornitori di hosting supportano Express come parte di un'offerta _Platform as a Service_ (_PaaS_). Utilizzando questo tipo di hosting, non devi preoccuparti della maggior parte del tuo ambiente di produzione (server, load balancers, ecc.) poiché la piattaforma host se ne occupa per te. Questo rende abbastanza facile la distribuzione perché devi concentrarti solo sulla tua applicazione web e non su nessun'altra infrastruttura server.
+
+Alcuni sviluppatori sceglieranno la maggiore flessibilità fornita dalla IaaS rispetto alla PaaS, mentre altri apprezzeranno la ridotta necessità di manutenzione e la maggiore facilità di scalare della PaaS. Quando inizierai, configurare il tuo sito su un sistema PaaS sarà molto più facile, quindi è quello che faremo in questo tutorial.
+
+> [!NOTE]
+> Se scegli un fornitore di hosting compatibile con Node/Express, dovrebbe fornire istruzioni su come configurare un sito web Express utilizzando diverse configurazioni di web server, application server, reverse proxy, ecc. Ad esempio, ci sono molte guide dettagliate per varie configurazioni nei [documenti della comunità DigitalOcean Node](https://www.digitalocean.com/community/tutorials?q=node).
 
 ## Scegliere un fornitore di hosting
 
-Esistono numerosi fornitori di servizi di hosting noti per supportare attivamente o funzionare bene con _Node_ (e _Express_). Questi fornitori offrono diversi tipi di ambienti (IaaS, PaaS), e diversi livelli di risorse informatiche e di rete a prezzi differenti.
+Ci sono numerosi fornitori di hosting che sono noti per supportare attivamente o funzionare bene con _Node_ (e _Express_). Questi fornitori offrono diversi tipi di ambienti (IaaS, PaaS) e diversi livelli di risorse di calcolo e rete a prezzi diversi.
 
 > [!NOTE]
-> Ci sono molte soluzioni di hosting, e i loro servizi e prezzi possono cambiare nel tempo. Mentre introduciamo alcune opzioni di seguito, vale la pena verificare sia queste che altre opzioni prima di selezionare un provider di hosting.
+> Ci sono molte soluzioni di hosting, e i loro servizi e prezzi possono cambiare nel tempo. Mentre presentiamo alcune opzioni di seguito, vale la pena controllare sia queste che altre opzioni prima di selezionare un fornitore di hosting.
 
-Alcune delle cose da considerare quando si sceglie un host:
+Alcune cose da considerare quando si sceglie un host:
 
-- Quanto sarà trafficato il vostro sito e il costo dei dati e delle risorse informatiche necessarie per soddisfare quella domanda.
-- Livello di supporto per lo scaling orizzontale (aggiunta di più macchine) e verticale (aggiornamento a macchine più potenti) e i costi che ne derivano.
-- Le posizioni in cui il fornitore dispone di data center, e quindi dove l'accesso è probabilmente più veloce.
-- Performance storica di uptime e downtime dell'host.
-- Strumenti forniti per gestire il sito — sono facili da usare e sicuri (ad esempio, SFTP rispetto a FTP).
-- Framework integrati per monitorare il vostro server.
-- Limiti noti. Alcuni host bloccheranno deliberatamente alcuni servizi (ad esempio, e-mail). Altri offrono solo un certo numero di ore di "tempo reale" in alcune categorie di prezzo, o offrono solo una piccola quantità di archiviazione.
-- Benefici aggiuntivi. Alcuni fornitori offriranno nomi di dominio gratuiti e supporto per certificati TLS che altrimenti dovreste pagare.
-- Se il "livello gratuito" su cui fate affidamento scade nel tempo, e se il costo di migrare a un livello più costoso significa che sarebbe stato meglio utilizzare un altro servizio fin dall'inizio!
+- Quanto traffico è probabile che faccia il tuo sito e il costo delle risorse di dati e di calcolo necessarie per soddisfare tale domanda.
+- Livello di supporto per scalare orizzontalmente (aggiungendo più macchine) e verticalmente (aggiornando a macchine più potenti) e i costi per farlo.
+- Le sedi in cui il fornitore dispone di data center, e quindi dove l'accesso è probabile che sia più veloce.
+- Lo storico della disponibilità e dei tempi di inattività dell'host.
+- Strumenti forniti per la gestione del sito — sono facili da usare e sono sicuri (ad esempio, SFTP vs. FTP).
+- Framework integrati per monitorare il tuo server.
+- Limitazioni note. Alcuni host bloccheranno deliberatamente alcuni servizi (ad esempio, email). Altri offrono solo un certo numero di ore di "tempo attivo" in alcuni livelli di prezzo, o offrono solo una piccola quantità di spazio di archiviazione.
+- Benefici aggiuntivi. Alcuni fornitori offrono nomi di dominio gratuiti e supporto per certificati TLS che dovresti altrimenti pagare.
+- Se il livello "gratuito" su cui ti stai affidando scade nel tempo e se il costo della migrazione a un livello più costoso significa che sarebbe stato meglio usare un altro servizio fin dall'inizio!
 
-La buona notizia è che quando iniziate ci sono parecchi siti che offrono ambienti informatici "gratuiti", pensati per la valutazione e il testing.
-Questi si presentano generalmente come ambienti limitati e con risorse relativamente contenute, ma è bene essere consapevoli che potrebbero scadere dopo un certo periodo introduttivo o avere altre limitazioni.
-Sono comunque eccellenti per testare siti a basso traffico in un ambiente ospitato e possono offrire una facile migrazione al pagamento per maggiori risorse quando il sito diventa più frequentato.
+La buona notizia è che quando inizi, ci sono diversi siti che forniscono ambienti di calcolo "gratuiti" destinati alla valutazione e al test.
+Questi sono di solito ambienti piuttosto limitati in termini di risorse ed è necessario essere consapevoli che potrebbero scadere dopo un certo periodo introduttivo o avere altre limitazioni.
+Tuttavia, sono ottimi per testare siti a basso traffico in un ambiente ospitato e possono offrire una facile migrazione al pagamento per più risorse quando il tuo sito diventa più impegnato.
 Scelte popolari in questa categoria includono [Glitch](https://glitch.com/), [Python Anywhere](https://www.pythonanywhere.com/), [Amazon Web Services](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html), [Microsoft Azure](https://azure.microsoft.com/en-us/pricing/details/app-service/linux/), ecc.
 
-La maggior parte dei fornitori offre anche un livello "base" o "hobby" pensato per siti di piccole dimensioni, che forniscono livelli più utili di potenza informatica e meno restrizioni.
-[Railway](https://railway.com/), [Heroku](https://www.heroku.com/), [DigitalOcean](https://www.digitalocean.com/) e [Python Anywhere](https://www.pythonanywhere.com/) sono esempi di popolari fornitori di hosting che hanno un livello di computazione base relativamente economico (nella fascia di prezzo compresa tra 5 e 10 dollari al mese).
+La maggior parte dei fornitori offre anche un livello "base" o "hobby" pensato per piccoli siti di produzione, e che forniscono livelli più utili di potenza di calcolo e meno limitazioni.
+[Railway](https://railway.com/), [Heroku](https://www.heroku.com/), [DigitalOcean](https://www.digitalocean.com/) e [Python Anywhere](https://www.pythonanywhere.com/) sono esempi di fornitori di hosting popolari che hanno un livello di calcolo base relativamente economico (nella fascia di prezzo da 5 a 10 USD al mese).
 
 > [!NOTE]
-> Ricordate che il prezzo non è l'unico criterio di selezione.
-> Se il vostro sito web avrà successo, potrebbe risultare che la scalabilità sarà la considerazione più importante.
+> Ricorda che il prezzo non è l'unico criterio di selezione.
+> Se il tuo sito web ha successo, potrebbe risultare che la scalabilità sia la considerazione più importante.
 
-## Preparare il sito web per la pubblicazione
+## Preparare il tuo sito web per la pubblicazione
 
-Le principali cose a cui pensare quando si pubblica il vostro sito web sono la sicurezza web e le prestazioni.
-Al minimo indispensabile, vorrete modificare la configurazione del database in modo da poter utilizzare un database diverso per la produzione e proteggere le sue credenziali, rimuovere le tracce di stack che sono incluse nelle pagine di errore durante lo sviluppo, pulire il vostro logging e impostare gli header appropriati per evitare molte minacce comuni alla sicurezza.
+Le cose principali a cui pensare quando si pubblica il tuo sito web sono la sicurezza web e le prestazioni.
+Al minimo indispensabile, vorrai modificare la configurazione del database in modo da poter utilizzare un database diverso per la produzione e proteggere le sue credenziali, rimuovere le tracce dello stack incluse nelle pagine di errore durante lo sviluppo, sistemare il tuo logging e impostare gli header appropriati per evitare molte minacce comuni alla sicurezza.
 
-Nelle seguenti sottosezioni, delineiamo i cambiamenti più importanti che dovreste fare alla vostra applicazione.
+Nelle sezioni seguenti, descriviamo le modifiche più importanti che dovresti apportare alla tua app.
 
 > [!NOTE]
-> Ci sono altri consigli utili nei documenti di Express — vedere [Best practices di produzione: performance e affidabilità](https://expressjs.com/en/advanced/best-practice-performance.html) e [Migliori pratiche di produzione: Sicurezza](https://expressjs.com/en/advanced/best-practice-security.html).
+> Ci sono altri suggerimenti utili nei documenti di Express — vedi [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html) e [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html).
 
 ### Configurazione del database
 
-Finora, in questo tutorial, abbiamo usato un unico database di sviluppo, per il quale l'indirizzo e le credenziali sono hard-coded in **app.js**.
-Poiché il database di sviluppo non contiene alcuna informazione che ci preoccupi venga esposta o corrotta, non c'è particolare rischio nel rivelare questi dettagli.
-Tuttavia, se state lavorando con dati reali, in particolare informazioni personali degli utenti, proteggere le credenziali del database è molto importante.
+Finora in questo tutorial, abbiamo utilizzato un unico database di sviluppo, per il quale l'indirizzo e le credenziali sono codificati in **app.js**.
+Poiché il database di sviluppo non contiene informazioni che ci preoccupiamo di esporre o corrompere, non vi è alcun rischio particolare nel far trapelare questi dettagli.
+Tuttavia, se stai lavorando con dati reali, in particolare informazioni personali degli utenti, allora proteggere le credenziali del tuo database è molto importante.
 
-Per questo motivo, vogliamo utilizzare un database diverso per la produzione rispetto a quello che utilizziamo per lo sviluppo, e tenere anche le credenziali del database di produzione separate dal codice sorgente in modo che possano essere adeguatamente protette.
+Per questa ragione vogliamo utilizzare un database diverso per la produzione rispetto a quello usato per lo sviluppo e tenere anche le credenziali del database di produzione separate dal codice sorgente in modo che possano essere adeguatamente protette.
 
-Se il vostro fornitore di hosting supporta l'impostazione delle variabili d'ambiente tramite un'interfaccia web (come fanno molte), un modo per farlo è far ottenere al server l'URL del database da una variabile d'ambiente.
-Di seguito modifichiamo il sito web LocalLibrary per ottenere l'URI del database da una variabile d'ambiente del sistema operativo, se è stata definita, e altrimenti utilizziamo l'URL del database di sviluppo.
+Se il tuo fornitore di hosting supporta l'impostazione delle variabili d'ambiente tramite un'interfaccia web (come molti fanno), un modo per farlo è far sì che il server ottenga l'URL del database da una variabile d'ambiente.
+Di seguito modifichiamo il sito web LocalLibrary in modo da ottenere l'URI del database da una variabile d'ambiente del sistema operativo, se è stato definito, e utilizzare altrimenti l'URL del database di sviluppo.
 
-Aprite **app.js** e trovate la linea che imposta la variabile di connessione MongoDB.
-Sarà simile a questa:
+Apri **app.js** e trova la riga che imposta la variabile di connessione MongoDB.
+Sarà simile a quanto segue:
 
 ```js
 const mongoDB =
   "mongodb+srv://your_user_name:your_password@cluster0.cojoign.mongodb.net/local_library?retryWrites=true&w=majority";
 ```
 
-Sostituite la linea con il seguente codice che utilizza `process.env.MONGODB_URI` per ottenere la stringa di connessione da una variabile d'ambiente chiamata `MONGODB_URI`, se è stata impostata (utilizzate il vostro URL del database invece del segnaposto sottostante).
+Sostituisci la riga con il seguente codice che utilizza `process.env.MONGODB_URI` per ottenere la stringa di connessione da una variabile d'ambiente chiamata `MONGODB_URI` se è stata impostata (usa il tuo URL del database al posto del segnaposto di seguito).
 
 ```js
 // Set up mongoose connection
 const mongoose = require("mongoose");
+
 mongoose.set("strictQuery", false);
 
 const dev_db_url =
@@ -141,24 +142,24 @@ async function main() {
 ```
 
 > [!NOTE]
-> Un altro metodo comune per mantenere separate le credenziali del database di produzione dal codice sorgente è leggerle da un file `.env` che viene distribuito separatamente nel file system (ad esempio, potrebbero essere lette usando il modulo npm [dotenv](https://www.npmjs.com/package/dotenv)).
+> Un altro modo comune per tenere separate le credenziali del database di produzione dal codice sorgente è leggerle da un file `.env` che viene distribuito separatamente al file system (ad esempio, potrebbero essere letti utilizzando il modulo npm [dotenv](https://www.npmjs.com/package/dotenv)).
 
 ### Impostare NODE_ENV su 'production'
 
-Possiamo rimuovere le tracce di stack nelle pagine di errore impostando la variabile d'ambiente `NODE_ENV` su _production_ (è impostata su '_development_' per impostazione predefinita). Oltre a generare messaggi di errore meno dettagliati, impostare la variabile su _production_ memorizza nella cache i modelli di visualizzazione e i file CSS generati dalle estensioni CSS. I test indicano che impostare `NODE_ENV` su _production_ può migliorare le prestazioni dell'app di un fattore tre!
+Possiamo rimuovere le trace dello stack nelle pagine di errore impostando la variabile d'ambiente `NODE_ENV` su _production_ (è impostata su '_development_' per impostazione predefinita). Oltre a generare messaggi di errore meno verbosi, impostare la variabile su _production_ memorizza nella cache i modelli di visualizzazione e i file CSS generati dalle estensioni CSS. I test indicano che impostare `NODE_ENV` su _production_ può migliorare le prestazioni dell'app di un fattore di tre!
 
-Questa modifica può essere effettuata tramite `export`, con un file d'ambiente o il sistema di inizializzazione del sistema operativo.
+Questo cambiamento può essere effettuato utilizzando `export`, un file di ambiente o il sistema di inizializzazione del sistema operativo.
 
 > [!NOTE]
-> Questa è in realtà una modifica che fate nella configurazione dell'ambiente piuttosto che nella vostra app, ma è abbastanza importante da meritare una nota qui! Mostreremo come impostarla nel nostro esempio di hosting qui sotto.
+> Questo è effettivamente un cambiamento che effettui nell'impostazione dell'ambiente piuttosto che nella tua app, ma abbastanza importante da essere notato qui! Mostreremo come questo è impostato per il nostro esempio di hosting di seguito.
 
-### Regolare il logging
+### Registrare i log in modo appropriato
 
-Le chiamate di logging possono avere un impatto su un sito web molto trafficato. In un ambiente di produzione, potreste aver bisogno di registrare l'attività del sito web (ad esempio, monitorare il traffico o registrare chiamate API) ma dovreste cercare di ridurre al minimo la quantità di logging aggiunta per scopi di debug.
+Le chiamate di registrazione dei log possono avere un impatto su un sito ad alto traffico. In un ambiente di produzione, potrebbe essere necessario registrare l'attività del sito web (ad esempio, tracciare il traffico o registrare le chiamate API) ma bisognerebbe cercare di minimizzare la quantità di registrazione aggiunta per scopi di debug.
 
-Un modo per minimizzare il logging "debug" in produzione è utilizzare un modulo come [debug](https://www.npmjs.com/package/debug) che permette di controllare quale logging viene eseguito impostando una variabile d'ambiente.
-Ad esempio, il frammento di codice seguente mostra come potreste configurare il logging "author".
-La variabile debug viene dichiarata con il nome 'author', e il prefisso "author" verrà visualizzato automaticamente per tutti i log provenienti da questo oggetto.
+Un modo per minimizzare il logging di "debug" in produzione è utilizzare un modulo come [debug](https://www.npmjs.com/package/debug) che consente di controllare quale logging viene eseguito impostando una variabile d'ambiente.
+Ad esempio, il frammento di codice seguente mostra come potrebbe essere impostata la registrazione dell’"autore".
+La variabile di debug viene dichiarata con il nome 'author', e il prefisso "author" verrà automaticamente visualizzato per tutti i log da questo oggetto.
 
 ```js
 const debug = require("debug")("author");
@@ -178,8 +179,8 @@ exports.author_update_get = asyncHandler(async (req, res, next) => {
 });
 ```
 
-È quindi possibile abilitare un particolare set di log specificandoli come un elenco separato da virgole nella variabile d'ambiente `DEBUG`.
-Potete impostare le variabili per visualizzare i log di author e book come mostrato (i caratteri jolly sono anche supportati).
+Puoi quindi abilitare un particolare set di log specificandoli come elenco separato da virgole nella variabile d'ambiente `DEBUG`.
+Puoi impostare le variabili per visualizzare i log di autori e libri come mostrato (sono supportati anche i caratteri jolly).
 
 ```bash
 #Windows
@@ -190,21 +191,21 @@ export DEBUG="author,book"
 ```
 
 > [!NOTE]
-> Le chiamate a `debug` possono sostituire il logging che potreste aver fatto utilizzando precedentemente `console.log()` o `console.error()`. Sostituite qualsiasi chiamata a `console.log()` nel vostro codice con logging attraverso il modulo [debug](https://www.npmjs.com/package/debug). Attivate o disattivate il logging nel vostro ambiente di sviluppo impostando la variabile DEBUG e osservate l'impatto che ciò ha sul logging.
+> Le chiamate a `debug` possono sostituire i log che potresti aver precedentemente eseguito utilizzando `console.log()` o `console.error()`. Sostituisci qualsiasi chiamata `console.log()` nel tuo codice con la registrazione tramite il modulo [debug](https://www.npmjs.com/package/debug). Attiva e disattiva la registrazione nel tuo ambiente di sviluppo impostando la variabile DEBUG e osserva l'impatto che ha sulla registrazione.
 
-Se avete bisogno di registrare l'attività del sito web potete utilizzare una libreria di logging come _Winston_ o _Bunyan_. Per ulteriori informazioni su questo argomento, vedere: [Migliori pratiche di produzione: performance e affidabilità](https://expressjs.com/en/advanced/best-practice-performance.html).
+Se hai bisogno di registrare l'attività del sito web puoi utilizzare una libreria di logging come _Winston_ o _Bunyan_. Per maggiori informazioni su questo argomento vedi: [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html).
 
-### Utilizzare la compressione gzip/deflate per le risposte
+### Usa la compressione gzip/deflate per le risposte
 
-I server web possono spesso comprimere la risposta HTTP inviata al client, riducendo significativamente il tempo richiesto al client per ottenere e caricare la pagina. Il metodo di compressione utilizzato dipenderà dai metodi di decompressione che il client dichiara di supportare nella richiesta (la risposta sarà inviata senza compressione se non sono supportati metodi di compressione).
+I server web possono spesso comprimere la risposta HTTP inviata a un client, riducendo significativamente il tempo necessario affinché il client ottenga e carichi la pagina. Il metodo di compressione utilizzato dipenderà dai metodi di decompressione che il client dice di supportare nella richiesta (la risposta verrà inviata non compressa se non ci sono metodi di compressione supportati).
 
-Aggiungete questo al sito usando il middleware [compression](https://www.npmjs.com/package/compression). Installatelo alla radice del vostro progetto eseguendo il seguente comando:
+Aggiungi questo al tuo sito utilizzando il middleware [compression](https://www.npmjs.com/package/compression). Installalo alla radice del tuo progetto eseguendo il seguente comando:
 
 ```bash
 npm install compression
 ```
 
-Aprite **./app.js** e richiedete la libreria di compressione come mostrato. Aggiungete la libreria di compressione alla catena del middleware con il metodo `use()` (questo dovrebbe apparire prima di qualsiasi rotta che desiderate comprimere — in questo caso, tutte!)
+Apri **./app.js** e richiedi la libreria di compressione come mostrato. Aggiungi la libreria di compressione alla catena di middleware con il metodo `use()` (questo dovrebbe apparire prima di qualsiasi percorso che vuoi comprimere — in questo caso, tutti!)
 
 ```js
 const catalogRouter = require("./routes/catalog"); // Import routes for "catalog" area of site
@@ -227,20 +228,20 @@ app.use("/catalog", catalogRouter); // Add catalog routes to middleware chain.
 ```
 
 > [!NOTE]
-> Per un sito web ad alto traffico in produzione, non usereste questo middleware. Invece, usereste un proxy inverso come [Nginx](https://nginx.org/).
+> Per un sito web ad alto traffico in produzione non utilizzeresti questo middleware. Invece, utilizzeresti un reverse proxy come [Nginx](https://nginx.org/).
 
-### Usare Helmet per proteggere da vulnerabilità note
+### Usa Helmet per proteggerti da vulnerabilità note
 
-[Helmet](https://www.npmjs.com/package/helmet) è un pacchetto middleware. Può impostare header HTTP appropriati che aiutano a proteggere la vostra app da vulnerabilità web note (vedere i [documenti](https://helmetjs.github.io/) per ulteriori informazioni su quali header imposta e sulle vulnerabilità che protegge).
+[Helmet](https://www.npmjs.com/package/helmet) è un pacchetto middleware. Può impostare header HTTP appropriati che aiutano a proteggere la tua app da vulnerabilità web note (vedi i [documenti](https://helmetjs.github.io/) per ulteriori informazioni su quali header imposta e contro quali vulnerabilità protegge).
 
-Installatelo alla radice del vostro progetto eseguendo il seguente comando:
+Installalo alla radice del tuo progetto eseguendo il seguente comando:
 
 ```bash
 npm install helmet
 ```
 
-Aprite **./app.js** e richiedete la libreria _helmet_ come mostrato.
-Quindi aggiungete il modulo alla catena del middleware con il metodo `use()`.
+Apri **./app.js** e richiedi la libreria _helmet_ come mostrato.
+Quindi aggiungi il modulo alla catena di middleware con il metodo `use()`.
 
 ```js
 const compression = require("compression");
@@ -262,36 +263,36 @@ app.use(
 // …
 ```
 
-Potremmo normalmente aver appena inserito `app.use(helmet());` per aggiungere il _sottoinsieme_ di header relativi alla sicurezza che ha senso per la maggior parte dei siti.
-Tuttavia, nel [modello base LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template), includiamo alcuni script bootstrap e jQuery.
-Questi violano il _default_ [Content Security Policy (CSP)](/it/docs/Web/HTTP/Guides/CSP) di helmet, che non permette il caricamento di script cross-site.
-Per consentire il caricamento di questi script, modifichiamo la configurazione di helmet in modo che imposti direttive CSP per consentire il caricamento degli script dai domini indicati.
-Per il vostro server potreste aggiungere/disabilitare specifici header seguendo le [istruzioni per usare helmet qui](https://www.npmjs.com/package/helmet).
+Normalmente potremmo inserire solo `app.use(helmet());` per aggiungere il _subset_ di header correlati alla sicurezza che ha senso per la maggior parte dei siti.
+Tuttavia nel [modello base di LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template) includiamo alcuni script di bootstrap e jQuery.
+Questi violano la _Content Security Policy (CSP)_ _predefinita_ di helmet che non consente il caricamento di script cross-site.
+Per consentire il caricamento di questi script, modifichiamo la configurazione di helmet in modo che imposti le direttive CSP per consentire il caricamento di script dai domini indicati.
+Per il tuo server puoi aggiungere/disattivare specifici header come necessario seguendo le [istruzioni per l'uso di helmet qui](https://www.npmjs.com/package/helmet).
 
-### Aggiungere il rate limiting alle rotte API
+### Aggiungi un limite di velocità alle rotte API
 
-[Express-rate-limit](https://www.npmjs.com/package/express-rate-limit) è un pacchetto middleware che può essere utilizzato per limitare le richieste ripetute alle API e agli endpoint.
-Ci sono molte ragioni per cui potrebbero essere fatte richieste eccessive al vostro sito, come attacchi denial of service, attacchi di forza bruta, o anche solo un client o uno script che non si comportano come previsto.
-Oltre ai problemi di performance che possono derivare da troppe richieste che causano rallentamenti del vostro server, potreste anche essere addebitati per il traffico aggiuntivo.
-Questo pacchetto può essere utilizzato per limitare il numero di richieste che possono essere fatte a una particolare rotta o a un insieme di rotte.
+[Express-rate-limit](https://www.npmjs.com/package/express-rate-limit) è un pacchetto middleware che può essere utilizzato per limitare le richieste ripetute alle API e ai percorsi.
+Ci sono molte ragioni per cui potrebbero essere effettuate richieste eccessive al tuo sito, come gli attacchi denial of service, gli attacchi a forza bruta, o anche solo un client o uno script che non si comporta come ci si aspetta.
+Oltre ai problemi di prestazioni che possono derivare da troppe richieste che rallentano il server, potresti anche essere addebitato per il traffico aggiuntivo.
+Questo pacchetto può essere utilizzato per limitare il numero di richieste che possono essere effettuate a un determinato percorso o insieme di percorsi.
 
-Installatelo alla radice del vostro progetto eseguendo il seguente comando:
+Installalo alla radice del tuo progetto eseguendo il seguente comando:
 
 ```bash
 npm install express-rate-limit
 ```
 
-Aprite **./app.js** e richiedete la libreria _express-rate-limit_ come mostrato.
-Quindi aggiungete il modulo alla catena del middleware con il metodo `use()`.
+Apri **./app.js** e richiedi la libreria _express-rate-limit_ come mostrato.
+Quindi aggiungi il modulo alla catena di middleware con il metodo `use()`.
 
 ```js
 const compression = require("compression");
 const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
 
 const app = express();
 
 // Set up rate limiter: maximum of twenty requests per minute
-const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 20,
@@ -302,24 +303,24 @@ app.use(limiter);
 // …
 ```
 
-Il comando sopra limita tutte le richieste a 20 al minuto (è possibile modificarlo secondo necessità).
+Il comando sopra limita tutte le richieste a 20 al minuto (puoi cambiare questo valore come necessario).
 
 > [!NOTE]
-> Servizi di terze parti come [Cloudflare](https://www.cloudflare.com/) possono anche essere usati se avete bisogno di protezione più avanzata contro attacchi denial of service o altri tipi di attacchi.
+> Servizi di terze parti come [Cloudflare](https://www.cloudflare.com/) possono anche essere utilizzati se hai bisogno di più protezione avanzata contro il denial of service o altri tipi di attacchi.
 
-#### Impostare la versione di Node
+#### Imposta la versione di Node
 
-Per le applicazioni Node, incluse Express, il file **package.json** contiene tutto ciò che un fornitore di hosting dovrebbe fare per determinare le dipendenze dell'applicazione e il file di punto di entrata.
+Per applicazioni Node, comprese quelle Express, il file **package.json** contiene tutto ciò che un fornitore di hosting dovrebbe aver bisogno per determinare le dipendenze dell'applicazione e il file punto di ingresso.
 
-L'unica informazione importante mancante dal nostro attuale **package.json** è la versione di Node richiesta dalla libreria.
-Potrete trovare la versione di Node che è stata usata per lo sviluppo inserendo il comando:
+L'unica informazione importante mancante dal nostro attuale **package.json** è la versione di node richiesta dalla libreria.
+Puoi trovare la versione di node utilizzata per lo sviluppo inserendo il comando:
 
 ```bash
 >node --version
 v16.17.1
 ```
 
-Aprite **package.json**, e aggiungete questa informazione come **engines > node** come mostrato (usate il numero di versione per il vostro sistema).
+Apri **package.json**, e aggiungi questa informazione come **engines > node** come mostrato (utilizzando il numero di versione del tuo sistema).
 
 ```json
   "engines": {
@@ -327,59 +328,59 @@ Aprite **package.json**, e aggiungete questa informazione come **engines > node*
   },
 ```
 
-Il servizio di hosting potrebbe non supportare la versione specifica di Node indicata, ma questa modifica dovrebbe assicurare che tenti di usare una versione con lo stesso numero di versione principale o una versione più recente.
+Il servizio di hosting potrebbe non supportare la versione specifica di node indicata, ma questo cambiamento dovrebbe garantire che tenti di utilizzare una versione con lo stesso numero di versione principale, o una versione più recente.
 
-Notate che possono esserci altri modi per specificare la versione di Node su diversi servizi di hosting, ma l'approccio con **package.json** è ampiamente supportato.
+Nota che potrebbero esserci altri modi per specificare la versione di node su diversi servizi di hosting, ma l'approccio **package.json** è ampiamente supportato.
 
-#### Recuperare le dipendenze e rieseguire i test
+#### Ottieni dipendenze e riprova
 
-Prima di procedere, proviamo di nuovo il sito e assicuriamoci che non sia stato influenzato da nessuna delle nostre modifiche.
+Prima di procedere, proviamo nuovamente il sito e assicuriamoci che non sia stato influenzato da nessuno dei nostri cambiamenti.
 
-Per prima cosa, dovremo ottenere le nostre dipendenze. È possibile farlo eseguendo il seguente comando nel terminale alla radice del progetto:
+Per prima cosa, dovremo recuperare le nostre dipendenze. Puoi fare questo eseguendo il seguente comando nel tuo terminale alla radice del progetto:
 
 ```bash
 npm install
 ```
 
-Ora eseguite nuovamente il sito (vedere [Testing the routes](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#testing_the_routes) per i comandi pertinenti) e controllate che il sito si comporti ancora come previsto.
+Ora esegui il sito (vedi [Testing the routes](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#testing_the_routes) per i comandi rilevanti) e verifica che il sito si comporta ancora come ti aspetti.
 
-### Creazione di un repository applicativo su GitHub
+### Creare un repository di applicazioni su GitHub
 
-Molti servizi di hosting consentono di importare e/o sincronizzare progetti da un repository locale o da piattaforme di controllo di versione del codice sorgente basate sul cloud.
+Molti servizi di hosting consentono di importare e/o sincronizzare i progetti da un repository locale o da piattaforme di controllo del versione del software basate su cloud.
 Questo può rendere la distribuzione e lo sviluppo iterativo molto più semplice.
 
-Per questo tutorial, creeremo un account [GitHub](https://github.com/) e un repository per la biblioteca, e utilizzeremo lo strumento **git** per caricare il nostro codice sorgente.
+Per questo tutorial, configureremo un account [GitHub](https://github.com/) e un repository per la biblioteca, e utilizzeremo lo strumento **git** per caricare il nostro codice sorgente.
 
 > [!NOTE]
-> È possibile saltare questo passaggio se si utilizza già GitHub per gestire il codice sorgente!
+> Puoi saltare questo passaggio se stai già usando GitHub per gestire il tuo codice sorgente!
 >
-> Notate che usare strumenti di gestione del codice sorgente è una buona pratica di sviluppo software, in quanto vi permette di provare modifiche, e passare tra i vostri esperimenti e "codice noto buono" quando ne avete bisogno!
+> Nota che utilizzare strumenti di gestione del codice sorgente è una buona pratica nello sviluppo software, poiché consente di provare le modifiche e passare dai propri esperimenti al "codice funzionale noto" quando è necessario!
 
 I passaggi sono:
 
-1. Visitate <https://github.com/> e create un account.
-2. Una volta effettuato l'accesso, cliccate sul link **+** nella barra degli strumenti in alto e selezionate **New repository**.
-3. Compilate tutti i campi in questo modulo. Anche se non sono obbligatori, sono fortemente consigliati.
+1. Visita <https://github.com/> e crea un account.
+2. Una volta effettuato l'accesso, fai clic sul link **+** nella barra degli strumenti superiore e seleziona **New repository**.
+3. Compila tutti i campi su questo modulo. Sebbene non siano obbligatori, sono fortemente consigliati.
 
-   - Inserite un nuovo nome per il repository (ad esempio, _express-locallibrary-tutorial_) e una descrizione (ad esempio, "Local Library website scritto in Express (Node)").
-   - Scegliete **Node** nell'elenco di selezione _Add .gitignore_.
-   - Scegliete la vostra licenza preferita nell'elenco di selezione _Add license_.
-   - Selezionate **Initialize this repository with a README**.
+   - Inserisci un nuovo nome di repository (ad esempio, _express-locallibrary-tutorial_), e una descrizione (ad esempio, "Sito web Local Library scritto in Express (Node)").
+   - Scegli **Node** nella lista di selezione _Add .gitignore_.
+   - Scegli la tua licenza preferita nella lista di selezione _Add license_.
+   - Seleziona **Initialize this repository with a README**.
 
    > [!WARNING]
-   > L'accesso "Pubblico" predefinito renderà _tutto_ il codice sorgente — inclusi nome utente e password del database — visibili a chiunque su internet! Assicuratevi che il codice sorgente legga le credenziali _solo_ da variabili d'ambiente e non abbia credenziali hard-coded.
+   > L'accesso "Public" predefinito renderà _tutto_ il codice sorgente — inclusi il nome utente e la password del tuo database — visibile a chiunque su Internet! Assicurati che il codice sorgente legga le credenziali _solo_ dalle variabili d'ambiente e non abbia credenziali codificate in modo rigido.
    >
-   > In caso contrario, selezionate l'opzione "Privato" per consentire solo a persone selezionate di vedere il codice sorgente.
+   > Altrimenti, seleziona l'opzione "Private" per consentire solo a persone selezionate di vedere il codice sorgente.
 
-4. Premete **Create repository**.
-5. Cliccate sul pulsante verde **Clone or download** sulla pagina del nuovo repo.
-6. Copiate il valore dell'URL dalla casella di testo all'interno della finestra di dialogo che appare.
-   Se avete usato il nome del repository "express-locallibrary-tutorial", l'URL dovrebbe essere simile a: `https://github.com/<your_git_user_id>/express-locallibrary-tutorial.git`.
+4. Premi **Create repository**.
+5. Fai clic sul pulsante verde **Clone or download** sulla tua nuova pagina di repo.
+6. Copia il valore dell'URL dal campo di testo all'interno della finestra di dialogo che appare.
+   Se hai utilizzato il nome di repository "express-locallibrary-tutorial", l'URL dovrebbe essere qualcosa del tipo: `https://github.com/<your_git_user_id>/express-locallibrary-tutorial.git`.
 
-Ora che il repository ("repo") è stato creato su GitHub, vogliamo clonarlo (copiarlo) sul nostro computer locale:
+Ora che il repository ("repo") è creato su GitHub vogliamo clonarlo (copiarlo) sul nostro computer locale:
 
-1. Installate _git_ per il vostro computer locale ([guida ufficiale al download di Git](https://git-scm.com/downloads)).
-2. Aprite un prompt dei comandi/terminale e clonate il vostro repo utilizzando l'URL che avete copiato sopra:
+1. Installa _git_ per il tuo computer locale ([guida ufficiale al download di Git](https://git-scm.com/downloads)).
+2. Apri un prompt dei comandi/terminale e clona il tuo repo utilizzando l'URL che hai copiato sopra:
 
    ```bash
    git clone https://github.com/<your_git_user_id>/express-locallibrary-tutorial.git
@@ -387,23 +388,23 @@ Ora che il repository ("repo") è stato creato su GitHub, vogliamo clonarlo (cop
 
    Questo creerà il repository all'interno della directory corrente.
 
-3. Navigate nella cartella del repo.
+3. Naviga nella cartella del repo.
 
    ```bash
    cd express-locallibrary-tutorial
    ```
 
-Quindi copiate i vostri file sorgente dell'applicazione nella cartella del repo, rendeteli parte del repo utilizzando _git_, e caricateli su GitHub:
+Quindi copia i tuoi file sorgente dell'applicazione nella cartella del repo, rendili parte del repo usando _git_ e caricali su GitHub:
 
-1. Copiate la vostra applicazione Express in questa cartella (escludendo **/node_modules**, che contiene i file di dipendenza che dovreste recuperare da npm secondo necessità).
-2. Aprite un prompt dei comandi/terminale e utilizzate il comando `add` per aggiungere tutti i file a git.
+1. Copia la tua applicazione Express in questa cartella (escludendo **/node_modules**, che contiene file di dipendenza che dovresti recuperare da npm secondo necessità).
+2. Apri un prompt dei comandi/terminale e utilizza il comando `add` per aggiungere tutti i file a git.
 
    ```bash
    git add -A
    ```
 
-3. Usate il comando `status` per verificare che tutti i file che state per `commit` siano corretti (desiderate includere i file sorgente, non i file binari, temporanei ecc.).
-   Dovrebbe sembrare un po' come l'elenco sottostante.
+3. Usa il comando `status` per controllare che tutti i file che stai per `commit` siano corretti (vuoi includere i file sorgente, non i file binari, temporanei, ecc.).
+   Dovrebbe sembrare un po' come l'elenco qui sotto.
 
    ```bash
    git status
@@ -418,24 +419,24 @@ Quindi copiate i vostri file sorgente dell'applicazione nella cartella del repo,
            new file:   ...
    ```
 
-4. Quando siete soddisfatti, `commit` gli file nel vostro repo locale.
-   Questo equivale a firmare le modifiche e renderle una parte ufficiale del repo locale.
+4. Quando sei soddisfatto, `commit` i file al tuo repo locale.
+   Questo è equivalente a firmare le modifiche e renderle una parte ufficiale del repo locale.
 
    ```bash
    git commit -m "First version of application moved into GitHub"
    ```
 
-5. A questo punto, il repo remoto non è stato modificato.
-   L'ultimo passo è sincronizzare (`push`) il vostro repo locale verso il repo remoto su GitHub utilizzando il seguente comando:
+5. A questo punto, il repo remoto non è stato cambiato.
+   L'ultimo passaggio è sincronizzare (`push`) il tuo repo locale su GitHub utilizzando il seguente comando:
 
    ```bash
    git push origin main
    ```
 
-Quando questa operazione è completata, dovreste essere in grado di tornare alla pagina su GitHub dove avete creato il vostro repo, aggiornare la pagina, e vedere che la vostra intera applicazione è stata ora caricata. Potete continuare a aggiornare il vostro repo mentre i file cambiano usando questo ciclo add/commit/push.
+Quando questa operazione è completata, dovresti essere in grado di tornare alla pagina su GitHub dove hai creato il tuo repo, aggiornare la pagina e vedere che la tua intera applicazione è stata ora caricata. Puoi continuare ad aggiornare il tuo repo man mano che i file cambiano utilizzando questo ciclo add/commit/push.
 
-Questo è un buon momento per fare un backup del vostro progetto "vanilla" — mentre alcune delle modifiche che faremo nelle sezioni seguenti potrebbero essere utili per la distribuzione su qualsiasi servizio di hosting (o per lo sviluppo), altre potrebbero non esserlo.
-Potete farlo utilizzando `git` dalla riga di comando:
+Questo è un buon momento per fare un backup del tuo progetto "vanilla" — mentre alcune delle modifiche che stiamo per fare nelle sezioni seguenti potrebbero essere utili per la distribuzione su qualsiasi servizio di hosting (o per lo sviluppo) altre potrebbero non esserlo.
+Puoi fare questo usando `git` dalla riga di comando:
 
 ```bash
 # Create branch vanilla_deployment from the current branch (main)
@@ -454,67 +455,67 @@ git checkout -b my_changes # Create a new branch
 
 > [!NOTE]
 > Git è incredibilmente potente!
-> Per saperne di più, vedere [Learning Git](https://docs.github.com/en/get-started/start-your-journey/git-and-github-learning-resources).
+> Per saperne di più, guarda [Learning Git](https://docs.github.com/en/get-started/start-your-journey/git-and-github-learning-resources).
 
 ## Esempio: Hosting su Glitch
 
-Questa sezione offre una dimostrazione pratica di come ospitare _LocalLibrary_ su [Glitch](https://glitch.com/).
+Questa sezione fornisce una dimostrazione pratica di come ospitare _LocalLibrary_ su [Glitch](https://glitch.com/).
 
 ### Perché Glitch?
 
-Abbiamo scelto di utilizzare Glitch per diversi motivi:
+Scegliamo di utilizzare Glitch per diversi motivi:
 
 - Glitch ha un [piano iniziale gratuito](https://glitch.com/pricing) che è _davvero_ gratuito, anche se con alcune limitazioni.
-  Il fatto che sia accessibile a tutti gli sviluppatori è davvero importante per MDN!
-- Glitch si prende cura dell'infrastruttura in modo che voi non dobbiate preoccuparvi.
-  Non dover pensare ai server, bilanciatori del carico, proxy inversi e così via, rende molto più facile iniziare.
-- Le competenze e i concetti che imparerete utilizzando Glitch sono trasferibili.
-- Le limitazioni del servizio e del piano non influiscono davvero sull'uso di Glitch per il tutorial.
+  Il fatto che sia accessibile a tutti gli sviluppatori è molto importante per MDN!
+- Glitch si occupa dell'infrastruttura in modo che tu non debba farlo.
+  Non dover preoccuparsi dei server, dei bilanciatori di carico, dei reverse proxy, e così via, rende molto più facile iniziare.
+- Le abilità e i concetti che imparerai utilizzando Glitch sono trasferibili.
+- Le limitazioni del servizio e del piano non ci influenzano realmente nell'utilizzo di Glitch per il tutorial.
   Ad esempio:
 
-  - Il piano iniziale offre solo 1000 "ore di progetto" al mese, che vengono reimpostate mensilmente.
-    Questo viene utilizzato quando si sta modificando attivamente il sito o se qualcuno lo sta accedendo.
-    Se nessuno sta accedendo o modificando il sito, questo andrà in stand-by.
-  - L'ambiente del piano iniziale ha una quantità limitata di RAM del container e spazio di archiviazione.
-    C'è più che sufficiente per il tutorial, in particolare perché il nostro database è ospitato altrove.
+  - Il piano iniziale offre solo 1000 "ore di progetto" al mese, che vengono resettate mensilmente.
+    Questo viene utilizzato quando stai attivamente modificando il sito o se qualcuno lo sta accedendo.
+    Se nessuno sta accedendo o modificando il sito, andrà in sospensione.
+  - L'ambiente del piano iniziale ha una quantità limitata di RAM del contenitore e spazio di archiviazione.
+    C'è più che a sufficienza per il tutorial, in particolare perché il nostro database è ospitato altrove.
   - I domini personalizzati non sono ben supportati (al momento della scrittura).
-  - Altre limitazioni possono essere trovate nella [pagina di restrizioni tecniche di Glitch](https://help.glitch.com/s/article/Technical-Restrictions).
+  - Altre limitazioni possono essere trovate nella [pagina delle restrizioni tecniche di Glitch](https://help.glitch.com/s/article/Technical-Restrictions).
 
-Mentre Glitch è appropriato per ospitare questa dimostrazione, dovreste prendervi il tempo necessario per determinare se sia [adatto per il vostro sito web](#scegliere_un_fornitore_di_hosting).
+Anche se Glitch è appropriato per ospitare questa dimostrazione, dovresti prendere il tempo per determinare se è [adatto per il tuo sito web](#scegliere_un_fornitore_di_hosting).
 
 ### Come funziona Glitch?
 
-Glitch fornisce un'interfaccia web in cui puoi creare progetti da modelli iniziali, oppure importarli da GitHub, e poi aggiungere e modificare i file del progetto.
-Man mano che si fanno modifiche, il progetto viene costruito ed eseguito in un proprio container virtualizzato e isolato.
+Glitch fornisce un'interfaccia basata sul web in cui è possibile creare progetti da modelli di partenza, o importarli da GitHub, e quindi aggiungere e modificare i file del progetto.
+Man mano che fai cambiamenti, il progetto viene costruito ed eseguito nel proprio contenitore virtualizzato isolato e indipendente.
 
-Come tutto ciò funzioni "sotto il cofano" è un mistero — Glitch non lo dice.
-Ciò che è chiaro è che finché crei un'applicazione web Node.js abbastanza standard (ad esempio, utilizzando `package.json` per le tue dipendenze) e non consumi più risorse di quanto elencato nelle [restrizioni tecniche](https://help.glitch.com/s/article/Technical-Restrictions), la tua applicazione dovrebbe "funzionare semplicemente".
+Come funziona tutto "sotto il cofano" è un mistero — Glitch non lo dice.
+Quello che è chiaro è che purché crei un'applicazione web nodejs abbastanza standard (ad esempio, usando `package.json` per le tue dipendenze), e non consumi più risorse di quelle elencate nelle [restrizioni tecniche](https://help.glitch.com/s/article/Technical-Restrictions), la tua applicazione dovrebbe "funzionare e basta".
 
 Una volta che l'applicazione è in esecuzione, può essere configurata per la produzione utilizzando [dati privati](https://help.glitch.com/s/article/Adding-Private-Data) forniti in un file `.env`.
-I valori nei dati segreti vengono letti dall'applicazione come variabili d'ambiente, che, come ricorderete da una sezione precedente, è il modo in cui abbiamo configurato la nostra applicazione per ottenere l'URL del database.
-Notate che le variabili sono _segrete_: il `.env` non dovrebbe essere incluso nel vostro repository GitHub.
+I valori nei dati segreti vengono letti dall'applicazione come variabili d'ambiente, che, come ricorderai da una sezione precedente, è come abbiamo configurato la nostra applicazione per ottenere il suo URL del database.
+Nota che le variabili sono _segrete_: il `.env` non dovrebbe essere incluso nel tuo repository GitHub.
 
-La visualizzazione di editing di Glitch fornisce anche un accesso _terminale_ all'ambiente dell'app web, che potete usare per lavorare con l'app web come se fosse in esecuzione sul vostro computer locale.
+La vista di modifica di Glitch fornisce anche accesso al _terminale_ all'ambiente dell'app web, che puoi utilizzare per lavorare con l'app web come se stesse girando sulla tua macchina locale.
 
-Questo è tutto ciò che è necessario sapere per iniziare.
-Successivamente, ci occuperemo di configurare un account Glitch, caricare il progetto della Library da GitHub e connetterlo a un database.
+Questo è tutto ciò che ti serve per iniziare.
+Successivamente, configureremo un account Glitch, caricheremo il progetto della Biblioteca da GitHub e lo collegheremo a un database.
 
-### Ottenere un account Glitch
+### Ottieni un account Glitch
 
-Per iniziare a utilizzare Glitch, sarà necessario prima creare un account:
+Per iniziare a utilizzare Glitch dovrai prima creare un account:
 
-- Vai a [glitch.com](https://glitch.com/) e clicca sul pulsante **Sign up** nella barra degli strumenti in alto.
-- Seleziona GitHub nel popup per registrarti utilizzando le tue credenziali GitHub.
-- Sarai quindi registrato e connesso nella dashboard di Glitch: <https://glitch.com/dashboard>.
+- Vai a [glitch.com](https://glitch.com/) e fai clic sul pulsante **Sign up** nella barra degli strumenti superiore.
+- Seleziona GitHub nel pop-up per registrarti utilizzando le tue credenziali GitHub.
+- Verrai quindi connesso alla dashboard di Glitch: <https://glitch.com/dashboard>.
 
-### Risoluzione problemi versione Node.js
+### Risoluzione dei problemi della versione di Node.js
 
-I fornitori di hosting supportano comunemente alcune versioni principali delle versioni recenti di Node.js.
-Se la "versione minore" esatta specificata nel tuo file `package.json` non è supportata, di solito si ritireranno sulla versione più vicina che supportano (e spesso questo funzionerà).
+I fornitori di hosting supportano comunemente una versione principale di rilasci recenti di Node.js.
+Se la versione "minore" esatta che hai specificato nel tuo file `package.json` non è supportata, solitamente torneranno alla versione più vicina che supportano (e spesso funzionerà).
 
 Sfortunatamente, al momento della scrittura, la versione più alta supportata su Glitch è Node.js 16.
-Se avete sviluppato con Node.js 17 o versione successiva, dovreste ridurre la versione usata nel vostro file `package.json` come mostrato.
-Dovrete anche testare nuovamente:
+Se hai sviluppato con Node.js 17 o successivo, dovresti ridurre la versione utilizzata nel tuo file `package.json` come mostrato.
+Dovrai anche ritestare:
 
 ```json
   "engines": {
@@ -522,171 +523,171 @@ Dovrete anche testare nuovamente:
   },
 ```
 
-Glitch [pianifica di aggiornare Node e mantenerlo meglio aggiornato in futuro](https://blog.glitch.com/post/rebuilding-glitch/) — e potrebbe essere che quando leggerete questo la limitazione sulla versione non esista più.
-Invece di eseguire il downgrade della versione di `node`, potete caricare il vostro progetto per vedere se si compila.
-Se ci sono errori e l'applicazione non si carica, dovreste provare a impostare la versione di `node` su `>=v16` direttamente nel vostro `package.json` nell'editor Glitch.
+Glitch [pianifica di aggiornare node e tenerlo meglio aggiornato in futuro](https://blog.glitch.com/post/rebuilding-glitch/) — e potrebbe essere che quando leggerai questo la limitazione della versione non esista più.
+Invece di eseguire il downgrade della versione di `node`, potresti caricare il tuo progetto per vedere se si compila.
+Se ci sono errori e la tua applicazione non si carica, dovresti provare a impostare la versione di `node` su `>=v16` nel tuo `package.json` nell'editor di Glitch.
 
 > [!NOTE]
-> Potete anche controllare le versioni supportate inserendo il seguente comando nel terminale di qualsiasi progetto Glitch:
+> Puoi anche controllare le versioni supportate inserendo il seguente comando nel terminale di qualsiasi progetto Glitch:
 >
 > ```sh
 > ls -l /opt/nvm/versions/node | grep '^d' | awk '{ print $9 }'
 > ```
 
-### Distribuire su Glitch da GitHub
+### Distribuzione su Glitch da GitHub
 
-Ora importeremo il progetto della Library da GitHub.
-Prima scegliete l'opzione **Dashboard** dal menu in alto del sito, quindi selezionate il pulsante **New project**.
-Glitch mostrerà un elenco di opzioni per il nuovo progetto; selezionate **Import from GitHub**.
+Ora importeremo il progetto della Biblioteca da GitHub.
+Per prima cosa, scegli l'opzione **Dashboard** dal menu in alto del sito, poi seleziona il pulsante **New project**.
+Glitch visualizzerà un elenco di opzioni per il nuovo progetto; seleziona **Import from GitHub**.
 
-![Dashboard del sito Glitch che mostra un pulsante nuovo progetto e un menu a comparsa con l'opzione "Import from GitHub"](glitch_new_project_import_github.png)
+![Dashboard del sito web di Glitch che mostra il pulsante per un nuovo progetto e un menu popup con l'opzione "Import from GitHub"](glitch_new_project_import_github.png)
 
-Apparirà un popup.
-Immettete l'URL del vostro repository della Library GitHub nel popup e premete **OK**.
-Di seguito abbiamo inserito il repo per il progetto lavorato.
+Apparirà un pop-up.
+Inserisci l'URL del tuo repository GitHub della libreria nel pop-up e premi **OK**.
+Di seguito, abbiamo inserito il repo per il progetto funzionante.
 
-![Popup Glitch per l'inserimento dell'URL del repository GitHub da importare](glitch_new_project_github_repo_url.png)
+![Pop-up di Glitch per l'inserimento dell'URL del repository GitHub da importare](glitch_new_project_github_repo_url.png)
 
-Glitch importerà quindi il progetto, mostrando notifiche di progresso.
-Al termine, mostrerà la vista di editing per il nuovo progetto, come mostrato di seguito.
+Glitch importerà quindi il progetto, visualizzando le notifiche di avanzamento.
+Al termine, mostrerà la vista di modifica per il nuovo progetto, come mostrato di seguito.
 
-![Vista editor Glitch per progetto importato](glitch_imported_project_in_editor.png)
+![Vista editor di Glitch per il progetto importato](glitch_imported_project_in_editor.png)
 
-Potete ottenere l'URL del sito live selezionando il pulsante **Share**.
+Puoi ottnere l'URL del sito attivo selezionando il pulsante **Share**.
 
-![Vista editor Glitch per progetto importato](glitch_share_project.png)
+![Vista editor di Glitch per il progetto importato](glitch_share_project.png)
 
-Aprite una nuova scheda del browser e copiate il collegamento per il sito live nella barra degli indirizzi.
+Apri una nuova scheda del browser e copia il link per il sito attivo nella barra degli indirizzi.
 Il sito della biblioteca locale dovrebbe aprirsi e visualizzare i dati dal database di sviluppo.
 
 > [!NOTE]
 > Questo processo è stato un'importazione una tantum da GitHub.
-> Potete anche utilizzare azioni GitHub come [glitch-project-sync](https://github.com/marketplace/actions/glitch-project-sync) per mantenere Glitch e > il vostro progetto sincronizzati.
+> Puoi anche utilizzare le azioni GitHub, come [glitch-project-sync](https://github.com/marketplace/actions/glitch-project-sync), per tenere sincronizzati Glitch e il tuo progetto.
 
-### Usare un database MongoDB di produzione
+### Usa un database MongoDB di produzione
 
-Dovreste impostare un database diverso per la produzione rispetto allo sviluppo.
-Mentre Glitch ospita solo database SQLite (e noi siamo impostati per usare MongoDB), molti altri siti forniscono database MongoDB come servizio.
+Dovresti configurare un database diverso per la produzione rispetto a quello di sviluppo.
+Mentre Glitch ospita solo database SQLite (e siamo configurati per utilizzare MongoDB), molti altri siti offrono database MongoDB come servizio.
 
-Una opzione è quella di seguire le istruzioni di [Impostazione del database MongoDB](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#setting_up_the_mongodb_database) da una sezione precedente del tutorial per impostare un nuovo database di produzione.
+Una opzione è seguire le istruzioni [Configurazione del database MongoDB](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#setting_up_the_mongodb_database) di una sezione precedente del tutorial per configurare un nuovo database di produzione.
 
-Per rendere accessibile il database di produzione all'applicazione della biblioteca, aprite il file `.env` nella vista editor per il progetto.
-Inserite la variabile dell'URL del database `MONGODB_URI` e l'URL del vostro database di produzione.
-Il sito si aggiorna mentre immettete i valori nell'editor.
+Per rendere il database di produzione accessibile all'applicazione della biblioteca, apri il file `.env` nella vista editor del progetto.
+Inserisci la variabile `MONGODB_URI` con l'URL del tuo database di produzione.
+Il sito si aggiorna man mano che inserisci i valori nell'editor.
 
-![Editor del file .env di Glitch per dati privati con variabili di produzione](glitch_env.png)
+![Editor del file .env di Glitch per i dati privati con variabili di produzione](glitch_env.png)
 
 > [!NOTE]
 > Non abbiamo creato questo file.
-> È destinato a [dati privati](https://help.glitch.com/s/article/Adding-Private-Data) ed è stato creato automaticamente all'importazione su Glitch.
+> È destinato ai [dati privati](https://help.glitch.com/s/article/Adding-Private-Data) ed è stato creato automaticamente durante l'importazione su Glitch.
 > Non viene mai esportato o copiato.
 
 ### Altre variabili di configurazione
 
-Ricorderete da una sezione precedente che dobbiamo [impostare NODE_ENV su 'production'](#set_node_env_to_production) per migliorare le prestazioni e generare messaggi di errore meno dettagliati. Facciamo questo nello stesso file in cui impostiamo la variabile `MONGODB_URI`.
+Ricorderai da una sezione precedente che dobbiamo [impostare NODE_ENV su 'production'](#set_node_env_to_production) per migliorare le prestazioni e generare messaggi di errore meno verbosi. Facciamo questo nello stesso file in cui impostiamo la variabile `MONGODB_URI`.
 
-Aprite `.env` e aggiungete una variabile `NODE_ENV` con valore `production` (vedere lo screenshot nella sezione precedente).
+Apri `.env` e aggiungi una variabile `NODE_ENV` con valore `production` (vedi lo screenshot nella sezione precedente).
 
 L'applicazione della biblioteca locale è ora impostata e configurata per l'uso in produzione.
-Potete aggiungere dati tramite l'interfaccia del sito web, e dovrebbe funzionare come faceva durante lo sviluppo (anche se con meno informazioni di debug esposte per pagine non valide).
+Puoi aggiungere dati tramite l'interfaccia del sito web e dovrebbe funzionare come faceva durante lo sviluppo (anche se con meno informazioni di debug esposte per le pagine non valide).
 
 > [!NOTE]
-> Se desiderate solo aggiungere alcuni dati per il test, potreste utilizzare lo script `populatedb` (con il vostro URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Usare un Database (con Mongoose) Testing — creare alcuni oggetti](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
+> Se vuoi solo aggiungere alcuni dati per il testing, potresti usare lo script `populatedb` (con il tuo URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Uso di un Database (con Mongoose) Testing — creare alcuni elementi](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
 
-### Debugging di app Express su Glitch
+### Debugging delle app Express su Glitch
 
 Glitch consente un debug efficace.
-Alcune delle cose che potete fare sono:
+Alcune delle cose che puoi fare sono:
 
-- Selezionare il pulsante dei log in fondo alla vista dell'editor per vedere le informazioni di log dal server, come l'output del log della console.
-- Selezionare il pulsante del terminale in fondo alla vista dell'editor per aprire un terminale nell'ambiente di hosting.
-  Potete usare questo per eseguire comandi e strumenti nell'ambiente.
-  Ad esempio, potete usare `node -v` per controllare la versione di Node.
+- Selezionare il pulsante dei log nella parte inferiore della vista editor per vedere le informazioni del log dal tuo server, come l'output del log console.
+- Selezionare il pulsante del terminale nella parte inferiore della vista editor per aprire un terminale nell'ambiente di hosting.
+  Puoi usarlo per eseguire comandi e strumenti nell'ambiente.
+  Ad esempio, potresti usare `node -v` per controllare la versione di node.
 - Debugging interattivo in VS Code utilizzando l'estensione GLITCH per VS Code.
 
 ## Esempio: Hosting su Railway
 
-Questa sezione offre una dimostrazione pratica di come installare _LocalLibrary_ su [Railway](https://railway.com/).
+Questa sezione fornisce una dimostrazione pratica di come installare _LocalLibrary_ su [Railway](https://railway.com/).
 
 ### Perché Railway?
 
 > [!WARNING]
-> Railway non ha più un livello di partenza completamente gratuito.
-> Abbiamo mantenuto queste istruzioni perché Railway ha alcune ottime funzionalità, e sarà una scelta migliore per alcuni utenti.
+> Railway non ha più un livello di avviamento completamente gratuito.
+> Abbiamo mantenuto queste istruzioni perché Railway ha alcune ottime funzionalità e sarà un'opzione migliore per alcuni utenti.
 
-Railway è un'opzione di hosting interessante per diversi motivi:
+Railway è un'opzione di hosting attraente per diversi motivi:
 
-- Railway si occupa della maggior parte dell'infrastruttura in modo che voi non dobbiate preoccuparvi.
-  Non dover pensare a server, bilanciatori del carico, proxy inversi e così via, rende molto più facile iniziare.
-- Railway ha un [focus sull'esperienza di sviluppo per lo sviluppo e il deployment](https://docs.railway.com/maturity/compare-to-heroku), che porta a una curva di apprendimento più rapida e morbida rispetto a molte altre alternative.
-- Le competenze e i concetti che imparerete utilizzando Railway sono trasferibili.
-  Sebbene Railway abbia alcune eccellenti nuove funzionalità, altri servizi di hosting popolari utilizzano molte delle stesse idee e approcci.
-- La [documentazione di Railway](https://docs.railway.com/) è chiara e completa.
-- Il servizio sembra essere molto affidabile, e se finisci per amarlo, la tariffazione è prevedibile, e scalare la tua app è molto semplice.
+- Railway si occupa della maggior parte dell'infrastruttura in modo che tu non debba farlo.
+  Non dover preoccuparsi dei server, dei bilanciatori di carico, dei reverse proxy, e così via, rende molto più facile iniziare.
+- Railway ha un [focus sull'esperienza dello sviluppatore per lo sviluppo e la distribuzione](https://docs.railway.com/maturity/compare-to-heroku), che porta a una curva di apprendimento più veloce e più soft rispetto a molte altre alternative.
+- Le abilità e i concetti che imparerai utilizzando Railway sono trasferibili.
+  Anche se Railway ha alcune nuove funzionalità eccellenti, molti altri servizi di hosting popolari utilizzano molte delle stesse idee e approcci.
+- [La documentazione Railway](https://docs.railway.com/) è chiara e completa.
+- Il servizio sembra essere molto affidabile e se finisci per amarlo, i prezzi sono prevedibili, e scalare la tua app è molto facile.
 
-Dovreste prendervi il tempo necessario per determinare se Railway sia [adatto per il vostro sito web](#scegliere_un_fornitore_di_hosting).
+Dovresti prendere il tempo per determinare se Railway è [adatto per il tuo proprio sito web](#scegliere_un_fornitore_di_hosting).
 
 ### Come funziona Railway?
 
-Le applicazioni web vengono eseguite ciascuna nel proprio container virtuale indipendente e isolato.
-Per eseguire la vostra applicazione, Railway deve essere in grado di impostare l'ambiente e le dipendenze appropriate e anche capire come viene avviata.
+Le applicazioni web vengono eseguite ciascuna nel proprio contenitore virtualizzato isolato e indipendente.
+Per eseguire la tua applicazione, Railway deve essere in grado di configurare l'ambiente appropriato e le dipendenze, e anche capire come viene lanciata.
 
-Railway rende questo facile, poiché è in grado di riconoscere e installare automaticamente molti diversi framework e ambienti di applicazioni web basati sul loro uso di "convenzioni comuni".
-Ad esempio, Railway riconosce le applicazioni Node perché hanno un file **package.json**, e può determinare il gestore dei pacchetti usato per la creazione dal file "lock".
-Ad esempio, se l'applicazione include il file **package-lock.json**, Railway sa di dover usare _npm_ per installare i pacchetti, mentre se trova **yarn.lock** sa di dover usare _yarn_.
-Avendo installato tutte le dipendenze, Railway cercherà script chiamati "build" e "start" nel file del pacchetto e userà questi per costruire ed eseguire il codice.
+Railway rende questo facile, poiché può riconoscere automaticamente e installare molti diversi framework e ambienti di applicazioni web basati sul loro utilizzo delle "convenzioni comuni".
+Ad esempio, Railway riconosce le applicazioni node perché hanno un file **package.json**, e può determinare il gestore di pacchetti utilizzato per la compilazione dal file "lock".
+Ad esempio, se l'applicazione include il file **package-lock.json** Railway sa di usare _npm_ per installare i pacchetti, mentre se trova **yarn.lock** sa di usare _yarn_.
+Avendo installato tutte le dipendenze, Railway cercherà script denominati "build" e "start" nel file di pacchetto, e utilizzerà questi per costruire ed eseguire il codice.
 
 > [!NOTE]
-> Railway utilizza [Nixpacks](https://nixpacks.com/docs) per riconoscere vari framework di applicazioni web scritti in diversi linguaggi di programmazione.
-> Non avete bisogno di sapere altro per questo tutorial, ma potete trovare maggiori informazioni sulle opzioni per distribuire applicazioni Node in [Nixpacks Node](https://nixpacks.com/docs/providers/node).
+> Railway usa [Nixpacks](https://nixpacks.com/docs) per riconoscere vari framework di applicazioni web scritti in diversi linguaggi di programmazione.
+> Non hai bisogno di sapere altro per questo tutorial, ma puoi trovare più opzioni per distribuire applicazioni node in [Nixpacks Node](https://nixpacks.com/docs/providers/node).
 
-Una volta che l'applicazione è in esecuzione, può configurarsi utilizzando le informazioni fornite nelle [variabili d'ambiente](https://docs.railway.com/guides/variables).
+Una volta che l'applicazione è in esecuzione, può configurarsi utilizzando informazioni fornite nelle [variabili d'ambiente](https://docs.railway.com/guides/variables).
 Ad esempio, un'applicazione che utilizza un database deve ottenere l'indirizzo utilizzando una variabile.
 Il servizio del database stesso può essere ospitato da Railway o da un altro fornitore.
 
-Gli sviluppatori interagiscono con Railway attraverso il sito Railway, e utilizzando uno speciale strumento [Interface a Riga di Comando (CLI)](https://docs.railway.com/guides/cli).
-Il CLI vi permette di associare un repository GitHub locale con un progetto Railway, caricare il repository dal branch locale al sito live, ispezionare i log del processo in esecuzione, impostare e ottenere variabili di configurazione e molto altro.
-Una delle funzionalità più utili è che potete usare il CLI per eseguire il vostro progetto locale con le stesse variabili d'ambiente del progetto live.
+Gli sviluppatori interagiscono con Railway attraverso il sito Railway e utilizzando uno speciale strumento [Command Line Interface (CLI)](https://docs.railway.com/guides/cli).
+Il CLI consente di associare un repository GitHub locale a un progetto railway, caricare il repository dal ramo locale al sito attivo, ispezionare i log del processo in esecuzione, impostare e ottenere variabili di configurazione e molto altro.
+Una delle funzionalità più utili è che puoi usare il CLI per eseguire il tuo progetto locale con le stesse variabili d'ambiente del progetto attivo.
 
-Questa è tutta la panoramica di cui avete bisogno per distribuire l'app su Railway.
-Successivamente configureremo un account Railway, installeremo il nostro sito web e un database, e proveremo il client Railway.
+Questo è tutto l'overview di cui hai bisogno per distribuire l'app su Railway.
+Ora imposteremo un account Railway, installeremo il nostro sito web e un database, e proveremo il client Railway.
 
-### Ottenere un account Railway
+### Ottieni un account Railway
 
-Per iniziare a utilizzare Railway, sarà necessario prima creare un account:
+Per iniziare a usare Railway dovrai prima creare un account:
 
-- Vai a [railway.com](https://railway.com/) e clicca sul link **Login** nella barra degli strumenti in alto.
-- Seleziona GitHub nel popup per accedere utilizzando le tue credenziali GitHub.
-- Potreste dover andare alla vostra email e verificare il vostro account.
-- Sarai quindi connesso nella dashboard di Railway.com: <https://railway.com/dashboard>.
+- Vai su [railway.com](https://railway.com/) e fai clic sul link **Login** nella barra degli strumenti in alto.
+- Seleziona GitHub nel pop-up per accedere utilizzando le tue credenziali GitHub
+- Potresti dover andare alla tua email e verificare il tuo account.
+- Sarai quindi loggato nella dashboard di Railway.com: <https://railway.com/dashboard>.
 
-### Distribuire su Railway da GitHub
+### Distribuisci su Railway da GitHub
 
-Ora configuriamo Railway per distribuire la nostra library da GitHub.
-Prima scegliete l'opzione **Dashboard** dal menu in alto del sito, quindi selezionate il pulsante **New Project**:
+Successivamente configureremo Railway per distribuire la nostra biblioteca da GitHub.
+Per prima cosa scegli l'opzione **Dashboard** dal menu in alto del sito, poi seleziona il pulsante **New Project**:
 
 ![Dashboard del sito Railway che mostra il pulsante nuovo progetto](railway_new_project_button.png)
 
-Railway mostrerà un elenco di opzioni per il nuovo progetto, inclusa l'opzione di distribuire un progetto da un modello che viene creato prima nel vostro account GitHub, e numerosi database.
-Selezionate **Deploy from GitHub repo**.
+Railway visualizzerà un elenco di opzioni per il nuovo progetto, compresa l'opzione per distribuire un progetto da un modello che viene prima creato nel tuo account GitHub, e un numero di database.
+Seleziona **Deploy from GitHub repo**.
 
-![Popup Railway che mostra le opzioni di distribuzione con l'opzione "Deploy from GitHub repo" evidenziata](railway_new_project_button_deploy_github_repo.png)
+![Popup di Railway che mostra le opzioni di distribuzione con l'opzione Deploy from GitHub repo evidenziata](railway_new_project_button_deploy_github_repo.png)
 
-Tutti i progetti nei repository GitHub che avete condiviso con Railway durante la configurazione vengono visualizzati.
-Selezionate il vostro repository GitHub per la local library: `<user-name>/express-locallibrary-tutorial`.
+Tutti i progetti nei repository GitHub che hai condiviso con Railway durante l'installazione vengono visualizzati.
+Seleziona il tuo repository GitHub per la biblioteca locale: `<user-name>/express-locallibrary-tutorial`.
 
-![Popup Railway che mostra i repository GitHub che possono essere distribuiti](railway_new_project_button_deploy_github_selectrepo.png)
+![Popup di Railway che mostra i repository GitHub che possono essere distribuiti](railway_new_project_button_deploy_github_selectrepo.png)
 
-Confermate la vostra distribuzione selezionando **Deploy Now**.
+Conferma la tua distribuzione selezionando **Deploy Now**.
 
 ![Schermata di conferma in cui puoi selezionare la distribuzione del progetto](railway_new_project_deploy_confirm.png)
 
-Railway caricherà e distribuirà quindi il vostro progetto, mostrando i progressi nella scheda Deployment.
-Quando la distribuzione viene completata con successo, vedrete una schermata come quella qui sotto.
+Railway caricherà e distribuirà quindi il tuo project, visualizzando i progressi nella scheda distribuzioni.
+Quando la distribuzione sarà completata con successo, vedrai una schermata come quella qui sotto.
 
-![Dashboard Railway che mostra la scheda Deployment per il progetto distribuito](railway_project_deploy.png)
+![Dashboard Railway che mostra la scheda Deployments per il progetto distribuito](railway_project_deploy.png)
 
-Ora selezionate la scheda _Settings_, quindi scorrete verso il basso fino alla sezione Domains, e premete il pulsante **Generate Domain**.
+Ora seleziona la scheda _Settings_, quindi scorri verso il basso fino alla sezione Domains e premi il pulsante **Generate Domain**.
 
 ![Scheda delle impostazioni del progetto Railway che mostra il pulsante per generare un dominio](railway_project_generate_domain.png)
 
@@ -694,79 +695,79 @@ Questo pubblicherà il sito e metterà il dominio al posto del pulsante, come mo
 
 ![Scheda delle impostazioni del progetto Railway che mostra un link al sito della biblioteca locale](railway_project_domain.png)
 
-Selezionate l'URL del dominio per aprire la vostra applicazione library.
-Notate che, poiché non abbiamo specificato un database di produzione, la biblioteca locale si aprirà utilizzando i vostri dati di sviluppo.
+Seleziona l'URL del dominio per aprire la tua applicazione della biblioteca.
+Nota che perché non abbiamo specificato un database di produzione, la biblioteca locale si aprirà utilizzando i tuoi dati di sviluppo.
 
-### Creazione e connessione di un database MongoDB
+### Fornire e connettere un database MongoDB
 
-Invece di usare i nostri dati di sviluppo, creiamo un database MongoDB di produzione da utilizzare.
-Creeremo il database come parte del progetto dell'applicazione Railway, anche se niente vieta di crearlo nel proprio progetto separato o di usare un database _MongoDB Atlas_ per i dati di produzione, proprio come avete fatto per il database di sviluppo.
+Invece di usare i nostri dati di sviluppo, ora creiamo un database MongoDB di produzione per usarli al posto.
+Creeremo il database come parte del progetto dell'applicazione Railway, anche se nulla vieta di crearlo in un proprio progetto separato, o in effetti di usare un database _MongoDB Atlas_ per i dati di produzione, proprio come hai fatto per il database di sviluppo.
 
-Su Railway, scegliete l'opzione **Dashboard** dal menu in alto del sito e quindi selezionate il vostro progetto dell'applicazione.
-A questo punto contiene solo un servizio per la vostra applicazione (questo può essere selezionato per impostare variabili e altri dettagli del servizio).
-Selezionate il pulsante **New**, che viene usato per aggiungere servizi al progetto corrente.
+Su Railway, scegli l'opzione **Dashboard** dal menu in alto del sito e poi seleziona il tuo progetto di applicazione.
+A questo punto contiene solo un singolo servizio per l'applicazione (questo può essere selezionato per impostare variabili e altri dettagli del servizio).
+Seleziona il pulsante **New**, che viene utilizzato per aggiungere servizi al progetto attuale.
 
-![Progetto Railway con il pulsante nuovo servizio evidenziato](railway_project_open_no_database.png)
+![Progetto Railway con evidenziato il pulsante nuovo servizio](railway_project_open_no_database.png)
 
-Selezionate **Database** quando vi viene chiesto del tipo di servizio da aggiungere:
+Seleziona **Database** quando ti viene chiesto il tipo di servizio da aggiungere:
 
-![Popup Railway che mostra le opzioni per un nuovo servizio, come database, repository GitHub, servizio vuoto ecc.](railway_database_add.png)
+![Popup di Railway che mostra le opzioni per un nuovo servizio, come database, repository GitHub, servizio vuoto ecc.](railway_database_add.png)
 
-Quindi selezionate **Add MongoDB** per iniziare ad aggiungere il database.
+Quindi seleziona **Add MongoDB** per iniziare ad aggiungere il database
 
-![Popup Railway che mostra i diversi database che possono essere selezionati: Postgres, MySQL, MongoDB e così via](railway_database_select_type.png)
+![Popup di Railway che mostra i diversi database che possono essere selezionati: Postgres, MySQL, MongoDB e così via](railway_database_select_type.png)
 
-Railway provvederà quindi a un servizio contenente un database vuoto nello stesso progetto.
-Al termine, vedrete ora sia i servizi dell'applicazione che del database nella visualizzazione del progetto.
+Railway fornirà quindi un servizio contenente un database vuoto nello stesso progetto.
+Al completamento vedrai ora sia i servizi dell'applicazione che del database nella vista del progetto.
 
-![Progetto Railway con servizi dell'applicazione e del database](railway_project_two_services.png)
+![Progetto Railway con servizi di applicazione e database](railway_project_two_services.png)
 
-Selezionate il servizio MongoDB per visualizzare le informazioni sul database.
-Aprite la scheda _Variables_ e copiate il "Mongo_URL" (questo è l'indirizzo del database).
+Seleziona il servizio MongoDB per visualizzare le informazioni sul database.
+Apri la scheda _Variables_ e copia il "Mongo_URL" (questo è l'indirizzo del database).
 
 ![Schermata delle impostazioni del database Railway che mostra l'URL necessario per connettersi al database](railway_mongodb_connect.png)
 
-Per renderlo accessibile all'applicazione library, dobbiamo aggiungerlo al processo dell'applicazione utilizzando una variabile d'ambiente.
-Prima di tutto aprite il servizio dell'applicazione.
-Quindi selezionate la scheda _Variables_ e premete il pulsante **New Variable**.
+Per rendere questo accessibile all'applicazione della biblioteca dobbiamo aggiungerlo al processo dell'applicazione utilizzando una variabile d'ambiente.
+Per prima cosa apri il servizio dell'applicazione.
+Poi seleziona la scheda _Variables_ e premi il pulsante **New Variable**.
 
-Immettete il nome della variabile `MONGODB_URI` e l'URL di connessione che avete copiato per il database (`MONGODB_URI` è il nome della variabile d'ambiente da cui [abbiamo configurato l'applicazione](#configurazione_del_database) per leggere l'indirizzo del database).
-Questo apparirà simile alla schermata mostrata qui sotto.
+Inserisci il nome della variabile `MONGODB_URI` e l'URL di connessione che hai copiato per il database (`MONGODB_URI` è il nome della variabile d'ambiente da cui [abbiamo configurato l'applicazione](#configurazione_del_database) per leggere l'indirizzo del database).
+Questo apparirà come la schermata mostrata sotto.
 
-![Schermata delle variabili del sito Railway mentre si aggiunge la variabile MONGODB_URI e l'indirizzo](railway_variables_database_url.png)
+![Schermata delle variabili del sito Railway mentre si sta aggiungendo la variabile MONGODB_URI e l'indirizzo](railway_variables_database_url.png)
 
-Selezionate **Add** per aggiungere la variabile.
+Seleziona **Add** per aggiungere la variabile.
 
-Railway riavvia la tua app quando aggiorna le variabili. Se controllate la home page ora dovrebbe mostrare zero valori per i conteggi degli oggetti, poiché le modifiche sopra significano che stiamo ora utilizzando un nuovo database (vuoto).
+Railway riavvia la tua app quando aggiorna le variabili. Se controlli la home page ora dovrebbe mostrare valori zero per i tuoi conteggi degli oggetti, poiché le modifiche sopra significano che ora stiamo usando un nuovo database (vuoto).
 
 ### Altre variabili di configurazione
 
-Ricorderete da una sezione precedente che dobbiamo [impostare NODE_ENV su 'production'](#set_node_env_to_production) per migliorare le nostre prestazioni e generare messaggi di errore meno dettagliati. Possiamo farlo nella stessa schermata in cui abbiamo impostato la variabile `MONGODB_URI`.
+Ricorderai da una sezione precedente che dobbiamo [impostare NODE_ENV su 'production'](#set_node_env_to_production) per migliorare le prestazioni e generare messaggi di errore meno verbosi. Possiamo farlo nella stessa schermata in cui impostiamo la variabile `MONGODB_URI`.
 
-Aprite il servizio dell'applicazione.
-Quindi selezionate la scheda _Variables_, dove vedrete che `MONGODB_URI` è già definita, e premete il pulsante **New Variable**.
+Apri il servizio dell'applicazione.
+Poi seleziona la scheda _Variables_, dove vedrai che `MONGODB_URI` è già definito, e premi il pulsante **New Variable**.
 
-![Scheda delle variabili Railway con il pulsante Nuova variabile evidenziato](railway_variables_new.png)
+![Scheda delle variabili Railway con il pulsante New Variable evidenziato](railway_variables_new.png)
 
-Immettete `NODE_ENV` come nome della nuova variabile e `production` come nome dell'ambiente.
-Quindi premete il pulsante **Add**.
+Inserisci `NODE_ENV` come nome della nuova variabile e `production` come nome dell'ambiente.
+Poi premi il pulsante **Add**.
 
-![Scheda delle variabili Railway con nuova variabile NODE_ENV impostata su 'production'](railway_variables_new_node_env.png)
+![Scheda delle variabili Railway con la nuova variabile NODE_ENV impostata su 'production'](railway_variables_new_node_env.png)
 
-L'applicazione library locale è ora impostata e configurata per l'uso in produzione.
-Potete aggiungere dati tramite l'interfaccia del sito web e dovrebbe funzionare allo stesso modo di quando era in fase di sviluppo (anche se con meno informazioni di debug esposte per pagine non valide).
+L'applicazione della biblioteca locale è ora configurata e configurata per l'uso in produzione.
+Puoi aggiungere dati tramite l'interfaccia del sito web e dovrebbe funzionare allo stesso modo in cui funziona durante lo sviluppo (anche se con meno informazioni di debug esposte per le pagine non valide).
 
 > [!NOTE]
-> Se desiderate solo aggiungere alcuni dati per il test, potreste utilizzare lo script `populatedb` (con il vostro URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Usare un Database (con Mongoose) Testing — creare alcuni oggetti](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
+> Se vuoi solo aggiungere alcuni dati per il testing potresti usare lo script `populatedb` (con il tuo URL del database di produzione MongoDB) come discusso nella sezione [Express Tutorial Parte 3: Uso di un Database (con Mongoose) Testing — creare alcuni elementi](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose#testing_%E2%80%94_create_some_items).
 
-### Installare il client
+### Installa il client
 
-Scaricate e installate il client Railway per il sistema operativo locale seguendo le [istruzioni qui](https://docs.railway.com/guides/cli).
+Scarica e installa il client Railway per il tuo sistema operativo locale seguendo le [istruzioni qui](https://docs.railway.com/guides/cli).
 
-Dopo che il client è stato installato, sarete in grado di eseguire comandi.
-Alcune delle operazioni più importanti includono distribuire la directory corrente del vostro computer a un progetto Railway associato (senza dover caricare su GitHub), ed eseguire il vostro progetto localmente utilizzando le stesse impostazioni che avete sul server di produzione.
+Dopo che il client è stato installato sarai in grado di eseguire i comandi.
+Alcune delle operazioni più importanti includono la distribuzione della directory corrente del tuo computer in un progetto Railway associato (senza dover caricare su GitHub), e l'esecuzione del tuo progetto localmente utilizzando le stesse impostazioni che hai sul server di produzione.
 
-Potete ottenere un elenco di tutti i comandi possibili inserendo il seguente comando in un terminale.
+Puoi ottenere un elenco di tutti i comandi possibili inserendo quanto segue in un terminale.
 
 ```bash
 railway help
@@ -774,7 +775,7 @@ railway help
 
 ### Debugging
 
-Il client Railway fornisce il comando logs per mostrare l'ultimo dei log (un log più completo è disponibile sul sito per ogni progetto):
+Il client Railway fornisce il comando dei log per mostrare la coda dei log (un log più completo è disponibile sul sito per ogni progetto):
 
 ```bash
 railway logs
@@ -782,30 +783,30 @@ railway logs
 
 ## Riepilogo
 
-Questo è la fine di questo tutorial su come impostare app Express in produzione, e anche della serie di tutorial sul lavoro con Express. Speriamo che li abbiate trovati utili. Potete consultare una versione completamente lavorata del [codice sorgente su GitHub qui](https://github.com/mdn/express-locallibrary-tutorial).
+Questo è la fine di questo tutorial sulla configurazione delle app Express in produzione, e anche della serie di tutorial sul lavoro con Express. Speriamo che li trovi utili. Puoi controllare una versione completamente lavorata del [codice sorgente su GitHub qui](https://github.com/mdn/express-locallibrary-tutorial).
 
 ## Vedi anche
 
-- [Migliori pratiche di produzione: performance e affidabilità](https://expressjs.com/en/advanced/best-practice-performance.html) (Express docs)
-- [Migliori pratiche di produzione: Sicurezza](https://expressjs.com/en/advanced/best-practice-security.html) (Express docs)
-- Documenti di Railway
+- [Production best practices: performance and reliability](https://expressjs.com/en/advanced/best-practice-performance.html) (documenti Express)
+- [Production Best Practices: Security](https://expressjs.com/en/advanced/best-practice-security.html) (documenti Express)
+- Documenti Railway
 
   - [CLI](https://docs.railway.com/guides/cli)
 
 - DigitalOcean
 
-  - Tutorial [Express](https://www.digitalocean.com/community/tutorials?q=express)
-  - Tutorial [Node.js](https://www.digitalocean.com/community/tutorials?q=node.js)
+  - tutorial [Express](https://www.digitalocean.com/community/tutorials?q=express)
+  - tutorial [Node.js](https://www.digitalocean.com/community/tutorials?q=node.js)
 
 - Heroku
 
-  - [Introduzione a Heroku con Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) (Heroku docs)
-  - [Distribuire Applicazioni Node.js su Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) (Heroku docs)
-  - [Supporto Node.js di Heroku](https://devcenter.heroku.com/articles/nodejs-support) (Heroku docs)
-  - [Ottimizzazione della Concorrenza delle Applicazioni Node.js](https://devcenter.heroku.com/articles/node-concurrency) (Heroku docs)
-  - [Come funziona Heroku](https://devcenter.heroku.com/articles/how-heroku-works) (Heroku docs)
-  - [Dynos e il Gestore dei Dyno](https://devcenter.heroku.com/articles/dynos) (Heroku docs)
-  - [Configurazione e Config Vars](https://devcenter.heroku.com/articles/config-vars) (Heroku docs)
-  - [Limiti](https://devcenter.heroku.com/articles/limits) (Heroku docs)
+  - [Introduzione a Heroku con Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs) (documenti Heroku)
+  - [Distribuire applicazioni Node.js su Heroku](https://devcenter.heroku.com/articles/deploying-nodejs) (documenti Heroku)
+  - [Supporto Node.js di Heroku](https://devcenter.heroku.com/articles/nodejs-support) (documenti Heroku)
+  - [Ottimizzare la concorrenza delle applicazioni Node.js](https://devcenter.heroku.com/articles/node-concurrency) (documenti Heroku)
+  - [Come funziona Heroku](https://devcenter.heroku.com/articles/how-heroku-works) (documenti Heroku)
+  - [Dynos e il Dyno Manager](https://devcenter.heroku.com/articles/dynos) (documenti Heroku)
+  - [Configurazione e variabili di configurazione](https://devcenter.heroku.com/articles/config-vars) (documenti Heroku)
+  - [Limiti](https://devcenter.heroku.com/articles/limits) (documenti Heroku)
 
 {{PreviousMenu("Learn_web_development/Extensions/Server-side/Express_Nodejs/forms", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}

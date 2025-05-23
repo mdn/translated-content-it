@@ -1,13 +1,13 @@
 ---
-title: Cos'è CSS?
+title: Cos'è il CSS?
 slug: Learn_web_development/Core/Styling_basics/What_is_CSS
 l10n:
-  sourceCommit: 427efbee9e0da53517f45420af87a66a2a6b6e19
+  sourceCommit: 0915a5e602d475bd1a1a57d905f0bac1b7ed57b8
 ---
 
 {{NextMenu("Learn_web_development/Core/Styling_basics/Getting_started", "Learn_web_development/Core/Styling_basics")}}
 
-**{{Glossary("CSS", "CSS")}}** (Cascading Style Sheets) consente di creare pagine web dall'aspetto attraente, ma come funziona dietro le quinte? Questo articolo spiega cos'è il CSS, come appare la sintassi di base e come il tuo browser applica il CSS all'HTML per stilizzarlo.
+**{{Glossary("CSS", "CSS")}}** (Fogli di stile a cascata) ti consente di creare pagine web dall'aspetto eccellente, ma come funziona dietro le quinte? Questo articolo spiega cos'è il CSS, come appare la sintassi di base e come il tuo browser applica il CSS all'HTML per stilizzarlo.
 
 <table>
   <tbody>
@@ -16,12 +16,15 @@ l10n:
       <td>
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software"
-          >Software di base installato</a>, conoscenza di base su
+          >Software di base installato</a
+        >, conoscenza di base di
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
-          >lavorare con i file</a>, e familiarità con l'HTML (studia il
+          >lavorare con i file</a
+        >, e familiarità con HTML (studia il
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
-          >Modulo di strutturazione del contenuto con HTML</a>.)
+          >Strutturare il contenuto con HTML</a
+        > modulo.)
       </td>
     </tr>
     <tr>
@@ -31,9 +34,9 @@ l10n:
           <li>Lo scopo del CSS.</li>
           <li>Che l'HTML non ha nulla a che fare con lo stile.</li>
           <li>Il concetto di stili predefiniti del browser.</li>
-          <li>Come appare il codice CSS.</li>
+          <li>Che aspetto ha il codice CSS.</li>
           <li>Come il CSS viene applicato all'HTML.</li>
-        </ul>
+        <ul>
       </td>
     </tr>
   </tbody>
@@ -41,37 +44,37 @@ l10n:
 
 ## Stili predefiniti del browser
 
-Nel modulo [Strutturazione del contenuto con HTML](/it/docs/Learn_web_development/Core/Structuring_content), abbiamo trattato cosa sia l'HTML e come viene usato per contrassegnare i documenti. Questi documenti saranno leggibili in un browser web. Gli heading appariranno più grandi rispetto al testo normale, i paragrafi si interrompono su una nuova riga e hanno spazio tra di loro. I link sono colorati e sottolineati per distinguerli dal resto del testo.
+Nel modulo [Strutturare il contenuto con HTML](/it/docs/Learn_web_development/Core/Structuring_content), abbiamo trattato cos'è l'HTML e come viene usato per marcare i documenti. Questi documenti saranno leggibili in un browser web. I titoli appariranno più grandi rispetto al testo normale, i paragrafi andranno a capo e avranno spazio tra loro. I link sono colorati e sottolineati per distinguerli dal resto del testo.
 
-Quello che stai vedendo sono gli stili predefiniti del browser — uno stile molto basico che il browser applica all'HTML per assicurarsi che la pagina sia sostanzialmente leggibile anche se non viene specificato uno stile esplicito dall'autore della pagina. Questi stili sono definiti in fogli di stile CSS predefiniti contenuti all'interno del browser — non hanno nulla a che fare con l'HTML.
+Ciò che vedi sono gli stili predefiniti del browser: uno styling molto basilare che il browser applica all'HTML per assicurarsi che la pagina sia leggibile anche se non è specificato alcuno stile esplicito dall'autore della pagina. Questi stili sono definiti nei fogli di stile CSS predefiniti contenuti all'interno del browser, e non hanno nulla a che fare con l'HTML.
 
-![Gli stili predefiniti usati da un browser](html-example.png)
+![Gli stili predefiniti utilizzati da un browser](html-example.png)
 
-Il web sarebbe un luogo noioso se tutti i siti web apparissero così. Ecco perché è necessario imparare il CSS.
+Il web sarebbe un posto noioso se tutti i siti Web avessero quell'aspetto. Questo è il motivo per cui è necessario imparare CSS.
 
-## A cosa serve CSS?
+## A cosa serve il CSS?
 
-Usando CSS, è possibile controllare esattamente come appaiono gli elementi HTML nel browser, presentando i documenti agli utenti con qualsiasi design e layout si desideri.
+Usando il CSS, puoi controllare esattamente come appaiono gli elementi HTML nel browser, presentando i tuoi documenti agli utenti con qualsiasi design e layout desideri.
 
-- Un **documento** è di solito un file di testo strutturato utilizzando un linguaggio di markup, più comunemente {{Glossary("HTML", "HTML")}} (questi sono denominati _documenti HTML_). Potresti anche imbatterti in documenti scritti in altri linguaggi di markup come {{Glossary("SVG", "SVG")}} o {{Glossary("XML", "XML")}}. Dove precedentemente abbiamo parlato di pagine web, un documento HTML contiene il contenuto della pagina web e ne specifica la struttura.
-- **Presentare** un documento a un utente significa convertirlo in una forma utilizzabile dal tuo pubblico. I {{Glossary("browser", "browser")}} come {{Glossary("Mozilla_Firefox", "Firefox")}}, {{Glossary("Google_Chrome", "Chrome")}}, {{Glossary("Apple_Safari", "Safari")}}, e {{Glossary("Microsoft_Edge", "Edge")}} sono progettati per presentare documenti visivamente, ad esempio su uno schermo del computer, proiettore, dispositivo mobile o stampante. In un contesto web, questo è generalmente chiamato _rendering_; abbiamo fornito una descrizione semplificata del processo tramite il quale una pagina web è renderizzata in [Come i browser caricano i siti web](/it/docs/Learn_web_development/Getting_started/Web_standards/How_browsers_load_websites).
+- Un **documento** è solitamente un file di testo strutturato utilizzando un linguaggio di markup, più comunemente {{Glossary("HTML", "HTML")}} (questi sono chiamati _documenti HTML_). Potresti anche incontrare documenti scritti in altri linguaggi di markup come {{Glossary("SVG", "SVG")}} o {{Glossary("XML", "XML")}}. Dove abbiamo precedentemente parlato di pagine web, un documento HTML contiene il contenuto della pagina web e ne specifica la struttura.
+- **Presentare** un documento a un utente significa convertirlo in una forma utilizzabile dal tuo pubblico. I {{Glossary("browser", "browser")}} come {{Glossary("Mozilla_Firefox", "Firefox")}}, {{Glossary("Google_Chrome", "Chrome")}}, {{Glossary("Apple_Safari", "Safari")}} e {{Glossary("Microsoft_Edge", "Edge")}} sono progettati per presentare documenti visivamente, ad esempio, su uno schermo di computer, proiettore, dispositivo mobile o stampante. In un contesto web, questo è generalmente chiamato _rendering_; abbiamo fornito una descrizione semplificata del processo mediante il quale una pagina web viene renderizzata in [Come i browser caricano i siti web](/it/docs/Learn_web_development/Getting_started/Web_standards/How_browsers_load_websites).
 
 > [!NOTE]
-> Un browser è talvolta chiamato {{Glossary("User_agent", "user agent")}}, che essenzialmente è un programma informatico che rappresenta una persona all'interno di un sistema informatico.
+> Un browser è a volte chiamato {{Glossary("User_agent", "user agent")}}, che significa fondamentalmente un programma per computer che rappresenta una persona all'interno di un sistema informatico.
 
-CSS può essere usato per molti scopi legati all'aspetto e alla sensazione della tua pagina web. I più importanti sono:
+Il CSS può essere utilizzato per molti scopi relativi all'aspetto della tua pagina web. I più importanti sono:
 
-- Stilizzazione del testo, ad esempio, per cambiare il [colore](/it/docs/Web/CSS/color_value) e la [dimensione](/it/docs/Web/CSS/font-size) degli heading e dei link.
-- Creare layout, ad esempio, [trasformare una singola colonna di testo in un layout a più colonne](/it/docs/Web/CSS/Layout_cookbook/Column_layouts).
-- Effetti speciali come [animazioni](/it/docs/Web/CSS/CSS_animations).
+- Styling del testo, ad esempio, per cambiare il [colore](/it/docs/Web/CSS/color_value) e la [dimensione](/it/docs/Web/CSS/font-size) di titoli e link.
+- Creare layout, ad esempio, [trasformando una singola colonna di testo in un layout a colonne multiple](/it/docs/Web/CSS/Layout_cookbook/Column_layouts).
+- Effetti speciali come le [animazioni](/it/docs/Web/CSS/CSS_animations).
 
-Il linguaggio CSS è organizzato in _moduli_ che contengono funzionalità correlate. Ad esempio, dai un'occhiata alle pagine di riferimento su MDN per il modulo [Sfondi e Bordi](/it/docs/Web/CSS/CSS_backgrounds_and_borders) per scoprire qual è il suo scopo e quali proprietà e funzionalità contiene. In quel modulo, troverai anche un link alle _Specifiche_ che definiscono la tecnologia.
+Il linguaggio CSS è organizzato in _moduli_ che contengono funzionalità correlate. Ad esempio, dai un'occhiata alle pagine di riferimento di MDN per il modulo [Sfondi e Bordi](/it/docs/Web/CSS/CSS_backgrounds_and_borders) per scoprire qual è il suo scopo e le proprietà e le funzionalità che contiene. In quel modulo, troverai anche un link alle _Specifiche_ che definiscono la tecnologia.
 
-## Sintassi di base del CSS
+## Nozioni di base sulla sintassi CSS
 
-CSS è un linguaggio basato su regole — si definiscono regole specificando gruppi di stili che dovrebbero essere applicati a particolari elementi o gruppi di elementi sulla tua pagina web.
+Il CSS è un linguaggio basato su regole: definisci le regole specificando gruppi di stili che dovrebbero essere applicati a particolari elementi o gruppi di elementi nella tua pagina web.
 
-Ad esempio, potresti decidere di stilizzare l'heading principale sulla tua pagina come testo rosso grande. Il codice seguente mostra una regola CSS molto semplice che lo raggiungerebbe:
+Ad esempio, potresti decidere di stilizzare il titolo principale della tua pagina come un testo rosso grande. Il seguente codice mostra una regola CSS molto semplice che otterrebbe questo risultato:
 
 ```css
 h1 {
@@ -80,14 +83,14 @@ h1 {
 }
 ```
 
-- Nell'esempio sopra, la regola CSS si apre con un {{Glossary("CSS_Selector", "selettore")}}. Questo _seleziona_ gli elementi HTML che andremo a stilizzare. In questo caso, stiamo stilizzando gli heading di livello uno (`{{htmlelement("Heading_Elements", "&lt;h1>")}}`).
+- Nell'esempio sopra, la regola CSS si apre con un {{Glossary("CSS_Selector", "selettore")}}. Questo _seleziona_ gli elementi HTML che stiamo per stilizzare. In questo caso, stiamo stilizzando i titoli di livello uno (`{{htmlelement("Heading_Elements", "&lt;h1>")}}`).
 - Poi abbiamo una serie di parentesi graffe — `{ }`.
-- Le parentesi contengono una o più **dichiarazioni**, che prendono la forma di coppie **proprietà** e **valore**. Si specifica la proprietà (ad esempio, `color` nell'esempio sopra) prima del due punti, e si specifica il valore della proprietà dopo il due punti (`red` è il valore che viene impostato per la proprietà `color`).
+- Le parentesi contengono una o più **dichiarazioni**, che prendono la forma di coppie di **proprietà** e **valori**. Specifichiamo la proprietà (ad esempio, `color` nell'esempio sopra) prima del due punti e specifichiamo il valore della proprietà dopo il due punti (`red` è il valore impostato per la proprietà `color`).
 - Questo esempio contiene due dichiarazioni, una per `color` e un'altra per `font-size`.
 
-Diverse {{Glossary("property/CSS", "proprietà")}} CSS hanno diversi valori consentiti. Nel nostro esempio, abbiamo la proprietà `color`, che può prendere vari [valori di colore](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#color). Abbiamo anche la proprietà `font-size`. Questa proprietà può prendere vari [unità di misura](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#numbers_lengths_and_percentages) come valore.
+Diverse {{Glossary("property/CSS", "proprietà")}} CSS hanno valori ammissibili diversi. Nel nostro esempio, abbiamo la proprietà `color`, che può prendere vari [valori di colore](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#color). Abbiamo anche la proprietà `font-size`. Questa proprietà può assumere vari [unità di dimensione](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#numbers_lengths_and_percentages) come valore.
 
-Un foglio di stile CSS contiene molte di tali regole, scritte una dopo l'altra.
+Un foglio di stile CSS contiene molte di queste regole, scritte una dopo l'altra.
 
 ```css
 h1 {
@@ -102,18 +105,18 @@ p {
 }
 ```
 
-Scoprirai che impari rapidamente alcuni valori, mentre altri dovrai cercarli. Le singole pagine delle proprietà su MDN ti offrono un modo rapido per consultare le proprietà e i loro valori.
+Scoprirai che impari rapidamente alcuni valori, mentre altri dovrai consultarli. Le pagine delle singole proprietà su MDN ti offrono un modo rapido per consultare le proprietà e i loro valori.
 
 > [!NOTE]
-> Puoi trovare i link a tutte le pagine delle proprietà CSS (insieme ad altre funzionalità CSS) elencate nella [referenza CSS](/it/docs/Web/CSS/Reference) su MDN. In alternativa, dovresti abituarti a cercare "mdn _nome-funzionalità-css_" nel tuo motore di ricerca preferito ogni volta che hai bisogno di saperne di più su una funzionalità CSS. Ad esempio, prova a cercare "mdn color" o "mdn font-size"!
+> Puoi trovare i link a tutte le pagine delle proprietà CSS (insieme ad altre funzionalità CSS) elencati nella [referenza CSS](/it/docs/Web/CSS/Reference) di MDN. In alternativa, dovresti abituarti a cercare "mdn _css-feature-name_" nel tuo motore di ricerca preferito ogni volta che hai bisogno di maggiori informazioni su una funzionalità CSS. Ad esempio, prova a cercare "mdn color" o "mdn font-size"!
 
-## Come viene applicato il CSS all'HTML?
+## Come il CSS viene applicato all'HTML?
 
-Come spiegato in [Come i browser caricano i siti web](/it/docs/Learn_web_development/Getting_started/Web_standards/How_browsers_load_websites), quando navighi verso una pagina web, il browser riceve prima il documento HTML contenente il contenuto della pagina web e lo converte in un **albero DOM**.
+Come spiegato in [Come i browser caricano i siti web](/it/docs/Learn_web_development/Getting_started/Web_standards/How_browsers_load_websites), quando navighi su una pagina web, il browser riceve prima il documento HTML contenente il contenuto della pagina web e lo converte in un **DOM tree**.
 
-Dopo di ciò, tutte le regole CSS trovate nella pagina web (inserite direttamente nell'HTML o nei file `.css` esterni referenziati) vengono ordinate in diversi "bucket", basati sui diversi elementi a cui saranno applicate (come specificato dai loro selettori). Le regole CSS vengono poi applicate all'albero DOM, risultando in un **albero di rendering**, che viene quindi dipinto nella finestra del browser.
+Dopo di che, tutte le regole CSS trovate nella pagina web (inserite direttamente nell'HTML o in file `.css` esterni collegati) sono suddivise in diversi "contenitori", in base ai diversi elementi a cui verranno applicate (come specificato dai loro selettori). Le regole CSS vengono quindi applicate al DOM tree, risultando in un **render tree**, che viene poi dipinto nella finestra del browser.
 
-Vediamo un esempio. Prima di tutto, definiamo un frammento HTML a cui il CSS potrebbe essere applicato:
+Diamo un'occhiata a un esempio. Prima di tutto, definiamo un frammento HTML a cui il CSS potrebbe essere applicato:
 
 ```html
 <h1>CSS is great</h1>
@@ -140,10 +143,10 @@ p {
 
 Questo CSS:
 
-- Seleziona tutti gli elementi `<h1>` sulla pagina, colorando il loro testo di rosso e rendendoli più grandi della loro dimensione predefinita. Poiché c'è solo un `<h1>` nel nostro esempio HTML, solo quell'elemento riceverà lo stile.
-- Seleziona tutti gli elementi `<p>` sulla pagina, assegnando loro un colore di testo e di sfondo personalizzato e un po' di spazio attorno al testo. Ci sono due elementi `<p>` nel nostro esempio HTML, e entrambi ricevono lo stile.
+- Seleziona tutti gli elementi `<h1>` nella pagina, colorando il loro testo di rosso e rendendoli più grandi rispetto alla loro dimensione predefinita. Poiché c'è solo un `<h1>` nel nostro esempio HTML, solo quell'elemento riceverà lo stile.
+- Seleziona tutti gli elementi `<p>` nella pagina, dando loro un colore del testo e dello sfondo personalizzato e un po' di spazio intorno al testo. Ci sono due elementi `<p>` nel nostro esempio HTML e entrambi ricevono lo stile.
 
-Quando il CSS è applicato all'HTML, l'output renderizzato è il seguente:
+Quando il CSS viene applicato all'HTML, l'output renderizzato è il seguente:
 
 {{EmbedLiveSample('How is CSS applied to HTML?', '100%', 200)}}
 
@@ -151,19 +154,16 @@ Quando il CSS è applicato all'HTML, l'output renderizzato è il seguente:
 >
 > **Provalo**
 >
-> Prova a giocare con l'esempio sopra. Per farlo, premi il pulsante "Play" nell'angolo in alto a destra per caricarlo nel nostro editor Playground. Prova quanto segue:
+> Prova a giocare con l'esempio sopra. Per farlo, premi il pulsante "Play" in alto a destra per caricarlo nel nostro editor Playground. Prova quanto segue:
 >
 > 1. Aggiungi un altro paragrafo di testo sotto i due esistenti e nota come la seconda regola CSS venga automaticamente applicata al nuovo paragrafo.
-> 2. Aggiungi un `<h2>` subheading da qualche parte sotto l'`<h1>`, magari dopo uno dei paragrafi. Prova a dargli un colore diverso aggiungendo una nuova regola al CSS. Fai una copia della regola `h1`, cambia il selettore in `h2`, e cambia il valore di `color` da `red` a `purple`, per esempio.
-> 3. Se ti senti avventuroso, prova a cercare alcune nuove proprietà e valori CSS nella [referenza CSS](/it/docs/Web/CSS/Reference) su MDN da aggiungere alle tue regole!
+> 2. Aggiungi un sottotitolo `<h2>` da qualche parte sotto il `<h1>`, magari dopo uno dei paragrafi. Prova a dargli un colore diverso aggiungendo una nuova regola al CSS. Fai una copia della regola `h1`, cambia il selettore in `h2` e cambia il valore di `color` da `red` a `purple`, ad esempio.
+> 3. Se ti senti avventuroso, prova a cercare alcune nuove proprietà CSS e valori nella [referenza CSS](/it/docs/Web/CSS/Reference) di MDN da aggiungere alle tue regole!
+>
+> Per un po' di pratica aggiuntiva con le basi del CSS, vedi [Scrivi le tue prime righe di CSS!](https://scrimba.com/learn-html-and-css-c0p/~0j?via=mdn) da Scrimba <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>. Questo scrim offre una panoramica utile della sintassi di base del CSS e fornisce una sfida interattiva in cui puoi ottenere più pratica con la scrittura delle dichiarazioni CSS.
 
-## Riepilogo
+## Riassunto
 
-Ora che hai una certa comprensione di cosa sia il CSS e come funziona, passiamo a darti un po' di pratica per scrivere CSS da solo e spiegare la sintassi in modo più dettagliato.
-
-## Vedi anche
-
-- [Scrivi le tue prime righe di CSS!](https://scrimba.com/learn-html-and-css-c0p/~0j?via=mdn), Scrimba <sup>[_MDN learning partner_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>:
-  - Questo scrim offre un utile riassunto della sintassi di base del CSS e fornisce una sfida interattiva dove puoi praticare di più nello scrivere dichiarazioni CSS.
+Ora che hai una certa comprensione di cos'è il CSS e di come funziona, passiamo a darti un po' di pratica nella scrittura del CSS tu stesso e a spiegare la sintassi in modo più dettagliato.
 
 {{NextMenu("Learn_web_development/Core/Styling_basics/Getting_started", "Learn_web_development/Core/Styling_basics")}}

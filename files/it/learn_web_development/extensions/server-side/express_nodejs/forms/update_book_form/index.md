@@ -1,15 +1,15 @@
 ---
-title: Modulo di Aggiornamento Libro
+title: Aggiorna modulo libro
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Update_Book_form
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: f2dc3d5367203c860cf1a71ce0e972f018523849
 ---
 
-Questo ultimo sotto-articolo mostra come definire una pagina per aggiornare oggetti `Book`. La gestione del modulo quando si aggiorna un libro è molto simile a quella per la creazione di un libro, tranne per il fatto che bisogna popolare il modulo nel percorso `GET` con i valori dal database.
+Questo ultimo sottoarticolo mostra come definire una pagina per aggiornare gli oggetti `Book`. La gestione del modulo durante l'aggiornamento di un libro è molto simile a quella per la creazione di un libro, tranne che devi popolare il modulo nel percorso `GET` con i valori dal database.
 
 ## Controller—percorso get
 
-Apri **/controllers/bookController.js**. Trova il metodo `book_update_get()` del controller esportato e sostituiscilo con il seguente codice.
+Apri **/controllers/bookController.js**. Trova il metodo controller esportato `book_update_get()` e sostituiscilo con il seguente codice.
 
 ```js
 // Display book update form on GET.
@@ -42,19 +42,19 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
 });
 ```
 
-Il controller ottiene l'id del `Book` da aggiornare dal parametro URL (`req.params.id`).
-Attende (`awaits`) la promessa restituita da `Promise.all()` per ottenere il record `Book` specificato (popolando i suoi campi genre e author) e tutti i record `Author` e `Genre`.
+Il controller ottiene l'id del `Book` da aggiornare dal parametro dell'URL (`req.params.id`).
+Attende la promessa restituita da `Promise.all()` per ottenere il record specificato di `Book` (popolando i campi di genere e autore) e tutti i record di `Author` e `Genre`.
 
-Quando le operazioni sono completate, la funzione controlla se sono stati trovati dei libri, e se nessuno è stato trovato invia un errore "Libro non trovato" al middleware di gestione degli errori.
+Quando le operazioni vengono completate, la funzione verifica se sono stati trovati libri e se nessuno è stato trovato invia un errore "Libro non trovato" al middleware di gestione errori.
 
 > [!NOTE]
-> Non trovare alcun risultato di libro non è un **errore** per una ricerca — ma lo è per questa applicazione perché sappiamo che deve esserci un record del libro corrispondente! Il codice sopra confronta per (`book===null`) nel callback, ma potrebbe ugualmente aver concatenato il metodo [orFail()](<https://mongoosejs.com/docs/api/query.html#Query.prototype.orFail()>) alla query.
+> Non trovare risultati di un libro non è **un errore** per una ricerca, ma lo è per questa applicazione perché sappiamo che deve esserci un record di libro corrispondente! Il codice sopra confronta (`book===null`) nel callback, ma potrebbe anche aver concatenato il metodo [orFail()](<https://mongoosejs.com/docs/api/query.html#Query.prototype.orFail()>) alla query.
 
-Quindi marchiamo i generi attualmente selezionati come controllati e poi rendiamo la vista **book_form.pug**, passando variabili per `title`, `book`, tutti gli `authors` e tutti i `genres`.
+Quindi contrassegniamo i generi attualmente selezionati come verificati e rendiamo la vista **book_form.pug**, passando variabili per `title`, libro, tutti gli `authors` e tutti i `genres`.
 
 ## Controller—percorso post
 
-Trova il metodo `book_update_post()` del controller esportato e sostituiscilo con il seguente codice.
+Trova il metodo controller esportato `book_update_post()` e sostituiscilo con il seguente codice.
 
 ```js
 // Handle book update on POST.
@@ -122,22 +122,21 @@ exports.book_update_post = [
         errors: errors.array(),
       });
       return;
-    } else {
-      // Data from form is valid. Update the record.
-      const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {});
-      // Redirect to book detail page.
-      res.redirect(updatedBook.url);
     }
+    // Data from form is valid. Update the record.
+    const updatedBook = await Book.findByIdAndUpdate(req.params.id, book, {});
+    // Redirect to book detail page.
+    res.redirect(updatedBook.url);
   }),
 ];
 ```
 
-Questo è molto simile al percorso post usato quando si crea un `Book`.
-Per prima cosa, convalidiamo e sanifichiamo i dati del libro dal modulo e li usiamo per creare un nuovo oggetto `Book` (impostando il suo valore `_id` sull'id dell'oggetto da aggiornare). Se ci sono errori quando convalidiamo i dati, allora renderizziamo nuovamente il modulo, visualizzando inoltre i dati inseriti dall'utente, gli errori e le liste di generi e autori. Se non ci sono errori chiamiamo `Book.findByIdAndUpdate()` per aggiornare il documento `Book`, e quindi reindirizziamo alla sua pagina di dettaglio.
+Questo è molto simile al percorso post utilizzato quando si crea un `Book`.
+Per prima cosa, convalidiamo e sanifichiamo i dati del libro dal modulo e li utilizziamo per creare un nuovo oggetto `Book` (impostando il suo valore `_id` sull'id dell'oggetto da aggiornare). Se ci sono errori quando convalidiamo i dati, allora renderizziamo nuovamente il modulo, visualizzando inoltre i dati inseriti dall'utente, gli errori e le liste di generi e autori. Se non ci sono errori, quindi chiamiamo `Book.findByIdAndUpdate()` per aggiornare il documento `Book` e poi reindirizziamo alla sua pagina di dettaglio.
 
 ## Vista
 
-Non è necessario modificare la vista per il modulo (**/views/book_form.pug**) poiché lo stesso template funziona sia per la creazione che per l'aggiornamento del libro.
+Non c'è bisogno di cambiare la vista per il modulo (**/views/book_form.pug**) dato che lo stesso modello funziona sia per la creazione che per l'aggiornamento del libro.
 
 ## Aggiungi un pulsante di aggiornamento
 
@@ -151,19 +150,19 @@ Apri la vista **book_detail.pug** e assicurati che ci siano link sia per elimina
     a(href=book.url+'/update') Update Book
 ```
 
-Ora dovresti essere in grado di aggiornare i libri dalla pagina _Book detail_.
+Dovresti ora essere in grado di aggiornare i libri dalla pagina _Dettaglio libro_.
 
-## Come appare?
+## Che aspetto ha?
 
-Esegui l'applicazione, apri il browser su `http://localhost:3000/`, seleziona il link _All books_, quindi seleziona un libro particolare. Infine seleziona il link _Update Book_.
+Esegui l'applicazione, apri il browser su `http://localhost:3000/`, seleziona il link _Tutti i libri_, quindi seleziona un libro particolare. Infine, seleziona il link _Aggiorna Libro_.
 
-Il modulo dovrebbe apparire proprio come la pagina _Create book_, solo con un titolo di 'Update book', e pre-popolato con i valori del record.
+Il modulo dovrebbe apparire esattamente come la pagina _Crea libro_, solo con un titolo 'Aggiorna libro', e precompilato con i valori del record.
 
-![La sezione di aggiornamento del libro dell'applicazione Local library. La colonna di sinistra ha una barra di navigazione verticale. La colonna di destra ha un modulo per aggiornare il libro con un'intestazione che recita 'Update book'. Ci sono cinque campi di input denominati Titolo, Autore, Sommario, ISBN, Genere. Genere è un campo opzione a checkbox. Alla fine c'è un pulsante etichettato 'Submit'.](locallibary_express_book_update_noerrors.png)
+![La sezione di aggiornamento libro dell'applicazione Biblioteca locale. La colonna di sinistra ha una barra di navigazione verticale. La colonna di destra ha un modulo per aggiornare il libro con un'intestazione che recita 'Aggiorna libro'. Ci sono cinque campi di input etichettati Titolo, Autore, Sommario, ISBN, Genere. Il genere è un campo opzione con casella di selezione. C'è un pulsante etichettato 'Invia' alla fine.](locallibary_express_book_update_noerrors.png)
 
 > [!NOTE]
-> Anche le altre pagine per aggiornare gli oggetti possono essere implementate più o meno allo stesso modo. Abbiamo lasciato che questo fosse una sfida.
+> Le altre pagine per l'aggiornamento degli oggetti possono essere implementate nello stesso modo. L'abbiamo lasciato come sfida.
 
 ## Prossimi passi
 
-- Torna a [Express Tutorial Part 6: Working with forms](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+- Torna a [Guida pratica di Express Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).

@@ -1,13 +1,13 @@
 ---
-title: Liste
+title: Elenchi
 slug: Learn_web_development/Core/Structuring_content/Lists
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 37e3b0f8b54e70dd13aed1f7a8dc8378683e547e
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Emphasis_and_importance", "Learn_web_development/Core/Structuring_content/Structuring_documents", "Learn_web_development/Core/Structuring_content")}}
 
-Ora concentriamoci sulle liste. Le liste sono ovunque nella vita—dalla tua lista della spesa alla lista di indicazioni che segui inconsciamente per arrivare a casa ogni giorno, fino alla lista di istruzioni che stai seguendo in questi tutorial! Non ti sorprenderà sapere che l'HTML ha un set di elementi comodo che ci permette di definire diversi tipi di lista. Sul web, abbiamo tre tipi di liste: liste non ordinate, ordinate e descrittive. Questa lezione ti mostra come usare i diversi tipi.
+Ora concentriamoci sugli elenchi. Gli elenchi sono ovunque nella vita: dalla lista della spesa all'elenco di direzioni che segui inconsciamente per tornare a casa ogni giorno, fino agli elenchi di istruzioni che stai seguendo in questi tutorial! Non ti sorprenderà sapere che HTML dispone di un insieme conveniente di elementi che ci permette di definire diversi tipi di elenchi. Sul web, abbiamo tre tipi di elenchi: elenchi puntati, elenchi numerati e elenchi di descrizione. Questa lezione ti mostra come utilizzare i diversi tipi.
 
 <table>
   <tbody>
@@ -16,7 +16,7 @@ Ora concentriamoci sulle liste. Le liste sono ovunque nella vita—dalla tua lis
       <td>
         Familiarità di base con HTML, come trattato in
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi di base HTML</a
+          >Sintassi HTML di base</a
         >.
       </td>
     </tr>
@@ -24,18 +24,18 @@ Ora concentriamoci sulle liste. Le liste sono ovunque nella vita—dalla tua lis
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>La struttura HTML per i tre tipi di liste — non ordinate, ordinate e descrittive.</li>
-          <li>Il corretto utilizzo per ciascun tipo di lista.</li>
-          <li>Gli usi più ampi delle liste, come i menu di navigazione.</li>
+          <li>La struttura HTML per i tre tipi di elenchi: puntati, numerati e di descrizione.</li>
+          <li>L'uso corretto di ciascun tipo di elenco.</li>
+          <li>I casi d'uso più ampi degli elenchi, come i menu di navigazione.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Liste non ordinate
+## Elenchi puntati
 
-Le liste non ordinate sono usate per segnare liste di elementi per le quali l'ordine degli elementi non ha importanza. Prendiamo come esempio una lista della spesa:
+Gli elenchi puntati vengono utilizzati per segnare elenchi di elementi per i quali l'ordine non è importante. Prendiamo come esempio una lista della spesa:
 
 ```plain
 milk
@@ -44,18 +44,7 @@ bread
 hummus
 ```
 
-Ogni lista non ordinata inizia con un elemento {{htmlelement("ul")}}—questo avvolge tutti gli elementi della lista:
-
-```html-nolint
-<ul>
-  milk
-  eggs
-  bread
-  hummus
-</ul>
-```
-
-L'ultimo passaggio è avvolgere ciascun elemento della lista in un elemento {{htmlelement("li")}} (list item):
+In questo esempio, gli elementi possono essere in qualsiasi ordine. Per creare questo elenco in HTML, avvolgiamo prima l'intero elenco in un elemento {{htmlelement("ul")}} (elenco non ordinato). Poi, avvolgiamo ciascun elemento in un elemento {{htmlelement("li")}} (voce di elenco):
 
 ```html
 <ul>
@@ -66,9 +55,9 @@ L'ultimo passaggio è avvolgere ciascun elemento della lista in un elemento {{ht
 </ul>
 ```
 
-### Apprendimento attivo: Marcatura di una lista non ordinata
+### Apprendimento attivo: Definire un elenco non ordinato
 
-Prova a modificare il campione dal vivo qui sotto per creare la tua lista HTML non ordinata.
+Prova a modificare l'esempio live sottostante per creare il tuo elenco HTML non ordinato.
 
 ```html hidden
 <h2>Live output</h2>
@@ -200,9 +189,9 @@ textarea.onkeyup = () => {
 
 {{ EmbedLiveSample('Active_learning_Marking_up_an_unordered_list', 700, 400, "", "") }}
 
-## Liste ordinate
+## Ordinato
 
-Le liste ordinate sono liste in cui l'ordine degli elementi _è_ importante. Prendiamo come esempio un set di indicazioni:
+Gli elenchi ordinati sono elenchi in cui l'ordine degli elementi _è_ importante. Prendiamo come esempio un insieme di direzioni:
 
 ```plain
 Drive to the end of the road
@@ -212,7 +201,7 @@ Turn left at the third roundabout
 The school is on your right, 300 meters up the road
 ```
 
-La struttura del markup è la stessa delle liste non ordinate, tranne per il fatto che devi avvolgere gli elementi della lista in un elemento {{htmlelement("ol")}}, piuttosto che in `<ul>`:
+La struttura di markup è la stessa degli elenchi non ordinati, tranne per il fatto che è necessario avvolgere le voci di elenco in un elemento {{htmlelement("ol")}}, anziché `<ul>`:
 
 ```html
 <ol>
@@ -224,9 +213,9 @@ La struttura del markup è la stessa delle liste non ordinate, tranne per il fat
 </ol>
 ```
 
-### Apprendimento attivo: Marcatura di una lista ordinata
+### Apprendimento attivo: Definire un elenco ordinato
 
-Prova a modificare il campione dal vivo qui sotto per creare la tua lista HTML ordinata.
+Prova a modificare l'esempio live sottostante per creare il tuo elenco HTML ordinato.
 
 ```html hidden
 <h2>Live output</h2>
@@ -359,9 +348,9 @@ textarea.onkeyup = () => {
 
 {{ EmbedLiveSample('Active_learning_Marking_up_an_ordered_list', 700, 500, "", "") }}
 
-## Apprendimento attivo: Marcatura della nostra pagina di ricette
+## Apprendimento attivo: Definire la nostra pagina della ricetta
 
-Quindi, a questo punto dell'articolo, hai tutte le informazioni necessarie per marcare l'esempio della nostra pagina di ricette. Puoi scegliere di salvare una copia locale del nostro file iniziale [text-start.html](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/html-text-formatting/text-start.html) e lavorare lì, oppure farlo nell'esempio modificabile qui sotto. Farlo localmente sarà probabilmente meglio, poiché potrai salvare il lavoro che stai facendo, mentre se lo compili nell'esempio modificabile, verrà perso alla prossima apertura della pagina. Entrambi hanno pro e contro.
+A questo punto dell'articolo, hai tutte le informazioni necessarie per definire il nostro esempio di pagina della ricetta. Puoi scegliere di salvare una copia locale del nostro file iniziale [text-start.html](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/html-text-formatting/text-start.html) e fare il lavoro lì oppure farlo nell'esempio modificabile qui sotto. Farlo localmente sarà probabilmente meglio, perché potrai salvare il lavoro che stai facendo, mentre se lo compili nell'esempio modificabile, verrà perso la prossima volta che apri la pagina. Entrambe le opzioni hanno pro e contro.
 
 ```html hidden
 <h2>Live output</h2>
@@ -523,9 +512,9 @@ textarea.onkeyup = () => {
 
 Se rimani bloccato, puoi sempre premere il pulsante _Mostra soluzione_, o controllare il nostro esempio [text-complete.html](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/html-text-formatting/text-complete.html) nel nostro repository GitHub.
 
-## Liste nidificate
+## Nidificazione degli elenchi
 
-Va perfettamente bene nidificare una lista all'interno di un'altra. Potresti voler avere dei sotto-punti elencati sotto un punto di primo livello. Prendiamo la seconda lista dal nostro esempio di ricette:
+È perfettamente accettabile nidificare un elenco dentro un altro. Potresti voler avere dei sottopunti che si trovano sotto un punto a livello superiore. Prendiamo il secondo elenco dal nostro esempio di ricetta:
 
 ```html
 <ol>
@@ -538,7 +527,7 @@ Va perfettamente bene nidificare una lista all'interno di un'altra. Potresti vol
 </ol>
 ```
 
-Poiché gli ultimi due punti sono molto strettamente correlati a quelli precedenti (sembrano sotto-istruzioni o scelte che si adattano sotto quel punto), potrebbe avere senso nidificarli all'interno della loro lista non ordinata e posizionare tale lista all'interno dell'attuale quarto punto. Questo apparirebbe così:
+Poiché gli ultimi due punti sono strettamente correlati a quello precedente (si leggono come sotto-istruzioni o scelte che si adattano sotto quel punto), potrebbe avere senso nidificarli all'interno del proprio elenco non ordinato e mettere quell'elenco all'interno dell'attuale quarto punto. Questo sarebbe così:
 
 ```html
 <ol>
@@ -557,11 +546,11 @@ Poiché gli ultimi due punti sono molto strettamente correlati a quelli preceden
 </ol>
 ```
 
-Prova a tornare al precedente esempio di apprendimento attivo e ad aggiornare la seconda lista in questo modo.
+Prova a tornare all'esempio di apprendimento attivo precedente e aggiornare il secondo elenco in questo modo.
 
-## Liste descrittive
+## Elenchi di descrizione
 
-Le liste descrittive servono per segnare un insieme di elementi e le loro descrizioni associate, come termini e definizioni, o domande e risposte. Vediamo un esempio di un insieme di termini e definizioni:
+Lo scopo degli elenchi di descrizione è di contrassegnare un insieme di elementi e le loro descrizioni associate, come termini e definizioni, o domande e risposte. Vediamo un esempio di un insieme di termini e definizioni:
 
 ```plain
 soliloquy
@@ -572,11 +561,11 @@ aside
 In drama, where a character shares a comment only with the audience for humorous or dramatic effect. This is usually a feeling, thought or piece of additional background information
 ```
 
-Le liste descrittive utilizzano un wrapper diverso dagli altri tipi di lista — {{htmlelement("dl")}}; inoltre, ogni termine è avvolto in un elemento {{htmlelement("dt")}} (description term) e ogni descrizione è avvolta in un elemento {{htmlelement("dd")}} (description definition).
+Gli elenchi di descrizione utilizzano un wrapper diverso rispetto agli altri tipi di elenchi — {{htmlelement("dl")}}; inoltre, ogni termine è avvolto in un elemento {{htmlelement("dt")}} (termine di descrizione) e ogni descrizione è avvolta in un elemento {{htmlelement("dd")}} (definizione di descrizione).
 
-### Esempio di lista descrittiva
+### Esempio di elenco di descrizione
 
-Finisce di marcare il nostro esempio:
+Terminiamo di definire il nostro esempio:
 
 ```html
 <dl>
@@ -600,13 +589,13 @@ Finisce di marcare il nostro esempio:
 </dl>
 ```
 
-Gli stili predefiniti del browser mostreranno le liste descrittive con le descrizioni leggermente rientrate rispetto ai termini.
+Gli stili predefiniti del browser visualizzeranno gli elenchi di descrizione con le descrizioni leggermente indentate rispetto ai termini.
 
 {{EmbedLiveSample('Description_list_example', '100%', '285px')}}
 
-### Descrizioni multiple per un singolo termine
+### Descrizioni multiple per un termine
 
-Nota che è consentito avere un singolo termine con più descrizioni, ad esempio:
+Nota che è permesso avere un singolo termine con descrizioni multiple, ad esempio:
 
 ```html
 <dl>
@@ -626,11 +615,11 @@ Nota che è consentito avere un singolo termine con più descrizioni, ad esempio
 
 {{EmbedLiveSample('Multiple_descriptions_for_one_term', '100%', '193px')}}
 
-### Apprendimento attivo: Marcatura di un insieme di definizioni
+### Apprendimento attivo: Definire un insieme di definizioni
 
-È il momento di provare con le liste descrittive; aggiungi elementi al testo grezzo nel campo _Input_ in modo che appaia come una lista descrittiva nel campo _Output_. Se lo desideri, puoi provare a usare i tuoi termini e descrizioni.
+È il momento di mettere alla prova le tue abilità con gli elenchi di descrizione; aggiungi elementi al testo grezzo nel campo _Input_ in modo che appaia come un elenco di descrizione nel campo _Output_. Potresti provare a usare i tuoi termini e descrizioni se ti piace.
 
-Se commetti un errore, puoi sempre resettarlo usando il pulsante _Reset_. Se sei davvero bloccato, premi il pulsante _Mostra soluzione_ per vedere la risposta.
+Se commetti un errore, puoi sempre resettarlo usando il pulsante _Reset_. Se sei veramente bloccato, premi il pulsante _Mostra soluzione_ per vedere la risposta.
 
 ```html hidden
 <h2>Live output</h2>
@@ -766,12 +755,12 @@ textarea.onkeyup = () => {
 
 {{ EmbedLiveSample('Active_learning_Marking_up_a_set_of_definitions', 700, 350) }}
 
-## Metti alla prova le tue capacità!
+## Metti alla prova le tue abilità!
 
-Hai raggiunto la fine di questo set di tre articoli sugli elementi semantici HTML di base, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare di aver conservato queste informazioni prima di procedere — vedi [Metti alla prova le tue capacità: Nozioni di base sul testo HTML](/it/docs/Learn_web_development/Core/Structuring_content/Test_your_skills/HTML_text_basics).
+Hai raggiunto la fine di questo set di tre articoli sugli elementi semantici di base di HTML, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni test ulteriori per verificare di aver trattenuto queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Nozioni di base sul testo HTML](/it/docs/Learn_web_development/Core/Structuring_content/Test_your_skills/HTML_text_basics).
 
-## Riepilogo
+## Sommario
 
-Questo è tutto per le liste. Prossimamente discuteremo a un livello più alto. Abbiamo mostrato come implementare alcune caratteristiche individuali di una pagina, ma che dire della strutturazione di una pagina HTML intera? La prossima sarà la strutturazione dei documenti.
+Questo è tutto per quanto riguarda gli elenchi. Passeremo ora a una discussione di livello superiore. Abbiamo mostrato come implementare alcune funzionalità individuali di pagina, ma cosa dire della struttura di un'intera pagina HTML? La struttura dei documenti è il prossimo argomento.
 
 {{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Emphasis_and_importance", "Learn_web_development/Core/Structuring_content/Structuring_documents", "Learn_web_development/Core/Structuring_content")}}
