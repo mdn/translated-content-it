@@ -35,7 +35,7 @@ Una **dipendenza** è un software di terze parti che probabilmente è stato scri
 
 Un semplice esempio di una dipendenza utile di cui il tuo progetto potrebbe aver bisogno è del codice per calcolare date relative come testo leggibile. Potresti certamente scrivere questo codice da solo, ma è molto probabile che qualcun altro abbia già risolto questo problema — perché sprecare tempo a reinventare la ruota? Inoltre, una dipendenza di terze parti affidabile sarà probabilmente stata testata in molte diverse situazioni, rendendola più robusta e compatibile con i diversi browser rispetto alla tua soluzione personale.
 
-Una dipendenza del progetto può essere un'intera libreria o framework JavaScript — come React o Vue — o una piccola utility come la nostra libreria di date leggibili, o può essere uno strumento da linea di comando come Prettier o ESLint, di cui abbiamo parlato in articoli precedenti.
+Una dipendenza del progetto può essere un'intera libreria o framework JavaScript — come React o Vue — o una piccola utility come la nostra libreria di date leggibili, o può essere uno strumento da riga di comando come Prettier o ESLint, di cui abbiamo parlato in articoli precedenti.
 
 Senza gli strumenti di build moderni, dipendenze come queste potrebbero essere incluse nel tuo progetto usando un semplice elemento [`<script>`](/it/docs/Web/HTML/Reference/Elements/script), ma questo potrebbe non funzionare immediatamente e probabilmente avresti bisogno di strumenti moderni per impacchettare il tuo codice e le dipendenze insieme quando vengono rilasciate sul web. Un bundle è un termine generalmente usato per riferirsi a un singolo file sul tuo server web che contiene tutto il JavaScript per il tuo software — tipicamente compresso il più possibile per aiutare a ridurre il tempo necessario per scaricare e visualizzare il tuo software nel browser dei tuoi visitatori.
 
@@ -390,7 +390,7 @@ npm run dev
 
 Questo dovrebbe avviare Vite e avviare lo stesso server di sviluppo locale, come visto in precedenza.
 
-Nota che lo script che abbiamo definito qui non necessita più del prefisso `npx`. Questo perché i comandi npm (e yarn) sono intelligenti e cercheranno strumenti da linea di comando che sono installati localmente nel progetto prima di provare a trovarli attraverso metodi convenzionali (dove il tuo computer normalmente memorizza e consente al software di essere trovato). Puoi [sapere di più sui dettagli tecnici del comando `run`](https://docs.npmjs.com/cli/run-script/), sebbene nella maggior parte dei casi i tuoi propri script funzioneranno bene.
+Nota che lo script che abbiamo definito qui non necessita più del prefisso `npx`. Questo perché i comandi npm (e yarn) sono intelligenti e cercheranno strumenti da riga di comando che sono installati localmente nel progetto prima di provare a trovarli attraverso metodi convenzionali (dove il tuo computer normalmente memorizza e consente al software di essere trovato). Puoi [sapere di più sui dettagli tecnici del comando `run`](https://docs.npmjs.com/cli/run-script/), sebbene nella maggior parte dei casi i tuoi propri script funzioneranno bene.
 
 Questo particolare potrebbe sembrare non necessario — `npm run dev` sono più caratteri da digitare rispetto a `npx vite`, ma è una forma di _astrazione_. Ci permette di aggiungere più lavoro al comando `dev` in futuro, come impostare variabili d'ambiente, generare file temporanei, ecc., senza complicare il comando.
 

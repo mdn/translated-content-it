@@ -61,7 +61,7 @@ Esaminiamo ciascuna di queste categorie in dettaglio.
 
 L'editor, il sistema operativo e il browser sono tutti ambienti di sviluppo. Presumiamo che tu abbia già fatto una scelta con cui ti senti più a tuo agio. Tuttavia, prima di installare ed eseguire altri strumenti, ci sono ancora due scelte da fare:
 
-- Dove eseguirai gli strumenti. La maggior parte degli strumenti che vengono eseguiti localmente sono scritti in JavaScript, quindi hai bisogno di un interprete JavaScript sul tuo computer che possa essere invocato dalla linea di comando (non quello nel tuo browser). [Node.js](https://nodejs.org/) rimane lo standard industriale e lo useremo. [Bun](https://bun.sh/) è progettato come un sostituto di Node.js, noto per la sua velocità e API potenti.
+- Dove eseguirai gli strumenti. La maggior parte degli strumenti che vengono eseguiti localmente sono scritti in JavaScript, quindi hai bisogno di un interprete JavaScript sul tuo computer che possa essere invocato dalla riga di comando (non quello nel tuo browser). [Node.js](https://nodejs.org/) rimane lo standard industriale e lo useremo. [Bun](https://bun.sh/) è progettato come un sostituto di Node.js, noto per la sua velocità e API potenti.
 - Come installerai gli strumenti, in altre parole, il _gestore dei pacchetti_. Node fornisce [npm](https://www.npmjs.com/) di default, quindi lo useremo. [Yarn](https://yarnpkg.com/) e [pnpm](https://pnpm.io/) sono altre scelte popolari, ognuna con i propri vantaggi come velocità, gestione dei progetti, ecc.
 
 ### Rete di sicurezza
@@ -86,7 +86,7 @@ Puoi trovare anche strumenti di linting per altri linguaggi, come [stylelint](ht
 
 Conosciuto anche come **sistemi di controllo delle versioni** (VCS), il **controllo del codice sorgente** è essenziale per fare il backup del lavoro e lavorare in team. Un VCS tipico prevede l'avere una versione locale del codice su cui apporti modifiche. Poi "pussi" le modifiche a una versione "master" del codice all'interno di un repository remoto memorizzato su un server. Di solito c'è un modo per controllare e coordinare quali modifiche vengono fatte alla copia "master" del codice e quando, in modo che un team di sviluppatori non finisca per sovrascrivere continuamente i lavori degli altri.
 
-[Git](https://git-scm.com/) è il sistema di controllo del codice sorgente che la maggior parte delle persone utilizza oggi. È accessibile principalmente tramite la linea di comando ma può essere accessibile tramite interfacce utente più amichevoli. Con il tuo codice in un repository git, puoi "spingerlo" al tuo server istanze, oppure utilizzare un sito di controllo sorgente ospitato come [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) o [Bitbucket](https://bitbucket.org/product/).
+[Git](https://git-scm.com/) è il sistema di controllo del codice sorgente che la maggior parte delle persone utilizza oggi. È accessibile principalmente tramite la riga di comando ma può essere accessibile tramite interfacce utente più amichevoli. Con il tuo codice in un repository git, puoi "spingerlo" al tuo server istanze, oppure utilizzare un sito di controllo sorgente ospitato come [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) o [Bitbucket](https://bitbucket.org/product/).
 
 Utilizzeremo GitHub in questo modulo. Puoi trovare maggiori informazioni a riguardo in [Git e GitHub](/it/docs/Learn_web_development/Core/Version_control).
 

@@ -15,14 +15,14 @@ Nell'ultimo articolo abbiamo aggiunto più funzionalità alla nostra lista di co
       <th scope="row">Prerequisiti:</th>
       <td>
         <p>
-          È consigliato avere familiarità con i linguaggi principali 
+          È consigliato avere familiarità con i linguaggi principali
           <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
           <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e
           avere conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a>.
+            >terminale/riga di comando</a>.
         </p>
         <p>
           Avrete bisogno di un terminale con node e npm installati per compilare e costruire
@@ -714,15 +714,15 @@ Non è quello che vogliamo — vogliamo che il pulsante _Edit_ riceva il focus s
    const focusEditButton = (node) => editButtonPressed && node.focus();
    ```
 
-5. Infine usiamo l'azione `focusEditButton` nell 
+5. Infine usiamo l'azione `focusEditButton` nell
 
 pulsante _Edit_, così:
 
-   ```svelte
-   <button type="button" class="btn" on:click={onEdit} use:focusEditButton>
-     Edit<span class="visually-hidden"> {todo.name}</span>
-   </button>
-   ```
+```svelte
+<button type="button" class="btn" on:click={onEdit} use:focusEditButton>
+  Edit<span class="visually-hidden"> {todo.name}</span>
+</button>
+```
 
 6. Torna e prova di nuovo la tua app. A questo punto, ogni volta che il pulsante _Edit_ viene aggiunto al DOM, l'azione `focusEditButton` viene eseguita, ma darà il focus al pulsante solo se il flag `editButtonPressed` è `true`.
 

@@ -1,6 +1,6 @@
 ---
-title: Corso intensivo sulla linea di comando
-short-title: Linea di comando
+title: Corso intensivo sulla riga di comando
+short-title: riga di comando
 slug: Learn_web_development/Getting_started/Environment_setup/Command_line
 l10n:
   sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
@@ -8,7 +8,7 @@ l10n:
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Environment_setup/Dealing_with_files", "Learn_web_development/Getting_started/Your_first_website", "Learn_web_development/Getting_started/Environment_setup")}}
 
-Nel tuo processo di sviluppo, sarai sicuramente tenuto a eseguire alcuni comandi nel terminale (o sulla "linea di comando" — sono effettivamente la stessa cosa). Questo articolo fornisce un'introduzione al terminale, ai comandi essenziali che devi inserire, a come concatenare i comandi insieme e a come aggiungere i tuoi strumenti per l'interfaccia della linea di comando (CLI).
+Nel tuo processo di sviluppo, sarai sicuramente tenuto a eseguire alcuni comandi nel terminale (o sulla "riga di comando" — sono effettivamente la stessa cosa). Questo articolo fornisce un'introduzione al terminale, ai comandi essenziali che devi inserire, a come concatenare i comandi insieme e a come aggiungere i tuoi strumenti per l'interfaccia della riga di comando (CLI).
 
 <table>
   <tbody>
@@ -22,8 +22,8 @@ Nel tuo processo di sviluppo, sarai sicuramente tenuto a eseguire alcuni comandi
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Cos'è la linea di comando e cosa puoi fare con essa.</li>
-          <li>Capire come accedere alla linea di comando su diversi sistemi.</li>
+          <li>Cos'è la riga di comando e cosa puoi fare con essa.</li>
+          <li>Capire come accedere alla riga di comando su diversi sistemi.</li>
           <li>Conoscere le scorciatoie da tastiera di base (ad esempio freccia su per accedere ai comandi precedenti, tab per l'autocompletamento).</li>
           <li>Conoscere i comandi di base (ad esempio <code>cd</code>, <code>ls</code>, <code>mkdir</code>, <code>touch</code>, <code>grep</code>, <code>cat</code>, <code>mv</code>, <code>cp</code>).</li>
           <li>Opzioni/flag dei comandi.</li>
@@ -35,14 +35,14 @@ Nel tuo processo di sviluppo, sarai sicuramente tenuto a eseguire alcuni comandi
 
 ## Benvenuto nel terminale
 
-Il terminale è un'interfaccia testuale per eseguire programmi basati su testo. Se stai eseguendo qualsiasi strumento per lo sviluppo web, c'è una quasi certezza che dovrai aprire la linea di comando ed eseguire alcuni comandi per usare gli strumenti scelti (spesso vedrai tali strumenti indicati come strumenti **CLI** — strumenti dell'interfaccia della linea di comando).
+Il terminale è un'interfaccia testuale per eseguire programmi basati su testo. Se stai eseguendo qualsiasi strumento per lo sviluppo web, c'è una quasi certezza che dovrai aprire la riga di comando ed eseguire alcuni comandi per usare gli strumenti scelti (spesso vedrai tali strumenti indicati come strumenti **CLI** — strumenti dell'interfaccia della riga di comando).
 
-Un gran numero di strumenti può essere utilizzato digitando comandi nella linea di comando; molti sono preinstallati sul tuo sistema e un'enorme quantità di altri può essere installata dai registri dei pacchetti.
-I registri dei pacchetti sono come app store, ma (principalmente) per strumenti e software basati sulla linea di comando.
+Un gran numero di strumenti può essere utilizzato digitando comandi nella riga di comando; molti sono preinstallati sul tuo sistema e un'enorme quantità di altri può essere installata dai registri dei pacchetti.
+I registri dei pacchetti sono come app store, ma (principalmente) per strumenti e software basati sulla riga di comando.
 Vedremo come installare alcuni strumenti più avanti in questo capitolo, e impareremo di più sui registri dei pacchetti nel prossimo capitolo.
 
-Una delle maggiori critiche alla linea di comando è che manca enormemente di esperienza utente.
-Visualizzando la linea di comando per la prima volta può essere un'esperienza scoraggiante: uno schermo vuoto e un cursore lampeggiante, con pochissimo aiuto evidente su cosa fare.
+Una delle maggiori critiche alla riga di comando è che manca enormemente di esperienza utente.
+Visualizzando la riga di comando per la prima volta può essere un'esperienza scoraggiante: uno schermo vuoto e un cursore lampeggiante, con pochissimo aiuto evidente su cosa fare.
 
 In superficie, non sono affatto accoglienti, ma c'è molto che puoi fare con loro, e promettiamo che, con un po' di guida e pratica, usarle diventerà più facile!
 Questo è il motivo per cui forniamo questo capitolo - per aiutarti a iniziare in questo ambiente apparentemente ostile.
@@ -85,7 +85,7 @@ Il terminale è disponibile su macOS in `Applications/Utilities/Terminal`.
 
 #### Windows
 
-Come con alcuni altri strumenti di programmazione, usare il terminale (o linea di comando) su Windows non è stato tradizionalmente semplice o facile come su altri sistemi operativi. Ma le cose stanno migliorando.
+Come con alcuni altri strumenti di programmazione, usare il terminale (o riga di comando) su Windows non è stato tradizionalmente semplice o facile come su altri sistemi operativi. Ma le cose stanno migliorando.
 
 Tradizionalmente Windows ha avuto il suo programma simile a un terminale chiamato `cmd` (il "prompt dei comandi") per molto tempo, ma questo non ha parità con i comandi Unix, ed è equivalente al vecchio prompt DOS di Windows.
 
@@ -101,15 +101,15 @@ In termini di quale opzione scegliere su Windows, consigliamo vivamente di prova
 
 #### Nota a margine: qual è la differenza tra un comando e un terminale?
 
-Generalmente, troverai questi due termini usati in modo intercambiabile. Tecnicamente, un terminale è un software che avvia e si connette a una shell. Una shell è la tua sessione e ambiente di sessione (dove cose come il prompt e le scorciatoie possono essere personalizzate). La linea di comando è la linea letterale in cui inserisci i comandi e il cursore lampeggia.
+Generalmente, troverai questi due termini usati in modo intercambiabile. Tecnicamente, un terminale è un software che avvia e si connette a una shell. Una shell è la tua sessione e ambiente di sessione (dove cose come il prompt e le scorciatoie possono essere personalizzate). La riga di comando è la linea letterale in cui inserisci i comandi e il cursore lampeggia.
 
 ### Devi usare il terminale?
 
-Sebbene ci sia una grande varietà di strumenti disponibili dalla linea di comando, se stai usando strumenti come [Visual Studio Code](https://code.visualstudio.com/) c'è anche una massa di estensioni che possono essere usate come proxy per usare i comandi del terminale senza dover usare direttamente il terminale. Tuttavia, non troverai un'estensione dell'editor di codice per tutto ciò che vuoi fare — dovrai acquisire un po' di esperienza con il terminale alla fine.
+Sebbene ci sia una grande varietà di strumenti disponibili dalla riga di comando, se stai usando strumenti come [Visual Studio Code](https://code.visualstudio.com/) c'è anche una massa di estensioni che possono essere usate come proxy per usare i comandi del terminale senza dover usare direttamente il terminale. Tuttavia, non troverai un'estensione dell'editor di codice per tutto ciò che vuoi fare — dovrai acquisire un po' di esperienza con il terminale alla fine.
 
 ## Comandi di terminale di base integrati
 
-Abbastanza parole — iniziamo a guardare alcuni comandi del terminale! Di fabbrica, ecco solo alcune delle cose che la linea di comando può fare, insieme ai nomi degli strumenti pertinenti in ciascun caso:
+Abbastanza parole — iniziamo a guardare alcuni comandi del terminale! Di fabbrica, ecco solo alcune delle cose che la riga di comando può fare, insieme ai nomi degli strumenti pertinenti in ciascun caso:
 
 - Navigare nel file system del tuo computer insieme alle attività di base come creare, copiare, rinominare e eliminare:
 
@@ -126,16 +126,16 @@ Abbastanza parole — iniziamo a guardare alcuni comandi del terminale! Di fabbr
 - Manipolare e trasformare flussi di testo (ad esempio cambiando tutte le istanze di `<div>` in un file HTML in `<article>`): `awk`, `tr`, `sed`
 
 > [!NOTE]
-> Ci sono un certo numero di buoni tutorial sul web che vanno molto più in profondità nella linea di comando — questa è solo una breve introduzione!
+> Ci sono un certo numero di buoni tutorial sul web che vanno molto più in profondità nella riga di comando — questa è solo una breve introduzione!
 
-Passiamo avanti e guardiamo a usare alcuni di questi strumenti sulla linea di comando. Prima di andare oltre, apri il tuo programma terminale!
+Passiamo avanti e guardiamo a usare alcuni di questi strumenti sulla riga di comando. Prima di andare oltre, apri il tuo programma terminale!
 
-### Navigazione sulla linea di comando
+### Navigazione sulla riga di comando
 
-Quando visiti la linea di comando dovrai inevitabilmente navigare verso una determinata directory per "fare qualcosa". Tutti i sistemi operativi (supponendo un'impostazione predefinita) lanceranno il loro programma terminale nella tua directory _Home_, e da lì è probabile che tu voglia spostarti in un altro posto.
+Quando visiti la riga di comando dovrai inevitabilmente navigare verso una determinata directory per "fare qualcosa". Tutti i sistemi operativi (supponendo un'impostazione predefinita) lanceranno il loro programma terminale nella tua directory _Home_, e da lì è probabile che tu voglia spostarti in un altro posto.
 
 > [!NOTE]
-> "Directory" è il termine tecnico per ciò che abbiamo chiamato "cartella" nell'articolo precedente. Quando si guarda alla struttura dei file all'interno di un'interfaccia utente (UI), il termine "cartella" ha più senso, poiché le icone utilizzate sembrano vecchi raccoglitori fisici. Tuttavia, si tende a sentire anche il termine "directory" spesso, specialmente quando si parla di manipolare file usando la linea di comando. Ci sono sfumature, ma i due termini fondamentalmente significano la stessa cosa.
+> "Directory" è il termine tecnico per ciò che abbiamo chiamato "cartella" nell'articolo precedente. Quando si guarda alla struttura dei file all'interno di un'interfaccia utente (UI), il termine "cartella" ha più senso, poiché le icone utilizzate sembrano vecchi raccoglitori fisici. Tuttavia, si tende a sentire anche il termine "directory" spesso, specialmente quando si parla di manipolare file usando la riga di comando. Ci sono sfumature, ma i due termini fondamentalmente significano la stessa cosa.
 
 Il comando `cd` ti permette di Cambiare Directory. Tecnicamente, cd non è un programma ma un built-in. Questo significa che il tuo sistema operativo lo fornisce di fabbrica, e anche che non puoi eliminarlo accidentalmente — grazie al cielo! Non devi preoccuparti troppo del fatto che un comando sia built-in o meno, ma tieni presente che i built-in appaiono su tutti i sistemi basati su Unix.
 
@@ -243,7 +243,7 @@ Un altro buon suggerimento — se non ti senti a tuo agio a provare i comandi de
 
 Una grande risorsa per ottenere una panoramica rapida di specifici comandi del terminale è [tldr.sh](https://tldr.sh/). Questo è un servizio di documentazione guidato dalla comunità, simile a MDN, ma specifico per i comandi del terminale.
 
-Nella prossima sezione aumentiamo un po' il livello (o parecchi livelli in effetti) e vediamo come possiamo collegare strumenti insieme sulla linea di comando per vedere davvero come il terminale può essere vantaggioso rispetto alla normale interfaccia utente desktop.
+Nella prossima sezione aumentiamo un po' il livello (o parecchi livelli in effetti) e vediamo come possiamo collegare strumenti insieme sulla riga di comando per vedere davvero come il terminale può essere vantaggioso rispetto alla normale interfaccia utente desktop.
 
 ## Collegare i comandi insieme con pipe
 
@@ -271,7 +271,7 @@ ls | wc -l
 
 Poiché `ls` stampa ciascun file o directory su una propria linea, questo ci dà effettivamente un conteggio di directory e file.
 
-Quindi cosa sta succedendo qui? Una filosofia generale degli strumenti della linea di comando (Unix) è che stampano testo nel terminale (chiamato anche "stampa sull'uscita standard" o `STDOUT`). Molti comandi possono anche leggere contenuto da input in streaming (conosciuto come "input standard" o `STDIN`).
+Quindi cosa sta succedendo qui? Una filosofia generale degli strumenti della riga di comando (Unix) è che stampano testo nel terminale (chiamato anche "stampa sull'uscita standard" o `STDOUT`). Molti comandi possono anche leggere contenuto da input in streaming (conosciuto come "input standard" o `STDIN`).
 
 L'operatore pipe può _collegare_ questi input e output insieme, permettendoci di costruire operazioni sempre più complesse per soddisfare le nostre esigenze — l'output da un comando può diventare l'input per il comando successivo. In questo caso, `ls` normalmente stamperebbe il suo output a `STDOUT`, ma invece l'output di `ls` viene pipeato in `wc`, che prende quell'output come input, contando il numero di righe che contiene, e stampa quel conteggio su `STDOUT` invece.
 
@@ -328,13 +328,13 @@ Ora che abbiamo dato un'occhiata ad alcuni dei comandi integrati di cui il tuo s
 L'enorme ecosistema di strumenti installabili per lo sviluppo web frontend è attualmente presente per lo più su [npm](https://www.npmjs.com/), un servizio di hosting di pacchetti di proprietà privata che funziona a stretto contatto con Node.js.
 Questo sta lentamente crescendo — puoi aspettarti di vedere più fornitori di pacchetti man mano che il tempo passa.
 
-[Installare Node.js](https://nodejs.org/en/) installa anche lo strumento della linea di comando npm (e un tool supplementare centrato su npm chiamato npx), che offre un gateway per installare strumenti aggiuntivi della linea di comando. Node.js e npm funzionano allo stesso modo su tutti i sistemi: macOS, Windows e Linux.
+[Installare Node.js](https://nodejs.org/en/) installa anche lo strumento della riga di comando npm (e un tool supplementare centrato su npm chiamato npx), che offre un gateway per installare strumenti aggiuntivi della riga di comando. Node.js e npm funzionano allo stesso modo su tutti i sistemi: macOS, Windows e Linux.
 
 Installa npm sul tuo sistema ora, andando all'URL sopra e scaricando ed eseguendo un installatore di Node.js adatto al tuo sistema operativo. Se richiesto, assicurati di includere npm come parte dell'installazione.
 
 ![l'installatore di Node.js su Windows, che mostra l'opzione di includere npm](npm-install-option.png)
 
-Ancora una volta useremo [Prettier](https://prettier.io/) come esempio qui. Abbiamo mostrato come installarlo come estensione di VS Code nel nostro articolo sui [editori di codice](/it/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors#enhancing_your_code_editor_with_extensions). Qui ti mostreremo come installarlo come strumento della linea di comando.
+Ancora una volta useremo [Prettier](https://prettier.io/) come esempio qui. Abbiamo mostrato come installarlo come estensione di VS Code nel nostro articolo sui [editori di codice](/it/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors#enhancing_your_code_editor_with_extensions). Qui ti mostreremo come installarlo come strumento della riga di comando.
 
 > [!NOTE]
 > Prettier è un formattatore di codice opinato che ha solo "poche opzioni". Meno opzioni tende a significare più semplice. Dato che gli strumenti possono talvolta diventare fuori controllo in termini di complessità, "poche opzioni" può essere molto attraente.
@@ -483,14 +483,14 @@ La nostra preferenza personale è la seconda — mentre si utilizza ad esempio V
 Se vuoi giocare con alcuni altri strumenti, ecco una breve lista che è divertente da provare:
 
 - [`bat`](https://github.com/sharkdp/bat) — Un `cat` "più bello" (`cat` è usato per stampare il contenuto dei file).
-- [`prettyping`](https://denilson.sa.nom.br/prettyping/) — `ping` sulla linea di comando, ma visualizzato (`ping` è uno strumento utile per verificare se un server risponde).
+- [`prettyping`](https://denilson.sa.nom.br/prettyping/) — `ping` sulla riga di comando, ma visualizzato (`ping` è uno strumento utile per verificare se un server risponde).
 - [`htop`](https://htop.dev/) — Un visualizzatore di processi, utile quando qualcosa sta facendo comportare il tuo ventilatore della CPU come un motore a reazione e vuoi identificare il programma colpevole.
-- [`tldr`](https://tldr.sh/#installation) — menzionato in precedenza in questo capitolo, ma disponibile come strumento della linea di comando.
+- [`tldr`](https://tldr.sh/#installation) — menzionato in precedenza in questo capitolo, ma disponibile come strumento della riga di comando.
 
 Nota che alcune delle suggestioni sopra potrebbero richiedere di essere installate utilizzando npm, come abbiamo fatto con Prettier.
 
 ## Riepilogo
 
-Questo ci porta alla fine del nostro tour introduttivo del terminale/linea di comando e al modulo di configurazione dell'ambiente. Successivamente, ti faremo lavorare sulla costruzione del tuo primo semplice sito web, così puoi farti un'idea di com'è lo sviluppo web.
+Questo ci porta alla fine del nostro tour introduttivo del terminale/riga di comando e al modulo di configurazione dell'ambiente. Successivamente, ti faremo lavorare sulla costruzione del tuo primo semplice sito web, così puoi farti un'idea di com'è lo sviluppo web.
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Environment_setup/Dealing_with_files", "Learn_web_development/Getting_started/Your_first_website", "Learn_web_development/Getting_started/Environment_setup")}}

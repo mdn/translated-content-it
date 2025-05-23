@@ -22,7 +22,7 @@ Nell'ultimo articolo abbiamo completato lo sviluppo della nostra app, finito di 
           avere conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>
@@ -331,7 +331,7 @@ Appena eseguiamo `$alert = …`, Svelte eseguirà `alert.set()`. Il nostro compo
 Potremmo fare lo stesso all'interno di qualsiasi componente o file `.js`.
 
 > [!NOTE]
-> Al di fuori dei componenti Svelte non puoi usare la sintassi `$store$. Questo perché il compilatore Svelte non toccherà nulla al di fuori dei componenti Svelte. In tal caso dovrai affidarti ai metodi `store.subscribe()` e `store.set()`.
+> Al di fuori dei componenti Svelte non puoi usare la sintassi `$store$. Questo perché il compilatore Svelte non toccherà nulla al di fuori dei componenti Svelte. In tal caso dovrai affidarti ai metodi `store.subscribe()`e`store.set()`.
 
 ## Migliorare il nostro componente Alert
 

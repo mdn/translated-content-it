@@ -19,7 +19,7 @@ Nel nostro primo articolo su Ember esamineremo come funziona Ember e per cosa è
           <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
           <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e avere conoscenza del
-          <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/linea di comando</a>.
+          <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/riga di comando</a>.
         </p>
         <p>
           Una comprensione più approfondita delle moderne funzionalità di JavaScript (come le classi,

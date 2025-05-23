@@ -19,7 +19,7 @@ Questo ultimo articolo su Angular copre come costruire un'app pronta per la prod
         <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, conoscenza del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-          >terminale/linea di comando</a
+          >terminale/riga di comando</a
         >.
       </td>
     </tr>
@@ -35,7 +35,7 @@ Questo ultimo articolo su Angular copre come costruire un'app pronta per la prod
 Ora che hai finito di sviluppare la tua applicazione, puoi eseguire il comando `build` della CLI di Angular.
 Quando esegui il comando `build` nella tua directory `todo`, la tua applicazione viene compilata in una directory di output chiamata `dist/`.
 
-Nella directory `todo`, esegui il seguente comando in linea di comando:
+Nella directory `todo`, esegui il seguente comando in riga di comando:
 
 ```bash
 ng build -c production

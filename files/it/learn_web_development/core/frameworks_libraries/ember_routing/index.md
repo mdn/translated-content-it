@@ -19,10 +19,10 @@ In questo articolo impariamo a conoscere il **routing**, o filtraggio basato sug
           <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
           <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
           <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>
-          di base, e avere conoscenza del 
+          di base, e avere conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>

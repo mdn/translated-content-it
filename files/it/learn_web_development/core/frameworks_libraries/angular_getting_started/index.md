@@ -24,7 +24,7 @@ l10n:
         conoscenza del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-          >terminal/linea di comando</a
+          >terminal/riga di comando</a
         >.
       </td>
     </tr>
@@ -50,13 +50,13 @@ Quando crei applicazioni con Angular, stai sfruttando una piattaforma che può s
 
 Prima di iniziare a esplorare la piattaforma Angular, dovresti sapere dell'Angular CLI. L'Angular CLI è il modo più veloce, semplice e raccomandato per sviluppare applicazioni Angular. L'Angular CLI facilita una serie di compiti. Ecco alcuni comandi di esempio che utilizzerai frequentemente:
 
-| Comando                                          | Descrizione                                                           |
-| ------------------------------------------------ | --------------------------------------------------------------------- |
-| [`ng build`](https://angular.dev/cli/build)      | Compila un'app Angular in una directory di output.                    |
-| [`ng serve`](https://angular.dev/cli/serve)      | Compila e avvia la tua applicazione, ricompilando su modifiche ai file.|
-| [`ng generate`](https://angular.dev/cli/generate)| Genera o modifica file basati su uno schema.                          |
-| [`ng test`](https://angular.dev/cli/test)        | Esegue test unitari su un determinato progetto.                       |
-| [`ng e2e`](https://angular.dev/cli/e2e)          | Compila e avvia un'applicazione Angular, quindi esegue test end-to-end.|
+| Comando                                           | Descrizione                                                             |
+| ------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`ng build`](https://angular.dev/cli/build)       | Compila un'app Angular in una directory di output.                      |
+| [`ng serve`](https://angular.dev/cli/serve)       | Compila e avvia la tua applicazione, ricompilando su modifiche ai file. |
+| [`ng generate`](https://angular.dev/cli/generate) | Genera o modifica file basati su uno schema.                            |
+| [`ng test`](https://angular.dev/cli/test)         | Esegue test unitari su un determinato progetto.                         |
+| [`ng e2e`](https://angular.dev/cli/e2e)           | Compila e avvia un'applicazione Angular, quindi esegue test end-to-end. |
 
 Troverai l'Angular CLI uno strumento prezioso per costruire le tue applicazioni.
 
@@ -79,7 +79,7 @@ Per installare Angular sul tuo sistema locale, hai bisogno di quanto segue:
 
   Angular, l'Angular CLI e le applicazioni Angular dipendono da [pacchetti npm](https://docs.npmjs.com/getting-started/what-is-npm/) per molte funzionalità.
   Per scaricare e installare pacchetti npm, hai bisogno di un gestore di pacchetti npm.
-  Questa guida utilizza l'interfaccia da linea di comando [npm client](https://docs.npmjs.com/cli/install/), che è installata di default con `Node.js`.
+  Questa guida utilizza l'interfaccia da riga di comando [npm client](https://docs.npmjs.com/cli/install/), che è installata di default con `Node.js`.
   Per verificare di avere il client npm installato, esegui `npm -v` in una finestra di terminale.
 
 ## Creazione di un'applicazione Angular

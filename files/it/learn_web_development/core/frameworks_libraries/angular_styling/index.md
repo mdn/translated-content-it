@@ -20,7 +20,7 @@ Ora che abbiamo impostato la struttura di base della nostra applicazione e inizi
         conoscenza del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-          >terminale/linea di comando</a
+          >terminale/riga di comando</a
         >.
       </td>
     </tr>

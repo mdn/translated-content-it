@@ -17,7 +17,7 @@ Nel nostro ultimo articolo di tutorial, ci concentreremo (gioco di parole intenz
       <td>
         Familiarità con i linguaggi principali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
         <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
-        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e con il <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/linea di comando</a>.
+        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e con il <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/riga di comando</a>.
       </td>
     </tr>
     <tr>

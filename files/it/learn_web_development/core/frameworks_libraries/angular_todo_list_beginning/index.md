@@ -20,7 +20,7 @@ A questo punto, siamo pronti a iniziare a creare la nostra applicazione di lista
         conoscenza del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-          >terminale/linea di comando</a
+          >terminale/riga di comando</a
         >.
       </td>
     </tr>

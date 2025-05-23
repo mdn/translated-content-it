@@ -33,7 +33,7 @@ Negli ultimi articoli della serie, consolidiamo le conoscenze sugli strumenti gu
 Esistono combinazioni illimitate di strumenti e modi per usarli, quello che vedi in questo articolo e nel successivo è solo _un_ modo in cui gli strumenti presentati possono essere utilizzati per un progetto.
 
 > [!NOTE]
-> Vale anche la pena ripetere che non tutti questi strumenti devono essere eseguiti da linea di comando. Molti degli editor di codice di oggi (come VS Code) supportano l'integrazione di _molti_ strumenti tramite plugin.
+> Vale anche la pena ripetere che non tutti questi strumenti devono essere eseguiti da riga di comando. Molti degli editor di codice di oggi (come VS Code) supportano l'integrazione di _molti_ strumenti tramite plugin.
 
 ## Introduzione al nostro case study
 
@@ -389,7 +389,7 @@ Abbiamo i file del nostro progetto al loro posto. Questo è tutto ciò che dobbi
 
 ## Esecuzione della trasformazione
 
-Per iniziare a lavorare con il nostro progetto, eseguiremo il server Vite da linea di comando. Nella modalità predefinita guarderà per modifiche nel tuo codice e aggiornerà il server. Questo è bello perché non dobbiamo fluttuare avanti e indietro tra il codice e la riga di comando.
+Per iniziare a lavorare con il nostro progetto, eseguiremo il server Vite da riga di comando. Nella modalità predefinita guarderà per modifiche nel tuo codice e aggiornerà il server. Questo è bello perché non dobbiamo fluttuare avanti e indietro tra il codice e la riga di comando.
 
 1. Per avviare Vite in secondo piano, vai al tuo terminale ed esegui il seguente comando (usando lo script personalizzato che abbiamo definito in precedenza):
 

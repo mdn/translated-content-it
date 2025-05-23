@@ -7,7 +7,7 @@ l10n:
 
 {{NextMenu("Learn_web_development/Getting_started/Environment_setup/Installing_software", "Learn_web_development/Getting_started")}}
 
-Nel modulo _Configurazione dell'ambiente_, mostriamo quali strumenti sono necessari per sviluppare siti web semplici e come installarli correttamente, aiutando a comprendere aspetti importanti del proprio ambiente come i file system e la linea di comando.
+Nel modulo _Configurazione dell'ambiente_, mostriamo quali strumenti sono necessari per sviluppare siti web semplici e come installarli correttamente, aiutando a comprendere aspetti importanti del proprio ambiente come i file system e la riga di comando.
 
 ## Prerequisiti
 
@@ -33,5 +33,5 @@ Se è necessario rinfrescare la memoria su questi concetti, raccomandiamo le seg
   - : In questo articolo esaminiamo in dettaglio gli editor di codice, offrendoti un'idea di cosa possono fare per te.
 - [Gestione dei file](/it/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files)
   - : Questo articolo discute alcuni problemi di cui essere a conoscenza con i file system per poter impostare una struttura di file sensata per il tuo sito web.
-- [Corso rapido sulla linea di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line)
+- [Corso rapido sulla riga di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line)
   - : Questo articolo fornisce un'introduzione al terminale, i comandi essenziali che devi inserire in esso, come concatenare i comandi e come aggiungere i tuoi strumenti di interfaccia a riga di comando (CLI).

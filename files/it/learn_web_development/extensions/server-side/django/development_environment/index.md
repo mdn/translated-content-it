@@ -15,7 +15,7 @@ Ora che sai a cosa serve Django, ti mostreremo come configurare e testare un amb
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Conoscenze di base sull'uso di un terminale/linea di comando e su come installare pacchetti software sul sistema operativo del computer di sviluppo.
+        Conoscenze di base sull'uso di un terminale/riga di comando e su come installare pacchetti software sul sistema operativo del computer di sviluppo.
       </td>
     </tr>
     <tr>

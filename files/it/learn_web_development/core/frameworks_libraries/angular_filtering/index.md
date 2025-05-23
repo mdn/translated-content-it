@@ -20,7 +20,7 @@ Ora passiamo ad aggiungere funzionalità per permettere agli utenti di filtrare 
         conoscenza del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-          >terminale/linea di comando</a
+          >terminale/riga di comando</a
         >.
       </td>
     </tr>

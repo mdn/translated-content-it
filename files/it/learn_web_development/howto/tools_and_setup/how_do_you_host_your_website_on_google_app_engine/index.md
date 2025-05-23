@@ -36,7 +36,7 @@ Ora che abbiamo creato il nostro progetto e raccolto i file dell'app di esempio,
 
 1. Apri [Google Cloud Shell](https://shell.cloud.google.com/).
 2. Trascina e rilascia la cartella `sample-app` nel riquadro a sinistra dell'editor di codice.
-3. Esegui il seguente comando nella linea di comando per selezionare il tuo progetto:
+3. Esegui il seguente comando nella riga di comando per selezionare il tuo progetto:
 
    ```bash
    gcloud config set project gaesamplesite

@@ -97,7 +97,7 @@ Per leggere di più su JSX, dai un'occhiata all'articolo del team di React [Writ
 
 ## Configurazione della tua prima app React
 
-Ci sono molti modi per creare una nuova applicazione React. Useremo Vite per creare una nuova applicazione tramite la linea di comando.
+Ci sono molti modi per creare una nuova applicazione React. Useremo Vite per creare una nuova applicazione tramite la riga di comando.
 
 È possibile [aggiungere React a un progetto esistente](https://react.dev/learn/add-react-to-an-existing-project) copiando alcuni elementi [`<script>`](/it/docs/Web/HTML/Reference/Elements/script) in un file HTML, ma usare Vite ti permetterà di trascorrere più tempo a costruire la tua app e meno tempo a occuparti della configurazione.
 
@@ -144,7 +144,7 @@ Il tuo terminale avrà stampato alcuni messaggi se questo comando è stato esegu
 cd moz-todo-react && npm install
 ```
 
-Una volta completato il processo, dobbiamo eseguire un server di sviluppo locale per avviare la nostra app. Qui, aggiungeremo alcune flag della linea di comando alla proposta predefinita di Vite per aprire l'app nel nostro browser non appena il server viene avviato e usare la porta 3000.
+Una volta completato il processo, dobbiamo eseguire un server di sviluppo locale per avviare la nostra app. Qui, aggiungeremo alcune flag della riga di comando alla proposta predefinita di Vite per aprire l'app nel nostro browser non appena il server viene avviato e usare la porta 3000.
 
 Esegui il seguente comando nel tuo terminale:
 

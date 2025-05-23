@@ -21,7 +21,7 @@ Siamo quasi alla fine con Vue. L'ultimo aspetto funzionale che andremo a esamina
           conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>

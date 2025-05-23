@@ -21,7 +21,7 @@ Nell'ultimo articolo abbiamo iniziato a sviluppare la nostra app per la lista di
           <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e di avere conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>

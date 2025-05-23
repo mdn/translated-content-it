@@ -57,7 +57,7 @@ Questo insieme di articoli non tenta di insegnare ogni argomento che un sviluppa
 - Best practices come accessibilità, design responsivo e teoria del design UI.
 - Strumenti chiave come framework e controllo di versione.
 - Abilità trasversali per promuovere il mindset e l'atteggiamento necessari per ottenere un lavoro.
-- Conoscenza dell'ambiente come sistemi informatici e di file, navigazione web, basi della linea di comando e editor di codice.
+- Conoscenza dell'ambiente come sistemi informatici e di file, navigazione web, basi della riga di comando e editor di codice.
 - Diverse "estensioni" che riteniamo costituiscano competenze aggiuntive utili da apprendere man mano che gli sviluppatori iniziano ad espandere le loro conoscenze e sviluppare specializzazioni. Questo include:
   - Trasformazioni e animazione CSS
   - Categorie comuni di Web API (ad esempio, media, grafica e storage lato client)

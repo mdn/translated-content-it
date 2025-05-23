@@ -43,6 +43,7 @@ Ensure that the translation is accurate, preserves technical terminology, and fo
    - "Browser compatibility" => "Compatibilità del browser"
    - "Guide" => "Guida"
    - "How to" => "Come fare"
+   - "Command line" => "riga di comando"
 
 # Translation Scope
 

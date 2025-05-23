@@ -22,7 +22,7 @@ In questo articolo forniremo un'introduzione rapida al [framework Svelte](https:
           avere conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>
@@ -86,7 +86,7 @@ Poiché Svelte è un compilatore, non puoi semplicemente aggiungere un tag `<scr
 
 Per lavorare con Svelte, devi avere installato [Node.js](https://nodejs.org/). Si raccomanda di utilizzare la versione di supporto a lungo termine (LTS). Node include npm (il gestore pacchetti di node), e npx (il runner di pacchetti di node). Nota che puoi anche utilizzare il gestore pacchetti Yarn al posto di npm, ma supporremo che tu stia utilizzando npm in questo insieme di tutorial. Vedi [Nozioni di base sulla gestione dei pacchetti](/it/docs/Learn_web_development/Extensions/Client-side_tools/Package_management) per ulteriori informazioni su npm e yarn.
 
-Se stai usando Windows, dovrai installare alcuni software per avere parità con il terminale Unix/macOS per utilizzare i comandi del terminale menzionati in questo tutorial. Gitbash (che fa parte del [set di strumenti git per Windows](https://gitforwindows.org/)) o [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/about) sono entrambi adatti. Vedi [Corso intensivo di linea di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line) per ulteriori informazioni su questi strumenti e sui comandi del terminale in generale.
+Se stai usando Windows, dovrai installare alcuni software per avere parità con il terminale Unix/macOS per utilizzare i comandi del terminale menzionati in questo tutorial. Gitbash (che fa parte del [set di strumenti git per Windows](https://gitforwindows.org/)) o [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/about) sono entrambi adatti. Vedi [Corso intensivo di riga di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line) per ulteriori informazioni su questi strumenti e sui comandi del terminale in generale.
 
 Vedi anche quanto segue per ulteriori informazioni:
 

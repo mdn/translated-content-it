@@ -127,7 +127,7 @@ E il nostro sito web è online!
 
 {{Glossary("Rsync", "Rsync")}} è uno strumento di sincronizzazione file locale-remoto, generalmente disponibile sulla maggior parte dei sistemi Unix-based (come macOS e Linux), ma esistono anche versioni per Windows.
 
-È considerato uno strumento più avanzato di SFTP, poiché di default è utilizzato da linea di comando. Un comando di base sembra questo:
+È considerato uno strumento più avanzato di SFTP, poiché di default è utilizzato da riga di comando. Un comando di base sembra questo:
 
 ```bash
 rsync [-options] SOURCE user@x.x.x.x:DESTINATION
@@ -153,7 +153,7 @@ Puoi trovare maggiori dettagli su ciò che è necessario su [Come copiare file c
 
 ### Strumenti GUI per Rsync
 
-Esistono strumenti GUI per Rsync (per chi non si sente a proprio agio con la linea di comando). [Acrosync](https://acrosync.com/mac.html) è uno di questi strumenti, ed è disponibile per Windows e macOS.
+Esistono strumenti GUI per Rsync (per chi non si sente a proprio agio con la riga di comando). [Acrosync](https://acrosync.com/mac.html) è uno di questi strumenti, ed è disponibile per Windows e macOS.
 
 Ancora una volta, dovresti ottenere le credenziali di connessione dal tuo fornitore di hosting, ma in questo modo avresti una GUI per inserirle.
 

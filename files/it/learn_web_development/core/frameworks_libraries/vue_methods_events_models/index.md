@@ -21,7 +21,7 @@ Ora abbiamo dei dati di esempio in posizione e un ciclo che prende ogni bit di d
           conoscenza del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>

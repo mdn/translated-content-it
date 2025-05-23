@@ -22,7 +22,7 @@ Ora è il momento di affrontare la funzionalità del footer nella nostra app. Qu
           possedere conoscenze del
           <a
             href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line"
-            >terminale/linea di comando</a
+            >terminale/riga di comando</a
           >.
         </p>
         <p>

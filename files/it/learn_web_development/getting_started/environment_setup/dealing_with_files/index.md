@@ -34,7 +34,7 @@ Un sito web è composto da molti file: contenuti di testo, codice, fogli di stil
 
 ## Manipolazione di file e cartelle
 
-Esistono molti modi diversi per creare e modificare i file e le cartelle contenuti sul computer. È possibile farlo tramite la linea di comando/terminale del computer utilizzando una serie di comandi testuali, di cui imparerai di più nel prossimo articolo. Tuttavia, molte persone trovano più facile iniziare a comprendere i sistemi di file in modo visivo, ed è di questo che parleremo qui. I sistemi operativi moderni (OSes) hanno un'interfaccia utente (UI) robusta per il sistema di file che puoi utilizzare per manipolare i file e le cartelle secondo necessità.
+Esistono molti modi diversi per creare e modificare i file e le cartelle contenuti sul computer. È possibile farlo tramite la riga di comando/terminale del computer utilizzando una serie di comandi testuali, di cui imparerai di più nel prossimo articolo. Tuttavia, molte persone trovano più facile iniziare a comprendere i sistemi di file in modo visivo, ed è di questo che parleremo qui. I sistemi operativi moderni (OSes) hanno un'interfaccia utente (UI) robusta per il sistema di file che puoi utilizzare per manipolare i file e le cartelle secondo necessità.
 
 Su macOS, ad esempio, hai il programma Finder:
 
@@ -179,7 +179,7 @@ Seguendo questo corso, noterai che ti chiederemo sempre di nominare cartelle e f
 <!-- cSpell:ignore myimage -->
 
 1. Molti sistemi informatici, inclusi la maggior parte dei server web, fanno distinzione tra maiuscole e minuscole. Quindi, per esempio, se metti un'immagine sul tuo sito web in `test-site/images/MyImage.jpg` e poi in un altro file cerchi di fare riferimento all'immagine con `test-site/images/myimage.jpg`, potrebbe non funzionare.
-2. Quando invochi comandi sulla linea di comando, devi mettere le virgolette attorno ai nomi dei file con spazi al loro interno, altrimenti verranno interpretati come due elementi separati.
+2. Quando invochi comandi sulla riga di comando, devi mettere le virgolette attorno ai nomi dei file con spazi al loro interno, altrimenti verranno interpretati come due elementi separati.
 3. Alcuni linguaggi di programmazione (come Python) non funzionano bene con spazi nei nomi di file in alcune circostanze (ad esempio, se questi file sono moduli da importare).
 4. I nomi dei file generalmente corrispondono agli indirizzi web/URL. Se, per esempio, hai un file chiamato `my file.html` nella cartella radice del tuo server, generalmente sarà accessibile a un URL come `https://example.com/my%20file.html`. I server web solitamente sostituiscono gli spazi nei nomi dei file con `%20` (perché gli URL sono {{Glossary("Percent-encoding", "percentualmente codificati")}}), il che può creare bug sottili con alcuni sistemi se assumono che i nomi di file e gli URL combacino perfettamente.
 
