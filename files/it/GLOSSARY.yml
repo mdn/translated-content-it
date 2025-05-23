@@ -1,47 +1,90 @@
 dont_translate:
-  - CSS (Cascading Style Sheets)
-  - HTML (Hypertext Markup Language)
-  - JavaScript
+  - backend
+  - branch
+  - build
+  - cache
+  - Cascading Style Sheets
+  - client
+  - cloud
+  - cookie
+  - CSS
+  - debug
+  - deploy
+  - DevOps
   - flexbox
+  - framework
+  - frontend
+  - full-stack
+  - hosting
+  - HTML
+  - Hypertext Markup Language
+  - JavaScript
+  - layout
+  - library
+  - logging
+  - media query
+  - media query
+  - overflow
+  - padding
+  - pixel (px)
+  - REST
+  - runtime
+  - screen reader
+  - server
+  - service worker
+  - subgrid
+  - UI
+  - user agent
+  - viewport
   - WAI-ARIA
   - web API
   - web browser
-  - subgrid
-  - user agent
-  - DevOps
-  - pixel (px)
-  - track element
-
+  - widget
+  - wireframe
 translate:
   accessibility: accessibilità
-  accessible web experiences: esperienze web accessibili
   accessible multimedia: contenuti multimediali accessibili
+  Accessible Rich Internet Applications: Applicazioni Internet Accessibili
   accessible table: tabella accessibile
   accessible UI controls: controlli UI accessibili
+  accessible web experiences: esperienze web accessibili
+  algorithm: algoritmo
   alternative text (alt text): testo alternativo (alt text)
-  ARIA (Accessible Rich Internet Applications): ARIA (Applicazioni Internet Accessibili)
+  analytics: analitiche
+  application server: server applicativo
   ARIA attributes: attributi ARIA
   ARIA roles: ruoli ARIA
   assistive technology: tecnologia assistiva
+  asynchronous: asincrono
   atomic unit: unità atomica
   audio transcript: trascrizione audio
+  authentication: autenticazione
+  authorization: autorizzazione
+  bandwidth: larghezza di banda
   block-level element: elemento a livello di blocco
   box model: modello a scatola
-  caption (in tables, in video): didascalia (in tabelle, in video)
+  build pipeline: pipeline di build
+  caching: memorizzazione nella cache
+  caption: didascalia
+  certificate: certificato
   client-side validation: validazione lato client
   color contrast: contrasto dei colori
   column header: intestazione di colonna
   command line basics: basi della riga di comando
   content sectioning: sezionamento del contenuto
+  continuous delivery: consegna continua
+  continuous integration: integrazione continua
   core modules: moduli fondamentali
   CSS grid: griglia CSS
-  CSS layout: layout CSS
-  CSS media queries: media query CSS
+  data structure: struttura dati
   data table: tabella dati
   default browser controls: controlli predefiniti del browser
+  deployment: rilascio
+  development environment: ambiente di sviluppo
   display property: proprietà display
   document structure: struttura del documento
   dynamic content: contenuto dinamico
+  encryption: crittografia
   end user: utente finale
   explicit grid: griglia esplicita
   feature detection: rilevamento delle funzionalità
@@ -52,7 +95,7 @@ translate:
   grid framework: framework a griglia
   grid layout: layout a griglia
   heading element: elemento di intestazione
-  HTML semantic element: elemento HTML semantico
+  HTML element: elemento HTML
   HTML validation: validazione HTML
   image alternative: alternativa dell'immagine
   implicit grid: griglia implicita
@@ -62,63 +105,67 @@ translate:
   keyboard accessibility: accessibilità tramite tastiera
   keyboard navigation: navigazione tramite tastiera
   landmark role: ruolo di riferimento
+  learning module: modulo di apprendimento
   line height: altezza della linea
   link text: testo del collegamento
   list item: elemento di lista
+  load balancer: bilanciatore di carico
   logical structure: struttura logica
   main axis: asse principale
   margin collapsing: collasso dei margini
   media feature: caratteristica media
-  media query: media query
-  min-width / max-width: larghezza minima / larghezza massima
-  module (learning module): modulo (di apprendimento)
+  microservice: microservizio
   mouse-specific event: evento specifico del mouse
   navigation menu: menu di navigazione
   normal flow: flusso normale
   outline (focus indicator): contorno (indicatore di focus)
-  overflow: overflow
-  padding: padding
   perceivable content: contenuto percepibile
+  performance: prestazioni
   placeholder text: testo segnaposto
   pointer device: dispositivo di puntamento
   position property: proprietà position
   programmatically detectable: rilevabile a livello di codice
   progressive enhancement: miglioramento progressivo
+  property: proprietà
   range input: input range
+  refactoring: rifattorizzazione
   relative positioning: posizionamento relativo
   responsive design: design responsivo
   role attribute: attributo role
   row header: intestazione di riga
   screen magnifier: ingranditore dello schermo
-  screen reader: screen reader
   sectioning elements: elementi di sezione
   semantic HTML: HTML semantico
   semantic markup: markup semantico
   semantic structure: struttura semantica
   semantic UI control: controllo UI semantico
   server-side validation: validazione lato server
+  session: sessione
   skip link: collegamento di salto
   soft skills: competenze trasversali
   source order: ordine sorgente
+  stack trace: traccia dello stack
   sticky positioning: posizionamento sticky
   style sheet: foglio di stile
   tab index (tabindex): indice di tabulazione (tabindex)
+  tabindex attribute: attributo tabindex
   table accessibility: accessibilità delle tabelle
   table cell: cella di tabella
   table header: intestazione di tabella
   table summary: sommario della tabella
-  tabindex attribute: attributo tabindex
   text alternative: alternativa testuale
   text content structure: struttura del contenuto testuale
   text track (captions, subtitles): traccia di testo (sottotitoli, didascalie)
+  track element: elemento track
   UI design theory: teoria del design UI
+  unit test: test unitario
   unobtrusive JavaScript: JavaScript non invasivo
   user experience: esperienza utente
   user input mechanism: meccanismo di input utente
   user testing: test con utenti
   validation error: errore di validazione
   version control: controllo versione
-  viewport: viewport
+  virtual machine: macchina virtuale
   visual design: design visivo
   visual feedback: feedback visivo
   visual impairment: disabilità visiva
