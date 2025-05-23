@@ -1,6 +1,6 @@
 ---
 title: Corso intensivo sulla riga di comando
-short-title: riga di comando
+short-title: Riga di comando
 slug: Learn_web_development/Getting_started/Environment_setup/Command_line
 l10n:
   sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
