@@ -42,7 +42,7 @@ If you see any [open issues here](https://github.com/mdn/translated-content-it/i
 
 ### 3. Contributing to the glossary
 
-You can contribute to the [Italian translation glossary (Google Sheets)][glossary]:
+You can contribute to the [Italian translation glossary][glossary]:
 
 - Suggest a new glossary entry by commenting in the file.
 - Review the translations in the glossary, and provide feedback.
@@ -83,7 +83,7 @@ You can communicate with the MDN Web Docs team and community using the [communic
 Additionally, you can communicate with a specific localization team using their own available [communication channels][localization communication].
 
 [discord]: https://mdn.dev/discord
-[glossary]: https://docs.google.com/spreadsheets/d/1bPYgIAEAuwtMYw7fHRwmov5W14RDBOXdu1kHqFnKwdE/edit?usp=sharing
+[glossary]: ./files/it/GLOSSARY.yml
 [prompt]: ./files/it/PROMPT.md
 [main communication]: https://developer.mozilla.org/docs/MDN/Community/Communication_channels
 [localization communication]: https://developer.mozilla.org/docs/MDN/Community/Contributing/Translated_content
