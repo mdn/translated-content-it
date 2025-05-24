@@ -83,7 +83,7 @@ You can communicate with the MDN Web Docs team and community using the [communic
 Additionally, you can communicate with a specific localization team using their own available [communication channels][localization communication].
 
 [discord]: https://mdn.dev/discord
-[glossary]: https://github.com/mdn/translated-content-it/pull/5
+[glossary]: ./files/it/GLOSSARY.yml
 [prompt]: ./files/it/PROMPT.md
 [main communication]: https://developer.mozilla.org/docs/MDN/Community/Communication_channels
 [localization communication]: https://developer.mozilla.org/docs/MDN/Community/Contributing/Translated_content
