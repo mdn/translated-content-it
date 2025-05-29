@@ -1,15 +1,15 @@
 ---
-title: Aggiorna modulo libro
+title: Modulo di aggiornamento del libro
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Update_Book_form
 l10n:
-  sourceCommit: f2dc3d5367203c860cf1a71ce0e972f018523849
+  sourceCommit: 2c0f972d873ea2db5163dbcb12987847124751ad
 ---
 
-Questo ultimo sottoarticolo mostra come definire una pagina per aggiornare gli oggetti `Book`. La gestione del modulo durante l'aggiornamento di un libro è molto simile a quella per la creazione di un libro, tranne che devi popolare il modulo nel percorso `GET` con i valori dal database.
+Questo ultimo sottoarticolo mostra come definire una pagina per aggiornare gli oggetti `Book`. La gestione del modulo quando si aggiorna un libro è molto simile a quella per la creazione di un libro, tranne per il fatto che si deve popolare il modulo nel percorso `GET` con i valori provenienti dal database.
 
-## Controller—percorso get
+## Controller—get route
 
-Apri **/controllers/bookController.js**. Trova il metodo controller esportato `book_update_get()` e sostituiscilo con il seguente codice.
+Apri **/controllers/bookController.js**. Trova il metodo del controller esportato `book_update_get()` e sostituiscilo con il seguente codice.
 
 ```js
 // Display book update form on GET.
@@ -37,24 +37,24 @@ exports.book_update_get = asyncHandler(async (req, res, next) => {
     title: "Update Book",
     authors: allAuthors,
     genres: allGenres,
-    book: book,
+    book,
   });
 });
 ```
 
-Il controller ottiene l'id del `Book` da aggiornare dal parametro dell'URL (`req.params.id`).
-Attende la promessa restituita da `Promise.all()` per ottenere il record specificato di `Book` (popolando i campi di genere e autore) e tutti i record di `Author` e `Genre`.
+Il controller ottiene l'id del `Book` da aggiornare dal parametro URL (`req.params.id`).
+Attende la promessa restituita da `Promise.all()` per ottenere il record `Book` specificato (popolando i suoi campi genre e author) e tutti i record `Author` e `Genre`.
 
-Quando le operazioni vengono completate, la funzione verifica se sono stati trovati libri e se nessuno è stato trovato invia un errore "Libro non trovato" al middleware di gestione errori.
+Quando le operazioni sono completate, la funzione verifica se sono stati trovati dei libri e, se non ne sono stati trovati, invia un errore "Book not found" al middleware di gestione degli errori.
 
 > [!NOTE]
-> Non trovare risultati di un libro non è **un errore** per una ricerca, ma lo è per questa applicazione perché sappiamo che deve esserci un record di libro corrispondente! Il codice sopra confronta (`book===null`) nel callback, ma potrebbe anche aver concatenato il metodo [orFail()](<https://mongoosejs.com/docs/api/query.html#Query.prototype.orFail()>) alla query.
+> Non trovare alcun libro non è un errore per una ricerca — ma lo è per questa applicazione perché sappiamo che deve esistere un record di libro corrispondente! Il codice sopra confronta per (`book===null`) nel callback, ma avrebbe potuto ugualmente concatenare il metodo [orFail()](<https://mongoosejs.com/docs/api/query.html#Query.prototype.orFail()>) alla query.
 
-Quindi contrassegniamo i generi attualmente selezionati come verificati e rendiamo la vista **book_form.pug**, passando variabili per `title`, libro, tutti gli `authors` e tutti i `genres`.
+Quindi marchiamo i generi attualmente selezionati come selezionati e poi renderizziamo la vista **book_form.pug**, passando variabili per `title`, book, tutti gli `authors` e tutti i `genres`.
 
-## Controller—percorso post
+## Controller—post route
 
-Trova il metodo controller esportato `book_update_post()` e sostituiscilo con il seguente codice.
+Trova il metodo del controller esportato `book_update_post()`, e sostituiscilo con il seguente codice.
 
 ```js
 // Handle book update on POST.
@@ -118,7 +118,7 @@ exports.book_update_post = [
         title: "Update Book",
         authors: allAuthors,
         genres: allGenres,
-        book: book,
+        book,
         errors: errors.array(),
       });
       return;
@@ -131,16 +131,16 @@ exports.book_update_post = [
 ];
 ```
 
-Questo è molto simile al percorso post utilizzato quando si crea un `Book`.
-Per prima cosa, convalidiamo e sanifichiamo i dati del libro dal modulo e li utilizziamo per creare un nuovo oggetto `Book` (impostando il suo valore `_id` sull'id dell'oggetto da aggiornare). Se ci sono errori quando convalidiamo i dati, allora renderizziamo nuovamente il modulo, visualizzando inoltre i dati inseriti dall'utente, gli errori e le liste di generi e autori. Se non ci sono errori, quindi chiamiamo `Book.findByIdAndUpdate()` per aggiornare il documento `Book` e poi reindirizziamo alla sua pagina di dettaglio.
+Questo è molto simile al percorso post usato quando si crea un `Book`.
+Prima validiamo e sanifichiamo i dati del libro dal modulo e li usiamo per creare un nuovo oggetto `Book` (impostando il suo valore `_id` sull'id dell'oggetto da aggiornare). Se ci sono errori quando validiamo i dati, allora renderizziamo di nuovo il modulo, visualizzando inoltre i dati inseriti dall'utente, gli errori e le liste di generi e autori. Se non ci sono errori, allora chiamiamo `Book.findByIdAndUpdate()` per aggiornare il documento `Book`, e poi reindirizziamo alla sua pagina dei dettagli.
 
 ## Vista
 
-Non c'è bisogno di cambiare la vista per il modulo (**/views/book_form.pug**) dato che lo stesso modello funziona sia per la creazione che per l'aggiornamento del libro.
+Non c'è bisogno di cambiare la vista per il modulo (**/views/book_form.pug**) poiché lo stesso template funziona sia per creare che per aggiornare il libro.
 
 ## Aggiungi un pulsante di aggiornamento
 
-Apri la vista **book_detail.pug** e assicurati che ci siano link sia per eliminare che per aggiornare i libri in fondo alla pagina, come mostrato di seguito.
+Apri la vista **book_detail.pug** e assicurati che ci siano link sia per eliminare che per aggiornare i libri nella parte inferiore della pagina, come mostrato di seguito.
 
 ```pug
   hr
@@ -150,19 +150,19 @@ Apri la vista **book_detail.pug** e assicurati che ci siano link sia per elimina
     a(href=book.url+'/update') Update Book
 ```
 
-Dovresti ora essere in grado di aggiornare i libri dalla pagina _Dettaglio libro_.
+Dovresti ora essere in grado di aggiornare i libri dalla pagina dei dettagli del _Libro_.
 
 ## Che aspetto ha?
 
-Esegui l'applicazione, apri il browser su `http://localhost:3000/`, seleziona il link _Tutti i libri_, quindi seleziona un libro particolare. Infine, seleziona il link _Aggiorna Libro_.
+Esegui l'applicazione, apri il browser su `http://localhost:3000/`, seleziona il link _Tutti i libri_, quindi seleziona un libro particolare. Infine, seleziona il link _Aggiorna libro_.
 
-Il modulo dovrebbe apparire esattamente come la pagina _Crea libro_, solo con un titolo 'Aggiorna libro', e precompilato con i valori del record.
+Il modulo dovrebbe apparire esattamente come la pagina _Crea libro_, solo con un titolo di 'Aggiorna libro', e pre-popolato con i valori del record.
 
-![La sezione di aggiornamento libro dell'applicazione Biblioteca locale. La colonna di sinistra ha una barra di navigazione verticale. La colonna di destra ha un modulo per aggiornare il libro con un'intestazione che recita 'Aggiorna libro'. Ci sono cinque campi di input etichettati Titolo, Autore, Sommario, ISBN, Genere. Il genere è un campo opzione con casella di selezione. C'è un pulsante etichettato 'Invia' alla fine.](locallibary_express_book_update_noerrors.png)
+![La sezione di aggiornamento del libro dell'applicazione Local library. La colonna di sinistra ha una barra di navigazione verticale. La colonna di destra ha un modulo per aggiornare il libro con un'intestazione che legge 'Aggiorna libro'. Ci sono cinque campi di input etichettati Titolo, Autore, Sintesi, ISBN, Genere. Genere è un campo opzione checkbox. C'è un pulsante etichettato 'Invia' alla fine.](locallibary_express_book_update_noerrors.png)
 
 > [!NOTE]
-> Le altre pagine per l'aggiornamento degli oggetti possono essere implementate nello stesso modo. L'abbiamo lasciato come sfida.
+> Le altre pagine per l'aggiornamento degli oggetti possono essere implementate nello stesso modo. Abbiamo lasciato ciò come una sfida.
 
-## Prossimi passi
+## Passi successivi
 
-- Torna a [Guida pratica di Express Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+- Ritorna a [Express Tutorial Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).

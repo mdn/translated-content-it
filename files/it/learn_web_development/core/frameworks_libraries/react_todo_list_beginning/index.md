@@ -1,14 +1,14 @@
 ---
-title: Iniziare la nostra app ToDo in React
-short-title: App ToDo in React
+title: Iniziare la nostra app React ToDo
+short-title: App React ToDo
 slug: Learn_web_development/Core/Frameworks_libraries/React_todo_list_beginning
 l10n:
-  sourceCommit: 611edf6335e4a833a6f394d0d98b117e7b0a36bf
+  sourceCommit: edb16c0a662d7e719efe67561389a7a087c1ace9
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/React_getting_started","Learn_web_development/Core/Frameworks_libraries/React_components", "Learn_web_development/Core/Frameworks_libraries")}}
 
-Supponiamo di essere incaricati di creare un proof-of-concept in React: un'applicazione che permette agli utenti di aggiungere, modificare ed eliminare attività su cui desiderano lavorare, e anche di contrassegnare le attività come complete senza eliminarle. Questo articolo ti guiderà attraverso la struttura di base e lo stile di tale applicazione, pronta per la definizione e l'interattività dei componenti individuali, che aggiungeremo in seguito.
+Supponiamo ci sia stato chiesto di creare un proof-of-concept in React: un'app che consente agli utenti di aggiungere, modificare ed eliminare attività su cui vogliono lavorare e di contrassegnare le attività come complete senza eliminarle. Questo articolo ti guiderà attraverso la struttura di base e lo stile di una tale applicazione, pronta per la definizione e l'interattività dei singoli componenti, che aggiungeremo in seguito.
 
 > [!NOTE]
 > Se hai bisogno di confrontare il tuo codice con la nostra versione, puoi trovare una versione finita del codice dell'app React di esempio nel nostro [repository todo-react](https://github.com/mdn/todo-react). Per una versione live in esecuzione, vedi <https://mdn.github.io/todo-react/>.
@@ -18,39 +18,38 @@ Supponiamo di essere incaricati di creare un proof-of-concept in React: un'appli
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i linguaggi di base <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
-        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e il <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/command line</a>.
+        Familiarità con i linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
+        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e la <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">riga di comando/terminale</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivi di apprendimento:</th>
       <td>
-        Familiarità con il nostro caso di studio della lista todo e messa in atto della struttura e dello stile di base dell'
-        <code>App</code>.
+        Familiarità con il nostro caso di studio della lista di cose da fare e ottenere la struttura di base e lo stile di <code>App</code>.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Le user stories della nostra app
+## Le user story della nostra app
 
-Nello sviluppo software, una user story è un obiettivo attuabile dal punto di vista dell'utente. Definire le user stories prima di iniziare il lavoro ci aiuterà a focalizzare il nostro lavoro. La nostra app dovrebbe soddisfare le seguenti storie:
+Nello sviluppo software, una user story è un obiettivo attuabile dal punto di vista dell'utente. Definire le user story prima di iniziare il nostro lavoro ci aiuterà a concentrarci. La nostra app dovrebbe soddisfare le seguenti storie:
 
 Come utente, posso
 
 - leggere un elenco di attività.
-- aggiungere un'attività utilizzando il mouse o la tastiera.
-- contrassegnare qualsiasi attività come completata, utilizzando il mouse o la tastiera.
-- eliminare qualsiasi attività, utilizzando il mouse o la tastiera.
-- modificare qualsiasi attività, utilizzando il mouse o la tastiera.
-- visualizzare un sottoinsieme specifico di attività: Tutte le attività, solo l'attività attiva, o solo le attività completate.
+- aggiungere un'attività usando il mouse o la tastiera.
+- contrassegnare qualsiasi attività come completata, usando il mouse o la tastiera.
+- eliminare qualsiasi attività, usando il mouse o la tastiera.
+- modificare qualsiasi attività, usando il mouse o la tastiera.
+- visualizzare un sottoinsieme specifico di attività: tutte le attività, solo le attività attive o solo le attività completate.
 
-Affronteremo queste storie una per una.
+Affronteremo queste storie una alla volta.
 
-## Pulizia preliminare del progetto
+## Preparativi pre-progetto
 
-Vite ci ha fornito del codice che non useremo affatto per il nostro progetto. I seguenti comandi del terminale lo elimineranno per fare spazio al nostro nuovo progetto. Assicurati di iniziare nella directory principale dell'app!
+Vite ci ha fornito del codice che non utilizzeremo affatto per il nostro progetto. I seguenti comandi di terminale lo elimineranno per fare spazio al nostro nuovo progetto. Assicurati di iniziare nella directory principale dell'app!
 
 ```bash
 # Move into the src directory
@@ -64,11 +63,11 @@ cd ..
 ```
 
 > [!NOTE]
-> Se hai fermato il tuo server per eseguire i compiti del terminale menzionati sopra, dovrai riavviarlo usando `npm run dev`.
+> Se hai interrotto il tuo server per eseguire le attività di terminale sopra menzionate, dovrai avviarlo di nuovo usando `npm run dev`.
 
 ## Codice iniziale del progetto
 
-Come punto di partenza per questo progetto, forniremo due elementi: una funzione `App()` per sostituire quella appena eliminata, e del CSS per stilizzare la tua app.
+Come punto di partenza per questo progetto, forniremo due cose: una funzione `App()` per sostituire quella che hai appena eliminato e un po' di CSS per dare stile alla tua app.
 
 ### Il JSX
 
@@ -174,7 +173,7 @@ function App(props) {
 export default App;
 ```
 
-Ora apri `index.html` e modifica il testo dell'elemento [`<title>`](/it/docs/Web/HTML/Reference/Elements/title) in `TodoMatic`. In questo modo, corrisponderà all'[`<h1>`](/it/docs/Web/HTML/Reference/Elements/Heading_Elements) in cima alla nostra app.
+Ora apri `index.html` e cambia il testo dell'elemento [`<title>`](/it/docs/Web/HTML/Reference/Elements/title) in `TodoMatic`. In questo modo, corrisponderà al [`<h1>`](/it/docs/Web/HTML/Reference/Elements/Heading_Elements) in cima alla nostra app.
 
 ```html
 <title>TodoMatic</title>
@@ -182,20 +181,20 @@ Ora apri `index.html` e modifica il testo dell'elemento [`<title>`](/it/docs/Web
 
 Quando il tuo browser si aggiorna, dovresti vedere qualcosa del genere:
 
-![app todo-matic, non stilizzata, mostrando un miscuglio di etichette, input e pulsanti](unstyled-app.png)
+![app todo-matic, non stilizzata, che mostra un disordine di etichette, campi di input e pulsanti](unstyled-app.png)
 
-È brutta e non funziona ancora, ma va bene così: la stileremo tra un momento. Prima, considera il JSX che abbiamo, e come corrisponde alle nostre user stories:
+È brutto e non funziona ancora, ma va bene così — lo stileremo in un momento. Prima, considera il JSX che abbiamo e come corrisponde alle nostre user story:
 
 - Abbiamo un elemento [`<form>`](/it/docs/Web/HTML/Reference/Elements/form), con un [`<input type="text">`](/it/docs/Web/HTML/Reference/Elements/input/text) per scrivere una nuova attività e un pulsante per inviare il modulo.
 - Abbiamo un array di pulsanti che verranno utilizzati per filtrare le nostre attività.
 - Abbiamo un'intestazione che ci dice quante attività rimangono.
-- Abbiamo le nostre 3 attività, disposte in un elenco non ordinato. Ogni attività è un elemento di lista ([`<li>`](/it/docs/Web/HTML/Reference/Elements/li)) e ha pulsanti per modificarla ed eliminarla e una casella di controllo per segnarla come completata.
+- Abbiamo le nostre 3 attività, disposte in un elenco non ordinato. Ogni attività è un elemento di elenco ([`<li>`](/it/docs/Web/HTML/Reference/Elements/li)), e ha pulsanti per modificare ed eliminare e una casella di controllo per contrassegnarlo come fatto.
 
-Il modulo ci permetterà di _creare_ attività; i pulsanti ci consentiranno di _filtrarle_; l'intestazione e l'elenco sono il nostro modo di _leggerle_. L'interfaccia utente per _modificare_ un'attività è al momento assente. Va bene così: la scriveremo più tardi.
+Il modulo ci permetterà di _creare_ attività; i pulsanti ci permetteranno di _filtrare_ le attività; l'intestazione e l'elenco sono il nostro modo per _leggere_ le attività. L'interfaccia utente per _modificare_ un'attività è al momento assente. Va bene – lo scriveremo in seguito.
 
-### Caratteristiche di accessibilità
+### Funzionalità di accessibilità
 
-Potresti notare qualche markup insolito qui. Per esempio:
+Potresti notare alcuni markup insoliti qui. Per esempio:
 
 ```jsx
 <button type="button" className="btn toggle-btn" aria-pressed="true">
@@ -205,11 +204,11 @@ Potresti notare qualche markup insolito qui. Per esempio:
 </button>
 ```
 
-Qui, `aria-pressed` dice alla tecnologia assistiva (come i lettori di schermo) che il pulsante può trovarsi in uno dei due stati: `premuto` o `non premuto`. Considerali come analoghi per `on` e `off`. Impostare un valore di `"true"` significa che il pulsante è premuto per impostazione predefinita.
+Qui, `aria-pressed` informa la tecnologia assistiva (come gli screen reader) che il pulsante può trovarsi in uno dei due stati: `pressed` o `unpressed`. Pensiamo a questi stati come equivalenti a `on` e `off`. Impostare un valore di `"true"` significa che il pulsante è premuto per impostazione predefinita.
 
-La classe `visually-hidden` non ha ancora effetto, perché non abbiamo incluso alcun CSS. Una volta messi in atto i nostri stili, comunque, qualsiasi elemento con questa classe sarà nascosto agli utenti vedenti e ancora disponibile agli utenti di tecnologia assistiva — questo perché queste parole non sono necessarie agli utenti vedenti; sono lì per fornire maggiori informazioni su cosa fa il pulsante per gli utenti di tecnologia assistiva che non hanno il contesto visivo extra per aiutarli.
+La classe `visually-hidden` non ha ancora effetto, perché non abbiamo ancora incluso nessun CSS. Una volta che avremo messo in atto i nostri stili, però, qualsiasi elemento con questa classe sarà nascosto agli utenti vedenti e ancora disponibile per gli utenti di tecnologia assistiva — questo perché queste parole non sono necessarie per gli utenti vedenti; ci sono per fornire più informazioni su ciò che fa il pulsante per gli utenti di tecnologia assistiva che non hanno il contesto visivo aggiuntivo per aiutarli.
 
-Più in basso, puoi trovare il nostro elemento [`<ul>`](/it/docs/Web/HTML/Reference/Elements/ul):
+Più in basso, trovi il nostro elemento [`<ul>`](/it/docs/Web/HTML/Reference/Elements/ul):
 
 ```html
 <ul
@@ -220,11 +219,11 @@ Più in basso, puoi trovare il nostro elemento [`<ul>`](/it/docs/Web/HTML/Refere
 </ul>
 ```
 
-L'attributo `role` aiuta la tecnologia assistiva a spiegare che tipo di elemento rappresenta un tag. Un `<ul>` è trattato come una lista per impostazione predefinita, ma gli stili che stiamo per aggiungere romperanno tale funzionalità. Questo ruolo ripristinerà il significato "lista" all'elemento `<ul>`. Se vuoi saperne di più sul perché questo è necessario, puoi controllare l'articolo di [Scott O'Hara, "Fixing Lists"](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
+L'attributo `role` aiuta la tecnologia assistiva a spiegare quale tipo di elemento rappresenta un tag. Un `<ul>` è trattato come un elenco per impostazione predefinita, ma gli stili che stiamo per aggiungere romperanno tale funzionalità. Questo ruolo ripristinerà il significato di "elenco" all'elemento `<ul>`. Se vuoi sapere di più sul perché questo è necessario, puoi consultare l'articolo di [Scott O'Hara, "Fixing Lists"](https://www.scottohara.me/blog/2019/01/12/lists-and-safari.html).
 
-L'attributo `aria-labelledby` dice alle tecnologie assistive che stiamo trattando la nostra intestazione della lista come l'etichetta che descrive lo scopo della lista sottostante. Stabilire questa associazione offre alla lista un contesto più informativo, il che potrebbe aiutare gli utenti di tecnologia assistiva a capire meglio lo scopo della lista.
+L'attributo `aria-labelledby` dice alle tecnologie assistive che stiamo trattando la nostra intestazione dell'elenco come l'etichetta che descrive lo scopo dell'elenco sottostante. Fare questa associazione dà all'elenco un contesto più informativo, che potrebbe aiutare gli utenti di tecnologia assistiva a comprendere meglio lo scopo dell'elenco.
 
-Infine, le etichette e gli input negli elementi della nostra lista hanno alcuni attributi unici per JSX:
+Infine, le etichette e i campi di input nei nostri elementi di elenco hanno alcuni attributi unici per JSX:
 
 ```jsx
 <div className="c-cb">
@@ -235,20 +234,20 @@ Infine, le etichette e gli input negli elementi della nostra lista hanno alcuni 
 </div>
 ```
 
-L'attributo `defaultChecked` nel tag `<input />` dice a React di selezionare inizialmente questa casella di controllo. Se dovessimo usare `checked`, come faremmo in HTML regolare, React loggerebbe alcuni avvisi nella console del nostro browser relativi alla gestione degli eventi sulla casella di controllo, che vogliamo evitare. Non preoccuparti troppo di ciò per ora: copriremo questo argomento più avanti quando arriveremo all'utilizzo degli eventi.
+L'attributo `defaultChecked` nel tag `<input />` dice a React di selezionare questa casella di controllo inizialmente. Se utilizzassimo `checked`, come faremmo nel normale HTML, React loggerebbe alcuni avvisi nella console del nostro browser relativi alla gestione degli eventi sulla casella di controllo, cosa che vogliamo evitare. Non preoccuparti troppo di questo per il momento — lo affronteremo più avanti quando passeremo agli eventi.
 
-L'attributo `htmlFor` corrisponde all'attributo `for` utilizzato in HTML. Non possiamo usare `for` come attributo in JSX perché `for` è una parola riservata, quindi React utilizza `htmlFor` al suo posto.
+L'attributo `htmlFor` corrisponde all'attributo `for` utilizzato nell'HTML. Non possiamo usare `for` come attributo in JSX perché `for` è una parola riservata, quindi React utilizza `htmlFor`.
 
 ### Una nota sugli attributi booleani in JSX
 
-L'attributo `defaultChecked` nella sezione precedente è un attributo booleano – un attributo il cui valore è `true` o `false`. Come in HTML, un attributo booleano è `true` se è presente e `false` se è assente; l'assegnazione sul lato destro dell'espressione è opzionale. Puoi impostare esplicitamente il suo valore passandolo tra parentesi graffe – ad esempio, `defaultChecked={true}` o `defaultChecked={false}`.
+L'attributo `defaultChecked` nella sezione precedente è un attributo booleano – un attributo il cui valore è `true` o `false`. Come nell'HTML, un attributo booleano è `true` se è presente e `false` se è assente; l'assegnazione sul lato destro dell'espressione è facoltativa. Puoi impostare esplicitamente il suo valore passando tra parentesi graffe – per esempio, `defaultChecked={true}` o `defaultChecked={false}`.
 
-Poiché JSX è JavaScript, c'è un tranello di cui essere consapevoli con gli attributi booleani: scrivere `defaultChecked="false"` imposterà un valore _stringa_ di `"false"` piuttosto che un valore _booleano_. Le stringhe non vuote sono {{Glossary("Truthy", "truthy")}}, quindi React considererà `defaultChecked` come `true` e selezionerà la casella di controllo per impostazione predefinita. Questo non è ciò che vogliamo, quindi dovremmo evitarlo.
+Poiché JSX è JavaScript, c'è un avviso da tenere a mente con gli attributi booleani: scrivere `defaultChecked="false"` imposterà un valore di _stringa_ `"false"` anziché un valore _booleano_. Le stringhe non vuote sono {{Glossary("Truthy", "truthy")}}, quindi React considererà `defaultChecked` come `true` e selezionerà la casella di controllo per impostazione predefinita. Questo non è quello che vogliamo, quindi dovremmo evitarlo.
 
-Se vuoi, puoi esercitarti a scrivere attributi booleani con un altro attributo che potresti aver visto prima, [`hidden`](/it/docs/Web/HTML/Reference/Global_attributes/hidden), che impedisce agli elementi di essere renderizzati sulla pagina. Prova ad aggiungere `hidden` all'elemento `<h1>` in `App.jsx` per vedere cosa succede, quindi prova a impostare esplicitamente il suo valore a `{false}`. Nota, ancora, che scrivere `hidden="false"` risulta in un valore truthy quindi l'`<h1>` _sarà_ nascosto. Non dimenticare di rimuovere questo codice quando hai finito.
+Se vuoi, puoi esercitarti a scrivere attributi booleani con un altro attributo che potresti aver visto prima, [`hidden`](/it/docs/Web/HTML/Reference/Global_attributes/hidden), che impedisce agli elementi di essere visualizzati nella pagina. Prova ad aggiungere `hidden` all'elemento `<h1>` in `App.jsx` per vedere cosa succede, poi prova a impostare esplicitamente il suo valore a `{false}`. Nota, ancora, che scrivere `hidden="false"` risulta in un valore truthy quindi l'`<h1>` _si_ nasconderà. Non dimenticare di rimuovere questo codice quando hai finito.
 
 > [!NOTE]
-> L'attributo `aria-pressed` usato nel nostro frammento di codice precedente ha un valore di `"true"` perché `aria-pressed` non è un vero attributo booleano nel modo in cui lo è `checked`.
+> L'attributo `aria-pressed` utilizzato nel nostro snippet di codice precedente ha un valore di `"true"` perché `aria-pressed` non è un vero attributo booleano come `checked`.
 
 ### Implementare i nostri stili
 
@@ -374,7 +373,6 @@ body {
   text-align: center;
 }
 .visually-hidden {
-  clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   height: 1px;
   overflow: hidden;
@@ -553,10 +551,10 @@ body {
 /* End checkbox styles */
 ```
 
-Salva e guarda di nuovo il tuo browser, e la tua app dovrebbe avere ora uno stile ragionevole.
+Salva e torna al tuo browser, e la tua app dovrebbe ora avere uno stile ragionevole.
 
 ## Riepilogo
 
-Ora la nostra app lista todo assomiglia un po' di più a una vera app! Il problema è: non fa ancora nulla. Inizieremo a risolverlo nel prossimo capitolo!
+Ora la nostra app della lista di cose da fare sembra effettivamente un po' più come una vera app! Il problema è: non fa ancora nulla. Inizieremo a risolvere questo problema nel prossimo capitolo!
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/React_getting_started","Learn_web_development/Core/Frameworks_libraries/React_components", "Learn_web_development/Core/Frameworks_libraries")}}

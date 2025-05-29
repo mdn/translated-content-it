@@ -1,19 +1,19 @@
 ---
-title: Modulo di Eliminazione Autore
+title: Modulo Elimina Autore
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Delete_author_form
 l10n:
-  sourceCommit: f2dc3d5367203c860cf1a71ce0e972f018523849
+  sourceCommit: 2c0f972d873ea2db5163dbcb12987847124751ad
 ---
 
 Questo sottoarticolo mostra come definire una pagina per eliminare oggetti `Author`.
 
-Come discusso nella sezione [progettazione del modulo](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms#form_design), la nostra strategia sarà di consentire l'eliminazione solo di oggetti che non sono referenziati da altri oggetti (in questo caso ciò significa che non permetteremo che un `Author` venga eliminato se è referenziato da un `Book`).
-In termini di implementazione ciò significa che il modulo deve confermare che non ci siano libri associati prima che l'autore venga eliminato.
-Se ci sono libri associati, dovrebbe mostrarli e indicare che devono essere eliminati prima che l'oggetto `Author` possa essere eliminato.
+Come discusso nella sezione [disegno del modulo](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms#form_design), la nostra strategia sarà quella di consentire l'eliminazione solo di oggetti che non sono referenziati da altri oggetti (in questo caso, ciò significa che non permetteremo che un `Author` venga eliminato se è referenziato da un `Book`).
+In termini di implementazione, questo significa che il modulo deve confermare che non ci siano libri associati prima che l'autore venga eliminato.
+Se ci sono libri associati, dovrebbe mostrarli e dichiarare che devono essere eliminati prima che l'oggetto `Author` possa essere eliminato.
 
-## Controller—route get
+## Controller—rotte get
 
-Aprire **/controllers/authorController.js**. Trovare il metodo del controller esportato `author_delete_get()` e sostituirlo con il seguente codice.
+Apri **/controllers/authorController.js**. Trova il metodo controller esportato `author_delete_get()` e sostituiscilo con il seguente codice.
 
 ```js
 // Display Author delete form on GET.
@@ -31,19 +31,19 @@ exports.author_delete_get = asyncHandler(async (req, res, next) => {
 
   res.render("author_delete", {
     title: "Delete Author",
-    author: author,
+    author,
     author_books: allBooksByAuthor,
   });
 });
 ```
 
 Il controller ottiene l'id dell'istanza `Author` da eliminare dal parametro URL (`req.params.id`).
-Utilizza `await` sulla promessa restituita da `Promise.all()` per attendere asincronamente sul record dell'autore specificato e tutti i libri associati (in parallelo).
-Quando entrambe le operazioni sono completate, viene renderizzata la vista **author_delete.pug**, passando variabili per il `title`, `author`, e `author_books`.
+Usa `await` sulla promessa restituita da `Promise.all()` per aspettare asincronamente sul record dell'autore specificato e tutti i libri associati (in parallelo).
+Quando entrambe le operazioni sono completate, renderizza la vista **author_delete.pug**, passando variabili per il `title`, `author` e `author_books`.
 
 > [!NOTE]
-> Se `findById()` non restituisce risultati, l'autore non è nel database.
-> In questo caso non c'è nulla da eliminare, quindi reindirizziamo immediatamente alla lista di tutti gli autori.
+> Se `findById()` non restituisce alcun risultato, l'autore non è nel database.
+> In questo caso non c'è nulla da eliminare, quindi reindirizziamo immediatamente all'elenco di tutti gli autori.
 >
 > ```js
 > if (author === null) {
@@ -52,9 +52,9 @@ Quando entrambe le operazioni sono completate, viene renderizzata la vista **aut
 > }
 > ```
 
-## Controller—route post
+## Controller—rotte post
 
-Trovare il metodo del controller esportato `author_delete_post()` e sostituirlo con il seguente codice.
+Trova il metodo controller esportato `author_delete_post()`, e sostituiscilo con il seguente codice.
 
 ```js
 // Handle Author delete on POST.
@@ -69,7 +69,7 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
     // Author has books. Render in same way as for GET route.
     res.render("author_delete", {
       title: "Delete Author",
-      author: author,
+      author,
       author_books: allBooksByAuthor,
     });
     return;
@@ -80,18 +80,18 @@ exports.author_delete_post = asyncHandler(async (req, res, next) => {
 });
 ```
 
-Prima validiamo che sia stato fornito un id (questo viene inviato tramite i parametri del corpo del modulo, anziché usare la versione nell'URL).
-Poi otteniamo l'autore e i suoi libri associati nello stesso modo del route `GET`.
-Se non ci sono libri, allora eliminiamo l'oggetto autore e reindirizziamo alla lista di tutti gli autori.
-Se ci sono ancora libri, allora semplicemente ricarichiamo il modulo, passando l'autore e la lista dei libri da eliminare.
+Per prima cosa, verifichiamo che sia stato fornito un id (questo viene inviato tramite i parametri del corpo del modulo, piuttosto che usando la versione nell'URL).
+Poi otteniamo l'autore e i suoi libri associati nello stesso modo della rotta `GET`.
+Se non ci sono libri, allora eliminiamo l'oggetto autore e reindirizziamo all'elenco di tutti gli autori.
+Se ci sono ancora libri, allora ri-renderizziamo semplicemente il modulo, passando l'autore e l'elenco dei libri da eliminare.
 
 > [!NOTE]
-> Potremmo verificare se la chiamata a `findById()` restituisce un risultato e, in caso contrario, visualizzare immediatamente la lista di tutti gli autori.
-> Abbiamo lasciato il codice com'è sopra per brevità (restituirà comunque la lista degli autori se l'id non viene trovato, ma ciò accadrà dopo `findByIdAndDelete()`).
+> Potremmo verificare se la chiamata a `findById()` restituisce qualche risultato e, in caso contrario, renderizzare immediatamente l'elenco di tutti gli autori.
+> Abbiamo lasciato il codice com'è sopra per brevità (restituirà comunque l'elenco degli autori se l'id non viene trovato, ma ciò accadrà dopo `findByIdAndDelete()`).
 
 ## Vista
 
-Creare **/views/author_delete.pug** e copiare il testo qui sotto.
+Crea **/views/author_delete.pug** e copia il testo sottostante.
 
 ```pug
 extends layout
@@ -122,22 +122,22 @@ block content
       button.btn.btn-primary(type='submit') Delete
 ```
 
-La vista estende il template di layout, sovrascrivendo il blocco denominato `content`. In cima visualizza i dettagli dell'autore.
-Poi include un'istruzione condizionale basata sul numero di **`author_books`** (le clausole `if` e `else`).
+La vista estende il modello di layout, sovrascrivendo il blocco denominato `content`. In cima mostra i dettagli dell'autore.
+Include quindi una dichiarazione condizionale basata sul numero di **`author_books`** (le clausole `if` e `else`).
 
-- Se _ci sono_ libri associati all'autore, la pagina elenca i libri e afferma che questi devono essere eliminati prima che l'autore possa essere eliminato.
+- Se _ci sono_ libri associati all'autore, la pagina elenca i libri e dichiara che questi devono essere eliminati prima che questo `Author` possa essere eliminato.
 - Se _non ci sono_ libri, la pagina visualizza un prompt di conferma.
-- Se il pulsante **Delete** viene cliccato, allora l'id dell'autore viene inviato al server in una richiesta `POST` e il record di quell'autore verrà eliminato.
+- Se viene cliccato il pulsante **Delete**, l'id dell'autore viene inviato al server in una richiesta `POST` e il record di quell'autore sarà eliminato.
 
 ## Aggiungere un controllo di eliminazione
 
-Successivamente aggiungeremo un controllo **Delete** alla vista _dettaglio Autore_ (la pagina di dettaglio è un buon posto da cui eliminare un record).
+Successivamente, aggiungeremo un controllo **Delete** alla vista _dettaglio Autore_ (la pagina dei dettagli è un buon posto da cui eliminare un record).
 
 > [!NOTE]
-> In una implementazione completa, il controllo sarebbe visibile solo agli utenti autorizzati.
-> Tuttavia, a questo punto, non abbiamo ancora un sistema di autorizzazione!
+> In un'implementazione completa, il controllo sarebbe reso visibile solo agli utenti autorizzati.
+> Tuttavia, a questo punto non abbiamo un sistema di autorizzazione in atto!
 
-Aprire la vista **author_detail.pug** e aggiungere le seguenti righe in fondo.
+Apri la vista **author_detail.pug** e aggiungi le seguenti righe in fondo.
 
 ```pug
 hr
@@ -145,30 +145,30 @@ p
   a(href=author.url+'/delete') Delete author
 ```
 
-Il controllo ora dovrebbe apparire come un link, come mostrato di seguito nella pagina _dettaglio Autore_.
+Il controllo dovrebbe ora apparire come un link, come mostrato di seguito sulla pagina _dettaglio Autore_.
 
-![La sezione dei dettagli Autore dell'applicazione Biblioteca Locale. La colonna sinistra ha una barra di navigazione verticale. La sezione destra contiene i dettagli dell'autore con un titolo che ha il nome dell'autore seguito dalle date di vita dell'autore e sotto elenca i libri scritti dall'autore. C'è un pulsante etichettato 'Delete Author' in basso.](locallibary_express_author_detail_delete.png)
+![La sezione Dettagli Autore dell'applicazione Bibliotecario locale. La colonna sinistra ha una barra di navigazione verticale. La sezione di destra contiene i dettagli dell'autore con un'intestazione che ha il nome dell'Autore seguito dalle date di vita dell'autore e elenca i libri scritti dall'autore sotto di essa. C'è un pulsante etichettato 'Elimina Autore' in fondo.](locallibary_express_author_detail_delete.png)
 
-## Come si presenta?
+## Come appare?
 
-Eseguire l'applicazione e aprire il browser a `http://localhost:3000/`.
-Quindi selezionare il link _Tutti gli autori_ e poi selezionare un autore particolare. Infine selezionare il link _Elimina autore_.
+Esegui l'applicazione e apri il browser su `http://localhost:3000/`.
+Poi seleziona il link _All authors_ e quindi seleziona un autore specifico. Infine seleziona il link _Delete author_.
 
-Se l'autore non ha libri, vi verrà presentata una pagina come questa.
-Dopo aver premuto elimina, il server eliminerà l'autore e reindirizzerà alla lista degli autori.
+Se l'autore non ha libri, ti verrà presentata una pagina come questa.
+Dopo aver premuto delete, il server eliminerà l'autore e reindirizzerà all'elenco degli autori.
 
-![La sezione Eliminare Autore dell'applicazione Biblioteca Locale di un autore che non ha alcun libro. La colonna sinistra ha una barra di navigazione verticale. La sezione destra contiene il nome e le date di vita dell'autore. C'è la domanda "Vuoi davvero eliminare questo autore?" con un pulsante etichettato 'Delete'.](locallibary_express_author_delete_nobooks.png)
+![La sezione Elimina Autore dell'applicazione Bibliotecario locale di un autore che non ha libri. La colonna sinistra ha una barra di navigazione verticale. La sezione di destra contiene il nome dell'autore e le date di vita. C'è la domanda "Vuoi davvero eliminare questo autore" con un pulsante etichettato 'Delete'.](locallibary_express_author_delete_nobooks.png)
 
-Se l'autore ha libri, allora vi verrà presentata una vista come la seguente.
-Si possono quindi eliminare i libri dalle loro pagine di dettaglio (una volta che quel codice è implementato!).
+Se l'autore ha libri, ti verrà presentata una vista come la seguente.
+Puoi quindi eliminare i libri dalle loro pagine di dettaglio (una volta che quel codice è implementato!).
 
-![La sezione Eliminare Autore dell'applicazione Biblioteca Locale di un autore che ha libri a suo nome. La sezione contiene il nome e le date di vita dell'autore. C'è un'affermazione che dice "Elimina i seguenti libri prima di tentare di eliminare questo autore" seguita dai libri dell'autore. La lista include i titoli di ciascun libro, come link, seguiti da una breve descrizione in testo semplice.](locallibary_express_author_delete_withbooks.png)
+![La sezione Elimina Autore dell'applicazione Bibliotecario locale di un autore che ha libri sotto il suo nome. La sezione contiene il nome e le date di vita dell'autore. C'è una dichiarazione che dice "Elimina i seguenti libri prima di tentare di eliminare questo autore", seguita dai libri dell'autore. L'elenco include i titoli di ciascun libro, come link, seguiti da una breve descrizione in testo semplice.](locallibary_express_author_delete_withbooks.png)
 
 > [!NOTE]
-> Le altre pagine per eliminare oggetti possono essere implementate nello stesso modo.
-> Abbiamo lasciato questo come una sfida.
+> Le altre pagine per eliminare gli oggetti possono essere implementate in modo molto simile.
+> Lasciamo questo come una sfida.
 
 ## Prossimi passi
 
-- Torna a [Express Tutorial Parte 6: Lavorare con i form](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
-- Procedi all'ultimo sottoarticolo della parte 6: [Modulo di aggiornamento libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Update_Book_form).
+- Torna a [Express Tutorial Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+- Procedi all'ultimo sottoarticolo della parte 6: [Modulo Aggiorna Libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Update_Book_form).

@@ -2,10 +2,10 @@
 title: Esempio 2
 slug: Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_2
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: edb16c0a662d7e719efe67561389a7a087c1ace9
 ---
 
-Questo è il secondo esempio che spiega [come costruire widget personalizzati per moduli](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls).
+Questo è il secondo esempio che spiega [come costruire widget di modulo personalizzati](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls).
 
 ## JS
 
@@ -89,7 +89,6 @@ Questo è il secondo esempio che spiega [come costruire widget personalizzati pe
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
 
-  background: #f0f0f0;
   background: linear-gradient(0deg, #e3e3e3, #fcfcfc 50%, #f0f0f0);
 }
 

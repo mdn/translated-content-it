@@ -1,27 +1,28 @@
 ---
-title: Crea Modulo Genere
+title: Creare modulo genere
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_genre_form
 l10n:
-  sourceCommit: f2dc3d5367203c860cf1a71ce0e972f018523849
+  sourceCommit: 2c0f972d873ea2db5163dbcb12987847124751ad
 ---
 
-Questo sottoarticolo mostra come definire la nostra pagina per creare oggetti `Genre` (questo è un buon punto di partenza perché il `Genre` ha solo un campo, il suo `name`, e nessuna dipendenza). Come qualsiasi altra pagina, dobbiamo impostare rotte, controller e viste.
+Questo sott’articolo mostra come definire la nostra pagina per creare oggetti `Genre` (questo è un buon punto di partenza poiché il `Genre` ha solo un campo, il suo `name`, e nessuna dipendenza). Come qualsiasi altra pagina, dobbiamo impostare rotte, controller e viste.
 
-## Importa metodi di validazione e sanificazione
+## Importare metodi di validazione e sanificazione
 
-Per utilizzare _express-validator_ nei nostri controller dobbiamo _richiedere_ le funzioni che vogliamo usare dal modulo `'express-validator'`.
+Per utilizzare l'_express-validator_ nei nostri controller dobbiamo _richiedere_ le funzioni che vogliamo utilizzare dal modulo `'express-validator'`.
 
-Apri **/controllers/genreController.js** e aggiungi la seguente riga all'inizio del file, prima di qualsiasi funzione gestore di rotta:
+Aprire **/controllers/genreController.js** e aggiungere la seguente riga all'inizio del file, prima di qualsiasi funzione gestore di route:
 
 ```js
 const { body, validationResult } = require("express-validator");
 ```
 
-Nota che `require("express-validator")` è semplicemente una chiamata di funzione che restituisce un oggetto, e noi [distruggiamo](/it/docs/Web/JavaScript/Reference/Operators/Destructuring) le due proprietà, `body` e `validationResult`, dall'oggetto, così possiamo usarle come variabili direttamente.
+Nota che `require("express-validator")` è solo una chiamata a funzione che restituisce un oggetto, e noi [destrutturiamo](/it/docs/Web/JavaScript/Reference/Operators/Destructuring) le due proprietà, `body` e `validationResult`, dall'oggetto, in modo da poterle utilizzare come variabili direttamente.
 
-## Controller—get route
+## Controller—route get
 
-Trova il metodo del controller esportato `genre_create_get()` e sostituiscilo con il seguente codice. Questo rende la vista **genre_form.pug**, passando una variabile titolo.
+Trova il metodo controller esportato `genre_create_get()` e sostituiscilo con il seguente codice.
+Questo rende la vista **genre_form.pug**, passando una variabile `title`.
 
 ```js
 // Display Genre create form on GET.
@@ -30,11 +31,12 @@ exports.genre_create_get = (req, res, next) => {
 };
 ```
 
-Nota che questo sostituisce il gestore asincrono di placeholder che abbiamo aggiunto in [Express Tutorial Part 4: Routes and controllers](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#genre_controller) con una funzione di gestore di rotta "normale" di express. Non abbiamo bisogno del wrapper `asyncHandler()` per questa rotta, perché non contiene codice che può generare un'eccezione.
+Nota che questo sostituisce il gestore asincrono segnaposto che abbiamo aggiunto nell'[Express Tutorial Parte 4: Rotte e controller](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#genre_controller) con una funzione gestore di route "normale" di express.
+Non abbiamo bisogno del wrapper `asyncHandler()` per questa route, perché non contiene codice che può generare un'eccezione.
 
-## Controller—post route
+## Controller—route post
 
-Trova il metodo del controller esportato `genre_create_post()` e sostituiscilo con il seguente codice.
+Trova il metodo controller esportato `genre_create_post()` e sostituiscilo con il seguente codice.
 
 ```js
 // Handle Genre create on POST.
@@ -57,7 +59,7 @@ exports.genre_create_post = [
       // There are errors. Render the form again with sanitized values/error messages.
       res.render("genre_form", {
         title: "Create Genre",
-        genre: genre,
+        genre,
         errors: errors.array(),
       });
       return;
@@ -79,12 +81,13 @@ exports.genre_create_post = [
 ];
 ```
 
-La prima cosa da notare è che invece di essere una singola funzione middleware (con argomenti `(req, res, next)`) il controller specifica un _array_ di funzioni middleware. L'array viene passato alla funzione del router e ogni metodo viene chiamato in ordine.
+La prima cosa da notare è che invece di essere una singola funzione middleware (con argomenti `(req, res, next)`), il controller specifica un _array_ di funzioni middleware.
+L'array viene passato alla funzione del router e ciascun metodo viene chiamato in ordine.
 
 > [!NOTE]
-> Questo approccio è necessario, perché i validator sono funzioni middleware.
+> Questo approccio è necessario, perché i validatori sono funzioni middleware.
 
-Il primo metodo nell'array definisce un validatore del corpo (`body()`) che valida e sanifica il campo. Questo usa `trim()` per rimuovere qualsiasi spazio bianco finale/iniziale, verifica che il campo _name_ non sia vuoto, e poi usa `escape()` per rimuovere eventuali caratteri HTML pericolosi.
+Il primo metodo nell'array definisce un body validator (`body()`) che valida e sanifica il campo. Questo usa `trim()` per rimuovere qualsiasi spazio vuoto alla fine/inizio, verifica che il campo _name_ non sia vuoto e quindi usa `escape()` per rimuovere qualsiasi carattere HTML pericoloso).
 
 ```js
 [
@@ -97,7 +100,7 @@ Il primo metodo nell'array definisce un validatore del corpo (`body()`) che vali
 ];
 ```
 
-Dopo aver specificato i validator, creiamo una funzione middleware per estrarre eventuali errori di validazione. Usiamo `isEmpty()` per controllare se ci sono errori nel risultato della validazione. Se ci sono, rendiamo nuovamente il modulo, passando il nostro oggetto genere sanificato e l'array di messaggi di errore (`errors.array()`).
+Dopo aver specificato i validatori creiamo una funzione middleware per estrarre eventuali errori di validazione. Usiamo `isEmpty()` per controllare se esistono errori nel risultato della validazione. Se ci sono, rendiamo nuovamente il modulo, passando il nostro oggetto genere sanificato e l'array di messaggi di errore (`errors.array()`).
 
 ```js
 // Process request after validation and sanitization.
@@ -112,7 +115,7 @@ asyncHandler(async (req, res, next) => {
     // There are errors. Render the form again with sanitized values/error messages.
     res.render("genre_form", {
       title: "Create Genre",
-      genre: genre,
+      genre,
       errors: errors.array(),
     });
     return;
@@ -122,9 +125,12 @@ asyncHandler(async (req, res, next) => {
 });
 ```
 
-Se i dati del nome del genere sono validi, eseguiamo una ricerca senza distinzione di maiuscole e minuscole per vedere se un `Genre` con lo stesso nome esiste già (poiché non vogliamo creare record duplicati o quasi duplicati che differiscono solo per il caso delle lettere, come: "Fantasy", "fantasy", "FaNtAsY", e così via). Per ignorare il caso delle lettere e gli accenti durante la ricerca, concatenamo il metodo [`collation()`](<https://mongoosejs.com/docs/api/query.html#Query.prototype.collation()>), specificando la locale 'en' e una forza di 2 (per ulteriori informazioni vedere l'argomento [Collation](https://www.mongodb.com/docs/manual/reference/collation/) di MongoDB).
+Se i dati del nome del genere sono validi, eseguiamo una ricerca senza distinzione tra maiuscole e minuscole per vedere se esiste già un `Genre` con lo stesso nome (poiché non vogliamo creare record duplicati o quasi duplicati che variano solo per distinzione delle lettere, come: "Fantasy", "fantasy", "FaNtAsY", e così via).
+Per ignorare le lettere maiuscole e gli accenti durante la ricerca, colleghiamo il metodo [`collation()`](<https://mongoosejs.com/docs/api/query.html#Query.prototype.collation()>) specificando la locale 'en' e la forza 2 (per ulteriori informazioni vedere l'argomento [Collation di MongoDB](https://www.mongodb.com/docs/manual/reference/collation/)).
 
-Se esiste già un `Genre` con un nome corrispondente, reindirizziamo alla sua pagina di dettaglio. In caso contrario, salviamo il nuovo `Genre` e reindirizziamo alla sua pagina di dettaglio. Nota che qui `await` attende il risultato della query del database, seguendo lo stesso schema degli altri gestori di rotta.
+Se esiste un `Genre` con un nome corrispondente, reindirizziamo alla sua pagina di dettaglio.
+In caso contrario, salviamo il nuovo `Genre` e reindirizziamo alla sua pagina di dettaglio.
+Nota che qui `await` sull'esito della query del database, seguendo lo stesso schema delle altre funzioni gestore di route.
 
 ```js
 // Check if Genre with same name already exists.
@@ -141,11 +147,12 @@ if (genreExists) {
 }
 ```
 
-Questo stesso schema viene utilizzato in tutti i nostri controller post: eseguiamo i validator (con i sanificatori), quindi controlliamo gli errori e rendiamo nuovamente il modulo con le informazioni sugli errori o salviamo i dati.
+Questo stesso schema viene usato in tutti i nostri controller post: eseguiamo i validatori (con i sanificatori), quindi controlliamo eventuali errori e ri-rendiamo il modulo con le informazioni sugli errori oppure salviamo i dati.
 
-## View
+## Vista
 
-La stessa vista è resa in entrambi i controller/rotture `GET` e `POST` quando creiamo un nuovo `Genre` (e in seguito viene utilizzata anche quando _aggiorniamo_ un `Genre`). Nel caso di `GET`, il modulo è vuoto e passiamo solo una variabile di titolo. Nel caso di `POST`, l'utente ha precedentemente inserito dati non validi—nella variabile `genre` facciamo tornare una versione sanificata dei dati inseriti e nella variabile `errors` facciamo tornare un array di messaggi di errore. Il codice qui sotto mostra il codice del controller per rendere il template in entrambi i casi.
+La stessa vista viene resa in entrambe le route/controller `GET` e `POST` quando creiamo un nuovo `Genre` (e in seguito viene anche usata quando _aggiorniamo_ un `Genre`). Nel caso `GET` il modulo è vuoto e passiamo solo una variabile `title`. Nel caso `POST` l'utente ha precedentemente inserito dati non validi — nella variabile `genre` restituiamo una versione sanificata dei dati inseriti e nella variabile `errors` restituiamo un array di messaggi di errore.
+Il codice sottostante mostra il codice del controller per rendere il template in entrambi i casi.
 
 ```js
 // Render the GET route
@@ -159,7 +166,7 @@ res.render("genre_form", {
 });
 ```
 
-Crea **/views/genre_form.pug** e copia il testo seguente.
+Crea **/views/genre_form.pug** e copia il testo sottostante.
 
 ```pug
 extends layout
@@ -180,35 +187,35 @@ block content
         li!= error.msg
 ```
 
-Gran parte di questo template sarà familiare dai nostri tutorial precedenti. Prima, estendiamo il template base **layout.pug** e sostituiamo il `block` denominato '**content**'. Abbiamo quindi un'intestazione con il `title` che abbiamo passato dal controller (tramite il metodo `render()`).
+Gran parte di questo template sarà familiare dai nostri tutorial precedenti. Innanzitutto, estendiamo il template base **layout.pug** e sovrascriviamo il `block` chiamato '**content**'. Quindi abbiamo un'intestazione con il `title` che abbiamo passato dal controller (tramite il metodo `render()`).
 
-Successivamente, abbiamo il codice pug per il nostro modulo HTML che utilizza `method="POST"` per inviare i dati al server, e poiché l' `action` è una stringa vuota, invierà i dati allo stesso URL della pagina.
+Successivamente, abbiamo il codice pug per il nostro modulo HTML che utilizza `method="POST"` per inviare i dati al server e, poiché l'`action` è una stringa vuota, invierà i dati allo stesso URL della pagina.
 
-Il modulo definisce un unico campo richiesto di tipo "text" chiamato "name". Il valore predefinito del campo dipende dal fatto che la variabile `genre` sia definita. Se chiamato dalla rotta `GET`, sarà vuoto poiché questo è un nuovo modulo. Se chiamato da una rotta `POST`, conterrà il valore (non valido) inserito originariamente dall'utente.
+Il modulo definisce un singolo campo obbligatorio di tipo "text" chiamato "name". Il _valore_ predefinito del campo dipende dal fatto se la variabile `genre` sia definita. Se chiamato dalla route `GET` sarà vuoto poiché questo è un nuovo modulo. Se chiamato da una route `POST` conterrà il valore (non valido) originariamente inserito dall'utente.
 
-L'ultima parte della pagina è il codice di errore. Questo stampa un elenco di errori, se la variabile error è stata definita (in altre parole, questa sezione non apparirà quando il template è reso sulla rotta `GET`).
-
-> [!NOTE]
-> Questo è solo uno dei modi per rendere gli errori. Puoi anche ottenere i nomi dei campi interessati dalla variabile error, e usare questi per controllare dove vengono resi i messaggi di errore, se applicare CSS personalizzati, ecc.
-
-## Come appare?
-
-Esegui l'applicazione, apri il browser su `http://localhost:3000/`, poi seleziona il link _Crea nuovo genere_. Se tutto è configurato correttamente, il tuo sito dovrebbe assomigliare a quanto mostrato nello screenshot successivo. Dopo che inserisci un valore, dovrebbe essere salvato e verrai portato alla pagina di dettaglio del genere.
-
-![Pagina Creazione Genere - sito Express Local Library](locallibary_express_genre_create_empty.png)
-
-L'unico errore che validiamo lato server è che il campo del genere deve avere almeno tre caratteri. Lo screenshot qui sotto mostra come apparirebbe l'elenco degli errori se fornisci un genere con solo uno o due caratteri (evidenziati in giallo).
-
-![La sezione Crea Genere dell'applicazione Local library. La colonna di sinistra ha una barra di navigazione verticale. La sezione di destra è il modulo di creazione di un nuovo Genere con un'intestazione che dice 'Crea Genere'. C'è un campo di input etichettato 'Genere'. C'è un pulsante di invio in basso. C'è un messaggio di errore che dice 'Nome del genere richiesto' direttamente sotto il pulsante di invio. Il messaggio di errore è stato evidenziato dall'autore di questo articolo. Non c'è indicazione visiva nel modulo che il genere è richiesto né che il messaggio di errore appare solo in caso di errore.](locallibary_express_genre_create_error.png)
+L'ultima parte della pagina è il codice per gli errori. Questo stampa un elenco di errori, se la variabile error è stata definita (in altre parole, questa sezione non apparirà quando il template è reso nella route `GET`).
 
 > [!NOTE]
-> La nostra validazione utilizza `trim()` per assicurarsi che lo spazio bianco non sia accettato come nome del genere. Convalidiamo anche che il campo non sia vuoto sul lato client aggiungendo l' {{Glossary("Boolean/HTML", "attributo booleano")}} `required` alla definizione del campo nel modulo:
+> Questo è solo un modo per rendere gli errori. Puoi anche ottenere i nomi dei campi interessati dalla variabile error e usarli per controllare dove vengono resi i messaggi di errore, se applicare CSS personalizzato, ecc.
+
+## Che aspetto ha?
+
+Esegui l'applicazione, apri il browser su `http://localhost:3000/`, quindi seleziona il link _Create new genre_. Se tutto è configurato correttamente, il tuo sito dovrebbe apparire come nell'immagine seguente. Dopo aver inserito un valore, dovrebbe essere salvato e verrai portato alla pagina di dettaglio del genere.
+
+![Pagina di creazione del genere - Sito della biblioteca locale Express](locallibary_express_genre_create_empty.png)
+
+L'unico errore che convalidiamo lato server è che il campo del genere deve avere almeno tre caratteri. Lo screenshot sottostante mostra come apparirebbe l'elenco degli errori se fornisci un genere con uno o due soli caratteri (evidenziati in giallo).
+
+![La sezione Crea Genere dell'applicazione Biblioteca Locale. La colonna a sinistra ha una barra di navigazione verticale. La sezione a destra è il modulo per creare un nuovo Genere con un'intestazione che recita 'Crea Genere'. C'è un campo di input etichettato 'Genere'. C'è un pulsante di invio in fondo. C'è un messaggio di errore che recita 'Nome del Genere richiesto' direttamente sotto il pulsante di invio. Il messaggio di errore è stato evidenziato dall'autore di questo articolo. Non c'è alcuna indicazione visiva nel modulo che il genere sia richiesto né che il messaggio di errore appaia solo in caso di errore.](locallibary_express_genre_create_error.png)
+
+> [!NOTE]
+> La nostra validazione utilizza `trim()` per assicurarsi che gli spazi bianchi non siano accettati come nome del genere. Convalidiamo anche che il campo non sia vuoto lato client aggiungendo l'{{Glossary("Boolean/HTML", "attributo booleano")}} `required` alla definizione del campo nel modulo:
 >
 > ```pug
 > input#name.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='name' required value=(undefined===genre ? '' : genre.name) )
 > ```
 
-## Prossimi passaggi
+## Passi successivi
 
-1. Torna a [Express Tutorial Parte 6: Lavorare con i moduli.](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms)
-2. Procedi al prossimo sottoarticolo della parte 6: [Crea modulo Autore](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_author_form).
+1. Torna a [Express Tutorial Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+2. Procedi al prossimo sott'articolo della parte 6: [Creare modulo autore](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_author_form).
