@@ -1,9 +1,30 @@
-# Order is important: The last matching pattern takes precedence.
-# For more detailed information, see:
-# https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/about-code-owners
+# ----------------------------------------------------------------------------
+# CODEOWNERS
+# ----------------------------------------------------------------------------
+# Order is important. The last matching pattern takes precedence.
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# ----------------------------------------------------------------------------
 
-# TODO - set code owners, like '@mdn/content-team' or '@mdn/engineering'
-# See https://github.com/orgs/mdn/teams
+* @mdn/engineering
 
-# Default owners
-* @mdn/engineering @mdn/content-team
+# Content
+/files/     @mdn/content-team
+/files/it/  @mdn/it-content
+
+# Translation guide
+/docs/      @mdn/content-team
+/docs/it/   @mdn/it-content
+
+# Issue templates
+/.github/ISSUE_TEMPLATE/page-report-it.yml @mdn/it-content
+
+# Miscellaneous
+/.github/            @mdn/engineering
+/.github/CODEOWNERS  @mdn/engineering
+/*                   @mdn/engineering
+/*.md                @mdn/content-team @mdn/engineering 
+/CONTRIBUTING.md     @mdn/content-team          
+/PEERS_GUIDELINES.md @mdn/content-team
+
+# Reset until https://github.com/prettier/prettier/issues/11828 is fixed
+/.prettierignore
