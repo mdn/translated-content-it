@@ -22,7 +22,7 @@
     "lint:md": "markdownlint-cli2 \"**/*.md\" && node ./scripts/check-url-locale.js files && yarn autocorrect --lint . && prettier -c \"**/*.md\"",
     "lint:yml": "prettier -c \"**/*.yml\""
   },
-  "packageManager": "npm@11.6.2",
+  "packageManager": "npm@11.7.0",
   "engines": {
     "node": ">=24"
   },
