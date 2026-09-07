@@ -1,31 +1,31 @@
 ---
-title: "Metti alla prova le tue abilità: Posizionamento"
-short-title: Positioning
+title: "Metti alla prova le tue competenze: Posizionamento"
+short-title: "Test: Posizionamento"
 slug: Learn_web_development/Core/CSS_layout/Test_your_skills/Position
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 143f7345a4276156679d816a153470fe1fc6f3f8
 ---
 
-L'obiettivo di questo test è valutare se comprendi il [posizionamento in CSS](/it/docs/Learn_web_development/Core/CSS_layout/Positioning) utilizzando la proprietà {{CSSxRef("position")}} e i suoi valori. Lavorerai su due piccoli compiti che utilizzano diversi elementi del materiale che hai appena studiato.
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Positioning", "Learn_web_development/Core/CSS_layout/Flexbox", "Learn_web_development/Core/CSS_layout")}}
+
+L'obiettivo di questo test di competenze è aiutare a valutare se si comprende il [posizionamento in CSS](/it/docs/Learn_web_development/Core/CSS_layout/Positioning) mediante la proprietà CSS {{CSSxRef("position")}} e i relativi valori. Verranno svolte due piccole attività che utilizzano diversi elementi del materiale appena trattato.
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona degli appunti) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-> Se hai difficoltà, puoi contattare noi in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la guida all'uso [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È inoltre possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Posizionamento 1
 
-In questo compito, ti chiediamo di posizionare l'elemento con la classe `target` in alto a destra del contenitore, che ha il bordo grigio di 5px.
+Per completare questa attività, posizionare l'elemento con la classe `target` nell'angolo in alto a destra del contenitore con un bordo grigio di `5px`.
 
-Il tuo risultato finale dovrebbe essere simile all'immagine qui sotto:
+**Domanda bonus:** è possibile modificare il target affinché venga visualizzato sotto il testo?
 
-![La casella verde è in alto a destra di un contenitore con bordo grigio.](position-task1.png)
+Il punto di partenza dell'attività è il seguente:
 
-**Domanda bonus:** Riesci a fare in modo che il target sia visualizzato sotto il testo?
+{{EmbedLiveSample("position1-start", "", "400px")}}
 
-Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___position1
+```html live-sample___position1-start live-sample___position1-finish
 <div class="container">
   <p>
     Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
@@ -40,17 +40,18 @@ Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___position1
+```css live-sample___position1-start live-sample___position1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
 
 .container {
   padding: 0.5em;
-  border: 5px solid #ccc;
+  border: 5px solid #cccccc;
 }
 
 .target {
@@ -61,25 +62,27 @@ body {
   padding: 1em;
   color: white;
 }
-```
 
-```css live-sample___position1
 .container {
+  /* Add styles here */
 }
 
 .target {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("position1", "", "400px")}}
+Una volta completata l'attività, il posizionamento del target dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("position1-finish", "", "250px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Questo richiede `position: relative` e `position: absolute` e comprendere come si relazionano tra loro in termini di creazione di un nuovo contesto di posizionamento da parte del `position: relative`.
-Un problema comune potrebbe essere aggiungere `position: absolute` al figlio senza applicare `position: relative` al contenitore. In tal caso, il target risulterà posizionato in base alla viewport.
+Sono necessari `position: relative` e `position: absolute`, nonché la comprensione di come si relazionano tra loro: il posizionamento relativo crea un nuovo contesto di posizionamento.
+Un possibile problema potrebbe essere l'aggiunta di `position: absolute` al figlio senza applicare `position: relative` al contenitore. In tal caso, il target finirà per essere posizionato relativamente al viewport.
 
-```css
+```css live-sample___position1-finish
 .container {
   position: relative;
 }
@@ -91,19 +94,21 @@ Un problema comune potrebbe essere aggiungere `position: absolute` al figlio sen
 }
 ```
 
-Per la domanda bonus, devi aggiungere un `z-index` negativo al target, ad esempio `z-index: -2`.
+Per la domanda bonus, è necessario aggiungere un `z-index` negativo al target, ad esempio `z-index: -2`.
 
 </details>
 
-## Compito 2
+## Posizionamento 2
 
-In questo compito, se scorri la casella nell'esempio qui sotto, la sidebar scorre con il contenuto. Modifica il codice in modo che la sidebar (`<div class="sidebar">`) rimanga al suo posto e solo il contenuto venga scrollato.
+Nello stato iniziale di questa attività, se si scorre il contenuto, la barra laterale scorre insieme al contenuto. È necessario aggiornare il codice affinché la barra laterale (`<div class="sidebar">`) rimanga fissa e venga fatto scorrere solo il contenuto.
 
-![Il contenuto è scrollato ma la sidebar è rimasta al suo posto.](position-task2.png)
+Il punto di partenza dell'attività è il seguente:
 
-Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("position2-start", "", "400px")}}
 
-```html live-sample___position2
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___position2-start live-sample___position2-finish
 <div class="container">
   <div class="sidebar">
     <p>
@@ -134,10 +139,11 @@ Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___position2
+```css live-sample___position2-start live-sample___position2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -145,7 +151,7 @@ body {
 .container {
   height: 400px;
   padding: 0.5em;
-  border: 5px solid #ccc;
+  border: 5px solid #cccccc;
   overflow: auto;
 }
 
@@ -161,24 +167,22 @@ body {
   padding: 1em;
   margin-left: 160px;
 }
-```
-
-```css live-sample___position2
-.container {
-}
 
 .sidebar {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("position2", "", "400px")}}
+Il layout completato dovrebbe essere visualizzato in questo modo (scorrere per osservare il comportamento):
+
+{{EmbedLiveSample("position2-finish", "", "400px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Stiamo testando la tua comprensione di `position: fixed` con un esempio leggermente diverso rispetto a quelli presenti nei materiali didattici.
+Il CSS finale della barra laterale dovrebbe essere simile a questo:
 
-```css
+```css live-sample___position2-finish
 .sidebar {
   position: fixed;
 }
@@ -186,6 +190,4 @@ Stiamo testando la tua comprensione di `position: fixed` con un esempio leggerme
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Positioning", "Learn_web_development/Core/CSS_layout/Flexbox", "Learn_web_development/Core/CSS_layout")}}

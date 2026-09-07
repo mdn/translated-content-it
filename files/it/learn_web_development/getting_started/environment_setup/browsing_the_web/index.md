@@ -1,34 +1,34 @@
 ---
-title: Navigare nel web
+title: Navigare sul web
 slug: Learn_web_development/Getting_started/Environment_setup/Browsing_the_web
 l10n:
-  sourceCommit: be1922d62a0d31e4e3441db0e943aed8df736481
+  sourceCommit: e81cf36acffe197d01b1ad282c3582ebd7b0b54d
 ---
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Environment_setup/Installing_software", "Learn_web_development/Getting_started/Environment_setup/Code_editors", "Learn_web_development/Getting_started/Environment_setup")}}
 
-A questo punto nel modulo, dovresti aver installato più browser web moderni sul tuo computer o altri dispositivi disponibili. Questo articolo approfondisce l'uso dei browser, esaminando come funziona un browser web, la differenza tra alcune delle cose di tutti i giorni con cui interagirai e come cercare informazioni.
+A questo punto del modulo, dovrebbero essere installati sul computer o su altri dispositivi disponibili più browser web moderni. Questo articolo approfondisce l'uso dei browser, esaminando come funziona un browser web, la differenza tra alcuni degli elementi quotidiani con cui si interagisce e come cercare informazioni.
 
 > [!NOTE]
-> Se non hai installato alcun browser oltre a quelli predefiniti forniti con i tuoi dispositivi, installane altri. Consulta [Browser web moderni](/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software#modern_web_browsers) per maggiori informazioni.
+> Se non sono installati browser oltre a quelli predefiniti forniti con i dispositivi, installarne altri. Consultare [Browser web moderni](/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software#modern_web_browsers) per ulteriori informazioni.
 
-Come in ogni area di conoscenza, anche il web viene con una moltitudine di gergo e terminologia tecnica. Non preoccuparti: non ti sommergeremo con tutto fin dall'inizio (puoi consultare il [glossario](/it/docs/Glossary) se sei curioso). Tuttavia, ci sono alcuni termini di base che devi capire fin dall'inizio poiché sentirai queste espressioni spesso. Introduciamo alcuni termini importanti di seguito.
+Come ogni ambito del sapere, il web include molto gergo e terminologia tecnica. Non c'è da preoccuparsi: non verrà presentato tutto subito (se si è curiosi, è possibile consultare il [glossario](/it/docs/Glossary)). Tuttavia, ci sono alcuni termini di base che è necessario comprendere fin dall'inizio, poiché queste espressioni verranno usate continuamente. Di seguito vengono introdotti alcuni termini importanti.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità di base con il sistema operativo del tuo computer.
+        Familiarità di base con il sistema operativo del computer.
       </td>
     </tr>
     <tr>
-      <th scope="row">Obiettivi di apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
           <li>La differenza tra un browser web, un sito web e un motore di ricerca.</li>
-          <li>Come funziona un browser web a un livello base.</li>
-          <li>Cercare informazioni.</li>
+          <li>Come funziona un browser web a livello di base.</li>
+          <li>La ricerca di informazioni.</li>
         </ul>
       </td>
     </tr>
@@ -37,182 +37,164 @@ Come in ogni area di conoscenza, anche il web viene con una moltitudine di gergo
 
 ## La differenza tra pagina web, sito web, server web e motore di ricerca
 
-Inizieremo descrivendo vari concetti legati al web: pagine web, siti web, server web e motori di ricerca. Questi termini sono spesso confusi dai neofiti del web o vengono utilizzati in modo errato. Assicuriamoci di sapere cosa significano ciascuno di essi! Iniziamo con alcune definizioni:
+Inizieremo descrivendo vari concetti relativi al web: pagine web, siti web, server web e motori di ricerca. Questi termini vengono spesso confusi da chi è alle prime armi con il web o usati in modo scorretto. Vediamo quindi cosa significano! Iniziamo con alcune definizioni:
 
 - **Pagina web**
-  - : Un documento che può essere visualizzato in un {{Glossary("browser", "browser")}} web. Questi sono spesso chiamati semplicemente "pagine". Tali documenti sono scritti nel linguaggio {{Glossary("HTML", "HTML")}} (che esamineremo in dettaglio più avanti).
+  - : Un documento che può essere visualizzato in un {{Glossary("browser", "browser")}} web. Spesso sono chiamate semplicemente "pagine". Tali documenti sono scritti nel linguaggio {{Glossary("HTML", "HTML")}} (che verrà approfondito più avanti).
 - **Sito web**
-  - : Una raccolta di pagine web raggruppate insieme in una singola risorsa, con collegamenti che le connettono insieme. Spesso chiamato "sito".
+  - : Una raccolta di pagine web raggruppate in una singola risorsa, collegate tra loro tramite link. Spesso chiamato "sito".
 - **Server web**
   - : Un computer che ospita un sito web su Internet.
 - **Servizio web**
-  - : Un software che risponde a richieste su Internet per eseguire una funzione o fornire dati. Un servizio web è tipicamente supportato da un server web e può fornire pagine web con cui gli utenti possono interagire. Molti siti web sono anche servizi web, sebbene alcuni siti, come MDN, siano composti solo da contenuti statici. Esempi di servizi web potrebbero essere qualcosa che ridimensiona le immagini, fornisce un report meteorologico, o gestisce l'accesso degli utenti.
+  - : Un software che risponde a richieste su Internet per eseguire una funzione o fornire dati. Un servizio web è in genere supportato da un server web e può fornire pagine web con cui gli utenti possono interagire. Molti siti web sono anche servizi web, sebbene alcuni siti web (come MDN) consistano solo di contenuto statico. Esempi di servizi web sono un servizio che ridimensiona immagini, fornisce previsioni meteorologiche o gestisce l'accesso degli utenti.
 - **Motore di ricerca**
-  - : Un servizio web che ti aiuta a trovare altre pagine web, come Google, Bing, Yahoo, o DuckDuckGo. I motori di ricerca sono normalmente accessibili tramite un browser web (ad esempio, puoi eseguire ricerche nel motore di ricerca direttamente nella barra degli indirizzi di Firefox, Chrome, ecc.) o tramite una pagina web (ad esempio, [bing.com](https://www.bing.com/) o [duckduckgo.com](https://duckduckgo.com/)).
+  - : Un servizio web che aiuta a trovare altre pagine web, come Google, Bing, Yahoo o DuckDuckGo. Normalmente si accede ai motori di ricerca tramite un browser web (ad esempio, è possibile effettuare ricerche direttamente nella barra degli indirizzi di Firefox, Chrome e così via) oppure tramite una pagina web (ad esempio, [bing.com](https://www.bing.com/) o [duckduckgo.com](https://duckduckgo.com/)).
 
-Guardiamo un'analogia: una biblioteca pubblica. Questo è generalmente ciò che faresti visitando una biblioteca:
+Consideriamo un'analogia: una biblioteca pubblica. Ecco cosa si farebbe generalmente visitando una biblioteca:
 
-1. Trova un indice di ricerca e cerca il titolo del libro che desideri.
-2. Prendi nota del numero di catalogo del libro.
-3. Vai alla sezione particolare contenente il libro, trova il numero di catalogo giusto e prendi il libro.
+1. Trovare un indice di ricerca e cercare il titolo del libro desiderato.
+2. Annotare il numero di catalogo del libro.
+3. Andare nella sezione che contiene il libro, trovare il numero di catalogo corretto e prendere il libro.
 
 Confrontiamo una biblioteca pubblica con il web:
 
-- La biblioteca è come un server web. Ha diverse sezioni, simile a un server web che ospita più siti web.
-- Le diverse sezioni (scienza, matematica, storia, ecc.) nella biblioteca sono come siti web. Ogni sezione è come un sito web unico (due sezioni non contengono gli stessi libri).
-- I libri in ogni sezione sono come pagine web. Un sito web potrebbe avere diverse pagine web, per esempio, la sezione Scienza (il sito web) avrà libri su calore, suono, termodinamica, statica, ecc.
-- L'indice di ricerca è come il motore di ricerca. Ogni libro ha la sua posizione unica nella biblioteca (due libri non possono essere tenuti nello stesso posto) specificata dal numero di catalogo.
+- La biblioteca è come un server web. Ha diverse sezioni, analogamente a un server web che ospita più siti web.
+- Le diverse sezioni (scienze, matematica, storia e così via) della biblioteca sono come siti web. Ogni sezione è come un sito web univoco (due sezioni non contengono gli stessi libri).
+- I libri in ciascuna sezione sono come pagine web. Un sito web può avere diverse pagine web; per esempio, la sezione Scienze (il sito web) avrà libri su calore, suono, termodinamica, biologia umana e così via.
+- L'indice di ricerca è come il motore di ricerca. Ogni libro ha una posizione univoca nella biblioteca (due libri non possono essere conservati nello stesso posto), specificata dal numero di catalogo.
 
-Prendiamo ora il tempo di esaminare ogni termine in modo un po' più dettagliato.
+Ora esaminiamo ciascun termine un po' più nel dettaglio.
 
 ### Pagina web
 
-Una **pagina web** è un semplice documento visualizzabile da un browser. Una pagina web può includere una varietà di diversi tipi di risorse come:
+Una **pagina web** è un semplice documento visualizzabile da un browser. Una pagina web può incorporare vari tipi di risorse, quali:
 
-- _Informazioni sullo stile_ — controllo dell'aspetto e della sensazione di una pagina.
-- _Script_ — che aggiungono interattività alla pagina.
+- _Informazioni di stile_ — controllano l'aspetto della pagina.
+- _Script_ — aggiungono interattività alla pagina.
 - _Media_ — immagini, suoni e video.
 
 > [!NOTE]
-> I browser possono anche visualizzare altri documenti come file {{Glossary("PDF", "PDF")}} e altre risorse come immagini o video, ma il termine **pagina web** si riferisce specificamente ai documenti HTML.
+> I browser possono visualizzare anche altri documenti, come file {{Glossary("PDF", "PDF")}}, e altre risorse come immagini o video, ma il termine **pagina web** si riferisce specificamente ai documenti HTML.
 
-Tutte le pagine web possono essere trovate ciascuna in una posizione unica (indirizzo web, chiamato anche {{Glossary("URL", "URL")}}). Per accedere a una pagina, basta digitare il suo indirizzo nella barra degli indirizzi del browser:
+Ogni pagina web si trova in una posizione univoca (indirizzo web, chiamato anche {{Glossary("URL", "URL")}}). Per accedere a una pagina, basta digitare il suo indirizzo nella barra degli indirizzi del browser:
 
-![Esempio di un indirizzo di pagina web nella barra degli indirizzi del browser](web-page.jpg)
+![Esempio di indirizzo di una pagina web nella barra degli indirizzi del browser](web-page.jpg)
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova a caricare uno dei tuoi siti preferiti in un browser ora.
+Provare ora a caricare uno dei siti web preferiti in un browser, tenendo presente quanto detto sopra. L'indirizzo web è stato digitato manualmente oppure è stato trovato tramite un motore di ricerca?
 
 ### Sito web
 
-Un _sito web_ è una raccolta di pagine web collegate (più le loro risorse associate) che condividono un unico [nome di dominio](/it/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name). Ogni pagina web di un dato sito fornisce link espliciti—la maggior parte delle volte sotto forma di parti di testo cliccabili—che consentono all'utente di spostarsi da una pagina del sito all'altra.
+Un _sito web_ è una raccolta di pagine web collegate (oltre alle risorse associate) che condividono un [nome di dominio](/it/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name) univoco. Ogni pagina web di un determinato sito web fornisce link espliciti, nella maggior parte dei casi sotto forma di porzioni di testo cliccabili, che consentono all'utente di spostarsi da una pagina del sito web a un'altra.
 
-Quando carichi il tuo sito preferito in un browser, tende a visualizzare prima la pagina principale del sito web, o _homepage_ (chiamata casualmente "home"):
+Quando si carica un sito web preferito in un browser, questo tende a visualizzare per prima cosa la pagina web principale del sito, ovvero la _homepage_ (spesso chiamata semplicemente "home"):
 
-![Esempio di un nome di dominio di un sito web nella barra degli indirizzi del browser](web-site.jpg)
+![Esempio di nome di dominio di un sito web nella barra degli indirizzi del browser](web-site.jpg)
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova a cliccare alcuni elementi del menu o link per visualizzare alcune pagine diverse sul tuo sito preferito.
+Provare a fare clic su alcune voci di menu o link per visualizzare pagine diverse del sito web preferito. Notare come l'indirizzo web visualizzato cambia quando ci si sposta tra le pagine.
 
 > [!NOTE]
-> È anche possibile avere un {{Glossary("SPA", "_app a pagina unica_")}}: un sito web che consiste di una singola pagina web che viene aggiornata dinamicamente con nuovi contenuti quando necessario.
+> È anche possibile avere una {{Glossary("SPA", "_single-page app_")}}: un sito web costituito da una singola pagina web aggiornata dinamicamente con nuovi contenuti quando necessario. In questo caso, l'indirizzo web potrebbe non cambiare durante la visualizzazione di pagine diverse.
 
 ### Server web
 
-Un _server web_ è un computer che ospita uno o più _siti web_. "Ospitare" significa che tutte le _pagine web_ e i loro file associati sono disponibili su quel computer. Il _server web_ invierà i file delle pagine web che sta ospitando al browser di un utente quando essi tentano di caricarli.
+Un _server web_ è un computer che ospita uno o più _siti web_. "Ospitare" significa che tutte le _pagine web_ e i file associati sono disponibili su quel computer. Il _server web_ invierà al browser di un utente i file delle pagine web che ospita quando l'utente tenta di caricarle.
 
-Non confondere _siti web_ e _server web_. Ad esempio, se senti qualcuno dire, "Il mio sito non risponde", significa in realtà che il _server web_ non risponde e quindi il _sito web_ non è disponibile. Più importante, poiché un server web può ospitare più siti, il termine _server web_ non è mai usato per designare un sito web, poiché potrebbe causare una grande confusione. Nel nostro esempio precedente, se avessimo detto, "Il mio server web non risponde", significa che più siti su quel server web non sono disponibili.
+Non confondere i _siti web_ con i _server web_. Per esempio, se qualcuno dice "Il mio sito web non risponde", probabilmente significa che il _server web_ non risponde e quindi il _sito web_ non è disponibile.
+
+Ancora più importante, poiché un server web può ospitare più siti web, il termine _server web_ non viene più usato per indicare un sito web, in quanto potrebbe causare confusione. Se qualcuno dice "Il mio server web non risponde", può darsi che più siti web o applicazioni ospitati sul server web non siano disponibili.
 
 ### Motore di ricerca
 
-I motori di ricerca sono una fonte comune di confusione sul web. Un motore di ricerca è un tipo speciale di sito web che aiuta gli utenti a trovare pagine web da _altri_ siti.
+È comune confondere i motori di ricerca con i siti web. Un motore di ricerca è un tipo speciale di servizio web che aiuta gli utenti a trovare le pagine web di loro interesse, oltre a tipi specifici di contenuti come immagini, video o articoli di notizie.
 
-Ce ne sono molti là fuori: [Google](https://www.google.com/), [Bing](https://www.bing.com/), [Yandex](https://yandex.com/), [DuckDuckGo](https://duckduckgo.com/), e molti altri. Alcuni sono generici, altri sono specializzati intorno a certi argomenti.
+Tutti i motori di ricerca tendono ad avere siti web propri che possono essere usati per accedere al servizio web sottostante. Ne esistono molti: [Google](https://www.google.com/), [Bing](https://www.bing.com/), [Yandex](https://yandex.com/), [DuckDuckGo](https://duckduckgo.com/) e molti altri. Alcuni sono generici, altri sono specializzati su determinati argomenti.
 
-Molti principianti sul web confondono i motori di ricerca con i browser. Facciamo chiarezza: Un _browser_ è un software che recupera e visualizza pagine web; un _motore di ricerca_ è un sito web che aiuta le persone a trovare pagine web da altri siti. La confusione nasce perché, la prima volta che qualcuno lancia un browser, spesso il browser visualizza la homepage di un motore di ricerca o una casella di ricerca che consente loro di cercare un termine usando quel motore di ricerca. La maggior parte dei browser consente anche ai propri utenti di utilizzare un motore di ricerca digitando i termini di ricerca direttamente nella barra degli indirizzi del browser.
+Molti principianti del web confondono motori di ricerca e browser. Chiariamo:
 
-Questo ha senso perché la prima cosa che la gente tende a voler fare con un browser è trovare una pagina web da visualizzare. Non confondere il software (il browser) con il servizio (il motore di ricerca).
+- Un _browser_ è un software che recupera e visualizza pagine web.
+- Un _motore di ricerca_ è un servizio web (e, di solito, un sito web) che aiuta le persone a trovare pagine web contenute in altri siti web.
 
-Ecco un esempio di Firefox che mostra una casella di ricerca di Google come la sua pagina di avvio predefinita:
+La confusione nasce perché, la prima volta che qualcuno avvia un browser, il browser mostra spesso la homepage del sito web di un motore di ricerca oppure una casella di ricerca che consente di cercare un termine usando quel motore di ricerca. La maggior parte dei browser consente inoltre agli utenti di usare un motore di ricerca digitando termini di ricerca direttamente nella barra degli indirizzi del browser.
 
-![Esempio di Firefox nightly che visualizza una pagina personalizzata di Google come predefinita](search-engine.jpg)
+Tutto questo ha senso perché la prima cosa che generalmente si desidera fare con un browser è trovare una pagina web da visualizzare. Non confondere il software (il browser) con il servizio (il motore di ricerca).
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Esegui una ricerca in un motore di ricerca:
->
-> - Visitando una homepage di un motore di ricerca e inserendo un termine di ricerca.
-> - Inserendo un termine di ricerca nella barra degli indirizzi del browser.
+Ecco un esempio di Firefox che mostra una casella di ricerca Google come pagina di avvio predefinita:
+
+![Esempio di Firefox nightly che visualizza una pagina Google personalizzata come predefinita](search-engine.jpg)
+
+Provare a utilizzare un motore di ricerca per trovare informazioni su un argomento di interesse:
+
+1. Andare alla homepage di un motore di ricerca e inserire un termine di ricerca.
+2. Inserire un termine di ricerca nella barra degli indirizzi del browser.
 
 ## Come funziona il web: le basi
 
-In molte parti del mondo, il web è diventato uno strumento essenziale per la nostra vita quotidiana, così come le posate, le biciclette e le automobili, o gli spazzolini da denti. Se questo ti sembra irrealistico, pensa a quante volte utilizzi un sito web o un'app per smartphone ogni giorno! Anche se non stai digitando un indirizzo web in un browser per accedere a contenuti o servizi, è probabile che l'app che stai usando stia probabilmente usando la tecnologia web dietro le quinte per raccogliere dati da presentarti.
+In molte parti del mondo, il web è diventato uno strumento essenziale per la vita quotidiana tanto quanto le posate, le biciclette, le automobili o gli spazzolini da denti. Se sembra poco realistico, basta pensare a quanto spesso viene usato un sito web o un'app per telefono cellulare ogni giorno. Anche se non viene digitato un indirizzo web in un browser web per accedere a contenuti o servizi, è probabile che l'app in uso utilizzi tecnologia web dietro le quinte per recuperare dati da presentare.
 
-Quando accedi al web, succede molto tra la tua prima interazione (ad esempio, digitare un indirizzo web (URL) in un browser e premere <kbd>Enter</kbd>/<kbd>Return</kbd>) e il risultato della tua azione che viene presentato a te (ad esempio, il sito web che appare nel tuo browser web):
+Quando si accede al web, accadono molte cose tra la prima interazione (per esempio, digitare un indirizzo web (URL) in un browser e premere <kbd>Invio</kbd>/<kbd>Return</kbd>) e la presentazione del risultato dell'azione (per esempio, la comparsa del sito web nel browser):
 
-1. Il browser web richiede la risorsa (ad esempio, una pagina web, alcuni dati, o un'immagine o video) che vuoi accedere dal server web su cui è memorizzata. Tali richieste (e le risposte risultanti) sono effettuate utilizzando una tecnologia chiamata {{Glossary("HTTP", "HTTP")}} (Hypertext Transfer Protocol), che utilizza un linguaggio di verbi (come **GET**) per descrivere cosa dovrebbe accadere.
+1. Il browser web richiede la risorsa a cui si desidera accedere (per esempio, una pagina web, alcuni dati, un'immagine o un video) al server web su cui è archiviata. Tali richieste (e le relative risposte) vengono effettuate usando una tecnologia chiamata {{Glossary("HTTP", "HTTP")}} (Hypertext Transfer Protocol), che usa un linguaggio di verbi (come **GET**) per descrivere cosa deve accadere.
 2. Se la richiesta ha successo, il server web invia una risposta HTTP al browser web contenente la risorsa richiesta.
-3. In alcuni casi, la risorsa richiesta attiverà ulteriori richieste HTTP, che porteranno a più risposte. Ad esempio:
-   1. Quando un sito web viene caricato, inizialmente viene richiesta la file index HTML principale della home page del sito.
-   2. Quando quel file viene ricevuto dal browser, inizierà a analizzarlo e probabilmente troverà istruzioni per fare ulteriori richieste. Come discusso sopra, queste potrebbero essere per file da incorporare come immagini, informazioni sullo stile, script, e così via.
-4. Quando tutte le risorse sono state richieste, il browser web le analizza e le renderizza come richiesto, prima di visualizzare il risultato all'utente.
+3. In alcuni casi, la risorsa richiesta attiverà ulteriori richieste HTTP, che produrranno altre risposte. Per esempio:
+   1. Quando viene caricato un sito web, inizialmente viene richiesto il file HTML principale dell'indice della home page del sito.
+   2. Quando il browser riceve quel file, inizierà ad analizzarlo e probabilmente troverà istruzioni per effettuare altre richieste. Come discusso sopra, queste potrebbero riguardare file da incorporare, come immagini, informazioni di stile, script e così via.
+4. Quando tutte le risorse sono state richieste, il browser web le analizza ed esegue il rendering secondo necessità, prima di mostrare il risultato all'utente.
 
-Questa descrizione di come funziona il web è fortemente semplificata, ma è tutto ciò che devi sapere per ora. Troverai una spiegazione più dettagliata di come le pagine web vengono richieste e renderizzate da un browser web nel nostro modulo [Standard web](/it/docs/Learn_web_development/Getting_started/Web_standards), un po' più avanti.
-
-Per ora, prova ad aprire un browser web e caricare un paio dei tuoi siti preferiti, pensando ai passaggi sopra mentre lo fai.
+Questa descrizione di come funziona il web è molto semplificata, ma per il momento è tutto ciò che è necessario sapere. Una descrizione più dettagliata di come le pagine web vengono richieste ed eseguite dal rendering di un browser web si trova nel modulo [Standard web](/it/docs/Learn_web_development/Getting_started/Web_standards), poco più avanti.
 
 ## Cercare informazioni
 
-Come sviluppatore web, trascorrerai molto tempo a cercare informazioni, da sintassi che non riesci a ricordare a soluzioni per problemi specifici. È quindi una buona idea imparare come cercare efficacemente sul web.
+Come sviluppatore web, verrà dedicato molto tempo alla ricerca di informazioni, dalla sintassi che non si ricorda alle soluzioni per problemi specifici. È quindi una buona idea imparare a cercare efficacemente sul web.
 
-Se stai cercando informazioni generali su una specifica funzionalità della tecnologia web, dovresti digitare il nome della funzionalità nella casella di ricerca di MDN. Ad esempio, prova a digitare `box model`, `fetch()` o `video element` nella casella di ricerca e vedi cosa esce. Se non trovi le informazioni di cui hai bisogno, prova ad ampliare la tua ricerca — prova il tuo termine di ricerca in un motore di ricerca.
+Se si conosce un sito web specializzato nell'argomento che si sta imparando, spesso è una buona idea iniziare da lì.
 
-Se stai cercando una soluzione a un problema specifico, come `come stampare la sequenza di Fibonacci con JavaScript` o `come calcolare se un numero è un numero primo con JavaScript`, è una buona idea cercare su un sito web come [StackOverflow](https://stackoverflow.com/), che è una comunità dedicata a rispondere a problemi di programmazione. Ancora una volta, prova a utilizzare un motore di ricerca generale se un sito specifico non ti dà una risposta utile.
+Per esempio, se si cercano informazioni generali su una funzionalità specifica della tecnologia web, digitare il nome della funzionalità nella casella di ricerca di MDN. Per esempio, provare a digitare `box model`, `fetch()` o `video element` nella casella di ricerca e vedere cosa viene restituito. Se non si trovano le informazioni necessarie, ampliare la ricerca: provare il termine di ricerca in un motore di ricerca.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova alcune ricerche, come indicato sopra:
->
-> - Inizia cercando i termini esatti che abbiamo incluso sopra.
-> - Poi, passa a cercare alcuni argomenti personali di cui vuoi saperne di più. Prova a utilizzare ricerche più e meno specifiche e termini correlati diversi per vedere cosa funziona meglio.
-> - Vedi il nostro [Consigli per la ricerca](#consigli_per_la_ricerca) per altre cose da provare.
+Se si cerca una soluzione a un problema specifico, come `how to print out the fibonacci sequence with JavaScript` o `how to calculate whether a number is a prime number with JavaScript`, è una buona idea cercare su un sito web come [Stack Overflow](https://stackoverflow.com/), una community dedicata a rispondere a problemi di programmazione. Anche in questo caso, provare a usare un motore di ricerca generico se un sito specifico non fornisce una risposta utile.
 
-### Utilizzo dell'IA
+Prima di proseguire, provare a cercare alcuni argomenti che si desidera approfondire. Provare a usare ricerche più o meno specifiche e termini correlati diversi per vedere cosa funziona meglio. Consultare i nostri [suggerimenti per la ricerca](#suggerimenti_per_la_ricerca) per altre cose da provare.
 
-I risultati di ricerca generati dall'IA sono un modo molto popolare per ricevere informazioni. Forniscono fondamentalmente una ricerca superpotente: fanno molte ricerche in background, prima di compilare i risultati in una risposta unica e facilmente digeribile. Le scelte comuni sono [ChatGPT](https://chatgpt.com/), [Google Gemini](https://gemini.google.com/app), e [Microsoft Copilot](https://copilot.microsoft.com/), accessibili direttamente in un formato chat, o tramite aiuto in-app potenziato dall'IA o sistemi di automazione.
+### Usare l'IA
 
-Quando si impara a programmare, i prompt di chat IA possono essere utili in vari modi:
+I risultati di ricerca generati dall'IA sono un modo molto diffuso per ricevere informazioni. In sostanza, forniscono una ricerca potenziata: effettuano molte ricerche in background prima di compilare i risultati in un'unica risposta facilmente assimilabile. Scelte comuni sono [ChatGPT](https://chatgpt.com/), [Google Gemini](https://gemini.google.com/app) e [Microsoft Copilot](https://copilot.microsoft.com/), a cui si accede direttamente in formato chat oppure tramite sistemi di aiuto o automazione nelle app basati sull'IA.
 
-- Eseguendo ricerche convenzionali, come gli esempi sopra.
-- Capire i bug in un blocco di codice. Se ti stai frustrando perché il tuo codice non funziona, puoi incollare il tuo codice in un prompt di chat IA, preceduto da una domanda come `Dov'è l'errore in questo codice?`
-- Generare una versione ottimizzata di un blocco di codice specifico. Questo può essere utile quando hai scritto un blocco di codice che funziona, ma vuoi scoprire come potrebbe essere fatto in modo più efficiente, o in un modo più robusto che risolve più casi d'uso.
-- Fornire consigli su come fare qualcosa. Ad esempio, se non vuoi solo sapere dove si trova il bug in un blocco di codice, ma invece vuoi consigli su quale strategia utilizzare per eseguirne il debug.
+Durante l'apprendimento della programmazione, i prompt di chat dell'IA possono essere utili in vari modi:
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova a utilizzare un paio di strumenti IA per fare alcune ricerche.
+- Effettuare ricerche convenzionali, come gli esempi riportati sopra.
+- Individuare bug in un blocco di codice. Se il codice non funziona e si prova frustrazione, è possibile incollare il codice in un prompt di chat dell'IA, preceduto da una domanda come `Where is the mistake in this code?`
+- Generare una versione ottimizzata di un blocco di codice specifico. Può essere utile quando è stato scritto un blocco di codice funzionante, ma si desidera scoprire come potrebbe essere realizzato in modo più efficiente o più robusto, così da risolvere più casi d'uso.
+- Fornire consigli su come fare qualcosa. Per esempio, se non si vuole solo sapere dove si trova il bug in un blocco di codice, ma si desiderano invece consigli sulla strategia da usare per eseguire il debug.
 
-### Una storia ammonitrice
+Provare a usare un paio di strumenti di IA per effettuare alcune ricerche.
 
-In realtà, l'IA può fare così tanto che potresti cominciare a chiederti perché hai bisogno di imparare a programmare.
+### Un avvertimento
 
-Ma aspetta! Il seguente è importante: **Devi comunque capire cosa stai cercando di fare a un livello alto, cosa fa il codice e dove ciascun pezzo di codice deve essere usato**. Se non lo fai, non sarai molto utile quando cercherai di risolvere problemi del mondo reale. Ciò significa che devi comunque imparare a programmare. L'IA può essere uno strumento davvero utile per aiutarti a trovare le risposte più rapidamente, ma se digiti ogni domanda che ti viene posta in un prompt IA, non capirai come funziona nulla.
+L'IA può fare così tanto da far sorgere il dubbio sul perché sia necessario imparare a programmare.
+
+Ma attenzione! Quanto segue è importante: **È comunque necessario comprendere a livello generale ciò che si sta cercando di fare, cosa fa il codice e dove deve essere usato ogni pezzo di codice**. Altrimenti, non si sarà molto utili nel tentativo di risolvere problemi del mondo reale. Ciò significa che è comunque necessario imparare a programmare. L'IA può essere uno strumento davvero utile per trovare risposte più rapidamente, ma se ogni domanda ricevuta viene semplicemente digitata in un prompt dell'IA, non si capirà come funziona nulla.
 
 Inoltre:
 
-- Gli strumenti IA presentano le loro risposte in un tono sicuro e autorevole, ma possono spesso essere fuorvianti o semplicemente sbagliati. Alcuni degli errori che fanno possono essere molto sottili. Non hanno alcuna intelligenza innata — sono fondamentalmente strumenti avanzati di corrispondenza dei modelli. Gli strumenti IA compilano le loro risposte da altre fonti lì fuori, quindi assorbono informazioni errate così come informazioni corrette. Anche due fonti corrette possono essere combinate per creare una risposta scorretta.
-- Le informazioni più recenti potrebbero non essere disponibili, o le risposte potrebbero essere orientate alla documentazione più vecchia e più prevalente, quindi "come fare X in JS" potrebbe darti una guida obsoleta.
+- Gli strumenti di IA presentano le risposte con un tono sicuro e autorevole, ma spesso possono essere fuorvianti o semplicemente errati. Alcuni degli errori possono essere molto sottili. Non hanno alcuna intelligenza innata: sono fondamentalmente strumenti avanzati di riconoscimento dei modelli. Gli strumenti di IA compilano le loro risposte a partire da altre fonti disponibili, quindi raccolgono sia informazioni errate sia informazioni corrette. Anche due fonti corrette possono essere combinate per creare una risposta errata.
+- Le informazioni più recenti potrebbero non essere disponibili, oppure le risposte potrebbero essere orientate verso documentazione più vecchia e diffusa; pertanto, cercare "how to do X in JS" potrebbe fornire indicazioni obsolete.
 
-Di conseguenza, è necessario prestare attenzione a verificare le risposte che ti danno, e non fidarti ciecamente di tutto senza fare domande.
+Di conseguenza, è necessario verificare attentamente le risposte fornite e non fidarsi di tutto senza porsi domande.
 
-**Quando stai imparando, trascorri del tempo a cercare di risolvere il problema da solo prima di cercare una risposta, sia che stai usando l'IA o un motore di ricerca convenzionale. Ti renderà un programmatore migliore.**
+**Durante l'apprendimento, dedicare tempo a cercare di risolvere il problema autonomamente prima di cercare una risposta, sia usando l'IA sia un motore di ricerca convenzionale. Questo renderà lo sviluppatore migliore.**
 
-### Consigli per la ricerca
+### Suggerimenti per la ricerca
 
-- Dovresti includere il linguaggio che stai usando nel termine di ricerca, come mostrato negli esempi sopra. Se scrivi solo `how to print out the fibonacci sequence`, probabilmente finisci con diverse soluzioni in Python, C++, Java, Ruby, o altri linguaggi — non proprio utile quando stai cercando di imparare JavaScript!
-- Quando trovi una risposta utile, mettici un segnalibro o fanne una copia da qualche parte in modo da poterla ritrovare più tardi. Sarai sorpreso di quante volte ti imbatti nello stesso problema.
-- Se il tuo codice restituisce un messaggio di errore specifico, prova a inserire l'errore in un motore di ricerca o in un prompt IA. Altre persone probabilmente hanno già affrontato lo stesso errore in passato e hanno registrato soluzioni pubblicamente da qualche parte.
-- Se possibile, rimani su siti raccomandati come MDN e [StackOverflow](https://stackoverflow.com/).
-- Ci sono molte tecniche di ricerca avanzate che puoi usare nei motori di ricerca che ti daranno risultati migliori rispetto a digitare solo un termine di ricerca semplice. Digitando un termine di ricerca semplice come `ant fish cheese` restituirà risultati che contengono qualsiasi combinazione di quelle parole. Tuttavia, la maggior parte dei motori di ricerca supporta variazioni dei seguenti formati:
-
-  - Digitando `"ant fish cheese"` (con le virgolette) restituirà solo risultati che contengono quella frase esatta.
-  - `"ant cheese" -fish` restituirà risultati che contengono `ant` e/o `cheese` ma non `fish`.
-  - `ant OR cheese` restituirà solo risultati con un termine o l'altro, non entrambi. Dai nostri test, questo sembrava funzionare efficacemente solo su Google.
+- Includere il linguaggio usato nel termine di ricerca, come mostrato negli esempi precedenti. Se si digitasse soltanto `how to print out the fibonacci sequence`, si finirebbe probabilmente con diverse soluzioni in Python, C++, Java, Ruby o altri linguaggi, non molto utili quando si sta cercando di imparare JavaScript.
+- Quando si trova una risposta utile, aggiungerla ai segnalibri o salvarne una copia da qualche parte, così da poterla ritrovare in seguito. Sorprenderà quante volte si incontrerà lo stesso problema.
+- Se il codice restituisce un messaggio di errore specifico, provare a inserire l'errore in un motore di ricerca o in un prompt dell'IA. Altre persone avranno probabilmente già affrontato lo stesso errore in passato e registrato pubblicamente le soluzioni da qualche parte.
+- Se possibile, attenersi a siti consigliati come MDN e [Stack Overflow](https://stackoverflow.com/).
+- Esistono molte tecniche di ricerca avanzate che è possibile usare nei motori di ricerca e che forniranno risultati migliori rispetto alla semplice digitazione di un termine di ricerca. Digitare un semplice termine di ricerca come `ant fish cheese` restituirà risultati che contengono qualsiasi combinazione di tali parole. Tuttavia, la maggior parte dei motori di ricerca supporta variazioni dei seguenti modelli di sintassi:
+  - Digitare `"ant fish cheese"` (con le virgolette) restituirà solo risultati che contengono quella frase esatta.
+  - `ant cheese -fish` restituirà risultati che contengono `ant` e/o `cheese`, ma non `fish`.
+  - `ant OR cheese` restituirà solo risultati con un termine o l'altro, non entrambi. Dai nostri test, questo sembrava funzionare efficacemente solo in Google.
   - `intitle:cheese` restituirà solo risultati che hanno "cheese" nel titolo principale della pagina.
 
   > [!NOTE]
-  > Ci sono molte altre tecniche che puoi usare in vari motori di ricerca diversi. Prova a vedere quali altre puoi trovare — alcune risorse utili sono [Raffina le ricerche su Google](https://support.google.com/websearch/answer/2466433?hl=en), [Come usare la sintassi avanzata su DuckDuckGo Search](https://duckduckgo.com/duckduckgo-help-pages/results/syntax), e [Microsoft: Opzioni di ricerca avanzata](https://support.microsoft.com/en-us/topic/advanced-search-options-b92e25f1-0085-4271-bdf9-14aaea720930).
+  > Esistono molte altre tecniche utilizzabili nei vari motori di ricerca. Provare a scoprire quali altre sono disponibili: alcune risorse utili sono [Refine Google Searches](https://support.google.com/websearch/answer/2466433?hl=en), [How to use advanced syntax on DuckDuckGo Search](https://duckduckgo.com/duckduckgo-help-pages/results/syntax) e [Microsoft: Advanced search options](https://support.microsoft.com/en-US/bing/advanced-search-options).
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Environment_setup/Installing_software", "Learn_web_development/Getting_started/Environment_setup/Code_editors", "Learn_web_development/Getting_started/Environment_setup")}}

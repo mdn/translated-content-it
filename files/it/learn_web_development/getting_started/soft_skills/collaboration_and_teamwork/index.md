@@ -2,136 +2,140 @@
 title: Collaborazione e lavoro di squadra
 slug: Learn_web_development/Getting_started/Soft_skills/Collaboration_and_teamwork
 l10n:
-  sourceCommit: 40d93a42a81091c17e96071b506198c60868ebed
+  sourceCommit: 4cea855517e39f4510cd110ced815b7643203321
 ---
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Soft_skills/Research_and_learning", "Learn_web_development/Getting_started/Soft_skills/Workflows_and_processes", "Learn_web_development/Getting_started/Soft_skills")}}
 
-Come professionista nel settore del web, dovrai lavorare con altre persone su progetti in diverse fasi — ideazione, redazione di proposte, implementazione del codice e altro ancora. Questo articolo esamina come lavorare insieme agli altri.
+Come professionista del settore web, sarà necessario lavorare con altre persone ai progetti durante diverse fasi: generazione di idee, scrittura di proposte, implementazione del codice e altro ancora.
+
+Nei team di sviluppo web, la collaborazione avviene spesso tramite strumenti quali i sistemi di controllo di versione (ad esempio, [Git](https://git-scm.com) e [GitHub](https://github.com)). Gli sviluppatori lavorano in genere su copie separate di un progetto, revisionano il codice reciproco e discutono le modifiche usando i commenti. Un simile flusso di lavoro aiuta i team a individuare i bug in anticipo, mantenere la qualità del codice e garantire che tutti comprendano le modifiche apportate.
+
+Questo articolo illustra come lavorare insieme ad altre persone.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        N/A
+        N/D
       </td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Pratica la collaborazione con i compagni di squadra, compreso il condividere informazioni utili.</li>
-          <li>Impara a porre domande utili e ad aiutarsi a vicenda.</li>
-          <li>Pubblica il tuo lavoro</li>
-          <li>Allarga la rete ai gruppi di incontro o ai progetti open source per trovare persone con cui collaborare e che possano aiutare.</li>
-          <li>Impara a non temere il fallimento, ma ad abbracciarlo come uno strumento di apprendimento efficace.</li>
+          <li>Praticare la collaborazione con i membri del team, inclusa la condivisione di informazioni utili.</li>
+          <li>Imparare a porre domande utili e ad aiutarsi reciprocamente.</li>
+          <li>Pubblicare il proprio lavoro.</li>
+          <li>Ampliare la ricerca a gruppi di incontro o progetti open source per trovare persone con cui ricevere aiuto e collaborare.</li>
+          <li>Imparare a non temere il fallimento, ma ad accoglierlo come efficace strumento di apprendimento.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Lavorare con gli altri
+## Lavorare con altre persone
 
-Come sviluppatore web, dovrai passare molto tempo a lavorare con i tuoi colleghi, sia che tu sia impiegato che studente. I tuoi colleghi o compagni di studi potrebbero rappresentare un aiuto inestimabile per il tuo apprendimento, come abbiamo discusso per la prima volta in [Ricerca e apprendimento](/it/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning#build_a_network_of_contacts), e dovresti almeno assicurarti di andare d'accordo con loro all'inizio.
+Come sviluppatore web, sarà necessario trascorrere molto tempo lavorando con i propri pari, sia durante un impiego sia durante gli studi. Colleghi o compagni di studio possono essere un aiuto estremamente prezioso per l'apprendimento, come discusso inizialmente in [Ricerca e apprendimento](/it/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning#build_a_network_of_contacts), e come minimo è opportuno assicurarsi di andare d'accordo con loro fin dall'inizio.
 
-È importante trattare le persone con lo stesso livello di empatia e rispetto che desidereresti ricevere. Persone diverse hanno esigenze diverse dal punto di vista emotivo, sociale, ecc., ma a livello di base dovresti essere educato, rispettoso e cooperativo in tutti gli incontri.
+È importante trattare le persone con lo stesso livello di empatia e rispetto che si desidererebbe ricevere. Persone diverse hanno esigenze diverse dal punto di vista emotivo, sociale e così via, ma a un livello fondamentale occorre essere educati, rispettosi e collaborativi in tutte le interazioni.
 
-## Entra a far parte di una rete comunitaria
+## Entrare a far parte di una rete della comunità
 
-Il settore web ha un forte senso di comunità, il che significa che interagirai spesso con persone al di fuori del tuo gruppo immediato di lavoro o studio per discutere di argomenti di interesse o risolvere problemi. Il settore del web ha i suoi spazi online, come forum (ad esempio, server Discord), canali Slack, ecc. Ha anche molti eventi in presenza, dalle conferenze di alto profilo agli incontri locali più discreti.
+Il settore web possiede un forte senso di comunità, il che significa che spesso si interagirà con persone al di fuori del proprio gruppo di lavoro o studio immediato per discutere argomenti di interesse o risolvere problemi. Il settore web ha i propri spazi online, come forum (ad esempio, server Discord), canali Slack e così via. Organizza inoltre molti eventi in presenza, dalle conferenze di alto profilo agli incontri locali più informali.
 
-Dovresti immergerti in alcuni di questi gruppi, salutare, conoscere persone, condividere risorse, fare domande e offrire aiuto. Conoscere persone nella comunità offre una serie di vantaggi — potrai:
+È consigliabile immergersi in alcuni di questi gruppi, salutare, conoscere le persone, condividere risorse, porre domande e offrirsi di aiutare. Conoscere persone nella comunità offre numerosi vantaggi:
 
-- Incontrare contatti utili che potrebbero diventare amici o futuri colleghi o datori di lavoro.
-- Imparare nuove tecniche e tecnologie e ottenere aiuto con i tuoi problemi tecnici.
-- Praticare la spiegazione di come funziona il codice e rispondere alle domande degli altri.
-- Scoprire risorse, incontri e notizie del settore.
-- Incontrare annunci di lavoro.
-- Trovare informazioni sulle aziende in cui lavorano altri membri della comunità, il che può anche essere utile per scoprire il mercato del lavoro e capire dove ti piacerebbe lavorare.
+- Incontrare contatti utili che potrebbero diventare amici, futuri colleghi o datori di lavoro.
+- Imparare nuove tecniche e tecnologie e ricevere aiuto con i problemi tecnici.
+- Fare pratica nello spiegare come funziona il codice e nel rispondere alle domande di altre persone.
+- Conoscere risorse, incontri e notizie del settore.
+- Imbattersi in annunci di lavoro.
+- Trovare informazioni sulle aziende per cui lavorano altri membri della comunità, utili anche per esplorare il mercato del lavoro e capire dove si vorrebbe lavorare.
 
-Ecco alcune idee iniziali per come coinvolgerti in alcune reti comunitarie:
+Ecco alcune idee iniziali per partecipare a reti della comunità:
 
-- Fai qualche ricerca nella tua zona, vedi quali gruppi di incontro locali ci sono e partecipa ad alcuni di essi. Puoi cercare eventi utilizzando siti come [Meetup.com](https://www.meetup.com/) o [Eventbrite](https://www.eventbrite.co.uk/).
-- Dai un'occhiata a risorse come [confs.tech](https://confs.tech/) per trovare conferenze tecnologiche di interesse. Se sono al di fuori della tua portata economica, prova a contattare gli organizzatori per vedere se puoi lavorare alla conferenza come volontario — avrai comunque modo di partecipare e incontrare molte persone.
-- I [forum di freeCodeCamp](https://forum.freecodecamp.org/) sono un altro ottimo posto per fare domande e rispondere.
-- Controlla il server Discord [Frontend Developers](https://discord.me/frontenddevelopers).
-- Passa del tempo sul [server Discord di MDN](/discord).
-- Unisciti a un canale IRC orientato agli sviluppatori come [Libera.Chat](https://web.libera.chat/).
-- Il nostro partner di apprendimento, Scrimba, offre una [forte esperienza di comunità e collaborazione](https://scrimba.com/the-frontend-developer-career-path-c0j/~0xyi?via=mdn) attraverso il loro server Discord, con l'intento di aiutare i loro studenti a fare esperienza lavorando con gli altri.
-- Trova sviluppatori web sui social network, vedi cosa stanno dicendo e partecipa alle conversazioni.
+- Fare ricerche nella propria zona, vedere quali gruppi locali di incontro in presenza esistono e partecipare ad alcuni di essi. È possibile cercare eventi tramite siti come [Meetup.com](https://www.meetup.com/) o [Eventbrite](https://www.eventbrite.co.uk/).
+- Consultare risorse come [confs.tech](https://confs.tech/) per trovare conferenze tecnologiche di interesse. Se il costo è fuori budget, provare a contattare gli organizzatori per verificare se è possibile lavorare alla conferenza come volontario: sarà comunque possibile partecipare e conoscere molte persone.
+- I [forum di freeCodeCamp](https://forum.freecodecamp.org/) sono un altro ottimo posto in cui porre domande e rispondere a quelle altrui.
+- Consultare il server Discord [Frontend Developers](https://discord.me/frontenddevelopers).
+- Frequentare il [server Discord di MDN](/discord).
+- Unirsi a un canale {{Glossary("IRC", "IRC")}} amichevole e orientato agli sviluppatori, come [Libera.Chat](https://web.libera.chat/).
+- Il nostro partner per l'apprendimento, Scrimba, offre una [solida esperienza di comunità e collaborazione](https://scrimba.com/the-frontend-developer-career-path-c0j/~0xyi?via=mdn) tramite il proprio server Discord, con l'obiettivo di aiutare gli studenti ad acquisire esperienza nel lavoro con altre persone.
+- Trovare sviluppatori web sui social network, vedere cosa dicono e partecipare alle conversazioni.
 
-Se non sei sicuro su come partecipare, potresti iniziare leggendo le discussioni esistenti e osservando come le persone esperte partecipano alle discussioni.
+Se non è chiaro come partecipare, si può iniziare leggendo le discussioni esistenti e osservando come le persone più esperte partecipano alle conversazioni.
 
 > [!NOTE]
-> La maggior parte delle comunità pubblica un documento chiamato **Codice di condotta** (o **linee guida di partecipazione**) che definisce le loro aspettative di comportamento per le persone che partecipano al loro progetto. Queste linee guida di solito includono una definizione di comportamento inaccettabile, le conseguenze del comportamento inaccettabile e come segnalare comportamenti inaccettabili. Ad esempio, MDN è governato dalle più ampie [Linee guida di partecipazione della Comunità Mozilla](https://www.mozilla.org/en-US/about/governance/policies/participation/).
+> La maggior parte delle comunità pubblica un documento chiamato **Codice di condotta** (o **linee guida per la partecipazione**) che definisce le aspettative di comportamento per le persone che partecipano al progetto. Queste linee guida includono solitamente una definizione di ciò che è considerato comportamento inaccettabile, le conseguenze di un comportamento inaccettabile e come segnalare un comportamento inaccettabile. Ad esempio, MDN è regolato dalle più ampie [Linee guida per la partecipazione alla comunità Mozilla](https://www.mozilla.org/en-US/about/governance/policies/participation/).
 
-## Aiutare gli altri, fare domande
+## Aiutare gli altri, porre domande
 
-Se un collega o un contatto di rete è in difficoltà, offri di aiutarlo. Gli sviluppatori web che offrono aiuto hanno molte più probabilità di costruire relazioni solide e ottenere aiuto in cambio.
+Se un collega o un contatto della rete ha difficoltà, offrire aiuto. Gli sviluppatori web che forniscono aiuto hanno molte più probabilità di costruire relazioni solide e ricevere aiuto a loro volta.
 
-- Se hai già esperienza nell'area in cui stanno lottando, condividi con loro conoscenze o esempi di codice. L'atto di spiegare qualcosa migliorerà anche la tua comprensione, aiutandoti a imparare.
-- Se hai un'idea di dove potrebbero trovare delle risposte utili, aiutali a fare un po' di ricerca.
-- Anche se non sei sicuro di quale sia la risposta, offri di fare una pausa con loro e ascolta mentre ti spiegano il problema. Potresti avere intuizioni utili, e l'atto di spiegare il problema potrebbe aiutarli a trovare la soluzione (vedi [Fare pause e rubber ducking](/it/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning#taking_breaks_and_rubber_ducking)).
+- Se è già disponibile una certa esperienza nell'area in cui l'altra persona incontra difficoltà, condividere conoscenze o esempi di codice. L'atto di spiegare qualcosa migliorerà anche la propria comprensione, favorendo l'apprendimento.
+- Se si ha un'idea di dove potrebbero trovare risposte utili, aiutarli nella ricerca.
+- Anche se non si è sicuri della risposta, offrire di fare una pausa insieme e ascoltare mentre spiegano il problema. Potrebbero emergere osservazioni utili e l'atto di spiegare il problema potrebbe aiutarli a individuare la soluzione (vedere [Fare pause e parlare con una papera di gomma](/it/docs/Learn_web_development/Getting_started/Soft_skills/Research_and_learning#taking_breaks_and_rubber_ducking)).
 
-É sempre meglio scegliere di aiutare immediatamente i colleghi, piuttosto che aspettare che un insegnante o un sviluppatore senior vada in giro per aiutare tutti. I colleghi meno abili riceveranno aiuto più rapidamente, e i colleghi più abili diventeranno mentori e sperimenteranno la soddisfazione che questa esperienza porta.
+È preferibile aiutare i pari immediati anziché aspettare che un insegnante o uno sviluppatore senior passi ad aiutare tutti. I pari meno esperti riceveranno aiuto più rapidamente e quelli più esperti diventeranno mentori, sperimentando la soddisfazione che ciò comporta.
 
-C'è un'arte nel porre e rispondere alle domande. È essenziale praticare il porre le domande giuste per scoprire ciò che devi sapere, e spiegare cosa stai facendo quando qualcun altro ti chiede. Se non sei bravo a fare questo, chiedi ai tuoi colleghi se puoi organizzare sessioni con loro, in cui loro pongono domande e tu spieghi come funziona il tuo codice, e viceversa.
+Porre e rispondere alle domande è un'arte. È essenziale fare pratica nel porre le domande giuste per scoprire ciò che è necessario sapere e nello spiegare ciò che si sta facendo quando qualcun altro pone domande. Se questa capacità non è ancora sviluppata, chiedere ai propri pari se è possibile organizzare sessioni in cui pongono domande e si spiega come funziona il proprio codice, e viceversa.
 
-Le revisioni tra pari sono anche un buon posto per esercitarsi in questo ([vedi sotto](#lavoro_di_squadra_e_revisioni_tra_pari)).
+Anche le revisioni tra pari sono un buon luogo per fare pratica in questo ambito ([vedere sotto](#lavoro_di_squadra_e_revisioni_tra_pari)).
 
-## Pubblica il tuo lavoro
+## Pubblicare il proprio lavoro
 
-Di norma, vale sempre la pena pubblicare il tuo lavoro, compresi il codice sorgente, le lezioni apprese, ciò che è stato impegnativo, ecc. I tuoi colleghi troveranno questo molto utile, e lo stesso farà la comunità più ampia.
+Come regola generale, è molto utile pubblicare il proprio lavoro, compresi il codice sorgente, le lezioni apprese, gli aspetti che hanno rappresentato una sfida e così via. I propri pari lo troveranno molto utile, così come la comunità più ampia.
 
-Quando trovi una risposta utile, scrivine. Metti il tuo codice su un sito di social coding come [GitHub](https://github.com/) o [GitLab](https://about.gitlab.com/), e scrivi i tuoi pensieri su un blog. Condividi le tue pubblicazioni tramite i social media.
+Quando si trova una risposta utile, scriverne. Pubblicare il codice su un sito di social coding come [GitHub](https://github.com/) o [GitLab](https://about.gitlab.com/) e mettere per iscritto le proprie riflessioni in un blog. Condividere le pubblicazioni tramite i social media.
 
-Non solo il processo di scrittura chiarirà i concetti per te, ma otterrai anche validazione e/o feedback dalla comunità. Potrebbe aiutarti a iniziare a farti un nome nel settore.
+Non solo il processo di scrittura chiarirà i concetti, ma si riceveranno anche conferme e/o commenti dalla comunità. Questo potrebbe aiutare a iniziare a farsi un nome nel settore.
 
-Anche se pensi che i tuoi successi siano banali, probabilmente ne sai più di quanto pensi, e ci sarà sempre qualcuno ad uno stadio precedente nel loro percorso verso la padronanza del codice che troverà utile il tuo lavoro.
+Anche se i propri risultati sembrano banali, probabilmente si sa più di quanto si pensi e ci sarà sempre qualcuno in una fase precedente del proprio percorso verso la padronanza del codice che troverà utile il lavoro pubblicato.
 
-## Partecipa all'open source
+## Partecipare all'open source
 
-Un altro modo per farti amici e influenzare le persone è trovare progetti open source e offrire aggiornamenti per risolvere problemi nel lavoro di altre persone. A condizione che tu sia educato e rispettoso, e spieghi i tuoi cambiamenti e il ragionamento dietro di essi, i proprietari del progetto saranno molto grati per i tuoi contributi. I tuoi aggiornamenti ti daranno anche esperienza e pratica preziosa.
+Un altro modo per fare amicizia e influenzare le persone consiste nel trovare progetti open source e proporre aggiornamenti per risolvere problemi nel lavoro di altre persone. A condizione di essere educati e rispettosi e di spiegare le modifiche e il ragionamento che le motiva, i proprietari del progetto saranno molto grati per i contributi. Gli aggiornamenti forniranno inoltre esperienza e pratica preziose.
 
-Ad esempio, [il codice sorgente di MDN](https://github.com/mdn/content) è disponibile su GitHub, e abbiamo molti [problemi](https://github.com/mdn/content/issues) su cui potresti lavorare.
-Ci sono molte [Risorse della comunità](/it/docs/MDN/Community) su MDN che descrivono il progetto e com'è contribuire ad esso.
+Ad esempio, il [codice sorgente di MDN](https://github.com/mdn/content) è disponibile su GitHub e sono presenti molti [issue](https://github.com/mdn/content/issues) su cui è possibile lavorare.
+Su MDN sono disponibili numerose [risorse della comunità](/it/docs/MDN/Community) che descrivono il progetto e cosa comporta contribuire a esso.
 
-Se non sai cos'è l'open source e perché o come iniziare a contribuire, entrambi i seguenti sono davvero utili:
+Se non è chiaro cosa sia l'open source e perché o come iniziare a contribuire, entrambe le risorse seguenti sono davvero utili:
 
-- [Come contribuire ai progetti Open Source – Una guida per principianti](https://www.freecodecamp.org/news/how-to-contribute-to-open-source-projects-beginners-guide/)
-- [Etichetta open source](/it/docs/MDN/Community/Open_source_etiquette)
+- [Come contribuire ai progetti open source – Guida per principianti](https://www.freecodecamp.org/news/how-to-contribute-to-open-source-projects-beginners-guide/)
+- [Etichetta dell'open source](/it/docs/MDN/Community/Open_source_etiquette)
 
 ## Lavoro di squadra e revisioni tra pari
 
-Sarai spesso tenuto a lavorare in un team con altri sviluppatori, con diversi membri del team che svolgono funzioni diverse nel gruppo. Esamineremo i diversi ruoli che incontrerai e le strategie comuni di lavoro in [Flussi di lavoro e processi](/it/docs/Learn_web_development/Getting_started/Soft_skills/Workflows_and_processes), ma per ora, pensa a cosa significa lavorare in un team:
+Spesso sarà necessario lavorare in un team con altri sviluppatori, con membri diversi del team che svolgono funzioni differenti. I diversi ruoli che si possono incontrare e le strategie di lavoro comuni saranno analizzati in [Flussi di lavoro e processi](/it/docs/Learn_web_development/Getting_started/Soft_skills/Workflows_and_processes), ma per ora è utile riflettere su cosa significhi lavorare in un team:
 
-- Possedere congiuntamente il progetto su cui stai lavorando — sia i successi che i fallimenti.
-- Lavorare insieme per pianificare non solo cosa farai, ma come lavorerai insieme per raggiungerlo. Quale processo utilizzerai? Come misurerai il successo? Quanto tempo hai; quali obiettivi devono essere raggiunti, e quando?
+- Condividere la proprietà del progetto su cui si lavora, sia per i successi sia per i fallimenti.
+- Lavorare insieme per pianificare non solo cosa fare, ma anche come collaborare per raggiungerlo. Quale processo verrà usato? Come sarà misurato il successo? Quanto tempo è disponibile? Quali obiettivi devono essere raggiunti e quando?
 - Comunicare regolarmente e apertamente per assicurarsi che i problemi vengano individuati presto e che tutti sappiano cosa sta succedendo.
-- Mostrare empatia per gli altri membri del team in ogni momento, ma soprattutto quando le cose non vanno come previsto e sono necessari aggiustamenti.
-- Aiutarsi a vicenda per avere successo.
+- Mostrare sempre empatia verso gli altri membri del team, soprattutto quando le cose non vanno secondo i piani e sono necessari adattamenti.
+- Aiutarsi reciprocamente ad avere successo.
 
-Anche se non stai facendo un vero e proprio progetto di lavoro — potresti fare un progetto simulato per il college, o lavorare su un tuo progetto hobbistico — dovresti praticare la sua gestione come un vero progetto software, con una timeline, un piano e delle responsabilità. Impara sui [cicli di vita del software (SDLC)](https://www.geeksforgeeks.org/software-development-life-cycle-sdlc/). Acquisisci alcune competenze e strumenti base di [pianificazione del progetto](https://en.wikipedia.org/wiki/Project_planning) per poter stimare e pianificare il tuo lavoro.
+Anche se non si sta lavorando a un vero progetto lavorativo — potrebbe trattarsi di un progetto simulato universitario o di un progetto personale per hobby — è opportuno fare pratica nel gestirlo come un vero progetto software, con una cronologia, un piano e responsabilità. Informarsi sui tipici [cicli di vita dello sviluppo software](https://www.geeksforgeeks.org/software-engineering/software-development-life-cycle-sdlc/). Acquisire alcune competenze e strumenti di base per la [pianificazione del progetto](https://en.wikipedia.org/wiki/Project_planning), così da poter stimare e pianificare il lavoro.
 
-È anche una buona idea iniziare a fare revisioni tra pari — i colleghi esaminano il lavoro reciproco e forniscono feedback su come potrebbe essere migliorato. Si potrebbero esaminare aree come la qualità generale del codice e l'aderenza alle guide di stile del codice, prestazioni, conformità alle best practices, usabilità e qualità della documentazione. Puoi trarre grande beneficio, sia che tu sia il revisore o la persona revisionata:
+È inoltre una buona idea iniziare a svolgere revisioni tra pari: i colleghi revisionano il lavoro reciproco e forniscono commenti su come potrebbe essere migliorato. Le aree esaminate possono includere la qualità generale del codice e l'aderenza alle guide di stile del codice, le prestazioni, il rispetto delle best practice, l'usabilità e la qualità della documentazione. I vantaggi possono essere notevoli, sia come revisore sia come persona il cui lavoro viene revisionato:
 
-- Se stai esaminando il lavoro di qualcun altro, prova a fornire un equilibrio tra incoraggiamento e apprezzamento per il buon lavoro, e feedback critici. Pratica come fornire quel feedback in modo costruttivo e rispettoso. Anche se possono sembrare piuttosto banali, trova sempre uno o due domande da porre quando discuti o esamini il lavoro tra pari.
-- Se il tuo lavoro viene revisionato, cerca di non prendere la critica sul personale e concentrati sui lati positivi e su ciò che puoi imparare. Presumi le migliori intenzioni dal tuo revisore — stanno solo cercando di aiutarti.
+- Quando si revisiona il lavoro di qualcun altro, cercare di offrire un equilibrio tra incoraggiamento e apprezzamento per il buon lavoro, e feedback critico. Fare pratica nel fornire tale feedback in modo costruttivo e rispettoso. Anche se sembrano piuttosto banali, formulare sempre una o due domande da porre quando si discute o si revisiona il lavoro di un pari.
+- Quando il proprio lavoro viene revisionato, cercare di non prendere le critiche sul personale e concentrarsi sugli aspetti positivi e su ciò che è possibile imparare. Presumere le migliori intenzioni da parte del revisore: sta semplicemente cercando di aiutare.
 
-## Impara ad abbracciare il fallimento
+## Imparare ad accogliere il fallimento
 
-Un problema molto comune che porta studenti e nuovi sviluppatori ad allontanarsi dalla sperimentazione e dall'assunzione di rischi (ad esempio quando iniziano nuovi progetti o esplorano nuove idee) è la paura del fallimento e come verrà giudicato da colleghi o compagni di squadra. Dovresti passare un po' di tempo a imparare il valore che può essere ricavato dagli errori.
+Un motivo comune per cui studenti e nuovi sviluppatori evitano la sperimentazione e l'assunzione di rischi, ad esempio quando avviano nuovi progetti o esplorano nuove idee, è la paura del fallimento e di come questo potrebbe essere giudicato da pari o membri del team. È opportuno dedicare del tempo a riflettere sugli errori e a individuare gli insegnamenti che offrono.
 
-Il fallimento è davvero solo un piccolo passo sulla strada per il successo. Tutti i più sviluppatori di successo hanno fallito molte volte, e non è il fallimento reale che conta, ma come gestisci quel fallimento e le lezioni che ne impari.
+Il fallimento è in realtà solo un piccolo passo lungo la strada verso il successo. Tutti gli sviluppatori di maggiore successo hanno fallito molte volte, e ciò che conta non è il fallimento in sé, ma come viene gestito e quali lezioni se ne apprendono.
 
-Ecco alcuni consigli:
+Ecco alcuni suggerimenti pratici per contribuire a creare un ambiente sicuro in cui imparare dai fallimenti:
 
-- Definisci uno spazio sicuro/un gruppo di pari dove le persone sono libere di porre domande — ricorda che non ci sono "domande stupide", solo persone che non fanno domande. Incoraggia una cultura in cui i colleghi si supportano a vicenda e il fallimento non è giudicato severamente.
-- Guarda nella tua rete e prova a trovare gruppi online o in persona che possano darti aiuto e consigli o che stanno affrontando gli stessi problemi che affronti tu e possono fornire supporto morale o sperimentare insieme.
-- (Per i docenti) Struttura i criteri di valutazione per i tuoi esami in modo che tu possa ancora ottenere un numero ragionevole di voti anche se non hai ottenuto il risultato corretto, a patto che il processo sia ben documentato. Assegna voti extra per l'innovazione.
-- Organizza sessioni di "mostra e racconta" o incontri individuali a metà progetto, con colleghi e mentori, per ottenere feedback e intuizioni su dove stai sbagliando e ottenere consigli su come tornare sulla strada giusta.
-- Organizza incontri retrospettivi per analizzare i progetti, vedere cosa non è andato bene e discutere su come migliorare le cose la prossima volta.
+- Definire uno spazio sicuro o un gruppo di pari in cui le persone siano libere di porre domande: ricordare che non esistono domande "stupide", ma solo persone che non riescono a porle. Promuovere una cultura in cui i pari si sostengono reciprocamente e il fallimento non viene giudicato severamente.
+- Rivolgersi alla propria rete e cercare gruppi online o in presenza che possano offrire aiuto e consigli oppure che affrontino gli stessi problemi e possano fornire supporto morale o sperimentare insieme.
+- (Per gli educatori) Impostare gli schemi di valutazione in modo che sia ancora possibile ottenere un numero ragionevole di punti anche se non si è ottenuto il risultato corretto, a condizione che il processo sia ben documentato. Assegnare punti aggiuntivi per l'innovazione.
+- Organizzare sessioni di presentazione o incontri individuali a metà progetto con pari e mentori per ricevere feedback e osservazioni su dove si stanno commettendo errori e consigli su come tornare sulla strada giusta.
+- Organizzare riunioni retrospettive per analizzare i progetti, esaminare ciò che non è andato bene e discutere come migliorare le cose la prossima volta.
 
 {{PreviousMenuNext("Learn_web_development/Getting_started/Soft_skills/Research_and_learning", "Learn_web_development/Getting_started/Soft_skills/Workflows_and_processes", "Learn_web_development/Getting_started/Soft_skills")}}

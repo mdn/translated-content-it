@@ -1,20 +1,21 @@
 ---
-title: Il tuo primo modulo
+title: Il primo modulo
 slug: Learn_web_development/Extensions/Forms/Your_first_form
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: f33de00c56ac53878eb2cb7cb5849df1f9ab8db7
 ---
 
 {{NextMenu("Learn_web_development/Extensions/Forms/How_to_structure_a_web_form", "Learn_web_development/Extensions/Forms")}}
 
-Il primo articolo della nostra serie ti offre la tua prima esperienza nella creazione di un modulo web, compreso il design di un modulo semplice, l'implementazione utilizzando i controlli modulo HTML corretti e altri elementi HTML, l'aggiunta di uno stile molto semplice tramite CSS, e descrivendo come i dati vengono inviati a un server. Amplieremo ciascuno di questi sottotemi in modo più dettagliato successivamente nel modulo.
+Il primo articolo della nostra serie offre la prima esperienza nella creazione di un modulo web, inclusi la progettazione di un semplice modulo, la sua implementazione usando i controlli per moduli HTML e altri elementi HTML appropriati, l'aggiunta di uno stile molto semplice tramite CSS e la descrizione di come i dati vengono inviati a un server.
+Ciascuno di questi sottoargomenti verrà approfondito più avanti nel modulo.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Una comprensione di base di
+        Una conoscenza di base di
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
           >HTML</a
         >.
@@ -23,9 +24,8 @@ Il primo articolo della nostra serie ti offre la tua prima esperienza nella crea
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Acquisire familiarità con cosa sono i moduli web, a cosa servono, come
-        pensare a progettarli, e gli elementi HTML di base di cui avrai bisogno
-        per i casi semplici.
+        Acquisire familiarità con i moduli web, i loro utilizzi, come pensarne la
+        progettazione e gli elementi HTML di base necessari per i casi semplici.
       </td>
     </tr>
   </tbody>
@@ -33,34 +33,37 @@ Il primo articolo della nostra serie ti offre la tua prima esperienza nella crea
 
 ## Cosa sono i moduli web?
 
-I **moduli web** sono uno dei principali punti di interazione tra un utente e un sito web o un'applicazione. Permettono agli utenti di inserire dati, che generalmente vengono inviati a un server web per l'elaborazione e l'archiviazione (vedi [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data) più avanti nel modulo) o utilizzati lato client per aggiornare immediatamente l'interfaccia in qualche modo (ad esempio, aggiungere un altro elemento a una lista, o mostrare o nascondere una funzionalità dell'interfaccia utente).
+I **moduli web** sono uno dei principali punti di interazione tra un utente e un sito web o un'applicazione.
+I moduli consentono agli utenti di immettere dati, che generalmente vengono inviati a un server web per l'elaborazione e l'archiviazione (vedere [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data) più avanti nel modulo), oppure vengono usati lato client per aggiornare immediatamente l'interfaccia in qualche modo (ad esempio, aggiungere un altro elemento a un elenco o mostrare o nascondere una funzionalità dell'interfaccia utente).
 
-L'HTML di un modulo web è composto da uno o più **controlli modulo** (talvolta chiamati **widget**), più alcuni elementi aggiuntivi per aiutare a strutturare il modulo generale — sono spesso indicati come **moduli HTML**. I controlli possono essere campi di testo a una o più linee, caselle a discesa, pulsanti, checkbox o pulsanti di opzione, e sono principalmente creati utilizzando l'elemento {{htmlelement("input")}}, anche se ci sono altri elementi da conoscere.
+L'HTML di un modulo web è composto da uno o più **controlli del modulo** (talvolta chiamati **widget**), oltre ad alcuni elementi aggiuntivi che aiutano a strutturare il modulo nel suo insieme: vengono spesso indicati come **moduli HTML**.
+I controlli possono essere campi di testo a riga singola o multilinea, caselle a discesa, pulsanti, caselle di controllo o pulsanti di opzione e sono creati principalmente usando l'elemento {{htmlelement("input")}}, sebbene vi siano anche altri elementi da conoscere.
 
-I controlli modulo possono anche essere programmati per imporre formati o valori specifici da inserire (**validazione del modulo**), e abbinati a etichette di testo che descrivono il loro scopo agli utenti sia vedenti che non vedenti.
+I controlli del modulo possono anche essere programmati per imporre l'immissione di formati o valori specifici (**convalida del modulo**) e associati a etichette di testo che ne descrivono lo scopo sia agli utenti vedenti sia a quelli con disabilità visive.
 
-## Progettare il tuo modulo
+## Progettare il modulo
 
-Prima di iniziare a codificare, è sempre meglio fare un passo indietro e prendere il tempo necessario per pensare al tuo modulo. Progettare un mockup rapido ti aiuterà a definire il giusto insieme di dati che desideri richiedere al tuo utente di inserire. Dal punto di vista dell'esperienza utente (UX), è importante ricordare che più grande è il tuo modulo, più rischi di frustrare le persone e perdere utenti. Mantienilo semplice e rimani focalizzato: chiedi solo i dati di cui hai assolutamente bisogno.
+Prima di iniziare a scrivere codice, è sempre meglio fare un passo indietro e dedicare tempo a riflettere sul modulo. Progettare rapidamente un mockup aiuterà a definire il giusto insieme di dati da chiedere all'utente. Dal punto di vista dell'esperienza utente (UX), è importante ricordare che più grande è il modulo, maggiore è il rischio di frustrare le persone e perdere utenti. Mantenerlo semplice e focalizzato: chiedere solo i dati strettamente necessari.
 
-Progettare moduli è un passo importante quando stai costruendo un sito o un'applicazione. È al di là dell'ambito di questo articolo coprire l'esperienza utente dei moduli, ma se vuoi approfondire quell'argomento dovresti leggere i seguenti articoli:
+La progettazione dei moduli è un passaggio importante nella creazione di un sito o di un'applicazione.
+Trattare l'esperienza utente dei moduli va oltre lo scopo di questo articolo, ma per approfondire l'argomento è consigliabile leggere i seguenti articoli:
 
-- Smashing Magazine ha alcuni [buoni articoli su UX dei moduli](https://www.smashingmagazine.com/2018/08/ux-html5-mobile-form-part-1/), incluso un articolo più vecchio ma ancora rilevante [Guida Estesa all'Usabilità dei Moduli Web](https://www.smashingmagazine.com/2011/11/extensive-guide-web-form-usability/).
-- UXMatters è anche una risorsa molto ponderata con buoni consigli dalle [migliori pratiche di base](https://www.uxmatters.com/mt/archives/2012/05/7-basic-best-practices-for-buttons.php) a preoccupazioni complesse come [moduli multipagina](https://www.uxmatters.com/mt/archives/2010/03/pagination-in-web-forms-evaluating-the-effectiveness-of-web-forms.php).
+- Smashing Magazine contiene alcuni [buoni articoli sulla UX dei moduli](https://www.smashingmagazine.com/2018/08/ux-html5-mobile-form-part-1/), incluso il meno recente ma ancora rilevante articolo [Extensive Guide To Web Form Usability](https://www.smashingmagazine.com/2011/11/extensive-guide-web-form-usability/).
+- Anche UXMatters è una risorsa molto accurata, con buoni consigli dalle [migliori pratiche di base](https://www.uxmatters.com/mt/archives/2012/05/7-basic-best-practices-for-buttons.php) a questioni complesse come i [moduli multipagina](https://www.uxmatters.com/mt/archives/2010/03/pagination-in-web-forms-evaluating-the-effectiveness-of-web-forms.php).
 
-In questo articolo, costruiremo un semplice modulo di contatto. Facciamo uno schizzo approssimativo.
+In questo articolo verrà creato un semplice modulo di contatto. Iniziamo con uno schizzo approssimativo.
 
-![Il modulo da costruire, schizzo approssimativo](form-sketch-low.jpg)
+![Il modulo da creare, schizzo approssimativo](form-sketch-low.jpg)
 
-Il nostro modulo conterrà tre campi di testo e un pulsante. Stiamo chiedendo all'utente il loro nome, la loro email e il messaggio che vogliono inviare. Premendo il pulsante, i loro dati verranno inviati a un server web.
+Il modulo conterrà tre campi di testo e un pulsante. Verranno richiesti all'utente il nome, l'email e il messaggio che desidera inviare. Premendo il pulsante, i dati verranno inviati a un server web.
 
-## Apprendimento attivo: Implementare il nostro HTML del modulo
+## Implementare l'HTML del modulo
 
-Ok, proviamo a creare l'HTML per il nostro modulo. Useremo i seguenti elementi HTML: {{HTMLelement("form")}}, {{HTMLelement("label")}}, {{HTMLelement("input")}}, {{HTMLelement("textarea")}}, e {{HTMLelement("button")}}.
+Bene, proviamo a creare l'HTML del modulo. Verranno usati i seguenti elementi HTML: {{HTMLelement("form")}}, {{HTMLelement("label")}}, {{HTMLelement("input")}}, {{HTMLelement("textarea")}} e {{HTMLelement("button")}}.
 
-Prima di proseguire, fai una copia locale del nostro [template HTML semplice](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html) — inserirai qui il tuo HTML del modulo.
+Prima di procedere, creare una copia locale del nostro [semplice template HTML](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html): qui verrà inserito l'HTML del modulo.
 
-### Elemento `<form>`
+### L'elemento `<form>`
 
 Tutti i moduli iniziano con un elemento {{HTMLelement("form")}}, come questo:
 
@@ -68,25 +71,25 @@ Tutti i moduli iniziano con un elemento {{HTMLelement("form")}}, come questo:
 <form action="/my-handling-form-page" method="post">…</form>
 ```
 
-Questo elemento definisce formalmente un modulo. È un elemento contenitore come un elemento {{HTMLelement("section")}} o {{HTMLelement("footer")}}, ma specificamente per contenere moduli; supporta anche alcuni attributi specifici per configurare il modo in cui il modulo si comporta. Tutti i suoi attributi sono opzionali, ma è prassi standard impostare sempre almeno gli attributi [`action`](/it/docs/Web/HTML/Reference/Elements/form#action) e [`method`](/it/docs/Web/HTML/Reference/Elements/form#method):
+Questo elemento definisce formalmente un modulo. È un elemento contenitore come un elemento {{HTMLelement("section")}} o {{HTMLelement("footer")}}, ma specificamente destinato a contenere moduli; supporta inoltre alcuni attributi specifici per configurare il comportamento del modulo. Tutti i suoi attributi sono facoltativi, ma la pratica standard consiste nell'impostare sempre almeno gli attributi [`action`](/it/docs/Web/HTML/Reference/Elements/form#action) e [`method`](/it/docs/Web/HTML/Reference/Elements/form#method):
 
-- L'attributo `action` definisce la posizione (URL) in cui i dati raccolti del modulo devono essere inviati quando viene inviato.
-- L'attributo `method` definisce quale metodo HTTP utilizzare per inviare i dati (solitamente `get` o `post`).
+- L'attributo `action` definisce la posizione (URL) a cui devono essere inviati i dati raccolti dal modulo quando viene inviato.
+- L'attributo `method` definisce il metodo HTTP con cui inviare i dati (solitamente `get` o `post`).
 
 > [!NOTE]
-> Vedremo come funzionano questi attributi nel nostro articolo [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data) più avanti.
+> Il funzionamento di questi attributi verrà esaminato più avanti nel nostro articolo [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data).
 
-Per ora, aggiungi l'elemento {{htmlelement("form")}} sopra nel tuo {{htmlelement("body")}} HTML.
+Per ora, aggiungere l'elemento {{htmlelement("form")}} precedente nel proprio {{htmlelement("body")}} HTML.
 
-### Gli elementi `<label>`, `<input>`, e `<textarea>`
+### Gli elementi `<label>`, `<input>` e `<textarea>`
 
-Il nostro modulo di contatto non è complesso: la parte di inserimento dati contiene tre campi di testo, ognuno con una corrispondente {{HTMLelement("label")}}:
+Il modulo di contatto non è complesso: la parte di immissione dei dati contiene tre campi di testo, ciascuno con un corrispondente {{HTMLelement("label")}}:
 
 - Il campo di input per il nome è un {{HTMLelement("input/text", "campo di testo a riga singola")}}.
 - Il campo di input per l'email è un {{HTMLelement("input/email", "input di tipo email")}}: un campo di testo a riga singola che accetta solo indirizzi email.
 - Il campo di input per il messaggio è un {{HTMLelement("textarea")}}; un campo di testo multilinea.
 
-In termini di codice HTML, abbiamo bisogno di qualcosa di simile al seguente per implementare questi widget del modulo:
+In termini di codice HTML, per implementare questi widget del modulo serve qualcosa di simile al seguente:
 
 ```html
 <form action="/my-handling-form-page" method="post">
@@ -105,24 +108,38 @@ In termini di codice HTML, abbiamo bisogno di qualcosa di simile al seguente per
 </form>
 ```
 
-Aggiorna il codice del tuo modulo per assomigliare a quanto sopra.
+Aggiornare il codice del modulo affinché corrisponda a quello precedente.
 
-Gli elementi {{HTMLelement("p")}} sono lì per strutturare comodamente il nostro codice e rendere più facile lo styling (vedi più avanti nell'articolo). Per usabilità e accessibilità, includiamo un'etichetta esplicita per ogni controllo modulo. Nota l'uso dell'attributo [`for`](/it/docs/Web/HTML/Reference/Attributes/for) su tutti gli elementi {{HTMLelement("label")}}, che prende come valore l'attributo [`id`](/it/docs/Web/HTML/Reference/Global_attributes/id) del controllo modulo con il quale è associato — questo è come associ un controllo modulo con la sua etichetta.
+Gli elementi {{HTMLelement("p")}} servono a strutturare comodamente il codice e a semplificare lo stile (vedere più avanti nell'articolo).
+Per usabilità e accessibilità, viene inclusa un'etichetta esplicita per ogni controllo del modulo.
+Notare l'uso dell'attributo [`for`](/it/docs/Web/HTML/Reference/Attributes/for) su tutti gli elementi {{HTMLelement("label")}}, il cui valore corrisponde all'[`id`](/it/docs/Web/HTML/Reference/Global_attributes/id) del controllo del modulo a cui è associato: è così che si associa un controllo del modulo alla sua etichetta.
 
-Ci sono grandi benefici nel farlo — associa l'etichetta con il controllo modulo, consentendo agli utenti di mouse, trackpad e dispositivi touch di cliccare sull'etichetta per attivare il controllo corrispondente, e fornisce anche un nome accessibile che i lettori di schermo leggeranno ai loro utenti. Troverai ulteriori dettagli sulle etichette dei moduli in [Come strutturare un modulo web](/it/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form).
+Questo offre un grande vantaggio: associa l'etichetta al controllo del modulo, consentendo agli utenti di mouse, trackpad e dispositivi touch di fare clic sull'etichetta per attivare il controllo corrispondente e fornisce inoltre un nome accessibile che gli screen reader possono leggere ai propri utenti.
+Ulteriori dettagli sulle etichette dei moduli sono disponibili in [Come strutturare un modulo web](/it/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form).
 
-Sull'elemento {{HTMLelement("input")}}, l'attributo più importante è l'attributo `type`. Questo attributo è estremamente importante perché definisce il modo in cui l'elemento {{HTMLelement("input")}} appare e si comporta. Troverai maggiori dettagli in merito nell'articolo [Controlli modulo nativi di base](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls) più avanti.
+Nell'elemento {{HTMLelement("input")}}, l'attributo più importante è `type`.
+Questo attributo è estremamente importante perché definisce il modo in cui l'elemento {{HTMLelement("input")}} appare e si comporta.
+Maggiori informazioni sono disponibili nell'articolo [Controlli nativi di base per moduli](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls), più avanti.
 
-- Nel nostro esempio semplice, utilizziamo il valore {{HTMLelement("input/text", "text")}} per il primo input — il valore predefinito per questo attributo. Rappresenta un campo di testo a riga singola di base che accetta qualsiasi tipo di input di testo.
-- Per il secondo input, utilizziamo il valore {{HTMLelement("input/email", "email")}}, che definisce un campo di testo a riga singola che accetta solo un indirizzo email ben formato. Questo trasforma un campo di testo di base in una sorta di campo "intelligente" che effettuerà alcuni controlli di validazione sui dati digitati dall'utente. Fa anche apparire un layout di tastiera più appropriato per inserire indirizzi email (ad esempio, con un simbolo @ di default) su dispositivi con tastiere dinamiche, come gli smartphone. Scoprirai di più sulla validazione dei moduli nell'articolo [Validazione modulo lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation) più avanti.
+- Nel nostro semplice esempio, viene usato il valore {{HTMLelement("input/text", "text")}} per il primo input, ovvero il valore predefinito di questo attributo.
+  Rappresenta un campo di testo a riga singola di base che accetta qualsiasi tipo di input testuale.
+- Per il secondo input, viene usato il valore {{HTMLelement("input/email", "email")}}, che definisce un campo di testo a riga singola che accetta solo un indirizzo email ben formato.
+  Questo trasforma un campo di testo di base in una sorta di campo "intelligente" che esegue alcuni controlli di convalida sui dati digitati dall'utente.
+  Inoltre, sui dispositivi con tastiere dinamiche, come gli smartphone, fa apparire un layout di tastiera più appropriato per l'immissione di indirizzi email (ad esempio, con il simbolo @ disponibile per impostazione predefinita).
+  Maggiori informazioni sulla convalida dei moduli sono disponibili più avanti nell'articolo [convalida dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation).
 
-Ultimo ma non meno importante, nota la sintassi di `<input>` vs. `<textarea></textarea>`. Questa è una delle stranezze dell'HTML. Il tag `<input>` è un {{Glossary("void_element", "elemento vuoto")}}, il che significa che non ha bisogno di un tag di chiusura. {{HTMLElement("textarea")}} non è un elemento vuoto, il che significa che dovrebbe essere chiuso con il tag di chiusura appropriato. Questo ha un impatto su una caratteristica specifica dei moduli: il modo in cui definisci il valore predefinito. Per definire il valore predefinito di un elemento {{HTMLElement("input")}}, devi usare l'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/input#value) in questo modo:
+Infine, notare la sintassi di `<input>` rispetto a `<textarea></textarea>`.
+Questa è una delle particolarità di HTML.
+Il tag `<input>` è un {{Glossary("void_element", "elemento void")}}, il che significa che non necessita di un tag di chiusura.
+{{HTMLElement("textarea")}} non è un elemento void, il che significa che deve essere chiuso con il tag finale appropriato.
+Ciò ha un impatto su una funzionalità specifica dei moduli: il modo in cui viene definito il valore predefinito.
+Per definire il valore predefinito di un elemento {{HTMLElement("input")}}, occorre usare l'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/input#value) in questo modo:
 
 ```html
 <input type="text" value="by default this element is filled with this text" />
 ```
 
-D'altra parte, se vuoi definire un valore predefinito per un {{HTMLElement("textarea")}}, lo metti tra i tag di apertura e chiusura dell'elemento {{HTMLElement("textarea")}}, in questo modo:
+Al contrario, per definire un valore predefinito per un {{HTMLElement("textarea")}}, inserirlo tra il tag di apertura e quello di chiusura dell'elemento {{HTMLElement("textarea")}}, in questo modo:
 
 ```html
 <textarea>
@@ -130,9 +147,10 @@ by default this element is filled with this text
 </textarea>
 ```
 
-### Elemento `<button>`
+### L'elemento `<button>`
 
-Il markup per il nostro modulo è quasi completo; dobbiamo solo aggiungere un pulsante per consentire all'utente di inviare, o "sottoporre", i suoi dati una volta compilato il modulo. Questo viene fatto tramite l'elemento {{HTMLelement("button")}}; aggiungi quanto segue appena sopra il tag di chiusura `</form>`:
+Il markup del modulo è quasi completo; occorre solo aggiungere un pulsante che consenta all'utente di inviare, o "sottomettere", i dati dopo aver compilato il modulo.
+Ciò avviene usando l'elemento {{HTMLelement("button")}}; aggiungere quanto segue appena sopra il tag di chiusura `</form>`:
 
 ```html
 <p class="button">
@@ -140,33 +158,33 @@ Il markup per il nostro modulo è quasi completo; dobbiamo solo aggiungere un pu
 </p>
 ```
 
-L'elemento {{htmlelement("button")}} accetta anche un attributo `type` — questo accetta uno dei tre valori: `submit`, `reset`, o `button`.
+L'elemento {{htmlelement("button")}} accetta anche un attributo `type`, che può assumere uno di tre valori: `submit`, `reset` o `button`.
 
 - Un clic su un pulsante `submit` (il valore predefinito) invia i dati del modulo alla pagina web definita dall'attributo `action` dell'elemento {{HTMLelement("form")}}.
-- Un clic su un pulsante `reset` reimposta immediatamente tutti i widget del modulo al loro valore predefinito. Da un punto di vista UX, questo è considerato una cattiva pratica, quindi dovresti evitare di usare questo tipo di pulsante a meno che tu non abbia una buona ragione per includerne uno.
-- Un clic su un pulsante `button` non fa _niente_! Questo può sembrare stupido, ma è incredibilmente utile per costruire pulsanti personalizzati — puoi definire la loro funzionalità scelta con JavaScript.
+- Un clic su un pulsante `reset` ripristina immediatamente tutti i widget del modulo al loro valore predefinito. Dal punto di vista UX, questa è considerata una cattiva pratica, pertanto è consigliabile evitare di usare questo tipo di pulsante a meno che non vi sia davvero una buona ragione per includerlo.
+- Un clic su un pulsante `button` non fa _nulla_! Può sembrare sciocco, ma è sorprendentemente utile per creare pulsanti personalizzati: è possibile definirne la funzionalità scelta con JavaScript.
 
 > [!NOTE]
-> Puoi anche usare l'elemento {{HTMLElement("input")}} con il corrispondente `type` per produrre un pulsante, ad esempio `<input type="submit">`. Il principale vantaggio dell'elemento {{HTMLelement("button")}} è che l'elemento {{HTMLelement("input")}} permette solo testo semplice nella sua etichetta, mentre l'elemento {{HTMLelement("button")}} consente contenuto HTML completo, permettendo contenuti di pulsanti più complessi e creativi.
+> È possibile usare anche l'elemento {{HTMLElement("input")}} con il `type` corrispondente per produrre un pulsante, ad esempio `<input type="submit">`. Il vantaggio principale dell'elemento {{HTMLelement("button")}} è che l'elemento {{HTMLelement("input")}} consente solo testo semplice nella propria etichetta, mentre l'elemento {{HTMLelement("button")}} consente contenuto HTML completo, permettendo contenuti dei pulsanti più complessi e creativi.
 
 ## Stile di base del modulo
 
-Ora che hai finito di scrivere il codice HTML del tuo modulo, prova a salvarlo e guardarlo in un browser. Al momento, vedrai che sembra piuttosto brutto.
+Dopo aver terminato di scrivere il codice HTML del modulo, provare a salvarlo e visualizzarlo in un browser. Al momento, l'aspetto sarà piuttosto brutto.
 
 > [!NOTE]
-> Se non pensi di aver scritto correttamente il codice HTML, prova a confrontarlo con il nostro esempio finito — vedi [first-form.html](https://github.com/mdn/learning-area/blob/main/html/forms/your-first-HTML-form/first-form.html) ([vedi anche dal vivo](https://mdn.github.io/learning-area/html/forms/your-first-HTML-form/first-form.html)).
+> Se il codice HTML non sembra corretto, provare a confrontarlo con il nostro esempio completato: vedere [first-form.html](https://github.com/mdn/learning-area/blob/main/html/forms/your-first-HTML-form/first-form.html) ([visualizzarlo anche in esecuzione](https://mdn.github.io/learning-area/html/forms/your-first-HTML-form/first-form.html)).
 
-I moduli sono notoriamente difficili da stilizzare bene. Va oltre l'ambito di questo articolo insegnarti lo stile per i moduli nel dettaglio, quindi per il momento ti faremo solo aggiungere del CSS per farlo sembrare a posto.
+I moduli sono notoriamente difficili da stilizzare in modo gradevole. Insegnare dettagliatamente lo stile dei moduli va oltre lo scopo di questo articolo, quindi per il momento verrà aggiunto solo un po' di CSS per renderne l'aspetto accettabile.
 
-Prima di tutto, aggiungi un elemento {{htmlelement("style")}} alla tua pagina, all'interno della testa del tuo HTML. Dovrebbe assomigliare a questo modo:
+Prima di tutto, aggiungere un elemento {{htmlelement("style")}} alla pagina, all'interno dell'head HTML. Dovrebbe apparire così:
 
 ```html
 <style>
-  …
+  /* CSS goes here */
 </style>
 ```
 
-All'interno dei tag `style`, aggiungi il seguente CSS:
+All'interno dei tag `style`, aggiungere il seguente CSS:
 
 ```css
 body {
@@ -178,7 +196,7 @@ form {
   display: inline-block;
   /* Form outline */
   padding: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 1em;
 }
 
@@ -202,7 +220,7 @@ textarea {
   width: 300px;
   box-sizing: border-box;
   /* Match form field borders */
-  border: 1px solid #999;
+  border: 1px solid #999999;
 }
 
 input:focus,
@@ -210,7 +228,7 @@ textarea:focus {
   /* Set the outline width and style */
   outline-style: solid;
   /* To give a little highlight on active elements */
-  outline-color: #000;
+  outline-color: black;
 }
 
 textarea {
@@ -232,18 +250,22 @@ button {
 }
 ```
 
-Salva e ricarica, e vedrai che il tuo modulo dovrebbe sembrare molto meno brutto.
+Salvare e ricaricare: il modulo dovrebbe apparire molto meno brutto.
 
 > [!NOTE]
-> Puoi trovare la nostra versione su GitHub su [first-form-styled.html](https://github.com/mdn/learning-area/blob/main/html/forms/your-first-HTML-form/first-form-styled.html) ([vedi anche dal vivo](https://mdn.github.io/learning-area/html/forms/your-first-HTML-form/first-form-styled.html)).
+> La nostra versione è disponibile su GitHub in [first-form-styled.html](https://github.com/mdn/learning-area/blob/main/html/forms/your-first-HTML-form/first-form-styled.html) ([visualizzarla anche in esecuzione](https://mdn.github.io/learning-area/html/forms/your-first-HTML-form/first-form-styled.html)).
 
-## Invio dei dati del modulo al tuo server web
+## Inviare i dati del modulo al server web
 
-L'ultima parte, e forse la più complicata, è gestire i dati del modulo lato server. L'elemento {{HTMLelement("form")}} definisce dove e come inviare i dati grazie agli attributi [`action`](/it/docs/Web/HTML/Reference/Elements/form#action) e [`method`](/it/docs/Web/HTML/Reference/Elements/form#method).
+L'ultima parte, e forse la più complessa, è gestire i dati del modulo lato server.
+L'elemento {{HTMLelement("form")}} definisce dove e come inviare i dati grazie agli attributi [`action`](/it/docs/Web/HTML/Reference/Elements/form#action) e [`method`](/it/docs/Web/HTML/Reference/Elements/form#method).
 
-Forniamo un attributo `name` per ciascun controllo modulo. I nomi sono importanti sia lato client che server; dicono al browser quale nome dare a ciascun pezzo di dati e, lato server, permettono al server di gestire ciascun pezzo di dati per nome. I dati del modulo vengono inviati al server come coppie nome/valore.
+Viene fornito un attributo `name` per ogni controllo del modulo.
+I nomi sono importanti sia lato client sia lato server: indicano al browser quale nome assegnare a ciascun dato e, lato server, consentono al server di gestire ciascun dato in base al nome.
+I dati del modulo vengono inviati al server come coppie nome/valore.
 
-Per nominare i dati in un modulo, devi usare l'attributo `name` su ogni widget del modulo che raccoglierà un specifico pezzo di dati. Diamo un'altra occhiata a parte del nostro codice del modulo:
+Per assegnare un nome ai dati in un modulo, occorre usare l'attributo `name` su ogni widget del modulo che raccoglierà uno specifico dato.
+Esaminiamo di nuovo parte del codice del modulo:
 
 ```html
 <form action="/my-handling-form-page" method="post">
@@ -264,13 +286,17 @@ Per nominare i dati in un modulo, devi usare l'attributo `name` su ogni widget d
 </form>
 ```
 
-Nel nostro esempio, il modulo invierà 3 pezzi di dati denominati `user_name`, `user_email`, e `user_message`. Questi dati verranno inviati all'URL `/my-handling-form-page` utilizzando il metodo [HTTP `POST`](/it/docs/Web/HTTP/Reference/Methods/POST).
+Nel nostro esempio, il modulo invierà 3 dati denominati `user_name`, `user_email` e `user_message`.
+Questi dati saranno inviati all'URL `/my-handling-form-page` usando il metodo [HTTP `POST`](/it/docs/Web/HTTP/Reference/Methods/POST).
 
-Lato server, lo script all'URL `/my-handling-form-page` riceverà i dati come un elenco di 3 elementi chiave/valore contenuti nella richiesta HTTP. Il modo in cui questo script gestirà quei dati dipende da te. Ogni linguaggio lato server (PHP, Python, Ruby, Java, C#, ecc.) ha il proprio meccanismo di gestione dei dati del modulo. È al di là dello scopo di questo tutorial approfondire quell'argomento, ma se vuoi sapere di più, abbiamo fornito alcuni esempi nel nostro articolo [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data) più avanti.
+Lato server, lo script all'URL `/my-handling-form-page` riceverà i dati come un elenco di 3 elementi chiave/valore contenuti nella richiesta HTTP.
+Il modo in cui questo script gestirà tali dati dipende dallo sviluppatore.
+Ogni linguaggio lato server (PHP, Python, Ruby, Java, C# e così via) dispone di un proprio meccanismo per gestire i dati dei moduli.
+Approfondire questo argomento va oltre lo scopo di questa esercitazione, ma alcuni esempi sono disponibili più avanti nel nostro articolo [Invio dei dati del modulo](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data).
 
 ## Riepilogo
 
-Congratulazioni, hai costruito il tuo primo modulo web. Questo appare così dal vivo:
+Congratulazioni, è stato creato il primo modulo web. In esecuzione appare così:
 
 ```html hidden
 <form action="/my-handling-form-page" method="post">
@@ -303,7 +329,7 @@ form {
 
   /* To see the limits of the form */
   padding: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   border-radius: 1em;
 }
 
@@ -331,13 +357,13 @@ textarea {
   box-sizing: border-box;
 
   /* To harmonize the look & feel of text field border */
-  border: 1px solid #999;
+  border: 1px solid #999999;
 }
 
 input:focus,
 textarea:focus {
   /* To give a little highlight on active elements */
-  border-color: #000;
+  border-color: black;
 }
 
 textarea {
@@ -366,6 +392,6 @@ button {
 
 {{ EmbedLiveSample('Summary', '', '300') }}
 
-Questo è solo l'inizio, tuttavia — ora è il momento di dare un'occhiata più approfondita. I moduli hanno molto più potere di quello che abbiamo visto qui e gli altri articoli in questo modulo ti aiuteranno a padroneggiare il resto.
+Tuttavia, questo è solo l'inizio: ora è il momento di approfondire. I moduli sono molto più potenti di quanto visto qui e gli altri articoli di questo modulo aiuteranno a padroneggiare il resto.
 
 {{NextMenu("Learn_web_development/Extensions/Forms/How_to_structure_a_web_form", "Learn_web_development/Extensions/Forms")}}

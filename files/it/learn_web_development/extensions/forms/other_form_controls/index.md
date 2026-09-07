@@ -1,20 +1,20 @@
 ---
-title: Altri controlli dei form
+title: Altri controlli dei moduli
 slug: Learn_web_development/Extensions/Forms/Other_form_controls
 l10n:
-  sourceCommit: a1ac64fa4da965d2a152f08221b1a9aed638fd16
+  sourceCommit: 2066cc916dfdcbb782340bf0ce562b230e947cba
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Forms/HTML5_input_types","Learn_web_development/Extensions/Forms/Styling_web_forms", "Learn_web_development/Extensions/Forms")}}
 
-Esaminiamo ora in dettaglio la funzionalità degli elementi del form non-`<input>`, da altri tipi di controllo come liste a discesa e campi di testo multilinea, ad altre caratteristiche utili dei form come l'elemento {{htmlelement('output')}} (che abbiamo visto in azione nell'articolo precedente) e le barre di progresso.
+Ora esamineremo nel dettaglio la funzionalità degli elementi di modulo diversi da `<input>`, da altri tipi di controlli come gli elenchi a discesa e i campi di testo su più righe, ad altre utili funzionalità dei moduli come l'elemento {{htmlelement('output')}} (che abbiamo visto in azione nell'articolo precedente) e le barre di avanzamento.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Una comprensione base di
+        Una conoscenza di base di
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
           >HTML</a
         >.
@@ -23,70 +23,65 @@ Esaminiamo ora in dettaglio la funzionalità degli elementi del form non-`<input
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere le caratteristiche dei form non-<code>&#x3C;input></code> e come
-        implementarle usando HTML.
+        Comprendere le funzionalità dei moduli diverse da <code>&#x3C;input></code> e
+        come implementarle usando HTML.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Campi di testo multilinea
+## Campi di testo su più righe
 
-Un campo di testo multilinea è specificato utilizzando un elemento {{HTMLElement("textarea")}}, invece di utilizzare l'elemento {{HTMLElement("input")}}.
+Un campo di testo su più righe viene specificato usando un elemento {{HTMLElement("textarea")}}, anziché l'elemento {{HTMLElement("input")}}.
 
 ```html
 <textarea cols="30" rows="8"></textarea>
 ```
 
-Questo viene visualizzato così:
+Il rendering è il seguente:
 
 {{EmbedLiveSample("Multi-line_text_fields", 120, 160)}}
 
-La principale differenza tra un `<textarea>` e un normale campo di testo a linea singola è che agli utenti è permesso includere interruzioni di linea (ossia, premendo invio) che verranno incluse quando i dati vengono inviati.
+La differenza principale tra un `<textarea>` e un normale campo di testo a riga singola è che gli utenti possono includere interruzioni di riga esplicite (ovvero, premendo Invio), che verranno incluse quando i dati vengono inviati.
 
-`<textarea>` necessita anche di un tag di chiusura; qualsiasi testo predefinito che si desidera contenere deve essere inserito tra i tag di apertura e chiusura. Al contrario, il {{HTMLElement("input")}} è un {{Glossary("void_element", "elemento vuoto")}} senza tag di chiusura — qualsiasi valore predefinito è inserito all'interno dell'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/input#value).
+`<textarea>` richiede anche un tag di chiusura; qualsiasi testo predefinito che deve contenere va inserito tra il tag di apertura e quello di chiusura. Al contrario, {{HTMLElement("input")}} è un {{Glossary("void_element", "elemento void")}} senza tag di chiusura: qualsiasi valore predefinito viene inserito nell'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/input#value).
 
-Nota che, anche se puoi inserire qualsiasi cosa all'interno di un elemento `<textarea>` (inclusi altri elementi HTML, CSS e JavaScript), a causa della sua natura, viene reso tutto come se fosse contenuto di testo semplice. (Usare [`contenteditable`](/it/docs/Web/HTML/Reference/Global_attributes/contenteditable) su controlli non di form fornisce un'API per catturare contenuti HTML/"rich" invece che testo semplice).
+Si noti che, anche se è possibile inserire qualsiasi contenuto all'interno di un elemento `<textarea>` (inclusi altri elementi HTML, CSS e JavaScript), per sua natura viene interamente visualizzato come se fosse contenuto di testo semplice. (L'uso di [`contenteditable`](/it/docs/Web/HTML/Reference/Global_attributes/contenteditable) su controlli non appartenenti ai moduli fornisce un'API per acquisire contenuto HTML/"ricco" anziché testo semplice.)
 
-Visivamente, il testo inserito si avvolge e il controllo forma è di default ridimensionabile. La maggior parte dei browser fornisce un manico di trascinamento che puoi trascinare per aumentare/diminuire la dimensione dell'area di testo.
+Visivamente, il testo inserito va a capo e il controllo del modulo è ridimensionabile per impostazione predefinita. La maggior parte dei browser fornisce una maniglia di trascinamento che può essere trascinata per aumentare o diminuire le dimensioni dell'area di testo.
 
-Puoi trovare un esempio di utilizzo dell'area di testo nell'[esempio](https://mdn.github.io/learning-area/html/forms/your-first-HTML-form/first-form-styled.html) che abbiamo messo insieme nel primo articolo di questo.
+### Controllare il rendering su più righe
 
-### Controllo del rendering su più linee
-
-{{htmlelement("textarea")}} accetta tre attributi per controllare il rendering su più linee:
+{{htmlelement("textarea")}} accetta tre attributi per controllarne il rendering su più righe:
 
 - [`cols`](/it/docs/Web/HTML/Reference/Elements/textarea#cols)
-  - : Specifica la larghezza visibile (colonne) del controllo di testo, misurata in larghezze medie di caratteri. Questo è effettivamente la larghezza iniziale, poiché può essere modificata ridimensionando il `<textarea>`, e sovrascritta utilizzando CSS. Il valore predefinito se nessuno è specificato è 20.
+  - : Specifica la larghezza visibile (in colonne) del controllo di testo, misurata in larghezze medie dei caratteri. Si tratta in effetti della larghezza iniziale, poiché può essere modificata ridimensionando il `<textarea>` e sovrascritta tramite CSS. Il valore predefinito, se non ne viene specificato alcuno, è 20.
 - [`rows`](/it/docs/Web/HTML/Reference/Elements/textarea#rows)
-  - : Specifica il numero di righe di testo visibili per il controllo. Questo è effettivamente l'altezza iniziale, poiché può essere modificata ridimensionando il `<textarea>`, e sovrascritta utilizzando CSS. Il valore predefinito se nessuno è specificato è 2.
+  - : Specifica il numero di righe di testo visibili per il controllo. Si tratta in effetti dell'altezza iniziale, poiché può essere modificata ridimensionando il `<textarea>` e sovrascritta tramite CSS. Il valore predefinito, se non ne viene specificato alcuno, è 2.
 - [`wrap`](/it/docs/Web/HTML/Reference/Elements/textarea#wrap)
-  - : Specifica come il controllo avvolge il testo. I valori sono `soft` (il valore predefinito), il che significa che il testo inviato non è avvolto ma il testo reso dal browser è avvolto; `hard` (l'attributo `cols` deve essere specificato quando si utilizza questo valore), il che significa che sia il testo inviato che quello reso sono avvolti, e `off`, che interrompe l'avvolgimento.
+  - : Specifica come il controllo manda a capo il testo. I valori sono `soft` (il valore predefinito), che indica che il testo inviato non viene mandato a capo ma il testo renderizzato dal browser sì; `hard` (quando si usa questo valore è necessario specificare l'attributo `cols`), che indica che sia il testo inviato sia quello renderizzato vengono mandati a capo; e `off`, che disabilita l'andata a capo.
 
-### Controllo della ridimensionabilità di textarea
+### Controllare la ridimensionabilità di textarea
 
-La possibilità di ridimensionare un `<textarea>` è controllata con la proprietà CSS `resize`. I suoi valori possibili sono:
+La possibilità di ridimensionare un `<textarea>` è controllata dalla proprietà CSS `resize`. I valori possibili sono:
 
-- `both`: Il predefinito — consente il ridimensionamento orizzontale e verticale.
-- `horizontal`: Consente il ridimensionamento solo orizzontale.
-- `vertical`: Consente il ridimensionamento solo verticale.
-- `none`: Non consente alcun ridimensionamento.
-- `block` e `inline`: Valori sperimentali che consentono il ridimensionamento nella direzione `block` o `inline` solo (questo varia a seconda della direzionalità del tuo testo; leggi [Gestione delle diverse direzioni del testo](/it/docs/Learn_web_development/Core/Styling_basics/Handling_different_text_directions) se vuoi saperne di più.)
+- `both`: il valore predefinito, consente il ridimensionamento orizzontale e verticale.
+- `horizontal`: consente il ridimensionamento solo orizzontale.
+- `vertical`: consente il ridimensionamento solo verticale.
+- `none`: non consente alcun ridimensionamento.
+- `block` e `inline`: valori sperimentali che consentono il ridimensionamento solo nella direzione `block` o `inline` (questo varia in base alla direzionalità del testo; per ulteriori informazioni, leggere [Gestire diverse direzioni del testo](/it/docs/Learn_web_development/Core/Styling_basics/Handling_different_text_directions)).
 
-Gioca con l'esempio interattivo nella parte superiore della pagina di riferimento {{cssxref("resize")}} per una dimostrazione di come funzionano.
+Per una dimostrazione del loro funzionamento, sperimentare con l'esempio interattivo nella parte superiore della pagina di riferimento di {{cssxref("resize")}}.
 
 ## Controlli a discesa
 
-I controlli a discesa sono un modo semplice per permettere agli utenti di selezionare tra molte opzioni senza occupare molto spazio nell'interfaccia utente. L'HTML ha due tipi di controlli a discesa: il **box di selezione** e il **box di completamento automatico**. L'interazione è la stessa in entrambi i tipi di controlli a discesa — dopo l'attivazione del controllo, il browser visualizza un elenco di valori tra cui l'utente può selezionare.
+I controlli a discesa sono un modo semplice per consentire agli utenti di selezionare tra molte opzioni senza occupare molto spazio nell'interfaccia utente. HTML dispone di due tipi di controlli a discesa: la **casella di selezione** e la **casella di completamento automatico**. L'interazione è la stessa in entrambi i tipi di controlli a discesa: dopo l'attivazione del controllo, il browser visualizza un elenco di valori da cui l'utente può selezionare.
 
-> [!NOTE]
-> Puoi trovare esempi di tutti i tipi di box a discesa su GitHub in [drop-down-content.html](https://github.com/mdn/learning-area/blob/main/html/forms/native-form-widgets/drop-down-content.html) ([vedi anche in tempo reale](https://mdn.github.io/learning-area/html/forms/native-form-widgets/drop-down-content.html)).
+### Casella di selezione
 
-### Box di selezione
+Una semplice casella di selezione viene creata con un elemento {{HTMLElement("select")}} con uno o più elementi {{HTMLElement("option")}} come elementi figli, ciascuno dei quali specifica uno dei possibili valori.
 
-Un semplice box di selezione è creato con un elemento {{HTMLElement("select")}} con uno o più elementi {{HTMLElement("option")}} come suoi figli, ciascuno dei quali specifica uno dei suoi possibili valori.
-
-#### Esempio base
+#### Esempio di base
 
 ```html
 <select id="simple" name="simple">
@@ -98,9 +93,9 @@ Un semplice box di selezione è creato con un elemento {{HTMLElement("select")}}
 
 {{EmbedLiveSample("Basic_example", 120, 120)}}
 
-Se richiesto, il valore predefinito per il box di selezione può essere impostato usando l'attributo [`selected`](/it/docs/Web/HTML/Reference/Elements/option#selected) sull'elemento {{HTMLElement("option")}} desiderato — questa opzione è quindi preselezionata quando la pagina si carica.
+Se necessario, il valore predefinito della casella di selezione può essere impostato usando l'attributo [`selected`](/it/docs/Web/HTML/Reference/Elements/option#selected) sull'elemento {{HTMLElement("option")}} desiderato: questa opzione viene quindi preselezionata al caricamento della pagina.
 
-#### Uso di optgroup
+#### Usare optgroup
 
 Gli elementi {{HTMLElement("option")}} possono essere annidati all'interno di elementi {{HTMLElement("optgroup")}} per creare gruppi di valori visivamente associati:
 
@@ -121,13 +116,13 @@ Gli elementi {{HTMLElement("option")}} possono essere annidati all'interno di el
 
 {{EmbedLiveSample("Using_optgroup", 120, 120)}}
 
-Sull'elemento {{HTMLElement("optgroup")}}, il valore dell'attributo [`label`](/it/docs/Web/HTML/Reference/Elements/optgroup#label) è visualizzato prima dei valori delle opzioni annidate. Il browser di solito le distingue visivamente dalle opzioni (ossia, mettendole in grassetto e a un diverso livello di annidamento) in modo che sia meno probabile che vengano confuse per opzioni effettive.
+Nell'elemento {{HTMLElement("optgroup")}}, il valore dell'attributo [`label`](/it/docs/Web/HTML/Reference/Elements/optgroup#label) viene visualizzato prima dei valori delle opzioni annidate. Il browser di solito li distingue visivamente dalle opzioni (ad esempio, in grassetto e a un diverso livello di annidamento), così che sia meno probabile confonderli con opzioni effettive.
 
-#### Uso dell'attributo value
+#### Usare l'attributo value
 
-Se un elemento {{HTMLElement("option")}} ha un attributo `value` esplicito impostato su di esso, quel valore viene inviato quando il form viene inviato con quell'opzione selezionata. Se l'attributo `value` è omesso, come negli esempi sopra, il contenuto dell'elemento {{HTMLElement("option")}} è usato come valore. Quindi gli attributi `value` non sono necessari, ma potresti trovare un motivo per voler inviare un valore ridotto o diverso al server rispetto a quello che è visivamente mostrato nel box di selezione.
+Se un elemento {{HTMLElement("option")}} dispone di un attributo `value` esplicito, quel valore viene inviato quando il modulo viene inviato con tale opzione selezionata. Se l'attributo `value` viene omesso, come negli esempi precedenti, viene usato come valore il contenuto dell'elemento {{HTMLElement("option")}}. Gli attributi `value` non sono quindi necessari, ma potrebbe essere opportuno inviare al server un valore abbreviato o diverso da quello mostrato visivamente nella casella di selezione.
 
-Per esempio:
+Ad esempio:
 
 ```html
 <select id="simple" name="simple">
@@ -137,14 +132,14 @@ Per esempio:
 </select>
 ```
 
-Per impostazione predefinita, l'altezza del box di selezione è sufficiente a mostrare un singolo valore. L'attributo [`size`](/it/docs/Web/HTML/Reference/Attributes/size) opzionale fornisce controllo su quante opzioni sono visibili quando il selettore non è a fuoco.
+Per impostazione predefinita, l'altezza della casella di selezione è sufficiente per visualizzare un singolo valore. L'attributo facoltativo [`size`](/it/docs/Web/HTML/Reference/Attributes/size) consente di controllare quante opzioni sono visibili quando il controllo select non ha il focus.
 
-### Box di selezione a scelta multipla
+### Casella di selezione a scelta multipla
 
-Per impostazione predefinita, un box di selezione consente a un utente di selezionare solo un valore. Aggiungendo l'attributo [`multiple`](/it/docs/Web/HTML/Reference/Elements/select#multiple) all'elemento {{HTMLElement("select")}}, puoi permettere agli utenti di selezionare diversi valori. Gli utenti possono selezionare valori multipli usando il meccanismo predefinito fornito dal sistema operativo (ad esempio, sul desktop, possono essere cliccati valori multipli tenendo premuti i tasti <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>).
+Per impostazione predefinita, una casella di selezione consente all'utente di selezionare un solo valore. Aggiungendo l'attributo [`multiple`](/it/docs/Web/HTML/Reference/Elements/select#multiple) all'elemento {{HTMLElement("select")}}, è possibile consentire agli utenti di selezionare più valori. Gli utenti possono selezionare più valori usando il meccanismo predefinito fornito dal sistema operativo (ad esempio, su desktop è possibile fare clic su più valori tenendo premuti i tasti <kbd>Cmd</kbd>/<kbd>Ctrl</kbd>).
 
 ```html
-<select id="multi" name="multi" multiple size="2">
+<select id="multi" name="multi" multiple size="3">
   <optgroup label="fruits">
     <option>Banana</option>
     <option selected>Cherry</option>
@@ -161,22 +156,22 @@ Per impostazione predefinita, un box di selezione consente a un utente di selezi
 {{EmbedLiveSample("Multiple_choice_select_box", 120, 120)}}
 
 > [!NOTE]
-> Nel caso di box di selezione a scelta multipla, noterai che il box di selezione non visualizza più i valori come contenuto a discesa — invece tutti i valori sono visualizzati contemporaneamente in un elenco, con l'attributo [`size`](/it/docs/Web/HTML/Reference/Attributes/size) opzionale che determina l'altezza del widget.
+> Nel caso delle caselle di selezione a scelta multipla, si noterà che la casella non visualizza più i valori come contenuto a discesa: al contrario, tutti i valori vengono visualizzati contemporaneamente in un elenco e l'attributo facoltativo [`size`](/it/docs/Web/HTML/Reference/Attributes/size) determina l'altezza del widget.
 
 > [!NOTE]
 > Tutti i browser che supportano l'elemento {{HTMLElement("select")}} supportano anche l'attributo [`multiple`](/it/docs/Web/HTML/Reference/Elements/select#multiple).
 
-### Box di completamento automatico
+### Casella di completamento automatico
 
-Puoi fornire valori suggeriti e automaticamente completati per i widget formato usando l'elemento {{HTMLElement("datalist")}} con elementi figlio {{HTMLElement("option")}} per specificare i valori da visualizzare. Il `<datalist>` deve essere assegnato un `id`.
+È possibile fornire valori suggeriti e completati automaticamente per i widget dei moduli usando l'elemento {{HTMLElement("datalist")}} con elementi {{HTMLElement("option")}} figli per specificare i valori da visualizzare. A `<datalist>` deve essere assegnato un `id`.
 
-Il data list è poi legato a un elemento {{htmlelement("input")}} (ad esempio, un tipo di input `text` o `email`) usando l'attributo [`list`](/it/docs/Web/HTML/Reference/Elements/input#list), il cui valore è l'`id` del data list da legare.
+L'elenco di dati viene quindi associato a un elemento {{htmlelement("input")}} (ad esempio, un tipo di input `text` o `email`) usando l'attributo [`list`](/it/docs/Web/HTML/Reference/Elements/input#list), il cui valore è l'`id` dell'elenco di dati da associare.
 
-Una volta che un data list è associato a un widget di un form, le sue opzioni sono utilizzate per completare automaticamente il testo inserito dall'utente; tipicamente, questo è presentato all'utente come un box a discesa che elenca i possibili corrispondenti a ciò che hanno digitato nell'input.
+Una volta che un elenco di dati è associato a un widget del modulo, le sue opzioni vengono usate per completare automaticamente il testo inserito dall'utente; in genere, questo viene presentato all'utente come una casella a discesa che elenca le possibili corrispondenze per quanto digitato nell'input.
 
-#### Esempio base
+#### Esempio di base
 
-Osserviamo un esempio.
+Vediamo un esempio.
 
 ```html
 <label for="myFruit">What's your favorite fruit?</label>
@@ -195,50 +190,45 @@ Osserviamo un esempio.
 
 {{EmbedLiveSample("Basic_example_2", 120, 120)}}
 
-#### Usi meno ovvi di datalist
+#### Usi meno evidenti di datalist
 
-Secondo [la specifica HTML](https://html.spec.whatwg.org/multipage/input.html#attr-input-list), l'attributo [`list`](/it/docs/Web/HTML/Reference/Elements/input#list) e l'elemento {{HTMLElement("datalist")}} possono essere usati con qualsiasi tipo di widget che richieda un input utente. Questo porta a degli usi di esso che potrebbero sembrare un po' non ovvi.
+Secondo [la specifica HTML](https://html.spec.whatwg.org/multipage/input.html#attr-input-list), l'attributo [`list`](/it/docs/Web/HTML/Reference/Elements/input#list) e l'elemento {{HTMLElement("datalist")}} possono essere usati con qualsiasi tipo di widget che richieda un input dell'utente. Questo porta ad alcuni utilizzi che potrebbero sembrare poco ovvi.
 
-Ad esempio, nei browser che supportano `{{htmlelement("datalist")}}` sui tipi di input `range`, un piccolo segno di spunta sarà visualizzato sopra il range per ciascun valore `{{htmlelement("option")}}` del datalist. Puoi vedere un'implementazione [esempio di questo nella pagina di riferimento `<input type="range">`](/it/docs/Web/HTML/Reference/Elements/input/range#adding_tick_marks).
+Ad esempio, nei browser che supportano `{{htmlelement("datalist")}}` sui tipi di input `range`, viene visualizzato un piccolo segno di graduazione sopra l'intervallo per ogni valore `{{htmlelement("option")}}` del datalist. È possibile vedere un'[esempio di implementazione nella pagina di riferimento di `<input type="range">`](/it/docs/Web/HTML/Reference/Elements/input/range#adding_tick_marks).
 
-E i browser che supportano {{htmlelement('datalist')}}s e [`<input type="color">`](/it/docs/Web/HTML/Reference/Elements/input/color) dovrebbero visualizzare una tavolozza di colori personalizzata come predefinita, mentre mantengono comunque disponibile l'intera tavolozza dei colori.
+Inoltre, i browser che supportano {{htmlelement('datalist')}} e [`<input type="color">`](/it/docs/Web/HTML/Reference/Elements/input/color) dovrebbero visualizzare per impostazione predefinita una tavolozza di colori personalizzata, mantenendo comunque disponibile la tavolozza completa.
 
-In questo caso, i diversi browser si comportano in modo diverso da caso a caso, quindi considera tali utilizzi come un miglioramento progressivo, e assicurati che degradano con grazia.
+In questo caso, browser diversi si comportano in modo diverso a seconda della situazione, pertanto è consigliabile considerare tali utilizzi come miglioramento progressivo e assicurarsi che degradino in modo appropriato.
 
-## Altre caratteristiche del form
+## Altre funzionalità dei moduli
 
-Ci sono alcune altre caratteristiche del form che non sono così ovvie come quelle che abbiamo già menzionato, ma comunque utili in alcune situazioni, quindi abbiamo pensato che valesse la pena dar loro un breve accenno.
+Esistono alcune altre funzionalità dei moduli non così evidenti come quelle già menzionate, ma comunque utili in alcune situazioni; per questo riteniamo che valga la pena citarle brevemente.
 
-> [!NOTE]
-> Puoi trovare gli esempi di questa sezione su GitHub come [other-examples.html](https://github.com/mdn/learning-area/blob/main/html/forms/native-form-widgets/other-examples.html) ([vedi anche in tempo reale](https://mdn.github.io/learning-area/html/forms/native-form-widgets/other-examples.html)).
+### Indicatori e barre di avanzamento
 
-### Metri e barre di progresso
+Gli indicatori e le barre di avanzamento (creati usando gli elementi {{HTMLElement("meter")}} e {{HTMLElement("progress")}}) sono rappresentazioni visive di valori numerici.
 
-Metri e barre di progresso sono rappresentazioni visive di valori numerici. Il supporto per {{HTMLElement("progress")}} e {{HTMLElement("meter")}} è disponibile in tutti i browser moderni.
+#### Indicatore
 
-#### Meter
+Una barra indicatrice rappresenta un valore fisso in un intervallo delimitato dai valori [`max`](/it/docs/Web/HTML/Reference/Elements/meter#max) e [`min`](/it/docs/Web/HTML/Reference/Elements/meter#min). Questo valore viene renderizzato visivamente come una barra e, per sapere quale aspetto avrà questa barra, il valore viene confrontato con altri valori impostati:
 
-Un'asta del metro rappresenta un valore fisso in un intervallo delimitato dai valori [`max`](/it/docs/Web/HTML/Reference/Elements/meter#max) e [`min`](/it/docs/Web/HTML/Reference/Elements/meter#min). Questo valore è reso visualmente come un'asta, e per sapere come appare questa asta, confrontiamo il valore con altri valori impostati:
-
-- I valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high) dividono l'intervallo nei seguenti tre parti:
-
+- I valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high) dividono l'intervallo nelle tre parti seguenti:
   - La parte inferiore dell'intervallo è compresa tra i valori [`min`](/it/docs/Web/HTML/Reference/Elements/meter#min) e [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low), inclusi.
-  - La parte media dell'intervallo è compresa tra i valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high), esclusi.
+  - La parte centrale dell'intervallo è compresa tra i valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high), esclusi.
   - La parte superiore dell'intervallo è compresa tra i valori [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high) e [`max`](/it/docs/Web/HTML/Reference/Elements/meter#max), inclusi.
 
-- Il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) definisce il valore ottimale per l'elemento {{HTMLElement("meter")}}. In congiunzione con i valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high), definisce quale parte dell'intervallo è preferita:
+- Il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) definisce il valore ottimale per l'elemento {{HTMLElement("meter")}}. In combinazione con i valori [`low`](/it/docs/Web/HTML/Reference/Elements/meter#low) e [`high`](/it/docs/Web/HTML/Reference/Elements/meter#high), definisce quale parte dell'intervallo è preferibile:
+  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) si trova nella parte inferiore dell'intervallo, l'intervallo inferiore è considerato la parte preferita, l'intervallo centrale è considerato la parte media e l'intervallo superiore è considerato la parte peggiore.
+  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) si trova nella parte centrale dell'intervallo, l'intervallo inferiore è considerato una parte media, l'intervallo centrale è considerato la parte preferita e anche l'intervallo superiore è considerato medio.
+  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) si trova nella parte superiore dell'intervallo, l'intervallo inferiore è considerato la parte peggiore, l'intervallo centrale è considerato la parte media e l'intervallo superiore è considerato la parte preferita.
 
-  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) è nella parte inferiore dell'intervallo, la gamma inferiore è considerata la parte preferita, la gamma media è considerata la parte media e la gamma superiore è considerata quella peggiore.
-  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) è nella parte media dell'intervallo, la gamma inferiore è considerata una parte media, la gamma media è considerata la parte preferita e la gamma superiore è considerata media.
-  - Se il valore [`optimum`](/it/docs/Web/HTML/Reference/Elements/meter#optimum) è nella parte superiore dell'intervallo, la gamma inferiore è considerata la parte peggiore, la gamma media è considerata quella media e la gamma superiore è considerata la parte preferita.
+Tutti i browser che implementano l'elemento {{HTMLElement("meter")}} usano questi valori per modificare il colore della barra dell'indicatore:
 
-Tutti i browser che implementano l'elemento {{HTMLElement("meter")}} utilizzano questi valori per cambiare il colore dell'asta del metro:
+- Se il valore corrente si trova nella parte preferita dell'intervallo, la barra è verde.
+- Se il valore corrente si trova nella parte media dell'intervallo, la barra è gialla.
+- Se il valore corrente si trova nella parte peggiore dell'intervallo, la barra è rossa.
 
-- Se il valore corrente è nella parte preferita dell'intervallo, l'asta è verde.
-- Se il valore corrente è nella parte media dell'intervallo, l'asta è gialla.
-- Se il valore corrente è nella parte peggiore dell'intervallo, l'asta è rossa.
-
-Tale asta è creata utilizzando l'elemento {{HTMLElement("meter")}}. Questo è per implementare qualsiasi tipo di metro; ad esempio, un'asta che mostri lo spazio totale utilizzato su un disco, che diventa rossa quando inizia a riempirsi.
+Una barra di questo tipo viene creata usando l'elemento {{HTMLElement("meter")}}. Serve a implementare qualsiasi tipo di indicatore; ad esempio, una barra che mostra lo spazio totale usato su un disco e che diventa rossa quando il disco inizia a riempirsi.
 
 ```html
 <meter min="0" max="100" value="75" low="33" high="66" optimum="0">75</meter>
@@ -246,11 +236,11 @@ Tale asta è creata utilizzando l'elemento {{HTMLElement("meter")}}. Questo è p
 
 {{EmbedLiveSample("Meter", 120, 120)}}
 
-Il contenuto all'interno dell'elemento {{HTMLElement("meter")}} è un'alternativa per i browser che non supportano l'elemento e per le tecnologie assistive a vocalizzarlo.
+Il contenuto all'interno dell'elemento {{HTMLElement("meter")}} è un fallback per i browser che non supportano l'elemento e per consentire alle tecnologie assistive di vocalizzarlo.
 
-#### Progress
+#### Avanzamento
 
-Una barra di progresso rappresenta un valore che cambia nel tempo fino a un valore massimo specificato dall'attributo [`max`](/it/docs/Web/HTML/Reference/Elements/progress#max). Tale barra è creata usando un elemento {{HTMLElement("progress")}}.
+Una barra di avanzamento rappresenta un valore che cambia nel tempo fino a un valore massimo specificato dall'attributo [`max`](/it/docs/Web/HTML/Reference/Elements/progress#max). Una barra di questo tipo viene creata usando un elemento {{ HTMLElement("progress")}}.
 
 ```html
 <progress max="100" value="75">75/100</progress>
@@ -258,18 +248,14 @@ Una barra di progresso rappresenta un valore che cambia nel tempo fino a un valo
 
 {{EmbedLiveSample("Progress", 120, 120)}}
 
-Questo è per implementare qualsiasi cosa richieda una segnalazione di progresso, come la percentuale di file totali scaricati, o il numero di domande compilate su un questionario.
+Serve a implementare qualsiasi elemento che richieda la segnalazione dell'avanzamento, come la percentuale dei file totali scaricati o il numero di domande compilate in un questionario.
 
-Il contenuto all'interno dell'elemento {{HTMLElement("progress")}} è un'alternativa per i browser che non supportano l'elemento e per gli screen reader a vocalizzarlo.
+Il contenuto all'interno dell'elemento {{HTMLElement("progress")}} è un fallback per i browser che non supportano l'elemento e per consentire agli screen reader di vocalizzarlo.
 
-## Metti alla prova le tue abilità!
+## Riepilogo
 
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare che tu abbia conservato queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Altri controlli](/it/docs/Learn_web_development/Extensions/Forms/Test_your_skills/Other_controls).
+Come si è visto negli ultimi articoli, esistono molti tipi di controlli dei moduli. Non è necessario ricordare tutti questi dettagli immediatamente: è possibile tornare a questi articoli tutte le volte che si desidera per controllare i dettagli.
 
-## Sommario
-
-Come avrai visto negli ultimi articoli, ci sono molti tipi di controlli per i form. Non devi ricordare tutti questi dettagli in una volta sola, e puoi tornare a questi articoli tutte le volte che vuoi per controllare i dettagli.
-
-Ora che hai compreso l'HTML dietro i diversi controlli dei form disponibili, daremo uno sguardo a [Come stilizzarli](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms).
+Ora che è stata acquisita una comprensione dell'HTML alla base dei diversi controlli dei moduli disponibili, esamineremo [come applicare loro lo stile](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms).
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Forms/HTML5_input_types","Learn_web_development/Extensions/Forms/Styling_web_forms", "Learn_web_development/Extensions/Forms")}}

@@ -3,26 +3,26 @@ title: Pseudo-classi e pseudo-elementi
 short-title: Pseudo-classi ed elementi
 slug: Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 3fbc8b2ba17c1cf331fb67ce2e6561b15bf4f197
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Attribute_selectors", "Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics")}}
 
-Il prossimo set di selettori che esamineremo è riferito come **pseudo-classi** e **pseudo-elementi**. Ce ne sono un gran numero, e spesso servono scopi molto specifici. Una volta che sai come usarli, puoi esaminare i diversi tipi per vedere se c'è qualcosa che funziona per il compito che stai cercando di raggiungere.
+Il prossimo insieme di selettori che verrà esaminato è costituito dalle **pseudo-classi** e dagli **pseudo-elementi**. Ne esiste un gran numero e spesso hanno scopi molto specifici. Una volta imparato a usarli, è possibile esaminare i diversi tipi per verificare se ce n'è uno adatto all'attività da svolgere.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Fondamenti di HTML (studiare la
+        Nozioni di base di HTML (studiare
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi di base dell'HTML</a
-        >), <a href="/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors">Selettori di base CSS</a>.
+          >Sintassi HTML di base</a
+        >), <a href="/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors">Selettori CSS di base</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati attesi:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
           <li>Pseudo-classi e pseudo-elementi.</li>
@@ -35,15 +35,15 @@ Il prossimo set di selettori che esamineremo è riferito come **pseudo-classi** 
   </tbody>
 </table>
 
-## Cos'è una pseudo-classe?
+## Che cos'è una pseudo-classe?
 
-Una pseudo-classe è un selettore che seleziona elementi che si trovano in uno stato specifico, ad esempio, sono il primo elemento del loro tipo, o sono sotto l'hover del puntatore del mouse. Tendono ad agire come se avessi applicato una classe a una parte del tuo documento, spesso aiutandoti a ridurre le classi in eccesso nel tuo markup, e a fornirti un codice più flessibile e manutenibile.
+Una pseudo-classe è un selettore che seleziona elementi che si trovano in uno stato specifico, ad esempio che sono il primo elemento del loro tipo o che si trovano sotto il puntatore del mouse. Tendono ad agire come se fosse stata applicata una classe a una parte del documento, spesso aiutando a ridurre le classi superflue nel markup e fornendo codice più flessibile e manutenibile.
 
-Le pseudo-classi sono parole chiave che iniziano con un due punti. Ad esempio, `:hover` è una pseudo-classe.
+Le pseudo-classi sono parole chiave che iniziano con due punti. Ad esempio, `:hover` è una pseudo-classe.
 
 ### Esempio di pseudo-classe di base
 
-Esaminiamo un esempio di base. Se volessimo rendere il primo paragrafo di un articolo più grande e in grassetto, potremmo aggiungere una classe a quel paragrafo e poi aggiungere CSS a quella classe, come mostrato nel primo esempio qui sotto:
+Vediamo un esempio di base. Se si volesse rendere più grande e in grassetto il primo paragrafo di un articolo, si potrebbe aggiungere una classe a quel paragrafo e quindi aggiungere CSS a tale classe:
 
 ```html live-sample___first-child
 <article>
@@ -69,7 +69,7 @@ Esaminiamo un esempio di base. Se volessimo rendere il primo paragrafo di un art
 
 {{EmbedLiveSample("first-child")}}
 
-Tuttavia, questo potrebbe essere fastidioso da mantenere — cosa succede se viene aggiunto un nuovo paragrafo in cima al documento? Dovremmo spostare la classe sul nuovo paragrafo. Invece di aggiungere la classe, potremmo usare il selettore per pseudo-classe {{cssxref(":first-child")}} — questo selezionerà _sempre_ il primo elemento figlio nell'articolo, e non avremo più bisogno di modificare l'HTML (cosa che potrebbe non essere possibile comunque, magari perché generato da un CMS).
+Tuttavia, questo potrebbe essere fastidioso da mantenere: cosa succederebbe se un nuovo paragrafo venisse aggiunto all'inizio del documento? Sarebbe necessario spostare la classe nel nuovo paragrafo. Invece di aggiungere la classe, è possibile usare il selettore della pseudo-classe {{cssxref(":first-child")}}: questo selezionerà _sempre_ il primo elemento figlio di un elemento (in questo caso `<article>`), e non sarà più necessario modificare l'HTML (cosa che potrebbe non essere sempre possibile, ad esempio perché viene generato da un CMS).
 
 ```html live-sample___first-child2
 <article>
@@ -95,21 +95,17 @@ article p:first-child {
 
 {{EmbedLiveSample("first-child2")}}
 
-Tutte le pseudo-classi si comportano in questo stesso modo. Selezionano una parte del tuo documento che si trova in un certo stato, comportandosi come se avessi aggiunto una classe nel tuo HTML. Guarda altri esempi su MDN:
-
-- [`:last-child`](/it/docs/Web/CSS/:last-child)
-- [`:only-child`](/it/docs/Web/CSS/:only-child)
-- [`:invalid`](/it/docs/Web/CSS/:invalid)
+Tutte le pseudo-classi si comportano in questo modo. Selezionano una parte del documento che si trova in un determinato stato, comportandosi come se fosse stata aggiunta una classe nell'HTML.
 
 > [!NOTE]
-> È valido scrivere pseudo-classi ed elementi senza alcun selettore di elementi preceduto. Nell'esempio sopra, potresti scrivere `:first-child` e la regola si applicherebbe a _qualsiasi_ elemento che è il primo figlio di un elemento `<article>`, non solo a un paragrafo primo figlio — `:first-child` è equivalente a `*:first-child`. Tuttavia, di solito vuoi più controllo di così, quindi devi essere più specifico.
+> È valido scrivere pseudo-classi e pseudo-elementi senza che siano preceduti da un selettore di elemento. Nell'esempio precedente, si potrebbe scrivere `:first-child` e la regola si applicherebbe a _qualsiasi_ elemento che sia il primo figlio di un elemento `<article>`, non solo a un paragrafo come primo figlio: `:first-child` equivale a `*:first-child`. Tuttavia, di solito è necessario un controllo maggiore, quindi occorre essere più specifici.
 
 ### Pseudo-classi di azione dell'utente
 
-Alcune pseudo-classi si applicano solo quando l'utente interagisce con il documento in qualche modo. Queste pseudo-classi **azione dell'utente**, a volte chiamate **pseudo-classi dinamiche**, agiscono come se una classe fosse stata aggiunta all'elemento quando l'utente interagisce con esso. Esempi includono:
+Alcune pseudo-classi si applicano solo quando l'utente interagisce in qualche modo con il documento. Queste pseudo-classi di **azione dell'utente**, talvolta chiamate **pseudo-classi dinamiche**, agiscono come se una classe fosse stata aggiunta all'elemento quando l'utente interagisce con esso. Alcuni esempi includono:
 
-- [`:hover`](/it/docs/Web/CSS/:hover) — menzionato sopra; si applica solo se l'utente sposta il suo puntatore su un elemento, tipicamente un collegamento.
-- [`:focus`](/it/docs/Web/CSS/:focus) — si applica solo se l'utente mette a fuoco l'elemento cliccando o usando i controlli della tastiera.
+- {{cssxref(":hover")}} — menzionata in precedenza; si applica solo quando l'utente sposta il puntatore sopra un elemento, in genere un link.
+- {{cssxref(":focus")}} — si applica solo quando l'utente mette a fuoco l'elemento facendo clic o usando i controlli della tastiera.
 
 ```html live-sample___hover
 <p><a href="">Hover over me</a></p>
@@ -129,18 +125,27 @@ a:hover {
 
 {{EmbedLiveSample("hover")}}
 
-## Cos'è un pseudo-elemento?
+### Sperimentare con le pseudo-classi
 
-Gli pseudo-elementi si comportano in maniera simile. Tuttavia, agiscono come se tu avessi aggiunto un intero nuovo elemento HTML nel markup, piuttosto che applicare una classe agli elementi esistenti.
+Tornare al [primo esempio di pseudo-classe](#esempio_di_pseudo-classe_di_base) e modificare il CSS usando il playground MDN:
 
-Gli pseudo-elementi iniziano con un doppio due punti `::`. `::before` è un esempio di pseudo-elemento.
+1. Aggiungere una regola che colori di `blue` il testo del paragrafo quando il puntatore vi passa sopra.
+2. Aggiungere una regola che selezioni solo l'ultimo paragrafo all'interno dell'articolo e gli assegni un `background-color` `orange`.
+
+Informazioni su tutte le altre pseudo-classi disponibili sono disponibili nella pagina di riferimento MDN sulle [pseudo-classi](/it/docs/Web/CSS/Reference/Selectors/Pseudo-classes).
+
+## Che cos'è uno pseudo-elemento?
+
+Gli pseudo-elementi si comportano in modo simile. Tuttavia, agiscono come se fosse stato aggiunto al markup un intero nuovo elemento HTML, anziché applicare una classe agli elementi esistenti.
+
+Gli pseudo-elementi iniziano con due punti doppi `::`. `::before` è un esempio di pseudo-elemento.
 
 > [!NOTE]
-> Alcuni primi pseudo-elementi usavano la sintassi con il singolo due punti, quindi a volte potresti vederla nel codice o negli esempi. I moderni browser supportano i primi pseudo-elementi con sintassi a singolo o doppio due punti per compatibilità con le versioni precedenti.
+> Alcuni pseudo-elementi iniziali utilizzavano la sintassi con due punti singoli, quindi talvolta potrebbe essere presente nel codice o negli esempi. I browser moderni supportano gli pseudo-elementi iniziali con sintassi a due punti singoli o doppi per compatibilità con le versioni precedenti.
 
-Ad esempio, se volessi selezionare la prima riga di un paragrafo potresti avvolgerla in un elemento `<span>` e usare un selettore di elementi; tuttavia, ciò fallirebbe se il numero di parole che avevi avvolto fosse più lungo o più corto della larghezza dell'elemento genitore. Dato che tendiamo a non sapere quante parole si adatteranno a una riga — poiché ciò cambierà se la larghezza dello schermo o la dimensione del carattere cambiano — è impossibile fare ciò in modo robusto aggiungendo HTML.
+Ad esempio, se si volesse selezionare la prima riga di un paragrafo, sarebbe possibile racchiuderla in un elemento `<span>` e usare un selettore di elemento; tuttavia, ciò non funzionerebbe se le parole racchiuse fossero più lunghe o più corte della larghezza dell'elemento genitore. Poiché in genere non si sa quante parole entreranno in una riga — dato che questo cambierà se cambia la larghezza dello schermo o `font-size` — è impossibile farlo in modo affidabile aggiungendo HTML.
 
-Il selettore pseudo-elemento `::first-line` lo farà per te in modo affidabile — se il numero di parole aumenta o diminuisce selezionerà comunque solo la prima riga.
+Il selettore dello pseudo-elemento `::first-line` eseguirà questa operazione in modo affidabile: se il numero di parole aumenta o diminuisce, selezionerà comunque solo la prima riga.
 
 ```html live-sample___first-line
 <article>
@@ -166,13 +171,28 @@ article p::first-line {
 
 {{EmbedLiveSample("first-line")}}
 
-Si comporta come se uno `<span>` fosse magicamente avvolto attorno a quella prima riga formattata, e aggiornato ogni volta che la lunghezza della riga cambia.
+Si comporta come se un `<span>` venisse magicamente racchiuso attorno a quella prima riga formattata e aggiornato ogni volta che la lunghezza della riga cambia.
 
-Puoi vedere che questo seleziona la prima riga di entrambi i paragrafi.
+Si può notare che viene selezionata la prima riga di entrambi i paragrafi.
+
+### Sperimentare con gli pseudo-elementi
+
+Modificare il CSS dell'esempio precedente usando il playground MDN:
+
+1. Aggiungere una regola che assegni un `background-color` `red` alla porzione di testo selezionata con il cursore del mouse (sarà necessario lo pseudo-elemento {{cssxref("::selection")}}). Selezionare del testo per provarla.
+2. Aggiungere una regola che assegni alla prima lettera di ogni `<p>` all'interno di `<article>`:
+
+- Un `background-color` `yellow`.
+- Un `border` `1px solid black`.
+- Un `font-size` di `2rem`.
+
+Informazioni su tutti gli altri pseudo-elementi disponibili sono disponibili nella pagina di riferimento MDN sugli [pseudo-elementi](/it/docs/Web/CSS/Reference/Selectors/Pseudo-elements).
 
 ## Combinare pseudo-classi e pseudo-elementi
 
-Se volessi rendere la prima riga del primo paragrafo in grassetto potresti concatenare i selettori `:first-child` e `::first-line` insieme. Prova a modificare l'esempio live precedente in modo che utilizzi il seguente CSS. Stiamo dicendo che vogliamo selezionare la prima riga del primo elemento `<p>`, che si trova all'interno di un elemento `<article>`.
+Se si volesse rendere in grassetto la prima riga del primo paragrafo, si potrebbero concatenare i selettori `:first-child` e `::first-line`.
+
+Provare a modificare l'esempio precedente affinché usi il seguente CSS. Si desidera selezionare la prima riga del primo elemento `<p>` che si trova all'interno di un elemento `<article>`.
 
 ```css
 article p:first-child::first-line {
@@ -183,9 +203,9 @@ article p:first-child::first-line {
 
 ## Generare contenuto con ::before e ::after
 
-Ci sono un paio di pseudo-elementi speciali, che vengono utilizzati insieme alla proprietà [`content`](/it/docs/Web/CSS/content) per inserire contenuto nel tuo documento usando CSS.
+Esistono un paio di pseudo-elementi speciali, usati insieme alla proprietà {{cssxref("content")}} per inserire contenuto nel documento usando CSS. Questa tecnica è chiamata **contenuto generato**.
 
-Potresti usarli per inserire una stringa di testo, come nell'esempio live qui sotto. Prova a cambiare il valore di testo della proprietà {{cssxref("content")}} e vedilo cambiare nell'output. Potresti anche cambiare lo pseudo-elemento `::before` in `::after` e vedere il testo inserito alla fine dell'elemento invece che all'inizio.
+Può essere usata per inserire una stringa di testo, come nell'esempio seguente. Al contenuto generato è stato inoltre assegnato un colore di sfondo `yellow`, in modo da poterlo distinguere facilmente dal contenuto del paragrafo.
 
 ```html live-sample___before
 <p class="box">Content in the box in my HTML page.</p>
@@ -194,14 +214,22 @@ Potresti usarli per inserire una stringa di testo, come nell'esempio live qui so
 ```css live-sample___before
 .box::before {
   content: "This should show before the other content. ";
+  background-color: yellow;
 }
 ```
 
 {{EmbedLiveSample("before")}}
 
-Inserire stringhe di testo da CSS non è davvero qualcosa che facciamo molto spesso sul web, tuttavia, poiché quel testo è inaccessibile ad alcuni screen reader e potrebbe essere difficile per qualcuno trovarlo e modificarlo in futuro.
+### Sperimentare con il contenuto generato
 
-Un utilizzo più valido di questi pseudo-elementi è inserire un'icona, ad esempio la piccola freccia aggiunta nell'esempio sotto, che è un indicatore visivo che non vorremmo venga letto da uno screen reader:
+Provare a modificare l'esempio precedente come segue:
+
+- Modificare il valore di testo della proprietà {{cssxref("content")}} e osservarne la modifica nell'output.
+- Modificare lo pseudo-elemento `::before` in `::after` e osservare il testo inserito alla fine dell'elemento anziché all'inizio.
+
+### Icone di contenuto generato
+
+L'esempio precedente è CSS valido. Tuttavia, inserire stringhe di testo dal CSS non è qualcosa che viene fatto molto spesso, poiché quel testo è inaccessibile ad alcuni screen reader e potrebbe essere difficile da trovare e modificare in futuro. Un uso più valido di questi pseudo-elementi consiste nell'inserire un'icona, ad esempio la piccola freccia aggiunta nell'esempio seguente, che è un indicatore visivo che non dovrebbe essere letto da uno screen reader:
 
 ```html live-sample___after-icon
 <p class="box">Content in the box in my HTML page.</p>
@@ -215,9 +243,11 @@ Un utilizzo più valido di questi pseudo-elementi è inserire un'icona, ad esemp
 
 {{EmbedLiveSample("after-icon")}}
 
-Questi pseudo-elementi vengono anche usati frequentemente per inserire una stringa vuota, che può poi essere stilizzata come qualsiasi elemento sulla pagina.
+### Forme generate
 
-In questo prossimo esempio, abbiamo aggiunto una stringa vuota usando lo pseudo-elemento `::before`. Lo abbiamo impostato su `display: block` in modo che possiamo stilizzarlo con una larghezza e un'altezza. Poi usiamo CSS per stilizzarlo proprio come qualsiasi elemento. Puoi giocare con il CSS e cambiare il suo aspetto e comportamento.
+Il contenuto generato viene spesso usato anche per inserire una stringa vuota, che può quindi essere stilizzata proprio come qualsiasi elemento della pagina.
+
+Nell'esempio successivo, è stata aggiunta una stringa vuota usando lo pseudo-elemento `::before`. È stato impostato `display: block` in modo da poterlo stilizzare con una larghezza e un'altezza, creando una forma quadrata. Viene quindi usato CSS per stilizzarlo come qualsiasi elemento.
 
 ```html live-sample___before-styled
 <p class="box">Content in the box in my HTML page.</p>
@@ -236,19 +266,21 @@ In questo prossimo esempio, abbiamo aggiunto una stringa vuota usando lo pseudo-
 
 {{EmbedLiveSample("before-styled", "", "160")}}
 
-L'uso degli pseudo-elementi `::before` e `::after` insieme alla proprietà `content` è definito "Contenuto Generato" in CSS, e vedrai spesso questa tecnica usata per vari compiti. Un ottimo esempio è il sito [CSS Arrow Please](https://cssarrowplease.com/), che ti aiuta a generare una freccia con CSS. Guarda il CSS mentre crei la tua freccia e vedrai gli pseudo-elementi {{cssxref("::before")}} e {{cssxref("::after")}} in uso. Ogni volta che vedi questi selettori, guarda la proprietà {{cssxref("content")}} per vedere cosa viene aggiunto all'elemento HTML.
+Provare a sperimentare con il CSS precedente per modificare l'aspetto e il comportamento della forma generata.
 
-## Sommario
+Il contenuto generato viene usato regolarmente per varie altre attività. Un ottimo esempio è il sito [CSS Arrow Please](https://cssarrowplease.com/), che aiuta a generare una freccia con CSS. Osservando il CSS mentre si crea la freccia, si vedranno in uso gli pseudo-elementi {{cssxref("::before")}} e {{cssxref("::after")}}. Quando si incontrano questi selettori, osservare la proprietà {{cssxref("content")}} per vedere cosa viene aggiunto all'elemento HTML.
 
-In questo articolo abbiamo introdotto le pseudo-classi e i pseudo-elementi CSS, che sono tipi speciali di selettori.
+## Riepilogo
 
-Le pseudo-classi ti consentono di targetizzare un elemento quando si trova in un particolare stato, come se avessi aggiunto una classe per quello stato nel DOM. I pseudo-elementi si comportano come se avessi aggiunto un intero nuovo elemento al DOM, e ti consentono di stilizzarlo. Gli pseudo-elementi `::before` e `::after` ti consentono di inserire contenuti nel documento usando CSS.
+In questo articolo sono state introdotte le pseudo-classi e gli pseudo-elementi CSS, che sono tipi speciali di selettori.
 
-Nel prossimo articolo, impareremo sui combinatori.
+Le pseudo-classi consentono di selezionare un elemento quando si trova in uno stato particolare, come se fosse stata aggiunta una classe per quello stato al DOM. Gli pseudo-elementi agiscono come se fosse stato aggiunto un intero nuovo elemento al DOM e consentono di stilizzarlo. Gli pseudo-elementi `::before` e `::after` consentono di inserire contenuto nel documento usando CSS.
+
+Nel prossimo articolo verranno esaminati i combinatori.
 
 ## Vedi anche
 
-- [Riferimento sulle pseudo-classi](/it/docs/Web/CSS/Pseudo-classes)
-- [Riferimento sugli pseudo-elementi](/it/docs/Web/CSS/Pseudo-elements)
+- [Riferimento delle pseudo-classi](/it/docs/Web/CSS/Reference/Selectors/Pseudo-classes)
+- [Riferimento degli pseudo-elementi](/it/docs/Web/CSS/Reference/Selectors/Pseudo-elements)
 
 {{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Attribute_selectors", "Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics")}}

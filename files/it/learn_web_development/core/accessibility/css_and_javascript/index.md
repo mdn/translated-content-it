@@ -1,14 +1,14 @@
 ---
-title: Migliori pratiche di accessibilità CSS e JavaScript
+title: Buone pratiche di accessibilità per CSS e JavaScript
 short-title: CSS e JS accessibili
 slug: Learn_web_development/Core/Accessibility/CSS_and_JavaScript
 l10n:
-  sourceCommit: b5437b737639d6952d18b95ebd1045ed73e4bfa7
+  sourceCommit: 0c62b082755017d0773ecaaee7e74efd5e066d0b
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Accessibility/HTML","Learn_web_development/Core/Accessibility/WAI-ARIA_basics", "Learn_web_development/Core/Accessibility")}}
+{{PreviousMenuNext("Learn_web_development/Core/Accessibility/Test_your_skills/HTML","Learn_web_development/Core/Accessibility/Test_your_skills/CSS_and_JavaScript", "Learn_web_development/Core/Accessibility")}}
 
-CSS e JavaScript, se usati correttamente, hanno anche il potenziale per consentire esperienze web accessibili, o possono danneggiare significativamente l'accessibilità se utilizzati in modo improprio. Questo articolo delinea alcune migliori pratiche di CSS e JavaScript che dovrebbero essere considerate per garantire che anche i contenuti complessi siano il più accessibili possibile.
+CSS e JavaScript, se usati correttamente, possono consentire esperienze web accessibili, oppure possono danneggiare significativamente l'accessibilità se usati in modo improprio. Questo articolo descrive alcune buone pratiche relative a CSS e JavaScript da considerare per garantire che anche i contenuti complessi siano il più possibile accessibili.
 
 <table>
   <tbody>
@@ -20,13 +20,13 @@ CSS e JavaScript, se usati correttamente, hanno anche il potenziale per consenti
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Dimensionamento del testo e layout accessibili.</li>
-          <li>Contrasto dei colori.</li>
+          <li>Dimensionamento e layout del testo accessibili.</li>
+          <li>Contrasto del colore.</li>
           <li>L'importanza degli stili <code>:focus</code> e <code>:hover</code>.</li>
-          <li>Uso sensato delle animazioni — utilizzare animazioni in modo sottile e fornire controlli per disattivarle.</li>
-          <li>Migliori pratiche per nascondere contenuti in modo che non diventino inaccessibili.</li>
-          <li>Il concetto che esiste un eccesso di JavaScript, e il valore di un JavaScript poco invasivo.</li>
-          <li>Utilizzare gli eventi in modo sensato per non bloccare tipi di controllo specifici.</li>
+          <li>Uso sensato delle animazioni — usare le animazioni in modo discreto e fornire controlli per disattivarle.</li>
+          <li>Buone pratiche per nascondere contenuti senza renderli inaccessibili.</li>
+          <li>Il fatto che troppo JavaScript può essere eccessivo e il valore del JavaScript non invasivo.</li>
+          <li>Uso sensato degli eventi per non escludere specifici tipi di controllo.</li>
         </ul>
       </td>
     </tr>
@@ -35,23 +35,23 @@ CSS e JavaScript, se usati correttamente, hanno anche il potenziale per consenti
 
 ## CSS e JavaScript sono accessibili?
 
-CSS e JavaScript non hanno la stessa immediata importanza per l'accessibilità come l'HTML, ma possono comunque aiutare o danneggiare l'accessibilità, a seconda di come vengono utilizzati. In altre parole, è importante che si consideri alcune indicazioni di buone pratiche per garantire che l'uso di CSS e JavaScript non rovini l'accessibilità dei documenti.
+CSS e JavaScript non hanno la stessa importanza immediata per l'accessibilità di HTML, ma possono comunque favorirla o danneggiarla, a seconda di come vengono usati. In altre parole, è importante considerare alcune buone pratiche per assicurarsi che l'uso di CSS e JavaScript non comprometta l'accessibilità dei documenti.
 
 ## CSS
 
-Iniziamo esaminando il CSS.
+Iniziamo esaminando CSS.
 
-### Semantica corretta e aspettativa dell'utente
+### Semantica corretta e aspettative degli utenti
 
-È possibile utilizzare CSS per far apparire un qualsiasi elemento HTML in qualsiasi forma, ma ciò non significa che si dovrebbe farlo. Come abbiamo frequentemente menzionato nel nostro articolo [HTML: Una buona base per l'accessibilità](/it/docs/Learn_web_development/Core/Accessibility/HTML), si dovrebbe utilizzare l'elemento semantico appropriato per il compito, quando possibile. Se non lo si fa, si possono creare confusione e problemi di usabilità per tutti, ma in particolare per gli utenti con disabilità. Utilizzare la semantica corretta ha molto a che fare con le aspettative degli utenti — gli elementi hanno un certo aspetto e si comportano in determinati modi, a seconda della loro funzionalità, e queste convenzioni comuni sono attese dagli utenti.
+È possibile usare CSS per rendere qualsiasi elemento HTML simile a _qualsiasi cosa_, ma questo non significa che sia opportuno farlo. Come menzionato spesso nell'articolo [HTML: una buona base per l'accessibilità](/it/docs/Learn_web_development/Core/Accessibility/HTML), occorre usare l'elemento semantico appropriato per lo scopo, ogni volta che è possibile. In caso contrario, ciò può causare confusione e problemi di usabilità per tutti, ma in particolare per gli utenti con disabilità. L'uso di una semantica corretta è strettamente legato alle aspettative degli utenti: gli elementi hanno un determinato aspetto e comportamento in base alla loro funzionalità, e gli utenti si aspettano queste convenzioni comuni.
 
-Ad esempio, un utente di screen reader non può navigare in una pagina tramite elementi di intestazione se lo sviluppatore non ha utilizzato correttamente gli elementi di intestazione per marcare i contenuti. Allo stesso modo, un'intestazione perde il suo scopo visivo se viene stilizzata in modo tale che non sembri un'intestazione.
+Per esempio, un utente di screen reader non può navigare in una pagina tramite gli elementi di intestazione se lo sviluppatore non ha usato in modo appropriato gli elementi di intestazione per marcare il contenuto. Allo stesso modo, un'intestazione perde il suo scopo visivo se viene applicato uno stile che fa sì che non sembri un'intestazione.
 
-In sintesi, si può aggiornare lo stile di una caratteristica di pagina per adattarla al proprio design, ma non cambiarlo così tanto da non farla più apparire o comportarsi come previsto. Le seguenti sezioni riassumono le principali funzionalità HTML da considerare.
+In sintesi, è possibile aggiornare lo stile di una funzionalità della pagina per adattarla al design, ma non bisogna modificarla così tanto da farle perdere l'aspetto o il comportamento atteso. Le sezioni seguenti riassumono le principali funzionalità HTML da considerare.
 
-#### Struttura del contenuto "standard" del testo
+#### Struttura del contenuto testuale "standard"
 
-Intestazioni, paragrafi, elenchi — il contenuto testuale principale della pagina:
+Intestazioni, paragrafi, elenchi: il contenuto testuale fondamentale della pagina:
 
 ```html
 <h1>Heading</h1>
@@ -64,7 +64,7 @@ Intestazioni, paragrafi, elenchi — il contenuto testuale principale della pagi
 </ul>
 ```
 
-Un tipico CSS potrebbe essere il seguente:
+Alcuni CSS tipici potrebbero essere simili a questo:
 
 ```css
 h1 {
@@ -78,17 +78,17 @@ li {
 }
 ```
 
-Si dovrebbe:
+Occorre:
 
-- Selezionare dimensioni di carattere, altezze di linea, spaziatura tra lettere, ecc. sensate per rendere il testo logico, leggibile e confortevole da leggere.
-- Assicurarsi che le intestazioni si distinguano dal testo del corpo, tipicamente grandi e in grassetto come lo stile predefinito. I propri elenchi dovrebbero sembrare elenchi.
-- Il colore del testo dovrebbe contrastare bene con il colore di sfondo.
+- Scegliere dimensioni dei font, altezze di riga, spaziatura tra lettere e così via sensate, per rendere il testo logico, leggibile e confortevole da leggere.
+- Assicurarsi che le intestazioni risaltino rispetto al testo del corpo, in genere grandi e in grassetto come nello stile predefinito. Gli elenchi devono sembrare elenchi.
+- Assicurarsi che il colore del testo contrasti adeguatamente con il colore di sfondo.
 
-Vedi [Intestazioni e paragrafi in HTML](/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs) e [Stile del testo CSS](/it/docs/Learn_web_development/Core/Text_styling) per ulteriori informazioni.
+Per ulteriori informazioni, vedere [Intestazioni e paragrafi in HTML](/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs) e [Stilizzazione del testo CSS](/it/docs/Learn_web_development/Core/Text_styling).
 
 #### Testo enfatizzato
 
-Markup inline che conferisce un'enfasi specifica al testo che avvolge:
+Markup inline che conferisce un'enfasi specifica al testo che racchiude:
 
 ```html
 <p>The water is <em>very hot</em>.</p>
@@ -98,7 +98,7 @@ Markup inline che conferisce un'enfasi specifica al testo che avvolge:
 </p>
 ```
 
-Si potrebbe voler aggiungere un po' di colorazione semplice al testo enfatizzato:
+Potrebbe essere opportuno aggiungere una semplice colorazione al testo enfatizzato:
 
 ```css
 strong,
@@ -107,11 +107,11 @@ em {
 }
 ```
 
-Tuttavia, raramente avrai bisogno di stilizzare elementi di enfasi in modo significativo. Le convenzioni standard del testo in grassetto e corsivo sono molto riconoscibili e cambiare lo stile può causare confusione. Per ulteriori informazioni sull'enfasi, vedi [Enfasi e importanza](/it/docs/Learn_web_development/Core/Structuring_content/Emphasis_and_importance).
+Tuttavia, raramente sarà necessario applicare uno stile significativo agli elementi di enfasi. Le convenzioni standard del testo in grassetto e in corsivo sono facilmente riconoscibili e modificare lo stile può causare confusione. Per ulteriori informazioni sull'enfasi, vedere [Enfasi e importanza](/it/docs/Learn_web_development/Core/Structuring_content/Emphasis_and_importance).
 
 #### Abbreviazioni
 
-Un elemento che consente a un'abbreviazione, acronimo o inizializzazione di essere associata alla sua espansione:
+Un elemento che consente di associare un'abbreviazione, un acronimo o un'inizializzazione alla sua forma estesa:
 
 ```html
 <p>
@@ -120,7 +120,7 @@ Un elemento che consente a un'abbreviazione, acronimo o inizializzazione di esse
 </p>
 ```
 
-Ancora una volta, si potrebbe volerlo stilizzare in un modo semplice:
+Anche in questo caso, potrebbe essere opportuno applicare uno stile semplice:
 
 ```css
 abbr {
@@ -128,21 +128,21 @@ abbr {
 }
 ```
 
-La convenzione di stile riconosciuta per le abbreviazioni è una sottolineatura punteggiata, ed è sconsigliabile deviare significativamente da essa. Per maggiori dettagli sulle abbreviazioni, vedi [Abbreviazioni](/it/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features#abbreviations).
+La convenzione di stile riconosciuta per le abbreviazioni è una sottolineatura tratteggiata, ed è poco saggio discostarsi in modo significativo da essa. Per ulteriori informazioni sulle abbreviazioni, vedere [Abbreviazioni](/it/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features#abbreviations).
 
 #### Link
 
-Iperlink — il modo per raggiungere nuovi luoghi sul web:
+Hyperlink: il modo per raggiungere nuove destinazioni sul web:
 
 ```html
 <p>Visit the <a href="https://www.mozilla.org">Mozilla homepage</a>.</p>
 ```
 
-Sotto è mostrato un semplice stile di link:
+Di seguito viene mostrato uno stile molto semplice per i link:
 
 ```css
 a {
-  color: #ff0000;
+  color: red;
 }
 
 a:hover,
@@ -153,20 +153,20 @@ a:focus {
 }
 
 a:active {
-  color: #000000;
+  color: black;
   background-color: #a60000;
 }
 ```
 
-Le convenzioni standard dei link sono sottolineati e di colore diverso (predefinito: blu) nel loro stato standard, un'altra variazione di colore quando il link è stato precedentemente visitato (predefinito: viola) e un altro colore ancora quando il link è attivato (predefinito: rosso). Inoltre, il puntatore del mouse cambia in un'icona a freccia quando i link sono sorvolati con il mouse e il link riceve un'evidenziazione quando è a fuoco (ad esempio, tramite tabulazione) o attivato. Le seguenti immagini mostrano l'evidenziazione sia in Firefox (un contorno tratteggiato) che in Chrome (un contorno blu):
+Le convenzioni standard per i link prevedono la sottolineatura e un colore diverso (predefinito: blu) nel loro stato normale, un'altra variazione di colore quando il link è stato visitato in precedenza (predefinito: viola) e un ulteriore colore quando il link è attivato (predefinito: rosso). Inoltre, il puntatore del mouse cambia in un'icona a forma di mano quando passa sui link e il link riceve un'evidenziazione quando riceve il focus, ad esempio tramite la navigazione con Tab, oppure quando viene attivato. L'immagine seguente mostra l'evidenziazione sia in Firefox (un contorno tratteggiato) sia in Chrome (un contorno blu):
 
-![Schermata di un elenco di link nel browser Firefox. L'elenco contiene 4 elementi. Il secondo elemento dell'elenco è evidenziato utilizzando un contorno blu tratteggiato quando è focalizzato tramite tabulazione.](focus-highlight-firefox.png)
+![Screenshot di un elenco di link nel browser Firefox. L'elenco contiene 4 elementi. Il secondo elemento dell'elenco è evidenziato con un contorno tratteggiato blu quando riceve il focus tramite la navigazione con Tab.](focus-highlight-firefox.png)
 
-![Schermata di un elenco di link nel browser Chrome. L'elenco contiene 4 elementi. Il terzo elemento dell'elenco è evidenziato utilizzando un contorno blu quando è focalizzato tramite tabulazione.](focus-highlight-chrome.png)
+![Screenshot di un elenco di link nel browser Chrome. L'elenco contiene 4 elementi. Il terzo elemento dell'elenco è evidenziato con un contorno blu quando riceve il focus tramite la navigazione con Tab.](focus-highlight-chrome.png)
 
-Si può essere creativi con gli stili dei link, purché si continui a fornire feedback agli utenti quando interagiscono con i link. Qualcosa dovrebbe sicuramente accadere quando gli stati cambiano e non si dovrebbe rimuovere il cursore a freccia o il contorno — entrambi sono aiuti importanti per l'accessibilità per coloro che utilizzano i controlli da tastiera.
+È possibile essere creativi con gli stili dei link, purché si continui a fornire agli utenti un feedback quando interagiscono con i link. Deve sicuramente accadere qualcosa quando gli stati cambiano e non bisogna rimuovere il cursore a forma di puntatore o il contorno: entrambi sono importanti strumenti di accessibilità per chi usa i controlli da tastiera.
 
-#### Elementi del modulo
+#### Elementi dei moduli
 
 Elementi che consentono agli utenti di inserire dati nei siti web:
 
@@ -177,97 +177,98 @@ Elementi che consentono agli utenti di inserire dati nei siti web:
 </div>
 ```
 
-Puoi vedere un buon esempio di CSS nei moduli nel nostro esempio [form-css.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/form-css.html) (vedi anche [l'esempio dal vivo](https://mdn.github.io/learning-area/accessibility/css/form-css.html)).
+È possibile vedere alcuni buoni esempi di CSS nell'esempio [form-css.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/form-css.html) ([visualizzarlo dal vivo](https://mdn.github.io/learning-area/accessibility/css/form-css.html)).
 
-La maggior parte del CSS che scriverai per i moduli sarà per dimensionare gli elementi, allineare etichette e input e farli apparire ordinati.
+La maggior parte del CSS scritto per i moduli riguarderà il dimensionamento degli elementi, l'allineamento di etichette e input e il conferimento di un aspetto ordinato.
 
-Non si dovrebbe però deviare troppo dal feedback visivo previsto che gli elementi del modulo ricevono quando sono a fuoco, che è fondamentalmente lo stesso dei link (vedi sopra). Si potrebbe stilizzare gli stati di focus/hover del modulo per rendere questo comportamento più coerente tra i browser o adattarlo meglio al design della pagina, ma non eliminarlo del tutto — ancora, le persone si affidano a questi indizi per sapere cosa sta succedendo.
+Tuttavia, non bisogna discostarsi troppo dal feedback visivo atteso che gli elementi dei moduli ricevono quando hanno il focus, che è sostanzialmente uguale a quello dei link (vedere sopra). È possibile applicare stili agli stati di focus/hover del modulo per rendere questo comportamento più coerente tra browser o più adatto al design della pagina, ma non bisogna eliminarlo del tutto: le persone si basano su questi indizi per capire cosa sta accadendo.
 
 #### Tabelle
 
 Tabelle per presentare dati tabulari.
 
-Puoi vedere un buon, semplice esempio di HTML e CSS per una tabella nel nostro esempio [table-css.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/table-css.html) (vedi anche [l'esempio dal vivo](https://mdn.github.io/learning-area/accessibility/css/table-css.html)).
+È possibile vedere un buon esempio semplice di HTML e CSS per una tabella nell'esempio [table-css.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/table-css.html) ([visualizzarlo dal vivo](https://mdn.github.io/learning-area/accessibility/css/table-css.html)).
 
-Il CSS delle tabelle generalmente serve a far sì che la tabella si integri meglio nel design e appaia meno brutta. È una buona idea assicurarsi che le intestazioni della tabella si distinguano (normalmente usando il grassetto) e utilizzare strisce zebrate per rendere più facile l'analisi delle righe.
+In genere, il CSS delle tabelle serve a far sì che la tabella si integri meglio nel design e abbia un aspetto meno sgradevole. È una buona idea assicurarsi che le intestazioni della tabella risaltino, normalmente usando il grassetto, e usare l'alternanza di righe per rendere più facile distinguere le diverse righe.
 
-### Colore e contrasto dei colori
+### Colore e contrasto del colore
 
-Quando si sceglie uno schema di colori per il proprio sito web, assicurarsi che il colore del testo (in primo piano) contrasti bene con il colore di sfondo. Il design potrebbe sembrare interessante, ma non serve a nulla se persone con disabilità visive come il daltonismo non possono leggere i tuoi contenuti.
+Quando si sceglie una combinazione di colori per un sito web, assicurarsi che il colore del testo (primo piano) contrasti adeguatamente con il colore di sfondo. Il design potrebbe sembrare interessante, ma non è utile se le persone con disabilità visive, come il daltonismo, non riescono a leggere il contenuto.
 
-Esiste un modo semplice per verificare se il contrasto è sufficientemente elevato per non causare problemi. Ci sono diversi strumenti online per il controllo del contrasto in cui puoi inserire i colori del tuo primo piano e dello sfondo, per verificarli. Ad esempio, il [Color Contrast Checker](https://webaim.org/resources/contrastchecker/) di WebAIM è semplice da usare e fornisce una spiegazione di ciò di cui hai bisogno per conformarti ai criteri WCAG relativi al contrasto di colore.
+Esiste un modo semplice per verificare se il contrasto è sufficientemente elevato da non causare problemi. Esistono diversi strumenti online per il controllo del contrasto nei quali è possibile inserire i colori di primo piano e di sfondo per verificarli. Per esempio, il [Color Contrast Checker](https://webaim.org/resources/contrastchecker/) di WebAIM è semplice da usare e fornisce una spiegazione dei requisiti necessari per conformarsi ai criteri WCAG relativi al contrasto del colore.
 
 > [!NOTE]
-> Un alto rapporto di contrasto consentirà anche a chi utilizza uno smartphone o un tablet con uno schermo lucido di leggere meglio le pagine quando si trovano in un ambiente luminoso, come alla luce del sole.
+> Un elevato rapporto di contrasto consente inoltre a chiunque utilizzi uno smartphone o un tablet con schermo lucido di leggere meglio le pagine in un ambiente luminoso, come alla luce del sole.
 
-Un altro suggerimento è di non affidarsi solo al colore per indicazioni/informazioni, in quanto non sarà utile per coloro che non possono vedere il colore. Invece di contrassegnare i campi del modulo obbligatori in rosso, ad esempio, contrassegnali con un asterisco e in rosso.
+Un altro suggerimento è non fare affidamento esclusivamente sul colore per segnali o informazioni, poiché questo non è utile per chi non riesce a vedere il colore. Invece di contrassegnare in rosso i campi obbligatori di un modulo, per esempio, contrassegnarli con un asterisco e in rosso.
 
-### Nascondere le cose
+### Nascondere elementi
 
-Ci sono molte istanze in cui un design visivo richiederà che non tutto il contenuto venga mostrato contemporaneamente. Ad esempio, nel nostro [esempio di box informativo a schede](https://mdn.github.io/learning-area/css/css-layout/practical-positioning-examples/tabbed-info-box.html) (vedi [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/css-layout/practical-positioning-examples/tabbed-info-box.html)) abbiamo tre pannelli di informazioni, ma li stiamo [posizionando](/it/docs/Learn_web_development/Core/CSS_layout/Positioning) uno sopra l'altro e fornendo tabulazioni che possono essere cliccate per mostrarne ciascuno (è anche accessibile da tastiera — si può alternativamente usare Tab e Invio/Ritorno per selezionarli).
+Esistono molte situazioni in cui un design visivo richiede che non tutto il contenuto venga mostrato contemporaneamente. Per esempio, nell'[esempio di riquadro informativo a schede](https://mdn.github.io/learning-area/css/css-layout/practical-positioning-examples/tabbed-info-box.html) (vedere il [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/css-layout/practical-positioning-examples/tabbed-info-box.html)) sono presenti tre pannelli di informazioni, ma vengono [posizionati](/it/docs/Learn_web_development/Core/CSS_layout/Positioning) uno sopra l'altro e vengono fornite schede selezionabili per mostrarne una alla volta. L'esempio è anche accessibile tramite tastiera: in alternativa, è possibile usare Tab e Invio per selezionarle.
 
-![Interfaccia a tre schede con Scheda 1 selezionata e solo i suoi contenuti visualizzati. I contenuti delle altre schede sono nascosti. Se una scheda viene selezionata, il colore del testo cambia da nero a bianco e il colore di sfondo cambia da rosso-arancio a marrone sella.](tabbed-info-box.png)
+![Interfaccia con tre schede, con la scheda 1 selezionata e visualizzato solo il suo contenuto. I contenuti delle altre schede sono nascosti. Se una scheda è selezionata, il suo text-color cambia da nero a bianco e il background-color cambia da rosso-arancio a marrone sella.](tabbed-info-box.png)
 
-Gli utenti dei lettori di schermo non si preoccupano di tutto ciò — sono felici con il contenuto purché l'ordine delle fonti abbia senso e possano accedervi tutto. Il posizionamento assoluto (come usato in questo esempio) è generalmente considerato uno dei migliori meccanismi per nascondere il contenuto per effetti visivi perché non impedisce ai lettori di schermo di accedervi.
+Gli utenti di screen reader non si preoccupano di tutto questo: il contenuto va bene purché l'ordine nel sorgente sia sensato e sia possibile accedere a tutto. Il posizionamento assoluto, come quello usato in questo esempio, è generalmente considerato uno dei migliori meccanismi per nascondere contenuti a scopo visivo, perché non impedisce agli screen reader di accedervi.
 
-D'altra parte, non si dovrebbe usare {{cssxref("visibility", "visibility: hidden")}} o {{cssxref("display", "display: none")}}, perché nascondono il contenuto dai lettori di schermo. A meno che, naturalmente, non vi sia una buona ragione per cui si desidera che questo contenuto sia nascosto dai lettori di schermo.
+D'altra parte, non bisogna usare {{cssxref("visibility", "visibility: hidden")}} o {{cssxref("display", "display: none")}}, perché nascondono il contenuto agli screen reader. A meno che, naturalmente, non ci sia una buona ragione per cui questo contenuto debba essere nascosto agli screen reader.
 
-> **Nota:** [Content invisibile solo per gli utenti dei lettori di schermo](https://webaim.org/techniques/css/invisiblecontent/) ha molti più dettagli utili su questo argomento.
+> [!NOTE]
+> [Invisible Content Just for Screen Reader Users](https://webaim.org/techniques/css/invisiblecontent/) contiene molti altri dettagli utili su questo argomento.
 
 ### Accettare che gli utenti possano sovrascrivere gli stili
 
-È possibile per gli utenti sovrascrivere i tuoi stili con i propri stili personalizzati, ad esempio:
+Gli utenti possono sovrascrivere gli stili con i propri stili personalizzati, per esempio:
 
-- Vedi il [Come utilizzare un foglio di stile personalizzato (CSS) con Firefox](https://www.itsupportguides.com/knowledge-base/computer-accessibility/how-to-use-a-custom-style-sheet-css-with-firefox/) di Sarah Maddox per una guida utile su come fare questo manualmente in Firefox.
-- È probabilmente più semplice farlo utilizzando un'estensione. Ad esempio, l'estensione Stylus è disponibile per [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/), con Stylish che è un equivalente per [Chrome](https://chromewebstore.google.com/detail/stylish-custom-themes-for/fjnbnpbmkenffdnngjfgmeleoegfcffe).
+- Vedere [How to use a custom style sheet (CSS) with Firefox](https://www.itsupportguides.com/knowledge-base/computer-accessibility/how-to-use-a-custom-style-sheet-css-with-firefox/) di Sarah Maddox, una Guida utile che spiega come farlo manualmente in Firefox.
+- Probabilmente è più semplice farlo usando un'estensione. Per esempio, l'estensione Stylus è disponibile per [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/), mentre Stylish è un equivalente per [Chrome](https://chromewebstore.google.com/detail/stylish-custom-themes-for/fjnbnpbmkenffdnngjfgmeleoegfcffe).
 
-Gli utenti potrebbero farlo per diverse ragioni. Un utente con disabilità visiva potrebbe voler rendere il testo più grande su tutti i siti web che visita, o un utente con una grave deficienza dei colori potrebbe voler impostare tutti i siti web in colori ad alto contrasto che siano facili da vedere. Qualunque sia la necessità, si dovrebbe essere a proprio agio con ciò, e rendere flessibili i propri design in modo che tali modifiche funzionino nel proprio design. Ad esempio, si potrebbe voler garantire che l'area dei contenuti principali possa gestire il testo più grande (forse inizierà a scorrere per consentire di vedere tutto) e non lo nasconda o si rompa completamente.
+Gli utenti potrebbero farlo per diversi motivi. Un utente con disabilità visiva potrebbe voler ingrandire il testo in tutti i siti web visitati, oppure un utente con grave deficit nella percezione dei colori potrebbe voler impostare tutti i siti web con colori ad alto contrasto che riesce facilmente a vedere. Qualunque sia la necessità, occorre accettarla e rendere i design sufficientemente flessibili affinché tali modifiche funzionino. Per esempio, è opportuno assicurarsi che l'area del contenuto principale possa gestire testo più grande, magari iniziando a scorrere per consentire di visualizzarlo interamente, e non lo nasconda o si interrompa completamente.
 
 ## JavaScript
 
-Anche il JavaScript può compromettere l'accessibilità, a seconda di come viene usato.
+JavaScript può anche compromettere l'accessibilità, a seconda di come viene usato.
 
-Il JavaScript moderno è un linguaggio potente, e possiamo fare molto con esso al giorno d'oggi, dai semplici aggiornamenti di contenuti e UI a giochi 2D e 3D completi. Non c'è una regola che imponga che tutti i contenuti debbano essere completamente accessibili a tutte le persone — devi solo fare ciò che puoi, e rendere le tue applicazioni il più accessibili possibile.
+Il JavaScript moderno è un linguaggio potente e oggi è possibile fare moltissime cose con esso, da semplici aggiornamenti di contenuto e UI fino a giochi 2D e 3D completi. Non esiste una regola secondo cui tutti i contenuti debbano essere accessibili al 100% a tutte le persone: occorre semplicemente fare ciò che è possibile e rendere le applicazioni il più accessibili possibile.
 
-Contenuti e funzionalità semplici sono in teoria facili da rendere accessibili — ad esempio testo, immagini, tabelle, moduli e pulsanti che attivano funzioni. Come abbiamo esaminato nel nostro articolo [HTML: Una buona base per l'accessibilità](/it/docs/Learn_web_development/Core/Accessibility/HTML), le considerazioni chiave sono:
+I contenuti e le funzionalità semplici sono probabilmente facili da rendere accessibili, per esempio testo, immagini, tabelle, moduli e pulsanti che attivano funzioni. Come esaminato nell'articolo [HTML: una buona base per l'accessibilità](/it/docs/Learn_web_development/Core/Accessibility/HTML), le considerazioni principali sono:
 
-- Buona semantica: Utilizzare l'elemento giusto per il lavoro giusto. Ad esempio, assicurarsi di usare intestazioni e paragrafi, e gli elementi {{htmlelement("button")}} e {{htmlelement("a")}}
-- Assicurarsi che i contenuti siano disponibili come testo, sia direttamente come contenuti testuali, buone etichette di testo per gli elementi del modulo, o [alternative testuali](/it/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives), ad esempio, testo alternativo per le immagini.
+- Buona semantica: usare l'elemento giusto per lo scopo giusto. Per esempio, assicurarsi di usare intestazioni e paragrafi, nonché gli elementi {{htmlelement("button")}} e {{htmlelement("a")}}.
+- Assicurarsi che il contenuto sia disponibile come testo, direttamente come contenuto testuale, tramite buone etichette testuali per gli elementi dei moduli oppure tramite [alternative testuali](/it/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives), ad esempio il testo alt per le immagini.
 
-Abbiamo anche esaminato un esempio di come utilizzare JavaScript per costruire funzionalità laddove mancano — vedi [Ricostruzione dell'accessibilità da tastiera](/it/docs/Learn_web_development/Core/Accessibility/HTML#building_keyboard_accessibility_back_in). Questo non è l'ideale — in realtà dovresti solo utilizzare l'elemento giusto per il lavoro giusto — ma mostra che è possibile in situazioni in cui per qualche motivo non puoi controllare il markup utilizzato. Un altro modo per migliorare l'accessibilità per widget JavaScript non semantici è utilizzare WAI-ARIA per fornire semantica aggiuntiva agli utenti dei lettori di schermo. Il prossimo articolo affronterà questo argomento in dettaglio.
+È stato inoltre esaminato un esempio di come usare JavaScript per aggiungere funzionalità dove mancano: vedere [Ripristinare l'accessibilità tramite tastiera](/it/docs/Learn_web_development/Core/Accessibility/HTML#building_keyboard_accessibility_back_in). Non è l'ideale: in realtà, occorrerebbe semplicemente usare l'elemento giusto per lo scopo giusto, ma l'esempio mostra che è possibile farlo nelle situazioni in cui, per qualche motivo, non si può controllare il markup utilizzato. Un altro modo per migliorare l'accessibilità dei widget non semantici alimentati da JavaScript consiste nell'usare WAI-ARIA per fornire semantica aggiuntiva agli utenti di screen reader. Anche il prossimo articolo approfondirà questo argomento.
 
-Funzionalità complesse come i giochi 3D non sono così facili da rendere accessibili — un gioco 3D complesso creato utilizzando [WebGL](/it/docs/Web/API/WebGL_API) sarà reso su un elemento {{htmlelement("canvas")}}, che non ha attualmente la possibilità di fornire alternative testuali o altre informazioni che utenti con gravi disabilità visive possano utilizzare. È discutibile che un gioco del genere non abbia realmente questo gruppo di persone come parte del suo pubblico target principale, e sarebbe irragionevole aspettarsi che tu lo renda completamente accessibile alle persone non vedenti. Tuttavia, si potrebbero implementare [controlli da tastiera](/it/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard) affinché sia utilizzabile dagli utenti che non usano il mouse e rendere lo schema dei colori abbastanza contrastante da essere utilizzabile da chi ha carenze di colore.
+Funzionalità complesse come i giochi 3D non sono altrettanto facili da rendere accessibili: un gioco 3D complesso creato con [WebGL](/it/docs/Web/API/WebGL_API) verrà renderizzato su un elemento {{htmlelement("canvas")}}, che al momento non offre alcuna funzionalità per fornire alternative testuali o altre informazioni utilizzabili da utenti con gravi disabilità visive. Si può sostenere che un gioco di questo tipo non abbia realmente questo gruppo di persone tra il proprio pubblico di destinazione principale e che sarebbe irragionevole aspettarsi che sia accessibile al 100% alle persone cieche. Tuttavia, sarebbe possibile implementare [controlli da tastiera](/it/docs/Games/Techniques/Control_mechanisms/Desktop_with_mouse_and_keyboard) in modo che sia utilizzabile da utenti che non usano il mouse e rendere la combinazione di colori sufficientemente contrastata da essere utilizzabile da chi ha deficit nella percezione dei colori.
 
-### Il problema con troppo JavaScript
+### Il problema di troppo JavaScript
 
-Il problema spesso si verifica quando le persone si affidano troppo al JavaScript. A volte si vede un sito web in cui tutto è stato fatto con JavaScript — l'HTML è stato generato dal JavaScript, il CSS è stato generato dal JavaScript, ecc. Ciò comporta vari problemi di accessibilità e altri problemi associati, quindi non è consigliato.
+Il problema si presenta spesso quando si fa troppo affidamento su JavaScript. Talvolta si incontra un sito web in cui tutto è stato realizzato con JavaScript: l'HTML è stato generato da JavaScript, il CSS è stato generato da JavaScript e così via. Ciò comporta ogni tipo di problema relativo all'accessibilità e non solo, quindi non è consigliabile.
 
-Oltre a utilizzare l'elemento giusto per il lavoro giusto, si dovrebbe anche assicurarsi di utilizzare la tecnologia giusta per il lavoro giusto! Pensa attentamente se hai bisogno di quella scintillante casella informativa 3D alimentata da JavaScript o se andrebbe bene il testo normale. Pensa attentamente se hai bisogno di un widget di modulo complesso e non standard o se basterebbe un input di testo. E non generare tutti i tuoi contenuti HTML usando JavaScript se possibile.
+Oltre a usare l'elemento giusto per lo scopo giusto, occorre assicurarsi di usare anche la tecnologia giusta per lo scopo giusto. Valutare attentamente se serve quel vistoso riquadro informativo 3D alimentato da JavaScript oppure se sarebbe sufficiente del semplice testo. Valutare attentamente se serve un widget di modulo complesso e non standard oppure se sarebbe sufficiente un input di testo. E non generare tutto il contenuto HTML usando JavaScript, se possibile.
 
-### Mantenerlo poco invasivo
+### Mantenerlo non invasivo
 
-Dovresti tenere a mente **JavaScript poco invasivo** quando crei i tuoi contenuti. L'idea del JavaScript poco invasivo è che dovrebbe essere utilizzato ove possibile per migliorare la funzionalità, non costruirla interamente — le funzioni di base dovrebbero idealmente funzionare senza JavaScript, sebbene si apprezzi che ciò non sia sempre un'opzione. Ma ancora, una gran parte di questo è l'utilizzo della funzionalità integrata del browser dove possibile.
+Durante la creazione dei contenuti, occorre tenere presente il **JavaScript non invasivo**. L'idea del JavaScript non invasivo è che debba essere usato, ove possibile, per migliorare la funzionalità, non per costruirla interamente: le funzioni di base dovrebbero idealmente funzionare senza JavaScript, anche se non sempre è possibile. Ma ancora una volta, gran parte di questo consiste nell'usare le funzionalità integrate del browser quando possibile.
 
-Esempi d'uso di JavaScript poco invasivo includono:
+Buoni esempi di uso del JavaScript non invasivo includono:
 
-- Fornire validazione dei moduli lato client, che avvisa rapidamente gli utenti sui problemi con le loro voci di modulo, senza dover aspettare che il server verifichi i dati. Se non disponibile, il modulo funzionerà comunque, ma la convalida potrebbe essere più lenta.
-- Fornire controlli personalizzati per i `<video>` HTML che siano accessibili agli utenti che utilizzano solo la tastiera, insieme a un link diretto al video che può essere utilizzato per accedervi se JavaScript non è disponibile (i controlli browser predefiniti del `<video>` non sono accessibili da tastiera nella maggior parte dei browser).
+- Fornire la convalida dei moduli lato client, che avvisa rapidamente gli utenti dei problemi nelle voci del modulo senza dover attendere che il server controlli i dati. Se non è disponibile, il modulo continuerà a funzionare, ma la convalida potrebbe essere più lenta.
+- Fornire controlli personalizzati per `<video>` HTML accessibili agli utenti che usano solo la tastiera, insieme a un link diretto al video che può essere usato per accedervi se JavaScript non è disponibile. I controlli `<video>` predefiniti del browser non sono accessibili tramite tastiera nella maggior parte dei browser.
 
-Ad esempio, abbiamo scritto un esempio rapido e sporco di validazione dei moduli lato client — vedi [form-validation.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/form-validation.html) (vedi anche [l'esempio demo dal vivo](https://mdn.github.io/learning-area/accessibility/css/form-validation.html)). Qui vedrai un modulo semplice; quando si tenta di inviare il modulo con uno o entrambi i campi lasciati vuoti, l'invio fallisce e appare una finestra di messaggio di errore per dirti cosa è sbagliato.
+Come esempio, è stato scritto un esempio rapido e semplice di convalida dei moduli lato client: vedere [form-validation.html](https://github.com/mdn/learning-area/blob/main/accessibility/css/form-validation.html) ([visualizzare anche la demo dal vivo](https://mdn.github.io/learning-area/accessibility/css/form-validation.html)). Qui è possibile vedere un semplice modulo: quando si tenta di inviarlo lasciando vuoto uno o entrambi i campi, l'invio non riesce e viene visualizzato un riquadro di messaggio di errore che indica il problema.
 
-Questo tipo di convalida del modulo è poco invasiva — puoi ancora usare il modulo assolutamente senza problemi senza che il JavaScript sia disponibile, e qualsiasi implementazione sensata del modulo avrà anche la convalida lato server attiva, perché è troppo facile per utenti malintenzionati bypassare la convalida lato client (ad esempio, disattivando JavaScript nel browser). La convalida lato client è ancora davvero utile per segnalare errori — gli utenti possono sapere immediatamente degli errori e correggerli piuttosto che aspettare un viaggio di andata e ritorno al server e il ricaricamento della pagina. Questo è un vantaggio di usabilità certo.
+Questo tipo di convalida dei moduli è non invasivo: il modulo può comunque essere usato senza problemi anche se JavaScript non è disponibile e qualsiasi implementazione sensata di un modulo avrà attiva anche la convalida lato server, perché è troppo facile per utenti malevoli aggirare la convalida lato client, per esempio disattivando JavaScript nel browser. La convalida lato client è comunque molto utile per segnalare gli errori: gli utenti possono conoscere immediatamente gli sbagli commessi, invece di dover attendere un viaggio di andata e ritorno al server e il ricaricamento della pagina. Si tratta di un chiaro vantaggio in termini di usabilità.
 
 > [!NOTE]
-> La convalida lato server non è stata implementata in questo semplice demo.
+> La convalida lato server non è stata implementata in questa semplice demo.
 
-Abbiamo reso questo esempio di validazione dei moduli piuttosto accessibile. Abbiamo usato elementi {{htmlelement("label")}} per assicurarci che le etichette dei moduli siano chiaramente collegate ai loro input, così i lettori di schermo possono leggerle insieme:
+Anche questa convalida del modulo è stata resa piuttosto accessibile. Sono stati usati elementi {{htmlelement("label")}} per assicurarsi che le etichette del modulo siano collegate in modo inequivocabile ai relativi input, così che gli screen reader possano leggerle insieme:
 
 ```html
 <label for="name">Enter your name:</label>
 <input type="text" name="name" id="name" />
 ```
 
-Eseguiamo la convalida solo quando il modulo viene inviato — questo per evitare di aggiornare troppo spesso l'interfaccia utente e potenzialmente confondere gli utenti di lettori di schermo (e forse altri):
+La convalida viene effettuata solo quando il modulo viene inviato: questo evita di aggiornare troppo spesso la UI e potenzialmente confondere gli utenti di screen reader, e forse anche altri utenti:
 
 ```js
 form.onsubmit = validate;
@@ -288,13 +289,13 @@ function validate(e) {
 ```
 
 > [!NOTE]
-> In questo esempio, stiamo nascondendo e mostrando la finestra di errore utilizzando il posizionamento assoluto piuttosto che un altro metodo come visibilità o display, perché non interferisce con la capacità dello screen reader di leggere i contenuti.
+> In questo esempio, il riquadro del messaggio di errore viene nascosto e mostrato usando il posizionamento assoluto anziché un altro metodo come visibility o display, perché non interferisce con la capacità dello screen reader di leggere il contenuto al suo interno.
 
-La vera convalida dei moduli sarebbe molto più complessa di questa — si vorrebbe verificare che il nome inserito sembri effettivamente un nome, che l'età inserita sia effettivamente un numero e sia realistico (ad esempio, non negativo e con meno di 4 cifre). Qui abbiamo solo implementato un semplice controllo che un valore sia stato inserito in ciascun campo di input (`if (testItem.input.value === '')`).
+La convalida reale di un modulo sarebbe molto più complessa: sarebbe necessario verificare che il nome inserito assomigli effettivamente a un nome, che l'età inserita sia effettivamente un numero e sia realistica, per esempio non negativa e con meno di 4 cifre. Qui è stato implementato solo un semplice controllo per verificare che sia stato inserito un valore in ogni campo di input (`if (testItem.input.value === '')`).
 
-Quando la convalida è stata effettuata, se i test passano, il modulo viene inviato. Se ci sono errori (`if (errorList.hasChildNodes())`) allora fermiamo l'invio del modulo (utilizzando [`preventDefault()`](/it/docs/Web/API/Event/preventDefault)), e visualizziamo eventuali messaggi di errore che sono stati creati (vedi sotto). Questo meccanismo significa che gli errori verranno mostrati solo se ci sono errori, il che è migliore per l'usabilità.
+Dopo avere eseguito la convalida, se i controlli hanno esito positivo il modulo viene inviato. Se sono presenti errori (`if (errorList.hasChildNodes())`), l'invio del modulo viene impedito usando [`preventDefault()`](/it/docs/Web/API/Event/preventDefault) e vengono visualizzati tutti i messaggi di errore creati (vedere sotto). Questo meccanismo implica che gli errori vengano mostrati solo quando sono presenti, migliorando l'usabilità.
 
-Per ogni input che non ha un valore inserito quando il modulo viene inviato, creiamo un elemento di lista con un link e lo inseriamo in `errorList`.
+Per ogni input senza un valore inserito al momento dell'invio del modulo, viene creato un elemento di elenco con un link e inserito in `errorList`.
 
 ```js
 function createLink(testItem) {
@@ -309,11 +310,11 @@ function createLink(testItem) {
 }
 ```
 
-Ogni link ha un duplice scopo — ti dice qual è l'errore, inoltre puoi cliccarci sopra / attivarlo per passare direttamente all'elemento di input in questione e correggere la tua voce.
+Ogni link ha un duplice scopo: indica qual è l'errore e può essere selezionato o attivato per passare direttamente all'elemento di input in questione e correggere l'immissione.
 
-Inoltre, `errorField` è posizionato all'inizio dell'ordine delle sorgenti (anche se è posizionato diversamente nell'interfaccia utente usando CSS), il che significa che gli utenti possono sapere esattamente cosa non va con le loro invii moduli e accedere agli elementi di input in questione tornando indietro all'inizio della pagina.
+Inoltre, `errorField` è posto all'inizio dell'ordine nel sorgente, anche se viene posizionato diversamente nella UI tramite CSS, il che significa che gli utenti possono scoprire esattamente cosa non va nell'invio del modulo e raggiungere gli elementi di input interessati tornando all'inizio della pagina.
 
-Come nota finale, abbiamo usato alcuni attributi WAI-ARIA nel nostro demo per aiutare a risolvere i problemi di accessibilità causati da aree di contenuto che si aggiornano costantemente senza un ricaricamento della pagina (i lettori di schermo non rilevano questo né avvertono gli utenti di default):
+Infine, nella demo sono stati usati alcuni attributi WAI-ARIA per aiutare a risolvere problemi di accessibilità causati da aree di contenuto che si aggiornano costantemente senza un ricaricamento della pagina. Gli screen reader, per impostazione predefinita, non rilevano questo né avvisano gli utenti:
 
 ```html
 <div class="errors" role="alert" aria-relevant="all">
@@ -321,27 +322,27 @@ Come nota finale, abbiamo usato alcuni attributi WAI-ARIA nel nostro demo per ai
 </div>
 ```
 
-Spiegheremo questi attributi nel nostro prossimo articolo, che tratta in dettaglio [WAI-ARIA](/it/docs/Learn_web_development/Core/Accessibility/WAI-ARIA_basics).
+Questi attributi verranno spiegati nel prossimo articolo, che tratta [WAI-ARIA](/it/docs/Learn_web_development/Core/Accessibility/WAI-ARIA_basics) in modo molto più dettagliato.
 
 > [!NOTE]
-> Alcuni di voi probabilmente staranno pensando al fatto che i moduli HTML hanno meccanismi di convalida integrati come gli attributi `required`, `min`/`minlength` e `max`/`maxlength` (vedere il riferimento all'elemento {{htmlelement("input")}} per ulteriori informazioni). Non abbiamo finito per usare questi nel demo perché il supporto incrociato tra browser è lacunoso (ad esempio solo IE10 e versioni successive).
+> Alcuni potrebbero pensare al fatto che i moduli HTML dispongono di meccanismi di convalida integrati, come gli attributi `required`, `min`/`minlength` e `max`/`maxlength` (per ulteriori informazioni, vedere il riferimento dell'elemento {{htmlelement("input")}}). Non sono stati usati nella demo perché il supporto tra browser è discontinuo, per esempio solo IE10 e versioni successive.
 
 > [!NOTE]
-> Il documento di WebAIM [Usable and Accessible Form Validation and Error Recovery](https://webaim.org/techniques/formvalidation/) fornisce ulteriori utili informazioni sulla convalida dei moduli accessibili.
+> [Usable and Accessible Form Validation and Error Recovery](https://webaim.org/techniques/formvalidation/) di WebAIM fornisce ulteriori informazioni utili sulla convalida accessibile dei moduli.
 
-### Altri problemi di accessibilità di JavaScript
+### Altri aspetti di accessibilità relativi a JavaScript
 
-Ci sono altre cose da tenere a mente quando si implementa JavaScript pensando all'accessibilità. Aggiungeremo altri argomenti man mano che li troviamo.
+Esistono altri aspetti da considerare quando si implementa JavaScript e si riflette sull'accessibilità. Ne verranno aggiunti altri man mano che verranno individuati.
 
-#### eventi specifici per il mouse
+#### Eventi specifici del mouse
 
-Come saprai, la maggior parte delle interazioni degli utenti sono implementate in JavaScript lato client utilizzando gestori di eventi, che ci permettono di eseguire funzioni in risposta a determinati eventi che accadono. Alcuni eventi possono causare problemi di accessibilità. L'esempio principale che incontrerai sono gli eventi specifici per il mouse come [mouseover](/it/docs/Web/API/Element/mouseover_event), [mouseout](/it/docs/Web/API/Element/mouseout_event), [dblclick](/it/docs/Web/API/Element/dblclick_event), ecc. Le funzionalità che vengono eseguite in risposta a questi eventi non saranno accessibili utilizzando altri meccanismi, come i controlli da tastiera.
+Come noto, la maggior parte delle interazioni utente viene implementata in JavaScript lato client usando event handler, che consentono di eseguire funzioni in risposta al verificarsi di determinati eventi. Alcuni eventi possono comportare problemi di accessibilità. L'esempio principale che si incontrerà è quello degli eventi specifici del mouse, come [mouseover](/it/docs/Web/API/Element/mouseover_event), [mouseout](/it/docs/Web/API/Element/mouseout_event), [dblclick](/it/docs/Web/API/Element/dblclick_event) e così via. Le funzionalità eseguite in risposta a questi eventi non saranno accessibili usando altri meccanismi, come i controlli da tastiera.
 
-Per mitigare tali problemi, si dovrebbe duplicare questi eventi con eventi simili che possono essere attivati con altri mezzi (i cosiddetti gestori di eventi indipendenti dal dispositivo) — [focus](/it/docs/Web/API/Element/focus_event) e [blur](/it/docs/Web/API/Element/blur_event) offrirebbero accessibilità agli utenti di tastiera.
+Per attenuare questi problemi, occorre affiancare tali eventi a eventi simili che possono essere attivati con altri mezzi, i cosiddetti event handler indipendenti dal dispositivo. Gli eventi [focus](/it/docs/Web/API/Element/focus_event) e [blur](/it/docs/Web/API/Element/blur_event) fornirebbero accessibilità agli utenti della tastiera.
 
-Esaminiamo un esempio che evidenzia quando ciò potrebbe essere utile. Forse vogliamo fornire un'immagine in miniatura che mostra una versione più grande dell'immagine quando è sorvolata con il mouse o focalizzata (come si vede in un catalogo di prodotti e-commerce).
+Vediamo un esempio che evidenzia quando questo potrebbe essere utile. Si potrebbe voler fornire un'immagine in miniatura che mostra una versione più grande dell'immagine quando il mouse vi passa sopra o quando riceve il focus, come avviene in un catalogo di prodotti e-commerce.
 
-Abbiamo realizzato un esempio molto semplice, che puoi trovare in [mouse-and-keyboard-events.html](https://mdn.github.io/learning-area/accessibility/css/mouse-and-keyboard-events.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/accessibility/css/mouse-and-keyboard-events.html)). Il codice presenta due funzioni che mostrano e nascondono l'immagine ingrandita; queste sono eseguite dalle seguenti righe che le impostano come gestori di eventi:
+È stato creato un esempio molto semplice, disponibile in [mouse-and-keyboard-events.html](https://mdn.github.io/learning-area/accessibility/css/mouse-and-keyboard-events.html) (vedere anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/accessibility/css/mouse-and-keyboard-events.html)). Il codice include due funzioni che mostrano e nascondono l'immagine ingrandita; queste vengono eseguite dalle righe seguenti, che le impostano come event handler:
 
 ```js
 imgThumb.onmouseover = showImg;
@@ -351,18 +352,14 @@ imgThumb.onfocus = showImg;
 imgThumb.onblur = hideImg;
 ```
 
-Le prime due righe eseguono le funzioni quando il puntatore del mouse passa sopra e smette di passare sopra la miniatura, rispettivamente. Tuttavia questo non ci permetterà di accedere alla vista ingrandita da tastiera — per permetterlo, abbiamo incluso le ultime due righe, che eseguono le funzioni quando l'immagine è focalizzata e sfocata (quando il fuoco si interrompe). Questo può essere fatto passando sopra l'immagine, poiché abbiamo incluso `tabindex="0"` su di essa.
+Le prime due righe eseguono le funzioni rispettivamente quando il puntatore del mouse passa sopra e smette di passare sopra la miniatura. Tuttavia, ciò non consentirebbe di accedere alla vista ingrandita tramite tastiera. Per consentirlo, sono incluse le ultime due righe, che eseguono le funzioni quando l'immagine riceve e perde il focus. Questo può essere fatto passando con Tab sull'immagine, perché su di essa è stato incluso `tabindex="0"`.
 
-L'evento [click](/it/docs/Web/API/Element/click_event) è interessante — sembra dipendente dal mouse, ma la maggior parte dei browser attiverà i gestori di eventi [onclick](/it/docs/Web/API/Element/click_event) dopo che il tasto Invio/Ritorno è premuto su un link o un elemento form che ha il focus, o quando tale elemento è toccato su un dispositivo touchscreen. Questo non funziona di default tuttavia quando si permette che un evento con messa a fuoco non predefinito abbia il focus usando tabindex — in tali casi è necessario rilevare specificamente quando quel tasto esatto viene premuto (vedi [Ricostruzione dell'accessibilità da tastiera](/it/docs/Learn_web_development/Core/Accessibility/HTML#building_keyboard_accessibility_back_in)).
-
-## Metti alla prova le tue capacità!
-
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare di aver trattenuto queste informazioni prima di procedere — vedi [Metti alla prova le tue capacità: accessibilità CSS e JavaScript](/it/docs/Learn_web_development/Core/Accessibility/Test_your_skills/CSS_and_JavaScript).
+L'evento [click](/it/docs/Web/API/Element/click_event) è interessante: sembra dipendere dal mouse, ma la maggior parte dei browser attiva gli event handler [onclick](/it/docs/Web/API/Element/click_event) dopo la pressione di Invio su un link o elemento di modulo con focus, oppure quando tale elemento viene toccato su un dispositivo touchscreen. Tuttavia, questo non funziona per impostazione predefinita quando si consente a un elemento non focalizzabile per impostazione predefinita di ricevere il focus usando tabindex: in questi casi è necessario rilevare specificamente la pressione di quel tasto esatto (vedere [Ripristinare l'accessibilità tramite tastiera](/it/docs/Learn_web_development/Core/Accessibility/HTML#building_keyboard_accessibility_back_in)).
 
 ## Riepilogo
 
-Speriamo che questo articolo ti abbia fornito una buona quantità di dettagli e comprensione sui problemi di accessibilità legati all'uso di CSS e JavaScript nelle pagine web.
+Ci auguriamo che questo articolo abbia fornito una buona quantità di dettagli e comprensione dei problemi di accessibilità relativi all'uso di CSS e JavaScript nelle pagine web.
 
-Prossimamente, WAI-ARIA!
+Nel prossimo articolo verranno forniti alcuni test da usare per verificare quanto bene siano state comprese e ricordate tutte queste informazioni.
 
-{{PreviousMenuNext("Learn_web_development/Core/Accessibility/HTML","Learn_web_development/Core/Accessibility/WAI-ARIA_basics", "Learn_web_development/Core/Accessibility")}}
+{{PreviousMenuNext("Learn_web_development/Core/Accessibility/Test_your_skills/HTML","Learn_web_development/Core/Accessibility/Test_your_skills/CSS_and_JavaScript", "Learn_web_development/Core/Accessibility")}}

@@ -1,83 +1,84 @@
 ---
-title: Come costruire controlli di form personalizzati
+title: Come creare controlli di modulo personalizzati
+short-title: Controlli di modulo personalizzati
 slug: Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls
 l10n:
-  sourceCommit: edb16c0a662d7e719efe67561389a7a087c1ace9
+  sourceCommit: c9f3d85f24d7839c9fe36a68d8042d088d906147
 ---
 
-Ci sono alcuni casi in cui i controlli nativi di form HTML disponibili potrebbero non essere sufficienti. Ad esempio, se hai bisogno di [eseguire uno styling avanzato](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling) su alcuni controlli come l'elemento {{HTMLElement("select")}}, o se vuoi fornire comportamenti personalizzati, potresti considerare di costruire i tuoi controlli.
+Esistono alcuni casi in cui i controlli di modulo HTML nativi disponibili possono sembrare insufficienti. Ad esempio, se è necessario [applicare stili avanzati](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling) ad alcuni controlli come l'elemento {{HTMLElement("select")}}, oppure se si desidera fornire comportamenti personalizzati, si può prendere in considerazione la creazione di controlli propri.
 
-In questo articolo, discuteremo come costruire un controllo personalizzato. A tal fine, lavoreremo con un esempio: ricostruire l'elemento {{HTMLElement("select")}}. Discuteremo anche come, quando e se ha senso costruire il proprio controllo, e cosa considerare quando la costruzione di un controllo diventa una necessità.
+In questo articolo verrà illustrato come creare un controllo personalizzato. A questo scopo, verrà usato un esempio: ricreare l'elemento {{HTMLElement("select")}}. Verrà inoltre discusso come, quando e se abbia senso creare un controllo proprio, e cosa considerare quando la creazione di un controllo è un requisito.
 
 > [!NOTE]
-> Ci concentreremo sulla costruzione del controllo, non su come rendere il codice generico e riutilizzabile; ciò comporterebbe un codice JavaScript non banale e la manipolazione del DOM in un contesto sconosciuto, il che è al di fuori dello scopo di questo articolo.
+> L'attenzione sarà rivolta alla creazione del controllo, non a come rendere il codice generico e riutilizzabile; ciò comporterebbe codice JavaScript e manipolazione del DOM non banali in un contesto sconosciuto, e non rientra nell'ambito di questo articolo.
 
-## Design, struttura e semantica
+## Progettazione, struttura e semantica
 
-Prima di costruire un controllo personalizzato, dovresti iniziare definendo esattamente cosa vuoi. Questo ti farà risparmiare del tempo prezioso. In particolare, è importante definire chiaramente tutti gli stati del tuo controllo. Per farlo, è utile iniziare con un controllo esistente i cui stati e comportamenti sono ben conosciuti, in modo da poterli imitare il più possibile.
+Prima di creare un controllo personalizzato, occorre iniziare definendo con precisione ciò che si desidera. Questo consentirà di risparmiare tempo prezioso. In particolare, è importante definire chiaramente tutti gli stati del controllo. A tale scopo, è utile iniziare da un controllo esistente i cui stati e comportamenti siano ben noti, in modo da riprodurli il più possibile.
 
-Nel nostro esempio, ricostruiremo l'elemento {{HTMLElement("select")}}. Ecco il risultato che vogliamo ottenere:
+Nel nostro esempio, verrà ricreato l'elemento {{HTMLElement("select")}}. Ecco il risultato che si desidera ottenere:
 
-![I tre stati di una select box](custom-select.png)
+![I tre stati di una casella select](custom-select.png)
 
-Questo screenshot mostra i tre principali stati del nostro controllo: lo stato normale (a sinistra); lo stato attivo (al centro) e lo stato aperto (a destra).
+Questa schermata mostra i tre stati principali del controllo: lo stato normale (a sinistra), lo stato attivo (al centro) e lo stato aperto (a destra).
 
-In termini di comportamento, stiamo ricreando un elemento HTML nativo. Pertanto, dovrebbe avere gli stessi comportamenti e semantiche dell'elemento HTML nativo. Richiediamo che il nostro controllo sia utilizzabile con un mouse e con una tastiera, e comprensibile per un lettore di schermo, proprio come qualsiasi controllo nativo. Iniziamo definendo come il controllo raggiunge ciascuno stato:
+In termini di comportamento, si sta ricreando un elemento HTML nativo. Pertanto, dovrebbe avere gli stessi comportamenti e la stessa semantica dell'elemento HTML nativo. Il controllo deve poter essere usato con il mouse e con la tastiera, oltre a essere comprensibile da un lettore di schermo, proprio come qualsiasi controllo nativo. Iniziamo definendo come il controllo raggiunge ogni stato:
 
-**Il controllo è nel suo stato normale quando:**
+**Il controllo si trova nel suo stato normale quando:**
 
-- la pagina si carica.
-- il controllo era attivo e l'utente fa clic ovunque al di fuori di esso.
-- il controllo era attivo e l'utente sposta il fuoco su un altro controllo utilizzando la tastiera (es. il tasto <kbd>Tab</kbd>).
+- la pagina viene caricata;
+- il controllo era attivo e l'utente fa clic in qualunque punto esterno a esso;
+- il controllo era attivo e l'utente sposta il focus su un altro controllo usando la tastiera, ad esempio con il tasto <kbd>Tab</kbd>.
 
-**Il controllo è nel suo stato attivo quando:**
+**Il controllo si trova nel suo stato attivo quando:**
 
-- l'utente fa clic su di esso o lo tocca su uno schermo touch.
-- l'utente preme il tasto tab e il controllo riceve il fuoco.
-- il controllo era nel suo stato aperto e l'utente fa clic su di esso.
+- l'utente vi fa clic sopra o lo tocca su uno schermo touch;
+- l'utente preme il tasto Tab e il controllo riceve il focus;
+- il controllo si trovava nello stato aperto e l'utente vi fa clic sopra.
 
-**Il controllo è nel suo stato aperto quando:**
+**Il controllo si trova nel suo stato aperto quando:**
 
-- il controllo è in qualsiasi altro stato tranne aperto e l'utente fa clic su di esso.
+- il controllo si trova in qualunque stato diverso da quello aperto e l'utente vi fa clic sopra.
 
-Una volta che sappiamo come cambiare stati, è importante definire come cambiare il valore del controllo:
+Una volta noto come modificare gli stati, è importante definire come modificare il valore del controllo:
 
 **Il valore cambia quando:**
 
-- l'utente fa clic su un'opzione quando il controllo è nello stato aperto.
-- l'utente preme i tasti freccia su o giù quando il controllo è nello stato attivo.
+- l'utente fa clic su un'opzione mentre il controllo si trova nello stato aperto;
+- l'utente preme i tasti freccia su o freccia giù mentre il controllo si trova nello stato attivo.
 
 **Il valore non cambia quando:**
 
-- l'utente preme il tasto freccia su quando è selezionata la prima opzione.
+- l'utente preme il tasto freccia su quando è selezionata la prima opzione;
 - l'utente preme il tasto freccia giù quando è selezionata l'ultima opzione.
 
 Infine, definiamo come si comporteranno le opzioni del controllo:
 
-- Quando il controllo è aperto, l'opzione selezionata è evidenziata.
-- Quando il mouse si trova su un'opzione, l'opzione è evidenziata e l'opzione precedentemente evidenziata torna al suo stato normale.
+- Quando il controllo viene aperto, l'opzione selezionata viene evidenziata.
+- Quando il mouse passa sopra un'opzione, l'opzione viene evidenziata e l'opzione precedentemente evidenziata torna allo stato normale.
 
-Per scopi del nostro esempio, ci fermeremo qui; tuttavia, se sei un lettore attento, noterai che mancano alcuni comportamenti. Ad esempio, cosa pensi succederà se l'utente preme il tasto tab mentre il controllo è nello stato aperto? La risposta è _nulla_. OK, il comportamento corretto sembra ovvio ma il fatto è che, poiché non è definito nelle nostre specifiche, è molto facile trascurare questo comportamento. Questo è particolarmente vero in un ambiente di lavoro in team quando le persone che progettano il comportamento del controllo sono diverse da quelle che lo implementano.
+Ai fini dell'esempio, ci fermeremo qui; tuttavia, chi legge con attenzione noterà che mancano alcuni comportamenti. Ad esempio, cosa accade se l'utente preme il tasto Tab mentre il controllo si trova nello stato aperto? La risposta è _nulla_. Bene, il comportamento corretto sembra ovvio, ma il fatto è che, poiché non è definito nelle specifiche, è molto facile trascurarlo. Questo è particolarmente vero in un ambiente di lavoro di gruppo, quando le persone che progettano il comportamento del controllo sono diverse da quelle che lo implementano.
 
-Un altro esempio interessante: cosa succede se l'utente preme i tasti freccia su o giù mentre il controllo è nello stato aperto? Questo è un po' più complicato. Se consideri che lo stato attivo e lo stato aperto sono completamente diversi, la risposta è di nuovo "non succede nulla" perché non abbiamo definito alcuna interazione con la tastiera per lo stato aperto. D'altra parte, se consideri che lo stato attivo e lo stato aperto si sovrappongono un po', il valore potrebbe cambiare ma l'opzione non sarà sicuramente evidenziata in modo appropriato, ancora una volta perché non abbiamo definito alcuna interazione con la tastiera su opzioni quando il controllo è nello stato aperto (abbiamo solo definito cosa dovrebbe succedere quando il controllo è aperto, ma niente dopo).
+Un altro esempio interessante: cosa accade se l'utente preme i tasti freccia su o freccia giù mentre il controllo si trova nello stato aperto? Questo caso è un po' più complesso. Se si considera che lo stato attivo e lo stato aperto siano completamente diversi, la risposta è ancora «non accadrà nulla», poiché non è stata definita alcuna interazione tramite tastiera per lo stato aperto. D'altra parte, se si considera che lo stato attivo e lo stato aperto si sovrappongano in parte, il valore potrebbe cambiare, ma l'opzione non verrebbe certamente evidenziata di conseguenza, ancora una volta perché non è stata definita alcuna interazione tramite tastiera sulle opzioni quando il controllo si trova nello stato aperto. È stato definito soltanto ciò che deve accadere quando il controllo viene aperto, ma non ciò che accade dopo.
 
-Dobbiamo pensare un po' oltre: cosa succede al tasto di escape? Premere il tasto <kbd>Esc</kbd> chiude un select aperto. Ricorda, se vuoi fornire la stessa funzionalità dell'esistente {{htmlelement('select')}} nativo, dovrebbe comportarsi esattamente come select per tutti gli utenti, dalla tastiera al mouse al tocco al lettore di schermo, e qualsiasi altro dispositivo di input.
+Occorre riflettere ulteriormente: che dire del tasto Esc? La pressione del tasto <kbd>Esc</kbd> chiude un select aperto. Ricorda: se si desidera fornire la stessa funzionalità dell'elemento nativo {{htmlelement('select')}}, questo deve comportarsi esattamente come il select per tutti gli utenti, dalla tastiera al mouse, dal touch al lettore di schermo e con qualsiasi altro dispositivo di input.
 
-Nel nostro esempio, le specifiche mancanti sono ovvie quindi le gestiremo, ma può essere un vero problema per nuovi controlli esotici. Quando si tratta di elementi standardizzati, di cui il {{htmlelement('select')}} è uno, gli autori delle specifiche hanno passato un tempo spropositato a specificare tutte le interazioni per ogni caso d'uso per ogni dispositivo di input. Creare nuovi controlli non è così semplice, specialmente se stai creando qualcosa che non è stato mai fatto prima, e quindi nessuno ha la minima idea di quali siano i comportamenti e le interazioni attese. Almeno il select è stato fatto prima, quindi sappiamo come dovrebbe comportarsi!
+Nel nostro esempio, le specifiche mancanti sono evidenti e verranno quindi gestite, ma per controlli nuovi ed esotici questo può costituire un vero problema. Per quanto riguarda gli elementi standardizzati, tra i quali figura {{htmlelement('select')}}, gli autori delle specifiche hanno dedicato una quantità enorme di tempo a specificare tutte le interazioni per ogni caso d'uso e per ogni dispositivo di input. Creare nuovi controlli non è così semplice, soprattutto se si sta creando qualcosa che non è mai stato realizzato prima e, pertanto, nessuno ha la minima idea dei comportamenti e delle interazioni attesi. Almeno il select esiste già, quindi si sa come dovrebbe comportarsi.
 
-Progettare nuove interazioni è generalmente un'opzione solo per grandi operatori industriali che hanno sufficiente portata affinché un'interazione che creano possa diventare uno standard. Ad esempio, Apple ha introdotto la rotellina di scorrimento con l'iPod nel 2001. Avevano la quota di mercato per introdurre con successo un modo completamente nuovo di interagire con un dispositivo, qualcosa che la maggior parte delle aziende di dispositivi non può fare.
+La progettazione di nuove interazioni è generalmente un'opzione solo per i grandi attori del settore che dispongono di una diffusione sufficiente perché un'interazione da loro creata possa diventare uno standard. Ad esempio, Apple ha introdotto la rotella di scorrimento con l'iPod nel 2001. Aveva una quota di mercato tale da poter introdurre con successo un modo completamente nuovo di interagire con un dispositivo, cosa che la maggior parte delle aziende produttrici di dispositivi non può fare.
 
-È meglio non inventare nuove interazioni utente. Per qualsiasi interazione che aggiungi, è fondamentale dedicare tempo nella fase di design; se definisci un comportamento in modo errato, o dimentichi di definirne uno, sarà molto difficile ridefinirlo una volta che gli utenti si siano abituati ad esso. Se hai dubbi, chiedi l'opinione di altri, e se hai il budget per farlo, non esitare a [eseguire test utente](https://en.wikipedia.org/wiki/Usability_testing). Questo processo si chiama UX Design. Se vuoi saperne di più su questo argomento, dovresti controllare le seguenti risorse utili:
+È preferibile non inventare nuove interazioni utente. Per ogni interazione aggiunta, è fondamentale dedicare tempo alla fase di progettazione; se un comportamento viene definito male o ci si dimentica di definirlo, sarà molto difficile ridefinirlo una volta che gli utenti si saranno abituati. In caso di dubbi, è opportuno chiedere l'opinione di altre persone e, se il budget lo consente, non esitare a [eseguire test con gli utenti](https://en.wikipedia.org/wiki/Usability_testing). Questo processo è chiamato UX Design. Per approfondire l'argomento, è possibile consultare le seguenti risorse utili:
 
 - [UXMatters.com](https://www.uxmatters.com/)
 - [La sezione UX Design di SmashingMagazine](https://www.smashingmagazine.com/)
 
 > [!NOTE]
-> Inoltre, nella maggior parte dei sistemi c'è un modo per aprire l'elemento {{HTMLElement("select")}} con la tastiera per vedere tutte le scelte disponibili (questo è lo stesso che fare clic sull'elemento {{HTMLElement("select")}} con un mouse). Questo è ottenuto con <kbd>Alt</kbd> + <kbd>Freccia giù</kbd> su Windows. Non abbiamo implementato questo nel nostro esempio, ma sarebbe facile farlo, dato che il meccanismo è già stato implementato per l'evento `clic`.
+> Inoltre, nella maggior parte dei sistemi esiste un modo per aprire l'elemento {{HTMLElement("select")}} con la tastiera e visualizzare tutte le scelte disponibili, equivalente a fare clic sull'elemento {{HTMLElement("select")}} con il mouse. In Windows ciò si ottiene con <kbd>Alt</kbd> + <kbd>Freccia giù</kbd>. Questo comportamento non è stato implementato nell'esempio, ma sarebbe facile farlo, poiché il meccanismo è già stato implementato per l'evento `click`.
 
-## Definire la struttura HTML e (alcune) semantiche
+## Definizione della struttura HTML e di parte della semantica
 
-Ora che abbiamo deciso sulla funzionalità di base del controllo, è il momento di iniziare a costruirlo. Il primo passo è definire la sua struttura HTML e dargli alcune semantiche di base. Ecco cosa ci serve per ricostruire un elemento {{HTMLElement("select")}}:
+Ora che è stata decisa la funzionalità di base del controllo, è il momento di iniziare a crearlo. Il primo passaggio consiste nel definirne la struttura HTML e attribuirgli una semantica di base. Ecco ciò che serve per ricreare un elemento {{HTMLElement("select")}}:
 
 ```html
 <!-- This is our main container for our control.
@@ -101,17 +102,17 @@ Ora che abbiamo deciso sulla funzionalità di base del controllo, è il momento 
 </div>
 ```
 
-Nota l'uso dei nomi delle classi; questi identificano ogni parte rilevante a prescindere dagli elementi HTML sottostanti effettivamente utilizzati. Questo è importante per essere sicuri di non legare il nostro CSS e JavaScript a una forte struttura HTML, in modo che possiamo apportare modifiche alla loro implementazione in seguito senza rompere il codice che utilizza il controllo. Ad esempio, cosa succede se desideri implementare l'equivalente dell'elemento {{HTMLElement("optgroup")}} in seguito?
+Si noti l'uso dei nomi delle classi: identificano ogni parte rilevante indipendentemente dagli elementi HTML effettivamente usati. Questo è importante per assicurarsi di non vincolare CSS e JavaScript a una rigida struttura HTML, così da poter apportare modifiche all'implementazione in seguito senza interrompere il codice che usa il controllo. Ad esempio, cosa accadrebbe se in seguito si volesse implementare l'equivalente dell'elemento {{HTMLElement("optgroup")}}?
 
-I nomi delle classi, tuttavia, non forniscono alcun valore semantico. In questo stato attuale, l'utente di un lettore di schermo "vede" solo un elenco non ordinato. Aggiungeremo le semantiche ARIA tra poco.
+I nomi delle classi, tuttavia, non forniscono alcun valore semantico. Nello stato attuale, l'utente di un lettore di schermo «vede» soltanto un elenco non ordinato. Tra poco verrà aggiunta la semantica ARIA.
 
-## Creare l'estetica con il CSS
+## Creazione dell'aspetto mediante CSS
 
-Ora che abbiamo una struttura, possiamo iniziare a progettare il nostro controllo. Il punto centrale della costruzione di questo controllo personalizzato è poterlo stilizzare esattamente come vogliamo. A tal fine, divideremo il nostro lavoro CSS in due parti: la prima parte saranno le regole CSS assolutamente necessarie per far comportare il nostro controllo come un elemento {{HTMLElement("select")}}, e la seconda parte consisterà negli stili fantasiosi usati per farlo apparire come vogliamo.
+Ora che esiste una struttura, è possibile iniziare a progettare il controllo. Lo scopo principale della creazione di questo controllo personalizzato è poterlo stilizzare esattamente come desiderato. A tale scopo, il lavoro CSS verrà diviso in due parti: la prima sarà costituita dalle regole CSS assolutamente necessarie per far comportare il controllo come un elemento {{HTMLElement("select")}}, mentre la seconda consisterà negli stili più elaborati usati per conferirgli l'aspetto desiderato.
 
 ### Stili necessari
 
-Gli stili necessari sono quelli necessari per gestire i tre stati del nostro controllo.
+Gli stili necessari sono quelli richiesti per gestire i tre stati del controllo.
 
 ```css
 .select {
@@ -125,7 +126,7 @@ Gli stili necessari sono quelli necessari per gestire i tre stati del nostro con
 }
 ```
 
-Abbiamo bisogno di una classe aggiuntiva `active` per definire l'aspetto e la sensazione del nostro controllo quando è nel suo stato attivo. Poiché il nostro controllo è focalizzabile, raddoppiamo questo stile personalizzato con la pseudo-classe {{cssxref(":focus")}} per essere sicuri che si comportino allo stesso modo.
+È necessaria una classe aggiuntiva, `active`, per definire l'aspetto del controllo quando si trova nello stato attivo. Poiché il controllo può ricevere il focus, questo stile personalizzato viene duplicato con la pseudo-classe {{cssxref(":focus")}} per assicurarsi che si comportino allo stesso modo.
 
 ```css
 .select.active,
@@ -138,7 +139,7 @@ Abbiamo bisogno di una classe aggiuntiva `active` per definire l'aspetto e la se
 }
 ```
 
-Ora, gestiamo l'elenco delle opzioni:
+Ora gestiamo l'elenco delle opzioni:
 
 ```css
 /* The .select selector here helps to make sure we only select
@@ -152,7 +153,7 @@ Ora, gestiamo l'elenco delle opzioni:
 }
 ```
 
-Ci serve una classe aggiuntiva per gestire quando l'elenco delle opzioni è nascosto. Questo è necessario per gestire le differenze tra lo stato attivo e lo stato aperto che non corrispondono esattamente.
+È necessaria una classe aggiuntiva per gestire il caso in cui l'elenco delle opzioni è nascosto. Ciò è necessario per gestire le differenze tra lo stato attivo e lo stato aperto, che non corrispondono esattamente.
 
 ```css
 .select .optList.hidden {
@@ -164,18 +165,18 @@ Ci serve una classe aggiuntiva per gestire quando l'elenco delle opzioni è nasc
 ```
 
 > [!NOTE]
-> Avremmo potuto usare anche `transform: scale(1, 0)` per dare all'elenco delle opzioni nessuna altezza e larghezza completa.
+> Si sarebbe potuto usare anche `transform: scale(1, 0)` per assegnare all'elenco delle opzioni altezza zero e larghezza completa.
 
-### Bellezza
+### Abbellimento
 
-Ora che abbiamo la funzionalità di base in atto, il divertimento può iniziare. Il seguente è solo un esempio di ciò che è possibile e corrisponderà allo screenshot all'inizio di questo articolo. Tuttavia, dovresti sentirti libero di sperimentare e vedere cosa riesci a inventare.
+Ora che la funzionalità di base è disponibile, può iniziare la parte più divertente. Quanto segue è soltanto un esempio di ciò che è possibile fare e corrisponderà alla schermata mostrata all'inizio di questo articolo. È comunque possibile sperimentare liberamente e vedere cosa si riesce a ottenere.
 
 ```css
 .select {
   /* The computations are made assuming 1em equals 16px which is the default value in most browsers.
      If you are lost with px to em conversion, try https://nekocalc.com/px-to-em-converter */
   font-size: 0.625em; /* this (10px) is the new font size context for em value in this context */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
@@ -183,7 +184,7 @@ Ora che abbiamo la funzionalità di base in atto, il divertimento può iniziare.
   padding: 0.1em 2.5em 0.2em 0.5em;
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-radius: 0.4em;
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%);
 
@@ -202,7 +203,7 @@ Ora che abbiamo la funzionalità di base in atto, il divertimento può iniziare.
 }
 ```
 
-Non abbiamo bisogno di un elemento extra per progettare la freccia in giù; invece, stiamo usando il pseudo-elemento {{cssxref("::after")}}. Potrebbe anche essere implementato utilizzando una semplice immagine di sfondo sulla classe `select`.
+Non è necessario un elemento aggiuntivo per progettare la freccia verso il basso; viene invece usato il pseudo-elemento {{cssxref("::after")}}. Potrebbe essere implementato anche usando una semplice immagine di sfondo sulla classe `select`.
 
 ```css
 .select::after {
@@ -218,11 +219,11 @@ Non abbiamo bisogno di un elemento extra per progettare la freccia in giù; inve
   width: 2em;
   padding-top: 0.1em;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
   text-align: center;
 }
 ```
@@ -252,7 +253,7 @@ Successivamente, stilizziamo l'elenco delle opzioni:
   overflow-y: auto;
   overflow-x: hidden;
 
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -261,7 +262,7 @@ Successivamente, stilizziamo l'elenco delle opzioni:
 }
 ```
 
-Per le opzioni, dobbiamo aggiungere una classe `highlight` per poter identificare il valore che l'utente selezionerà (o ha già selezionato).
+Per le opzioni, occorre aggiungere una classe `highlight` per poter identificare il valore che l'utente selezionerà, oppure ha selezionato.
 
 ```css
 .select .option {
@@ -269,12 +270,12 @@ Per le opzioni, dobbiamo aggiungere una classe `highlight` per poter identificar
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
-Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente qui](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_1)):
+Ecco quindi il risultato con i tre stati ([consulta qui il codice sorgente](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_1)):
 
 #### Stato di base
 
@@ -316,14 +317,14 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -356,11 +357,11 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -371,7 +372,7 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -390,8 +391,8 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
@@ -437,14 +438,14 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -477,11 +478,11 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -492,7 +493,7 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -511,8 +512,8 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
@@ -558,14 +559,14 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -598,11 +599,11 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -613,7 +614,7 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -632,39 +633,39 @@ Ecco quindi il risultato con i nostri tre stati ([controlla il codice sorgente q
 }
 
 .select .highlight {
-  background: #000;
-  color: #fff;
+  background: black;
+  color: white;
 }
 ```
 
 {{EmbedLiveSample("Open_state",120,130)}}
 
-## Dare vita al tuo controllo con JavaScript
+## Dare vita al controllo con JavaScript
 
-Ora che il nostro design e la struttura sono pronti, possiamo scrivere il codice JavaScript per far funzionare effettivamente il controllo.
+Ora che progettazione e struttura sono pronte, è possibile scrivere il codice JavaScript per rendere effettivamente funzionante il controllo.
 
 > [!WARNING]
-> Quello che segue è un codice educativo, non un codice di produzione, e non dovrebbe essere utilizzato così com'è. Non è a prova di futuro né funzionerà sui browser legacy. Ha anche parti ridondanti che dovrebbero essere ottimizzate nel codice di produzione.
+> Il seguente codice è a scopo didattico, non è codice di produzione e non dovrebbe essere usato così com'è. Non è a prova di futuro e non funzionerà nei browser legacy. Inoltre, contiene parti ridondanti che dovrebbero essere ottimizzate nel codice di produzione.
 
 ### Perché non funziona?
 
-Prima di iniziare, è importante ricordare **JavaScript nel browser è una tecnologia inaffidabile**. I controlli personalizzati si basano su JavaScript per collegare tutto insieme. Tuttavia, ci sono casi in cui il JavaScript non è in grado di funzionare nel browser:
+Prima di iniziare, è importante ricordare che **JavaScript nel browser è una tecnologia inaffidabile**. I controlli personalizzati dipendono da JavaScript per collegare insieme tutti gli elementi. Tuttavia, esistono casi in cui JavaScript non riesce a essere eseguito nel browser:
 
-- L'utente ha disattivato JavaScript: questo è raro; pochissime persone disattivano JavaScript al giorno d'oggi.
-- Lo script non si è caricato: questo è uno dei casi più comuni, specialmente nel mondo mobile dove la rete non è molto affidabile.
-- Lo script è difettoso: dovresti sempre considerare questa possibilità.
-- Lo script entra in conflitto con uno script di terze parti: questo può accadere con script di tracciamento o qualsiasi bookmarklet che l'utente utilizza.
-- Lo script entra in conflitto con o è influenzato da un'estensione del browser (come l'estensione [NoScript](https://addons.mozilla.org/fr/firefox/addon/noscript/) di Firefox o l'estensione [ScriptBlock](https://chromewebstore.google.com/detail/scriptblock/hcdjknjpbnhdoabbngpmfekaecnpajba) di Chrome).
-- L'utente sta utilizzando un browser legacy e una delle funzionalità richieste non è supportata: questo accadrà frequentemente quando fai uso di API all'avanguardia.
-- L'utente sta interagendo con il contenuto prima che il JavaScript sia stato completamente scaricato, analizzato ed eseguito.
+- L'utente ha disattivato JavaScript: è insolito; al giorno d'oggi pochissime persone disattivano JavaScript.
+- Lo script non è stato caricato: è uno dei casi più comuni, specialmente nel mondo mobile, dove la rete non è molto affidabile.
+- Lo script contiene bug: questa possibilità dovrebbe essere sempre considerata.
+- Lo script entra in conflitto con uno script di terze parti: ciò può accadere con script di tracciamento o con bookmarklet usati dall'utente.
+- Lo script entra in conflitto con, oppure è influenzato da, un'estensione del browser, come l'estensione [NoScript](https://addons.mozilla.org/fr/firefox/addon/noscript/) di Firefox o l'estensione [ScriptBlock](https://chromewebstore.google.com/detail/scriptblock/hcdjknjpbnhdoabbngpmfekaecnpajba) di Chrome.
+- L'utente utilizza un browser legacy e una delle funzionalità richieste non è supportata: ciò accadrà frequentemente quando si usano API all'avanguardia.
+- L'utente interagisce con il contenuto prima che JavaScript sia stato completamente scaricato, analizzato ed eseguito.
 
-A causa di questi rischi, è davvero importante considerare seriamente cosa succederà se il tuo JavaScript non funziona. Discuteremo le opzioni da considerare e copriremo le basi nel nostro esempio (una discussione completa sulla risoluzione di questo problema per tutti gli scenari richiederebbe un libro). Ricorda, è vitale rendere il tuo script generico e riutilizzabile.
+A causa di questi rischi, è davvero importante considerare seriamente cosa accadrà se JavaScript non funziona. Verranno discusse opzioni da considerare e trattate le basi nell'esempio; una discussione completa su come risolvere questo problema per tutti gli scenari richiederebbe un libro. Basta ricordare che è fondamentale rendere lo script generico e riutilizzabile.
 
-Nel nostro esempio, se il nostro codice JavaScript non viene eseguito, torneremo a visualizzare un elemento {{HTMLElement("select")}} standard. Includiamo il nostro controllo e il {{HTMLElement("select")}}; quale viene visualizzato dipende dalla classe dell'elemento del corpo, con la classe dell'elemento del corpo che viene aggiornata dallo script che rende il controllo funzionante, quando viene caricato con successo.
+Nel nostro esempio, se il codice JavaScript non è in esecuzione, verrà mostrato un elemento {{HTMLElement("select")}} standard. Vengono inclusi il controllo personalizzato e l'elemento {{HTMLElement("select")}}; quale dei due viene mostrato dipende dalla classe dell'elemento body, aggiornata dallo script che rende funzionante il controllo quando viene caricato correttamente.
 
-Per farlo, ci servono due cose:
+Per ottenere questo risultato sono necessarie due cose:
 
-In primo luogo, dobbiamo aggiungere un elemento {{HTMLElement("select")}} regolare prima di ogni istanza del nostro controllo personalizzato. C'è un vantaggio nel avere questo "extra" select anche se il nostro JavaScript funziona come sperato: useremo questo select per inviare dati dal nostro controllo personalizzato insieme al resto dei dati del form. Ne discuteremo in maggiore dettaglio più avanti.
+Innanzitutto, è necessario aggiungere un normale elemento {{HTMLElement("select")}} prima di ogni istanza del controllo personalizzato. Esiste un vantaggio nell'avere questo select «aggiuntivo» anche se JavaScript funziona come previsto: questo select verrà usato per inviare i dati del controllo personalizzato insieme al resto dei dati del modulo. Questo aspetto verrà approfondito in seguito.
 
 ```html
 <body class="no-widget">
@@ -691,7 +692,7 @@ In primo luogo, dobbiamo aggiungere un elemento {{HTMLElement("select")}} regola
 </body>
 ```
 
-In secondo luogo, ci servono due nuove classi per permetterci di nascondere l'elemento non necessario: nascondiamo visivamente il controllo personalizzato se il nostro script non funziona, o l'elemento "vero" {{HTMLElement("select")}} se funziona. Nota che, per impostazione predefinita, il nostro codice HTML nasconde il nostro controllo personalizzato.
+In secondo luogo, sono necessarie due nuove classi per nascondere l'elemento non necessario: il controllo personalizzato viene nascosto visivamente se lo script non è in esecuzione, oppure viene nascosto l'elemento {{HTMLElement("select")}} «reale» se lo script è in esecuzione. Si noti che, per impostazione predefinita, il codice HTML nasconde il controllo personalizzato.
 
 ```css
 .widget select,
@@ -707,20 +708,18 @@ In secondo luogo, ci servono due nuove classi per permetterci di nascondere l'el
 }
 ```
 
-Questo CSS nasconde visivamente uno degli elementi, ma è ancora disponibile per i lettori di schermo.
+Questo CSS nasconde visivamente uno degli elementi, ma lo mantiene comunque disponibile per i lettori di schermo.
 
-Ora ci serve un interruttore JavaScript per determinare se lo script è in esecuzione o meno. Questo interruttore è costituito da un paio di righe: se al momento del caricamento della pagina il nostro script è in esecuzione, rimuoverà la classe `no-widget` e aggiungerà la classe `widget`, scambiando così la visibilità dell'elemento {{HTMLElement("select")}} e del controllo personalizzato.
+Ora serve un selettore JavaScript per determinare se lo script è in esecuzione o meno. Questo selettore consiste in un paio di righe: se al caricamento della pagina lo script è in esecuzione, rimuoverà la classe `no-widget` e aggiungerà la classe `widget`, scambiando così la visibilità dell'elemento {{HTMLElement("select")}} e del controllo personalizzato.
 
 ```js
-window.addEventListener("load", () => {
-  document.body.classList.remove("no-widget");
-  document.body.classList.add("widget");
-});
+document.body.classList.remove("no-widget");
+document.body.classList.add("widget");
 ```
 
 #### Senza JS
 
-Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_2#no_js).
+Consulta il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_2#no_js).
 
 ```html hidden
 <form class="no-widget">
@@ -759,7 +758,7 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 
 #### Con JS
 
-Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_2#js).
+Consulta il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_2#js).
 
 ```html hidden
 <form class="no-widget">
@@ -817,14 +816,14 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -857,11 +856,11 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -872,7 +871,7 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -891,37 +890,35 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
 ```js hidden
-window.addEventListener("load", () => {
-  const form = document.querySelector("form");
+const form = document.querySelector("form");
 
-  form.classList.remove("no-widget");
-  form.classList.add("widget");
-});
+form.classList.remove("no-widget");
+form.classList.add("widget");
 ```
 
 {{EmbedLiveSample("With_JS",120,130)}}
 
 > [!NOTE]
-> Se vuoi davvero rendere il tuo codice generico e riutilizzabile, invece di fare un cambiamento di classe è molto meglio aggiungere semplicemente la classe widget per nascondere gli elementi {{HTMLElement("select")}} e aggiungere dinamicamente l'albero DOM che rappresenta il controllo personalizzato dopo ogni elemento {{HTMLElement("select")}} nella pagina.
+> Se si desidera davvero rendere il codice generico e riutilizzabile, anziché effettuare uno scambio di classi è molto meglio aggiungere semplicemente la classe widget per nascondere gli elementi {{HTMLElement("select")}} e aggiungere dinamicamente l'albero DOM che rappresenta il controllo personalizzato dopo ogni elemento {{HTMLElement("select")}} nella pagina.
 
-### Rendere il lavoro più semplice
+### Semplificare il lavoro
 
-Nel codice che stiamo per costruire, useremo le API JavaScript standard e DOM per fare tutto il lavoro di cui abbiamo bisogno. Le funzionalità che intendiamo utilizzare sono le seguenti:
+Nel codice che sta per essere creato, verranno usate le API JavaScript e DOM standard per svolgere tutto il lavoro necessario. Le funzionalità che si intende usare sono le seguenti:
 
 1. [`classList`](/it/docs/Web/API/Element/classList)
 2. [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener)
 3. [`NodeList.forEach()`](/it/docs/Web/API/NodeList/forEach)
 4. [`querySelector()`](/it/docs/Web/API/Element/querySelector) e [`querySelectorAll()`](/it/docs/Web/API/Element/querySelectorAll)
 
-### Costruire i callback degli eventi
+### Creazione delle callback degli eventi
 
-Il lavoro preliminare è fatto. Possiamo ora iniziare a definire tutte le funzioni che verranno utilizzate ogni volta che l'utente interagisce con il nostro controllo.
+La base è pronta. Ora è possibile iniziare a definire tutte le funzioni che verranno usate ogni volta che l'utente interagisce con il controllo.
 
 ```js
 // This function will be used each time we want to deactivate a custom control
@@ -989,74 +986,71 @@ function highlightOption(select, option) {
 }
 ```
 
-Hai bisogno di queste per gestire i vari stati del controllo personalizzato.
+Queste funzioni sono necessarie per gestire i vari stati del controllo personalizzato.
 
-Successivamente, colleghiamo queste funzioni agli eventi appropriati:
+Successivamente, si associano queste funzioni agli eventi appropriati:
 
 ```js
-// We handle the event binding when the document is loaded.
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  // Each custom control needs to be initialized
-  selectList.forEach((select) => {
-    // as well as all its `option` elements
-    const optionList = select.querySelectorAll(".option");
+// Each custom control needs to be initialized
+selectList.forEach((select) => {
+  // as well as all its `option` elements
+  const optionList = select.querySelectorAll(".option");
 
-    // Each time a user hovers their mouse over an option, we highlight the given option
-    optionList.forEach((option) => {
-      option.addEventListener("mouseover", () => {
-        // Note: the `select` and `option` variable are closures
-        // available in the scope of our function call.
-        highlightOption(select, option);
-      });
-    });
-
-    // Each times the user clicks on or taps a custom select element
-    select.addEventListener("click", (event) => {
-      // Note: the `select` variable is a closure
+  // Each time a user hovers their mouse over an option, we highlight the given option
+  optionList.forEach((option) => {
+    option.addEventListener("mouseover", () => {
+      // Note: the `select` and `option` variable are closures
       // available in the scope of our function call.
-
-      // We toggle the visibility of the list of options
-      toggleOptList(select);
+      highlightOption(select, option);
     });
+  });
 
-    // In case the control gains focus
-    // The control gains the focus each time the user clicks on it or each time
-    // they use the tabulation key to access the control
-    select.addEventListener("focus", (event) => {
-      // Note: the `select` and `selectList` variable are closures
-      // available in the scope of our function call.
+  // Each times the user clicks on or taps a custom select element
+  select.addEventListener("click", (event) => {
+    // Note: the `select` variable is a closure
+    // available in the scope of our function call.
 
-      // We activate the control
-      activeSelect(select, selectList);
-    });
+    // We toggle the visibility of the list of options
+    toggleOptList(select);
+  });
 
-    // In case the control loses focus
-    select.addEventListener("blur", (event) => {
-      // Note: the `select` variable is a closure
-      // available in the scope of our function call.
+  // In case the control gains focus
+  // The control gains the focus each time the user clicks on it or each time
+  // they use the tabulation key to access the control
+  select.addEventListener("focus", (event) => {
+    // Note: the `select` and `selectList` variable are closures
+    // available in the scope of our function call.
 
-      // We deactivate the control
+    // We activate the control
+    activeSelect(select, selectList);
+  });
+
+  // In case the control loses focus
+  select.addEventListener("blur", (event) => {
+    // Note: the `select` variable is a closure
+    // available in the scope of our function call.
+
+    // We deactivate the control
+    deactivateSelect(select);
+  });
+
+  // Lose focus if the user hits `esc`
+  select.addEventListener("keyup", (event) => {
+    // deactivate on keyup of `esc`
+    if (event.key === "Escape") {
       deactivateSelect(select);
-    });
-
-    // Loose focus if the user hits `esc`
-    select.addEventListener("keyup", (event) => {
-      // deactivate on keyup of `esc`
-      if (event.key === "Escape") {
-        deactivateSelect(select);
-      }
-    });
+    }
   });
 });
 ```
 
-A questo punto, il nostro controllo cambierà stato secondo il nostro design, ma il suo valore non viene ancora aggiornato. Lo gestiremo successivamente.
+A questo punto, il controllo cambierà stato in base alla progettazione, ma il suo valore non viene ancora aggiornato. Questo verrà gestito ora.
 
-#### Esempio dal vivo
+#### Esempio live
 
-Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_3).
+Consulta il [codice sorgente completo](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_3).
 
 ```html hidden
 <form class="no-widget">
@@ -1114,14 +1108,14 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -1154,11 +1148,11 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -1169,7 +1163,7 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -1188,8 +1182,8 @@ Controlla il [codice sorgente completo](/it/docs/Learn_web_development/Extension
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
@@ -1226,59 +1220,51 @@ function highlightOption(select, option) {
   option.classList.add("highlight");
 }
 
-window.addEventListener("load", () => {
-  const form = document.querySelector("form");
+const form = document.querySelector("form");
 
-  form.classList.remove("no-widget");
-  form.classList.add("widget");
-});
+form.classList.remove("no-widget");
+form.classList.add("widget");
 
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  selectList.forEach((select) => {
-    const optionList = select.querySelectorAll(".option");
+selectList.forEach((select) => {
+  const optionList = select.querySelectorAll(".option");
 
-    optionList.forEach((option) => {
-      option.addEventListener("mouseover", () => {
-        highlightOption(select, option);
-      });
+  optionList.forEach((option) => {
+    option.addEventListener("mouseover", () => {
+      highlightOption(select, option);
     });
+  });
 
-    select.addEventListener(
-      "click",
-      (event) => {
-        toggleOptList(select);
-      },
-      false,
-    );
+  select.addEventListener("click", (event) => {
+    toggleOptList(select);
+  });
 
-    select.addEventListener("focus", (event) => {
-      activeSelect(select, selectList);
-    });
+  select.addEventListener("focus", (event) => {
+    activeSelect(select, selectList);
+  });
 
-    select.addEventListener("blur", (event) => {
+  select.addEventListener("blur", (event) => {
+    deactivateSelect(select);
+  });
+
+  select.addEventListener("keyup", (event) => {
+    if (event.key === "Escape") {
       deactivateSelect(select);
-    });
-
-    select.addEventListener("keyup", (event) => {
-      if (event.key === "Escape") {
-        deactivateSelect(select);
-      }
-    });
+    }
   });
 });
 ```
 
 {{EmbedLiveSample("Live_example",120,130)}}
 
-### Gestire il valore del controllo
+### Gestione del valore del controllo
 
-Ora che il nostro controllo funziona, dobbiamo aggiungere codice per aggiornare il suo valore secondo l'input dell'utente e rendere possibile l'invio del valore insieme ai dati del form.
+Ora che il controllo funziona, è necessario aggiungere codice per aggiornare il suo valore in base all'input dell'utente e rendere possibile l'invio del valore insieme ai dati del modulo.
 
-Il modo più semplice per farlo è usare un controllo nativo sotto il cofano. Un controllo del genere terrà traccia del valore con tutti i controlli predefiniti forniti dal browser e il valore verrà inviato come al solito quando un form viene inviato. Non c'è bisogno di reinventare la ruota quando tutto questo può essere fatto per noi.
+Il modo più semplice per farlo consiste nell'usare un controllo nativo internamente. Tale controllo terrà traccia del valore usando tutti i controlli integrati forniti dal browser e il valore verrà inviato normalmente quando viene inviato un modulo. Non ha senso reinventare la ruota quando tutto questo può essere fatto automaticamente.
 
-Come visto in precedenza, usiamo già un controllo select nativo come fallback per motivi di accessibilità; possiamo sincronizzare il suo valore con quello del nostro controllo personalizzato:
+Come visto in precedenza, viene già usato un controllo select nativo come fallback per motivi di accessibilità; il suo valore può essere sincronizzato con quello del controllo personalizzato:
 
 ```js
 // This function updates the displayed value and synchronizes it with the native control.
@@ -1318,74 +1304,71 @@ function getIndex(select) {
 }
 ```
 
-Con queste due funzioni, possiamo collegare i controlli nativi a quelli personalizzati:
+Con queste due funzioni, è possibile associare i controlli nativi a quelli personalizzati:
 
 ```js
-// We handle event binding when the document is loaded.
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  // Each custom control needs to be initialized
-  selectList.forEach((select) => {
-    const optionList = select.querySelectorAll(".option");
-    const selectedIndex = getIndex(select);
+// Each custom control needs to be initialized
+selectList.forEach((select) => {
+  const optionList = select.querySelectorAll(".option");
+  const selectedIndex = getIndex(select);
 
-    // We make our custom control focusable
-    select.tabIndex = 0;
+  // We make our custom control focusable
+  select.tabIndex = 0;
 
-    // We make the native control no longer focusable
-    select.previousElementSibling.tabIndex = -1;
+  // We make the native control no longer focusable
+  select.previousElementSibling.tabIndex = -1;
 
-    // We make sure that the default selected value is correctly displayed
-    updateValue(select, selectedIndex);
+  // We make sure that the default selected value is correctly displayed
+  updateValue(select, selectedIndex);
 
-    // Each time a user clicks on an option, we update the value accordingly
-    optionList.forEach((option, index) => {
-      option.addEventListener("click", (event) => {
-        updateValue(select, index);
-      });
-    });
-
-    // Each time a user uses their keyboard on a focused control, we update the value accordingly
-    select.addEventListener("keyup", (event) => {
-      let index = getIndex(select);
-      // When the user hits the Escape key, deactivate the custom control
-      if (event.key === "Escape") {
-        deactivateSelect(select);
-      }
-
-      // When the user hits the down arrow, we jump to the next option
-      if (event.key === "ArrowDown" && index < optionList.length - 1) {
-        index++;
-        // Prevent the default action of the ArrowDown key press.
-        // Without this, the page would scroll down when the ArrowDown key is pressed.
-        event.preventDefault();
-      }
-
-      // When the user hits the up arrow, we jump to the previous option
-      if (event.key === "ArrowUp" && index > 0) {
-        index--;
-        // Prevent the default action of the ArrowUp key press.
-        event.preventDefault();
-      }
-      if (event.key === "Enter" || event.key === " ") {
-        // If Enter or Space is pressed, toggle the option list
-        toggleOptList(select);
-      }
-
+  // Each time a user clicks on an option, we update the value accordingly
+  optionList.forEach((option, index) => {
+    option.addEventListener("click", (event) => {
       updateValue(select, index);
     });
+  });
+
+  // Each time a user uses their keyboard on a focused control, we update the value accordingly
+  select.addEventListener("keyup", (event) => {
+    let index = getIndex(select);
+    // When the user hits the Escape key, deactivate the custom control
+    if (event.key === "Escape") {
+      deactivateSelect(select);
+    }
+
+    // When the user hits the down arrow, we jump to the next option
+    if (event.key === "ArrowDown" && index < optionList.length - 1) {
+      index++;
+      // Prevent the default action of the ArrowDown key press.
+      // Without this, the page would scroll down when the ArrowDown key is pressed.
+      event.preventDefault();
+    }
+
+    // When the user hits the up arrow, we jump to the previous option
+    if (event.key === "ArrowUp" && index > 0) {
+      index--;
+      // Prevent the default action of the ArrowUp key press.
+      event.preventDefault();
+    }
+    if (event.key === "Enter" || event.key === " ") {
+      // If Enter or Space is pressed, toggle the option list
+      toggleOptList(select);
+    }
+
+    updateValue(select, index);
   });
 });
 ```
 
-Nel codice sopra, vale la pena notare l'uso della proprietà [`tabIndex`](/it/docs/Web/API/HTMLElement/tabIndex). Utilizzare questa proprietà è necessario per garantire che il controllo nativo non riceva mai il fuoco e per assicurarsi che il nostro controllo personalizzato riceva il fuoco quando l'utente utilizza la tastiera o il mouse.
+Nel codice precedente, vale la pena notare l'uso della proprietà [`tabIndex`](/it/docs/Web/API/HTMLElement/tabIndex). L'uso di questa proprietà è necessario per assicurarsi che il controllo nativo non riceva mai il focus e che il controllo personalizzato riceva il focus quando l'utente usa tastiera o mouse.
 
-Con questo, abbiamo finito!
+Con questo, il lavoro è concluso.
 
-#### Esempio dal vivo
+#### Esempio live
 
-Controlla il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_4).
+Consulta il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_4).
 
 ```html hidden
 <form class="no-widget">
@@ -1443,14 +1426,14 @@ Controlla il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/For
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -1483,11 +1466,11 @@ Controlla il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/For
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -1498,7 +1481,7 @@ Controlla il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/For
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -1517,8 +1500,8 @@ Controlla il [codice sorgente qui](/it/docs/Learn_web_development/Extensions/For
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
@@ -1571,93 +1554,87 @@ function getIndex(select) {
   return nativeWidget.selectedIndex;
 }
 
-window.addEventListener("load", () => {
-  const form = document.querySelector("form");
+const form = document.querySelector("form");
 
-  form.classList.remove("no-widget");
-  form.classList.add("widget");
-});
+form.classList.remove("no-widget");
+form.classList.add("widget");
 
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  selectList.forEach((select) => {
-    const optionList = select.querySelectorAll(".option");
+selectList.forEach((select) => {
+  const optionList = select.querySelectorAll(".option");
 
-    optionList.forEach((option) => {
-      option.addEventListener("mouseover", () => {
-        highlightOption(select, option);
-      });
+  optionList.forEach((option) => {
+    option.addEventListener("mouseover", () => {
+      highlightOption(select, option);
     });
+  });
 
-    select.addEventListener("click", (event) => {
-      toggleOptList(select);
-    });
+  select.addEventListener("click", (event) => {
+    toggleOptList(select);
+  });
 
-    select.addEventListener("focus", (event) => {
-      activeSelect(select, selectList);
-    });
+  select.addEventListener("focus", (event) => {
+    activeSelect(select, selectList);
+  });
 
-    select.addEventListener("blur", (event) => {
-      deactivateSelect(select);
-    });
+  select.addEventListener("blur", (event) => {
+    deactivateSelect(select);
   });
 });
 
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  selectList.forEach((select) => {
-    const optionList = select.querySelectorAll(".option");
-    const selectedIndex = getIndex(select);
+selectList.forEach((select) => {
+  const optionList = select.querySelectorAll(".option");
+  const selectedIndex = getIndex(select);
 
-    select.tabIndex = 0;
-    select.previousElementSibling.tabIndex = -1;
+  select.tabIndex = 0;
+  select.previousElementSibling.tabIndex = -1;
 
-    updateValue(select, selectedIndex);
+  updateValue(select, selectedIndex);
 
-    optionList.forEach((option, index) => {
-      option.addEventListener("click", (event) => {
-        updateValue(select, index);
-      });
-    });
-
-    select.addEventListener("keyup", (event) => {
-      let index = getIndex(select);
-
-      if (event.key === "Escape") {
-        deactivateSelect(select);
-      }
-      if (event.key === "ArrowDown" && index < optionList.length - 1) {
-        index++;
-      }
-      if (event.key === "ArrowUp" && index > 0) {
-        index--;
-      }
-
+  optionList.forEach((option, index) => {
+    option.addEventListener("click", (event) => {
       updateValue(select, index);
     });
+  });
+
+  select.addEventListener("keyup", (event) => {
+    let index = getIndex(select);
+
+    if (event.key === "Escape") {
+      deactivateSelect(select);
+    }
+    if (event.key === "ArrowDown" && index < optionList.length - 1) {
+      index++;
+    }
+    if (event.key === "ArrowUp" && index > 0) {
+      index--;
+    }
+
+    updateValue(select, index);
   });
 });
 ```
 
 {{EmbedLiveSample("live_example_2",120,130)}}
 
-Aspetta un secondo, abbiamo davvero finito?
+Ma aspetta un attimo: è davvero finita?
 
 ## Renderlo accessibile
 
-Abbiamo costruito qualcosa che funziona e anche se siamo lontani da una select box completamente funzionale, funziona bene. Ma quello che abbiamo fatto è niente di più che giocherellare con il DOM. Non ha una vera semantica, e anche se sembra una select box, dal punto di vista del browser non lo è, quindi le tecnologie assistive non saranno in grado di capire che è una select box. In breve, questa nuova e carina select box non è accessibile!
+È stato creato qualcosa che funziona e, anche se è ancora lontano dall'essere una casella select completa, funziona bene. Tuttavia, ciò che è stato fatto non è altro che manipolare il DOM. Non dispone di vera semantica e, anche se sembra una casella select, dal punto di vista del browser non lo è, quindi le tecnologie assistive non saranno in grado di capire che si tratta di una casella select. In breve, questa nuova e graziosa casella select non è accessibile.
 
-Fortunatamente, c'è una soluzione e si chiama [ARIA](/it/docs/Web/Accessibility/ARIA). ARIA sta per "Accessible Rich Internet Application", ed è [una specifica W3C](https://www.w3.org/TR/wai-aria/) progettata specificamente per ciò che stiamo facendo qui: rendere le applicazioni web e i controlli personalizzati accessibili. È fondamentalmente un insieme di attributi che estendono l'HTML in modo da poter descrivere meglio ruoli, stati e proprietà come se l'elemento che abbiamo appena progettato fosse l'elemento nativo che cerca di impersonare. L'uso di questi attributi può essere fatto modificando il markup HTML. Aggiorniamo anche gli attributi ARIA tramite JavaScript man mano che l'utente aggiorna il loro valore selezionato.
+Fortunatamente, esiste una soluzione chiamata [ARIA](/it/docs/Web/Accessibility/ARIA). ARIA significa "Accessible Rich Internet Application" ed è una [specifica W3C](https://w3c.github.io/aria/) progettata appositamente per ciò che si sta facendo qui: rendere accessibili le applicazioni web e i controlli personalizzati. Si tratta essenzialmente di un insieme di attributi che estendono HTML, consentendo di descrivere meglio ruoli, stati e proprietà come se l'elemento appena creato fosse l'elemento nativo che tenta di imitare. L'uso di questi attributi può essere effettuato modificando il markup HTML. Gli attributi ARIA vengono inoltre aggiornati tramite JavaScript quando l'utente aggiorna il valore selezionato.
 
 ### L'attributo `role`
 
-L'attributo chiave usato da [ARIA](/it/docs/Web/Accessibility/ARIA) è l'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques). L'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques) accetta un valore che definisce a cosa serve un elemento. Ogni ruolo definisce i propri requisiti e comportamenti. Nel nostro esempio, useremo il ruolo [`listbox`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/listbox_role). È un "ruolo composito", il che significa che gli elementi con quel ruolo si aspettano di avere figli, ciascuno con un ruolo specifico (in questo caso, almeno un figlio con il ruolo `option`).
+L'attributo chiave usato da [ARIA](/it/docs/Web/Accessibility/ARIA) è l'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques). L'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques) accetta un valore che definisce a cosa serve un elemento. Ogni ruolo definisce i propri requisiti e comportamenti. Nel nostro esempio verrà usato il ruolo [`listbox`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/listbox_role). Si tratta di un «ruolo composito», il che significa che gli elementi con quel ruolo prevedono di avere elementi figli, ciascuno con un ruolo specifico, in questo caso almeno un figlio con il ruolo `option`.
 
-Vale anche la pena notare che ARIA definisce ruoli che vengono applicati di default al markup HTML standard. Ad esempio, l'elemento {{HTMLElement("table")}} corrisponde al ruolo `grid`, e l'elemento {{HTMLElement("ul")}} corrisponde al ruolo `list`. Poiché utilizziamo un elemento {{HTMLElement("ul")}}, vogliamo assicurarci che il ruolo `listbox` del nostro controllo superi il ruolo `list` dell'elemento {{HTMLElement("ul")}}. A tal fine, useremo il ruolo `presentation`. Questo ruolo è progettato per farci indicare che un elemento non ha significato speciale ed è usato esclusivamente per presentare informazioni. Lo applicheremo al nostro elemento {{HTMLElement("ul")}}.
+Vale inoltre la pena notare che ARIA definisce ruoli applicati per impostazione predefinita al markup HTML standard. Ad esempio, l'elemento {{HTMLElement("table")}} corrisponde al ruolo `grid` e l'elemento {{HTMLElement("ul")}} corrisponde al ruolo `list`. Poiché viene usato un elemento {{HTMLElement("ul")}}, è necessario assicurarsi che il ruolo `listbox` del controllo prevalga sul ruolo `list` dell'elemento {{HTMLElement("ul")}}. A tale scopo, verrà usato il ruolo `presentation`. Questo ruolo è progettato per indicare che un elemento non ha significato particolare ed è usato esclusivamente per presentare informazioni. Verrà applicato all'elemento {{HTMLElement("ul")}}.
 
-Per supportare il ruolo [`listbox`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/listbox_role), dobbiamo solo aggiornare il nostro HTML in questo modo:
+Per supportare il ruolo [`listbox`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/listbox_role), è sufficiente aggiornare l'HTML nel seguente modo:
 
 ```html
 <!-- We add the role="listbox" attribute to our top element -->
@@ -1676,13 +1653,13 @@ Per supportare il ruolo [`listbox`](/it/docs/Web/Accessibility/ARIA/Reference/Ro
 ```
 
 > [!NOTE]
-> Includere sia l'attributo `role` che un attributo `class` non è necessario. Invece di usare `.option` utilizza `[role="option"]` [selettori attributo](/it/docs/Web/CSS/Attribute_selectors) nel tuo CSS.
+> Non è necessario includere sia l'attributo `role` sia un attributo `class`. Invece di usare `.option`, usare i [selettori di attributo](/it/docs/Web/CSS/Reference/Selectors/Attribute_selectors) `[role="option"]` nel CSS.
 
 ### L'attributo `aria-selected`
 
-Usare l'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques) non è sufficiente. [ARIA](/it/docs/Web/Accessibility/ARIA) fornisce anche molti stati e attributi di proprietà. Più e meglio li usi, meglio il tuo controllo sarà compreso dalle tecnologie assistive. Nel nostro caso, limiteremo il nostro uso a un attributo: `aria-selected`.
+L'uso dell'attributo [`role`](/it/docs/Web/Accessibility/ARIA/Guides/Techniques) non è sufficiente. [ARIA](/it/docs/Web/Accessibility/ARIA) fornisce anche molti attributi di stato e proprietà. Più questi vengono usati, e meglio vengono usati, più il controllo sarà comprensibile alle tecnologie assistive. In questo caso, l'uso sarà limitato a un attributo: `aria-selected`.
 
-L'attributo `aria-selected` è utilizzato per segnare quale opzione è attualmente selezionata; questo permette alle tecnologie assistive di informare l'utente qual è la selezione corrente. Lo useremo dinamicamente con JavaScript per segnare l'opzione selezionata ogni volta che l'utente ne sceglie una. A tal fine, dobbiamo rivedere la nostra funzione `updateValue()`:
+L'attributo `aria-selected` viene usato per contrassegnare quale opzione è attualmente selezionata; ciò consente alle tecnologie assistive di informare l'utente sulla selezione corrente. Verrà usato dinamicamente con JavaScript per contrassegnare l'opzione selezionata ogni volta che l'utente ne sceglie una. A tale scopo, è necessario rivedere la funzione `updateValue()`:
 
 ```js
 function updateValue(select, index) {
@@ -1704,13 +1681,13 @@ function updateValue(select, index) {
 }
 ```
 
-Potrebbe sembrare più semplice lasciare che un lettore di schermo si concentri sul select fuori schermo e ignori quello stilizzato, ma questa non è una soluzione accessibile. I lettori di schermo non sono limitati alle persone non vedenti; le persone con bassa visione e anche con vista perfetta li usano. Per questo motivo, non puoi fare in modo che il lettore di schermo si concentri su un elemento fuori schermo.
+Potrebbe essere sembrato più semplice lasciare che un lettore di schermo mettesse il focus sul select fuori schermo e ignorasse quello stilizzato, ma questa non è una soluzione accessibile. I lettori di schermo non sono limitati alle persone non vedenti; li usano anche persone ipovedenti e perfino persone con una vista perfetta. Per questo motivo, non è possibile far mettere al lettore di schermo il focus su un elemento fuori schermo.
 
-Di seguito è riportato il risultato finale di tutti questi cambiamenti (avrai una percezione migliore provandolo con una tecnologia assistiva come [NVDA](https://www.nvaccess.org/) o [VoiceOver](https://www.apple.com/accessibility/features/?vision)).
+Di seguito è mostrato il risultato finale di tutte queste modifiche. Per comprenderlo meglio, è possibile provarlo con una tecnologia assistiva come [NVDA](https://www.nvaccess.org/) o [VoiceOver](https://www.apple.com/accessibility/features/?vision).
 
-#### Esempio dal vivo
+#### Esempio live
 
-Controlla il [codice sorgente completo qui](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_5).
+Consulta il [codice sorgente completo qui](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls/Example_5).
 
 ```html hidden
 <form class="no-widget">
@@ -1768,14 +1745,14 @@ Controlla il [codice sorgente completo qui](/it/docs/Learn_web_development/Exten
 
 .select {
   font-size: 0.625em; /* 10px */
-  font-family: Verdana, Arial, sans-serif;
+  font-family: "Verdana", "Arial", sans-serif;
 
   box-sizing: border-box;
 
   padding: 0.1em 2.5em 0.2em 0.5em; /* 1px 25px 2px 5px */
   width: 10em; /* 100px */
 
-  border: 0.2em solid #000; /* 2px */
+  border: 0.2em solid black; /* 2px */
   border-radius: 0.4em; /* 4px */
 
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%); /* 0 1px 2px */
@@ -1808,11 +1785,11 @@ Controlla il [codice sorgente completo qui](/it/docs/Learn_web_development/Exten
 
   text-align: center;
 
-  border-left: 0.2em solid #000;
+  border-left: 0.2em solid black;
   border-radius: 0 0.1em 0.1em 0;
 
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
 }
 
 .select .optList {
@@ -1823,7 +1800,7 @@ Controlla il [codice sorgente completo qui](/it/docs/Learn_web_development/Exten
   padding: 0;
 
   background: #f0f0f0;
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-top-width: 0.1em;
   border-radius: 0 0 0.4em 0.4em;
 
@@ -1842,8 +1819,8 @@ Controlla il [codice sorgente completo qui](/it/docs/Learn_web_development/Exten
 }
 
 .select .highlight {
-  background: #000;
-  color: #ffffff;
+  background: black;
+  color: white;
 }
 ```
 
@@ -1902,77 +1879,73 @@ function getIndex(select) {
   return nativeWidget.selectedIndex;
 }
 
-window.addEventListener("load", () => {
-  const form = document.querySelector("form");
+const form = document.querySelector("form");
 
-  form.classList.remove("no-widget");
-  form.classList.add("widget");
-});
+form.classList.remove("no-widget");
+form.classList.add("widget");
 
-window.addEventListener("load", () => {
-  const selectList = document.querySelectorAll(".select");
+const selectList = document.querySelectorAll(".select");
 
-  selectList.forEach((select) => {
-    const optionList = select.querySelectorAll(".option");
-    const selectedIndex = getIndex(select);
+selectList.forEach((select) => {
+  const optionList = select.querySelectorAll(".option");
+  const selectedIndex = getIndex(select);
 
-    select.tabIndex = 0;
-    select.previousElementSibling.tabIndex = -1;
+  select.tabIndex = 0;
+  select.previousElementSibling.tabIndex = -1;
 
-    updateValue(select, selectedIndex);
+  updateValue(select, selectedIndex);
 
-    optionList.forEach((option, index) => {
-      option.addEventListener("mouseover", () => {
-        highlightOption(select, option);
-      });
-
-      option.addEventListener("click", (event) => {
-        updateValue(select, index);
-      });
+  optionList.forEach((option, index) => {
+    option.addEventListener("mouseover", () => {
+      highlightOption(select, option);
     });
 
-    select.addEventListener("click", (event) => {
-      toggleOptList(select);
-    });
-
-    select.addEventListener("focus", (event) => {
-      activeSelect(select, selectList);
-    });
-
-    select.addEventListener("blur", (event) => {
-      deactivateSelect(select);
-    });
-
-    select.addEventListener("keyup", (event) => {
-      let index = getIndex(select);
-
-      if (event.key === "Escape") {
-        deactivateSelect(select);
-      }
-      if (event.key === "ArrowDown" && index < optionList.length - 1) {
-        index++;
-      }
-      if (event.key === "ArrowUp" && index > 0) {
-        index--;
-      }
-
+    option.addEventListener("click", (event) => {
       updateValue(select, index);
     });
+  });
+
+  select.addEventListener("click", (event) => {
+    toggleOptList(select);
+  });
+
+  select.addEventListener("focus", (event) => {
+    activeSelect(select, selectList);
+  });
+
+  select.addEventListener("blur", (event) => {
+    deactivateSelect(select);
+  });
+
+  select.addEventListener("keyup", (event) => {
+    let index = getIndex(select);
+
+    if (event.key === "Escape") {
+      deactivateSelect(select);
+    }
+    if (event.key === "ArrowDown" && index < optionList.length - 1) {
+      index++;
+    }
+    if (event.key === "ArrowUp" && index > 0) {
+      index--;
+    }
+
+    updateValue(select, index);
   });
 });
 ```
 
 {{EmbedLiveSample("live_example_3",120,130)}}
 
-Se vuoi andare avanti, il codice in questo esempio necessita di qualche miglioramento prima di diventare generico e riutilizzabile. Questo è un esercizio che puoi provare a svolgere. Due suggerimenti per aiutarti in questo: il primo argomento di tutte le nostre funzioni è lo stesso, il che significa che quelle funzioni necessitano dello stesso contesto. Costruire un oggetto per condividere quel contesto sarebbe saggio.
+Per proseguire, il codice di questo esempio necessita di alcuni miglioramenti prima di diventare generico e riutilizzabile. Questo è un esercizio che è possibile provare a svolgere. Due suggerimenti utili: il primo argomento di tutte le funzioni è lo stesso, il che significa che tali funzioni necessitano dello stesso contesto. Sarebbe opportuno creare un oggetto per condividere quel contesto.
 
-## Un approccio alternativo: uso dei radio button
+## Un approccio alternativo: usare pulsanti radio
 
-Nell'esempio sopra, abbiamo reinventato un elemento {{htmlelement('select')}} utilizzando HTML non semantico, CSS e JavaScript. Questo select stava selezionando un'opzione da un numero limitato di opzioni, che è la stessa funzionalità di un gruppo di {{htmlelement('input/radio', 'radio')}} con lo stesso nome.
+Nell'esempio precedente, è stato ricreato un elemento {{htmlelement('select')}} usando HTML non semantico, CSS e JavaScript. Questo select permetteva di selezionare un'opzione da un numero limitato di opzioni, la stessa funzionalità di un gruppo di pulsanti {{htmlelement('input/radio', 'radio')}} con lo stesso nome.
 
-Potremmo quindi reinventare questo usando invece i radio button; diamo un'occhiata a questa opzione.
+Si potrebbe quindi ricrearlo invece usando pulsanti radio; esaminiamo questa possibilità.
 
-Possiamo iniziare con un elenco completamente semantico, accessibile e non ordinato di radio button {{htmlelement('input/radio','radio')}} con un {{htmlelement('label')}} associato, etichettando l'intero gruppo con un paio semantico appropriato di {{htmlelement('fieldset')}} e {{htmlelement('legend')}}.
+Si può iniziare con un elenco non ordinato completamente semantico e accessibile di pulsanti {{htmlelement('input/radio','radio')}} con un {{htmlelement('label')}} associato, etichettando l'intero gruppo con una coppia semanticamente appropriata di {{htmlelement('fieldset')}} e {{htmlelement('legend')}}.
 
 ```html
 <fieldset>
@@ -2011,7 +1984,7 @@ Possiamo iniziare con un elenco completamente semantico, accessibile e non ordin
 </fieldset>
 ```
 
-Faremo un po' di styling sull'elenco di radio button (non sul legend/fieldset) per farlo sembrare un po' come l'esempio precedente, solo per mostrare che si può fare:
+Verrà applicato un po' di stile all'elenco dei pulsanti radio, ma non a legend/fieldset, per farlo assomigliare in qualche modo all'esempio precedente, solo per dimostrare che è possibile:
 
 ```css
 .styledSelect {
@@ -2031,7 +2004,7 @@ Faremo un po' di styling sull'elenco di radio button (non sul legend/fieldset) p
 .styledSelect label {
   margin: 0;
   line-height: 2;
-  padding: 0 0 0 4px;
+  padding-left: 4px;
 }
 .styledSelect:not(:focus-within) input:not(:checked) + label {
   height: 0;
@@ -2039,7 +2012,7 @@ Faremo un po' di styling sull'elenco di radio button (non sul legend/fieldset) p
   overflow: hidden;
 }
 .styledSelect:not(:focus-within) input:checked + label {
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-radius: 0.4em;
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%);
 }
@@ -2052,35 +2025,35 @@ Faremo un po' di styling sull'elenco di radio button (non sul legend/fieldset) p
   margin: 0 -4px 0 4px;
 }
 .styledSelect:focus-within {
-  border: 0.2em solid #000;
+  border: 0.2em solid black;
   border-radius: 0.4em;
   box-shadow: 0 0.1em 0.2em rgb(0 0 0 / 45%);
 }
 .styledSelect:focus-within input:checked + label {
-  background-color: #333;
-  color: #fff;
+  background-color: #333333;
+  color: white;
   width: 100%;
 }
 ```
 
-Senza JavaScript, e solo con un po' di CSS, possiamo stilizzare l'elenco dei radio button per mostrare solo l'elemento selezionato. Quando il fuoco è all'interno del `<ul>` nel `<fieldset>`, l'elenco si apre e i tasti freccia su e giù (e sinistra e destra) funzionano per selezionare gli elementi precedenti e successivi. Provalo:
+Senza JavaScript e con solo una piccola quantità di CSS, è possibile stilizzare l'elenco di pulsanti radio affinché mostri soltanto l'elemento selezionato. Quando il focus si trova all'interno di `<ul>` nel `<fieldset>`, l'elenco si apre e le frecce su e giù, nonché sinistra e destra, consentono di selezionare gli elementi precedenti e successivi. Provalo:
 
 {{EmbedLiveSample("An_alternative_approach_Using_radio_buttons",200,240)}}
 
-Questo funziona, in una certa misura, senza JavaScript. Abbiamo creato un controllo simile al nostro controllo personalizzato, che funziona anche se il JavaScript fallisce. Sembra una grande soluzione, giusto? Beh, non al 100%. Funziona con la tastiera, ma non come ci si aspetta con un clic del mouse. Probabilmente ha più senso utilizzare gli standard web come base per i controlli personalizzati invece di affidarsi a framework per creare elementi senza semantica nativa. Tuttavia, il nostro controllo non ha la stessa funzionalità che un `<select>` ha nativamente.
+Questo funziona, in una certa misura, senza JavaScript. È stato creato un controllo simile al controllo personalizzato, che funziona anche se JavaScript non riesce a essere eseguito. Sembra un'ottima soluzione, giusto? Beh, non al 100%. Funziona con la tastiera, ma non come previsto con un clic del mouse. Probabilmente ha più senso usare gli standard web come base per i controlli personalizzati invece di fare affidamento su framework per creare elementi senza semantica nativa. Tuttavia, il controllo non possiede la stessa funzionalità che un `<select>` offre nativamente.
 
-Il lato positivo è che questo controllo è completamente accessibile a un lettore di schermo e completamente navigabile tramite tastiera. Tuttavia, questo controllo non è un sostituto di {{htmlelement('select')}}. Ci sono funzionalità che differiscono e/o mancano. Ad esempio, tutte e quattro le frecce navigano attraverso le opzioni, ma fare clic sulla freccia giù quando l'utente si trova sull'ultimo pulsante lo porta al primo pulsante; non si ferma all'inizio e alla fine dell'elenco delle opzioni come fa un `<select>`.
+Dal lato positivo, questo controllo è completamente accessibile a un lettore di schermo e pienamente navigabile tramite tastiera. Tuttavia, non è un sostituto di {{htmlelement('select')}}. Alcune funzionalità sono diverse e/o mancanti. Ad esempio, tutte e quattro le frecce consentono di navigare tra le opzioni, ma facendo clic sulla freccia giù quando l'utente si trova sull'ultimo pulsante, questo viene portato al primo pulsante; non si ferma all'inizio e alla fine dell'elenco di opzioni come fa un `<select>`.
 
-Lasceremo l'aggiunta di questa funzionalità mancante come esercizio per il lettore.
+L'aggiunta di questa funzionalità mancante viene lasciata come esercizio per chi legge.
 
 ## Conclusione
 
-Abbiamo visto tutti i fondamenti della costruzione di un controllo di form personalizzato, ma come puoi vedere non è banale da fare. Prima di creare il tuo controllo personalizzato, considera se HTML fornisce elementi alternativi che possono essere utilizzati per supportare adeguatamente i tuoi requisiti. Se hai bisogno di creare un controllo personalizzato, è spesso più facile fare affidamento su librerie di terze parti invece di costruire il tuo. Ma, se crei il tuo, modifichi elementi esistenti, o usi un framework per implementare un controllo pre-confezionato, ricorda che creare un controllo di form usabile e accessibile è più complicato di quanto sembri.
+Sono state viste tutte le basi per creare un controllo di modulo personalizzato, ma come si può osservare non è un'operazione banale. Prima di creare un controllo personalizzato, occorre considerare se HTML fornisca elementi alternativi che possano supportare adeguatamente i requisiti. Se è davvero necessario creare un controllo personalizzato, spesso è più semplice affidarsi a librerie di terze parti invece di crearne uno da zero. Tuttavia, se si decide di crearne uno, modificare elementi esistenti oppure usare un framework per implementare un controllo preconfezionato, occorre ricordare che creare un controllo di modulo usabile e accessibile è più complicato di quanto sembri.
 
-Ecco alcune librerie che dovresti considerare prima di scrivere il tuo codice:
+Ecco alcune librerie da considerare prima di scrivere codice personalizzato:
 
 - [jQuery UI](https://jqueryui.com/)
 - [AXE accessible custom select dropdowns](https://www.webaxe.org/accessible-custom-select-dropdowns/)
 - [msDropDown](https://github.com/marghoobsuleman/ms-Dropdown)
 
-Se crei controlli alternativi tramite radio button, il tuo JavaScript, o con una libreria di terze parti, assicurati che sia accessibile e a prova di futuro; cioè, deve essere in grado di funzionare meglio con una varietà di browser la cui compatibilità con gli standard web che utilizzano varia. Divertiti!
+Se vengono creati controlli alternativi tramite pulsanti radio, JavaScript personalizzato o una libreria di terze parti, assicurarsi che siano accessibili e a prova di funzionalità; devono cioè poter funzionare correttamente con una varietà di browser la cui compatibilità con gli standard web usati può variare. Buon divertimento!

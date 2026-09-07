@@ -3,26 +3,28 @@ title: Introduzione agli eventi
 short-title: Events
 slug: Learn_web_development/Core/Scripting/Events
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 2b4a2ad5d9ba084a9eaa2f9204102655e7b575c4
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Return_values","Learn_web_development/Core/Scripting/Event_bubbling", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Functions","Learn_web_development/Core/Scripting/Event_bubbling", "Learn_web_development/Core/Scripting")}}
 
-Gli eventi sono cose che accadono nel sistema che stai programmando, di cui il sistema ti informa affinché il tuo codice possa reagire a essi. Ad esempio, se un utente clicca un pulsante su una pagina web, potresti voler reagire a quell'azione mostrando una finestra informativa. In questo articolo, discuteremo alcuni concetti importanti sugli eventi e analizzeremo i fondamenti di come funzionano nei browser.
+Gli eventi sono cose che accadono nel sistema che si sta programmando, di cui il sistema informa in modo che il codice possa reagire.
+Ad esempio, se l'utente fa clic su un pulsante in una pagina web, potrebbe essere necessario reagire a quell'azione visualizzando una casella informativa.
+In questo articolo vengono discussi alcuni concetti importanti relativi agli eventi e vengono illustrate le basi del loro funzionamento nei browser.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
-      <td>Una comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e delle <a href="/it/docs/Learn_web_development/Core/Styling_basics">basi di CSS</a>, familiarità con le basi di JavaScript come trattato nelle lezioni precedenti.</td>
+      <td>Conoscenza di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le basi di JavaScript trattate nelle lezioni precedenti.</td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Cosa sono gli eventi — un segnale inviato dal browser quando accade qualcosa di significativo, al quale il programmatore può rispondere con del codice.</li>
-          <li>Configurare gestori di eventi usando <code>addEventListener()</code> (e <code>removeEventListener()</code>) e proprietà dei gestori di eventi.</li>
-          <li>Attributi dei gestori di eventi inline, e perché non dovresti usarli.</li>
+          <li>Cosa sono gli eventi: un segnale emesso dal browser quando accade qualcosa di significativo, a cui lo sviluppatore può reagire eseguendo del codice.</li>
+          <li>Impostare event handler usando <code>addEventListener()</code> (e <code>removeEventListener()</code>) e le proprietà degli event handler.</li>
+          <li>Attributi inline degli event handler e perché non dovrebbero essere usati.</li>
           <li>Oggetti evento.</li>
         </ul>
       </td>
@@ -32,28 +34,27 @@ Gli eventi sono cose che accadono nel sistema che stai programmando, di cui il s
 
 ## Che cos'è un evento?
 
-Gli eventi sono cose che accadono nel sistema che stai programmando — il sistema produce (o "lancia") un segnale di qualche tipo quando si verifica un evento, e fornisce un meccanismo tramite il quale può essere intrapresa un'azione automaticamente (cioè, eseguire del codice) quando l'evento si verifica. Gli eventi vengono attivati all'interno della finestra del browser e tendono ad essere associati a un oggetto specifico che si trova nel browser. Questo potrebbe essere un singolo elemento, un insieme di elementi, il documento HTML caricato nella scheda corrente o l'intera finestra del browser. Ci sono molti tipi diversi di eventi che possono verificarsi.
+Gli eventi sono cose che accadono nel sistema che si sta programmando: il sistema produce (o "emette") un qualche tipo di segnale quando si verifica un evento e fornisce un meccanismo tramite cui un'azione può essere eseguita automaticamente (ovvero, del codice viene eseguito) quando l'evento si verifica.
+Gli eventi vengono emessi all'interno della finestra del browser e tendono a essere associati a un elemento specifico presente in essa. Potrebbe trattarsi di un singolo elemento, di un insieme di elementi, del documento HTML caricato nella scheda corrente o dell'intera finestra del browser.
+Esistono molti tipi diversi di eventi che possono verificarsi.
 
 Ad esempio:
 
-- L'utente seleziona, clicca o passa il cursore su un determinato elemento.
+- L'utente seleziona un determinato elemento, fa clic su di esso o vi passa sopra il cursore.
 - L'utente preme un tasto sulla tastiera.
 - L'utente ridimensiona o chiude la finestra del browser.
 - Una pagina web termina il caricamento.
-- Un modulo viene inviato.
-- Un video viene riprodotto, messo in pausa o finisce.
+- Viene inviato un modulo.
+- Un video viene riprodotto, messo in pausa o termina.
 - Si verifica un errore.
 
-Puoi intuire da questo (e dare un'occhiata al [riferimento eventi](/it/docs/Web/Events) di MDN) che ci sono **molti** eventi che possono essere lanciati.
+Da questo elenco (e dando un'occhiata all'[indice degli eventi](/it/docs/Web/API/Document_Object_Model/Events#event_index)) si può capire che esistono **moltissimi** eventi che possono essere emessi.
 
-Per reagire a un evento, si attacca un **gestore di eventi** ad esso. Questo è un blocco di codice (solitamente una funzione JavaScript che il programmatore crea) che viene eseguito quando l'evento viene lanciato. Quando un tale blocco di codice è definito per essere eseguito in risposta a un evento, diciamo che stiamo **registrando un gestore di eventi**. Nota: I gestori di eventi vengono talvolta chiamati **ascoltatori di eventi** — per i nostri scopi, sono praticamente intercambiabili, anche se a rigor di termini, lavorano insieme. L'ascoltatore ascolta l'evento che si sta verificando e il gestore è il codice che viene eseguito in risposta al suo verificarsi.
+Per reagire a un evento, si associa a esso un **event listener**. Si tratta di una funzionalità del codice che rimane in ascolto dell'emissione dell'evento. Quando l'evento viene emesso, viene chiamata una funzione **event handler** (a cui l'event listener fa riferimento o che è contenuta al suo interno) per reagire all'emissione dell'evento. Quando un blocco di codice viene configurato per essere eseguito in risposta a un evento, si dice che viene **registrato un event handler**.
 
-> [!NOTE]
-> Gli eventi web non sono parte del linguaggio JavaScript di base — sono definiti come parte delle API integrate nel browser.
+### Un esempio: gestire un evento di clic
 
-### Un esempio: gestione di un evento di click
-
-Nel seguente esempio, abbiamo un singolo {{htmlelement("button")}} nella pagina:
+Nell'esempio seguente, nella pagina è presente un solo {{htmlelement("button")}}:
 
 ```html
 <button>Change color</button>
@@ -65,7 +66,7 @@ button {
 }
 ```
 
-Poi abbiamo un po' di JavaScript. Lo esamineremo più dettagliatamente nella prossima sezione, ma per ora possiamo solo dire: aggiunge un gestore di eventi all'evento `"click"` del pulsante, e il gestore reagisce all'evento impostando lo sfondo della pagina su un colore casuale:
+È quindi presente del JavaScript. Questo verrà esaminato più nel dettaglio nella sezione successiva, ma per ora è sufficiente dire che aggiunge un event listener all'evento `"click"` del pulsante e che la funzione handler contenuta reagisce all'evento impostando lo sfondo della pagina su un colore casuale:
 
 ```js
 const btn = document.querySelector("button");
@@ -80,15 +81,15 @@ btn.addEventListener("click", () => {
 });
 ```
 
-L'output dell'esempio è il seguente. Prova a cliccare il pulsante:
+L'output dell'esempio è il seguente. Provare a fare clic sul pulsante:
 
 {{ EmbedLiveSample('An example: handling a click event', '100%', 200, "", "") }}
 
-## Utilizzando addEventListener()
+## Usare addEventListener()
 
-Come abbiamo visto nell'ultimo esempio, gli oggetti che possono lanciare eventi hanno un metodo [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener), e questo è il meccanismo raccomandato per aggiungere gestori di eventi.
+Come visto nell'ultimo esempio, gli oggetti che possono emettere eventi dispongono di un metodo [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener), che è il meccanismo consigliato per aggiungere event listener.
 
-Analizziamo più da vicino il codice dell'ultimo esempio:
+Esaminiamo più da vicino il codice dell'ultimo esempio:
 
 ```js
 const btn = document.querySelector("button");
@@ -103,12 +104,12 @@ btn.addEventListener("click", () => {
 });
 ```
 
-L'elemento {{HTMLElement("button")}} HTML lancerà un evento quando l'utente clicca sul pulsante. Quindi definisce una funzione `addEventListener()`, che stiamo chiamando qui. Stiamo passando due parametri:
+L'elemento HTML {{HTMLElement("button")}} emette un evento `click` quando l'utente vi fa clic. Su di esso viene chiamato il metodo `addEventListener()` per aggiungere un event listener; questo accetta due parametri:
 
-- la stringa `"click"`, per indicare che vogliamo ascoltare l'evento di click. I pulsanti possono lanciare molti altri eventi, come [`"mouseover"`](/it/docs/Web/API/Element/mouseover_event) quando l'utente passa il mouse sopra il pulsante, o [`"keydown"`](/it/docs/Web/API/Element/keydown_event) quando l'utente preme un tasto e il pulsante è concentrato.
-- una funzione da chiamare quando l'evento si verifica. Nel nostro caso, la funzione genera un colore RGB casuale e imposta il [`background-color`](/it/docs/Web/CSS/background-color) della pagina [`<body>`](/it/docs/Web/HTML/Reference/Elements/body) su quel colore.
+- la stringa `"click"`, per indicare che si desidera ascoltare l'evento `click`. I pulsanti possono emettere molti altri eventi, come [`"mouseover"`](/it/docs/Web/API/Element/mouseover_event) quando l'utente sposta il mouse sopra il pulsante, oppure [`"keydown"`](/it/docs/Web/API/Element/keydown_event) quando l'utente preme un tasto e il pulsante ha il focus.
+- una funzione da chiamare quando si verifica l'evento. In questo caso, la funzione anonima definita genera un colore RGB casuale e imposta la {{cssxref("background-color")}} del [`<body>`](/it/docs/Web/HTML/Reference/Elements/body) della pagina su quel colore.
 
-Va bene rendere la funzione del gestore una funzione nominata separata, come questa:
+Si potrebbe anche creare una funzione nominata separata e farvi riferimento nel secondo parametro di `addEventListener()`, in questo modo:
 
 ```js
 const btn = document.querySelector("button");
@@ -127,66 +128,50 @@ btn.addEventListener("click", changeBackground);
 
 ### Ascoltare altri eventi
 
-Ci sono molti eventi diversi che possono essere lanciati da un elemento pulsante. Facciamo un esperimento.
+Esistono molti eventi diversi che possono essere emessi da un elemento pulsante. Facciamo qualche esperimento.
 
-Innanzitutto, effettua una copia locale di [random-color-addeventlistener.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/random-color-addeventlistener.html), e aprila nel tuo browser. È semplicemente una copia dell'esempio semplice con il colore casuale che abbiamo già usato. Ora prova a cambiare `click` con i seguenti valori diversi a turno e osserva i risultati nell'esempio:
+Innanzitutto, creare una copia locale di [random-color-addeventlistener.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/random-color-addeventlistener.html) e aprirla nel browser.
+Si tratta solo di una copia del semplice esempio del colore casuale già usato. Ora provare a sostituire `click`, a turno, con i seguenti valori diversi e osservare i risultati nell'esempio:
 
-- [`focus`](/it/docs/Web/API/Element/focus_event) e [`blur`](/it/docs/Web/API/Element/blur_event) — Il colore cambia quando il pulsante è concentrato e non concentrato; prova a premere il tab per mettere a fuoco il pulsante e premi di nuovo il tab per togliere il fuoco dal pulsante. Questi eventi spesso vengono utilizzati per visualizzare informazioni sul riempimento dei campi del modulo quando sono concentrati, o per visualizzare un messaggio di errore se un campo del modulo è stato riempito con un valore errato.
-- [`dblclick`](/it/docs/Web/API/Element/dblclick_event) — Il colore cambia solo quando il pulsante viene cliccato due volte.
-- [`mouseover`](/it/docs/Web/API/Element/mouseover_event) e [`mouseout`](/it/docs/Web/API/Element/mouseout_event) — Il colore cambia quando il puntatore del mouse passa sopra il pulsante, o quando il puntatore si sposta fuori dal pulsante, rispettivamente.
+- [`focus`](/it/docs/Web/API/Element/focus_event) e [`blur`](/it/docs/Web/API/Element/blur_event): il colore cambia quando il pulsante riceve e perde il focus; provare a premere Tab per portare il focus sul pulsante e premere di nuovo Tab per spostare il focus dal pulsante.
+  Questi eventi vengono spesso usati per visualizzare informazioni sulla compilazione dei campi di un modulo quando ricevono il focus, oppure per mostrare un messaggio di errore se un campo del modulo viene compilato con un valore non corretto.
+- [`dblclick`](/it/docs/Web/API/Element/dblclick_event): il colore cambia solo quando si fa doppio clic sul pulsante.
+- [`mouseover`](/it/docs/Web/API/Element/mouseover_event) e [`mouseout`](/it/docs/Web/API/Element/mouseout_event): il colore cambia quando il puntatore del mouse passa sopra il pulsante o quando il puntatore esce dal pulsante, rispettivamente.
 
-Alcuni eventi, come `click`, sono disponibili su quasi tutti gli elementi. Altri sono più specifici e utili solo in determinate situazioni: ad esempio, l'evento [`play`](/it/docs/Web/API/HTMLMediaElement/play_event) è disponibile solo su alcuni elementi, come {{htmlelement("video")}}.
+Alcuni eventi, come `click`, sono disponibili su quasi tutti gli elementi. Altri sono più specifici e utili solo in determinate situazioni: ad esempio, l'evento [`play`](/it/docs/Web/API/HTMLMediaElement/play_event) è disponibile solo sugli elementi che dispongono di funzionalità di riproduzione, come {{htmlelement("video")}}.
 
-### Rimozione degli ascoltatori
+### Rimuovere i listener
 
-Se hai aggiunto un gestore di eventi usando `addEventListener()`, puoi rimuoverlo nuovamente utilizzando il metodo [`removeEventListener()`](/it/docs/Web/API/EventTarget/removeEventListener). Ad esempio, in questo modo si rimuoverebbe il gestore di eventi `changeBackground()`:
+Se è stato aggiunto un event listener usando `addEventListener()`, è possibile rimuoverlo se necessario. Il modo più comune per farlo è usare il metodo [`removeEventListener()`](/it/docs/Web/API/EventTarget/removeEventListener). Ad esempio, la riga seguente rimuoverebbe l'event handler `click` visto in precedenza:
 
 ```js
 btn.removeEventListener("click", changeBackground);
 ```
 
-I gestori di eventi possono anche essere rimossi passando un [`AbortSignal`](/it/docs/Web/API/AbortSignal) a [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener) e successivamente chiamando [`abort()`](/it/docs/Web/API/AbortController/abort) sul controller che possiede l'`AbortSignal`. Ad esempio, aggiungere un gestore di eventi che possiamo rimuovere con un `AbortSignal`:
+Per programmi semplici e di piccole dimensioni non è necessario ripulire i vecchi event handler non usati, ma per programmi più grandi e complessi questo può migliorare l'efficienza.
+Inoltre, la possibilità di rimuovere gli event handler consente di far eseguire allo stesso pulsante azioni diverse in circostanze diverse: è sufficiente aggiungere o rimuovere gli handler.
 
-```js-nolint
-const controller = new AbortController();
+### Aggiungere più listener per un singolo evento
 
-btn.addEventListener("click",
-  () => {
-    const rndCol = `rgb(${random(255)} ${random(255)} ${random(255)})`;
-    document.body.style.backgroundColor = rndCol;
-  },
-  { signal: controller.signal } // pass an AbortSignal to this handler
-);
-```
-
-Quindi, il gestore di eventi creato dal codice sopra può essere rimosso in questo modo:
-
-```js
-controller.abort(); // removes any/all event handlers associated with this controller
-```
-
-Per programmi semplici e piccoli, non è necessario pulire vecchi gestori di eventi non utilizzati, ma per programmi più grandi e complessi, può migliorare l'efficienza. Inoltre, la capacità di rimuovere i gestori di eventi ti consente di avere lo stesso pulsante che esegue azioni diverse in circostanze diverse: tutto ciò che devi fare è aggiungere o rimuovere i gestori.
-
-### Aggiungere più ascoltatori per un singolo evento
-
-Facendo più di una chiamata a [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener), fornendo gestori diversi, puoi avere più gestori per un singolo evento:
+Effettuando più di una chiamata a [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener) e fornendo handler diversi, è possibile avere più funzioni handler eseguite in risposta a un singolo evento:
 
 ```js
 myElement.addEventListener("click", functionA);
 myElement.addEventListener("click", functionB);
 ```
 
-Entrambe le funzioni ora verrebbero eseguite quando l'elemento viene cliccato.
+Entrambe le funzioni verrebbero ora eseguite quando si fa clic sull'elemento.
 
-## Altri meccanismi di ascolto degli eventi
+## Altri meccanismi per gli event listener
 
-Raccomandiamo di utilizzare `addEventListener()` per registrare gestori di eventi. È il metodo più potente e si adatta meglio a programmi più complessi. Tuttavia, ci sono altri due modi per registrare gestori di eventi che potresti vedere: _proprietà dei gestori di eventi_ e _gestori di eventi inline_.
+Si consiglia di usare `addEventListener()` per registrare gli event handler. È il metodo più potente e quello che si adatta meglio ai programmi più complessi. Tuttavia, esistono altri due modi per registrare gli event handler che potrebbero essere incontrati: le _proprietà degli event handler_ e gli _event handler inline_.
 
-### Proprietà dei gestori di eventi
+### Proprietà degli event handler
 
-Gli oggetti (come i pulsanti) che possono lanciare eventi solitamente hanno anche proprietà il cui nome è `on` seguito dal nome dell'evento. Ad esempio, gli elementi hanno una proprietà `onclick`. Questa è chiamata _proprietà del gestore di eventi_. Per ascoltare l'evento, puoi assegnare la funzione gestore alla proprietà.
+Gli oggetti (come i pulsanti) che possono emettere eventi dispongono solitamente anche di proprietà il cui nome è formato da `on` seguito dal nome di un evento. Ad esempio, gli elementi dispongono di una proprietà `onclick`.
+Questa viene chiamata **proprietà dell'event handler**. Per ascoltare l'evento, è possibile assegnare la funzione handler alla proprietà.
 
-Ad esempio, potremmo riscrivere l'esempio del colore casuale in questo modo:
+Ad esempio, l'esempio del colore casuale potrebbe essere riscritto in questo modo:
 
 ```js
 const btn = document.querySelector("button");
@@ -201,7 +186,7 @@ btn.onclick = () => {
 };
 ```
 
-Puoi anche impostare la proprietà del gestore su una funzione nominata:
+È anche possibile impostare la proprietà handler su una funzione nominata:
 
 ```js
 const btn = document.querySelector("button");
@@ -218,25 +203,18 @@ function bgChange() {
 btn.onclick = bgChange;
 ```
 
-Con le proprietà dei gestori di eventi, non puoi aggiungere più di un gestore per un singolo evento. Ad esempio, puoi chiamare `addEventListener('click', handler)` su un elemento più volte, specificando funzioni diverse nel secondo argomento:
-
-```js
-element.addEventListener("click", function1);
-element.addEventListener("click", function2);
-```
-
-Questo è impossibile con le proprietà dei gestori di eventi perché qualsiasi tentativo successivo di impostare la proprietà sovrascriverà quelli precedenti:
+Le proprietà degli event handler presentano svantaggi rispetto a `addEventListener()`. Uno dei più significativi è che non è possibile [aggiungere più di un listener per un singolo evento](#aggiungere_più_listener_per_un_singolo_evento). Il seguente schema non funziona, perché ogni tentativo successivo di impostare il valore della proprietà sovrascrive quelli precedenti:
 
 ```js
 element.onclick = function1;
 element.onclick = function2;
 ```
 
-### Gestori di eventi inline — non usarli
+### Event handler inline — non usarli
 
-Potresti vedere anche un modello simile a questo nel tuo codice:
+Nel codice potrebbe anche comparire uno schema come questo:
 
-```html
+```html example-bad
 <button onclick="bgChange()">Press me</button>
 ```
 
@@ -247,19 +225,23 @@ function bgChange() {
 }
 ```
 
-Il metodo più antico di registrazione dei gestori di eventi trovato sul Web coinvolge [_attributi di gestori di eventi HTML_](/it/docs/Web/HTML/Reference/Attributes#event_handler_attributes) (o _gestori di eventi inline_) come quello mostrato sopra — il valore dell'attributo è letteralmente il codice JavaScript che vuoi eseguire quando si verifica l'evento. L'esempio sopra invoca una funzione definita all'interno di un elemento {{htmlelement("script")}} nella stessa pagina, ma potresti anche inserire JavaScript direttamente all'interno dell'attributo, ad esempio:
+Il primo metodo per registrare gli event handler comparso sul Web prevedeva [_attributi HTML degli event handler_](/it/docs/Web/HTML/Reference/Attributes#event_handler_attributes) (o _event handler inline_) come quello mostrato sopra: il valore dell'attributo contiene il codice JavaScript da eseguire quando si verifica l'evento.
+L'esempio precedente invoca una funzione definita all'interno di un elemento {{htmlelement("script")}} nella stessa pagina, ma è anche possibile inserire JavaScript direttamente nell'attributo, ad esempio:
 
-```html
+```html example-bad
 <button onclick="alert('Hello, this is my old-fashioned event handler!');">
   Press me
 </button>
 ```
 
-Puoi trovare equivalenti degli attributi HTML per molte delle proprietà dei gestori di eventi; tuttavia, non dovresti usarli — sono considerati una cattiva pratica. Potrebbe sembrare facile utilizzare un attributo del gestore di eventi se stai facendo qualcosa di veramente veloce, ma diventano rapidamente ingestibili e inefficaci.
+È possibile trovare equivalenti negli attributi HTML per molte proprietà degli event handler; tuttavia, non dovrebbero essere usati, poiché sono considerati una cattiva pratica.
+Potrebbe sembrare semplice usare un attributo event handler per qualcosa di molto rapido, ma diventano presto difficili da gestire e inefficienti.
 
-In primo luogo, non è una buona idea mescolare il tuo HTML e il tuo JavaScript, poiché diventa difficile da leggere. Mantenere il tuo JavaScript separato è una buona pratica, e se si trova in un file separato puoi applicarlo a più documenti HTML.
+Per cominciare, non è una buona idea mescolare HTML e JavaScript, perché il codice diventa difficile da leggere. Mantenere separato il JavaScript è una buona pratica e, se si trova in un file separato, può essere applicato a più documenti HTML.
 
-Anche in un singolo file, i gestori di eventi inline non sono una buona idea. Un pulsante va bene, ma se ne avessi 100? Dovresti aggiungere 100 attributi al file; si trasformerebbe rapidamente in un incubo per la manutenzione. Con JavaScript, puoi facilmente aggiungere una funzione gestore di eventi a tutti i pulsanti nella pagina, indipendentemente da quanti siano, usando qualcosa come questo:
+Anche in un singolo file, gli event handler inline non sono una buona idea.
+Un pulsante va bene, ma cosa succederebbe con 100 pulsanti? Sarebbe necessario aggiungere 100 attributi al file e la manutenzione diventerebbe presto un incubo.
+Con JavaScript, è possibile aggiungere facilmente una funzione event handler a tutti i pulsanti della pagina, indipendentemente dal loro numero, usando qualcosa come questo:
 
 ```js
 const buttons = document.querySelectorAll("button");
@@ -269,13 +251,15 @@ for (const button of buttons) {
 }
 ```
 
-Infine, molte configurazioni server comuni disabiliteranno JavaScript inline, come misura di sicurezza.
+Infine, molte configurazioni comuni dei server non consentono JavaScript inline come misura di sicurezza.
 
-**Non dovresti mai usare gli attributi dei gestori di eventi HTML** — sono obsoleti e utilizzarli è una cattiva pratica.
+**Non dovrebbero mai essere usati gli attributi HTML degli event handler**: sono obsoleti e il loro utilizzo è una cattiva pratica.
 
 ## Oggetti evento
 
-A volte, all'interno di una funzione di gestore eventi, vedrai un parametro specificato con un nome come `event`, `evt` o `e`. Questo è chiamato **oggetto evento**, e viene passato automaticamente ai gestori di eventi per fornire funzionalità extra e informazioni. Ad esempio, riscriviamo nuovamente il nostro esempio di colore casuale:
+A volte, all'interno di una funzione event handler, è presente un parametro specificato con un nome come `event`, `evt` o `e`.
+Questo è chiamato **oggetto evento** e viene passato automaticamente agli event handler per fornire funzionalità e informazioni aggiuntive.
+Ad esempio, riscriviamo l'esempio del colore casuale per includere un oggetto evento:
 
 ```js
 const btn = document.querySelector("button");
@@ -294,20 +278,22 @@ btn.addEventListener("click", bgChange);
 ```
 
 > [!NOTE]
-> Puoi trovare il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/random-color-eventobject.html) per questo esempio su GitHub (vedi anche un [esempio in esecuzione dal vivo](https://mdn.github.io/learning-area/javascript/building-blocks/events/random-color-eventobject.html)).
+> Il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/random-color-eventobject.html) di questo esempio è disponibile su GitHub (è anche possibile [vederlo in esecuzione](https://mdn.github.io/learning-area/javascript/building-blocks/events/random-color-eventobject.html)).
 
-Qui puoi vedere che stiamo includendo un oggetto evento, **e**, nella funzione, e nella funzione impostiamo uno stile di sfondo colore su `e.target` — che è il pulsante stesso. La proprietà `target` dell'oggetto evento è sempre un riferimento all'elemento su cui si è verificato l'evento. Quindi, in questo esempio, stiamo impostando un colore di sfondo casuale sul pulsante, non sulla pagina.
+Qui si può vedere che viene incluso un oggetto evento, **e**, nella funzione e che nella funzione viene impostato uno stile di colore di sfondo su `e.target`, ovvero il pulsante stesso.
+La proprietà `target` dell'oggetto evento è sempre un riferimento all'elemento su cui si è verificato l'evento.
+Quindi, in questo esempio, viene impostato un colore di sfondo casuale sul pulsante, non sulla pagina.
 
 > [!NOTE]
-> Puoi usare qualsiasi nome ti piaccia per l'oggetto evento — devi solo scegliere un nome che puoi poi usare per riferirti ad esso all'interno della funzione gestore eventi.
-> `e`/`evt`/`event` è più comunemente usato dagli sviluppatori perché sono corti e facili da ricordare.
-> È sempre bene essere coerenti — con te stesso e, se possibile, con gli altri.
+> È possibile usare qualsiasi nome per l'oggetto evento: basta scegliere un nome a cui sia possibile fare riferimento all'interno della funzione event handler.
+> `e`, `evt` ed `event` sono comunemente usati dagli sviluppatori perché sono brevi e facili da ricordare.
+> È sempre bene essere coerenti, con sé stessi e, se possibile, con gli altri.
 
-### Proprietà extra degli oggetti evento
+### Proprietà aggiuntive degli oggetti evento
 
-La maggior parte degli oggetti evento ha un insieme standard di proprietà e metodi disponibili sull'oggetto evento; vedi la documentazione dell'oggetto [`Event`](/it/docs/Web/API/Event) per un elenco completo.
+La maggior parte degli oggetti evento dispone di un insieme standard di proprietà e metodi disponibili; per un elenco completo, vedere il riferimento dell'oggetto [`Event`](/it/docs/Web/API/Event).
 
-Alcuni oggetti evento aggiungono proprietà extra che sono rilevanti per quel tipo particolare di evento. Ad esempio, l'evento [`keydown`](/it/docs/Web/API/Element/keydown_event) viene lanciato quando l'utente preme un tasto. Il suo oggetto evento è un [`KeyboardEvent`](/it/docs/Web/API/KeyboardEvent), che è un oggetto `Event` specializzato con una proprietà `key` che ti dice quale tasto è stato premuto:
+Alcuni oggetti evento aggiungono proprietà extra pertinenti a quel particolare tipo di evento. Ad esempio, l'evento [`keydown`](/it/docs/Web/API/Element/keydown_event) viene emesso quando l'utente preme un tasto. Il suo oggetto evento è un [`KeyboardEvent`](/it/docs/Web/API/KeyboardEvent), ovvero un oggetto `Event` specializzato con una proprietà `key` che indica quale tasto è stato premuto:
 
 ```html
 <input id="textBox" type="text" />
@@ -328,20 +314,24 @@ div {
 }
 ```
 
-Prova a digitare nella casella di testo e guarda l'output:
+Provare a digitare nella casella di testo e osservare l'output:
 
 {{EmbedLiveSample("Extra_properties_of_event_objects", 100, 100)}}
 
-## Prevenire il comportamento predefinito
+## Impedire il comportamento predefinito
 
-A volte, ti capiterà una situazione in cui vuoi impedire a un evento di fare quello che farebbe in modo predefinito. L'esempio più comune è quello di un modulo web, ad esempio un modulo di registrazione personalizzato. Quando inserisci i dettagli e clicchi sul pulsante di invio, il comportamento naturale è quello che i dati vengano inviati a una pagina specifica sul server per l'elaborazione, e il browser venga reindirizzato a una pagina di "messaggio di successo" di qualche tipo (o la stessa pagina, se non ne viene specificata un'altra).
+A volte si incontrerà una situazione in cui è necessario impedire a un evento di eseguire il suo comportamento predefinito.
+L'esempio più comune è quello di un modulo web, ad esempio un modulo di registrazione personalizzato.
+Quando vengono compilati i dati e si fa clic sul pulsante di invio, il comportamento naturale consiste nell'inviare i dati a una pagina specificata sul server per l'elaborazione e nel reindirizzare il browser a una sorta di pagina con un "messaggio di successo" (o alla stessa pagina, se non ne viene specificata un'altra).
 
-Il problema sorge quando l'utente non ha inviato correttamente i dati — come sviluppatore, vuoi impedire l'invio al server e fornire un messaggio di errore che indichi cosa c'è di sbagliato e cosa deve essere fatto per risolvere il problema. Alcuni browser supportano funzionalità di convalida dei dati del modulo automatiche, ma poiché molti non lo fanno, si consiglia di non fare affidamento su queste e implementare i propri controlli di convalida. Vediamo un esempio.
+Il problema si presenta quando l'utente non ha inviato correttamente i dati: come sviluppatore, è necessario impedire l'invio al server e fornire un messaggio di errore che indichi cosa non va e cosa occorre fare per correggerlo.
+Alcuni browser supportano funzionalità di convalida automatica dei dati dei moduli, ma poiché molti non le supportano, si consiglia di non fare affidamento su di esse e di implementare controlli di convalida propri.
+Vediamo un esempio.
 
-Innanzitutto, un semplice modulo HTML che richiede di inserire il proprio nome e cognome:
+Innanzitutto, un semplice modulo HTML che richiede l'inserimento di nome e cognome:
 
 ```html
-<form>
+<form action="#">
   <div>
     <label for="fname">First name: </label>
     <input id="fname" type="text" />
@@ -363,7 +353,8 @@ div {
 }
 ```
 
-Ora un po' di JavaScript — qui implementiamo un controllo molto semplice all'interno di un gestore per l'evento [`submit`](/it/docs/Web/API/HTMLFormElement/submit_event) (l'evento submit viene lanciato su un modulo quando viene inviato) che verifica se i campi di testo sono vuoti. Se lo sono, chiamiamo la funzione [`preventDefault()`](/it/docs/Web/API/Event/preventDefault) sull'oggetto evento — che ferma l'invio del modulo — e poi visualizziamo un messaggio di errore nel paragrafo sotto il nostro modulo per dire all'utente cosa c'è che non va:
+Ora un po' di JavaScript: qui viene implementato un controllo di base all'interno di un handler per l'evento [`submit`](/it/docs/Web/API/HTMLFormElement/submit_event) (l'evento di invio viene emesso su un modulo quando viene inviato) che verifica se i campi di testo sono vuoti.
+Se lo sono, viene chiamata la funzione [`preventDefault()`](/it/docs/Web/API/Event/preventDefault) sull'oggetto evento, che interrompe l'invio del modulo, quindi viene visualizzato un messaggio di errore nel paragrafo sotto il modulo per indicare all'utente cosa non va:
 
 ```js
 const form = document.querySelector("form");
@@ -379,27 +370,29 @@ form.addEventListener("submit", (e) => {
 });
 ```
 
-Ovviamente, questa è una validazione del modulo piuttosto debole — non fermerebbe l'utente dal convalidare il modulo con spazi o numeri inseriti nei campi, ad esempio — ma va bene per scopi di esempio. L'output è il seguente:
+Ovviamente, si tratta di una convalida del modulo piuttosto debole: non impedirebbe all'utente di convalidare il modulo inserendo, ad esempio, spazi o numeri nei campi, ma è adeguata per scopi dimostrativi.
 
-{{ EmbedLiveSample('Preventing_default_behavior', '100%', 180, "", "") }}
+È possibile vedere l'esempio completo [in esecuzione](https://mdn.github.io/learning-area/javascript/building-blocks/events/preventdefault-validation.html): provarlo direttamente lì. Per il codice sorgente completo, vedere [preventdefault-validation.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/preventdefault-validation.html).
 
-> [!NOTE]
-> Per il codice sorgente completo, vedi [preventdefault-validation.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/events/preventdefault-validation.html) (vedi anche un [esempio in esecuzione dal vivo](https://mdn.github.io/learning-area/javascript/building-blocks/events/preventdefault-validation.html) qui).
+## Non si tratta solo di pagine web
 
-## Non solo pagine web
+Gli eventi non sono esclusivi di JavaScript: la maggior parte dei linguaggi di programmazione dispone di qualche tipo di modello di eventi e il funzionamento del modello spesso differisce da quello di JavaScript.
+In effetti, il modello di eventi in JavaScript per le pagine web differisce dal modello di eventi per JavaScript usato in altri ambienti.
 
-Gli eventi non sono unici per JavaScript — la maggior parte dei linguaggi di programmazione ha un modello di eventi di qualche tipo, e il modo in cui il modello funziona spesso differisce dal modo di JavaScript. In realtà, il modello di eventi in JavaScript per le pagine web differisce dal modello di eventi per JavaScript come viene utilizzato in altri ambienti.
+Ad esempio, [Node.js](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs) è un runtime JavaScript molto diffuso che consente agli sviluppatori di usare JavaScript per creare applicazioni di rete e lato server.
+Il [modello di eventi di Node.js](https://nodejs.org/api/events.html) si basa su listener che ascoltano gli eventi ed emitter che emettono eventi periodicamente: non sembra molto diverso, ma il codice è piuttosto differente e usa funzioni come `on()` per registrare un event listener e `once()` per registrare un event listener che viene annullato dopo essere stato eseguito una volta.
+La documentazione dell'[evento HTTP connect di Node.js](https://nodejs.org/api/http.html#event-connect) fornisce un buon esempio.
 
-Ad esempio, [Node.js](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs) è un ambiente JavaScript molto popolare che consente agli sviluppatori di utilizzare JavaScript per costruire applicazioni di rete e lato server. Il [modello di eventi Node.js](https://nodejs.org/api/events.html) si basa sugli ascoltatori per ascoltare gli eventi e sugli emettitori per emettere eventi periodicamente — non sembra molto diverso, ma il codice è abbastanza diverso, facendo uso di funzioni come `on()` per registrare un ascoltatore di eventi, e `once()` per registrare un ascoltatore di eventi che si deregistra dopo essere stato eseguito una volta. I documenti sugli eventi di connessione [HTTP](https://nodejs.org/api/http.html#event-connect) forniscono un buon esempio.
+È inoltre possibile usare JavaScript per creare add-on multipiattaforma per browser, ovvero miglioramenti delle funzionalità del browser, usando una tecnologia chiamata [WebExtensions](/it/docs/Mozilla/Add-ons/WebExtensions).
+Il modello di eventi è simile al modello degli eventi web, ma leggermente diverso: le proprietà degli event listener sono scritte in {{Glossary("camel_case", "camel case")}} (come `onMessage` anziché `onmessage`) e devono essere combinate con la funzione `addListener`.
+Vedere la pagina [`runtime.onMessage`](/it/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage#examples) per un esempio.
 
-Puoi anche usare JavaScript per costruire componenti aggiuntivi multipiattaforma — miglioramenti della funzionalità del browser — usando una tecnologia chiamata [WebExtensions](/it/docs/Mozilla/Add-ons/WebExtensions). Il modello di eventi è simile al modello di eventi web, ma un po' diverso — le proprietà degli ascoltatori di eventi sono scritte in {{Glossary("camel_case", "camel case")}} (come `onMessage` anziché `onmessage`), e devono essere combinate con la funzione `addListener`. Vedi la pagina [`runtime.onMessage`](/it/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage#examples) per un esempio.
-
-Non è necessario comprendere nulla su altri ambienti a questo punto del tuo apprendimento; volevamo solo chiarire che gli eventi possono differire in diversi ambienti di programmazione.
+In questa fase dell'apprendimento non è necessario comprendere nulla di questi altri ambienti; l'obiettivo è semplicemente chiarire che gli eventi possono differire nei diversi ambienti di programmazione.
 
 ## Riepilogo
 
-In questo capitolo abbiamo imparato cosa sono gli eventi, come ascoltarli e come rispondere ad essi.
+In questo capitolo sono stati appresi cosa sono gli eventi, come ascoltarli e come reagire a essi.
 
-Avrai già visto che gli elementi in una pagina web possono essere nidificati all'interno di altri elementi. Ad esempio, nell'esempio [Prevenire il comportamento predefinito](#prevenire_il_comportamento_predefinito), abbiamo alcune caselle di testo, posizionate all'interno di elementi {{htmlelement("div")}}, a loro volta poste all'interno di un elemento {{htmlelement("form")}}. Cosa succede quando un ascoltatore di eventi del click viene collegato all'elemento `<form>`, e l'utente clicca all'interno di una delle caselle di testo? La funzione gestore associata viene ancora eseguita tramite un processo chiamato _event bubbling_, che viene trattato nella prossima lezione.
+Come già visto, gli elementi di una pagina web possono essere annidati all'interno di altri elementi. Ad esempio, nell'esempio [Impedire il comportamento predefinito](#impedire_il_comportamento_predefinito), sono presenti alcune caselle di testo poste all'interno di elementi {{htmlelement("div")}}, che a loro volta sono inseriti in un elemento {{htmlelement("form")}}. Cosa accade quando viene associato un event listener `click` all'elemento `<form>` e l'utente fa clic all'interno di una delle caselle di testo? La funzione event handler associata viene comunque emessa tramite un processo chiamato _event bubbling_, trattato nella lezione successiva.
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Return_values","Learn_web_development/Core/Scripting/Event_bubbling", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Functions","Learn_web_development/Core/Scripting/Event_bubbling", "Learn_web_development/Core/Scripting")}}

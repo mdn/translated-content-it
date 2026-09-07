@@ -2,40 +2,40 @@
 title: Effetti di stile avanzati
 slug: Learn_web_development/Core/Styling_basics/Advanced_styling_effects
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 1b7c3c1e03f14c3878e4d8518b0f1a89bedfdc9c
 ---
 
-Questo articolo funge da raccoglitore di trucchi, fornendo un'introduzione ad alcune caratteristiche avanzate di stile interessanti come le ombre delle scatole, le modalità di fusione e i filtri.
+Questo articolo funge da raccolta di trucchi, fornendo un'introduzione ad alcune interessanti funzionalità avanzate di stile, come ombre delle caselle, modalità di fusione e filtri.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Basi di HTML (studiare
+        Nozioni di base di HTML (studiare
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
           >Introduzione a HTML</a
-        >) e una conoscenza di base su come funziona CSS (studiare
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Basi di stile CSS</a>.)
+        >) e un'idea di come funziona CSS (studiare
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Nozioni di base sullo stile CSS</a>.)
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Ottenere un'idea di come utilizzare alcuni degli effetti di stile avanzati
+        Farsi un'idea di come utilizzare alcuni degli effetti di stile avanzati
         disponibili nei browser moderni.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Ombre delle scatole
+## Ombre delle caselle
 
-{{cssxref("box-shadow")}} ti permette di applicare una o più ombre a un elemento. Come le ombre sul testo, le ombre delle scatole sono supportate abbastanza bene su tutti i browser, inclusi IE9+ ed Edge. Gli utenti di versioni precedenti di IE potrebbero semplicemente dover fare a meno delle ombre, quindi è bene testare i propri progetti per assicurarsi che il contenuto sia leggibile anche senza di esse.
+{{cssxref("box-shadow")}} consente di applicare una o più ombre esterne alla casella di un elemento. Come le ombre del testo, le ombre delle caselle sono supportate piuttosto bene nei browser, inclusi IE9+ ed Edge. Gli utenti di versioni precedenti di IE potrebbero semplicemente dover fare a meno delle ombre, quindi occorre testare i progetti per assicurarsi che il contenuto sia leggibile anche senza di esse.
 
-### Un'ombra semplice
+### Una semplice ombra della casella
 
-Vediamo un esempio semplice per iniziare. Prima, un po' di HTML:
+Vediamo un semplice esempio per iniziare. Prima, un po' di HTML:
 
 ```html
 <article class="simple">
@@ -57,11 +57,7 @@ article {
   max-width: 500px;
   padding: 10px;
   background-color: red;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0%),
-    rgb(0 0 0 / 25%)
-  );
+  background-image: linear-gradient(to bottom, transparent, rgb(0 0 0 / 25%));
 }
 
 .simple {
@@ -69,22 +65,22 @@ article {
 }
 ```
 
-Questo ci dà il seguente risultato:
+Questo produce il seguente risultato:
 
 {{EmbedLiveSample("A_simple_box_shadow", "", "100px")}}
 
-Vedrai che abbiamo quattro elementi nel valore della proprietà `box-shadow`:
+Nel valore della proprietà `box-shadow` sono presenti quattro elementi:
 
-1. Il primo valore di lunghezza è lo **scostamento orizzontale** — la distanza verso destra dello scostamento dell'ombra rispetto al riquadro originale (o a sinistra, se il valore è negativo).
-2. Il secondo valore di lunghezza è lo **scostamento verticale** — la distanza verso il basso dello scostamento dell'ombra rispetto al riquadro originale (o verso l'alto, se il valore è negativo).
+1. Il primo valore di lunghezza è l'**offset orizzontale** — la distanza verso destra di cui l'ombra è spostata rispetto alla casella originale (o verso sinistra, se il valore è negativo).
+2. Il secondo valore di lunghezza è l'**offset verticale** — la distanza verso il basso di cui l'ombra è spostata rispetto alla casella originale (o verso l'alto, se il valore è negativo).
 3. Il terzo valore di lunghezza è il **raggio di sfocatura** — la quantità di sfocatura applicata all'ombra.
-4. Il valore di colore è il **colore base** dell'ombra.
+4. Il valore del colore è il **colore di base** dell'ombra.
 
-Puoi utilizzare qualsiasi unità di lunghezza e colore che abbia senso per definire questi valori.
+Per definire questi valori è possibile usare qualsiasi unità di lunghezza e colore appropriata.
 
-### Ombre multiple
+### Ombre multiple delle caselle
 
-Puoi anche specificare ombre multiple in una singola dichiarazione `box-shadow`, separandole con delle virgole:
+È anche possibile specificare più ombre delle caselle in una singola dichiarazione `box-shadow`, separandole con virgole:
 
 ```html hidden
 <article class="multiple">
@@ -95,7 +91,7 @@ Puoi anche specificare ombre multiple in una singola dichiarazione `box-shadow`,
 </article>
 ```
 
-```css-nolint
+```css
 p {
   margin: 0;
 }
@@ -104,34 +100,31 @@ article {
   max-width: 500px;
   padding: 10px;
   background-color: red;
-  background-image: linear-gradient(
-    to bottom,
-    rgb(0 0 0 / 0%),
-    rgb(0 0 0 / 25%)
-  );
+  background-image: linear-gradient(to bottom, transparent, rgb(0 0 0 / 25%));
 }
 
 .multiple {
-  box-shadow: 1px 1px 1px black,
-              2px 2px 1px black,
-              3px 3px 1px red,
-              4px 4px 1px red,
-              5px 5px 1px black,
-              6px 6px 1px black;
+  box-shadow:
+    1px 1px 1px black,
+    2px 2px 1px black,
+    3px 3px 1px red,
+    4px 4px 1px red,
+    5px 5px 1px black,
+    6px 6px 1px black;
 }
 ```
 
-Ora otteniamo questo risultato:
+Ora si ottiene questo risultato:
 
 {{EmbedLiveSample("Multiple_box_shadows", "", "100px")}}
 
-Abbiamo fatto qualcosa di interessante qui creando una scatola sollevata con più strati colorati, ma puoi usarlo in qualsiasi modo desideri, ad esempio per creare un aspetto più realistico con ombre basate su fonti di luce multiple.
+Qui è stato fatto qualcosa di divertente creando una casella rialzata con più livelli colorati, ma è possibile usarlo in qualsiasi modo, ad esempio per creare un aspetto più realistico con ombre basate su più sorgenti luminose.
 
-### Altre caratteristiche delle ombre delle scatole
+### Altre funzionalità delle ombre delle caselle
 
-A differenza di {{cssxref("text-shadow")}}, {{cssxref("box-shadow")}} ha una keyword `inset` disponibile — mettendo questa all'inizio di una dichiarazione di ombra, l'ombra diventa interna piuttosto che esterna. Vediamo di cosa si tratta.
+A differenza di {{cssxref("text-shadow")}}, {{cssxref("box-shadow")}} dispone della parola chiave `inset`: inserendola all'inizio di una dichiarazione di ombra, questa diventa un'ombra interna anziché un'ombra esterna. Vediamo cosa significa.
 
-Prima utilizziamo un HTML diverso per questo esempio:
+Per prima cosa, in questo esempio verrà usato un HTML diverso:
 
 ```html
 <button>Press me!</button>
@@ -144,7 +137,7 @@ button {
   line-height: 2;
   border-radius: 10px;
   border: none;
-  background-image: linear-gradient(to bottom right, #777, #ddd);
+  background-image: linear-gradient(to bottom right, #777777, #dddddd);
   box-shadow:
     1px 1px 1px black,
     inset 2px 3px 5px rgb(0 0 0 / 30%),
@@ -153,7 +146,7 @@ button {
 
 button:focus,
 button:hover {
-  background-image: linear-gradient(to bottom right, #888, #eee);
+  background-image: linear-gradient(to bottom right, #888888, #eeeeee);
 }
 
 button:active {
@@ -164,26 +157,26 @@ button:active {
 }
 ```
 
-Questo ci dà il seguente risultato:
+Questo produce il seguente risultato:
 
 {{EmbedLiveSample("Other_box_shadow_features", "100%", "70px")}}
 
-Qui abbiamo impostato uno stile per i pulsanti insieme a stati di focus/hover/attivo. Il pulsante ha un'ombra semplice nera impostata di default, più un paio di ombre interne, una chiara e una scura, posizionate su angoli opposti del pulsante per dare un bel effetto di ombreggiatura.
+Qui sono stati impostati alcuni stili per pulsanti insieme agli stati focus/hover/active. Il pulsante ha per impostazione predefinita una semplice ombra della casella nera, oltre a un paio di ombre interne, una chiara e una scura, posizionate negli angoli opposti del pulsante per conferirgli un gradevole effetto di ombreggiatura.
 
-Quando il pulsante viene premuto, lo stato attivo causa la sostituzione della prima ombra con un'ombra interna molto scura, dando l'apparenza che il pulsante sia stato premuto.
+Quando il pulsante viene premuto, lo stato active sostituisce la prima ombra della casella con un'ombra interna molto scura, dando l'impressione che il pulsante venga premuto verso l'interno.
 
 > [!NOTE]
-> C'è un altro elemento che può essere impostato nel valore `box-shadow` — un altro valore di lunghezza può essere impostato facoltativamente appena prima del valore del colore, che è un **raggio di diffusione**. Se impostato, causa l'ingrandimento dell'ombra rispetto al riquadro originale. Non è molto comunemente utilizzato, ma vale la pena menzionarlo.
+> È presente un altro elemento che può essere impostato nel valore `box-shadow`: un ulteriore valore di lunghezza può essere impostato facoltativamente appena prima del valore del colore; si tratta di un **raggio di espansione**. Se impostato, fa sì che l'ombra diventi più grande della casella originale. Non viene usato molto comunemente, ma vale la pena menzionarlo.
 
 ## Filtri
 
-Sebbene non sia possibile cambiare la composizione di un'immagine usando CSS, ci sono alcune cose creative che puoi fare. Una proprietà molto interessante, che può aiutare a rendere più interessanti i tuoi progetti, è la proprietà {{cssxref("filter")}}. Questa proprietà abilita filtri simili a quelli di Photoshop direttamente da CSS.
+Anche se non è possibile modificare la composizione di un'immagine usando CSS, è possibile fare alcune cose creative. Una proprietà molto interessante, che può contribuire a rendere più interessanti i progetti, è la proprietà {{cssxref("filter")}}. Questa proprietà abilita filtri simili a Photoshop direttamente da CSS.
 
-Nell'esempio seguente abbiamo utilizzato due valori diversi per il filtro. Il `primo` è `blur()` — questa funzione può ricevere un valore per indicare quanto l'immagine debba essere sfocata.
+Nell'esempio seguente sono stati usati due valori diversi per filter. Il `first` è `blur()`: a questa funzione può essere passato un valore per indicare quanto l'immagine debba essere sfocata.
 
-Il secondo è `grayscale()`; utilizzando una percentuale impostiamo quanto colore vogliamo rimuovere.
+Il secondo è `grayscale()`; usando una percentuale viene impostata la quantità di colore che si desidera rimuovere.
 
-Sperimenta con i parametri di percentuale e pixel nell'esempio seguente per vedere come le immagini cambiano. Puoi anche scambiare i valori con altri. Prova `contrast(200%)`, `invert(100%)` o `hue-rotate(20deg)` sull'esempio live sopra. Dai un'occhiata alla pagina di MDN per [`filter`](/it/docs/Web/CSS/filter) per molte altre opzioni che potresti provare.
+Modificare i parametri percentuali e in pixel nell'esempio seguente per vedere come cambiano le immagini. È anche possibile sostituire i valori con altri. Provare `contrast(200%)`, `invert(100%)` o `hue-rotate(20deg)` nell'esempio live precedente. Consultare la pagina MDN di {{cssxref("filter")}} per molte altre opzioni da provare.
 
 ```html live-sample___filter
 <div class="wrapper">
@@ -237,9 +230,9 @@ img {
 
 {{EmbedLiveSample("filter", "", "260px")}}
 
-Puoi applicare filtri a qualsiasi elemento, e non solo alle immagini. Alcune delle opzioni di filtro disponibili fanno cose molto simili ad altre funzionalità CSS, ad esempio `drop-shadow()` funziona in modo molto simile e produce un effetto simile a [`box-shadow`](/it/docs/Web/CSS/box-shadow) o [`text-shadow`](/it/docs/Web/CSS/text-shadow). Tuttavia, la cosa veramente interessante dei filtri è che lavorano sulle forme esatte del contenuto dentro il riquadro, non solo sul riquadro stesso come un unico grande blocco, quindi vale la pena conoscere la differenza.
+È possibile applicare filtri a qualsiasi elemento, non solo alle immagini. Alcune delle opzioni di filtro disponibili svolgono operazioni molto simili ad altre funzionalità CSS; ad esempio, `drop-shadow()` funziona in modo molto simile e produce un effetto simile a {{cssxref("box-shadow")}} o {{cssxref("text-shadow")}}. L'aspetto davvero interessante dei filtri, tuttavia, è che funzionano sulle forme esatte del contenuto all'interno della casella, non soltanto sulla casella stessa come un unico blocco; pertanto vale la pena conoscere la differenza.
 
-In questo prossimo esempio stiamo applicando il nostro filtro a una scatola, e lo confrontiamo con un'ombra scatola. Come puoi vedere, il filtro drop-shadow segue la forma esatta del testo e dei tratti del bordo. L'ombra scatola segue solo il quadrato del riquadro.
+Nel prossimo esempio viene applicato il filtro a una casella e confrontato con un'ombra della casella. Come si può vedere, il filtro drop-shadow segue la forma esatta del testo e dei trattini del bordo. L'ombra della casella segue soltanto il quadrato della casella.
 
 ```html live-sample___filter-text
 <p class="filter">Filter</p>
@@ -269,30 +262,32 @@ p {
 
 {{EmbedLiveSample("filter-text")}}
 
+È possibile trovare molti più esempi rispetto a quelli disponibili qui nella pagina di esempio [filters.html](https://mdn.github.io/learning-area/css/styling-boxes/advanced_box_effects/filters.html) (vedere il [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/styling-boxes/advanced_box_effects/filters.html)) e nella pagina di riferimento di {{cssxref("filter")}}.
+
 ## Modalità di fusione
 
-Le modalità di fusione CSS ci permettono di aggiungere modalità di fusione agli elementi che specificano un effetto di fusione quando due elementi si sovrappongono — il colore finale mostrato per ogni pixel sarà il risultato di una combinazione del colore del pixel originale e quello del pixel nel livello sottostante. Le modalità di fusione sono di nuovo molto familiari agli utenti di applicazioni grafiche come Photoshop.
+Le modalità di fusione CSS consentono di aggiungere modalità di fusione agli elementi che specificano un effetto di fusione quando due elementi si sovrappongono: il colore finale mostrato per ciascun pixel sarà il risultato di una combinazione del colore del pixel originale e di quello del pixel nel livello sottostante. Le modalità di fusione sono ancora una volta molto familiari agli utenti di applicazioni grafiche come Photoshop.
 
-Ci sono due proprietà che utilizzano le modalità di fusione in CSS:
+In CSS sono presenti due proprietà che usano modalità di fusione:
 
-- {{cssxref("background-blend-mode")}}, che mescola insieme più immagini di sfondo e colori impostati su un singolo elemento.
-- {{cssxref("mix-blend-mode")}}, che mescola insieme l'elemento su cui è impostato con gli elementi su cui si sovrappone — sia sfondo che contenuto.
+- {{cssxref("background-blend-mode")}}, che fonde più immagini e colori di sfondo impostati su un singolo elemento.
+- {{cssxref("mix-blend-mode")}}, che fonde l'elemento su cui è impostata con gli elementi a cui si sovrappone, sia lo sfondo sia il contenuto.
 
-Puoi trovare molti più esempi di quelli disponibili qui nella nostra pagina di esempio [blend-modes.html](https://mdn.github.io/learning-area/css/styling-boxes/advanced_box_effects/blend-modes.html) (vedi [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/styling-boxes/advanced_box_effects/blend-modes.html)), e sulla pagina di riferimento {{cssxref("&lt;blend-mode&gt;")}}.
+È possibile trovare molti più esempi rispetto a quelli disponibili qui nella pagina di esempio [blend-modes.html](https://mdn.github.io/learning-area/css/styling-boxes/advanced_box_effects/blend-modes.html) (vedere il [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/styling-boxes/advanced_box_effects/blend-modes.html)) e nella pagina di riferimento di {{cssxref("&lt;blend-mode&gt;")}}.
 
 > [!NOTE]
-> Le modalità di fusione sono anche molto nuove, e leggermente meno supportate rispetto ai filtri. Non ci sono supporti attualmente in Edge, e Safari supporta solo alcune delle opzioni delle modalità di fusione.
+> Anche le modalità di fusione sono molto recenti e hanno un supporto leggermente inferiore rispetto ai filtri. Non è ancora presente alcun supporto in Edge e Safari supporta solo alcune delle opzioni delle modalità di fusione.
 
 ### background-blend-mode
 
-Ancora una volta, vediamo alcuni esempi per capire meglio questo concetto. Prima, {{cssxref("background-blend-mode")}} — qui mostreremo un paio di semplici {{htmlelement("div")}}, così da poter confrontare l'originale con la versione fusa:
+Ancora una volta, vediamo alcuni esempi per comprenderlo meglio. Prima, {{cssxref("background-blend-mode")}}: qui verranno mostrati un paio di semplici {{htmlelement("div")}}, in modo da poter confrontare l'originale con la versione fusa:
 
 ```html
 <div></div>
 <div class="multiply"></div>
 ```
 
-Ora un po' di CSS — stiamo aggiungendo al `<div>` un'immagine di sfondo e un colore di sfondo verde:
+Ora un po' di CSS: al `<div>` vengono aggiunti un'immagine di sfondo e un colore di sfondo verde:
 
 ```css
 div {
@@ -301,7 +296,8 @@ div {
   padding: 10px;
   margin: 10px;
   display: inline-block;
-  background: url(colorful-heart.png) no-repeat center 20px;
+  background: url("https://mdn.github.io/shared-assets/images/examples/colorful-heart.png")
+    no-repeat center 20px;
   background-color: green;
 }
 
@@ -310,13 +306,13 @@ div {
 }
 ```
 
-Il risultato che otteniamo è questo — puoi vedere l'originale a sinistra e la modalità di fusione multiplies a destra:
+Il risultato ottenuto è questo: si può vedere l'originale a sinistra e la modalità di fusione multiply a destra:
 
 {{EmbedLiveSample("background-blend-mode", "", "220px")}}
 
 ### mix-blend-mode
 
-Ora vediamo {{cssxref("mix-blend-mode")}}. Qui presenteremo gli stessi due `<div>`, ma ciascuno è ora posizionato sopra un semplice `<div>` con uno sfondo viola, per mostrare come gli elementi si fondono insieme:
+Ora vediamo {{cssxref("mix-blend-mode")}}. Qui verranno presentati gli stessi due `<div>`, ma ciascuno ora si trova sopra un semplice `<div>` con uno sfondo viola, per mostrare come gli elementi si fonderanno:
 
 ```html
 <article>
@@ -332,7 +328,7 @@ Ora vediamo {{cssxref("mix-blend-mode")}}. Qui presenteremo gli stessi due `<div
 </article>
 ```
 
-Ecco il CSS con cui stileremo questo:
+Ecco il CSS con cui verranno applicati gli stili:
 
 ```css
 article {
@@ -354,7 +350,8 @@ article div:first-child {
   position: absolute;
   top: 10px;
   left: 0;
-  background: url(colorful-heart.png) no-repeat center 20px;
+  background: url("https://mdn.github.io/shared-assets/images/examples/colorful-heart.png")
+    no-repeat center 20px;
   background-color: green;
 }
 
@@ -371,22 +368,22 @@ article div:last-child {
 }
 ```
 
-Questo ci dà i seguenti risultati:
+Questo produce i seguenti risultati:
 
 {{EmbedLiveSample("mix-blend-mode", "", "220px")}}
 
-Qui puoi vedere che la modalità di fusione multiply ha fuso insieme non solo le due immagini di sfondo, ma anche il colore del `<div>` sotto di esso.
+Qui si può vedere che la fusione mix multiply ha fuso non solo le due immagini di sfondo, ma anche il colore del `<div>` sottostante.
 
 > [!NOTE]
-> Non preoccuparti se non comprendi alcune delle proprietà di layout sopra, come {{cssxref("position")}}, {{cssxref("top")}}, {{cssxref("bottom")}}, {{cssxref("z-index")}}, ecc. Ne parleremo in dettaglio nel nostro modulo [CSS Layout](/it/docs/Learn_web_development/Core/CSS_layout).
+> Non preoccuparsi se alcune delle proprietà di layout precedenti, come {{cssxref("position")}}, {{cssxref("top")}}, {{cssxref("bottom")}}, {{cssxref("z-index")}} e così via, non sono ancora chiare. Verranno trattate in dettaglio nel modulo [Layout CSS](/it/docs/Learn_web_development/Core/CSS_layout).
 
 ## Forme CSS
 
-Anche se è vero che tutto in CSS è una scatola rettangolare, e le immagini sono una scatola rettangolare fisica, possiamo far sembrare che il nostro contenuto si adatti intorno a oggetti non rettangolari usando le [Forme CSS](/it/docs/Web/CSS/CSS_shapes).
+Sebbene sia vero che tutto in CSS è una casella rettangolare e che le immagini sono caselle rettangolari fisiche, è possibile far sembrare che il contenuto fluisca attorno a elementi non rettangolari usando le [forme CSS](/it/docs/Web/CSS/Guides/Shapes).
 
-La specifica delle Forme CSS consente di avvolgere il testo intorno a una forma non rettangolare. È particolarmente utile quando si lavora con un'immagine che ha dello spazio bianco intorno di cui si potrebbe voler far fluttuare il testo.
+La specifica CSS Shapes consente di disporre il testo attorno a una forma non rettangolare. È particolarmente utile quando si lavora con un'immagine che contiene spazio bianco attorno al quale si potrebbe voler far fluire il testo.
 
-Nell'immagine qui sotto abbiamo un palloncino rotondo esteticamente piacevole. Il file effettivo è rettangolare, ma flottando l'immagine (le forme si applicano solo agli elementi flottanti) e utilizzando la proprietà {{cssxref("shape-outside")}} con un valore di `circle(50%)`, possiamo dare l'effetto che il testo segua il perimetro del palloncino.
+Nell'immagine seguente è presente un palloncino piacevolmente rotondo. Il file effettivo è rettangolare, ma facendo fluttuare l'immagine (le forme si applicano solo agli elementi flottanti) e usando la proprietà {{cssxref("shape-outside")}} con un valore `circle(50%)`, è possibile ottenere l'effetto del testo che segue il contorno del palloncino.
 
 ```html live-sample___shapes
 <div class="wrapper">
@@ -419,18 +416,17 @@ img {
 
 {{EmbedLiveSample("shapes", "", "200px")}}
 
-La forma in questo esempio non reagisce al contenuto del file dell'immagine. Invece, la funzione cerchio prende il suo punto centrale dal centro del file dell'immagine, come se avessimo messo un compasso al centro del file e disegnato un cerchio che si adatta al file. È quel cerchio che il testo segue.
+La forma in questo esempio non reagisce al contenuto del file immagine. Al contrario, la funzione circle prende il punto centrale dal centro del file immagine, come se fosse stato posto un compasso al centro del file e disegnato un cerchio che rientra nel file. È attorno a quel cerchio che fluisce il testo.
 
 > [!NOTE]
-> In Firefox puoi utilizzare i DevTools [Shapes Inspector](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_css_shapes/index.html) per ispezionare le Forme.
+> In Firefox è possibile usare [Shapes Inspector](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/how_to/edit_css_shapes/index.html) dei DevTools per ispezionare le forme.
 
-La funzione `circle()` è solo una delle poche forme di base che sono definite, tuttavia ci sono diversi modi per creare forme. Per ulteriori informazioni e codice di esempio per le Forme CSS, vedi le [Guide alle Forme CSS](/it/docs/Web/CSS/CSS_shapes/Overview_of_shapes) su MDN.
+La funzione `circle()` è solo una delle poche forme di base definite; tuttavia, esistono diversi modi per creare forme. Per ulteriori informazioni e codice di esempio per le forme CSS, vedere le [guide alle forme CSS](/it/docs/Web/CSS/Guides/Shapes/Overview) su MDN.
 
 ## -webkit-background-clip: text
 
-Un'altra caratteristica che pensavamo di menzionare brevemente è il valore `text` per {{cssxref("background-clip")}}. Quando viene usato insieme alla funzione proprietaria `-webkit-text-fill-color: transparent;`, permette di ritagliare le immagini di sfondo alla forma del testo dell'elemento, creando effetti molto piacevoli. Questo non è uno standard ufficiale, ma è stato implementato in più browser, in quanto è popolare ed è usato ampiamente dagli sviluppatori. Quando viene usato in questo contesto, entrambe le proprietà richiederebbero un prefisso `-webkit-`, anche per i browser non basati su WebKit/Chrome.
-
-Puoi vedere questo in azione nel seguente esempio dal vivo:
+Un'altra funzionalità che vale la pena menzionare brevemente è il valore `text` per {{cssxref("background-clip")}}. Quando viene usato insieme alla funzionalità proprietaria `-webkit-text-fill-color: transparent;`, consente di ritagliare le immagini di sfondo secondo la forma del testo dell'elemento, creando effetti interessanti. Non è uno standard ufficiale, ma è stato implementato in più browser poiché è popolare e usato abbastanza ampiamente dagli sviluppatori. Quando vengono usate in questo contesto, entrambe le proprietà richiedono un prefisso del fornitore `-webkit-`, anche per browser non basati su WebKit/Chrome.
+È possibile vederlo in azione nell'esempio live seguente:
 
 ```html live-sample___webkit-background-clip
 <h2>WOW</h2>
@@ -439,7 +435,7 @@ Puoi vedere questo in azione nel seguente esempio dal vivo:
 
 ```css hidden live-sample___webkit-background-clip
 body {
-  font-family: impact, sans-serif;
+  font-family: "impact", sans-serif;
 }
 
 h2 {
@@ -455,7 +451,8 @@ h2 {
 h2 {
   color: white;
   display: inline-block;
-  background: url(colorful-heart.png) no-repeat center;
+  background: url("https://mdn.github.io/shared-assets/images/examples/colorful-heart.png")
+    no-repeat center;
 }
 
 .text-clip {
@@ -466,10 +463,10 @@ h2 {
 
 {{EmbedLiveSample("webkit-background-clip", "", "340px")}}
 
-Quindi, perché altri browser hanno implementato un prefisso `-webkit-`? Principalmente per la compatibilità del browser — molti sviluppatori web hanno iniziato a implementare siti web con prefissi `-webkit-` tanto che è sembrato che gli altri browser fossero "rotti", mentre in realtà stavano seguendo gli standard. Sono stati quindi costretti a implementare alcune di queste funzionalità. Questo evidenzia il pericolo di utilizzare funzionalità CSS non standard e/o con prefissi nel tuo lavoro — non solo causano problemi di compatibilità tra browser, ma sono anche soggette a cambiamenti, quindi il tuo codice potrebbe rompersi in qualsiasi momento. È molto meglio attenersi agli standard.
+Perché allora altri browser hanno implementato un prefisso `-webkit-`? Principalmente per la compatibilità del browser: così tanti sviluppatori web hanno iniziato a implementare siti web con prefissi `-webkit-` che ha cominciato a sembrare che gli altri browser fossero difettosi, mentre in realtà stavano seguendo gli standard. Sono quindi stati costretti a implementare alcune di queste funzionalità. Questo evidenzia il pericolo di usare funzionalità CSS non standard e/o con prefisso nel proprio lavoro: non solo causano problemi di compatibilità del browser, ma sono anche soggette a cambiamenti, quindi il codice potrebbe smettere di funzionare in qualsiasi momento. È molto meglio attenersi agli standard.
 
-Se vuoi utilizzare tali funzionalità nel lavoro di produzione, assicurati di testare a fondo su diversi browser e controlla che, dove queste funzionalità non funzionano, il sito sia comunque utilizzabile.
+Se si desidera usare tali funzionalità nel lavoro di produzione, assicurarsi di effettuare test approfonditi in tutti i browser e di verificare che, laddove queste funzionalità non funzionano, il sito sia comunque utilizzabile.
 
-## Riassunto
+## Riepilogo
 
-Speriamo che questo articolo sia stato divertente — giocare con oggetti luccicanti lo è generalmente, ed è sempre interessante vedere quali tipi di strumenti di stile avanzati stanno diventando disponibili nei browser moderni.
+Si spera che questo articolo sia stato divertente: giocare con strumenti luccicanti in genere lo è, ed è sempre interessante vedere quali tipi di strumenti di stile avanzati stanno diventando disponibili nei browser moderni.

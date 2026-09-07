@@ -3,48 +3,49 @@ title: Funzioni — blocchi di codice riutilizzabili
 short-title: Functions
 slug: Learn_web_development/Core/Scripting/Functions
 l10n:
-  sourceCommit: e488eba036b2fee56444fd579c3759ef45ff2ca8
+  sourceCommit: dee770bad395da6f67336af7f76dcc823939244e
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Loops", "Learn_web_development/Core/Scripting/Build_your_own_function", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Loops","Learn_web_development/Core/Scripting/Build_your_own_function", "Learn_web_development/Core/Scripting")}}
 
-Un altro concetto essenziale nella programmazione è quello delle **funzioni**, che consentono di memorizzare un pezzo di codice che svolge un singolo compito all'interno di un blocco definito, e poi chiamare quel codice ogni volta che ne hai bisogno usando un singolo breve comando, invece di dover digitare lo stesso codice più volte. In questo articolo esploreremo i concetti fondamentali dietro le funzioni come la sintassi di base, come invocarle e definirle, lo scope e i parametri.
+Un altro concetto essenziale nella programmazione sono le **funzioni**, che consentono di memorizzare una porzione di codice che svolge una singola attività all'interno di un blocco definito, per poi richiamare quel codice ogni volta che serve usando un singolo breve comando, anziché dover digitare lo stesso codice più volte. In questo articolo verranno esplorati concetti fondamentali delle funzioni, come la sintassi di base, come richiamarle e definirle, l'ambito e i parametri.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
-      <td>Una comprensione di base di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti del CSS</a>, familiarità con le basi di JavaScript come trattato nelle lezioni precedenti.</td>
+      <td>Comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le basi di JavaScript trattate nelle lezioni precedenti.</td>
     </tr>
     <tr>
-      <th scope="row">Obiettivi di apprendimento:</th>
+      <th scope="row">Risultati dell'apprendimento:</th>
       <td>
         <ul>
-          <li>Lo scopo delle funzioni — consentire la creazione di blocchi di codice riutilizzabili che possono essere chiamati ovunque siano necessari.</li>
-          <li>le funzioni sono utilizzate ovunque in JavaScript e alcune sono integrate nel browser e altre sono definite dall'utente.</li>
+          <li>Lo scopo delle funzioni: consentire la creazione di blocchi di codice riutilizzabili che possono essere richiamati ovunque siano necessari.</li>
+          <li>Le funzioni vengono usate ovunque in JavaScript.</li>
+          <li>Alcune funzioni sono integrate nel browser, mentre altre sono definite dall'utente.</li>
           <li>La differenza tra funzioni e metodi.</li>
-          <li>Invocare funzioni.</li>
+          <li>Il richiamo delle funzioni.</li>
           <li>Funzioni anonime e arrow function.</li>
-          <li>Definire i parametri delle funzioni, passare argomenti alle chiamate di funzione.</li>
-          <li>Scope globale e scope di funzione/blocco.</li>
-          <li>Una comprensione di cosa siano le callback function.</li>
+          <li>La definizione dei parametri di una funzione e il passaggio di argomenti alle chiamate di funzione.</li>
+          <li>Ambito globale e ambito di funzione/blocco.</li>
+          <li>Comprensione di cosa sono le callback function.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Dove trovo le funzioni?
+## Dove trovare le funzioni?
 
-In JavaScript, troverai funzioni ovunque. In effetti, abbiamo usato funzioni durante tutto il corso finora; semplicemente non ne abbiamo parlato molto. Ora è il momento, tuttavia, di iniziare a parlare esplicitamente delle funzioni e di esplorare davvero la loro sintassi.
+In JavaScript, le funzioni si trovano ovunque. Infatti, sono state usate durante tutto il corso finora; semplicemente non se ne è parlato molto. Ora però è il momento di iniziare a parlare esplicitamente delle funzioni e a esplorarne la sintassi.
 
-Praticamente ogni volta che utilizzi una struttura JavaScript che presenta una coppia di parentesi — `()` — e **non** stai usando una struttura comune del linguaggio integrato come un [ciclo for](/it/docs/Learn_web_development/Core/Scripting/Loops#the_standard_for_loop), [while o do...while](/it/docs/Learn_web_development/Core/Scripting/Loops#while_and_do...while), o un [if...else statement](/it/docs/Learn_web_development/Core/Scripting/Conditionals#if...else_statements), stai utilizzando una funzione.
+Praticamente ogni volta che viene usata una struttura JavaScript che presenta una coppia di parentesi — `()` — e **non** viene usata una comune struttura del linguaggio come un [ciclo for](/it/docs/Learn_web_development/Core/Scripting/Loops#the_standard_for_loop), un [ciclo while o do...while](/it/docs/Learn_web_development/Core/Scripting/Loops#while_and_do...while) o un'[istruzione if...else](/it/docs/Learn_web_development/Core/Scripting/Conditionals#if...else_statements), viene usata una funzione.
 
-## Funzioni integrate del browser
+## Funzioni integrate nel browser
 
-Abbiamo utilizzato molto le funzioni integrate nel browser in questo corso.
+In questo corso sono state usate ampiamente funzioni integrate nel browser.
 
-Ogni volta che abbiamo manipolato una stringa di testo, ad esempio:
+Ogni volta che è stata manipolata una stringa di testo, ad esempio:
 
 ```js
 const myText = "I am a string";
@@ -55,7 +56,7 @@ console.log(newString);
 // with the target string, and returns the newly formed string
 ```
 
-Oppure ogni volta che abbiamo manipolato un array:
+Oppure ogni volta che è stato manipolato un array:
 
 ```js
 const myArray = ["I", "love", "chocolate", "frogs"];
@@ -66,7 +67,7 @@ console.log(madeAString);
 // string, and returns this new string
 ```
 
-Oppure ogni volta che abbiamo generato un numero casuale:
+Oppure ogni volta che viene generato un numero casuale:
 
 ```js
 const myNumber = Math.random();
@@ -74,22 +75,22 @@ const myNumber = Math.random();
 // 0 and up to but not including 1, and returns that number
 ```
 
-Abbiamo usato una _funzione_!
+È stata usata una _funzione_!
 
 > [!NOTE]
-> Sentiti libero di inserire queste righe nella console JavaScript del tuo browser per familiarizzare nuovamente con la loro funzionalità, se necessario.
+> Se necessario, è possibile inserire queste righe nella console JavaScript del browser per rivederne il funzionamento.
 
-Il linguaggio JavaScript ha molte funzioni integrate per consentire di fare cose utili senza dover scrivere tutto quel codice da soli. In effetti, parte del codice che stai chiamando quando **invochi** (un termine raffinato per eseguire) una funzione integrata del browser non potrebbe essere scritto in JavaScript — molte di queste funzioni stanno chiamando parti del codice di background del browser, che è scritto in gran parte in linguaggi di sistema di basso livello come C++, non in linguaggi web come JavaScript.
+Il linguaggio JavaScript dispone di molte funzioni integrate che consentono di svolgere attività utili senza dover scrivere tutto quel codice autonomamente. In effetti, parte del codice richiamato quando si **invoca** (un termine tecnico per eseguire) una funzione integrata del browser non potrebbe essere scritto in JavaScript: molte di queste funzioni richiamano parti del codice interno del browser, scritto in gran parte in linguaggi di sistema a basso livello come C++, non in linguaggi web come JavaScript.
 
-Tieni presente che alcune funzioni integrate del browser non fanno parte del linguaggio JavaScript core — alcune sono definite come parte delle API dei browser, che costruiscono sopra il linguaggio predefinito per fornire ancora più funzionalità (fare riferimento a [questa prima sezione del nostro corso](/it/docs/Learn_web_development/Core/Scripting/What_is_JavaScript#so_what_can_it_really_do) per ulteriori descrizioni). Vedremo come usare le API dei browser in modo più dettagliato in un modulo successivo.
+Tenere presente che alcune funzioni integrate nel browser non fanno parte del linguaggio JavaScript di base: alcune sono definite come parte delle API del browser, che si basano sul linguaggio predefinito per fornire ancora più funzionalità (per ulteriori descrizioni, consultare [questa sezione iniziale del corso](/it/docs/Learn_web_development/Core/Scripting/What_is_JavaScript#so_what_can_it_really_do)). L'uso delle API del browser verrà approfondito in un modulo successivo.
 
-## Funzioni contro metodi
+## Funzioni rispetto ai metodi
 
-Le **funzioni** che fanno parte degli oggetti si chiamano **metodi**; imparerai sugli oggetti più avanti nel modulo. Per ora, volevamo chiarire eventuali dubbi riguardo a metodi e funzioni — probabilmente incontrerai entrambi i termini mentre esamini le risorse correlate disponibili sul Web.
+Le **funzioni** che fanno parte di oggetti sono chiamate **metodi**; gli oggetti verranno trattati più avanti nel modulo. Per ora, si vuole soltanto chiarire ogni possibile confusione tra metodi e funzioni: è probabile incontrare entrambi i termini consultando risorse correlate sul Web.
 
-Il codice integrato che abbiamo utilizzato finora si presenta in entrambe le forme: **funzioni** e **metodi.** Puoi controllare l'elenco completo delle funzioni integrate, nonché gli oggetti integrati e i loro metodi corrispondenti [nella nostra referenza JavaScript](/it/docs/Web/JavaScript/Reference/Global_Objects).
+Il codice integrato usato finora è disponibile in entrambe le forme: **funzioni** e **metodi**. È possibile consultare l'elenco completo delle funzioni integrate, nonché degli oggetti integrati e dei relativi metodi, [nel riferimento JavaScript](/it/docs/Web/JavaScript/Reference/Global_Objects).
 
-Hai anche visto molte **funzioni personalizzate** nel corso finora — funzioni definite nel tuo codice, non all'interno del browser. Ogni volta che hai visto un nome personalizzato con parentesi subito dopo, stavi usando una funzione personalizzata. Nel nostro esempio [random-canvas-circles.html](https://mdn.github.io/learning-area/javascript/building-blocks/loops/random-canvas-circles.html) (vedi anche il codice sorgente completo [source code](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/random-canvas-circles.html)) dal nostro [articolo sui cicli](/it/docs/Learn_web_development/Core/Scripting/Loops), abbiamo incluso una funzione personalizzata `draw()` che appare così:
+Nel corso sono state viste anche molte **funzioni personalizzate**: funzioni definite nel proprio codice, non all'interno del browser. Ogni volta che è comparso un nome personalizzato seguito direttamente da parentesi, veniva usata una funzione personalizzata. Nell'esempio [random-canvas-circles.html](https://mdn.github.io/learning-area/javascript/building-blocks/loops/random-canvas-circles.html) (vedere anche il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/random-canvas-circles.html)) dell'[articolo sui cicli](/it/docs/Learn_web_development/Core/Scripting/Loops), è stata inclusa una funzione personalizzata `draw()` simile a questa:
 
 ```js
 function draw() {
@@ -103,13 +104,13 @@ function draw() {
 }
 ```
 
-Questa funzione disegna 100 cerchi casuali all'interno di un elemento {{htmlelement("canvas")}}. Ogni volta che vogliamo farlo, possiamo semplicemente invocare la funzione con questo:
+Questa funzione disegna 100 cerchi casuali all'interno di un elemento {{htmlelement("canvas")}}. Ogni volta che si desidera farlo, è possibile invocare la funzione in questo modo, anziché dover riscrivere tutto quel codice ogni volta che si vuole ripetere l'operazione:
 
 ```js
 draw();
 ```
 
-invece di dover scrivere nuovamente tutto quel codice ogni volta che vogliamo ripeterlo. Le funzioni possono contenere qualsiasi codice tu voglia — puoi persino chiamare altre funzioni dall'interno delle funzioni. La funzione sopra, ad esempio, chiama la funzione `random()` tre volte, che è definita dal seguente codice:
+Le funzioni possono contenere qualsiasi codice, incluse chiamate ad altre funzioni. Ad esempio, la funzione `draw()` vista sopra chiama tre volte la funzione `random()`; `random()` è definita dal codice seguente:
 
 ```js
 function random(number) {
@@ -117,11 +118,11 @@ function random(number) {
 }
 ```
 
-Avevamo bisogno di questa funzione perché la funzione integrata del browser [`Math.random()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/random) genera solo un numero decimale casuale tra 0 e 1. Volevamo un numero intero casuale compreso tra 0 e un numero specificato.
+Questa funzione era necessaria perché la funzione integrata [`Math.random()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/random) del browser genera soltanto un numero decimale casuale compreso tra 0 e 1. Era invece desiderato un numero intero casuale compreso tra 0 e un numero specificato.
 
-## Invocare le funzioni
+## Richiamare le funzioni
 
-Probabilmente sei chiaro su questo adesso, ma solo nel caso, per utilizzare effettivamente una funzione dopo che è stata definita, devi eseguirla — o invocarla. Questo si fa includendo il nome della funzione nel codice da qualche parte, seguito da parentesi.
+Probabilmente questo concetto è già chiaro, ma per completezza: per usare effettivamente una funzione dopo che è stata definita, occorre eseguirla, ovvero invocarla. Ciò avviene includendo da qualche parte nel codice il nome della funzione, seguito da parentesi.
 
 ```js
 function myFunction() {
@@ -133,22 +134,21 @@ myFunction();
 ```
 
 > [!NOTE]
-> Questa forma di creazione di una funzione è anche nota come _dichiarazione di funzione_. È sempre innalzata (hoisted) in modo tale da poter chiamare la funzione sopra la definizione stessa e funzionerà bene.
+> Questa forma di creazione di una funzione è nota anche come _function declaration_. Viene sempre sottoposta a hoisting, il che significa che è possibile chiamare la funzione prima della sua definizione e funzionerà correttamente.
 
-## Parametri di funzione
+## Argomenti e parametri delle funzioni
 
-Alcune funzioni richiedono che vengano specificati **parametri** quando le stai invocando — questi sono valori che devono essere inclusi all'interno delle parentesi della funzione, di cui essa ha bisogno per svolgere correttamente il proprio lavoro.
+Alcune funzioni richiedono **argomenti** quando vengono invocate: valori che devono essere inclusi tra le parentesi della funzione affinché la funzione svolga correttamente il proprio compito.
 
-> [!NOTE]
-> I parametri sono talvolta chiamati argomenti, proprietà, o anche attributi.
+Verrà usato anche il termine **parametri**, spesso in modo intercambiabile con _argomenti_. Questo è spesso accettabile nelle discussioni informali, ma i due termini hanno significati diversi. I parametri sono le variabili elencate nella definizione di una funzione, mentre gli argomenti sono i valori passati alla funzione per rappresentare i parametri quando la funzione viene chiamata.
 
-Come esempio, la funzione integrata del browser [`Math.random()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/random) non richiede alcun parametro. Quando viene chiamata, restituisce sempre un numero casuale compreso tra 0 e 1:
+Vediamo alcuni esempi. La funzione [`Math.random()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/random) non richiede argomenti. Quando viene chiamata, restituisce sempre un numero casuale compreso tra 0 e 1:
 
 ```js
 const myNumber = Math.random();
 ```
 
-La funzione integrata del browser per le stringhe [`replace()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/replace), tuttavia, ha bisogno di due parametri — la sottostringa da trovare nella stringa principale, e la sottostringa per sostituire quella stringa:
+La funzione [`replace()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/replace) delle stringhe, invece, richiede due argomenti: la sottostringa da trovare nella stringa principale e la sottostringa con cui sostituirla:
 
 ```js
 const myText = "I am a string";
@@ -156,11 +156,11 @@ const newString = myText.replace("string", "sausage");
 ```
 
 > [!NOTE]
-> Quando occorre specificare più parametri, essi sono separati da virgole.
+> Quando è necessario specificare più parametri o argomenti, separarli con virgole.
 
 ### Parametri opzionali
 
-A volte i parametri sono opzionali — non devi necessariamente specificarli. Se non lo fai, la funzione adotterà generalmente un comportamento predefinito. Ad esempio, il parametro della funzione dell'array [`join()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Array/join) è opzionale:
+Talvolta i parametri sono definiti come opzionali: non è necessario specificare gli argomenti equivalenti quando si chiama la funzione. In caso contrario, la funzione generalmente usa un valore predefinito. Ad esempio, il parametro della funzione [`join()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Array/join) degli array è opzionale:
 
 ```js
 const myArray = ["I", "love", "chocolate", "frogs"];
@@ -173,11 +173,11 @@ console.log(madeAnotherString);
 // returns 'I,love,chocolate,frogs'
 ```
 
-Se non si include un parametro per specificare un carattere di unione/delimite, di default viene utilizzata una virgola.
+Se non viene incluso alcun argomento per specificare un carattere di unione/delimitazione, per impostazione predefinita viene usata una virgola.
 
 ### Parametri predefiniti
 
-Se stai scrivendo una funzione e vuoi supportare parametri opzionali, puoi specificare i valori predefiniti aggiungendo `=` dopo il nome del parametro, seguito dal valore predefinito:
+Se viene scritta una funzione e si desidera definire parametri opzionali, è possibile specificare valori predefiniti aggiungendo `=` dopo il nome del parametro, seguito dal valore predefinito:
 
 ```js
 function hello(name = "Chris") {
@@ -190,7 +190,7 @@ hello(); // Hello Chris!
 
 ## Funzioni anonime e arrow function
 
-Finora abbiamo appena creato una funzione in questo modo:
+Finora sono state create funzioni in questo modo:
 
 ```js
 function myFunction() {
@@ -198,7 +198,7 @@ function myFunction() {
 }
 ```
 
-Ma puoi anche creare una funzione che non ha un nome:
+Ma è anche possibile creare una funzione senza nome:
 
 ```js
 (function () {
@@ -206,19 +206,19 @@ Ma puoi anche creare una funzione che non ha un nome:
 });
 ```
 
-Questa è chiamata **funzione anonima**, perché non ha un nome. Spesso vedrai funzioni anonime quando una funzione si aspetta di ricevere un'altra funzione come parametro. In questo caso, il parametro funzione è spesso passato come una funzione anonima.
+Questa è chiamata **funzione anonima**, perché non ha un nome. Le funzioni anonime sono frequenti quando una funzione si aspetta di ricevere un'altra funzione come argomento. In questo caso, spesso viene passata una funzione anonima come argomento.
 
 > [!NOTE]
-> Questa forma di creazione di una funzione è anche nota come _espressione di funzione_. A differenza delle dichiarazioni di funzione, le espressioni di funzione non sono innalzate.
+> Questa forma di creazione di una funzione è nota anche come _function expression_. A differenza delle function declaration, le function expression non sono soggette a hoisting.
 
 ### Esempio di funzione anonima
 
-Ad esempio, supponiamo che tu voglia eseguire del codice quando l'utente digita in una casella di testo. Per farlo puoi chiamare la funzione [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener) della casella di testo. Questa funzione si aspetta che tu le passi (almeno) due parametri:
+Ad esempio, supponiamo di voler eseguire del codice quando l'utente digita in una casella di testo. Per farlo, è possibile chiamare la funzione [`addEventListener()`](/it/docs/Web/API/EventTarget/addEventListener) della casella di testo. Questa funzione si aspetta almeno due argomenti:
 
-- il nome dell'evento da ascoltare, che in questo caso è [`keydown`](/it/docs/Web/API/Element/keydown_event)
-- una funzione da eseguire quando avviene l'evento.
+- Il nome dell'evento da ascoltare, che in questo caso è [`keydown`](/it/docs/Web/API/Element/keydown_event)
+- Una funzione da eseguire quando l'evento si verifica.
 
-Quando l'utente preme un tasto, il browser chiamerà la funzione che hai fornito e le passerà un parametro contenente informazioni su questo evento, compreso il particolare tasto che l'utente ha premuto:
+Quando l'utente preme un tasto, il browser chiamerà la funzione fornita e le passerà un parametro contenente informazioni su questo evento, incluso il particolare tasto premuto dall'utente:
 
 ```js
 function logKey(event) {
@@ -228,7 +228,7 @@ function logKey(event) {
 textBox.addEventListener("keydown", logKey);
 ```
 
-Invece di definire una funzione `logKey()` separata, puoi passare una funzione anonima in `addEventListener()`:
+Invece di definire una funzione `logKey()` separata, è possibile passare una funzione anonima a `addEventListener()`:
 
 ```js
 textBox.addEventListener("keydown", function (event) {
@@ -238,7 +238,7 @@ textBox.addEventListener("keydown", function (event) {
 
 ### Arrow function
 
-Se passi una funzione anonima in questo modo, c'è una forma alternativa che puoi usare, chiamata **arrow function**. Invece di `function(event)`, scrivi `(event) =>`:
+Se viene passata una funzione anonima in questo modo, è disponibile una forma alternativa, chiamata **arrow function**. Invece di `function(event)`, si scrive `(event) =>`:
 
 ```js
 textBox.addEventListener("keydown", (event) => {
@@ -246,7 +246,7 @@ textBox.addEventListener("keydown", (event) => {
 });
 ```
 
-Se la funzione prende solo un parametro, puoi omettere le parentesi attorno al parametro:
+Se la funzione accetta un solo argomento, è possibile omettere le parentesi attorno a esso:
 
 ```js-nolint
 textBox.addEventListener("keydown", event => {
@@ -254,7 +254,7 @@ textBox.addEventListener("keydown", event => {
 });
 ```
 
-Infine, se la tua funzione contiene solo una riga che è un'istruzione `return`, puoi anche omettere le parentesi graffe e la parola chiave `return` e restituire implicitamente l'espressione. Nell'esempio seguente, stiamo usando il metodo {{jsxref("Array.prototype.map()", "map()")}} di `Array` per raddoppiare ogni valore nell'array originale:
+Infine, se la funzione contiene soltanto una singola riga che è un'istruzione `return`, è possibile omettere le parentesi graffe e la parola chiave `return`, restituendo implicitamente l'espressione. Nell'esempio seguente, viene usato il metodo {{jsxref("Array.prototype.map()","map()")}} di `Array` per raddoppiare ogni valore nell'array originale:
 
 ```js-nolint
 const originals = [1, 2, 3];
@@ -264,34 +264,34 @@ const doubled = originals.map(item => item * 2);
 console.log(doubled); // [2, 4, 6]
 ```
 
-Il metodo `map()` prende ogni elemento nell'array in turni, passandolo alla funzione indicata. Poi prende il valore restituito da quella funzione e lo aggiunge a un nuovo array.
+Il metodo `map()` passa ogni elemento dell'array alla funzione fornita, quindi prende il valore restituito dalla funzione e lo aggiunge a un nuovo array.
 
-Quindi nell'esempio sopra, `item => item * 2` è l'equivalente della funzione arrow di:
+La arrow function è molto concisa; riscrivere il codice `map()` usando una normale callback function anonima sarebbe simile a questo:
 
 ```js
-function doubleItem(item) {
+const doubled = originals.map(function (item) {
   return item * 2;
-}
+});
 ```
 
-Puoi utilizzare la stessa sintassi concisa per riscrivere l'esempio `addEventListener`.
+È possibile usare la stessa sintassi concisa delle arrow function per riscrivere l'esempio `addEventListener()`:
 
-```js
+```js-nolint
 textBox.addEventListener("keydown", (event) =>
-  console.log(`You pressed "${event.key}".`),
+  console.log(`You pressed "${event.key}".`)
 );
 ```
 
-In questo caso, il valore di `console.log()`, che è `undefined`, viene restituito implicitamente dalla funzione di callback.
+In questo caso, il valore di `console.log()`, ovvero `undefined`, viene restituito implicitamente dalla callback function.
 
-Raccomandiamo di utilizzare le arrow function, in quanto possono rendere il codice più breve e leggibile. Per saperne di più, vedi la [sezione sulle funzioni arrow nella guida JavaScript](/it/docs/Web/JavaScript/Guide/Functions#arrow_functions), e la nostra [pagina di riferimento sulle arrow function](/it/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+Si raccomanda l'uso delle arrow function, poiché possono rendere il codice più breve e leggibile. Per ulteriori informazioni, consultare la [sezione sulle arrow function nella Guida JavaScript](/it/docs/Web/JavaScript/Guide/Functions#arrow_functions) e la [pagina di riferimento sulle arrow function](/it/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
 
 > [!NOTE]
-> Ci sono alcune sottili differenze tra le arrow function e le funzioni normali. Sono fuori dalla portata di questo tutorial introduttivo e è improbabile che facciano una differenza nei casi che abbiamo discusso qui. Per saperne di più, vedi la [documentazione di riferimento sulle arrow function](/it/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
+> Esistono alcune differenze sottili tra le arrow function e le funzioni normali. Tali differenze non rientrano nell'ambito di questo tutorial introduttivo ed è improbabile che facciano differenza nei casi trattati qui. Per ulteriori informazioni, consultare la [documentazione di riferimento sulle arrow function](/it/docs/Web/JavaScript/Reference/Functions/Arrow_functions).
 
-### Esempio funzionale di arrow function
+### Esempio dal vivo di arrow function
 
-Ecco un esempio funzionante completo dell'esempio "keydown" di cui abbiamo discusso sopra:
+Ecco una versione completa e funzionante dell'esempio `keydown` discusso sopra:
 
 L'HTML:
 
@@ -300,7 +300,7 @@ L'HTML:
 <div id="output"></div>
 ```
 
-JavaScript:
+Il JavaScript:
 
 ```js
 const textBox = document.querySelector("#textBox");
@@ -317,22 +317,22 @@ div {
 }
 ```
 
-Il risultato: prova a digitare nella casella di testo e osserva l'output:
+Il risultato: provare a digitare nella casella di testo e osservare l'output:
 
 {{EmbedLiveSample("Arrow function live sample", 100, 100)}}
 
-## Scope delle funzioni e conflitti
+## Ambito delle funzioni e conflitti
 
-Parliamo un po' di {{Glossary("scope", "scope")}} — un concetto molto importante quando si tratta di funzioni. Quando crei una funzione, le variabili e altre cose definite all'interno della funzione sono all'interno del loro proprio **scope** separato, il che significa che sono bloccate nei loro compartimenti separati, inaccessibili dal codice esterno alle funzioni.
+Parliamo un po' dell'{{Glossary("scope", "ambito")}}, un concetto importante quando si lavora con le funzioni. Quando viene creata una funzione, le variabili e altri elementi definiti al suo interno si trovano nel proprio **ambito** separato. Ciò significa che sono racchiusi in un compartimento separato e non sono raggiungibili dal codice esterno alla funzione.
 
-Il livello superiore al di fuori di tutte le tue funzioni è chiamato **scope globale**. I valori definiti nello scope globale sono accessibili ovunque nel codice.
+Il livello più esterno, al di fuori di tutte le funzioni, è chiamato **ambito globale**. I valori definiti nell'ambito globale sono accessibili da ogni parte del codice.
 
-JavaScript è impostato in questo modo per vari motivi — ma principalmente per motivi di sicurezza e organizzazione. A volte non vuoi che le variabili siano accessibili ovunque nel codice — gli script esterni che chiami da altrove potrebbero iniziare a interferire con il tuo codice e causare problemi perché usano casualmente gli stessi nomi di variabile di altre parti del codice, causando conflitti. Questo potrebbe essere fatto in modo malevolo o semplicemente per errore.
+JavaScript funziona in questo modo principalmente per motivi di sicurezza e organizzazione. Talvolta non si desidera che le variabili siano accessibili ovunque nel codice. Script esterni richiamati da altre parti potrebbero interferire con il codice e causare problemi se usano gli stessi nomi di variabile, generando conflitti. Ciò potrebbe avvenire in modo malevolo oppure semplicemente per errore.
 
-Ad esempio, supponiamo che tu abbia un file HTML che richiama due file JavaScript esterni, e entrambi hanno una variabile e una funzione definite che usano lo stesso nome:
+Ad esempio, supponiamo di avere un file HTML che fa riferimento a due file JavaScript esterni, entrambi con una variabile e una funzione definite usando lo stesso nome:
 
 ```html
-<!-- Excerpt from my HTML -->
+<!-- Excerpt from the HTML -->
 <script src="first.js"></script>
 <script src="second.js"></script>
 <script>
@@ -356,45 +356,46 @@ function greeting() {
 }
 ```
 
-Vedrai che il secondo script non viene caricato e avviato affatto, e un errore viene stampato nella console: `Uncaught SyntaxError: Identifier 'name' has already been declared`. Questo perché la costante `name` è già dichiarata in `first.js`, e non puoi dichiarare la stessa costante due volte nello stesso scope. Poiché il secondo script non è stato caricato, la funzione `greeting()` da `second.js` non è disponibile per essere chiamata. Pertanto, vedrai una finestra di allerta che mostra `Hello Chris: welcome to our company.`.
+È possibile vedere questo esempio [in esecuzione su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/functions/conflict.html) (vedere anche il [codice sorgente](https://github.com/mdn/learning-area/tree/main/javascript/building-blocks/functions)). Caricarlo in una scheda separata del browser prima di leggere la spiegazione seguente.
 
-Prova a rimuovere la seconda linea `const name = "Zaptec";` da `second.js` e ricarica la pagina. Ora entrambi gli script vengono eseguiti e la finestra di allerta dice `Our company is called Chris.`. Le funzioni possono essere ridefinite e l'ultima dichiarazione viene utilizzata. Le dichiarazioni precedenti vengono effettivamente sovrascritte.
+- Quando l'esempio viene renderizzato in un browser, inizialmente verrà visualizzata una finestra di avviso con `Hello Chris: welcome to our company.`, il che significa che la funzione `greeting()` definita nel primo file di script è stata chiamata dalla chiamata `greeting()` nello script interno.
 
-> [!NOTE]
-> Puoi vedere questo esempio [in esecuzione su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/functions/conflict.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/tree/main/javascript/building-blocks/functions)).
+- Il secondo script, tuttavia, non viene caricato né eseguito e nella console viene stampato un errore: `Uncaught SyntaxError: Identifier 'name' has already been declared`. Questo accade perché la costante `name` è già dichiarata in `first.js` e non è possibile dichiarare la stessa costante due volte nello stesso ambito. Poiché il secondo script non è stato caricato, la funzione `greeting()` da `second.js` non è disponibile per essere chiamata.
 
-Mantenere le parti del codice protette all'interno delle funzioni evita tali problemi, ed è considerata una buona pratica.
+- Se si rimuovesse la riga `const name = "Zaptec";` da `second.js` e si ricaricasse la pagina, entrambi gli script verrebbero eseguiti. La finestra di avviso direbbe ora `Our company is called Chris.` Se una funzione viene _rideclarata_, viene usata l'ultima dichiarazione nell'ordine del sorgente. Le dichiarazioni precedenti vengono di fatto sovrascritte.
 
-È un po' come uno zoo. I leoni, zebre, tigri, e pinguini sono tenuti nei loro recinti e hanno accesso solo agli elementi all'interno di essi — proprio come gli scope delle funzioni. Se fossero in grado di entrare in altri recinti, si verificherebbero problemi. Nel migliore dei casi, diversi animali si sentirebbero molto a disagio all'interno di habitat sconosciuti — un leone o una tigre si sentirebbero terribilmente nel dominio acquatico e ghiacciato dei pinguini. Nel peggiore dei casi, i leoni e le tigri potrebbero cercare di mangiare i pinguini!
+Racchiudere parti del codice nelle funzioni evita problemi di questo tipo ed è considerata una buona pratica.
 
-![Quattro diversi animali racchiusi nel loro rispettivo habitat in uno Zoo](mdn-mozilla-zoo.png)
+È un po' come un condominio:
 
-Il guardiano dello zoo è come lo scope globale — ha le chiavi per accedere a ogni recinto, rifornire il cibo, curare gli animali malati, ecc.
+- Ogni appartamento è privato per le persone che vi abitano, in modo simile all'ambito di funzione: il codice all'interno di una funzione può accedere alle variabili e alle funzioni definite al suo interno, ma il codice esterno a quella funzione non può farlo. Se tutti avessero accesso agli appartamenti di tutti gli altri, sorgerebbero problemi: gli oggetti delle persone potrebbero essere spostati, danneggiati o rubati.
 
-### Apprendimento attivo: Giocare con lo scope
+- L'edificio può anche avere aree comuni, come una piscina, una palestra o una sala ricreativa, accessibili a tutti. Questo è simile all'ambito globale: qualsiasi elemento dichiarato lì è accessibile a ogni funzione. Tutti possono usare gli spazi comuni, il che è ragionevole.
 
-Diamo un'occhiata a un esempio reale per dimostrare lo scoping.
+### Sperimentare con l'ambito
 
-1. Prima di tutto, fai una copia locale del nostro esempio [function-scope.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/functions/function-scope.html). Questo contiene due funzioni chiamate `a()` e `b()`, e tre variabili — `x`, `y`, e `z` — due delle quali sono definite all'interno delle funzioni, e una nello scope globale. Contiene anche una terza funzione chiamata `output()`, che prende un singolo parametro e lo stampa in un paragrafo sulla pagina.
-2. Apri l'esempio in un browser e nel tuo editor di testo.
-3. Apri la console JavaScript nei tuoi strumenti di sviluppo del browser. Nella console JavaScript, inserisci il seguente comando:
+Vediamo un esempio reale per dimostrare l'uso degli ambiti.
+
+1. Per prima cosa, creare una copia locale dell'esempio [function-scope.html](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/functions/function-scope.html). Questo contiene due funzioni chiamate `a()` e `b()` e tre variabili — `x`, `y` e `z` — due delle quali sono definite all'interno delle funzioni e una nell'ambito globale. Contiene inoltre una terza funzione chiamata `output()`, che accetta un singolo argomento e lo visualizza in un paragrafo della pagina.
+2. Aprire l'esempio in un browser e nell'editor di testo.
+3. Aprire la console JavaScript negli strumenti per sviluppatori del browser. Nella console JavaScript, inserire il comando seguente:
 
    ```js
    output(x);
    ```
 
-   Dovresti vedere il valore della variabile `x` stampato nella finestra del browser.
+   Dovrebbe essere visualizzato il valore della variabile `x` nella viewport del browser.
 
-4. Ora prova a inserire quanto segue nella tua console
+4. Ora provare a inserire quanto segue nella console:
 
    ```js
    output(y);
    output(z);
    ```
 
-   Entrambi dovrebbero generare un errore nella console del tipo "[ReferenceError: y is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined)". Perché? A causa dello scope delle funzioni, `y` e `z` sono bloccati all'interno delle funzioni `a()` e `b()`, quindi `output()` non può accedervi quando viene chiamato dallo scope globale.
+   Entrambi dovrebbero generare nella console un errore simile a "[ReferenceError: y is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined)". Perché? A causa dell'ambito di funzione: `y` e `z` sono racchiuse nelle funzioni `a()` e `b()`, quindi `output()` non può accedervi quando viene chiamata dall'ambito globale.
 
-5. Però, cosa succede quando viene chiamato dall'interno di un'altra funzione? Prova a modificare `a()` e `b()` in modo che appaiano così:
+5. Tuttavia, cosa accade quando viene chiamata dall'interno di un'altra funzione? Provare a modificare `a()` e `b()` affinché abbiano questo aspetto:
 
    ```js
    function a() {
@@ -408,16 +409,16 @@ Diamo un'occhiata a un esempio reale per dimostrare lo scoping.
    }
    ```
 
-   Salva il codice e ricaricalo nel browser, poi prova a chiamare le funzioni `a()` e `b()` dalla console JavaScript:
+   Salvare il codice e ricaricarlo nel browser, quindi provare a chiamare le funzioni `a()` e `b()` dalla console JavaScript:
 
    ```js
    a();
    b();
    ```
 
-   Dovresti vedere i valori di `y` e `z` stampati nella finestra del browser. Questo funziona bene, in quanto la funzione `output()` viene chiamata all'interno delle altre funzioni — nello stesso scope in cui le variabili che sta stampando sono definite, in ciascun caso. `output()` stesso è disponibile ovunque, poiché è definito nello scope globale.
+   Dovrebbero essere visualizzati i valori `y` e `z` nella viewport del browser. Questo funziona correttamente perché la funzione `output()` viene chiamata all'interno delle altre funzioni, nello stesso ambito in cui sono definite le variabili stampate. `output()` stessa è disponibile da qualsiasi punto, poiché è definita nell'ambito globale.
 
-6. Ora prova ad aggiornare il tuo codice in questo modo:
+6. Ora provare ad aggiornare il codice in questo modo:
 
    ```js
    function a() {
@@ -431,16 +432,16 @@ Diamo un'occhiata a un esempio reale per dimostrare lo scoping.
    }
    ```
 
-7. Salva e ricarica di nuovo, e prova di nuovo questo nella tua console JavaScript:
+7. Salvare e ricaricare nuovamente, quindi provare di nuovo questo nella console JavaScript:
 
    ```js
    a();
    b();
    ```
 
-   Entrambe le chiamate `a()` e `b()` dovrebbero stampare il valore di `x` nella finestra del browser. Queste funzionano bene perché anche se le chiamate a `output()` non sono nello stesso scope in cui è definito `x`, `x` è una variabile globale ed è quindi disponibile all'interno di tutto il codice, ovunque.
+   Entrambe le chiamate `a()` e `b()` dovrebbero stampare il valore di x nella viewport del browser. Funzionano correttamente perché, anche se le chiamate a `output()` non si trovano nello stesso ambito in cui è definita `x`, `x` è una variabile globale: è disponibile all'interno di tutto il codice, ovunque.
 
-8. Infine, prova ad aggiornare il tuo codice in questo modo:
+8. Infine, provare ad aggiornare il codice in questo modo:
 
    ```js
    function a() {
@@ -454,33 +455,62 @@ Diamo un'occhiata a un esempio reale per dimostrare lo scoping.
    }
    ```
 
-9. Salva e ricarica di nuovo, e prova di nuovo questo nella tua console JavaScript:
+9. Salvare e ricaricare nuovamente, quindi provare di nuovo questo nella console JavaScript:
 
    ```js
    a();
    b();
    ```
 
-   Questa volta le chiamate a `a()` e `b()` genereranno quel fastidioso errore [ReferenceError: _nome variabile_ is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined) nella console — ciò è dovuto al fatto che le chiamate a `output()` e le variabili che stanno tentando di stampare non sono nello stesso scope delle funzioni — le variabili sono effettivamente invisibili a quelle chiamate di funzione.
+   Questa volta le chiamate `a()` e `b()` genereranno nella console il fastidioso errore [ReferenceError: _nome-variabile_ is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined): ciò accade perché le chiamate a `output()` e le variabili che tentano di stampare non si trovano negli stessi ambiti di funzione. Le variabili sono di fatto invisibili a quelle chiamate di funzione.
 
 > [!NOTE]
-> Le stesse regole dello scope non si applicano ai blocchi ciclici (e.g., `for() { }`) e condizionali (e.g., `if () { }`) — sembrano molto simili, ma non sono la stessa cosa! Fai attenzione a non confondere questi aspetti.
+> L'errore [ReferenceError: "x" is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined) è uno dei più comuni che si incontreranno. Se si riceve questo errore e si è certi di aver definito la variabile in questione, controllare in quale ambito si trova.
 
-> [!NOTE]
-> L'errore [ReferenceError: "x" is not defined](/it/docs/Web/JavaScript/Reference/Errors/Not_defined) è uno dei più comuni che incontrerai. Se ottieni questo errore e sei sicuro di aver definito la variabile in questione, controlla in quale scope si trova.
+#### Una nota sull'ambito di cicli e condizionali
 
-## Metti alla prova le tue abilità!
+Vale la pena notare che l'ambito dei valori dichiarati all'interno di [condizionali](/it/docs/Learn_web_development/Core/Scripting/Conditionals) e [cicli](/it/docs/Learn_web_development/Core/Scripting/Loops) funziona come l'ambito di funzione quando si dichiarano valori con `let` e `const`. Ad esempio, se venissero aggiunti i blocchi seguenti all'esempio precedente:
 
-Sei arrivato alla fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare di aver trattenuto queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Funzioni](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills/Functions). Questi test richiedono abilità che sono coperte nei prossimi due articoli, quindi potresti volerli leggere prima di provare.
+```js
+if (x === 1) {
+  const c = 4;
+  let d = 5;
+}
 
-## Riassunto
+for (let i = 0; i <= 1; i++) {
+  const e = 6;
+  let f = 7;
+}
+```
 
-Questo articolo ha esplorato i concetti fondamentali dietro le funzioni, aprendo la strada all'articolo successivo in cui ci mettiamo pratici e ti guidiamo attraverso i passaggi per costruire la tua funzione personalizzata.
+La chiamata a `output(c)`, `output(d)`, `output(e)` o `output(f)` produrrebbe lo stesso errore **"ReferenceError: [nome-variabile] is not defined"** visto in precedenza. La funzione `output()` non può accedere a queste variabili perché sono racchiuse nel proprio ambito.
 
-## Vedi anche
+La parola chiave legacy `var` funziona diversamente. Se `c`, `d`, `e` e `f` fossero dichiarate usando `var`:
 
-- [Guida dettagliata sulle funzioni](/it/docs/Web/JavaScript/Guide/Functions) — copre alcune funzionalità avanzate non incluse qui.
-- [Riferimento sulle funzioni](/it/docs/Web/JavaScript/Reference/Functions)
-- [Usare le funzioni per scrivere meno codice](https://scrimba.com/the-frontend-developer-career-path-c0j/~04g?via=mdn), Scrimba <sup>[_Partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> - Una lezione interattiva che fornisce un'introduzione utile alle funzioni.
+```js
+if (x === 1) {
+  var c = 4;
+  var d = 5;
+}
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Loops","Learn_web_development/Core/Scripting/Build_your_own_function", "Learn_web_development/Core/Scripting")}}
+for (let i = 0; i <= 1; i++) {
+  var e = 6;
+  var f = 7;
+}
+```
+
+Verrebbero sottoposte a hoisting nell'ambito globale; pertanto, visualizzarle nella console, ad esempio con `output(c)`, funzionerebbe. Le variabili dichiarate con `var` all'interno delle funzioni, tuttavia, hanno comunque il loro ambito limitato a tali funzioni.
+
+Questa incoerenza può causare confusione ed errori ed è un'altra ragione per cui dovrebbero essere usati `let` e `const` invece di `var`.
+
+## Riepilogo
+
+Questo articolo ha esplorato i concetti fondamentali alla base delle funzioni, preparando il terreno per il prossimo, nel quale si passerà alla pratica attraverso i passaggi necessari per costruire una funzione personalizzata.
+
+## Vedere anche
+
+- [Guida dettagliata alle funzioni](/it/docs/Web/JavaScript/Guide/Functions) — tratta alcune funzionalità avanzate non incluse qui.
+- [Riferimento alle funzioni](/it/docs/Web/JavaScript/Reference/Functions)
+- [Usare le funzioni per scrivere meno codice](https://scrimba.com/the-frontend-developer-career-path-c0j/~04g?via=mdn), Scrimba <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> - Una lezione interattiva che fornisce un'utile introduzione alle funzioni.
+
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Loops","Learn_web_development/Core/Scripting/Build_your_own_function", "Learn_web_development/Core/Scripting")}}

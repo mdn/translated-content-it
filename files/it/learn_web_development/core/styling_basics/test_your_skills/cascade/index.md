@@ -1,29 +1,31 @@
 ---
-title: "Metti alla prova le tue competenze: Il Cascade"
-short-title: Cascade
+title: "Metti alla prova le tue competenze: la cascata"
+short-title: "Test: la cascata"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Cascade
 l10n:
-  sourceCommit: e632b14fd430eac85406827dd5412630cf545e8b
+  sourceCommit: a623d4459e2aa00d17dc0fd6b6bc44f56c589950
 ---
 
-Lo scopo di questo test di abilità è valutare se si comprendano i valori delle proprietà universali per [controllare l'ereditarietà in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics/Fixing_blog_styles", "Learn_web_development/Core/Styling_basics")}}
+
+L'obiettivo di questo test sulle competenze è aiutare a valutare se si comprendono i valori universali delle proprietà per [controllare l'ereditarietà in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts).
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel Playground di MDN.
-> Puoi anche copiare il codice (clicca sull'icona degli appunti) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-> Se ti blocchi, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci attraverso uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Attività 1
+## Cascata 1
 
-In questa attività, vogliamo che si utilizzi uno dei valori speciali esaminati nella sezione [controllare l'ereditarietà](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts#controlling_inheritance). Devi scrivere una dichiarazione in una nuova regola che reimposta il colore di sfondo sul bianco, senza usare un valore di colore effettivo.
+In questa attività, si deve usare uno dei valori speciali esaminati nella sezione [controllare l'ereditarietà](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts#controlling_inheritance).
 
-Il risultato finale dovrebbe apparire come l'immagine qui sotto:
+Per completare l'attività, scrivere una dichiarazione in una nuova regola che reimposti il colore di sfondo su bianco, senza usare un valore di colore effettivo.
 
-![Collegamenti giallo quasi invisibili su uno sfondo bianco.](mdn-cascade.png)
+Il punto di partenza dell'attività è il seguente:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("cascade1-start", "100%", "110px")}}
 
-```html live-sample___cascade
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___cascade1-start live-sample___cascade1-finish
 <div class="container" id="outer">
   <div class="container" id="inner">
     <ul>
@@ -34,7 +36,7 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___cascade
+```css live-sample___cascade1-start live-sample___cascade1-finish
 #outer div ul .nav a {
   background-color: powderblue;
   padding: 5px;
@@ -47,38 +49,40 @@ div div li a {
 }
 ```
 
-{{EmbedLiveSample("cascade")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("cascade1-finish", "100%", "110px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
 Una possibile soluzione è la seguente:
 
-```css
+```css live-sample___cascade1-finish
 #outer #inner a {
   background-color: inherit;
 }
 ```
 
-Ci sono due cose che devi fare in questa attività. Prima, scrivi un selettore per l'elemento `a` che sia più specifico del selettore utilizzato per rendere lo sfondo polvere blu. In questa soluzione, questo è ottenuto usando il selettore `id`, che ha una specificità molto alta.
+In questa attività ci sono due cose da fare. Innanzitutto, scrivere un selettore per l'elemento `a` che sia più specifico del selettore usato per impostare lo sfondo su powderblue. In questa soluzione, ciò viene ottenuto usando il selettore `id`, che ha una specificità molto elevata.
 
-Poi devi ricordare che ci sono valori di parola chiave speciali per tutte le proprietà. In questo caso, usando `inherit` si imposta il colore di sfondo per essere lo stesso dell'elemento padre.
+Quindi occorre ricordare che esistono valori di parole chiave speciali per tutte le proprietà. In questo caso, l'uso di `inherit` imposta nuovamente il colore di sfondo affinché sia uguale a quello dell'elemento genitore.
 
 </details>
 
-## Attività 2
+## Cascata 2
 
-In questa attività, vogliamo che si manipoli l'ordine dei livelli del cascade per colorare i collegamenti `rebeccapurple`. Non modificare la dichiarazione `lightgreen`!
+Per completare questa attività, manipolare l'ordine dei layer della cascata per colorare i link `rebeccapurple`. Non modificare la dichiarazione `lightgreen`!
 
-Questa attività è un obiettivo avanzato — richiede conoscenze sui livelli del cascade, che non abbiamo coperto nell'articolo [Gestione dei conflitti](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts). È possibile trovare le informazioni necessarie per tentare questa attività in [Livelli del cascade > Determinare la precedenza basata sull'ordine dei livelli](/it/docs/Learn_web_development/Core/Styling_basics/Cascade_layers#determining_the_precedence_based_on_the_order_of_layers).
+Questa attività è un obiettivo aggiuntivo: richiede la conoscenza dei layer della cascata, che non sono stati trattati nell'articolo [Gestire i conflitti](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts). Le informazioni necessarie per tentare questa attività sono disponibili in [Layer della cascata > Determinare la precedenza in base all'ordine dei layer](/it/docs/Learn_web_development/Core/Styling_basics/Cascade_layers#determining_the_precedence_based_on_the_order_of_layers).
 
-Il risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è il seguente:
 
-![Collegamenti giallo quasi invisibili su uno sfondo bianco.](mdn-cascade.png)
+{{EmbedLiveSample("cascade2-start", "100%", "110px")}}
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___cascade-layer
+```html live-sample___cascade2-start live-sample___cascade2-finish
 <div class="container" id="outer">
   <div class="container" id="inner">
     <ul>
@@ -89,7 +93,7 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___cascade-layer
+```css live-sample___cascade2-start
 @layer yellow, purple, green;
 
 @layer yellow {
@@ -111,23 +115,43 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 }
 ```
 
-{{EmbedLiveSample("cascade-layer")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("cascade2-finish", "100%", "110px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
 Una possibile soluzione è la seguente:
 
-```css
+```css live-sample___cascade2-finish
 @layer yellow, green, purple;
 ```
 
-C'è una cosa che devi fare in questa attività: cambiare l'ordine di precedenza in modo che la dichiarazione per il colore desiderato sia nell'ultimo livello dichiarato, come mostra questa soluzione.
+```css hidden live-sample___cascade2-finish
+@layer yellow {
+  #outer div ul .nav a {
+    padding: 5px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+}
+@layer purple {
+  div div li a {
+    color: rebeccapurple;
+  }
+}
+@layer green {
+  a {
+    color: lightgreen;
+  }
+}
+```
 
-Devi ricordare che gli stili normali non stratificati hanno precedenza sugli stili normali stratificati. Ma, se tutti gli stili sono all'interno di livelli — come nel caso di questa attività — gli stili nei livelli dichiarati più tardi hanno precedenza sugli stili dichiarati nei livelli precedenti. Spostare il livello viola alla fine significa che ha precedenza sui livelli verde e giallo.
+In questa attività c'è una cosa da fare: modificare l'ordine di precedenza affinché la dichiarazione per il colore desiderato si trovi nell'ultimo layer dichiarato, come mostra questa soluzione.
+
+Occorre ricordare che gli stili normali senza layer hanno precedenza sugli stili normali nei layer. Tuttavia, se tutti gli stili sono all'interno di layer, come nel caso di questa attività, gli stili nei layer dichiarati successivamente hanno precedenza sugli stili dichiarati nei layer precedenti. Spostare il layer viola alla fine significa che ha precedenza sui layer verde e giallo.
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo styling CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics/Fixing_blog_styles", "Learn_web_development/Core/Styling_basics")}}

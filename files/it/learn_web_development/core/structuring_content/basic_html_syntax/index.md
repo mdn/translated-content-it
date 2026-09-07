@@ -2,451 +2,256 @@
 title: Sintassi HTML di base
 slug: Learn_web_development/Core/Structuring_content/Basic_HTML_syntax
 l10n:
-  sourceCommit: cb25e0acbd9f0af27c4a99965cb962230d49a35d
+  sourceCommit: d19dec85109590176f946fcceef48c787d578b1e
 ---
 
 {{NextMenu("Learn_web_development/Core/Structuring_content/Webpage_metadata", "Learn_web_development/Core/Structuring_content")}}
 
-In questo articolo, trattiamo le basi assolute dell'HTML. Per iniziare, questo articolo definisce elementi, attributi e tutti gli altri termini importanti che potresti aver sentito. Spiega anche dove si inseriscono nell'HTML. Imparerai come sono strutturati gli elementi HTML, come è strutturata una tipica pagina HTML e altre caratteristiche fondamentali del linguaggio. Durante il percorso, ci sarà anche l'opportunità di sperimentare con l'HTML!
+In questo articolo vengono trattati i fondamenti di HTML, inclusi terminologia, sintassi e struttura. Lungo il percorso, saranno completate alcune sfide interattive per acquisire familiarità con la scrittura di HTML di base.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software">Software di base installato</a> e conoscenza di base di <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files">come lavorare con i file</a>.
+        <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software">Software di base installato</a> e conoscenza di base del <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files">lavoro con i file</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati di apprendimento:</th>
+      <th scope="row">Risultati dell'apprendimento:</th>
       <td>
         <ul>
-          <li>Anatomia di un elemento HTML: elemento, tag di apertura, contenuto, tag di chiusura, attributi.</li>
-          <li>Il corpo HTML e il suo scopo come contenitore per il contenuto della pagina.</li>
-          <li>Cosa sono gli <a href="/it/docs/Glossary/Void_element">elementi void</a> (noti anche come elementi vuoti) e come differiscono dagli altri elementi.</li>
-          <li>La necessità di un doctype in cima ai documenti HTML, il suo scopo originario e il fatto che ora è un artefatto storico.</li>
-          <li>Comprendere che l'HTML deve essere annidato correttamente.</li>
+          <li>L'anatomia di un elemento HTML — elemento, tag di apertura, contenuto, tag di chiusura, attributi.</li>
+          <li>Il body HTML e il suo scopo come contenitore per il contenuto della pagina.</li>
+          <li>Cosa sono i void element e in cosa differiscono dagli altri elementi.</li>
+          <li>La necessità di un doctype all'inizio dei documenti HTML, incluso il suo scopo originale e il fatto che ora sia in qualche modo un artefatto storico.</li>
+          <li>Comprendere che HTML deve essere annidato correttamente.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Che cos'è l'HTML?
+## Cos'è HTML?
 
-{{Glossary("HTML", "HTML")}} (HyperText Markup Language) è un _linguaggio di markup_ che indica ai browser web come strutturare le pagine web che visiti. Può essere complicato o semplice quanto lo sviluppatore desidera. L'HTML è composto da una serie di {{Glossary("Element", "elementi")}}, che utilizzi per racchiudere, avvolgere o _marcare_ diverse parti del contenuto per farle apparire o agire in un certo modo. I {{Glossary("Tag", "tag")}} di chiusura possono trasformare il contenuto in un collegamento ipertestuale per connettersi a un'altra pagina, rendere le parole in corsivo, e così via. Ad esempio, considera la seguente riga di testo:
+{{Glossary("HTML", "HTML")}} (HyperText Markup Language) è un _linguaggio di markup_ che comunica ai browser web come strutturare le pagine web visitate. HTML consiste in una serie di {{Glossary("Element", "elementi")}}, usati per racchiudere, avvolgere o _marcare_ diverse parti del contenuto affinché appaiano o si comportino in un determinato modo. I {{Glossary("Tag", "tag")}} di delimitazione possono trasformare il contenuto in un collegamento ipertestuale verso un'altra pagina, rendere le parole in corsivo e così via. Per esempio, si consideri la seguente riga di testo:
 
 ```plain
 My cat is very grumpy
 ```
 
-Se volessimo che il testo si distinguesse da solo, potremmo specificare che è un paragrafo racchiudendolo in un elemento paragrafo ({{htmlelement("p")}}):
+Si potrebbe specificare che questo testo è un paragrafo racchiudendolo nei tag di paragrafo ({{htmlelement("p")}}):
 
 ```html
 <p>My cat is very grumpy</p>
 ```
 
-L'HTML risiede all'interno di file di testo chiamati **documenti HTML**, o semplicemente **documenti**, con un'estensione di file `.html`. Precedentemente abbiamo parlato di pagine web: un documento HTML contiene il contenuto della pagina web e ne specifica la struttura.
+Oppure, si potrebbe specificare che questo testo è un'intestazione di livello superiore racchiudendolo nei tag [`<h1>`](/it/docs/Web/HTML/Reference/Elements/Heading_Elements):
 
-Il file HTML più comune che incontrerai è `index.html`, generalmente utilizzato per contenere il contenuto della home page di un sito web. È anche comune vedere sottocartelle con il proprio `index.html`, così un sito web può avere più file index in posti diversi.
+```html
+<h1>My cat is very grumpy</h1>
+```
+
+HTML è contenuto all'interno di file di testo chiamati **documenti HTML**, o semplicemente **documenti**, con estensione `.html`. Mentre in precedenza si è parlato di pagine web, un documento HTML contiene il contenuto della pagina web e ne specifica la struttura.
+
+Il file HTML più comune che si incontrerà è `index.html`, generalmente usato per contenere il contenuto della pagina iniziale di un sito web. È anche comune trovare sottocartelle contenenti i propri file `index.html`, per cui un sito web può avere più file index in posizioni differenti.
 
 > [!NOTE]
-> I tag in HTML non sono case-sensitive. Ciò significa che possono essere scritti in maiuscolo o minuscolo. Ad esempio, un tag {{htmlelement("title")}} potrebbe essere scritto come `<title>`, `<TITLE>`, `<Title>`, `<TiTlE>`, ecc., e funzionerà. Tuttavia, è buona pratica scrivere tutti i tag in minuscolo per coerenza e leggibilità.
+> I tag in HTML non distinguono tra maiuscole e minuscole. Ciò significa che possono essere scritti in maiuscolo o in minuscolo. Per esempio, un tag {{htmlelement("title")}} potrebbe essere scritto come `<title>`, `<TITLE>`, `<Title>`, `<TiTlE>` e così via, e funzionerà comunque. Tuttavia, è buona pratica scrivere tutti i tag in minuscolo per coerenza e leggibilità.
 
 ## Anatomia di un elemento HTML
 
-Esploriamo ulteriormente il nostro elemento paragrafo dalla sezione precedente:
+Esploriamo ulteriormente l'elemento paragrafo della sezione precedente:
 
-![Uno snippet di codice di esempio che dimostra la struttura di un elemento html.<p> Il mio gatto è molto scontroso </p>.](grumpy-cat-small.png)
+![Un esempio di frammento di codice che dimostra la struttura di un elemento HTML.<p> My cat is very grumpy </p>.](grumpy-cat-small.png)
 
-L'anatomia del nostro elemento è:
+L'elemento completo è composto da:
 
-- **Il tag di apertura:** Questo consiste nel nome dell'elemento (in questo esempio, _p_ per paragrafo), racchiuso tra parentesi angolari. Questo tag di apertura segna dove l'elemento inizia o inizia a produrre effetto. In questo esempio, precede l'inizio del testo del paragrafo.
-- **Il contenuto:** Questo è il contenuto dell'elemento. In questo esempio, è il testo del paragrafo.
-- **Il tag di chiusura:** Questo è lo stesso del tag di apertura, tranne per il fatto che include una barra obliqua prima del nome dell'elemento. Questo segna dove l'elemento termina. Non includere un tag di chiusura è un errore comune per i principianti che può produrre risultati strani.
-
-L'elemento è costituito dal tag di apertura, seguito dal contenuto, seguito dal tag di chiusura.
+- **Il tag di apertura:** consiste nel nome dell'elemento (in questo esempio, _p_ per paragraph), racchiuso tra parentesi angolari di apertura e chiusura. Questo tag di apertura indica dove l'elemento inizia o comincia ad avere effetto. In questo esempio, precede l'inizio del testo del paragrafo.
+- **Il contenuto:** è il contenuto dell'elemento. In questo esempio, è il testo del paragrafo — "My cat is very grumpy".
+- **Il tag di chiusura:** è uguale al tag di apertura, tranne per il fatto che include una barra in avanti prima del nome dell'elemento. Indica dove termina l'elemento. Omettere un tag di chiusura è un errore comune tra i principianti che può produrre risultati insoliti.
 
 > [!NOTE]
-> Vai dal nostro partner di apprendimento Scrimba per una [spiegazione interattiva dei tag HTML](https://scrimba.com/learn-html-and-css-c0p/~02?via=mdn) <sup>[_MDN learning partner_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>.
+> Visita lo scrim [HTML tags](https://scrimba.com/learn-html-and-css-c0p/~02?via=mdn) <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> del partner di apprendimento Scrimba per una spiegazione interattiva dei tag HTML.
 
-### Apprendimento attivo: creare il tuo primo elemento HTML
+### Creare il primo elemento HTML
 
-Modifica la riga qui sotto nell'area "Codice modificabile" racchiudendola con i tag `<em>` e `</em>`. Per _aprire l'elemento_, inserisci il tag di apertura `<em>` all'inizio della riga. Per _chiudere l'elemento_, metti il tag di chiusura `</em>` alla fine della riga. Facendo ciò, il testo dovrebbe essere formattato in corsivo! Guarda i tuoi cambiamenti aggiornarsi dal vivo nell'area _Output_.
+Ecco un po' di pratica nella scrittura di elementi HTML:
 
-Se commetti un errore, puoi cancellare il tuo lavoro utilizzando il pulsante _Reset_. Se ti blocchi seriamente, premi il pulsante _Mostra soluzione_ per vedere la risposta.
+1. Fare clic su **"Play"** nel blocco di codice sottostante per modificare l'esempio nel Playground MDN.
+2. Racchiudere la riga di testo con i tag `<em>` e `</em>`. Per _aprire l'elemento_, inserire il tag di apertura (`<em>`) all'inizio della riga. Per _chiudere l'elemento_, inserire il tag di chiusura (`</em>`) alla fine della riga. Così facendo, il testo renderizzato verrà formattato in corsivo.
+3. Per sperimentare ulteriormente, provare a cercare altri [elementi HTML](/it/docs/Web/HTML/Reference/Elements) e applicarli all'esempio di testo.
 
-```html hidden
-<h2>Live output</h2>
-<div class="output" style="min-height: 50px;"></div>
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nel Playground MDN. Se si rimane bloccati, è possibile visualizzare la soluzione sotto il blocco di codice.
 
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="playable-code" style="min-height: 100px;width: 95%">
-  This is my text.
-</textarea>
-
-<div class="controls">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+```html live-sample___basic_html_1
+This is my text.
 ```
 
-```css hidden
-html {
-  font-family: "Open Sans Light", Helvetica, Arial, sans-serif;
-}
+{{ EmbedLiveSample('basic_html_1', "100%", 60) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+La riga HTML completata dovrebbe apparire così:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
+```html
+<em>This is my text.</em>
 ```
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
+</details>
 
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
+### Annidare elementi
 
-const htmlSolution = "<em>This is my text.</em>";
-let solutionEntry = htmlSolution;
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_creating_your_first_HTML_element', 700, 400, "", "") }}
-
-### Annidamento degli elementi
-
-Gli elementi possono essere inseriti all'interno di altri elementi. Questo è chiamato _annidamento_. Se volessimo affermare che il nostro gatto è **molto** scontroso, potremmo avvolgere la parola _molto_ in un elemento {{htmlelement("strong")}}, che significa che la parola deve avere una formattazione del testo più forte:
+Gli elementi possono essere inseriti all'interno di altri elementi. Questa operazione è chiamata _annidamento_. Se si volesse indicare che il gatto è **molto** scontroso, si potrebbe racchiudere la parola _molto_ in un elemento {{htmlelement("strong")}}, che applica una formattazione del testo forte:
 
 ```html
 <p>My cat is <strong>very</strong> grumpy.</p>
 ```
 
-C'è un modo giusto e sbagliato di fare l'annidamento. Nell'esempio sopra, abbiamo aperto l'elemento `p` per primo, poi abbiamo aperto l'elemento `strong`. Per un annidamento corretto, dovremmo chiudere l'elemento `strong` prima, prima di chiudere il `p`.
+In questo blocco di codice, il testo "My cat is very grumpy." è interamente definito come paragrafo. La parola "very" è inoltre definita come di forte importanza.
 
-Il seguente è un esempio del modo _sbagliato_ di fare l'annidamento:
+Esiste un modo corretto e uno sbagliato di effettuare l'annidamento. Nel blocco di codice precedente, viene aperto prima l'elemento `<p>`, quindi viene aperto l'elemento `<strong>`. Per un annidamento corretto, viene chiuso prima l'elemento `<strong>`, quindi viene chiuso l'elemento `<p>`.
+
+Il seguente è un esempio del modo _sbagliato_ di effettuare l'annidamento:
 
 ```html-nolint example-bad
 <p>My cat is <strong>very grumpy.</p></strong>
 ```
 
-**I tag devono aprirsi e chiudersi in modo che siano dentro o fuori l'uno dall'altro.** Con il tipo di sovrapposizione nell'esempio sopra, il browser deve indovinare la tua intenzione. Questo tipo di supposizione può portare a risultati inaspettati.
+I **tag devono aprirsi e chiudersi in modo da trovarsi uno all'interno o all'esterno dell'altro**. Poiché gli elementi si sovrappongono nel blocco di codice precedente, il browser deve indovinare l'intenzione. Questo tipo di supposizione può produrre risultati imprevisti.
 
-### Elementi void
+### Void element
 
-Non tutti gli elementi seguono il modello di un tag di apertura, contenuto e un tag di chiusura. Alcuni elementi consistono in un singolo tag, che viene tipicamente usato per inserire/incorporare qualcosa nel documento. Tali elementi sono chiamati {{Glossary("void_element", "elementi void")}}. Ad esempio, l'elemento {{htmlelement("img")}} incorpora un file immagine su una pagina:
+Non tutti gli elementi seguono lo schema di un tag di apertura, contenuto e poi tag di chiusura. Alcuni elementi consistono in un singolo tag, generalmente usato per inserire/incorporare qualcosa nel documento. Tali elementi sono chiamati {{Glossary("void_element", "void element")}}, ovvero "elementi che non possono contenere altro contenuto HTML".
 
-```html
-<img
-  src="https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png"
-  alt="Firefox icon" />
+Per esempio, l'elemento {{htmlelement("br")}} inserisce un'interruzione di riga in una riga di testo, facendo sì che il testo vada a capo su più righe:
+
+```html live-sample___void-example
+<p>
+  This is a single paragraph, but we are going to <br />break it onto two lines.
+</p>
 ```
 
-Questo produrrebbe il seguente output:
+Il rendering è il seguente:
 
-{{ EmbedLiveSample('Void_elements', 700, 300, "", "") }}
+{{ EmbedLiveSample('void-example', "100%", 100) }}
 
 > [!NOTE]
-> In HTML, non è necessario aggiungere una barra `/` alla fine del tag di un elemento void, per esempio: `<img src="images/cat.jpg" alt="cat" />`. Tuttavia, è anche una sintassi valida, e puoi farlo quando desideri che il tuo HTML sia un XML valido.
+> In alcuni esempi HTML, sarà presente un `/` aggiunto alla fine del tag di un void element, per esempio `<br />`. Si tratta di uno stile di sintassi di markup differente, che non è errato, ma questa "barra di chiusura" non è necessaria.
 
 ## Attributi
 
 Gli elementi possono anche avere attributi. Gli attributi appaiono così:
 
-![tag paragrafo con attributo 'class="editor-note"' evidenziato](grumpy-cat-attribute-small.png)
+![Tag di paragrafo con l'attributo 'class="editor-note"' evidenziato](grumpy-cat-attribute-small.png)
 
-Gli attributi contengono informazioni aggiuntive sull'elemento che non appariranno nel contenuto. In questo esempio, l'attributo **`class`** è un nome identificativo utilizzato per indirizzare l'elemento con informazioni di stile.
+Gli attributi contengono informazioni aggiuntive sull'elemento che non fanno parte del suo contenuto. L'attributo **`class`** fornisce un nome identificativo che può essere usato per selezionare l'elemento con stili (CSS) o informazioni di scripting (JavaScript).
 
 Un attributo dovrebbe avere:
 
-- Uno spazio tra esso e il nome dell'elemento. (Per un elemento con più di un attributo, gli attributi dovrebbero essere separati da spazi pure.)
-- Il nome dell'attributo, seguito da un segno di uguale.
-- Un valore di attributo, racchiuso tra virgolette di apertura e chiusura.
+- Uno spazio tra l'attributo e il nome dell'elemento. Quando un elemento ha più di un attributo, anche gli attributi dovrebbero essere separati da spazi.
+- Il nome dell'attributo, seguito da un segno di uguale (`=`).
+- Un valore dell'attributo, racchiuso tra virgolette di apertura e chiusura.
 
-### Apprendimento attivo: aggiungere attributi a un elemento
+### Aggiungere attributi a un elemento
 
-L'elemento `<img>` può prendere un numero di attributi, inclusi:
+Ora è di nuovo il momento di esercitarsi. In questa sezione verrà esplorato l'elemento {{htmlelement("img")}}, usato per visualizzare un'immagine nella pagina. L'elemento `<img>` può accettare diversi attributi, inclusi:
 
-- `src`
-  - : L'attributo `src` è un attributo **obbligatorio** che specifica la posizione dell'immagine. Ad esempio: `src="https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png"`.
-- `alt`
-  - : L'attributo `alt` specifica una descrizione testuale dell'immagine. Ad esempio: `alt="L'icona di Firefox"`.
-- `width`
-  - : L'attributo `width` specifica la larghezza dell'immagine con l'unità in pixel. Ad esempio: `width="300"`.
-- `height`
-  - : L'attributo `height` specifica l'altezza dell'immagine con l'unità in pixel. Ad esempio: `height="300"`.
+- `src`: un attributo **obbligatorio** che specifica l'{{Glossary("URL", "URL")}} (indirizzo web) dell'immagine. Per esempio: `src="https://mdn.github.io/shared-assets/images/examples/fx-nightly-512.png"`.
+- `alt`: specifica una descrizione testuale dell'immagine per le persone che non possono vederla. Per esempio: `alt="The Firefox Nightly icon"`. Questo attributo non è tecnicamente obbligatorio, ma è consigliabile fornire una descrizione testuale per tutte le immagini che trasmettono significato, invece di essere puramente decorative.
+- `width`: specifica la larghezza dell'immagine in pixel. Per esempio: `width="300"`.
+- `height`: specifica l'altezza dell'immagine in pixel. Per esempio: `height="300"`.
 
-Modifica la riga qui sotto nell'area _Input_ per trasformarla in un'immagine.
+Seguire i passaggi seguenti per completare l'attività:
 
-1. Trova la tua immagine preferita online, cliccaci sopra col tasto destro e premi _Copia link/indirizzo immagine_.
-2. Torna nell'area sotto, aggiungi l'attributo `src` e riempilo con il link del passaggio 1.
-3. Imposta l'attributo `alt`.
-4. Aggiungi gli attributi `width` e `height`.
+1. Fare clic su **"Play"** nel blocco di codice sottostante per modificare l'esempio nel Playground MDN.
+2. Trovare online un'immagine preferita, fare clic destro su di essa e premere _Copia indirizzo immagine/collegamento_. In alternativa, copiare l'URL dell'immagine riportato sopra.
+3. Tornando al Playground MDN, aggiungere l'attributo `src` all'elemento `<img>` e impostarne il valore all'URL del passaggio 2.
+4. Impostare l'attributo `alt` a una descrizione appropriata dell'immagine.
+5. Impostare l'attributo `width` a un valore come `300`, in modo da poter vedere meglio l'immagine nel pannello di output. Regolare il valore se necessario.
 
-Sarai in grado di vedere i tuoi cambiamenti dal vivo nell'area _Output_.
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nel Playground MDN. Se si rimane bloccati, è possibile visualizzare la soluzione sotto il blocco di codice.
 
-Se commetti un errore, puoi sempre ripristinarlo utilizzando il pulsante _Reset_. Se ti blocchi seriamente, premi il pulsante _Mostra soluzione_ per vedere la risposta.
-
-```html hidden
-<h2>Live output</h2>
-
-<div class="output" style="min-height: 50px;"></div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="input" style="min-height: 100px;width: 95%">
-&lt;img alt="I should be an image" &gt;
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+```html live-sample___basic_html_2
+<img />
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample('basic_html_2', "100%", 60) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+L'elemento HTML completato dovrebbe apparire più o meno così:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
+```html
+<img
+  src="https://mdn.github.io/shared-assets/images/examples/fx-nightly-512.png"
+  alt="A description of the image"
+  width="300" />
 ```
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
-
-const htmlSolution =
-  '<img src="https://raw.githubusercontent.com/mdn/beginner-html-site/gh-pages/images/firefox-icon.png" alt="Firefox icon" width="100" height="100" />';
-let solutionEntry = htmlSolution;
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_Adding_attributes_to_an_element', 700, 400, "", "") }}
+</details>
 
 ### Attributi booleani
 
-A volte vedrai attributi scritti senza valori. Questo è del tutto accettabile. Questi sono chiamati {{Glossary("Boolean/HTML", "attributi booleani")}}. Quando un attributo booleano è scritto senza valore, o con qualsiasi valore, anche come `"false"`, l'attributo booleano è sempre impostato su true. Altrimenti, se l'attributo non è scritto in un tag HTML, l'attributo è impostato su false. La specifica richiede che il valore dell'attributo sia una stringa vuota (incluso quando l'attributo non ha un valore esplicitamente specificato) o lo stesso nome dell'attributo, ma altri valori funzionano lo stesso. Ad esempio, considera l'attributo [`disabled`](/it/docs/Web/HTML/Reference/Elements/input#disabled), che puoi assegnare agli elementi di input del modulo. (Usi questo per _disattivare_ gli elementi di input del modulo in modo che l'utente non possa fare inserimenti. Gli elementi disabilitati hanno tipicamente un aspetto grigiato.) Ad esempio:
+Talvolta si vedranno attributi HTML scritti senza valori. Questi sono chiamati {{Glossary("Boolean/HTML", "attributi booleani")}}. Quando viene aggiunto un attributo booleano, il suo valore è impostato su `true`, indipendentemente dal valore che gli viene assegnato, anche se non viene assegnato alcun valore. Se un attributo non è incluso in un tag HTML, il suo valore è impostato su `false`.
 
-```html
-<input type="text" disabled="disabled" />
+Per esempio, si consideri l'attributo [`disabled`](/it/docs/Web/HTML/Reference/Elements/input#disabled), che può essere assegnato agli elementi {{htmlelement("input")}} dei moduli per impedire all'utente di immettervi dati. Per esempio:
+
+```html live-sample___boolean-example
+<label for="first-input">This input is disabled</label>
+<input id="first-input" type="text" disabled="disabled" />
+<br />
 ```
 
-Come scorciatoia, è accettabile scrivere questo come segue:
+Come abbreviazione, è accettabile scrivere l'attributo `disabled` senza un valore:
 
-```html
-<!-- using the disabled attribute prevents the end user from entering text into the input box -->
-<input type="text" disabled />
-
-<!-- text input is allowed, as it doesn't contain the disabled attribute -->
-<input type="text" />
+```html live-sample___boolean-example
+<label for="second-input">This input is also disabled</label>
+<input id="second-input" type="text" disabled />
+<br />
 ```
 
-Per riferimento, l'esempio sopra include anche un elemento di input del modulo non disabilitato. L'HTML dell'esempio sopra produce questo risultato:
+Come riferimento, viene fornito anche un elemento `<input>` non disabilitato per poter confrontare le differenze. Si noti come gli input `disabled` appaiano leggermente in grigio nel rendering seguente:
 
-{{ EmbedLiveSample('Boolean_attributes', 700, 100, "", "") }}
+```html live-sample___boolean-example
+<label for="third-input">This input isn't disabled; you can type into it</label>
+<input id="third-input" type="text" />
+```
+
+I frammenti HTML precedenti vengono renderizzati così:
+
+{{ EmbedLiveSample('boolean-example', "100%", 100) }}
+
+> [!NOTE]
+> Gli elementi {{htmlelement("label")}} inclusi nel codice precedente forniscono un modo per associare etichette descrittive agli elementi dei moduli. Sono stati inclusi perché è una buona pratica e per fornire una certa separazione tra gli input del modulo.
 
 ### Omettere le virgolette attorno ai valori degli attributi
 
-Se guardi il codice di molti altri siti, potresti incontrare un certo numero di stili di markup strani, inclusi valori degli attributi senza virgolette. Questo è permesso in alcune circostanze, ma può anche rompere il tuo markup in altre circostanze. L'elemento nel seguente snippet di codice, `<a>`, è chiamato ancora. Le ancore racchiudono il testo e lo trasformano in collegamenti. L'attributo `href` specifica l'indirizzo web a cui punta il collegamento. Puoi scrivere questa versione di base sotto con _solo_ l'attributo `href`, come segue:
+In determinate circostanze, è consentito omettere le virgolette attorno ai valori degli attributi. Tuttavia, poiché questo può danneggiare il markup in altre circostanze, è consigliabile **includere sempre** le virgolette. Esploriamo il motivo.
+
+L'elemento nel frammento di codice seguente, {{htmlelement("a")}}, è chiamato **ancora**. Le ancore racchiudono testo e lo trasformano in collegamenti. L'attributo `href` specifica l'URL a cui punta il collegamento. È possibile omettere le virgolette attorno al valore dell'attributo `href` mostrato sotto senza conseguenze negative, perché non contiene spazi:
 
 ```html
 <a href=https://www.mozilla.org/>favorite website</a>
 ```
 
-Le ancore possono anche avere un attributo `title`, una descrizione della pagina collegata. Tuttavia, non appena aggiungiamo il `title` nello stesso modo dell'attributo `href` ci sono problemi:
+Tuttavia, omettendo le virgolette dai valori degli attributi _con_ spazi, si incontrano rapidamente dei problemi. Si consideri l'attributo `title` mostrato sotto, che fornisce una descrizione della pagina collegata ("The Mozilla homepage") che dovrebbe apparire come tooltip quando il puntatore del mouse passa sopra il collegamento.
 
-```html-nolint example-bad
+```html-nolint example-bad live-sample___bad-no-quotes
 <a href=https://www.mozilla.org/ title=The Mozilla homepage>favorite website</a>
 ```
 
-Come scritto sopra, il browser interpreta erroneamente il markup, scambiando l'attributo `title` per tre attributi: un attributo title con valore `The`, e due attributi booleani, `Mozilla` e `homepage`. Ovviamente, questo non è l'intento! Questo causerà errori o comportamenti inaspettati, come puoi vedere nell'esempio live qui sotto. Prova a passare il mouse sopra il link per vedere il testo del titolo!
+Poiché le virgolette non sono incluse attorno al valore dell'attributo `title`, il browser lo interpreta come tre attributi: un attributo `title` con il valore `The` e due attributi booleani — `Mozilla` e `homepage`. Ovviamente, questo non è ciò che era previsto. Se si utilizza un dispositivo con puntatore del mouse, è possibile provare a passare sopra il collegamento per visualizzare il tooltip del titolo: verrà mostrato "The" anziché l'atteso "The Mozilla homepage".
 
-{{ EmbedLiveSample('Omitting_quotes_around_attribute_values', 700, 100, "", "") }}
+{{ EmbedLiveSample('bad-no-quotes', 700, 100) }}
 
-Includi sempre le virgolette degli attributi. In questo modo si evitano tali problemi e si ottiene un codice più leggibile.
+Includere sempre le virgolette attorno ai valori degli attributi. Evita errori e comportamenti indesiderati e rende il codice più leggibile.
 
 ### Virgolette singole o doppie?
 
-In questo articolo noterai anche che gli attributi sono racchiusi tra doppie virgolette. Tuttavia, potresti vedere virgolette singole in alcuni codici HTML. Questa è una questione di stile. Puoi scegliere quale preferisci. Entrambe queste righe sono equivalenti:
+In questo articolo, tutti i valori degli attributi sono stati racchiusi tra virgolette doppie. Tuttavia, in alcuni codici HTML potrebbero essere usate virgolette singole. È una questione di stile ed è possibile scegliere liberamente quale si preferisce. Entrambe queste righe sono equivalenti:
 
 ```html-nolint
 <a href='https://www.example.com'>A link to my example.</a>
@@ -454,13 +259,13 @@ In questo articolo noterai anche che gli attributi sono racchiusi tra doppie vir
 <a href="https://www.example.com">A link to my example.</a>
 ```
 
-Assicurati di non mescolare virgolette singole e doppie. Questo esempio (sotto) mostra un tipo di mescolanza di virgolette che andrà storto:
+Assicurarsi di non mescolare virgolette singole e doppie. L'esempio seguente mescola le virgolette, causando errori perché, dal punto di vista del browser, il valore dell'attributo `href` non è stato terminato:
 
 ```html-nolint example-bad
 <a href="https://www.example.com'>A link to my example.</a>
 ```
 
-Tuttavia, se utilizzi un tipo di virgolette, puoi includere l'altro tipo di virgolette _dentro_ i valori degli attributi:
+Usando un tipo di virgolette, è possibile includere l'altro tipo _all'interno_ dei valori degli attributi. Questo funziona correttamente:
 
 ```html
 <a href="https://www.example.com" title="Isn't this fun?">
@@ -468,14 +273,13 @@ Tuttavia, se utilizzi un tipo di virgolette, puoi includere l'altro tipo di virg
 </a>
 ```
 
-Per utilizzare i segni di citazione all'interno di altri segni di citazione dello stesso tipo (virgolette singole o doppie), utilizza i {{Glossary("character_reference", "riferimenti ai caratteri")}}.
-Ad esempio, questo romperà:
+Per usare virgolette all'interno di altre virgolette dello stesso tipo, singole o doppie, è possibile usare i [riferimenti ai caratteri](#riferimenti-ai-caratteri-inclusi-caratteri-speciali-in-html). Per esempio, questo non funzionerà:
 
 ```html-nolint example-bad
 <a href="https://www.example.com" title="An "interesting" reference">A link to my example.</a>
 ```
 
-Invece, devi fare questo:
+È invece necessario fare così:
 
 ```html-nolint
 <a href="https://www.example.com" title="An &quot;interesting&quot; reference">A link to my example.</a>
@@ -483,7 +287,9 @@ Invece, devi fare questo:
 
 ## Anatomia di un documento HTML
 
-Gli elementi HTML individuali non sono molto utili da soli. Passiamo ora a esaminare come gli elementi individuali si combinano per formare un'intera pagina HTML:
+I singoli elementi HTML non sono molto utili da soli. Esaminiamo ora come i singoli elementi si combinano per formare un'intera pagina HTML.
+
+L'esempio seguente è una pagina web completa molto semplice:
 
 ```html
 <!doctype html>
@@ -498,188 +304,88 @@ Gli elementi HTML individuali non sono molto utili da soli. Passiamo ora a esami
 </html>
 ```
 
-Qui abbiamo:
+Le parti di questo esempio sono le seguenti:
 
-1. `<!doctype html>`: Il doctype. Quando HTML era giovane (1991-1992), i doctypes erano pensati per agire come collegamenti a un insieme di regole che la pagina HTML doveva seguire per essere considerata buon HTML. I doctypes una volta sembravano qualcosa di simile:
+1. `<!doctype html>`: il doctype. Quando HTML era agli inizi, nel 1991-1992, i doctype dovevano agire come collegamenti a un insieme di regole che la pagina HTML doveva seguire per essere considerata buon HTML. I doctype avevano un aspetto simile a questo:
 
    ```html
-   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+   <!doctype html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
    ```
 
-   Più recentemente, il doctype è un artefatto storico che deve essere incluso per far funzionare tutto il resto correttamente. `<!doctype html>` è la stringa più corta di caratteri che conta come un doctype valido. Questo è tutto ciò che devi sapere!
+   Oggi, il doctype è un artefatto storico che deve essere incluso affinché tutto il resto funzioni correttamente. `<!doctype html>` è la stringa di caratteri più breve che conta come doctype valido e dovrebbe essere inclusa all'inizio di tutte le pagine web. Questo è tutto ciò che occorre sapere.
 
-2. `<html></html>`: L'elemento {{htmlelement("html")}}. Questo elemento racchiude tutto il contenuto della pagina. È talvolta noto come elemento radice.
-3. `<head></head>`: L'elemento {{htmlelement("head")}}. Questo elemento agisce come contenitore per tutto ciò che vuoi includere nella pagina HTML, **che non è il contenuto** che la pagina mostrerà agli spettatori. Ciò include parole chiave e una descrizione della pagina che apparirebbe nei risultati di ricerca, CSS per stilizzare il contenuto, dichiarazioni del set di caratteri e altro. Imparerai di più su questo nel prossimo articolo della serie.
-4. `<meta charset="utf-8">`: L'elemento {{htmlelement("meta")}}. Questo elemento rappresenta i metadati che non possono essere rappresentati da altri elementi correlati ai metadati HTML, come {{htmlelement("base")}}, {{htmlelement("link")}}, {{htmlelement("script")}}, {{htmlelement("style")}} o {{htmlelement("title")}}. L'attributo [`charset`](/it/docs/Web/HTML/Reference/Elements/meta#charset) specifica la codifica dei caratteri per il tuo documento come UTF-8, che include la maggior parte dei caratteri della stragrande maggioranza delle lingue umane scritte. Con questa impostazione, la pagina può ora gestire qualsiasi contenuto testuale che potrebbe contenere. Non c'è motivo di non impostarlo, e può aiutare a evitare alcuni problemi in un secondo momento.
-5. `<title></title>`: L'elemento {{htmlelement("title")}}. Questo imposta il titolo della pagina, che è il titolo che appare nella scheda del browser in cui la pagina è caricata. Il titolo della pagina è anche usato per descrivere la pagina quando viene aggiunta ai segnalibri.
-6. `<body></body>`: L'elemento {{htmlelement("body")}}. Questo contiene _tutto_ il contenuto che appare sulla pagina, inclusi testi, immagini, video, giochi, tracce audio riproducibili o qualsiasi altra cosa.
+2. `<html></html>`: l'elemento {{htmlelement("html")}}. Questo elemento racchiude tutto il contenuto della pagina. Talvolta è noto come elemento radice.
+3. `<head></head>`: l'elemento {{htmlelement("head")}}. Questo elemento agisce come contenitore per informazioni sulla pagina che _non_ fanno parte del contenuto che gli utenti vedranno. Possono includere parole chiave e una descrizione della pagina da mostrare nei risultati di ricerca, CSS per definire lo stile del contenuto, dichiarazioni del set di caratteri e altro. Nel prossimo articolo verrà approfondita la sezione head della pagina.
+4. `<meta charset="utf-8">`: un elemento {{htmlelement("meta")}}. Questo elemento rappresenta metadati che descrivono la pagina. L'attributo [`charset`](/it/docs/Web/HTML/Reference/Elements/meta#charset) specifica la codifica dei caratteri che verrà usata dal documento. UTF-8 include la maggior parte dei caratteri della stragrande maggioranza delle lingue scritte umane, il che significa che la pagina sarà in grado di visualizzare correttamente lingue diverse. Non esiste alcun motivo per non impostarla e può aiutare a evitare alcuni problemi in seguito.
+5. `<title></title>`: l'elemento {{htmlelement("title")}}. Imposta il titolo della pagina, che appare nella scheda del browser in cui è caricata la pagina. Il titolo della pagina viene usato anche per descrivere la pagina quando viene aggiunta ai segnalibri.
+6. `<body></body>`: l'elemento {{htmlelement("body")}}. Contiene _tutto_ il contenuto visualizzato nella pagina, inclusi testo, immagini, video, giochi, tracce audio riproducibili e così via.
 
-### Apprendimento attivo: aggiungere alcune funzionalità a un documento HTML
+### Aggiungere alcune funzionalità a un documento HTML
 
-Se vuoi sperimentare la scrittura di qualche HTML sul tuo computer locale, puoi:
+A questo punto, è utile esercitarsi a scrivere contenuti HTML leggermente più consistenti. Per farlo, ci sono un paio di opzioni: creare l'HTML sul computer locale oppure usare il Playground MDN come negli esempi precedenti.
 
-1. Copia l'esempio di pagina HTML elencato sopra.
-2. Crea un nuovo file nel tuo editor di testo.
-3. Incolla il codice nel nuovo file di testo.
-4. Salva il file come `index.html`.
+#### Configurazione dell'esempio
 
-> [!NOTE]
-> Puoi anche trovare questo modello HTML di base nel [MDN Learning Area GitHub repo](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html).
+- Per farlo sul computer locale:
+  1. Copiare l'esempio di pagina HTML riportato nella sezione precedente e incollarlo in un nuovo file nell'editor di codice. È inoltre possibile trovare questo [modello HTML di base](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html) nel repository GitHub di MDN.
+  2. Apportare alla pagina le modifiche indicate nelle [istruzioni](#istruzioni-dellesempio).
+  3. Salvare il file come `index.html`, quindi caricarlo in una nuova scheda del browser per vedere i risultati.
+- Per farlo nel Playground MDN, fare clic su **"Play"** nel pannello di output sottostante per modificare l'esempio, quindi seguire le [istruzioni](#istruzioni-dellesempio). In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nel Playground MDN.
 
-Ora puoi aprire questo file in un browser web per vedere come appare il codice renderizzato. Modifica il codice e aggiorna il browser per vedere qual è il risultato. Inizialmente, la pagina appare così:
+```html hidden live-sample___basic_html_3
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+  </head>
+  <body>
+    <p>This is my page</p>
+  </body>
+</html>
+```
 
-![Una semplice pagina HTML che dice Questa è la mia pagina](template-screenshot.png)
+{{ EmbedLiveSample('basic_html_3', "100%", 60) }}
 
-In questo esercizio, puoi modificare il codice localmente sul tuo computer, come descritto in precedenza, o puoi modificarlo nella finestra di esempio qui sotto (la finestra di esempio modificabile rappresenta solo i contenuti dell'elemento {{htmlelement("body")}}, in questo caso). Affina le tue abilità implementando le seguenti attività:
+#### Istruzioni dell'esempio
 
-- Appena sotto il tag di apertura dell'elemento {{htmlelement("body")}}, aggiungi un titolo principale per il documento. Questo dovrebbe essere racchiuso in un tag di apertura `<h1>` e un tag di chiusura `</h1>`.
-- Modifica il contenuto del paragrafo per includere un testo su un argomento che trovi interessante.
-- Fai risaltare parole importanti in grassetto racchiudendole in un tag di apertura `<strong>` e un tag di chiusura `</strong>`.
-- Aggiungi un collegamento al tuo paragrafo, come [spiegato prima nell'articolo](#active_learning_adding_attributes_to_an_element).
-- Aggiungi un'immagine al tuo documento. Posizionala sotto il paragrafo, come [spiegato prima nell'articolo](#elementi_void). Guadagna punti bonus se riesci a collegarti a un'immagine diversa (sia localmente sul tuo computer che altrove sul web).
+Ecco le istruzioni da seguire:
 
-Se commetti un errore, puoi sempre ripristinarlo utilizzando il pulsante _Reset_. Se ti blocchi seriamente, premi il pulsante _Mostra soluzione_ per vedere la risposta.
+1. Subito sotto il tag di apertura dell'elemento {{htmlelement("body")}}, aggiungere un titolo principale per il documento. Dovrebbe essere racchiuso dai tag di apertura e chiusura `<h1></h1>`.
+2. Modificare il contenuto del paragrafo per includere un testo su un argomento ritenuto interessante.
+3. Evidenziare in grassetto le parole importanti racchiudendole in un elemento {{htmlelement("strong")}}.
+4. Aggiungere due collegamenti al paragrafo. Questo si ottiene usando l'elemento {{htmlelement("a")}}.
+5. Aggiungere un'immagine al documento sotto il paragrafo, come [spiegato in precedenza](#aggiungere-attributi-a-un-elemento). Se è troppo grande per essere visualizzata, aggiungere un attributo `width` per ridurne le dimensioni.
 
-```html hidden
-<h2>Live output</h2>
+Se si rimane bloccati, è possibile visualizzare qui una possibile soluzione:
 
-<div class="output" style="min-height: 50px;"></div>
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
+Il contenuto del body dell'elemento HTML completato dovrebbe apparire più o meno così:
+
+```html
+<h1>Some music</h1>
+<p>
+  I really enjoy <strong>playing the drums</strong>. One of my favorite drummers
+  is Neal Peart, who used to play in the band
+  <a href="https://en.wikipedia.org/wiki/Rush_%28band%29">Rush</a>. My favorite
+  Rush album is currently
+  <a href="https://www.deezer.com/album/942295">Moving Pictures</a>.
 </p>
-
-<textarea id="code" class="input" style="min-height: 100px;width: 95%">
-  &lt;p&gt;This is my page&lt;/p&gt;
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+<img
+  src="https://www.cygnus-x1.net/links/rush/images/albums/sectors/sector2-movingpictures-cover-s.jpg"
+  alt="Rush Moving Pictures album cover"
+  width="300" />
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+</details>
 
-h1 {
-  color: blue;
-}
+## Spazi bianchi in HTML
 
-h2 {
-  font-size: 16px;
-}
+Negli esempi precedenti sono stati inclusi molti spazi bianchi nel codice. Nella maggior parte dei casi sono completamente facoltativi e vengono inclusi principalmente per rendere il codice più leggibile. Per esempio, questi due frammenti di codice sono equivalenti:
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
-
-img {
-  max-width: 100%;
-}
-
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
-
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
-
-const htmlSolution =
-  '<h1>Some music</h1><p>I really enjoy <strong>playing the drums</strong>. One of my favorite drummers is Neal Peart, who plays in the band <a href="https://en.wikipedia.org/wiki/Rush_%28band%29" title="Rush Wikipedia article">Rush</a>. My favorite Rush album is currently <a href="https://www.deezer.com/album/942295">Moving Pictures</a>.</p> <img src="https://www.cygnus-x1.net/links/rush/images/albums/sectors/sector2-movingpictures-cover-s.jpg" alt="Rush Moving Pictures album cover">';
-let solutionEntry = htmlSolution;
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_Adding_some_features_to_an_HTML_document', 700, 500) }}
-
-### Spazi bianchi in HTML
-
-Negli esempi sopra, potresti aver notato che molto spazio bianco è incluso nel codice. Questo è opzionale. Questi due frammenti di codice sono equivalenti:
-
-```html-nolint
+```html-nolint live-sample___whitespace-example
 <p id="noWhitespace">Dogs are silly.</p>
 
 <p id="whitespace">Dogs
@@ -687,87 +393,82 @@ Negli esempi sopra, potresti aver notato che molto spazio bianco è incluso nel 
         silly.</p>
 ```
 
-Non importa quanto spazio bianco usi all'interno del contenuto degli elementi HTML (che può includere uno o più caratteri di spazio, ma anche interruzioni di linea), l'analizzatore HTML riduce ogni sequenza di spazio bianco a un singolo spazio durante il rendering del codice. Quindi perché usare così tanto spazio bianco? La risposta è leggibilità.
+Entrambi hanno esattamente lo stesso rendering:
 
-Può essere più facile capire cosa sta succedendo nel tuo codice se lo hai formattato bene. Nel nostro HTML abbiamo ogni elemento annidato rientrato di due spazi in più rispetto a quello in cui è inserito. Dipende da te scegliere lo stile di formattazione (quanti spazi per ogni livello di rientro, ad esempio), ma dovresti considerare di formattarlo.
+{{ EmbedLiveSample('whitespace-example', 700, 100) }}
 
-Diamo un'occhiata a come il browser rende i due paragrafi sopra con e senza spazio bianco:
+In quasi tutti gli elementi, con eccezioni come {{htmlelement("pre")}}, indipendentemente dalla quantità di spazi bianchi usata nel contenuto dell'elemento HTML, il parser HTML riduce ogni sequenza di spazi bianchi a un singolo spazio durante il rendering del codice.
 
-{{ EmbedLiveSample('Whitespace_in_HTML', 700, 100) }}
+La scelta di uno stile preferito di formattazione del codice dipende dallo sviluppatore. È comune assegnare a ogni elemento annidato un rientro di due spazi maggiore rispetto a quello dell'elemento che lo contiene; questo è lo stile usato su MDN.
 
-> [!NOTE]
-> Accedere al [innerHTML](/it/docs/Web/API/Element/innerHTML) degli elementi da JavaScript manterrà tutto lo spazio bianco intatto.
-> Questo può restituire risultati inattesi se lo spazio bianco è ridotto dal browser.
+Per esempio:
 
-```js
-const noWhitespace = document.getElementById("noWhitespace").innerHTML;
-console.log(noWhitespace);
-// "Dogs are silly."
-
-const whitespace = document.getElementById("whitespace").innerHTML;
-console.log(whitespace);
-// "Dogs
-//    are
-//        silly."
+```html
+<section>
+  <div>
+    <p>A paragraph of content.</p>
+  </div>
+</section>
 ```
 
 ## Riferimenti ai caratteri: includere caratteri speciali in HTML
 
-In HTML, i caratteri `<`, `>`, `"`, `'`, e `&` sono caratteri speciali. Fanno parte della sintassi HTML stessa. Quindi come includi uno di questi caratteri speciali nel tuo testo? Ad esempio, se vuoi usare un simbolo di ampersand o segno di minore, e non farlo interpretare come codice.
+In HTML, i caratteri `<`, `>`, `"`, `'` e `&` sono caratteri speciali. Fanno parte della sintassi HTML stessa. Come è possibile quindi includere questi caratteri speciali nel testo? Per esempio, come si può usare una e commerciale letterale o un segno di minore nel contenuto senza che venga interpretato come codice?
 
-Puoi farlo con i {{Glossary("character_reference", "riferimenti ai caratteri")}}. Questi sono codici speciali che rappresentano i caratteri, da usare in queste esatte circostanze. Ogni riferimento a carattere inizia con una e commerciale (&) e termina con un punto e virgola (;).
+Questo viene fatto con i {{Glossary("character_reference", "riferimenti ai caratteri")}}. Si tratta di codici speciali che rappresentano caratteri, da usare proprio in queste circostanze. Ogni riferimento a un carattere inizia con una e commerciale (&) e termina con un punto e virgola (;).
 
-| Carattere letterale | Equivalente del riferimento al carattere |
-| ------------------- | ---------------------------------------- |
-| <                   | `&lt;`                                   |
-| >                   | `&gt;`                                   |
-| "                   | `&quot;`                                 |
-| '                   | `&apos;`                                 |
-| &                   | `&amp;`                                  |
+| Carattere letterale | Riferimento al carattere equivalente |
+| ------------------- | ------------------------------------ |
+| <                   | `&lt;`                               |
+| >                   | `&gt;`                               |
+| "                   | `&quot;`                             |
+| '                   | `&apos;`                             |
+| &                   | `&amp;`                              |
 
-L'equivalente del riferimento al carattere potrebbe essere ricordato facilmente perché il testo che utilizza può essere visto come less than per `&lt;`, quotation per `&quot;` e similmente per gli altri. Per trovare ulteriori informazioni sui riferimenti delle entità, consulta [List of XML and HTML character entity references](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) (Wikipedia).
+I riferimenti ai caratteri sono abbastanza facili da ricordare perché il testo usato è un'abbreviazione del nome del carattere: per esempio, "lt" = "less than", "quot" = "quotation" e "amp" = "ampersand". Per ulteriori informazioni sui riferimenti alle entità, vedere [List of XML and HTML character entity references](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) (Wikipedia).
 
-Nell'esempio qui sotto, ci sono due paragrafi:
+Nell'esempio seguente sono presenti due paragrafi:
 
-```html-nolint
+```html-nolint live-sample___entity-ref-example
 <p>In HTML, you define a paragraph using the <p> element.</p>
 
 <p>In HTML, you define a paragraph using the &lt;p&gt; element.</p>
 ```
 
-Nell'output dal vivo qui sotto, puoi vedere che il primo paragrafo è andato storto. Il browser interpreta la seconda istanza di `<p>` come l'inizio di un nuovo paragrafo. Il secondo paragrafo sembra a posto perché ha le parentesi angolari con riferimenti ai caratteri.
+Il rendering è il seguente:
 
-{{ EmbedLiveSample('Entity_references_Including_special_characters_in_HTML', 700, 200, "", "") }}
+{{ EmbedLiveSample('entity-ref-example', 700, 150) }}
+
+Si può notare che il primo paragrafo non viene interpretato correttamente, perché il browser ha interpretato la seconda istanza di `<p>` come l'inizio di un nuovo paragrafo. Il secondo paragrafo viene renderizzato correttamente perché le parentesi angolari del contenuto "&lt;p&gt;" sono rappresentate da riferimenti ai caratteri.
 
 > [!NOTE]
-> Non è necessario usare riferimenti alle entità per nessun altro simbolo, poiché i browser moderni gestiranno i simboli reali perfettamente fintanto che la [codifica dei caratteri del tuo HTML è impostata su UTF-8](/it/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata#specifying_your_documents_character_encoding).
+> Non è necessario usare riferimenti alle entità per altri simboli, poiché i browser moderni gestiscono correttamente i simboli effettivi purché la [codifica dei caratteri HTML sia impostata su UTF-8](/it/docs/Learn_web_development/Core/Structuring_content/Webpage_metadata#specifying_your_documents_character_encoding).
 
 ## Commenti HTML
 
-HTML ha un meccanismo per scrivere commenti nel codice. I browser ignorano i commenti, rendendoli effettivamente invisibili all'utente. Lo scopo dei commenti è permetterti di includere note nel codice per spiegare la tua logica o codifica. Questo è molto utile se si ritorna a un codice base dopo essere stati via abbastanza a lungo da non ricordarlo completamente. Allo stesso modo, i commenti sono inestimabili quando diverse persone effettuano modifiche e aggiornamenti.
+HTML dispone di un meccanismo per scrivere commenti nel codice. I browser ignorano i commenti, pertanto sono invisibili all'utente. Lo scopo dei commenti è consentire l'inclusione di note nel codice per spiegare come funziona. Questo è molto utile quando si torna a una base di codice dopo un periodo sufficientemente lungo da non ricordarla più, oppure quando un'altra persona inizia a lavorarci senza averla mai vista prima.
 
-Per scrivere un commento HTML, racchiudilo nei marcatori speciali `<!--` e `-->`. Ad esempio:
+Per scrivere un commento HTML, racchiuderlo tra i marcatori speciali `<!--` e `-->`, come mostrato di seguito:
 
-```html
+```html live-sample___comment-example
 <p>I'm not inside a comment</p>
 
 <!-- <p>I am!</p> -->
 ```
 
-Come puoi vedere qui sotto, solo il primo paragrafo è visualizzato nell'output dal vivo.
+Il rendering di questo codice è il seguente:
 
-{{ EmbedLiveSample('HTML_comments', 700, 100, "", "") }}
+{{ EmbedLiveSample('comment-example', 700, 100) }}
 
-## Sommario
+Nell'output live viene visualizzato solo il primo paragrafo; la seconda riga non viene renderizzata perché è un commento HTML.
 
-Sei arrivato alla fine dell'articolo! Speriamo che tu abbia apprezzato il tuo tour delle basi dell'HTML.
+## Riepilogo
 
-A questo punto, dovresti aver capito che aspetto ha l'HTML e come funziona a un livello base. Dovresti anche essere in grado di scrivere alcuni elementi e attributi. Gli articoli successivi di questo modulo approfondiscono alcuni degli argomenti introdotti qui, oltre a presentare altri concetti del linguaggio.
+È stata raggiunta la fine dell'articolo. Ci auguriamo che questa panoramica delle basi di HTML sia stata utile.
 
-- Mentre inizi a imparare di più sull'HTML, considera di imparare le basi del CSS (Cascading Style Sheets). [CSS](/it/docs/Learn_web_development/Core/Styling_basics) è il linguaggio utilizzato per stilizzare le pagine web, come cambiare i caratteri o i colori o modificare il layout della pagina. HTML e CSS funzionano bene insieme, come scoprirai presto.
+A questo punto, dovrebbe essere chiaro l'aspetto di HTML e il suo funzionamento a livello di base. Dovrebbe inoltre essere possibile scrivere alcuni elementi e attributi. Gli articoli successivi di questo modulo approfondiscono alcuni degli argomenti introdotti qui e presentano ulteriori argomenti.
 
-## Vedi anche
-
-- [Applicare colore agli elementi HTML usando il CSS](/it/docs/Web/CSS/CSS_colors/Applying_color)
+> [!NOTE]
+> Man mano che si apprende di più su HTML, è consigliabile imparare anche le basi di [CSS](/it/docs/Learn_web_development/Core/Styling_basics), il linguaggio usato per definire lo stile delle pagine web, per esempio modificando colori, font e spaziatura. HTML e CSS vengono usati insieme nella maggior parte delle pagine web e impararli contemporaneamente può essere efficace.
 
 {{NextMenu("Learn_web_development/Core/Structuring_content/Webpage_metadata", "Learn_web_development/Core/Structuring_content")}}

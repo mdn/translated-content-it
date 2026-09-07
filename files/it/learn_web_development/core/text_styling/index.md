@@ -1,32 +1,37 @@
 ---
-title: CSS text styling
+title: Stile del testo CSS
 slug: Learn_web_development/Core/Text_styling
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 57bc2729e3963907c0b54158ae1a31318a2ebbd1
 ---
 
 {{NextMenu("Learn_web_development/Core/Text_styling/Fundamentals", "Learn_web_development/Core")}}
 
-Con le basi del linguaggio CSS coperte, il prossimo argomento CSS su cui concentrarsi è lo stile del testo — una delle cose più comuni che farai con CSS. Qui esaminiamo i fondamenti, includendo l'impostazione del font, la grassetto, il corsivo, la spaziatura delle righe e delle lettere, le ombre del testo e altre caratteristiche. Concludiamo il modulo analizzando l'applicazione di font personalizzati alla tua pagina e lo stile degli elenchi e dei link.
+Dopo aver trattato le basi del linguaggio CSS, il successivo argomento CSS su cui concentrarsi è lo stile del testo, una delle attività più comuni eseguite con CSS. Qui vengono esaminati i fondamenti, tra cui l'impostazione del font, del grassetto, del corsivo, della spaziatura tra righe e lettere, delle ombre esterne e di altre funzionalità del testo. Il modulo si conclude esaminando l'applicazione di font personalizzati alla pagina e lo stile di elenchi e link.
 
 ## Prerequisiti
 
-Prima di iniziare questo modulo, dovresti avere familiarità con [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e i [fondamentali di base del CSS](/it/docs/Learn_web_development/Core/Styling_basics).
+Prima di iniziare questo modulo, è necessario conoscere [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e i [fondamenti di base di CSS](/it/docs/Learn_web_development/Core/Styling_basics).
 
 > [!NOTE]
-> Se stai lavorando su un computer/tablet/altro dispositivo dove non hai la possibilità di creare i tuoi file, potresti provare (la maggior parte) degli esempi di codice in un programma di codifica online come [JSBin](https://jsbin.com/) o [Glitch](https://glitch.com/).
+> Se si lavora su un computer, tablet o altro dispositivo su cui non è possibile creare file, si può provare a eseguire il codice in un editor online come [CodePen](https://codepen.io/) o [JSFiddle](https://jsfiddle.net/).
 
 ## Tutorial e sfide
 
-- [Stile fondamentale del testo e dei font](/it/docs/Learn_web_development/Core/Text_styling/Fundamentals)
-  - : In questo articolo esaminiamo in dettaglio tutte le basi dello stile del testo/font, inclusa l'impostazione dello spessore del font, della famiglia e dello stile, la scorciatoia per i font, l'allineamento del testo e altri effetti, e la spaziatura delle righe e delle lettere.
-- [Stile degli elenchi](/it/docs/Learn_web_development/Core/Text_styling/Styling_lists)
-  - : Gli elenchi si comportano come qualsiasi altro testo per la maggior parte, ma ci sono alcune proprietà CSS specifiche per gli elenchi che devi conoscere e alcune migliori pratiche da considerare. Questo articolo spiega tutto.
-- [Stile dei link](/it/docs/Learn_web_development/Core/Text_styling/Styling_links)
-  - : Quando si stilano i link, è importante comprendere perché gli stili di default dei link sono importanti, come utilizzare le pseudo-classi per stilare efficacemente gli stati dei link, e come stilare i link per l'uso in comuni elementi di interfaccia vari come menu di navigazione e schede. Esamineremo tutti questi argomenti in questo articolo.
-- [Font web](/it/docs/Learn_web_development/Core/Text_styling/Web_fonts)
-  - : Qui esploreremo in dettaglio i font web — questi ti consentono di scaricare font personalizzati insieme alla tua pagina web, per consentire uno stile del testo più variegato e personalizzato.
-- [Sfida: Composizione tipografica di una homepage di una scuola comunitaria](/it/docs/Learn_web_development/Core/Text_styling/Typesetting_a_homepage) <sup>Sfida</sup>
-  - : In questa valutazione testeremo la tua comprensione dello stile del testo facendoti stilare il testo per la homepage di una scuola comunitaria.
+- [Stile fondamentale di testo e font](/it/docs/Learn_web_development/Core/Text_styling/Fundamentals)
+  - : In questo articolo vengono approfondite tutte le basi dello stile del testo/font, tra cui l'impostazione del peso, della famiglia e dello stile del font, la forma abbreviata del font, l'allineamento del testo e altri effetti, nonché la spaziatura tra righe e lettere.
+- [Applicare lo stile agli elenchi](/it/docs/Learn_web_development/Core/Text_styling/Styling_lists)
+  - : Per la maggior parte, gli elenchi si comportano come qualsiasi altro testo, ma esistono alcune proprietà CSS specifiche per gli elenchi che è necessario conoscere e alcune buone pratiche da considerare. Questo articolo spiega tutto.
+- [Applicare lo stile ai link](/it/docs/Learn_web_development/Core/Text_styling/Styling_links)
+  - : Quando si applica lo stile ai link, è importante capire perché gli stili predefiniti dei link sono importanti, come usare le pseudo-classi per applicare efficacemente lo stile agli stati dei link e come applicare lo stile ai link da usare in funzionalità comuni e varie dell'interfaccia, come menu di navigazione e schede. Questo articolo esamina tutti questi argomenti.
+- [Web font](/it/docs/Learn_web_development/Core/Text_styling/Web_fonts)
+  - : Qui verranno esplorati in dettaglio i web font: consentono di scaricare font personalizzati insieme alla pagina web, per permettere uno stile del testo più vario e personalizzato.
+- [Sfida: composizione tipografica della homepage di una scuola locale](/it/docs/Learn_web_development/Core/Text_styling/Typesetting_a_homepage) <sup>Sfida</sup>
+  - : In questa valutazione verrà verificata la comprensione dello stile del testo, chiedendo di applicare lo stile al testo della homepage di una scuola locale.
+
+## Vedi anche
+
+- [Impara HTML e CSS](https://scrimba.com/learn-html-and-css-c0p?via=mdn), Scrimba <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>
+  - : Il corso _Learn HTML and CSS_ di [Scrimba](https://scrimba.com/?via=mdn) insegna HTML e CSS attraverso la creazione e la pubblicazione di cinque fantastici progetti, con lezioni e sfide interattive e divertenti tenute da insegnanti competenti.
 
 {{NextMenu("Learn_web_development/Core/Text_styling/Fundamentals", "Learn_web_development/Core")}}

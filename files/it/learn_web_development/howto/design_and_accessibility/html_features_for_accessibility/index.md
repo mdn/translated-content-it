@@ -1,15 +1,15 @@
 ---
-title: Quali funzionalità HTML promuovono l'accessibilità?
+title: Quali funzionalità HTML favoriscono l'accessibilità?
 slug: Learn_web_development/Howto/Design_and_accessibility/HTML_features_for_accessibility
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 1f00512e3c9a20b5bb927db529bb5d639e346d96
 ---
 
-Il seguente contenuto descrive le funzionalità specifiche di HTML che dovrebbero essere utilizzate per rendere una pagina web più accessibile alle persone con diverse disabilità.
+Il contenuto seguente descrive funzionalità specifiche di HTML che dovrebbero essere usate per rendere una pagina web più accessibile alle persone con diverse disabilità.
 
-## Testo dei link
+## Testo del link
 
-Se hai un link che non è autoesplicativo, o la destinazione del link potrebbe beneficiarne se spiegata in modo più dettagliato, puoi aggiungere informazioni a un link utilizzando gli attributi [`aria-label`](/it/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) o [`aria-labelledby`](/it/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby).
+Se è presente un link che non è autoesplicativo, oppure se la destinazione del link potrebbe trarre vantaggio da una spiegazione più dettagliata, è possibile aggiungere informazioni a un link usando gli attributi [`aria-label`](/it/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) o [`aria-labelledby`](/it/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby).
 
 ```html
 <p>
@@ -28,7 +28,7 @@ Se hai un link che non è autoesplicativo, o la destinazione del link potrebbe b
 </p>
 ```
 
-Nota che, nella maggior parte dei casi, è meglio invece scrivere un testo del link utile:
+Si noti che, nella maggior parte dei casi, è preferibile scrivere invece un testo del link utile:
 
 ```html
 <p>
@@ -37,9 +37,9 @@ Nota che, nella maggior parte dei casi, è meglio invece scrivere un testo del l
 </p>
 ```
 
-## Link di salto
+## Link per saltare contenuti
 
-Per facilitare la tabulazione, puoi fornire un [link di salto](/it/docs/Web/HTML/Reference/Elements/a#skip_links) che consente agli utenti di saltare blocchi della tua pagina web. Potresti voler permettere a qualcuno di saltare una serie di link di navigazione che si trovano su ogni pagina. Questo consente agli utenti della tastiera di passare rapidamente oltre i contenuti ripetuti e andare direttamente al contenuto principale della pagina:
+Per facilitare la navigazione tramite Tab, è possibile fornire un [link per saltare contenuti](/it/docs/Web/HTML/Reference/Elements/a#skip_links) che consenta agli utenti di saltare sezioni della pagina web. Potrebbe essere utile consentire di saltare una moltitudine di link di navigazione presenti in ogni pagina. Questo permette agli utenti della tastiera di superare rapidamente i contenuti ripetuti tramite Tab e di raggiungere direttamente il contenuto principale della pagina:
 
 ```html
 <header>
@@ -56,9 +56,9 @@ Per facilitare la tabulazione, puoi fornire un [link di salto](/it/docs/Web/HTML
 </section>
 ```
 
-## Attributo Alt per le immagini
+## Attributo alt per le immagini
 
-Ogni immagine dovrebbe avere un attributo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt). Se l'immagine è puramente decorativa e non aggiunge significato al contenuto o al contesto del documento, l'attributo `alt` dovrebbe essere presente, ma vuoto. Puoi opzionalmente anche aggiungere [`role="presentation"`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/presentation_role). Tutte le altre immagini dovrebbero includere un attributo `alt` fornendo [testo alternativo che descrive l'immagine](/it/docs/Web/API/HTMLImageElement/alt#usage_notes) in modo utile per gli utenti che possono leggere il resto del contenuto ma non possono vedere l'immagine. Pensa a come descriveresti l'immagine a qualcuno che non può caricarla: queste sono le informazioni che dovresti includere come valore dell'attributo `alt`.
+Ogni immagine dovrebbe avere un attributo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt). Se l'immagine è puramente decorativa e non aggiunge alcun significato al contenuto o al contesto del documento, l'attributo `alt` dovrebbe essere presente, ma vuoto. Facoltativamente, è possibile aggiungere anche [`role="presentation"`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/presentation_role). Tutte le altre immagini dovrebbero includere un attributo `alt` che fornisca un [testo alternativo che descriva l'immagine](/it/docs/Web/HTML/Reference/Elements/img#accessibility) in modo utile per gli utenti che possono leggere il resto del contenuto ma non possono vedere l'immagine. Occorre pensare a come descrivere l'immagine a qualcuno che non può caricarla: questa è l'informazione da includere come valore dell'attributo `alt`.
 
 ```html
 <!-- decorative image -->
@@ -69,7 +69,7 @@ Ogni immagine dovrebbe avere un attributo [`alt`](/it/docs/Web/HTML/Reference/El
   role="img" />
 ```
 
-L'attributo `alt` per lo stesso contenuto può variare in base al contesto. Nel seguente esempio, viene utilizzata una gif animata invece di una barra di avanzamento per mostrare il progresso del caricamento della pagina in un documento che insegna agli sviluppatori come utilizzare l'elemento HTML [`<progress>`](/it/docs/Web/HTML/Reference/Elements/progress):
+L'attributo `alt` per lo stesso contenuto può variare in base al contesto. Nell'esempio seguente, viene usata una GIF animata invece di una barra di avanzamento per mostrare l'avanzamento del caricamento della pagina di un documento che insegna agli sviluppatori come usare l'elemento HTML [`<progress>`](/it/docs/Web/HTML/Reference/Elements/progress):
 
 ```html
 <img alt="20% complete" src="load-progress.gif" />
@@ -78,9 +78,9 @@ L'attributo `alt` per lo stesso contenuto può variare in base al contesto. Nel 
   src="screenshot-progressbar.png" />
 ```
 
-## Attributo di ruolo ARIA
+## Attributo ARIA role
 
-Di default, tutti gli elementi semantici in HTML hanno un [`role`](/it/docs/Web/Accessibility/ARIA/Reference/Roles); per esempio, `<input type="radio">` ha il ruolo `radio`. Gli elementi non semantici in HTML non hanno un ruolo. I ruoli ARIA possono essere utilizzati per descrivere elementi che non esistono nativamente in HTML, come un widget [`tablist`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/tablist_role). I ruoli sono utili anche per elementi più recenti che esistono ma non hanno ancora un supporto completo dai browser. Per esempio, quando si usano immagini SVG, aggiungi `role="img"` al tag di apertura, poiché c'è un [bug SVG VoiceOver](https://webkit.org/b/216364) per cui VoiceOver non annuncia correttamente le immagini SVG.
+Per impostazione predefinita, tutti gli elementi semantici in HTML hanno un [`role`](/it/docs/Web/Accessibility/ARIA/Reference/Roles); ad esempio, `<input type="radio">` ha il ruolo `radio`. Gli elementi non semantici in HTML non hanno un ruolo. I ruoli ARIA possono essere usati per descrivere elementi che non esistono nativamente in HTML, come un widget [`tablist`](/it/docs/Web/Accessibility/ARIA/Reference/Roles/tablist_role). I ruoli sono utili anche per elementi più recenti che esistono ma non hanno ancora un supporto completo nei browser. Ad esempio, quando si usano immagini SVG, aggiungere `role="img"` al tag di apertura, poiché esiste un [bug di SVG VoiceOver](https://webkit.org/b/216364) per cui VoiceOver non annuncia correttamente le immagini SVG.
 
 ```html
 <img src="mdn.svg" alt="MDN logo" role="img" />

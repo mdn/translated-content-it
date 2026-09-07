@@ -3,74 +3,78 @@ title: Scripting dinamico con JavaScript
 short-title: JavaScript
 slug: Learn_web_development/Core/Scripting
 l10n:
-  sourceCommit: 427efbee9e0da53517f45420af87a66a2a6b6e19
+  sourceCommit: 87adaa5384b1015690f3435ce0ba64ac097764eb
 ---
 
 {{NextMenu("Learn_web_development/Core/Scripting/What_is_JavaScript", "Learn_web_development/Core")}}
 
-JavaScript è un argomento vastissimo, con moltissime caratteristiche, stili e tecniche da apprendere, e moltissime API e strumenti costruiti su di esso. Questo modulo si concentra principalmente sugli elementi essenziali del linguaggio di base, oltre a trattare alcuni argomenti chiave correlati — imparando questi argomenti avrai una base solida da cui partire.
+JavaScript è un argomento molto vasto, con moltissime funzionalità, stili e tecniche diverse da apprendere, nonché numerose API e strumenti costruiti su di esso. Questo modulo si concentra sugli elementi essenziali del linguaggio di base, oltre ad alcuni argomenti fondamentali correlati: apprendere questi argomenti fornirà una solida base da cui partire.
 
 ## Prerequisiti
 
-Prima di iniziare questo modulo, non è necessaria alcuna conoscenza precedente di JavaScript, ma dovresti aver completato i moduli precedenti del corso. Dovresti almeno conoscere [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e i [fondamenti di base del CSS](/it/docs/Learn_web_development/Core/Styling_basics).
+Prima di iniziare questo modulo, non è necessaria alcuna conoscenza pregressa di JavaScript, ma è consigliabile aver completato i moduli precedenti del corso. È necessario conoscere almeno [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e i [fondamenti di base di CSS](/it/docs/Learn_web_development/Core/Styling_basics).
 
 > [!NOTE]
-> Se stai lavorando su un computer/tablet/altro dispositivo dove non hai la possibilità di creare i tuoi file, potresti provare la maggior parte degli esempi di codice in un programma di codifica online come [JSBin](https://jsbin.com/) o [Glitch](https://glitch.com/).
+> Se si lavora su un computer, tablet o altro dispositivo su cui non è possibile creare file, si può provare a eseguire il codice in un editor online come [CodePen](https://codepen.io/) o [JSFiddle](https://jsfiddle.net/).
 
 ## Tutorial e sfide
 
 - [Che cos'è JavaScript?](/it/docs/Learn_web_development/Core/Scripting/What_is_JavaScript)
-  - : Benvenuto nel corso introduttivo di JavaScript di MDN! In questo primo articolo esamineremo JavaScript da una prospettiva generale, rispondendo a domande come "cos'è?" e "cosa fa?", assicurandoci che tu sia a tuo agio con lo scopo di JavaScript.
-- [Un primo approccio a JavaScript](/it/docs/Learn_web_development/Core/Scripting/A_first_splash)
-  - : Ora che hai appreso qualcosa sulla teoria di JavaScript e su cosa puoi fare con esso, ti forniremo un corso accelerato sulle funzionalità di base di JavaScript tramite un tutorial completamente pratico. Qui costruirai, passo dopo passo, un semplice gioco "Indovina il numero".
-- [Cosa è andato storto? Risoluzione dei problemi in JavaScript](/it/docs/Learn_web_development/Core/Scripting/What_went_wrong)
-  - : Quando hai costruito il gioco "Indovina il numero" nell'articolo precedente, potresti aver scoperto che non funzionava. Non temere: questo articolo mira a evitarti frustrazioni fornendoti alcuni semplici suggerimenti su come trovare e correggere errori nei programmi JavaScript.
+  - : Benvenuti al corso JavaScript per principianti di MDN! In questo primo articolo verrà esaminato JavaScript a un livello generale, rispondendo a domande come "che cos'è?" e "che cosa fa?", e assicurandosi che lo scopo di JavaScript sia chiaro.
+- [Un primo tuffo in JavaScript](/it/docs/Learn_web_development/Core/Scripting/A_first_splash)
+  - : Dopo aver appreso alcuni aspetti della teoria di JavaScript e di ciò che è possibile fare con esso, verrà proposto un corso intensivo sulle funzionalità di base di JavaScript attraverso un tutorial completamente pratico. Qui verrà realizzato passo dopo passo un semplice gioco "Indovina il numero".
+- [Che cosa è andato storto? Risoluzione dei problemi JavaScript](/it/docs/Learn_web_development/Core/Scripting/What_went_wrong)
+  - : Durante la realizzazione del gioco "Indovina il numero" nell'articolo precedente, potrebbe essere emerso che non funzionava. Nessun timore: questo articolo mira a evitare frustrazioni davanti a tali problemi, fornendo alcuni semplici suggerimenti su come trovare e correggere gli errori nei programmi JavaScript.
 - [Memorizzare le informazioni necessarie — Variabili](/it/docs/Learn_web_development/Core/Scripting/Variables)
-  - : Dopo aver letto gli ultimi articoli, dovresti ora sapere cos'è JavaScript, cosa può fare per te, come usarlo insieme ad altre tecnologie web e quali sono le sue caratteristiche principali a livello generale. In questo articolo, scenderemo ai veri fondamentali, esaminando come lavorare con i blocchi costitutivi più basilari di JavaScript — le Variabili.
+  - : Dopo aver letto gli ultimi articoli, dovrebbe essere chiaro che cos'è JavaScript, cosa può fare, come usarlo insieme ad altre tecnologie web e quali sono, a grandi linee, le sue funzionalità principali. In questo articolo si entrerà nelle basi fondamentali, osservando come lavorare con i blocchi costitutivi più elementari di JavaScript: le variabili.
 - [Matematica di base in JavaScript — numeri e operatori](/it/docs/Learn_web_development/Core/Scripting/Math)
-  - : A questo punto del corso, discuteremo della matematica in JavaScript — come possiamo combinare operatori e altre caratteristiche per manipolare con successo i numeri secondo le nostre esigenze.
+  - : A questo punto del corso, verrà affrontata la matematica in JavaScript: come combinare operatori e altre funzionalità per manipolare con successo i numeri secondo le proprie esigenze.
 - [Gestire il testo — stringhe in JavaScript](/it/docs/Learn_web_development/Core/Scripting/Strings)
-  - : Successivamente, ci concentreremo sulle stringhe — è così che i pezzi di testo vengono chiamati nella programmazione. In questo articolo, esamineremo tutte le cose comuni che dovresti conoscere veramente sulle stringhe quando impari JavaScript, come creare stringhe, gestire le virgolette nelle stringhe e unirle insieme.
-- [Metodi utili per le stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods)
-  - : Ora che abbiamo esaminato i fondamenti delle stringhe, passiamo a un livello superiore e iniziamo a pensare a quali operazioni utili possiamo eseguire sulle stringhe con i metodi incorporati, come trovare la lunghezza di una stringa di testo, unire e dividere stringhe, sostituire un carattere in una stringa con un altro, e altro ancora.
+  - : Successivamente, l'attenzione si sposterà sulle stringhe: così vengono chiamati i blocchi di testo nella programmazione. In questo articolo verranno esaminate tutte le nozioni comuni che è opportuno conoscere sulle stringhe quando si impara JavaScript, come creare stringhe, eseguire l'escape delle virgolette nelle stringhe e concatenarle.
+- [Metodi utili delle stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods)
+  - : Dopo aver esaminato le basi essenziali delle stringhe, si passerà a considerare quali operazioni utili è possibile eseguire sulle stringhe con i metodi integrati, come trovare la lunghezza di una stringa di testo, concatenare e dividere stringhe, sostituire un carattere in una stringa con un altro e molto altro.
 - [Array](/it/docs/Learn_web_development/Core/Scripting/Arrays)
-  - : In questa lezione esamineremo gli array — un modo ingegnoso di memorizzare un elenco di elementi di dati sotto un unico nome di variabile. Qui vedremo perché questo è utile, poi esploreremo come creare un array, recuperare, aggiungere e rimuovere elementi memorizzati in un array, e altro ancora.
-- [Sfida: Generatore di storie buffe](/it/docs/Learn_web_development/Core/Scripting/Silly_story_generator) <sup>Sfida</sup>
-  - : In questa sfida, ti verrà chiesto di sfruttare alcune delle conoscenze acquisite negli articoli di questo modulo e applicarle per creare un'app divertente che genera storie buffe casuali. Divertiti!
-- [Prendere decisioni nel tuo codice — condizionali](/it/docs/Learn_web_development/Core/Scripting/Conditionals)
-  - : In qualsiasi linguaggio di programmazione, il codice deve prendere decisioni ed eseguire azioni di conseguenza a seconda di diversi input. Per esempio, in un gioco, se il numero di vite del giocatore è 0, allora è game over. In un'app meteo, se viene consultata al mattino, mostrerà una grafica dell'alba; mostrerà stelle e una luna se è notte. In questo articolo, esploreremo come funzionano le cosiddette istruzioni condizionali in JavaScript.
-- [Codice ciclico](/it/docs/Learn_web_development/Core/Scripting/Loops)
-  - : I linguaggi di programmazione sono molto utili per completare rapidamente compiti ripetitivi, da molteplici calcoli di base a qualsiasi altra situazione in cui hai molti elementi di lavoro simili da completare. Qui esamineremo le strutture di loop disponibili in JavaScript che soddisfano tali necessità.
+  - : In questa lezione verranno esaminati gli array, un modo pratico per memorizzare un elenco di elementi di dati sotto un unico nome di variabile. Si vedrà perché sono utili, per poi esplorare come creare un array, recuperare, aggiungere e rimuovere elementi memorizzati in un array e altro ancora.
+- [Sfida: generatore di storie assurde](/it/docs/Learn_web_development/Core/Scripting/Silly_story_generator) <sup>Sfida</sup>
+  - : In questa sfida occorre utilizzare parte delle conoscenze acquisite finora in questo modulo per creare una divertente app che genera storie casuali e assurde. Lungo il percorso verranno messe alla prova le conoscenze su variabili, matematica, stringhe e array.
+- [Prendere decisioni nel codice — condizionali](/it/docs/Learn_web_development/Core/Scripting/Conditionals)
+  - : In ogni linguaggio di programmazione, il codice deve prendere decisioni ed eseguire azioni di conseguenza, in base a input differenti. Per esempio, in un gioco, se il numero di vite del giocatore è 0, la partita termina. In un'app meteorologica, se viene visualizzata al mattino, viene mostrata una grafica dell'alba; se è notte, vengono mostrate stelle e luna. In questo articolo verrà esplorato il funzionamento delle cosiddette istruzioni condizionali in JavaScript.
+- [Cicli nel codice](/it/docs/Learn_web_development/Core/Scripting/Loops)
+  - : I linguaggi di programmazione sono molto utili per completare rapidamente attività ripetitive, da molteplici calcoli di base fino a qualsiasi altra situazione in cui vi siano numerosi elementi di lavoro simili da completare. Qui verranno esaminate le strutture di ciclo disponibili in JavaScript che gestiscono queste esigenze.
 - [Funzioni — blocchi di codice riutilizzabili](/it/docs/Learn_web_development/Core/Scripting/Functions)
-  - : Un altro concetto essenziale nella programmazione sono le **funzioni**, che consentono di memorizzare un pezzo di codice che svolge un singolo compito all'interno di un blocco definito e quindi richiamare quel codice ogni volta che ne hai bisogno usando un unico comando breve, invece di dover digitare lo stesso codice più volte. In questo articolo esploreremo concetti fondamentali dietro le funzioni come la sintassi di base, come invocarle e definirle, ambito e parametri.
-- [Crea la tua funzione](/it/docs/Learn_web_development/Core/Scripting/Build_your_own_function)
-  - : Con la maggior parte della teoria essenziale trattata nell'articolo precedente, questo articolo fornisce esperienza pratica. Qui avrai l'opportunità di esercitarti costruendo la tua funzione personalizzata. Nel frattempo, spiegheremo anche alcuni dettagli utili per gestire le funzioni.
-- [Valori di ritorno delle funzioni](/it/docs/Learn_web_development/Core/Scripting/Return_values)
-  - : C'è un ultimo concetto essenziale sulle funzioni di cui discutere — i valori di ritorno. Alcune funzioni non ritornano un valore significativo, ma altre sì. È importante capire quali sono i loro valori, come usarli nel tuo codice e come fare in modo che le funzioni restituiscano valori utili. Tratteremo tutti questi aspetti qui di seguito.
+  - : Un altro concetto essenziale della programmazione è costituito dalle **funzioni**, che consentono di memorizzare un blocco di codice che svolge un singolo compito all'interno di un blocco definito, quindi richiamare quel codice ogni volta che serve con un singolo comando breve, anziché dover digitare più volte lo stesso codice. In questo articolo verranno esplorati concetti fondamentali alla base delle funzioni, come la sintassi di base, come richiamarle e definirle, l'ambito e i parametri.
+- [Creare una funzione personalizzata](/it/docs/Learn_web_development/Core/Scripting/Build_your_own_function)
+  - : Dopo aver affrontato gran parte della teoria essenziale nell'articolo precedente, questo articolo offre esperienza pratica. Qui sarà possibile esercitarsi nella creazione di una funzione personalizzata. Lungo il percorso verranno inoltre spiegati alcuni dettagli utili relativi alla gestione delle funzioni.
+- [Valori restituiti dalle funzioni](/it/docs/Learn_web_development/Core/Scripting/Return_values)
+  - : Resta un ultimo concetto essenziale sulle funzioni da discutere: i valori restituiti. Alcune funzioni non restituiscono un valore significativo, mentre altre sì. È importante comprendere quali siano questi valori, come usarli nel codice e come fare in modo che le funzioni restituiscano valori utili. Tutto questo verrà trattato di seguito.
 - [Introduzione agli eventi](/it/docs/Learn_web_development/Core/Scripting/Events)
-  - : In questo articolo, discutiamo alcuni concetti importanti riguardanti gli eventi e esaminiamo i fondamenti di come funzionano nei browser.
-- [Propagation degli eventi](/it/docs/Learn_web_development/Core/Scripting/Event_bubbling)
-  - : Questo articolo introduce i concetti di propagation degli eventi, cattura degli eventi e delega degli eventi, che riguardano cosa succede quando si aggiunge un ascoltatore a un elemento che contiene un altro elemento, e un evento accade poi all'elemento contenuto.
-- [Sfida: Galleria di immagini](/it/docs/Learn_web_development/Core/Scripting/Image_gallery) <sup>Sfida</sup>
-  - : Ora che abbiamo esaminato i blocchi costitutivi fondamentali di JavaScript, testeremo le tue conoscenze di loop, funzioni, condizionali ed eventi facendoti costruire un elemento piuttosto comune che vedrai su molti siti web — una galleria di immagini con JavaScript.
-- [Fondamenti degli oggetti](/it/docs/Learn_web_development/Core/Scripting/Object_basics)
-  - : In questo articolo, esamineremo la sintassi fondamentale degli oggetti in JavaScript e rivisiteremo alcune caratteristiche di JavaScript che abbiamo già visto in precedenza nel corso, sottolineando il fatto che molte delle funzionalità con cui hai già avuto a che fare sono oggetti.
-- [Introduzione al scripting del DOM](/it/docs/Learn_web_development/Core/Scripting/DOM_scripting)
-  - : Quando si scrivono pagine web e app, una delle cose più comuni che desidererai fare è modificare la struttura del documento in qualche modo. Di solito, questo viene fatto manipolando il Document Object Model (DOM) tramite un set di API browser integrate per controllare informazioni HTML e di stile. In questo articolo ti introdurremo al **scripting del DOM**.
-- [Fare richieste di rete con JavaScript](/it/docs/Learn_web_development/Core/Scripting/Network_requests)
-  - : Un'altra operazione molto comune nei siti web e nelle applicazioni moderne è fare richieste di rete per recuperare singoli elementi di dati dal server, al fine di aggiornare sezioni di una pagina web senza dover caricare un'intera nuova pagina. Questo dettaglio apparentemente piccolo ha avuto un grande impatto sulle prestazioni e sul comportamento dei siti, quindi in questo articolo spiegheremo il concetto e esamineremo le tecnologie che lo rendono possibile.
+  - : In questo articolo verranno discussi alcuni concetti importanti relativi agli eventi e verranno esaminati i fondamenti del loro funzionamento nei browser.
+- [Propagazione degli eventi](/it/docs/Learn_web_development/Core/Scripting/Event_bubbling)
+  - : Questo articolo introduce i concetti di event bubbling, event capture ed event delegation, relativi a ciò che accade quando si aggiunge un listener a un elemento che contiene un altro elemento e si verifica quindi un evento sull'elemento contenuto.
+- [Sfida: galleria di immagini](/it/docs/Learn_web_development/Core/Scripting/Image_gallery) <sup>Sfida</sup>
+  - : Dopo aver esaminato i blocchi costitutivi fondamentali di JavaScript, verranno messe alla prova le conoscenze su cicli, funzioni, condizionali ed eventi, realizzando un elemento piuttosto comune in molti siti web: una galleria di immagini basata su JavaScript.
+- [Nozioni di base sugli oggetti](/it/docs/Learn_web_development/Core/Scripting/Object_basics)
+  - : In questo articolo verrà esaminata la sintassi fondamentale degli oggetti JavaScript e verranno riprese alcune funzionalità di JavaScript già viste in precedenza nel corso, ribadendo il fatto che molte delle funzionalità già incontrate sono oggetti.
+- [Introduzione allo scripting DOM](/it/docs/Learn_web_development/Core/Scripting/DOM_scripting)
+  - : Nella scrittura di pagine web e app, una delle attività più comuni consiste nel modificare in qualche modo la struttura del documento. Questo viene solitamente fatto manipolando il Document Object Model (DOM) tramite un insieme di API del browser integrate per controllare HTML e le informazioni di stile. In questo articolo verrà introdotto lo **scripting DOM**.
+- [Effettuare richieste di rete con JavaScript](/it/docs/Learn_web_development/Core/Scripting/Network_requests)
+  - : Un'altra attività molto comune nei siti web e nelle applicazioni moderne è effettuare richieste di rete per recuperare singoli elementi di dati dal server e aggiornare sezioni di una pagina web senza dover caricare un'intera nuova pagina. Questo dettaglio apparentemente piccolo ha avuto un enorme impatto sulle prestazioni e sul comportamento dei siti; in questo articolo verrà quindi spiegato il concetto e verranno esaminate le tecnologie che lo rendono possibile.
 - [Lavorare con JSON](/it/docs/Learn_web_development/Core/Scripting/JSON)
-  - : Il JavaScript Object Notation (JSON) è un formato standard basato su testo per rappresentare dati strutturati basato sulla sintassi degli oggetti di JavaScript. È comunemente usato per trasmettere dati nelle applicazioni web (ad esempio, inviando alcuni dati dal server al client, in modo che possano essere visualizzati su una pagina web, o viceversa). Lo incontrerai abbastanza spesso, quindi in questo articolo ti forniamo tutto ciò che ti serve per lavorare con JSON utilizzando JavaScript, inclusa la conversione di JSON per accedere ai dati al suo interno e la creazione di JSON.
-- [Debugging e gestione degli errori in JavaScript](/it/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript)
-  - : In questa lezione, ritorneremo sull'argomento del debugging di JavaScript (che abbiamo già esaminato in [Cosa è andato storto?](/it/docs/Learn_web_development/Core/Scripting/What_went_wrong)). Qui approfondiremo le tecniche per individuare errori, ma esamineremo anche come programmare in modalità difensiva e gestire gli errori nel tuo codice, evitando problemi già dall'inizio.
-- [Testa le tue abilità: JavaScript](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills)
-  - : Questa pagina elenca i test di JavaScript che puoi provare per verificare se hai compreso il contenuto di questo modulo.
+  - : JavaScript Object Notation (JSON) è un formato standard basato su testo per rappresentare dati strutturati, basato sulla sintassi degli oggetti JavaScript. Viene comunemente usato per trasmettere dati nelle applicazioni web, ad esempio inviando dati dal server al client affinché possano essere visualizzati in una pagina web, o viceversa. Lo si incontrerà piuttosto spesso, quindi in questo articolo verrà fornito tutto ciò che serve per lavorare con JSON usando JavaScript, incluso il parsing di JSON per poter accedere ai dati al suo interno e la creazione di JSON.
+- [Sfida: creare un'interfaccia utente per i dati delle abitazioni](/it/docs/Learn_web_development/Core/Scripting/House_data_UI) <sup>Sfida</sup>
+  - : In questa sfida verrà richiesto di scrivere del codice JavaScript per una pagina di ricerca di case su un sito web immobiliare. Ciò includerà il recupero di dati JSON, il filtraggio di tali dati in base ai valori immessi nei controlli del modulo forniti e il rendering di tali dati nell'interfaccia utente. Lungo il percorso verranno inoltre messe alla prova le conoscenze su condizionali, cicli, array e metodi degli array, e altro ancora.
+- [Debug e gestione degli errori JavaScript](/it/docs/Learn_web_development/Core/Scripting/Debugging_JavaScript)
+  - : In questa lezione si tornerà al tema del debug di JavaScript, affrontato per la prima volta in [Che cosa è andato storto?](/it/docs/Learn_web_development/Core/Scripting/What_went_wrong). Qui verranno approfondite le tecniche per individuare gli errori, ma verrà anche illustrato come programmare in modo difensivo e gestire gli errori nel codice, evitando i problemi fin dall'inizio.
+
+## Metti alla prova le tue competenze
+
+Tra gli articoli tutorial sono disponibili articoli "Metti alla prova le tue competenze" per verificare di aver memorizzato le informazioni più importanti prima di proseguire. Per esplorarli tutti insieme, sono elencati in [Metti alla prova le tue competenze: JavaScript](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills).
 
 ## Vedi anche
 
-- [Scrimba: Learn JavaScript](https://scrimba.com/learn-javascript-c0v?via=mdn) <sup>[_partner di apprendimento di MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>
-  - : Il corso _Learn JavaScript_ di [Scrimba](https://scrimba.com/?via=mdn) ti insegna JavaScript risolvendo più di 140 sfide interattive di codifica, costruendo progetti inclusi un gioco, un'estensione del browser e persino un'app mobile. Scrimba offre lezioni interattive divertenti tenute da insegnanti esperti.
+- [Scrimba: impara JavaScript](https://scrimba.com/learn-javascript-c0v?via=mdn) <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup>
+  - : Il corso _Learn JavaScript_ di [Scrimba](https://scrimba.com/?via=mdn) insegna JavaScript attraverso la risoluzione di oltre 140 sfide di programmazione interattive e la realizzazione di progetti, tra cui un gioco, un'estensione del browser e persino un'app mobile. Scrimba offre lezioni interattive e coinvolgenti tenute da insegnanti competenti.
 - [Impara JavaScript](https://learnjavascript.online/)
-  - : Un'ottima risorsa per aspiranti sviluppatori web — Impara JavaScript in un ambiente interattivo, con lezioni brevi e test interattivi, guidati da una valutazione automatica. Le prime 40 lezioni sono gratuite, e il corso completo è disponibile per un piccolo pagamento una tantum.
+  - : Un'eccellente risorsa per aspiranti sviluppatori web: impara JavaScript in un ambiente interattivo, con lezioni brevi e test interattivi, guidati da una valutazione automatizzata. Le prime 40 lezioni sono gratuite e il corso completo è disponibile con un piccolo pagamento una tantum.
 
 {{NextMenu("Learn_web_development/Core/Scripting/What_is_JavaScript", "Learn_web_development/Core")}}

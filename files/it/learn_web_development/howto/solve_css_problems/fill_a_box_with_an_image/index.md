@@ -1,22 +1,22 @@
 ---
-title: Come riempire un riquadro con un'immagine senza distorcerla
-short-title: Riempire un riquadro con un'immagine
+title: Come riempire una casella con un'immagine senza distorcerla
+short-title: Riempire una casella con un'immagine
 slug: Learn_web_development/Howto/Solve_CSS_problems/Fill_a_box_with_an_image
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 451c6b58988664128473a881871707c5ec9737f2
 ---
 
-In questa guida puoi apprendere una tecnica per far sì che un'immagine HTML riempia completamente un riquadro.
+In questa guida è possibile apprendere una tecnica per fare in modo che un'immagine HTML riempia completamente una casella.
 
-## Utilizzare `object-fit`
+## Uso di object-fit
 
-Quando aggiungi un'immagine a una pagina utilizzando l'elemento HTML {{htmlelement("img")}}, l'immagine manterrà la dimensione e il {{Glossary("aspect_ratio", "rapporto d'aspetto")}} del file immagine, o quello di eventuali attributi HTML [`width`](/it/docs/Web/HTML/Reference/Elements/img#width) o [`height`](/it/docs/Web/HTML/Reference/Elements/img#height). A volte può essere necessario che l'immagine riempia completamente il riquadro in cui è stata posizionata. In tal caso, devi prima decidere cosa accade se l'immagine ha un rapporto d'aspetto non corrispondente al contenitore.
+Quando si aggiunge un'immagine a una pagina usando l'elemento HTML {{htmlelement("img")}}, l'immagine manterrà le dimensioni e le {{Glossary("aspect_ratio", "proporzioni")}} del file immagine, oppure quelle specificate dagli attributi HTML [`width`](/it/docs/Web/HTML/Reference/Elements/img#width) o [`height`](/it/docs/Web/HTML/Reference/Elements/img#height). Talvolta si desidera che l'immagine riempia completamente la casella in cui è stata inserita. In questo caso, occorre prima decidere cosa accade se l'immagine ha proporzioni errate per il contenitore.
 
-1. L'immagine dovrebbe riempire completamente il riquadro, mantenendo il rapporto d'aspetto, e ritagliando qualsiasi eccesso nel lato che è troppo grande per adattarsi.
-2. L'immagine dovrebbe adattarsi all'interno del riquadro, con lo sfondo visibile come barre sul lato troppo piccolo.
-3. L'immagine dovrebbe riempire il riquadro e allungarsi, il che potrebbe far sì che venga visualizzata con un rapporto d'aspetto errato.
+1. L'immagine deve riempire completamente la casella, mantenendo le proporzioni e ritagliando l'eccesso sul lato troppo grande per adattarsi.
+2. L'immagine deve adattarsi all'interno della casella, con lo sfondo visibile come bande sul lato troppo piccolo.
+3. L'immagine deve riempire la casella e allungarsi, il che può significare che venga visualizzata con proporzioni errate.
 
-La proprietà {{cssxref("object-fit")}} rende possibile ciascuno di questi approcci. Nell'esempio qui sotto puoi vedere come funzionano i diversi valori di `object-fit` quando usi la stessa immagine. Seleziona l'approccio che funziona meglio per il tuo design.
+La proprietà {{cssxref("object-fit")}} rende possibile ciascuno di questi approcci. Nell'esempio seguente è possibile vedere come funzionano diversi valori di `object-fit` usando la stessa immagine. Selezionare l'approccio più adatto al proprio design.
 
 ```html live-sample___object-fit
 <div class="wrapper">
@@ -46,7 +46,7 @@ La proprietà {{cssxref("object-fit")}} rende possibile ciascuno di questi appro
 }
 
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
 }
 
 .box img {

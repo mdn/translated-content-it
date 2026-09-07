@@ -2,54 +2,54 @@
 title: Come strutturare un modulo web
 slug: Learn_web_development/Extensions/Forms/How_to_structure_a_web_form
 l10n:
-  sourceCommit: 43d1415a869172848ded687e861432e1628ac6ee
+  sourceCommit: 2066cc916dfdcbb782340bf0ce562b230e947cba
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Forms/Your_first_form", "Learn_web_development/Extensions/Forms/Basic_native_form_controls", "Learn_web_development/Extensions/Forms")}}
 
-Con le basi già coperte, esamineremo ora in dettaglio gli elementi utilizzati per fornire struttura e significato alle diverse parti di un modulo.
+Dopo aver trattato le basi, verranno ora esaminati più nel dettaglio gli elementi utilizzati per fornire struttura e significato alle diverse parti di un modulo.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Una comprensione di base di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>.
+        Una conoscenza di base di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere come strutturare i moduli HTML e dare loro semantica affinché siano utilizzabili e accessibili.
+        Comprendere come strutturare i moduli HTML e attribuire loro semantica affinché siano utilizzabili e accessibili.
       </td>
     </tr>
   </tbody>
 </table>
 
-La flessibilità dei moduli li rende una delle strutture più complesse in [HTML](/it/docs/Learn_web_development/Core/Structuring_content); si può costruire qualsiasi tipo di formulario di base utilizzando elementi e attributi dedicati. Utilizzare la struttura corretta quando si costruisce un modulo HTML aiuterà a garantire che il modulo sia sia utilizzabile che [accessibile](/it/docs/Learn_web_development/Core/Accessibility).
+La flessibilità dei moduli li rende una delle strutture più complesse in [HTML](/it/docs/Learn_web_development/Core/Structuring_content); è possibile creare qualsiasi tipo di modulo di base utilizzando elementi e attributi dedicati ai moduli. Utilizzare la struttura corretta durante la creazione di un modulo HTML contribuirà a garantire che il modulo sia sia utilizzabile sia [accessibile](/it/docs/Learn_web_development/Core/Accessibility).
 
-## L'elemento `<form>`
+## L'elemento \<form>
 
-L'elemento {{HTMLElement("form")}} definisce formalmente un modulo e gli attributi che ne determinano il comportamento. Ogni volta che si desidera creare un modulo HTML, si deve iniziarlo utilizzando questo elemento, nidificando tutti i contenuti all'interno. Molte tecnologie assistive e plugin del browser possono individuare elementi {{HTMLElement("form")}} e implementare collegamenti speciali per renderli più facili da usare.
+L'elemento {{HTMLElement("form")}} definisce formalmente un modulo e gli attributi che ne determinano il comportamento. Ogni volta che si desidera creare un modulo HTML, occorre iniziare utilizzando questo elemento, annidando al suo interno tutto il contenuto. Molte tecnologie assistive e plugin del browser possono rilevare gli elementi {{HTMLElement("form")}} e implementare hook speciali per renderli più semplici da usare.
 
-Abbiamo già incontrato questo argomento nell'articolo precedente.
+Questo elemento è già stato introdotto nell'articolo precedente.
 
 > [!WARNING]
-> È strettamente vietato nidificare un modulo all'interno di un altro modulo. La nidificazione può far comportare i moduli in modo imprevedibile, quindi è una cattiva idea.
+> È severamente vietato annidare un modulo all'interno di un altro modulo. L'annidamento può causare comportamenti imprevedibili dei moduli, pertanto è una cattiva idea.
 
-È sempre possibile utilizzare un controllo modulo al di fuori di un elemento {{HTMLElement("form")}}. Se lo fai, per impostazione predefinita quel controllo non ha nulla a che vedere con alcun modulo a meno che non lo associ a un modulo utilizzando il suo attributo [`form`](/it/docs/Web/HTML/Reference/Elements/input#form). Questo è stato introdotto per permettere di associare esplicitamente un controllo a un modulo anche se non è nidificato al suo interno.
+È sempre possibile utilizzare un controllo del modulo al di fuori di un elemento {{HTMLElement("form")}}. In tal caso, per impostazione predefinita quel controllo non è associato ad alcun modulo, a meno che non venga associato a un modulo mediante il relativo attributo [`form`](/it/docs/Web/HTML/Reference/Attributes/form). Questa funzionalità è stata introdotta per consentire di associare esplicitamente un controllo a un modulo anche se non è annidato al suo interno.
 
-Procediamo e copriamo gli elementi strutturali che troverai nidificati in un modulo.
+Si prosegue ora con gli elementi strutturali che possono essere annidati in un modulo.
 
 ## Gli elementi `<fieldset>` e `<legend>`
 
-L'elemento {{HTMLElement("fieldset")}} è un modo comodo per creare gruppi di widget che condividono lo stesso scopo, per motivi di stile e semantici. Puoi etichettare un {{HTMLElement("fieldset")}} includendo un elemento {{HTMLElement("legend")}} appena sotto il tag di apertura del {{HTMLElement("fieldset")}}. Il contenuto di testo del {{HTMLElement("legend")}} descrive formalmente lo scopo del {{HTMLElement("fieldset")}} in cui è incluso.
+L'elemento {{HTMLElement("fieldset")}} è un modo pratico per creare gruppi di widget con lo stesso scopo, a fini di stile e semantica. È possibile etichettare un {{HTMLElement("fieldset")}} includendo un elemento {{HTMLElement("legend")}} subito dopo il tag di apertura {{HTMLElement("fieldset")}}. Il contenuto testuale dell'elemento {{HTMLElement("legend")}} descrive formalmente lo scopo del {{HTMLElement("fieldset")}} al cui interno è incluso.
 
-Molte tecnologie assistive utilizzeranno l'elemento {{HTMLElement("legend")}} come parte dell'etichetta di ciascun controllo all'interno dell'elemento {{HTMLElement("fieldset")}} corrispondente. Ad esempio, alcuni screen reader come [Jaws](https://www.freedomscientific.com/products/software/jaws/) e [NVDA](https://www.nvaccess.org/) pronunceranno il contenuto del legend prima di pronunciare l'etichetta di ciascun controllo.
+Molte tecnologie assistive utilizzano l'elemento {{HTMLElement("legend")}} come se facesse parte dell'etichetta di ciascun controllo all'interno del corrispondente elemento {{HTMLElement("fieldset")}}. Ad esempio, alcuni screen reader come [Jaws](https://vispero.com/jaws-screen-reader-software/) e [NVDA](https://www.nvaccess.org/) pronunciano il contenuto della legenda prima di pronunciare l'etichetta di ciascun controllo.
 
-Ecco un piccolo esempio:
+Ecco un esempio:
 
-```html
+```html live-sample___fieldset-legend
 <form>
   <fieldset>
     <legend>Fruit juice size</legend>
@@ -69,26 +69,27 @@ Ecco un piccolo esempio:
 </form>
 ```
 
-> [!NOTE]
-> Puoi trovare questo esempio in [fieldset-legend.html](https://github.com/mdn/learning-area/blob/main/html/forms/html-form-structure/fieldset-legend.html) ([vedi anche in tempo reale](https://mdn.github.io/learning-area/html/forms/html-form-structure/fieldset-legend.html)).
+Il risultato del rendering è il seguente:
 
-Quando si legge il modulo sopra, uno screen reader pronuncerà "Fruit juice size small" per il primo widget, "Fruit juice size medium" per il secondo, e "Fruit juice size large" per il terzo.
+{{embedlivesample("fieldset-legend", "100%", 200)}}
 
-Il caso d'uso in questo esempio è uno dei più importanti. Ogni volta che hai un set di pulsanti radio, dovresti nidificarli all'interno di un elemento {{HTMLElement("fieldset")}}. Ci sono altri casi d'uso, e in generale l'elemento {{HTMLElement("fieldset")}} può anche essere utilizzato per sezionare un modulo. Idealmente, i moduli lunghi dovrebbero essere distribuiti su più pagine, ma se un modulo sta diventando lungo e deve essere su una singola pagina, mettere le diverse sezioni correlate all'interno di diversi fieldset migliora l'usabilità.
+Durante la lettura del modulo precedente, uno screen reader pronuncerà "Dimensione del succo di frutta piccolo" per l'etichetta del primo pulsante radio, "Dimensione del succo di frutta medio" per il secondo e "Dimensione del succo di frutta grande" per il terzo.
 
-A causa della sua influenza sulle tecnologie assistive, l'elemento {{HTMLElement("fieldset")}} è uno degli elementi chiave per costruire moduli accessibili; tuttavia, è tua responsabilità non abusarne. Se possibile, ogni volta che costruisci un modulo, prova a [ascoltare come un lettore di schermo](/it/docs/Learn_web_development/Core/Accessibility/Tooling#screen_readers) lo interpreta. Se sembra strano, prova a migliorare la struttura del modulo.
+Ogni volta che è presente un insieme di pulsanti radio, occorre annidarli all'interno di un elemento {{HTMLElement("fieldset")}}. Esistono anche altri casi d'uso e, in generale, l'elemento {{HTMLElement("fieldset")}} può essere usato anche per suddividere un modulo in sezioni. Idealmente, i moduli lunghi dovrebbero essere distribuiti su più pagine, ma se un modulo diventa lungo e deve trovarsi in una sola pagina, inserire le diverse sezioni correlate in fieldset distinti migliora l'usabilità.
 
-## L'elemento `<label>`
+A causa della sua influenza sulle tecnologie assistive, l'elemento {{HTMLElement("fieldset")}} è uno degli elementi fondamentali per creare moduli accessibili; tuttavia, è responsabilità dello sviluppatore non abusarne. Se possibile, ogni volta che si crea un modulo, è opportuno [ascoltare come uno screen reader](/it/docs/Learn_web_development/Core/Accessibility/Tooling#screen_readers) lo interpreta. Se il risultato sembra insolito, provare a migliorare la struttura del modulo.
 
-Come abbiamo visto nell'articolo precedente, l'elemento {{HTMLElement("label")}} è il modo formale per definire un'etichetta per un widget del modulo HTML. Questo è l'elemento più importante se vuoi costruire moduli accessibili — quando implementato correttamente, gli screen reader pronunceranno l'etichetta di un elemento del modulo insieme a qualsiasi istruzione correlata, oltre ad essere utile per gli utenti vedenti. Prendi questo esempio, che abbiamo visto nell'articolo precedente:
+## L'elemento \<label>
+
+Come visto nell'articolo precedente, l'elemento {{HTMLElement("label")}} è il modo formale per definire un'etichetta per un widget di un modulo HTML. Questo è l'elemento più importante per creare moduli accessibili: se implementato correttamente, gli screen reader pronunceranno l'etichetta di un elemento del modulo insieme a tutte le istruzioni correlate, oltre a essere utile per gli utenti vedenti. Si consideri questo esempio, già visto nell'articolo precedente:
 
 ```html
 <label for="name">Name:</label> <input type="text" id="name" name="user_name" />
 ```
 
-Con il `<label>` associato correttamente con l'`<input>` attraverso il suo attributo `for` (che contiene l'attributo `id` dell'elemento `<input>`), uno screen reader leggerà qualcosa come "Name, edit text".
+Con `<label>` associato correttamente a `<input>` mediante il relativo attributo `for` (che contiene l'attributo `id` dell'elemento `<input>`), uno screen reader leggerà qualcosa come "Nome, modifica testo".
 
-C'è un altro modo per associare un controllo del modulo con un'etichetta — nidificare il controllo del modulo all'interno del `<label>`, associandolo implicitamente.
+Esiste un altro modo per associare un controllo del modulo a un'etichetta: annidare il controllo del modulo all'interno di `<label>`, associandolo implicitamente.
 
 ```html
 <label for="name">
@@ -96,17 +97,17 @@ C'è un altro modo per associare un controllo del modulo con un'etichetta — ni
 </label>
 ```
 
-Anche in tali casi, tuttavia, è considerata una buona pratica impostare l'attributo `for` per garantire che tutte le tecnologie assistive comprendano la relazione tra etichetta e widget.
+Tuttavia, anche in questi casi è considerata una buona pratica impostare l'attributo `for`, per garantire che tutte le tecnologie assistive comprendano la relazione tra etichetta e widget.
 
-Se non c'è etichetta, o se il controllo del modulo non è né implicitamente né esplicitamente associato a un'etichetta, uno screen reader leggerà qualcosa come "Edit text blank", il che non è affatto utile.
+Se non è presente un'etichetta, oppure se il controllo del modulo non è associato implicitamente né esplicitamente a un'etichetta, uno screen reader leggerà qualcosa come "Modifica testo vuoto", che non è affatto molto utile.
 
-### Anche le etichette sono cliccabili!
+### Anche le etichette sono selezionabili
 
-Un altro vantaggio delle etichette impostate correttamente è che si può cliccare o toccare l'etichetta per attivare il widget corrispondente. Questo è utile per controlli come input di testo, dove si può cliccare sull'etichetta oltre che sull'input per metterlo a fuoco, ma è particolarmente utile per pulsanti radio e checkbox — l'area di attivazione di un tale controllo può essere molto piccola, quindi è utile renderla facile da attivare.
+Un altro vantaggio delle etichette configurate correttamente è che è possibile fare clic o toccare l'etichetta per attivare il widget corrispondente. Questo è utile per controlli come gli input di testo, per i quali è possibile fare clic sia sull'etichetta sia sull'input per ricevere il focus, ma è particolarmente utile per pulsanti radio e checkbox: l'area attiva di questi controlli può essere molto piccola, quindi è utile renderne l'attivazione il più semplice possibile.
 
-Ad esempio, cliccando sul testo dell'etichetta "I like cherry" nell'esempio qui sotto si attiverà la selezione del checkbox _taste_cherry_:
+Ad esempio, facendo clic sul testo dell'etichetta "I like cherry" nell'esempio seguente verrà attivato o disattivato lo stato selezionato della checkbox _taste_cherry_:
 
-```html
+```html live-sample___checkbox-label
 <form>
   <p>
     <input type="checkbox" id="taste_1" name="taste_cherry" value="cherry" />
@@ -119,90 +120,76 @@ Ad esempio, cliccando sul testo dell'etichetta "I like cherry" nell'esempio qui 
 </form>
 ```
 
-> [!NOTE]
-> Puoi trovare questo esempio in [checkbox-label.html](https://github.com/mdn/learning-area/blob/main/html/forms/html-form-structure/checkbox-label.html) ([vedi anche in tempo reale](https://mdn.github.io/learning-area/html/forms/html-form-structure/checkbox-label.html)).
+Provare:
+
+{{embedlivesample("checkbox-label", "100%", 100)}}
 
 ### Etichette multiple
 
-Tecnicamente, puoi mettere più etichette su un singolo widget, ma non è una buona idea, poiché alcune tecnologie assistive possono avere problemi a gestirle. Nel caso di etichette multiple, dovresti nidificare un widget e le sue etichette all'interno di un singolo elemento {{htmlelement("label")}}.
+In senso stretto, è possibile inserire più etichette su un singolo widget, ma non è una buona idea poiché alcune tecnologie assistive possono avere difficoltà a gestirle. Nel caso di etichette multiple, occorre annidare un widget e le relative etichette all'interno di un singolo elemento {{htmlelement("label")}}.
 
-Consideriamo questo esempio:
+Si consideri questo esempio:
 
 ```html
-<p>Required fields are followed by <span aria-label="required">*</span>.</p>
+<p>Please complete all required (*) fields.</p>
 
 <!-- So this: -->
-<!--div>
+<!--<div>
   <label for="username">Name:</label>
-  <input id="username" type="text" name="username" required>
-  <label for="username"><span aria-label="required">*</label>
-</div-->
+  <input id="username" type="text" name="username" required />
+  <label for="username">*</label>
+</div>-->
 
 <!-- would be better done like this: -->
-<!--div>
+<!--<div>
   <label for="username">
     <span>Name:</span>
-    <input id="username" type="text" name="username" required>
-    <span aria-label="required">*</span>
+    <input id="username" type="text" name="username" required />
+    <span>*</span>
   </label>
-</div-->
+</div>-->
 
 <!-- But this is probably best: -->
 <div>
-  <label for="username">Name: <span aria-label="required">*</span></label>
+  <label for="username">Name *:</label>
   <input id="username" type="text" name="username" required />
 </div>
 ```
 
 {{EmbedLiveSample("Multiple_labels", 120, 120)}}
 
-Il paragrafo in alto stabilisce una regola per gli elementi richiesti. La regola deve essere inclusa _prima_ che venga utilizzata, in modo che gli utenti vedenti e gli utenti di tecnologie assistive come i lettori di schermo possano capire il significato prima di incontrare un elemento richiesto. Anche se questo aiuta a informare gli utenti su cosa significhi un asterisco, non può essere affidabile. Uno screen reader pronuncerà un asterisco come "_star_" quando incontrato. Quando viene visualizzato passando il mouse da un utente vedente, dovrebbe apparire "_required_", il che si ottiene tramite l'uso dell'attributo `title`. La lettura dei titoli ad alta voce dipende dalle impostazioni dello screen reader, quindi è più affidabile includere anche l'attributo [`aria-label`](/it/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label), che viene sempre letto dai lettori di schermo.
+Il paragrafo in alto indica una regola per gli elementi obbligatori. La regola deve essere inclusa _prima_ di essere utilizzata, affinché gli utenti vedenti e gli utenti di tecnologie assistive (AT), come gli screen reader, possano comprenderne il significato prima di incontrare un elemento obbligatorio.
 
-Le varianti sopra aumentano in efficacia man mano che si procede:
+## Strutture HTML comuni utilizzate con i moduli
 
-- Nel primo esempio, l'etichetta non viene letta affatto con l'input — si ottiene solo "edit text blank", mentre le etichette reali vengono lette separatamente. Le multiple `<label>` confondono lo screen reader.
-- Nel secondo esempio, le cose sono un po' più chiare — l'etichetta letta insieme all'input è "name star name edit text required", e le etichette vengono ancora lette separatamente. Le cose sono ancora un po' confuse, ma è un po' meglio questa volta, perché l'`<input>` ha un'etichetta associata.
-- Il terzo esempio è il migliore — l'etichetta reale viene letta tutta insieme, e l'etichetta letta con l'input è "name required edit text".
+Oltre alle strutture specifiche dei moduli web, è bene ricordare che il markup dei moduli è semplicemente HTML. Ciò significa che è possibile utilizzare tutta la potenza di HTML per strutturare un modulo web.
 
-> [!NOTE]
-> Potresti ottenere risultati leggermente diversi, a seconda del tuo screen reader. Questo è stato testato con VoiceOver (e NVDA si comporta in modo simile). Ci piacerebbe sentire anche le tue esperienze.
+Come mostrato negli esempi, è pratica comune racchiudere un'etichetta e il relativo widget in un elemento {{HTMLElement("li")}} all'interno di un elenco {{HTMLElement("ul")}} o {{HTMLElement("ol")}}. Vengono inoltre comunemente utilizzati gli elementi {{HTMLElement("p")}} e {{HTMLElement("div")}}. Gli elenchi sono consigliati per strutturare più checkbox o pulsanti radio.
 
-> [!NOTE]
-> Puoi trovare questo esempio su GitHub come [required-labels.html](https://github.com/mdn/learning-area/blob/main/html/forms/html-form-structure/required-labels.html) ([vedi anche in tempo reale](https://mdn.github.io/learning-area/html/forms/html-form-structure/required-labels.html)). Non testare l'esempio con 2 o 3 delle versioni non commentate — i lettori di schermo si confonderanno sicuramente se hai più etichette E più input con lo stesso ID!
+Oltre all'elemento {{HTMLElement("fieldset")}}, è anche pratica comune utilizzare titoli HTML, ad esempio {{htmlelement("Heading_Elements", "h1")}} e {{htmlelement("Heading_Elements", "h2")}}, e sezioni, ad esempio {{htmlelement("section")}}, per strutturare moduli complessi.
 
-## Strutture HTML comuni usate con i moduli
+Soprattutto, spetta allo sviluppatore trovare uno stile di codifica comodo che produca moduli accessibili e utilizzabili. Ogni sezione distinta di funzionalità dovrebbe essere contenuta in un elemento {{htmlelement("section")}} separato, con elementi {{htmlelement("fieldset")}} per contenere i pulsanti radio.
 
-Oltre alle strutture specifiche per i moduli web, è bene ricordare che il markup del modulo è solo HTML. Ciò significa che si può utilizzare tutta la potenza dell'HTML per strutturare un modulo web.
+### Creare la struttura di un modulo
 
-Come puoi vedere negli esempi, è pratica comune racchiudere un'etichetta e il suo widget con un elemento {{HTMLElement("li")}} all'interno di una lista {{HTMLElement("ul")}} o {{HTMLElement("ol")}}. Anche gli elementi {{HTMLElement("p")}} e {{HTMLElement("div")}} sono comunemente usati. Le liste sono raccomandate per strutturare più caselle di controllo o pulsanti radio.
+Mettiamo in pratica queste idee e creiamo un modulo leggermente più articolato: un modulo di pagamento. Questo modulo conterrà diversi tipi di controllo che potrebbero non essere ancora chiari. Non occorre preoccuparsene per ora; il loro funzionamento verrà illustrato nel prossimo articolo ([Controlli dei moduli nativi di base](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls)). Per il momento, leggere attentamente le descrizioni mentre si seguono le istruzioni riportate di seguito e iniziare a comprendere quali elementi contenitore vengono utilizzati per strutturare il modulo e perché.
 
-Oltre all'elemento {{HTMLElement("fieldset")}}, è anche pratica comune usare i titoli HTML (ad es., {{htmlelement("Heading_Elements", "h1")}}, {{htmlelement("Heading_Elements", "h2")}}) e sezioni (ad es., {{htmlelement("section")}}) per strutturare moduli complessi.
+1. Per iniziare, creare una copia locale del [file modello vuoto](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html) in una nuova directory sul computer.
 
-Sopra tutto, spetta a te trovare uno stile di codifica confortevole che produca moduli accessibili e usabili. Ogni sezione separata di funzionalità dovrebbe essere contenuta in un elemento {{htmlelement("section")}}, con elementi {{htmlelement("fieldset")}} per contenere pulsanti radio.
-
-### Apprendimento attivo: costruire una struttura di modulo
-
-Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso — un modulo di pagamento. Questo modulo conterrà diversi tipi di controlli che potresti non comprendere ancora. Non preoccuparti per ora; scoprirai come funzionano nel prossimo articolo ([Controlli nativi di modulo di base](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls)). Per ora, leggi attentamente le descrizioni mentre segui le istruzioni sottostanti, e inizia ad apprezzare quali elementi di contenitore stiamo utilizzando per strutturare il modulo e perché.
-
-1. Innanzitutto, fai una copia locale del nostro [file modello vuoto](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/getting-started/index.html) in una nuova directory sul tuo computer.
-
-2. Successivamente, crea il tuo modulo aggiungendo un elemento {{htmlelement("form")}}:
+2. Creare quindi il modulo aggiungendo un elemento {{htmlelement("form")}}:
 
    ```html-nolint
    <form>
    ```
 
-3. All'interno dell'elemento `<form>`, aggiungi un'intestazione e un paragrafo per informare gli utenti su come vengono contrassegnati i campi obbligatori:
+3. All'interno dell'elemento `<form>`, aggiungere un'intestazione e un paragrafo per informare gli utenti su come vengono contrassegnati i campi obbligatori:
 
    ```html-nolint
    <h1>Payment form</h1>
-   <p>
-     Required fields are followed by
-     <strong><span aria-label="required">*</span></strong>.
-   </p>
+   <p>Please complete all required (*) fields.</p>
    ```
 
-4. Successivamente, aggiungeremo una sezione di codice più grande nel modulo, sotto la nostra voce precedente. Qui vedrai che stiamo racchiudendo i campi delle informazioni di contatto in un distinto elemento {{htmlelement("section")}}. Inoltre, abbiamo un set di tre pulsanti radio, ciascuno dei quali viene inserito all'interno di un proprio elemento lista ({{htmlelement("li")}}). Abbiamo anche due standard {{htmlelement("input")}} di testo e i relativi elementi {{htmlelement("label")}} associati, ciascuno contenuto all'interno di un {{htmlelement("p")}}, e un input di tipo password per inserire una password. Aggiungi questo codice al tuo modulo:
+4. Successivamente, verrà aggiunta al modulo una sezione di codice più ampia, sotto l'elemento precedente. Qui è possibile osservare che i campi delle informazioni di contatto vengono racchiusi in un elemento {{htmlelement("section")}} distinto. Inoltre, è presente un insieme di tre pulsanti radio, ognuno dei quali viene inserito nel proprio elemento di elenco ({{htmlelement("li")}}). Sono inoltre presenti due {{htmlelement("input")}} di testo standard con i relativi elementi {{htmlelement("label")}}, ciascuno contenuto in un {{htmlelement("p")}}, e un input password per inserire una password. Aggiungere questo codice al modulo:
 
    ```html
    <section>
@@ -231,37 +218,28 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
        </ul>
      </fieldset>
      <p>
-       <label for="name">
-         <span>Name: </span>
-         <strong><span aria-label="required">*</span></strong>
-       </label>
+       <label for="name">Name *:</label>
        <input type="text" id="name" name="username" required />
      </p>
      <p>
-       <label for="mail">
-         <span>Email: </span>
-         <strong><span aria-label="required">*</span></strong>
-       </label>
+       <label for="mail">Email *:</label>
        <input type="email" id="mail" name="user-mail" required />
      </p>
      <p>
-       <label for="pwd">
-         <span>Password: </span>
-         <strong><span aria-label="required">*</span></strong>
-       </label>
+       <label for="pwd">Password *:</label>
        <input type="password" id="pwd" name="password" required />
      </p>
    </section>
    ```
 
-5. La seconda `<section>` del nostro modulo è l'informazione di pagamento.
-   Abbiamo tre distinti controlli insieme alle loro etichette, ciascuno contenuto all'interno di un `<p>`.
-   Il primo è un menu a tendina ({{htmlelement("select")}}) per selezionare il tipo di carta di credito.
-   Il secondo è un elemento `<input>` di tipo `tel`, per inserire un numero di carta di credito; mentre avremmo potuto utilizzare il tipo `number`, non vogliamo l'interfaccia spinner del numero.
-   L'ultimo è un elemento `<input>` di tipo `text`, per inserire la data di scadenza della carta; questo include un attributo _placeholder_ che indica il formato corretto e un _pattern_ che testa che la data inserita abbia il formato corretto.
-   Questi nuovi tipi di input sono reintrodotti in [I tipi di input HTML5](/it/docs/Learn_web_development/Extensions/Forms/HTML5_input_types).
+5. La seconda `<section>` del modulo contiene le informazioni di pagamento.
+   Sono presenti tre controlli distinti con le rispettive etichette, ciascuno contenuto in un `<p>`.
+   Il primo è un menu a discesa ({{htmlelement("select")}}) per selezionare il tipo di carta di credito.
+   Il secondo è un elemento `<input>` di tipo `tel`, per inserire il numero della carta di credito; si sarebbe potuto usare il tipo `number`, ma non si desidera l'interfaccia con spinner del numero.
+   L'ultimo è un elemento `<input>` di tipo `text`, per inserire la data di scadenza della carta; include un attributo _placeholder_ che indica il formato corretto e un _pattern_ che verifica che la data immessa abbia il formato corretto.
+   Questi tipi di input più recenti vengono reintrodotti in [I tipi di input HTML5](/it/docs/Learn_web_development/Extensions/Forms/HTML5_input_types).
 
-   Inserisci il seguente sotto la sezione precedente:
+   Inserire quanto segue sotto la sezione precedente:
 
    ```html
    <section>
@@ -277,17 +255,11 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
        </select>
      </p>
      <p>
-       <label for="number">
-         <span>Card number:</span>
-         <strong><span aria-label="required">*</span></strong>
-       </label>
+       <label for="number">Card number *:</label>
        <input type="tel" id="number" name="card-number" required />
      </p>
      <p>
-       <label for="expiration">
-         <span>Expiration date:</span>
-         <strong><span aria-label="required">*</span></strong>
-       </label>
+       <label for="expiration">Expiration date *:</label>
        <input
          type="text"
          id="expiration"
@@ -299,7 +271,7 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
    </section>
    ```
 
-6. L'ultima sezione che aggiungeremo è molto più semplice, contenendo solo un {{htmlelement("button")}} di tipo `submit`, per inviare i dati del modulo. Aggiungi questo alla fine del tuo modulo ora:
+6. L'ultima sezione da aggiungere è molto più semplice e contiene solo un {{htmlelement("button")}} di tipo `submit`, per inviare i dati del modulo. Aggiungere ora questo elemento in fondo al modulo:
 
    ```html
    <section>
@@ -309,7 +281,7 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
    </section>
    ```
 
-7. Infine, completa il tuo modulo aggiungendo il tag di chiusura esterno {{htmlelement("form")}}:
+7. Infine, completare il modulo aggiungendo il tag di chiusura esterno {{htmlelement("form")}}:
 
    ```html
    </form>
@@ -330,7 +302,7 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
      margin: 0 auto;
      width: 400px;
      padding: 1em;
-     border: 1px solid #ccc;
+     border: 1px solid #cccccc;
      border-radius: 1em;
    }
 
@@ -348,7 +320,7 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
      font: 1em sans-serif;
      width: 250px;
      box-sizing: border-box;
-     border: 1px solid #999;
+     border: 1px solid #999999;
    }
 
    input[type="checkbox"],
@@ -359,7 +331,7 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
 
    input:focus,
    textarea:focus {
-     border-color: #000;
+     border-color: black;
    }
 
    textarea {
@@ -371,11 +343,11 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
    fieldset {
      width: 250px;
      box-sizing: border-box;
-     border: 1px solid #999;
+     border: 1px solid #999999;
    }
 
    button {
-     margin: 20px 0 0 0;
+     margin-top: 20px;
    }
 
    label {
@@ -387,19 +359,15 @@ Mettiamo in pratica queste idee e costruiamo un modulo un po' più complesso —
    }
    ```
 
-Abbiamo applicato alcuni CSS extra al modulo finito qui sotto. Se desideri apportare modifiche all'aspetto del modulo, puoi copiare gli stili dall'[esempio](/it/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form/Example) o visitare [Stilizzare i moduli web](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms).
+Al modulo completato riportato di seguito è stato applicato del CSS aggiuntivo. Per apportare modifiche all'aspetto del modulo, è possibile copiare gli stili dall'[esempio](/it/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form/Example) oppure visitare [Applicare stili ai moduli web](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms).
 
-{{EmbedLiveSample("active_learning_building_a_form_structure","100%",620)}}
+{{EmbedLiveSample("building_a_form_structure","100%",620)}}
 
-## Metti alla prova le tue abilità!
+## Riepilogo
 
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare un ulteriore test per verificare di aver trattenuto queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Struttura del modulo](/it/docs/Learn_web_development/Extensions/Forms/Test_your_skills/Form_structure).
+Ora sono disponibili tutte le conoscenze necessarie per strutturare correttamente i moduli web. Molte delle funzionalità introdotte qui verranno trattate nei prossimi articoli; il prossimo articolo esaminerà più nel dettaglio l'uso di tutti i diversi tipi di widget dei moduli necessari per raccogliere informazioni dagli utenti.
 
-## Riassunto
-
-Ora hai tutte le conoscenze di cui hai bisogno per strutturare correttamente i tuoi moduli web. Copriremo molte delle funzionalità qui introdotte nei prossimi articoli, con il prossimo articolo che esamina in dettaglio l'uso di tutti i diversi tipi di widget di modulo che vorrai utilizzare per raccogliere informazioni dai tuoi utenti.
-
-## Vedi anche
+## Vedere anche
 
 - [A List Apart: _Sensible Forms: A Form Usability Checklist_](https://alistapart.com/article/sensibleforms/)
 

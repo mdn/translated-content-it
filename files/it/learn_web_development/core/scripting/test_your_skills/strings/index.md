@@ -1,85 +1,325 @@
 ---
-title: "Metti alla prova le tue abilità: Stringhe"
-short-title: Strings
+title: "Metti alla prova le tue competenze: stringhe"
+short-title: "Test: stringhe"
 slug: Learn_web_development/Core/Scripting/Test_your_skills/Strings
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: b36d59a0df933597c7d3b55e363f7a59e30d3ba3
 ---
 
-Lo scopo di questo test di abilità è valutare se hai compreso i nostri articoli su [Gestione del testo — stringhe in JavaScript](/it/docs/Learn_web_development/Core/Scripting/Strings) e [Metodi utili per le stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods).
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Useful_string_methods", "Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting")}}
+
+L'obiettivo di questo test delle competenze è aiutare a valutare se sono stati compresi gli articoli [Gestire il testo — stringhe in JavaScript](/it/docs/Learn_web_development/Core/Scripting/Strings) e [Metodi utili per le stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods).
 
 > [!NOTE]
-> Puoi provare le soluzioni negli editor interattivi su questa pagina oppure in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
->
-> Se incontri difficoltà, puoi contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
-
-> [!NOTE]
-> Negli esempi seguenti, se c'è un errore nel tuo codice, verrà visualizzato nel pannello dei risultati della pagina per aiutarti a trovare la soluzione (o nella console JavaScript del browser, nel caso della versione scaricabile).
+> Per ottenere aiuto, leggere la guida all'uso [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci attraverso uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
 ## Stringhe 1
 
-Nel nostro primo compito sulle stringhe, iniziamo in piccolo. Hai già metà di una famosa citazione all'interno di una variabile chiamata `quoteStart`; desideriamo che tu:
+Nel primo esercizio sulle stringhe, si inizia in piccolo. È già presente metà di una citazione famosa all'interno di una variabile chiamata `quoteStart` e occorre completarla.
 
-1. Cerchi l'altra metà della citazione e la aggiunga all'esempio in una variabile chiamata `quoteEnd`.
-2. Concatenare le due stringhe insieme per creare una singola stringa contenente la citazione completa. Salva il risultato in una variabile chiamata `finalQuote`.
+Per completare l'esercizio:
 
-Scoprirai che riceverai un errore a questo punto. Puoi risolvere il problema con `quoteStart`, in modo che la citazione completa venga visualizzata correttamente?
+1. Cercare l'altra metà della citazione e aggiungerla all'esempio all'interno di una variabile chiamata `quoteEnd`.
+2. Concatenare le due stringhe per creare un'unica stringa contenente la citazione completa. Salvare il risultato all'interno di una variabile chiamata `finalQuote`.
+3. A questo punto verrà visualizzato un errore. È possibile correggere il problema con `quoteStart`, in modo che la citazione completa venga visualizzata correttamente?
 
-Prova ad aggiornare il codice live qui sotto per ricreare l'esempio finito:
+<!-- Codice condiviso tra gli esempi -->
 
-{{EmbedGHLiveSample("learning-area/javascript/introduction-to-js-1/tasks/strings/strings1.html", '100%', 400)}}
+```html hidden live-sample___strings-1 live-sample___strings-2 live-sample___strings-3 live-sample___strings-4 live-sample___strings-1-finish live-sample___strings-2-finish live-sample___strings-3-finish live-sample___strings-4-finish
+<section></section>
+```
 
-> [!CALLOUT]
->
-> [Scarica il punto di partenza per questo compito](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/tasks/strings/strings1-download.html) per lavorare nel tuo editor o in un editor online.
+```css hidden live-sample___strings-1 live-sample___strings-2 live-sample___strings-3 live-sample___strings-4 live-sample___strings-1-finish live-sample___strings-2-finish live-sample___strings-3-finish live-sample___strings-4-finish
+* {
+  box-sizing: border-box;
+}
+
+p {
+  color: purple;
+  margin: 0.5em 0;
+}
+```
+
+<!-- Codice specifico dell'esempio -->
+
+Il punto di partenza dell'esercizio è il seguente (non viene ancora visualizzato nulla):
+
+{{ EmbedLiveSample("strings-1", "100%", 60) }}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```js-nolint live-sample___strings-1
+const quoteStart = 'Don't judge each day by the harvest you reap ';
+
+// Add your code here
+
+// Don't edit the code below here!
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = finalQuote;
+section.appendChild(para1);
+```
+
+L'output aggiornato dovrebbe essere simile al seguente:
+
+{{ EmbedLiveSample("strings-1-finish", "100%", 60) }}
+
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
+
+Il JavaScript completato dovrebbe essere simile a questo:
+
+```js-nolint
+// You need to escape the quote
+const quoteStart = 'Don\'t judge each day by the harvest you reap ';
+
+const quoteEnd = "but by the seeds that you plant.";
+
+const finalQuote = `${quoteStart}${quoteEnd}`;
+
+// Don't edit the code below here!
+// ...
+```
+
+```js hidden live-sample___strings-1-finish
+const quoteStart = "Don't judge each day by the harvest you reap ";
+
+const quoteEnd = "but by the seeds that you plant.";
+
+const finalQuote = `${quoteStart}${quoteEnd}`;
+
+// Don't edit the code below here!
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = finalQuote;
+section.appendChild(para1);
+```
+
+</details>
 
 ## Stringhe 2
 
-In questo compito ti vengono fornite due variabili, `quote` e `substring`, che contengono due stringhe. Noi vorremmo che tu:
+In questo esercizio vengono fornite due variabili, `quote` e `substring`, che contengono due stringhe.
 
-1. Recuperi la lunghezza della citazione e la memorizzi in una variabile chiamata `quoteLength`.
-2. Trovi la posizione dell'indice dove `substring` appare in `quote` e memorizzi quel valore in una variabile chiamata `index`.
-3. Usa una combinazione delle variabili che hai e delle proprietà/metodi disponibili delle stringhe per ridurre la citazione originale a "I do not like green eggs and ham." e memorizzala in una variabile chiamata `revisedQuote`.
+Per completare l'esercizio:
 
-Prova ad aggiornare il codice live qui sotto per ricreare l'esempio finito:
+1. Recuperare la lunghezza della citazione e memorizzarla in una variabile chiamata `quoteLength`.
+2. Trovare la posizione dell'indice in cui `substring` appare in `quote` e memorizzare tale valore in una variabile chiamata `index`.
+3. Usare una combinazione delle variabili disponibili e delle proprietà/metodi delle stringhe disponibili per ridurre la citazione originale a "I do not like green eggs and ham.", quindi memorizzarla in una variabile chiamata `revisedQuote`.
 
-{{EmbedGHLiveSample("learning-area/javascript/introduction-to-js-1/tasks/strings/strings2.html", '100%', 400)}}
+Il punto di partenza dell'esercizio è il seguente (non viene ancora visualizzato nulla):
 
-> [!CALLOUT]
->
-> [Scarica il punto di partenza per questo compito](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/tasks/strings/strings2-download.html) per lavorare nel tuo editor o in un editor online.
+{{ EmbedLiveSample("strings-2", "100%", 60) }}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```js live-sample___strings-2
+const quote = "I do not like green eggs and ham. I do not like them, Sam-I-Am.";
+const substring = "green eggs and ham";
+
+// Don't edit the code above here!
+
+// Add your code here
+
+// Don't edit the code below here!
+
+const section = document.querySelector("section");
+section.innerHTML = " ";
+const para1 = document.createElement("p");
+para1.textContent = `The quote is ${quoteLength} characters long.`;
+const para2 = document.createElement("p");
+para2.textContent = revisedQuote;
+section.appendChild(para1);
+section.appendChild(para2);
+```
+
+L'output aggiornato dovrebbe essere simile al seguente:
+
+{{ EmbedLiveSample("strings-2-finish", "100%", 80) }}
+
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
+
+Il JavaScript completato dovrebbe essere simile a questo:
+
+```js
+// ...
+// Don't edit the code above here!
+
+const quoteLength = quote.length;
+const index = quote.indexOf(substring);
+const revisedQuote = quote.slice(0, index + substring.length + 1);
+
+// Don't edit the code below here!
+// ...
+```
+
+```js hidden live-sample___strings-2-finish
+const quote = "I do not like green eggs and ham. I do not like them, Sam-I-Am.";
+const substring = "green eggs and ham";
+
+const quoteLength = quote.length;
+const index = quote.indexOf(substring);
+const revisedQuote = quote.slice(0, index + substring.length + 1);
+
+const section = document.querySelector("section");
+section.innerHTML = " ";
+const para1 = document.createElement("p");
+para1.textContent = `The quote is ${quoteLength} characters long.`;
+const para2 = document.createElement("p");
+para2.textContent = revisedQuote;
+section.appendChild(para1);
+section.appendChild(para2);
+```
+
+</details>
 
 ## Stringhe 3
 
-Nel prossimo compito sulle stringhe, ti viene data la stessa citazione con cui hai finito nel compito precedente, ma è un po' rotta! Vogliamo che la corregga e la aggiorni, in questo modo:
+Nel prossimo esercizio sulle stringhe, viene fornita la stessa citazione ottenuta nell'esercizio precedente, ma è in qualche modo danneggiata. Occorre correggerla e aggiornarla.
 
-1. Cambia il caso per ottenere la corretta capitalizzazione delle frasi (tutto minuscolo, tranne la prima lettera maiuscola). Memorizza la nuova citazione in una variabile chiamata `fixedQuote`.
-2. In `fixedQuote`, sostituisci "green eggs and ham" con un altro cibo che proprio non ti piace.
-3. C'è un'altra piccola correzione da fare: aggiungi un punto alla fine della citazione, e salva la versione finale in una variabile chiamata `finalQuote`.
+Per completare l'esercizio:
 
-Prova ad aggiornare il codice live qui sotto per ricreare l'esempio finito:
+1. Modificare le maiuscole/minuscole in modo da ottenere una corretta frase con iniziale maiuscola (tutto in minuscolo, tranne la prima lettera maiuscola). Memorizzare la nuova citazione in una variabile chiamata `fixedQuote`.
+2. In `fixedQuote`, sostituire "green eggs and ham" con un altro cibo che non piace affatto.
+3. Rimane un'ultima piccola correzione da effettuare: aggiungere un punto alla fine della citazione e salvare la versione finale in una variabile chiamata `finalQuote`.
 
-{{EmbedGHLiveSample("learning-area/javascript/introduction-to-js-1/tasks/strings/strings3.html", '100%', 400)}}
+Il punto di partenza dell'esercizio è il seguente (non viene ancora visualizzato nulla):
 
-> [!CALLOUT]
->
-> [Scarica il punto di partenza per questo compito](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/tasks/strings/strings3-download.html) per lavorare nel tuo editor o in un editor online.
+{{ EmbedLiveSample("strings-3", "100%", 60) }}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```js live-sample___strings-3
+const quote = "I dO nOT lIke gREen eGgS anD HAM";
+
+// Don't edit the code above here!
+
+// Add your code here
+
+// Don't edit the code below here!
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = finalQuote;
+section.appendChild(para1);
+```
+
+L'output aggiornato dovrebbe essere simile al seguente:
+
+{{ EmbedLiveSample("strings-3-finish", "100%", 60) }}
+
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
+
+Il JavaScript completato dovrebbe essere simile a questo:
+
+```js
+// ...
+// Don't edit the code above here!
+
+let fixedQuote = quote.toLowerCase();
+const firstLetter = fixedQuote.slice(0, 1);
+fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
+fixedQuote = fixedQuote.replace("green eggs and ham", "pickled onions");
+const finalQuote = `${fixedQuote}.`;
+
+// Don't edit the code below here!
+// ...
+```
+
+```js hidden live-sample___strings-3-finish
+const quote = "I dO nOT lIke gREen eGgS anD HAM";
+
+let fixedQuote = quote.toLowerCase();
+const firstLetter = fixedQuote.slice(0, 1);
+fixedQuote = fixedQuote.replace(firstLetter, firstLetter.toUpperCase());
+fixedQuote = fixedQuote.replace("green eggs and ham", "pickled onions");
+const finalQuote = `${fixedQuote}.`;
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = finalQuote;
+section.appendChild(para1);
+```
+
+</details>
 
 ## Stringhe 4
 
-Nel compito finale sulle stringhe, ti abbiamo dato il nome di un teorema, due valori numerici e una stringa incompleta (le parti che devono essere aggiunte sono contrassegnate con asterischi (`*`)). Vogliamo che tu modifichi il valore della stringa come segue:
+Nell'ultimo esercizio sulle stringhe, vengono forniti il nome di un teorema, due valori numerici e una stringa incompleta (le parti da aggiungere sono contrassegnate da asterischi (`*`)). Occorre modificare il valore della stringa.
 
-1. Cambiala da una stringa letterale regolare a un template literal.
-2. Sostituisci i quattro asterischi con quattro placeholder del template literal. Questi dovrebbero essere:
+Per completare l'esercizio:
 
+1. Modificare la stringa da un normale letterale stringa a un template literal.
+2. Sostituire i quattro asterischi con quattro espressioni incorporate in un template literal. Dovrebbero essere:
    1. Il nome del teorema.
-   2. I due valori numerici che abbiamo.
-   3. La lunghezza dell'ipotenusa di un triangolo rettangolo, dato che le altre due lunghezze dei lati sono le stesse dei due valori che abbiamo. Dovrai cercare come calcolare questo a partire da ciò che hai. Fai il calcolo all'interno del placeholder.
+   2. I due valori numerici disponibili.
+   3. La lunghezza dell'ipotenusa di un triangolo rettangolo, supponendo che le lunghezze degli altri due lati corrispondano ai due valori disponibili. Sarà necessario cercare come calcolarla a partire dai dati disponibili. Eseguire il calcolo all'interno del segnaposto.
 
-Prova ad aggiornare il codice live qui sotto per ricreare l'esempio finito:
+Il punto di partenza dell'esercizio è il seguente:
 
-{{EmbedGHLiveSample("learning-area/javascript/introduction-to-js-1/tasks/strings/strings4.html", '100%', 400)}}
+{{ EmbedLiveSample("strings-4", "100%", 60) }}
 
-> [!CALLOUT]
->
-> [Scarica il punto di partenza per questo compito](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/tasks/strings/strings4-download.html) per lavorare nel tuo editor o in un editor online.
+Ecco il codice sottostante per questo punto di partenza:
+
+```js live-sample___strings-4
+const theorem = "Pythagorean theorem";
+
+const a = 5;
+const b = 8;
+
+// Don't edit the code above here!
+
+// Edit the string literal
+const myString =
+  "Using *, we can work out that if the two shortest sides of a right-angled triangle have lengths of * and *, the length of the hypotenuse is *.";
+
+// Don't edit the code below here!
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = myString;
+section.appendChild(para1);
+```
+
+L'output aggiornato dovrebbe essere simile al seguente:
+
+{{ EmbedLiveSample("strings-4-finish", "100%", 60) }}
+
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
+
+Il JavaScript completato dovrebbe essere simile a questo:
+
+```js
+// ...
+// Don't edit the code above here!
+
+const myString = `Using ${theorem}, we can work out that if the two shortest sides of a right-angled triangle have lengths of ${a} and ${b},
+  the length of the hypotenuse is ${Math.sqrt(a ** 2 + b ** 2)}.`;
+
+// Don't edit the code below here!
+// ...
+```
+
+```js hidden live-sample___strings-4-finish
+const theorem = "Pythagorean theorem";
+
+const a = 5;
+const b = 8;
+
+const myString = `Using ${theorem}, we can work out that if the two shortest sides of a right-angled triangle have lengths of ${a} and ${b},
+  the length of the hypotenuse is ${Math.sqrt(a ** 2 + b ** 2)}.`;
+
+const section = document.querySelector("section");
+const para1 = document.createElement("p");
+para1.textContent = myString;
+section.appendChild(para1);
+```
+
+</details>
+
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Useful_string_methods", "Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting")}}

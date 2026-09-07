@@ -2,21 +2,21 @@
 title: Enfasi e importanza
 slug: Learn_web_development/Core/Structuring_content/Emphasis_and_importance
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: cc7ed25d67ec3df5df8cfa255e1066cb5845e293
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Headings_and_paragraphs", "Learn_web_development/Core/Structuring_content/Lists", "Learn_web_development/Core/Structuring_content")}}
 
-Nell'articolo precedente si è analizzato perché la semantica è importante in HTML, concentrandosi su intestazioni e paragrafi. Questo articolo continua il tema della semantica, esaminando gli elementi HTML che applicano enfasi e importanza al testo (paralleli agli stili corsivo e grassetto nei media stampati).
+L'articolo precedente ha esaminato perché la semantica è importante in HTML, concentrandosi su titoli e paragrafi. Questo articolo prosegue il tema della semantica, esaminando gli elementi HTML che applicano enfasi e importanza al testo (in parallelo con il corsivo e il grassetto nei supporti di stampa).
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità di base con HTML, come trattato in
+        Conoscenza di base di HTML, come trattato in
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi HTML di Base</a
+          >Sintassi HTML di base</a
         >.
       </td>
     </tr>
@@ -24,30 +24,30 @@ Nell'articolo precedente si è analizzato perché la semantica è importante in 
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Il significato di enfasi e importanza, e gli elementi di base che li applicano in HTML, come <code>&lt;em&gt;</code> e <code>&lt;strong&gt;</code>.</li>
-          <li>Identificare il markup di presentazione che non dovrebbe essere più utilizzato (ad esempio, <code>&lt;big&gt;</code> e <code>&lt;font&gt;</code>); esso è deprecato.</li>
-          <li>Identificare il markup di presentazione che è stato riutilizzato per avere un nuovo significato semantico (ad esempio, <code>&lt;i&gt;</code> e <code>&lt;b&gt;</code>).</li>
+          <li>Il significato di enfasi e importanza e gli elementi di base che li applicano in HTML, come <code>&lt;em&gt;</code> e <code>&lt;strong&gt;</code>.</li>
+          <li>Identificare il markup di presentazione che non dovrebbe più essere usato affatto (ad esempio, <code>&lt;big&gt;</code> e <code>&lt;font&gt;</code>); è deprecato.</li>
+          <li>Identificare il markup di presentazione a cui è stato assegnato un nuovo significato semantico (ad esempio, <code>&lt;i&gt;</code> e <code>&lt;b&gt;</code>).</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Che cosa sono enfasi e importanza?
+## Cosa sono enfasi e importanza?
 
-Nel linguaggio umano, spesso enfatizziamo certe parole per alterare il significato di una frase, e spesso vogliamo evidenziare alcune parole come importanti o diverse in qualche modo. HTML fornisce vari elementi semantici per permetterci di marcare il contenuto testuale con tali effetti, e in questa sezione, esamineremo alcuni dei più comuni.
+Nel linguaggio umano, spesso si pone l'enfasi su determinate parole per modificare il significato di una frase e, spesso, si desidera contrassegnare certe parole come importanti o in qualche modo diverse. HTML fornisce vari elementi semantici per consentire di marcare il contenuto testuale con tali effetti e, in questa sezione, verranno esaminati alcuni dei più comuni.
 
 ### Enfasi
 
-Quando vogliamo aggiungere enfasi nel linguaggio parlato, _sottoliamo_ certi termini, alterando sottilmente il significato di ciò che stiamo dicendo. Allo stesso modo, nel linguaggio scritto tendiamo a sottolineare le parole mettendole in corsivo. Ad esempio, le seguenti due frasi hanno significati diversi.
+Quando si desidera aggiungere enfasi nel linguaggio parlato, si _accentuano_ certe parole, modificando sottilmente il significato di ciò che viene detto. Analogamente, nel linguaggio scritto si tende ad accentuare le parole mettendole in corsivo. Per esempio, le due frasi seguenti hanno significati diversi.
 
-> Sono felice che non sei arrivato in ritardo.
+> Sono contento che non fossi in ritardo.
 >
-> Sono _felice_ che non sei arrivato _in ritardo_.
+> Sono _contento_ che non fossi in _ritardo_.
 
-La prima frase sembra veramente sollevata dal fatto che la persona non sia arrivata in ritardo. Al contrario, la seconda, con entrambe le parole "felice" e "in ritardo" in corsivo, suona sarcastica o passivo-aggressiva, esprimendo fastidio per l'arrivo in ritardo della persona.
+La prima frase sembra esprimere un sollievo genuino perché la persona non era in ritardo. Al contrario, la seconda, con entrambe le parole "contento" e "ritardo" in corsivo, suona sarcastica o passivo-aggressiva, esprimendo fastidio perché la persona è arrivata con un po' di ritardo.
 
-In HTML usiamo l'elemento {{htmlelement("em")}} (emphasis) per marcare tali istanze. Oltre a rendere il documento più interessante da leggere, queste sono riconosciute dai lettori di schermo, che possono essere configurati per pronunciarle con un diverso tono di voce. I browser stilizzano questo come testo in corsivo di default, ma non dovresti usare questo tag solo per ottenere lo stile corsivo. Per farlo, utilizzeresti un elemento {{htmlelement("span")}} e un po' di CSS, o forse un elemento {{htmlelement("i")}} (vedi sotto).
+In HTML si usa l'elemento {{htmlelement("em")}} (enfasi) per marcare questi casi. Oltre a rendere il documento più interessante da leggere, questi elementi sono riconosciuti dagli screen reader, che possono essere configurati per pronunciarli con un tono di voce diverso. Per impostazione predefinita, i browser applicano il corsivo, ma questo tag non dovrebbe essere usato esclusivamente per ottenere lo stile corsivo. A questo scopo, si userebbe un elemento {{htmlelement("span")}} e del CSS, oppure forse un elemento {{htmlelement("i")}} (vedere di seguito).
 
 ```html
 <p>I am <em>glad</em> you weren't <em>late</em>.</p>
@@ -55,13 +55,13 @@ In HTML usiamo l'elemento {{htmlelement("em")}} (emphasis) per marcare tali ista
 
 ### Forte importanza
 
-Per enfatizzare parole importanti, tendiamo a sottolinearle nel linguaggio parlato e a metterle in **grassetto** nel linguaggio scritto. Ad esempio:
+Per enfatizzare parole importanti, si tende ad accentuarle nel linguaggio parlato e a scriverle in **grassetto** nel linguaggio scritto. Per esempio:
 
 > Questo liquido è **altamente tossico**.
 >
-> Sto contando su di te. **Non** fare tardi!
+> Conto su di te. **Non** fare tardi!
 
-In HTML usiamo l'elemento {{htmlelement("strong")}} (forte importanza) per marcare tali istanze. Oltre a rendere il documento più utile, queste sono riconosciute dai lettori di schermo, che possono essere configurati per pronunciarle con un diverso tono di voce. I browser stilizzano questo come testo in grassetto di default, ma non dovresti usare questo tag solo per ottenere lo stile grassetto. Per farlo, utilizzeresti un elemento {{htmlelement("span")}} e un po' di CSS, o forse un elemento {{htmlelement("b")}} (vedi sotto).
+In HTML si usa l'elemento {{htmlelement("strong")}} (forte importanza) per marcare questi casi. Oltre a rendere il documento più utile, anche questi elementi sono riconosciuti dagli screen reader, che possono essere configurati per pronunciarli con un tono di voce diverso. Per impostazione predefinita, i browser applicano il testo in grassetto, ma questo tag non dovrebbe essere usato esclusivamente per ottenere lo stile in grassetto. A questo scopo, si userebbe un elemento {{htmlelement("span")}} e del CSS, oppure forse un elemento {{htmlelement("b")}} (vedere di seguito).
 
 ```html
 <p>This liquid is <strong>highly toxic</strong>.</p>
@@ -69,7 +69,7 @@ In HTML usiamo l'elemento {{htmlelement("strong")}} (forte importanza) per marca
 <p>I am counting on you. <strong>Do not</strong> be late!</p>
 ```
 
-Puoi annidare strong ed emphasis l'uno dentro l'altro se lo desideri:
+Se lo si desidera, è possibile annidare `strong` ed enfasi l'uno dentro l'altro:
 
 ```html-nolint
 <p>This liquid is <strong>highly toxic</strong> — if you drink it, <strong>you may <em>die</em></strong>.</p>
@@ -77,159 +77,77 @@ Puoi annidare strong ed emphasis l'uno dentro l'altro se lo desideri:
 
 {{EmbedLiveSample('Strong importance')}}
 
-## Apprendimento attivo: Siamo importanti
+## Esercitiamoci con enfasi e importanza
 
-In questa sezione di apprendimento attivo, abbiamo fornito un esempio modificabile. Al suo interno, vorremmo che provassi ad aggiungere enfasi e forte importanza alle parole che ritieni ne abbiano bisogno, giusto per fare un po' di pratica.
+In questa sezione, è necessario esercitarsi con enfasi e importanza:
 
-```html hidden
-<h2>Live output</h2>
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio nel MDN Playground.
+2. Nel titolo principale, dare enfasi alla parola "Emphasis" e forte importanza alla parola "importance".
+3. Nel primo paragrafo, dare forte importanza al nome della macchina da caffè ed enfatizzare gli aggettivi usati per descrivere il caffè.
+4. Nel secondo paragrafo, dare forte importanza alla descrizione della temperatura ("cold") e all'azione da intraprendere ("wrap up warm to avoid falling ill"). Dare a "falling ill" un markup aggiuntivo affinché sia sia enfatizzato sia importante.
 
-<div class="output" style="min-height: 50px;"></div>
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nel MDN Playground. Se si rimane davvero bloccati, è possibile visualizzare la soluzione sotto il blocco di codice.
 
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
+```css hidden live-sample___emphasis_importance
+h1 {
+  font-weight: normal;
+}
+```
+
+```html live-sample___emphasis_importance
+<h1>Emphasis and importance</h1>
+
+<p>
+  My new coffee machine is called The Percolator 2000. It produces the most
+  sublime and wonderful brew.
 </p>
 
-<textarea id="code" class="input" style="min-height: 200px; width: 95%">
-<h1>Important notice</h1>
-<p>On Sunday January 9th 2010, a gang of goths were
-  spotted stealing several garden gnomes from a
-  shopping center in downtown Milwaukee. They were
-  all wearing green jumpsuits and silly hats, and
-  seemed to be having a whale of a time. If anyone
-   has any information about this incident, please
-    contact the police now.</p>
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+<p>
+  In the dead of winter, it will be cold. You should wrap up warm to avoid
+  falling ill.
+</p>
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample('emphasis_importance', "100%", 160) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+L'HTML completato dovrebbe avere questo aspetto:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
+```html
+<h1><em>Emphasis</em> and <strong>importance</strong></h1>
+
+<p>
+  My new coffee machine is called <strong>The Percolator 2000</strong>. It
+  produces the most <em>sublime</em> and <em>wonderful</em> brew.
+</p>
+
+<p>
+  In the dead of winter, it will be <strong>cold</strong>. You should
+  <strong>wrap up warm to avoid <em>falling ill</em></strong
+  >.
+</p>
 ```
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
+</details>
 
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
+## Corsivo, grassetto, sottolineatura…
 
-const htmlSolution =
-  "<h1>Important notice</h1>\n<p>On <strong>Sunday January 9th 2010</strong>, a gang of <em>goths</em> were spotted stealing <strong><em>several</em> garden gnomes</strong> from a shopping center in downtown <strong>Milwaukee</strong>. They were all wearing <em>green jumpsuits</em> and <em>silly hats</em>, and seemed to be having a whale of a time. If anyone has <strong>any</strong> information about this incident, please contact the police <strong>now</strong>.</p>";
-let solutionEntry = htmlSolution;
+Gli elementi discussi finora hanno una semantica associata ben definita. La situazione con {{htmlelement("b")}}, {{htmlelement("i")}} e {{htmlelement("u")}} è un po' più complicata. Sono nati per consentire di scrivere testo in grassetto, corsivo o sottolineato in un'epoca in cui CSS era ancora scarsamente supportato o non era supportato affatto. Elementi di questo tipo, che influenzano solo la presentazione e non la semantica, sono noti come **elementi di presentazione** e non dovrebbero più essere usati perché, come visto in precedenza, la semantica è molto importante per l'accessibilità, la SEO e così via.
 
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
+HTML5 ha ridefinito `<b>`, `<i>` e `<u>` assegnando loro nuovi ruoli semantici, in qualche modo confusi.
 
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
+Ecco la regola migliore da ricordare: è appropriato usare `<b>`, `<i>` o `<u>` solo per trasmettere un significato tradizionalmente comunicato con grassetto, corsivo o sottolineatura quando non esiste un elemento più adatto; e di solito ne esiste uno. Considerare se `<strong>`, `<em>`, `<mark>` o `<span>` possano essere più appropriati.
 
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
+Mantenere sempre una prospettiva orientata all'accessibilità. Il concetto di corsivo non è molto utile per le persone che usano screen reader o per quelle che usano un sistema di scrittura diverso dall'alfabeto latino.
 
-// Stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_Lets_be_important', 700, 520, "", "") }}
-
-## Corsivo, grassetto, sottolineato…
-
-Gli elementi di cui abbiamo discusso finora hanno chiari significati semantici associati. La situazione con {{htmlelement("b")}}, {{htmlelement("i")}}, e {{htmlelement("u")}} è un po' più complicata. Sono stati introdotti affinché le persone potessero scrivere testo in grassetto, corsivo o sottolineato in un'epoca in cui il CSS era ancora poco supportato o per niente. Elementi come questi, che influenzano solo la presentazione e non la semantica, sono conosciuti come **elementi di presentazione** e non dovrebbero più essere utilizzati perché, come abbiamo visto, la semantica è così importante per l'accessibilità, la SEO, ecc.
-
-HTML5 ha ridefinito `<b>`, `<i>`, e `<u>` con nuovi, in parte confusi, ruoli semantici.
-
-Ecco la migliore regola che puoi ricordare: È opportuno usare `<b>`, `<i>`, o `<u>` per trasmettere un significato tradizionalmente comunicato con grassetto, corsivo o sottolineato solo quando non c'è un elemento più appropriato; e di solito c'è. Considera se `<strong>`, `<em>`, `<mark>`, o `<span>` potrebbero essere più appropriati.
-
-Mantieni sempre una mentalità orientata all'accessibilità. Il concetto di corsivo non è molto utile per le persone che utilizzano lettori di schermo, o per le persone che usano un sistema di scrittura diverso dall'alfabeto latino.
-
-- {{HTMLElement('i')}} è usato per trasmettere un significato tradizionalmente trasmesso in corsivo: parole straniere, designazioni tassonomiche, termini tecnici, un pensiero…
-- {{HTMLElement('b')}} è usato per trasmettere un significato tradizionalmente trasmesso in grassetto: parole chiave, nomi di prodotti, frase iniziale…
-- {{HTMLElement('u')}} è usato per trasmettere un significato tradizionalmente trasmesso mediante sottolineatura: nomi propri, errori ortografici…
+- {{HTMLElement('i')}} viene usato per trasmettere un significato tradizionalmente comunicato dal corsivo: parole straniere, designazione tassonomica, termini tecnici, un pensiero…
+- {{HTMLElement('b')}} viene usato per trasmettere un significato tradizionalmente comunicato dal grassetto: parole chiave, nomi di prodotti, frase introduttiva…
+- {{HTMLElement('u')}} viene usato per trasmettere un significato tradizionalmente comunicato dalla sottolineatura: nome proprio, errore ortografico…
 
 > [!NOTE]
-> Le persone associamo fortemente la sottolineatura ai collegamenti ipertestuali. Pertanto, sul web, è meglio sottolineare solo i collegamenti. Usa l'elemento `<u>` quando è semanticamente appropriato, ma considera l'uso del CSS per cambiare la sottolineatura predefinita in qualcosa di più appropriato sul web. L'esempio qui sotto illustra come può essere fatto.
+> Le persone associano fortemente la sottolineatura ai collegamenti ipertestuali. Perciò, sul web, è preferibile sottolineare solo i collegamenti. Usare l'elemento `<u>` quando è semanticamente appropriato, ma considerare l'uso di CSS per modificare la sottolineatura predefinita in qualcosa di più adatto al web. L'esempio seguente illustra come farlo.
 
 <!-- cSpell:ignore spel -->
 
@@ -261,8 +179,8 @@ Mantieni sempre una mentalità orientata all'accessibilità. Il concetto di cors
 
 {{EmbedLiveSample('Italic, bold, underline…','100%','270')}}
 
-## Sommario
+## Riepilogo
 
-Abbiamo finito di esaminare per il momento l'enfasi e l'importanza. Passiamo ora a vedere come rappresentiamo le liste in HTML.
+Per il momento è concluso l'approfondimento su enfasi e importanza. Si passa ora a esaminare come rappresentare gli elenchi in HTML.
 
 {{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Headings_and_paragraphs", "Learn_web_development/Core/Structuring_content/Lists", "Learn_web_development/Core/Structuring_content")}}

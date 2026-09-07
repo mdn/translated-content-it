@@ -1,29 +1,29 @@
 ---
-title: Cicli nel codice
+title: Codice iterativo
 short-title: Loops
 slug: Learn_web_development/Core/Scripting/Loops
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: ad310baff9ae8f5e4efd19c158125fe765287c16
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Conditionals","Learn_web_development/Core/Scripting/Functions", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Conditionals","Learn_web_development/Core/Scripting/Test_your_skills/Loops", "Learn_web_development/Core/Scripting")}}
 
-I linguaggi di programmazione sono molto utili per completare rapidamente compiti ripetitivi, da calcoli base multipli a quasi qualsiasi altra situazione in cui è necessario completare molti elementi di lavoro simili. Qui esamineremo le strutture di loop disponibili in JavaScript che soddisfano tali esigenze.
+I linguaggi di programmazione sono molto utili per completare rapidamente attività ripetitive, da molteplici calcoli di base fino a quasi qualsiasi altra situazione in cui ci siano molti elementi di lavoro simili da completare. Qui verranno esaminate le strutture di ciclo disponibili in JavaScript che gestiscono queste esigenze.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
-      <td>Una comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le basi di JavaScript come trattato nelle lezioni precedenti.</td>
+      <td>Conoscenza di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le basi di JavaScript trattate nelle lezioni precedenti.</td>
     </tr>
     <tr>
-      <th scope="row">Risultati dell'apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Comprendere lo scopo dei cicli — una struttura di codice che consente di fare qualcosa di molto simile molte volte senza ripetere lo stesso codice per ogni iterazione.</li>
-          <li>Tipi generali di cicli come <code>for</code> e <code>while</code>.</li>
-          <li>Iterare tra le collezioni con costrutti come <code>for...of</code> e <code>map()</code>.</li>
-          <li>Interrompere i cicli e continuare.</li>
+          <li>Comprendere lo scopo dei cicli: una struttura di codice che consente di fare qualcosa di molto simile molte volte senza ripetere lo stesso codice per ogni iterazione.</li>
+          <li>Tipi di ciclo generali come <code>for</code> e <code>while</code>.</li>
+          <li>Iterare sulle collezioni con costrutti come <code>for...of</code> e <code>map()</code>.</li>
+          <li>Uscire dai cicli e continuare.</li>
         </ul>
       </td>
     </tr>
@@ -32,11 +32,11 @@ I linguaggi di programmazione sono molto utili per completare rapidamente compit
 
 ## Perché i cicli sono utili?
 
-I cicli riguardano principalmente fare la stessa cosa ripetutamente. Spesso, il codice sarà leggermente diverso ogni volta che il ciclo si ripete, oppure lo stesso codice verrà eseguito ma con variabili diverse.
+I cicli consistono nell'eseguire la stessa operazione ripetutamente. Spesso il codice sarà leggermente diverso a ogni passaggio del ciclo, oppure verrà eseguito lo stesso codice ma con variabili diverse.
 
-### Esempio di codice con ciclo
+### Esempio di codice iterativo
 
-Supponiamo di voler disegnare 100 cerchi casuali su un elemento {{htmlelement("canvas")}} (premi il pulsante _Aggiorna_ per eseguire l'esempio più volte e vedere set casuali diversi):
+Si supponga di voler disegnare 100 cerchi casuali su un elemento {{htmlelement("canvas")}} (premere il pulsante _Update_ per eseguire di nuovo l'esempio più volte e visualizzare diversi insiemi casuali):
 
 ```html hidden
 <button>Update</button> <canvas></canvas>
@@ -46,7 +46,7 @@ Supponiamo di voler disegnare 100 cerchi casuali su un elemento {{htmlelement("c
 html {
   width: 100%;
   height: inherit;
-  background: #ddd;
+  background: #dddddd;
 }
 
 canvas {
@@ -73,10 +73,8 @@ const btn = document.querySelector("button");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
-document.addEventListener("DOMContentLoaded", () => {
-  canvas.width = document.documentElement.clientWidth;
-  canvas.height = document.documentElement.clientHeight;
-});
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
 
 function random(number) {
   return Math.floor(Math.random() * number);
@@ -103,7 +101,7 @@ btn.addEventListener("click", draw);
 
 ### Con e senza un ciclo
 
-Non devi necessariamente capire tutto il codice per ora, ma diamo un'occhiata alla parte del codice che effettivamente disegna i 100 cerchi:
+Non è necessario comprendere tutto il codice per ora, ma esaminiamo la parte del codice che disegna effettivamente i 100 cerchi:
 
 ```js
 for (let i = 0; i < 100; i++) {
@@ -120,9 +118,11 @@ for (let i = 0; i < 100; i++) {
 }
 ```
 
-Dovresti farti un'idea di base — stiamo usando un ciclo per eseguire 100 iterazioni di questo codice, ciascuna delle quali disegna un cerchio in una posizione casuale sulla pagina. `random(x)`, definita in precedenza nel codice, restituisce un numero intero tra `0` e `x-1`. La quantità di codice necessaria sarebbe la stessa indipendentemente dal fatto che stiamo disegnando 100 cerchi, 1000 o 10.000. Solo un numero deve cambiare.
+L'idea di base dovrebbe essere chiara: viene usato un ciclo per eseguire 100 iterazioni di questo codice, ciascuna delle quali disegna un cerchio in una posizione casuale nella pagina. `random(x)`, definita in precedenza nel codice, restituisce un numero intero compreso tra `0` e `x-1`.
+La quantità di codice necessaria sarebbe la stessa sia per disegnare 100 cerchi, 1000 o 10.000.
+È necessario modificare un solo numero.
 
-Se non stessimo usando un ciclo qui, dovremmo ripetere il seguente codice per ogni cerchio che desideriamo disegnare:
+Se qui non venisse usato un ciclo, sarebbe necessario ripetere il seguente codice per ogni cerchio da disegnare:
 
 ```js
 ctx.beginPath();
@@ -141,13 +141,14 @@ Questo diventerebbe molto noioso e difficile da mantenere.
 
 ## Iterare su una collezione
 
-La maggior parte delle volte quando usi un ciclo, avrai una collezione di elementi e vorrai fare qualcosa con ogni elemento.
+Nella maggior parte dei casi, quando si usa un ciclo, si dispone di una collezione di elementi e si vuole fare qualcosa con ogni elemento.
 
-Un tipo di collezione è l'{{jsxref("Array")}}, che abbiamo incontrato nel capitolo [Array](/it/docs/Learn_web_development/Core/Scripting/Arrays) di questo corso. Ma ci sono anche altre collezioni in JavaScript, inclusi {{jsxref("Set")}} e {{jsxref("Map")}}.
+Un tipo di collezione è {{jsxref("Array")}}, incontrato nel capitolo [Array](/it/docs/Learn_web_development/Core/Scripting/Arrays) di questo corso.
+Ma in JavaScript esistono anche altre collezioni, incluse {{jsxref("Set")}} e {{jsxref("Map")}}.
 
 ### Il ciclo for...of
 
-Lo strumento di base per iterare su una collezione è il ciclo {{jsxref("statements/for...of","for...of")}}:
+Lo strumento di base per iterare su una collezione è il ciclo {{jsxref("Statements/for...of","for...of")}}:
 
 ```js
 const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
@@ -157,17 +158,17 @@ for (const cat of cats) {
 }
 ```
 
-In questo esempio, `for (const cat of cats)` dice:
+In questo esempio, `for (const cat of cats)` significa:
 
-1. Dalla collezione `cats`, prendi il primo elemento della collezione.
-2. Assegnalo alla variabile `cat` e quindi esegui il codice tra le parentesi graffe `{}`.
-3. Prendi l'elemento successivo e ripeti (2) fino a raggiungere la fine della collezione.
+1. Data la collezione `cats`, ottenere il primo elemento della collezione.
+2. Assegnarlo alla variabile `cat`, quindi eseguire il codice tra le parentesi graffe `{}`.
+3. Ottenere l'elemento successivo e ripetere il passaggio (2) fino a raggiungere la fine della collezione.
 
 ### map() e filter()
 
-JavaScript ha anche cicli più specializzati per le collezioni, e ne menzioneremo due qui.
+JavaScript dispone anche di cicli più specializzati per le collezioni; qui ne verranno menzionati due.
 
-Puoi usare `map()` per fare qualcosa a ogni elemento di una collezione e creare una nuova collezione contenente gli elementi modificati:
+È possibile usare `map()` per fare qualcosa a ogni elemento di una collezione e creare una nuova collezione contenente gli elementi modificati:
 
 ```js
 function toUpper(string) {
@@ -182,13 +183,13 @@ console.log(upperCats);
 // [ "LEOPARD", "SERVAL", "JAGUAR", "TIGER", "CARACAL", "LION" ]
 ```
 
-Qui passiamo una funzione in {{jsxref("Array.prototype.map()","cats.map()")}}, e `map()` chiama la funzione una volta per ogni elemento dell'array, passandogli l'elemento. Successivamente aggiunge il valore restituito da ciascuna chiamata di funzione a un nuovo array, e infine restituisce il nuovo array. In questo caso la funzione che forniamo converte l'elemento in maiuscolo, quindi l'array risultante contiene tutti i nostri gatti in maiuscolo:
+Qui viene passata una funzione a {{jsxref("Array.prototype.map()","cats.map()")}}, e `map()` chiama la funzione una volta per ogni elemento dell'array, passandole l'elemento. Aggiunge quindi il valore restituito da ogni chiamata di funzione a un nuovo array e, infine, restituisce il nuovo array. In questo caso, la funzione fornita converte l'elemento in maiuscolo, quindi l'array risultante contiene tutti i gatti in maiuscolo:
 
 ```js-nolint
 [ "LEOPARD", "SERVAL", "JAGUAR", "TIGER", "CARACAL", "LION" ]
 ```
 
-Puoi usare {{jsxref("Array.prototype.filter()","filter()")}} per testare ciascun elemento di una collezione e creare una nuova collezione contenente solo gli elementi che corrispondono:
+È possibile usare {{jsxref("Array.prototype.filter()","filter()")}} per testare ogni elemento di una collezione e creare una nuova collezione contenente solo gli elementi corrispondenti:
 
 ```js
 function lCat(cat) {
@@ -203,13 +204,15 @@ console.log(filtered);
 // [ "Leopard", "Lion" ]
 ```
 
-Questo assomiglia molto a `map()`, tranne per il fatto che la funzione che passiamo restituisce un [boolean](/it/docs/Learn_web_development/Core/Scripting/Variables#booleans): se restituisce `true`, allora l'elemento è incluso nel nuovo array. La nostra funzione testa che l'elemento inizi con la lettera "L", quindi il risultato è un array contenente solo i gatti i cui nomi iniziano con "L":
+Questo è molto simile a `map()`, tranne per il fatto che la funzione passata restituisce un [booleano](/it/docs/Learn_web_development/Core/Scripting/Variables#booleans): se restituisce `true`, l'elemento viene incluso nel nuovo array.
+La funzione verifica che l'elemento inizi con la lettera "L", quindi il risultato è un array contenente solo i gatti i cui nomi iniziano con "L":
 
 ```js-nolint
 [ "Leopard", "Lion" ]
 ```
 
-Nota che `map()` e `filter()` sono spesso usati con _espressioni di funzione_, che imparerai nella nostra lezione sulle [Funzioni](/it/docs/Learn_web_development/Core/Scripting/Functions). Usando le espressioni di funzione potremmo riscrivere l'esempio sopra per essere molto più compatto:
+Si noti che `map()` e `filter()` vengono spesso usati entrambi con le _espressioni di funzione_, che verranno trattate nella lezione sulle [funzioni](/it/docs/Learn_web_development/Core/Scripting/Functions).
+Usando le espressioni di funzione, l'esempio precedente potrebbe essere riscritto in modo molto più compatto:
 
 ```js
 const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
@@ -221,7 +224,9 @@ console.log(filtered);
 
 ## Il ciclo for standard
 
-Nell'esempio "disegnare cerchi" sopra, non hai una collezione di elementi da attraversare: desideri davvero solo eseguire lo stesso codice 100 volte. In un caso come questo, puoi usare il ciclo {{jsxref("statements/for","for")}}. Ha la seguente sintassi:
+Nell'esempio del "disegno dei cerchi" precedente, non esiste una collezione di elementi su cui iterare: si vuole semplicemente eseguire lo stesso codice 100 volte.
+In un caso come questo, è possibile usare il ciclo {{jsxref("Statements/for","for")}}.
+Ha la seguente sintassi:
 
 ```js-nolint
 for (initializer; condition; final-expression) {
@@ -229,20 +234,25 @@ for (initializer; condition; final-expression) {
 }
 ```
 
-Qui abbiamo:
+Qui sono presenti:
 
 1. La parola chiave `for`, seguita da alcune parentesi.
-2. All'interno delle parentesi abbiamo tre elementi, separati da punti e virgola:
+2. All'interno delle parentesi ci sono tre elementi, separati da punti e virgola:
+   1. Un **inizializzatore**: solitamente è una variabile impostata a un numero, che viene incrementata per contare il numero di volte in cui il ciclo è stato eseguito.
+      A volte viene anche definita **variabile contatore**.
+   2. Una **condizione**: definisce quando il ciclo deve smettere di iterare.
+      Generalmente è un'espressione che include un operatore di confronto, un test per verificare se è stata raggiunta la condizione di uscita.
+   3. Un'**espressione finale**: viene sempre valutata (o eseguita) ogni volta che il ciclo ha completato un'intera iterazione.
+      Di solito serve a incrementare (o, in alcuni casi, decrementare) la variabile contatore, avvicinandola al punto in cui la condizione non è più `true`.
 
-   1. Un **inizializzatore** — questo è di solito una variabile impostata su un numero, che viene incrementata per contare il numero di volte in cui il ciclo è stato eseguito. Talvolta viene anche chiamata variabile **contatore**.
-   2. Una **condizione** — questa definisce quando il ciclo dovrebbe smettere di ciclare. Questo è generalmente un'espressione che include un operatore di confronto, un test per vedere se la condizione di uscita è stata soddisfatta.
-   3. Un **final-expression** — questa viene sempre valutata (o eseguita) ogni volta che il ciclo ha completato un intero passaggio. Di solito serve per incrementare (o in alcuni casi decrementare) la variabile contatore, per avvicinarla al punto in cui la condizione non è più `true`.
+3. Alcune parentesi graffe che contengono un blocco di codice: questo codice verrà eseguito ogni volta che il ciclo itera.
 
-3. Alcune parentesi graffe che contengono un blocco di codice — questo codice verrà eseguito ogni volta che il ciclo si ripete.
+> [!NOTE]
+> [Aside: Loops](https://scrimba.com/learn-javascript-c0v/~02a?via=mdn) di Scrimba<sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> offre un'utile spiegazione interattiva della sintassi del ciclo `for`.
 
-### Calcolare quadrati
+### Calcolare i quadrati
 
-Osserviamo un esempio reale per visualizzare più chiaramente cosa fanno.
+Esaminiamo un esempio reale per visualizzare più chiaramente cosa fanno questi elementi.
 
 ```html hidden
 <button id="calculate">Calculate</button>
@@ -268,30 +278,30 @@ calculateBtn.addEventListener("click", calculate);
 clearBtn.addEventListener("click", () => (results.textContent = ""));
 ```
 
-Questo ci dà il seguente output:
+Questo produce il seguente output:
 
 {{ EmbedLiveSample('Calculating squares', '100%', 250) }}
 
-Questo codice calcola i quadrati per i numeri da 1 a 9 e scrive il risultato. Il fulcro del codice è il ciclo `for` che esegue il calcolo.
+Questo codice calcola i quadrati dei numeri da 1 a 9 e scrive il risultato. Il nucleo del codice è il ciclo `for` che esegue il calcolo.
 
-Suddividiamo la riga `for (let i = 1; i < 10; i++)` nei suoi tre pezzi:
+Scomponiamo la riga `for (let i = 1; i < 10; i++)` nei suoi tre elementi:
 
-1. `let i = 1`: la variabile contatore, `i`, inizia a `1`. Nota che dobbiamo usare `let` per il contatore, perché lo riassegniamo ogni volta che percorriamo il ciclo.
-2. `i < 10`: continua a percorrere il ciclo finché `i` è minore di `10`.
-3. `i++`: aggiungi uno a `i` ogni volta che percorri il ciclo.
+1. `let i = 1`: la variabile contatore, `i`, inizia da `1`. Si noti che è necessario usare `let` per il contatore, perché viene incrementato con `i++` (che è una riassegnazione) ogni volta che si attraversa il ciclo.
+2. `i < 10`: continuare a eseguire il ciclo finché `i` è minore di `10`.
+3. `i++`: aggiungere uno a `i` a ogni passaggio del ciclo.
 
-All'interno del ciclo, calcoliamo il quadrato del valore corrente di `i`, cioè: `i * i`. Creiamo una stringa che esprime il calcolo effettuato e il risultato, e aggiungiamo questa stringa al testo di output. Aggiungiamo anche `\n`, così la prossima stringa che aggiungiamo inizierà su una nuova riga. Quindi:
+All'interno del ciclo, viene calcolato il quadrato del valore corrente di `i`, cioè: `i * i`. Viene creata una stringa che esprime il calcolo effettuato e il risultato, e questa stringa viene aggiunta al testo di output. Viene anche aggiunto `\n`, in modo che la stringa successiva aggiunta inizi su una nuova riga. Quindi:
 
-1. Durante il primo passaggio, `i = 1`, quindi aggiungeremo `1 x 1 = 1`.
-2. Durante il secondo passaggio, `i = 2`, quindi aggiungeremo `2 x 2 = 4`.
+1. Durante la prima esecuzione, `i = 1`, quindi verrà aggiunto `1 x 1 = 1`.
+2. Durante la seconda esecuzione, `i = 2`, quindi verrà aggiunto `2 x 2 = 4`.
 3. E così via…
-4. Quando `i` diventa uguale a `10`, smetteremo di eseguire il ciclo e passeremo direttamente al codice successivo sotto il ciclo, stampando il messaggio `Finished!` su una nuova riga.
+4. Quando `i` diventa uguale a `10`, il ciclo smette di essere eseguito e passa direttamente alla parte di codice successiva al ciclo, stampando il messaggio `Finished!` su una nuova riga.
 
-### Iterare attraverso le collezioni con un ciclo for
+### Iterare sulle collezioni con un ciclo for
 
-Puoi usare un ciclo `for` per iterare attraverso una collezione, invece di un ciclo `for...of`.
+È possibile usare un ciclo `for` per iterare su una collezione, invece di un ciclo `for...of`.
 
-Vediamo di nuovo il nostro esempio `for...of` sopra:
+Esaminiamo di nuovo l'esempio `for...of` precedente:
 
 ```js
 const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
@@ -301,7 +311,7 @@ for (const cat of cats) {
 }
 ```
 
-Potremmo riscrivere quel codice così:
+Quel codice potrebbe essere riscritto così:
 
 ```js
 const cats = ["Leopard", "Serval", "Jaguar", "Tiger", "Caracal", "Lion"];
@@ -311,16 +321,19 @@ for (let i = 0; i < cats.length; i++) {
 }
 ```
 
-In questo ciclo stiamo iniziando `i` a `0` e fermandoci quando `i` raggiunge la lunghezza dell'array. Poi all'interno del ciclo, stiamo usando `i` per accedere a ciascun elemento dell'array a turno.
+In questo ciclo, `i` inizia da `0` e il ciclo termina quando `i` raggiunge la lunghezza dell'array.
+All'interno del ciclo, viene quindi usato `i` per accedere a ciascun elemento dell'array a turno.
 
-Questo funziona bene, e nelle prime versioni di JavaScript, `for...of` non esisteva, quindi questo era il modo standard per iterare attraverso un array. Tuttavia, offre più possibilità di introdurre errori nel tuo codice. Per esempio:
+Questo funziona correttamente e, nelle prime versioni di JavaScript, `for...of` non esisteva, quindi questo era il modo standard per iterare su un array.
+Tuttavia, offre maggiori possibilità di introdurre bug nel codice. Ad esempio:
 
-- potresti iniziare `i` a `1`, dimenticando che il primo indice dell'array è zero, non 1.
-- potresti fermarti a `i <= cats.length`, dimenticando che l'ultimo indice dell'array è a `length - 1`.
+- `i` potrebbe iniziare da `1`, dimenticando che il primo indice dell'array è zero, non 1.
+- il ciclo potrebbe terminare con `i <= cats.length`, dimenticando che l'ultimo indice dell'array è `length - 1`.
 
-Per ragioni come queste, è generalmente meglio utilizzare `for...of` se puoi.
+Per ragioni come queste, di solito è meglio usare `for...of`, se possibile.
 
-A volte è ancora necessario utilizzare un ciclo `for` per iterare attraverso un array. Per esempio, nel codice sotto vogliamo registrare un messaggio che elenchi i nostri gatti:
+Talvolta è comunque necessario usare un ciclo `for` per iterare su un array.
+Ad esempio, nel codice seguente si vuole registrare un messaggio che elenchi i gatti:
 
 ```js
 const cats = ["Pete", "Biggles", "Jasmine"];
@@ -334,19 +347,19 @@ for (const cat of cats) {
 console.log(myFavoriteCats); // "My cats are called Pete, Biggles, Jasmine, "
 ```
 
-La frase finale di output non è molto ben formata:
+La frase finale dell'output non è formulata molto bene:
 
 ```plain
 My cats are called Pete, Biggles, Jasmine,
 ```
 
-Preferiremmo che gestisse l'ultimo gatto in modo diverso, così:
+Sarebbe preferibile gestire l'ultimo gatto in modo diverso, in questo modo:
 
 ```plain
 My cats are called Pete, Biggles, and Jasmine.
 ```
 
-Ma per fare questo dobbiamo sapere quando siamo sull'ultima iterazione del ciclo, e per farlo possiamo usare un ciclo `for` e esaminare il valore di `i`:
+Ma per farlo è necessario sapere quando si è nell'iterazione finale del ciclo e, per farlo, si può usare un ciclo `for` ed esaminare il valore di `i`:
 
 ```js
 const cats = ["Pete", "Biggles", "Jasmine"];
@@ -367,11 +380,13 @@ console.log(myFavoriteCats); // "My cats are called Pete, Biggles, and Jasmine."
 
 ## Uscire dai cicli con break
 
-Se vuoi uscire da un ciclo prima di completare tutte le iterazioni, puoi usare l'istruzione [break](/it/docs/Web/JavaScript/Reference/Statements/break). Abbiamo già incontrato questo concetto nell'articolo precedente quando abbiamo esaminato le [istruzioni switch](/it/docs/Learn_web_development/Core/Scripting/Conditionals#switch_statements) — quando un caso è soddisfatto in una switch statement che corrisponde all'espressione di input, l'istruzione `break` esce immediatamente dalla switch statement e passa al controllo del codice successivo.
+Se si vuole uscire da un ciclo prima che tutte le iterazioni siano completate, è possibile usare l'istruzione [break](/it/docs/Web/JavaScript/Reference/Statements/break).
+Questa è già stata incontrata nell'articolo precedente, esaminando le [istruzioni switch](/it/docs/Learn_web_development/Core/Scripting/Conditionals#switch_statements): quando in un'istruzione switch viene incontrato un caso che corrisponde all'espressione di input, l'istruzione `break` esce immediatamente dall'istruzione switch e passa al codice successivo.
 
-Lo stesso succede con i cicli — un'istruzione `break` uscirà immediatamente dal ciclo e farà sì che il browser passi a qualsiasi codice segua.
+Lo stesso vale per i cicli: un'istruzione `break` uscirà immediatamente dal ciclo e farà passare il browser a qualsiasi codice che la segue.
 
-Diciamo che vogliamo cercare attraverso un array di contatti e numeri di telefono e restituire solo il numero che vogliamo trovare? Prima di tutto, un po' di HTML semplice — un {{htmlelement("input")}} di testo che ci consente di inserire un nome da cercare, un elemento {{htmlelement("button")}} per inviare una ricerca e un elemento {{htmlelement("p")}} per visualizzare i risultati:
+Si supponga di voler cercare in un array di contatti e numeri di telefono e restituire solo il numero che si desidera trovare.
+Innanzitutto, un semplice HTML: un {{htmlelement("input")}} di testo che consente di inserire un nome da cercare, un elemento {{htmlelement("button")}} per inviare una ricerca e un elemento {{htmlelement("p")}} per visualizzare i risultati:
 
 ```html
 <label for="search">Search by contact name: </label>
@@ -381,7 +396,7 @@ Diciamo che vogliamo cercare attraverso un array di contatti e numeri di telefon
 <p></p>
 ```
 
-Ora passiamo a JavaScript:
+Passiamo ora a JavaScript:
 
 ```js
 const contacts = [
@@ -415,24 +430,26 @@ btn.addEventListener("click", () => {
 
 {{ EmbedLiveSample('Exiting_loops_with_break', '100%', 100) }}
 
-1. Prima di tutto, abbiamo alcune definizioni di variabili — abbiamo un array di informazioni di contatto, con ciascun elemento che è una stringa contenente un nome e un numero di telefono separati da due punti.
-2. Successivamente, colleghiamo un event listener al pulsante (`btn`) in modo che quando viene premuto, del codice venga eseguito per effettuare la ricerca e restituire i risultati.
-3. Memorizziamo il valore inserito nel campo di testo in una variabile chiamata `searchName`, prima di svuotare il campo di testo e rifocalizzarlo, pronto per la ricerca successiva. Nota che eseguiamo anche il metodo [`toLowerCase()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase) sulla stringa, in modo che le ricerche siano insensibili alle maiuscole.
-4. Passiamo ora alla parte interessante, il ciclo `for...of`:
+1. Innanzitutto, sono presenti alcune definizioni di variabili: c'è un array di informazioni sui contatti, in cui ogni elemento è una stringa contenente un nome e un numero di telefono separati da due punti.
+2. Successivamente, viene associato un event listener al pulsante (`btn`) in modo che, quando viene premuto, venga eseguito del codice per effettuare la ricerca e restituire i risultati.
+3. Il valore inserito nell'input di testo viene memorizzato in una variabile denominata `searchName`, quindi l'input di testo viene svuotato e messo di nuovo a fuoco, pronto per la ricerca successiva.
+   Si noti che viene anche eseguito il metodo [`toLowerCase()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase) sulla stringa, in modo che le ricerche non distinguano tra maiuscole e minuscole.
+4. Si arriva ora alla parte interessante, il ciclo `for...of`:
+   1. All'interno del ciclo, il contatto corrente viene prima diviso sul carattere dei due punti e i due valori risultanti vengono memorizzati in un array denominato `splitContact`.
+   2. Viene quindi usata un'istruzione condizionale per verificare se `splitContact[0]` (il nome del contatto, anch'esso convertito in minuscolo con [`toLowerCase()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase)) è uguale al valore `searchName` inserito.
+      Se lo è, viene inserita una stringa nel paragrafo per indicare il numero del contatto e viene usato `break` per terminare il ciclo.
 
-   1. All'interno del ciclo, innanzitutto dividiamo il contatto corrente al carattere due punti, e memorizziamo i due valori risultanti in un array chiamato `splitContact`.
-   2. Utilizziamo quindi un'istruzione condizionale per testare se `splitContact[0]` (il nome del contatto, nuovamente reso in minuscolo con [`toLowerCase()`](/it/docs/Web/JavaScript/Reference/Global_Objects/String/toLowerCase)) è uguale al `searchName` inserito. Se lo è, inseriamo un messaggio nel paragrafo per segnalare il numero del contatto e usiamo `break` per terminare il ciclo.
-
-5. Dopo il ciclo, controlliamo se abbiamo impostato un contatto, e se non lo abbiamo fatto impostiamo il testo del paragrafo su "Contatto non trovato.".
+5. Dopo il ciclo, viene verificato se è stato impostato un contatto e, in caso contrario, il testo del paragrafo viene impostato su "Contact not found.".
 
 > [!NOTE]
-> Puoi visualizzare il [codice sorgente completo su GitHub](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/contact-search.html) anche (vedi anche [che gira dal vivo](https://mdn.github.io/learning-area/javascript/building-blocks/loops/contact-search.html)).
+> È anche possibile visualizzare il [codice sorgente completo su GitHub](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/contact-search.html) (e [vederlo in esecuzione](https://mdn.github.io/learning-area/javascript/building-blocks/loops/contact-search.html)).
 
-## Saltare le iterazioni con continue
+## Saltare iterazioni con continue
 
-L'istruzione [continue](/it/docs/Web/JavaScript/Reference/Statements/continue) funziona in modo simile a `break`, ma invece di uscire completamente dal ciclo, passa alla prossima iterazione del ciclo. Vediamo un altro esempio che prende un numero come input e restituisce solo i numeri che sono quadrati di numeri interi (numeri interi).
+L'istruzione [continue](/it/docs/Web/JavaScript/Reference/Statements/continue) funziona in modo simile a `break`, ma invece di uscire completamente dal ciclo, passa all'iterazione successiva del ciclo.
+Esaminiamo un altro esempio che prende un numero come input e restituisce solo i numeri che sono quadrati di interi (numeri interi).
 
-L'HTML è fondamentalmente lo stesso dell'esempio precedente — un semplice input numerico e un paragrafo per l'output.
+L'HTML è sostanzialmente lo stesso dell'ultimo esempio: un semplice input numerico e un paragrafo per l'output.
 
 ```html
 <label for="number">Enter number: </label>
@@ -442,7 +459,7 @@ L'HTML è fondamentalmente lo stesso dell'esempio precedente — un semplice inp
 <p>Output:</p>
 ```
 
-Il JavaScript è praticamente lo stesso, anche se il ciclo stesso è un po' diverso:
+Anche JavaScript è per lo più lo stesso, sebbene il ciclo stesso sia leggermente diverso:
 
 ```js
 const para = document.querySelector("p");
@@ -468,19 +485,19 @@ Ecco l'output:
 
 {{ EmbedLiveSample('Skipping_iterations_with_continue', '100%', 100) }}
 
-1. In questo caso, l'input dovrebbe essere un numero (`num`). Il ciclo `for` viene fornito con un contatore che inizia a 1 (poiché non ci interessa 0 in questo caso), una condizione di uscita che dice che il ciclo si fermerà quando il contatore diventa maggiore dell'input `num`, e un iteratore che aggiunge 1 al contatore ogni volta.
-2. All'interno del ciclo, troviamo la radice quadrata di ogni numero utilizzando [`Math.sqrt(i)`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt), quindi controlliamo se la radice quadrata è un intero testando se è uguale a se stessa quando è stata arrotondata per difetto a un intero (questo è ciò che [`Math.floor()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) fa al numero che riceve in ingresso).
-3. Se la radice quadrata e la radice quadrata arrotondata per difetto non sono uguali (`!==`), significa che la radice quadrata non è un intero, quindi non ci interessa. In tal caso, usiamo l'istruzione `continue` per passare alla successiva iterazione del ciclo senza registrare il numero da nessuna parte.
-4. Se la radice quadrata è un intero, saltiamo completamente il blocco `if`, quindi l'istruzione `continue` non viene eseguita; invece, concatenamo il valore corrente `i` più uno spazio alla fine del contenuto del paragrafo.
+1. In questo caso, l'input deve essere un numero (`num`). Al ciclo `for` viene fornito un contatore che inizia da 1 (poiché in questo caso non interessa 0), una condizione di uscita che indica che il ciclo si fermerà quando il contatore diventa maggiore dell'input `num`, e un iteratore che aggiunge 1 al contatore ogni volta.
+2. All'interno del ciclo, viene trovata la radice quadrata di ogni numero usando [`Math.sqrt(i)`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt), quindi viene verificato se la radice quadrata è un intero controllando se è uguale a se stessa quando è stata arrotondata per difetto all'intero più vicino (questo è ciò che [`Math.floor()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/floor) fa al numero che riceve).
+3. Se la radice quadrata e la radice quadrata arrotondata per difetto non sono uguali (`!==`), significa che la radice quadrata non è un intero, quindi non interessa. In tal caso, viene usata l'istruzione `continue` per passare all'iterazione successiva del ciclo senza registrare il numero da alcuna parte.
+4. Se la radice quadrata è un intero, il blocco `if` viene completamente saltato, quindi l'istruzione `continue` non viene eseguita; viene invece concatenato il valore corrente di `i` più uno spazio alla fine del contenuto del paragrafo.
 
 > [!NOTE]
-> Puoi visualizzare il [codice sorgente completo su GitHub](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/integer-squares.html) anche (vedi anche [che gira dal vivo](https://mdn.github.io/learning-area/javascript/building-blocks/loops/integer-squares.html)).
+> È anche possibile visualizzare il [codice sorgente completo su GitHub](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/integer-squares.html) (e [vederlo in esecuzione](https://mdn.github.io/learning-area/javascript/building-blocks/loops/integer-squares.html)).
 
 ## while e do...while
 
-`for` non è l'unico tipo di ciclo generale disponibile in JavaScript. Ce ne sono in realtà molti altri e, sebbene non sia necessario comprenderli tutti ora, vale la pena dare un'occhiata alla struttura di alcuni altri in modo da poter riconoscere le stesse funzionalità operare in un modo leggermente diverso.
+`for` non è l'unico tipo di ciclo generale disponibile in JavaScript. In realtà ne esistono molti altri e, sebbene non sia necessario comprenderli tutti ora, vale la pena osservare la struttura di un altro paio di essi per poter riconoscere le stesse funzionalità in modo leggermente diverso.
 
-Innanzitutto, diamo un'occhiata al ciclo [`while`](/it/docs/Web/JavaScript/Reference/Statements/while). La sintassi di questo ciclo è la seguente:
+Innanzitutto, esaminiamo il ciclo [`while`](/it/docs/Web/JavaScript/Reference/Statements/while). La sintassi di questo ciclo è la seguente:
 
 ```js-nolint
 initializer
@@ -491,11 +508,14 @@ while (condition) {
 }
 ```
 
-Questo funziona in un modo molto simile al ciclo `for`, tranne per il fatto che la variabile inizializzatrice è impostata prima del ciclo, e l'espressione finale è inclusa all'interno del ciclo dopo il codice da eseguire, piuttosto che questi due elementi essere inclusi all'interno delle parentesi. La condizione è inclusa all'interno delle parentesi, che sono precedute dalla parola chiave `while` piuttosto che da `for`.
+Funziona in modo molto simile al ciclo `for`, tranne per il fatto che la variabile inizializzatore viene impostata prima del ciclo e l'espressione finale viene inclusa all'interno del ciclo dopo il codice da eseguire, invece di includere questi due elementi all'interno delle parentesi.
+La condizione viene inclusa all'interno delle parentesi, precedute dalla parola chiave `while` anziché da `for`.
 
-I tre elementi sono ancora presenti e sono ancora definiti nello stesso ordine in cui si trovano nel ciclo for. Questo perché è necessario disporre di un inizializzatore definito prima di poter verificare se la condizione è vera o meno. L'espressione finale viene quindi eseguita dopo che il codice all'interno del ciclo è stato eseguito (un'iterazione è stata completata), il che accadrà solo se la condizione è ancora vera.
+Gli stessi tre elementi sono ancora presenti e sono ancora definiti nello stesso ordine in cui si trovano nel ciclo for.
+Questo perché è necessario definire un inizializzatore prima di poter verificare se la condizione è vera o meno.
+L'espressione finale viene quindi eseguita dopo l'esecuzione del codice all'interno del ciclo (è stata completata un'iterazione), cosa che avverrà solo se la condizione è ancora vera.
 
-Vediamo di nuovo il nostro esempio della lista di gatti, ma riscritto per utilizzare un ciclo while:
+Esaminiamo di nuovo l'esempio della lista di gatti, ma riscritto per usare un ciclo while:
 
 ```js
 const cats = ["Pete", "Biggles", "Jasmine"];
@@ -518,9 +538,9 @@ console.log(myFavoriteCats); // "My cats are called Pete, Biggles, and Jasmine."
 ```
 
 > [!NOTE]
-> Questo funziona ancora esattamente come previsto — dà un'occhiata a esso [in esecuzione dal vivo su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/loops/while.html) (vedi anche il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/while.html)).
+> Funziona ancora esattamente come previsto: è possibile [vederlo in esecuzione su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/loops/while.html) (e visualizzare il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/while.html)).
 
-Il ciclo [`do...while`](/it/docs/Web/JavaScript/Reference/Statements/do...while) è molto simile, ma fornisce una variazione sulla struttura while:
+Il ciclo [`do...while`](/it/docs/Web/JavaScript/Reference/Statements/do...while) è molto simile, ma offre una variante della struttura while:
 
 ```js-nolint
 initializer
@@ -531,11 +551,11 @@ do {
 } while (condition)
 ```
 
-In questo caso, l'inizializzatore viene nuovamente prima, prima che inizi il ciclo. La parola chiave precede direttamente le parentesi graffe che contengono il codice da eseguire e l'espressione finale.
+In questo caso, l'inizializzatore viene nuovamente prima, prima che il ciclo inizi. La parola chiave precede direttamente le parentesi graffe contenenti il codice da eseguire e l'espressione finale.
 
-La differenza principale tra un ciclo `do...while` e un ciclo `while` è che _il codice all'interno di un ciclo `do...while` viene eseguito sempre almeno una volta_. Questo perché la condizione arriva dopo il codice all'interno del ciclo. Quindi eseguiamo sempre quel codice, poi verifichiamo se dobbiamo eseguirlo di nuovo. Nei cicli `while` e `for`, il controllo viene prima, quindi il codice potrebbe non essere mai eseguito.
+La differenza principale tra un ciclo `do...while` e un ciclo `while` è che _il codice all'interno di un ciclo `do...while` viene sempre eseguito almeno una volta_. Questo perché la condizione viene dopo il codice all'interno del ciclo. Quindi quel codice viene sempre eseguito, poi viene verificato se è necessario eseguirlo nuovamente. Nei cicli `while` e `for`, la verifica viene prima, quindi il codice potrebbe non essere mai eseguito.
 
-Riscriviamo nuovamente il nostro esempio dell'elenco dei gatti per utilizzare un ciclo `do...while`:
+Riscriviamo nuovamente l'esempio dell'elenco dei gatti per usare un ciclo `do...while`:
 
 ```js
 const cats = ["Pete", "Biggles", "Jasmine"];
@@ -558,49 +578,68 @@ console.log(myFavoriteCats); // "My cats are called Pete, Biggles, and Jasmine."
 ```
 
 > [!NOTE]
-> Di nuovo, questo funziona esattamente come previsto — dà un'occhiata a esso [in esecuzione dal vivo su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/loops/do-while.html) (vedi anche il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/do-while.html)).
+> Anche in questo caso, funziona esattamente come previsto: è possibile [vederlo in esecuzione su GitHub](https://mdn.github.io/learning-area/javascript/building-blocks/loops/do-while.html) (e visualizzare il [codice sorgente completo](https://github.com/mdn/learning-area/blob/main/javascript/building-blocks/loops/do-while.html)).
 
 > [!WARNING]
-> Con qualsiasi tipo di ciclo, devi assicurarti che l'inizializzatore venga incrementato o, a seconda del caso, decrementato, in modo che la condizione diventi infine falsa.
-> Se no, il ciclo continuerà all'infinito, e il browser o lo fermerà forzatamente, o si bloccherà. Questo è chiamato un **ciclo infinito**.
+> Con qualsiasi tipo di ciclo, è necessario assicurarsi che l'inizializzatore venga incrementato o, a seconda del caso, decrementato, affinché la condizione diventi infine falsa.
+> In caso contrario, il ciclo continuerà per sempre e il browser ne forzerà l'arresto oppure andrà in crash. Questo è chiamato **ciclo infinito**.
 
-## Apprendimento attivo: conto alla rovescia
+## Implementare un conto alla rovescia per il lancio
 
-In questo esercizio, vogliamo che tu stampi un semplice conto alla rovescia sull'area di output, da 10 a Blastoff.
-Nello specifico, vogliamo che tu:
+In questo esercizio, si vuole stampare un semplice conto alla rovescia per il lancio nella casella di output, da 10 fino a Blastoff.
 
-- Cicla da 10 a 0. Ti abbiamo fornito un inizializzatore — `let i = 10;`.
-- Per ogni iterazione, crea un nuovo paragrafo e aggiungilo al `<div>` di output, che abbiamo selezionato utilizzando `const output = document.querySelector('.output');`.
-  Nei commenti, ti abbiamo fornito tre righe di codice che devono essere utilizzate da qualche parte all'interno del ciclo:
+Per completare l'esercizio:
 
-  - `const para = document.createElement('p');` — crea un nuovo paragrafo.
-  - `output.appendChild(para);` — aggiunge il paragrafo al `<div>` di output.
-  - `para.textContent =` — rende il testo all'interno del paragrafo uguale a ciò che metti a destra del segno di uguaglianza.
-
-- Diversi numeri di iterazione richiedono diversi testi da mettere nel paragrafo per quell'iterazione (avrai bisogno di un'istruzione condizionale e molteplici righe `para.textContent =`):
-
-  - Se il numero è 10, stampa "Countdown 10" nel paragrafo.
-  - Se il numero è 0, stampa "Blast off!" nel paragrafo.
-  - Per qualsiasi altro numero, stampa solo il numero nel paragrafo.
-
-- Ricorda di includere un iteratore! Tuttavia, in questo esempio stiamo contando all'indietro dopo ciascuna iterazione, non verso l'alto, quindi non vuoi `i++` — come fai a iterare verso il basso?
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio in MDN Playground.
+2. Aggiungere codice per eseguire un ciclo da 10 fino a 0. È stato fornito un inizializzatore: `let i = 10;`.
+3. Per ogni iterazione, creare un nuovo paragrafo e aggiungerlo al `<div>` di output, selezionato usando `const output = document.querySelector('.output');`. Sono state fornite tre righe di codice all'interno di commenti che devono essere usate da qualche parte nel ciclo:
+   1. `const para = document.createElement('p');` — crea un nuovo paragrafo.
+   2. `output.appendChild(para);` — aggiunge il paragrafo al `<div>` di output.
+   3. `para.textContent =` — rende il testo all'interno del paragrafo uguale a qualsiasi elemento venga inserito sul lato destro, dopo il segno di uguale.
+4. Per i diversi numeri di iterazione elencati di seguito, scrivere codice per inserire il testo richiesto all'interno del paragrafo (saranno necessarie un'istruzione condizionale e più righe `para.textContent =`):
+   1. Se il numero è 10, stampare "Countdown 10" nel paragrafo.
+   2. Se il numero è 0, stampare "Blast off!" nel paragrafo.
+   3. Per qualsiasi altro numero, stampare solo il numero nel paragrafo.
+5. Ricordare di includere un iteratore. Tuttavia, in questo esempio il conteggio diminuisce dopo ogni iterazione, non aumenta, quindi **non** serve `i++`: come si itera verso il basso?
 
 > [!NOTE]
-> Se inizi a digitare il ciclo (ad esempio (while(i>=0)), il browser potrebbe bloccarsi perché non hai ancora inserito la condizione finale. Quindi fai attenzione a questo. Puoi iniziare a scrivere il tuo codice in un commento per affrontare questo problema e rimuovere il commento dopo aver finito.
+> Se si inizia a digitare il ciclo (ad esempio `(while(i>=0)`), il browser potrebbe bloccarsi in un ciclo infinito perché non è stata ancora inserita la condizione finale. Prestare quindi attenzione. Per gestire questo problema, è possibile iniziare a scrivere il codice in un commento e rimuovere il commento dopo aver terminato.
 
-Se commetti un errore, puoi sempre reimpostare l'esempio con il pulsante "Reset".
-Se ti blocchi davvero, premi "Mostra soluzione" per vedere una soluzione.
+Se viene commesso un errore, è possibile cancellare il lavoro usando il pulsante _Reset_ in MDN Playground. Se si rimane davvero bloccati, è possibile visualizzare la soluzione sotto l'output live.
 
-```html hidden
-<h2>Live output</h2>
-<div class="output" style="height: 410px;overflow: auto;"></div>
+```html hidden live-sample___loops-1
+<div class="output"></div>
+```
 
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-<textarea id="code" class="playable-code" style="height: 300px;width: 95%">
-const output = document.querySelector('.output');
+```css hidden live-sample___loops-1
+html {
+  font-family: sans-serif;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+.a11y-label {
+  margin: 0;
+  text-align: right;
+  font-size: 0.7rem;
+  width: 98%;
+}
+
+body {
+  margin: 10px;
+  background: #f5f9fa;
+}
+
+.output {
+  height: 410px;
+  overflow: auto;
+}
+```
+
+```js live-sample___loops-1
+const output = document.querySelector(".output");
 output.textContent = "";
 
 // let i = 10;
@@ -608,77 +647,27 @@ output.textContent = "";
 // const para = document.createElement('p');
 // para.textContent = ;
 // output.appendChild(para);
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
 ```
 
-```css
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample("loops-1", "100%", 200) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+Il JavaScript completato dovrebbe apparire più o meno così:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
-
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-let code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  eval(textarea.value);
-}
-
-reset.addEventListener("click", function () {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = jsSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", function () {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-let jsSolution = `const output = document.querySelector('.output');
+```js
+const output = document.querySelector(".output");
 output.textContent = "";
 
 let i = 10;
 
 while (i >= 0) {
-  const para = document.createElement('p');
+  const para = document.createElement("p");
   if (i === 10) {
-    para.textContent = \`Countdown \${i}\`;
+    para.textContent = `Countdown ${i}`;
   } else if (i === 0) {
-    para.textContent = 'Blast off!';
+    para.textContent = "Blast off!";
   } else {
     para.textContent = i;
   }
@@ -686,116 +675,41 @@ while (i >= 0) {
   output.appendChild(para);
 
   i--;
-}`;
-
-let solutionEntry = jsSolution;
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = function (e) {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
 }
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
 ```
 
-{{ EmbedLiveSample('Active_learning_Launch_countdown', '100%', 900) }}
+</details>
 
-## Apprendimento attivo: Riempire una lista degli ospiti
+## Compilare una lista di invitati
 
-In questo esercizio, vogliamo che tu prenda un elenco di nomi memorizzati in un array e li metta in una lista degli ospiti. Ma non è così facile — non vogliamo far entrare Phil e Lola perché sono avidi e maleducati, e mangiano sempre tutto il cibo! Abbiamo due elenchi, uno per gli ospiti da ammettere e uno per gli ospiti da rifiutare.
+In questo esercizio, si vuole prendere una lista di nomi memorizzata in un array e inserirla in una lista di invitati. Ma non è così semplice: non si vogliono far entrare Phil e Lola perché sono avidi e maleducati e mangiano sempre tutto il cibo. Ci sono due liste, una per gli invitati da ammettere e una per gli invitati da rifiutare.
 
-Nello specifico, vogliamo che tu:
+Per completare l'esercizio:
 
-- Scrivi un ciclo che itererà attraverso l'array `people`.
-- Durante ogni iterazione del ciclo, controlla se l'elemento corrente dell'array è uguale a "Phil" o "Lola" utilizzando un'istruzione condizionale:
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio in MDN Playground.
+2. Scrivere un ciclo che iteri sull'array `people`.
+3. Durante ogni iterazione del ciclo, verificare se l'elemento corrente dell'array è uguale a "Phil" o "Lola" usando un'istruzione condizionale:
+   1. Se lo è, concatenare l'elemento dell'array alla fine di `textContent` del paragrafo `refused`, seguito da una virgola e uno spazio.
+   2. Se non lo è, concatenare l'elemento dell'array alla fine di `textContent` del paragrafo `admitted`, seguito da una virgola e uno spazio.
 
-  - Se lo è, concatena l'elemento dell'array alla fine del `textContent` del paragrafo `refused`, seguito da una virgola e uno spazio.
-  - Se non lo è, concatena l'elemento dell'array alla fine del `textContent` del paragrafo `admitted`, seguito da una virgola e uno spazio.
+Sono già stati forniti:
 
-Ti abbiamo già fornito:
+- `refused.textContent +=` — l'inizio di una riga che concatenerà qualcosa alla fine di `refused.textContent`.
+- `admitted.textContent +=` — l'inizio di una riga che concatenerà qualcosa alla fine di `admitted.textContent`.
 
-- `refused.textContent +=` — l'inizio della riga che concatenerà qualcosa alla fine del `textContent` di `refused`.
-- `admitted.textContent +=` — l'inizio della riga che concatenerà qualcosa alla fine del `textContent` di `admitted`.
+Domanda bonus: dopo aver completato correttamente le attività precedenti, rimarranno due liste di nomi separati da virgole, ma non saranno ordinate: alla fine di ciascuna ci sarà una virgola. Si riesce a capire come scrivere righe che rimuovano l'ultima virgola in ciascun caso e aggiungano un punto finale?
+Per assistenza, consultare l'articolo sui [metodi utili per le stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods).
 
-Domanda bonus extra — dopo aver completato i compiti sopra con successo, ti ritroverai con due elenchi di nomi, separati da virgole, ma saranno disordinati — ci sarà una virgola alla fine di ciascuno. Hai capito come scrivere righe che eliminano l'ultima virgola in ciascun caso e aggiungere un punto alla fine? Dai un'occhiata all'articolo [Metodi utili sulle stringhe](/it/docs/Learn_web_development/Core/Scripting/Useful_string_methods) per avere aiuto.
+Se viene commesso un errore, è possibile cancellare il lavoro usando il pulsante _Reset_ in MDN Playground. Se si rimane davvero bloccati, è possibile visualizzare la soluzione sotto l'output live.
 
-Se commetti un errore, puoi sempre reimpostare l'esempio con il pulsante "Reset".
-Se ti blocchi davvero, premi "Mostra soluzione" per vedere una soluzione.
-
-```html hidden
-<h2>Live output</h2>
-<div class="output" style="height: 100px;overflow: auto;">
+```html hidden live-sample___loops-2
+<div class="output">
   <p class="admitted">Admit:</p>
   <p class="refused">Refuse:</p>
 </div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-<textarea id="code" class="playable-code" style="height: 400px;width: 95%">
-const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
-
-const admitted = document.querySelector('.admitted');
-const refused = document.querySelector('.refused');
-admitted.textContent = 'Admit: ';
-refused.textContent = 'Refuse: ';
-
-// loop starts here
-
-// refused.textContent += ;
-// admitted.textContent += ;
-
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
 ```
 
-```css hidden
+```css hidden live-sample___loops-2
 html {
   font-family: sans-serif;
 }
@@ -815,118 +729,86 @@ body {
   margin: 10px;
   background: #f5f9fa;
 }
+
+.output {
+  height: 100px;
+  overflow: auto;
+}
 ```
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-let code = textarea.value;
-let userEntry = textarea.value;
+```js live-sample___loops-2
+const people = [
+  "Chris",
+  "Anne",
+  "Colin",
+  "Terri",
+  "Phil",
+  "Lola",
+  "Sam",
+  "Kay",
+  "Bruce",
+];
 
-function updateCode() {
-  eval(textarea.value);
-}
+const admitted = document.querySelector(".admitted");
+const refused = document.querySelector(".refused");
+admitted.textContent = "Admit: ";
+refused.textContent = "Refuse: ";
 
-reset.addEventListener("click", function () {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = jsSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
+// loop starts here
 
-solution.addEventListener("click", function () {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
+// refused.textContent += ...;
+// admitted.textContent += ...;
+```
 
-const jsSolution = `
-const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+{{ EmbedLiveSample("loops-2", "100%", 200) }}
 
-const admitted = document.querySelector('.admitted');
-const refused = document.querySelector('.refused');
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-admitted.textContent = 'Admit: ';
-refused.textContent = 'Refuse: ';
+Il JavaScript completato dovrebbe apparire più o meno così:
+
+```js
+const people = [
+  "Chris",
+  "Anne",
+  "Colin",
+  "Terri",
+  "Phil",
+  "Lola",
+  "Sam",
+  "Kay",
+  "Bruce",
+];
+
+const admitted = document.querySelector(".admitted");
+const refused = document.querySelector(".refused");
+
+admitted.textContent = "Admit: ";
+refused.textContent = "Refuse: ";
 
 for (const person of people) {
-  if (person === 'Phil' || person === 'Lola') {
-    refused.textContent += \`\${person}, \`;
+  if (person === "Phil" || person === "Lola") {
+    refused.textContent += `${person}, `;
   } else {
-    admitted.textContent += \`\${person}, \`;
+    admitted.textContent += `${person}, `;
   }
 }
 
-refused.textContent = refused.textContent.slice(0,refused.textContent.length-2) + '.';
-admitted.textContent = admitted.textContent.slice(0,admitted.textContent.length-2) + '.';`;
-
-let solutionEntry = jsSolution;
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = function (e) {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
+refused.textContent = `${refused.textContent.slice(0, -2)}.`;
+admitted.textContent = `${admitted.textContent.slice(0, -2)}.`;
 ```
 
-{{ EmbedLiveSample('Active_learning_Filling_in_a_guest_list', '100%', 680) }}
+</details>
 
-## Quale tipo di loop dovresti usare?
+## Quale tipo di ciclo usare?
 
-Se stai iterando attraverso un array o qualche altro oggetto che lo supporti, e non hai bisogno di accedere alla posizione dell'indice di ogni elemento, allora `for...of` è la scelta migliore. È più facile da leggere e ci sono meno possibilità che qualcosa vada storto.
+Se si sta iterando su un array o su un altro oggetto che lo supporta e non è necessario accedere alla posizione dell'indice di ogni elemento, allora `for...of` è la scelta migliore. È più facile da leggere e ci sono meno possibilità di errore.
 
-Per altri usi, i cicli `for`, `while`, e `do...while` sono largamente intercambiabili. Possono tutti essere usati per risolvere gli stessi problemi, e quale usare dipenderà in gran parte dalle tue preferenze personali — quale trovi più facile da ricordare o più intuitivo. Raccomanderemmo `for`, almeno all'inizio, poiché è probabilmente il più facile per ricordare tutto ciò che serve — l'inizializzatore, la condizione e l'espressione finale devono andare tutte ordinatamente tra parentesi, quindi è facile vedere dove si trovano e controllare che non manchino.
+Per altri utilizzi, i cicli `for`, `while` e `do...while` sono in gran parte intercambiabili.
+Tutti possono essere usati per risolvere gli stessi problemi e la scelta dipenderà principalmente dalle preferenze personali: quale risulta più facile da ricordare o più intuitivo.
+Si consiglia `for`, almeno all'inizio, poiché probabilmente è il più semplice per ricordare tutto: inizializzatore, condizione ed espressione finale devono essere ordinatamente inseriti nelle parentesi, quindi è facile vedere dove si trovano e verificare che non ne manchi nessuno.
 
-Rivediamo di nuovo tutti.
+Esaminiamoli tutti di nuovo.
 
 Prima `for...of`:
 
@@ -967,24 +849,21 @@ do {
 ```
 
 > [!NOTE]
-> Ci sono anche altri tipi/funzionalità di cicli, che sono utili in situazioni avanzate/specializzate e oltre l'ambito di questo articolo. Se vuoi approfondire il tuo apprendimento sui cicli, leggi la nostra [Guida avanzata ai cicli e iterazioni](/it/docs/Web/JavaScript/Guide/Loops_and_iteration).
+> Esistono anche altri tipi/funzionalità di cicli, utili in situazioni avanzate o specializzate e oltre lo scopo di questo articolo. Per approfondire i cicli, leggere la [guida avanzata sui cicli e l'iterazione](/it/docs/Web/JavaScript/Guide/Loops_and_iteration).
 
-## Metti alla prova le tue abilità!
+## Riepilogo
 
-Sei arrivato alla fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare che tu abbia assimilato queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Cicli](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills/Loops).
+Questo articolo ha illustrato i concetti di base e le diverse opzioni disponibili per l'esecuzione iterativa del codice in JavaScript.
+Ora dovrebbe essere chiaro perché i cicli sono un buon meccanismo per gestire codice ripetitivo e si dovrebbe essere pronti a usarli nei propri esempi.
 
-## Sommario
-
-Questo articolo ti ha rivelato i concetti di base e le diverse opzioni disponibili quando si cicla il codice in JavaScript. Ora dovresti avere chiaro il motivo per cui i cicli sono un buon meccanismo per affrontare il codice ripetitivo e pronto a usarli nei tuoi esempi!
-
-Prossimamente, analizzeremo le funzioni.
+Nel prossimo articolo verranno proposti alcuni test che consentiranno di verificare quanto bene siano state comprese e memorizzate queste informazioni.
 
 ## Vedi anche
 
-- [Dettaglio dei cicli e delle iterazioni](/it/docs/Web/JavaScript/Guide/Loops_and_iteration)
-- [Riferimento for...of](/it/docs/Web/JavaScript/Reference/Statements/for...of)
-- [Riferimento all'istruzione for](/it/docs/Web/JavaScript/Reference/Statements/for)
-- [Riferimenti a while](/it/docs/Web/JavaScript/Reference/Statements/while) e [do...while](/it/docs/Web/JavaScript/Reference/Statements/do...while)
-- [Riferimenti a break](/it/docs/Web/JavaScript/Reference/Statements/break) e [continue](/it/docs/Web/JavaScript/Reference/Statements/continue)
+- [Cicli e iterazione in dettaglio](/it/docs/Web/JavaScript/Guide/Loops_and_iteration)
+- [Riferimento di for...of](/it/docs/Web/JavaScript/Reference/Statements/for...of)
+- [Riferimento dell'istruzione for](/it/docs/Web/JavaScript/Reference/Statements/for)
+- Riferimenti di [while](/it/docs/Web/JavaScript/Reference/Statements/while) e [do...while](/it/docs/Web/JavaScript/Reference/Statements/do...while)
+- Riferimenti di [break](/it/docs/Web/JavaScript/Reference/Statements/break) e [continue](/it/docs/Web/JavaScript/Reference/Statements/continue)
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Conditionals","Learn_web_development/Core/Scripting/Functions", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Conditionals","Learn_web_development/Core/Scripting/Test_your_skills/Loops", "Learn_web_development/Core/Scripting")}}

@@ -1,22 +1,22 @@
 ---
-title: Come fare sfumare un pulsante con il passaggio del mouse
-short-title: Sfumare un pulsante con il passaggio del mouse
+title: Come sfumare un pulsante al passaggio del mouse
+short-title: Sfumare un pulsante al passaggio del mouse
 slug: Learn_web_development/Howto/Solve_CSS_problems/Transition_button
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-In questa guida scoprirai come fare una sfumatura delicata tra due colori quando si passa il mouse su un pulsante.
+In questa guida viene spiegato come creare una delicata sfumatura tra due colori quando si passa il mouse sopra un pulsante.
 
-Nel nostro esempio di pulsante, possiamo cambiare lo sfondo del pulsante definendo un colore di sfondo diverso per la pseudo-classe dinamica `:hover`. Tuttavia, passando il mouse sul pulsante, il colore di sfondo cambierà bruscamente al nuovo colore. Per creare una transizione più delicata tra i due colori, possiamo usare le transizioni CSS.
+Nel nostro esempio di pulsante, è possibile modificare lo sfondo del pulsante definendo un colore di sfondo diverso per la pseudo-classe dinamica `:hover`. Tuttavia, passando il mouse sopra il pulsante, `background-color` passerà istantaneamente al nuovo colore. Per creare un cambiamento più delicato tra i due colori, è possibile usare le transizioni CSS.
 
-## Utilizzo delle transizioni
+## Uso delle transizioni
 
-Dopo aver aggiunto il colore desiderato per lo stato di passaggio del mouse, aggiungi la proprietà {{cssxref("transition")}} alle regole per il pulsante. Per una transizione semplice, il valore di `transition` è il nome della proprietà o delle proprietà su cui desideri che questa transizione si applichi e il tempo che la transizione dovrebbe impiegare.
+Dopo aver aggiunto il colore desiderato per lo stato al passaggio del mouse, aggiungere la proprietà {{cssxref("transition")}} alle regole del pulsante. Per una transizione semplice, il valore di `transition` è il nome della proprietà o delle proprietà a cui si desidera applicare questa transizione e la durata della transizione.
 
-Per le pseudo-classi `:active` e `:focus`, la proprietà {{cssxref("transition")}} è impostata su none, in modo che il pulsante passi immediatamente allo stato attivo quando viene cliccato.
+Per le pseudo-classi `:active` e `:focus`, la proprietà {{cssxref("transition")}} viene impostata su `none`, in modo che il pulsante passi istantaneamente allo stato attivo quando viene fatto clic.
 
-Nell'esempio la transizione dura 1 secondo, puoi provare a cambiare questo valore per vedere la differenza che un cambio di velocità comporta.
+Nell'esempio la transizione dura 1 secondo; è possibile provare a modificare questo valore per osservare la differenza prodotta da un cambiamento di velocità.
 
 ```html live-sample___transition-button
 <div class="wrapper">
@@ -50,7 +50,7 @@ button {
 ```css live-sample___transition-button
 .fade {
   background-color: #db1f48;
-  color: #fff;
+  color: white;
   transition: background-color 1s;
 }
 
@@ -68,8 +68,8 @@ button {
 {{EmbedLiveSample("transition-button")}}
 
 > [!NOTE]
-> La proprietà {{cssxref("transition")}} è una scorciatoia per {{cssxref("transition-delay")}}, {{cssxref("transition-duration")}}, {{cssxref("transition-property")}} e {{cssxref("transition-timing-function")}}. Consulta le pagine di queste proprietà su MDN per trovare modi per aggiustare le tue transizioni.
+> La proprietà {{cssxref("transition")}} è una forma abbreviata per {{cssxref("transition-delay")}}, {{cssxref("transition-duration")}}, {{cssxref("transition-property")}} e {{cssxref("transition-timing-function")}}. Consultare le pagine di queste proprietà su MDN per scoprire come regolare le transizioni.
 
-## Vedi anche
+## Vedere anche
 
-- [Utilizzo delle transizioni CSS](/it/docs/Web/CSS/CSS_transitions/Using_CSS_transitions)
+- [Uso delle transizioni CSS](/it/docs/Web/CSS/Guides/Transitions/Using)

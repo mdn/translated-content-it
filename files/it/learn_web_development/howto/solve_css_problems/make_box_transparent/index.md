@@ -1,24 +1,24 @@
 ---
-title: Come rendere una scatola semi-trasparente
-short-title: Rendere una scatola semi-trasparente
+title: Come rendere una casella semi-trasparente
+short-title: Rendere una casella semi-trasparente
 slug: Learn_web_development/Howto/Solve_CSS_problems/Make_box_transparent
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 2b4a2ad5d9ba084a9eaa2f9204102655e7b575c4
 ---
 
-Questa guida aiuterà a capire i modi per rendere una scatola semi-trasparente utilizzando CSS.
+Questa guida aiuta a comprendere i modi per rendere una casella semi-trasparente usando CSS.
 
-## Cambiare l'opacità della scatola e del contenuto
+## Modificare l'opacità della casella e del contenuto
 
-Se desideri che la scatola e tutti i suoi contenuti cambino opacità, allora la proprietà CSS {{cssxref("opacity")}} è lo strumento da utilizzare. L'opacità è l'opposto della trasparenza; pertanto `opacity: 1` è completamente opaco — non vedrai affatto attraverso la scatola.
+Se si desidera modificare l'opacità della casella e di tutto il suo contenuto, la proprietà CSS {{cssxref("opacity")}} è lo strumento da usare. L'opacità è l'opposto della trasparenza; pertanto `opacity: 1` indica una completa opacità: non sarà possibile vedere attraverso la casella.
 
-Usare un valore di `0` renderebbe la scatola completamente trasparente, e valori compresi tra i due cambieranno l'opacità, con valori più alti che conferiscono meno trasparenza.
+L'uso del valore `0` renderebbe la casella completamente trasparente, mentre i valori compresi tra i due modificano l'opacità; valori più alti producono una minore trasparenza.
 
-## Cambiare l'opacità solo del colore di sfondo
+## Modificare solo l'opacità del colore di sfondo
 
-In molti casi vorrai rendere trasparente solo il colore di sfondo, mantenendo il testo e altri elementi completamente opachi. Per ottenere ciò, utilizza un valore [`<color>`](/it/docs/Web/CSS/color_value) che abbia un canale alpha, come `rgb()`. Come per l'`opacity`, un valore di `1` per il canale alpha rende il colore completamente opaco. Pertanto, `background-color: rgb(0 0 0 / 50%);` imposterà il colore di sfondo al 50% di opacità.
+In molti casi si desidera rendere parzialmente trasparente soltanto il colore di sfondo, mantenendo il testo e gli altri elementi completamente opachi. Per ottenere questo risultato, usare un valore {{cssxref("&lt;color&gt;")}} con un canale alfa, come `rgb()`. Come per `opacity`, un valore di `1` per il canale alfa rende il colore completamente opaco. Pertanto, `background-color: rgb(0 0 0 / 50%);` imposta il colore di sfondo al 50% di opacità.
 
-Prova a cambiare i valori di opacità e del canale alpha negli esempi seguenti per vedere più o meno l'immagine di sfondo dietro la scatola.
+Provare a modificare i valori di opacità e del canale alfa negli esempi seguenti per visualizzare una porzione maggiore o minore dell'immagine di sfondo dietro la casella.
 
 ```html live-sample___opacity
 <div class="wrapper">
@@ -46,7 +46,7 @@ body {
 
 .box {
   flex: 1;
-  border: 5px solid #000;
+  border: 5px solid black;
   border-radius: 0.5em;
   font-size: 140%;
   padding: 20px;
@@ -55,22 +55,22 @@ body {
 
 ```css live-sample___opacity
 .box1 {
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: white;
   opacity: 0.5;
 }
 
 .box2 {
   background-color: rgb(0 0 0 / 0.5);
-  color: #fff;
+  color: white;
 }
 ```
 
 {{EmbedLiveSample("opacity", "", "280px")}}
 
 > [!NOTE]
-> Assicurati che il tuo testo mantenga un contrasto sufficiente con lo sfondo nei casi in cui stai sovrapponendo un'immagine; altrimenti potresti rendere difficile la lettura del contenuto.
+> Assicurarsi che il testo mantenga un contrasto sufficiente con lo sfondo quando viene sovrapposto a un'immagine; in caso contrario, il contenuto potrebbe risultare difficile da leggere.
 
-## Vedi anche
+## Vedere anche
 
-- [Applicare colori agli elementi HTML utilizzando CSS.](/it/docs/Web/CSS/CSS_colors/Applying_color)
+- [Applicare colori agli elementi HTML usando CSS.](/it/docs/Web/CSS/Guides/Colors/Applying_color)

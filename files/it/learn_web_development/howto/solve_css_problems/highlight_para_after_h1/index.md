@@ -1,20 +1,20 @@
 ---
-title: Come evidenziare un paragrafo che viene dopo un'intestazione
+title: Come evidenziare un paragrafo che segue un'intestazione
 short-title: Evidenziare un paragrafo dopo un'intestazione
 slug: Learn_web_development/Howto/Solve_CSS_problems/Highlight_para_after_h1
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-In questa guida puoi scoprire come evidenziare un paragrafo che viene direttamente dopo un'intestazione.
+In questa guida viene illustrato come evidenziare un paragrafo che si trova direttamente dopo un'intestazione.
 
-## Stilizzare il primo paragrafo dopo un'intestazione
+## Applicare stili al primo paragrafo dopo un'intestazione
 
-Un modello comune è quello di stilizzare il primo paragrafo di un articolo in modo diverso rispetto a quelli che seguono. Di solito questo primo paragrafo si trova subito dopo un'intestazione, e se questo è il caso nel tuo design, puoi usare quella combinazione di elementi per mirare il paragrafo.
+Un pattern comune consiste nell'applicare uno stile diverso al primo paragrafo di un articolo rispetto a quelli successivi. Solitamente questo primo paragrafo si trova subito dopo un'intestazione e, se questo è il caso nel design, è possibile usare quella combinazione di elementi per selezionare il paragrafo.
 
-## Il combinatore di fratello successivo
+## Il combinatore del fratello successivo
 
-CSS ha un gruppo di [Selettori CSS](/it/docs/Web/CSS/CSS_selectors) noti come **combinatori**, perché selezionano gli elementi basandosi su una combinazione di selettori. Nel nostro caso, useremo il [combinatore di fratello successivo](/it/docs/Web/CSS/Next-sibling_combinator). Questo combinatore seleziona un elemento basandosi sul fatto che sia vicino ad un altro elemento. Nel nostro HTML abbiamo un {{htmlelement("Heading_Elements", "h1")}} seguito da un {{htmlelement("p")}}. Il `<p>` è il fratello successivo del `<h1>`, quindi possiamo selezionarlo con `h1 + p`.
+CSS dispone di un gruppo di [selettori CSS](/it/docs/Web/CSS/Guides/Selectors) definiti **combinatori**, poiché selezionano elementi in base a una combinazione di selettori. In questo caso verrà usato il [combinatore del fratello successivo](/it/docs/Web/CSS/Reference/Selectors/Next-sibling_combinator). Questo combinatore seleziona un elemento in base al fatto che sia adiacente a un altro elemento. Nell'HTML è presente un {{htmlelement("Heading_Elements", "h1")}} seguito da un {{htmlelement("p")}}. Il `<p>` è il fratello successivo del `<h1>`, quindi è possibile selezionarlo con `h1 + p`.
 
 ```html live-sample___highlight_h1_plus_para
 <div class="wrapper">

@@ -1,13 +1,13 @@
 ---
-title: Pratica di costruzione di oggetti
+title: Esercitazione sulla costruzione di oggetti
 slug: Learn_web_development/Extensions/Advanced_JavaScript_objects/Object_building_practice
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 2b4a2ad5d9ba084a9eaa2f9204102655e7b575c4
 ---
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Advanced_JavaScript_objects/Classes_in_JavaScript", "Learn_web_development/Extensions/Advanced_JavaScript_objects/Adding_bouncing_balls_features", "Learn_web_development/Extensions/Advanced_JavaScript_objects")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Advanced_JavaScript_objects/Test_your_skills/Object-oriented_JavaScript", "Learn_web_development/Extensions/Advanced_JavaScript_objects/Adding_bouncing_balls_features", "Learn_web_development/Extensions/Advanced_JavaScript_objects")}}
 
-Nei precedenti articoli abbiamo esaminato tutta la teoria essenziale sugli oggetti JavaScript e i dettagli della sintassi, fornendoti una solida base di partenza. In questo articolo ci immergeremo in un esercizio pratico, dandoti ancora più pratica nella costruzione di oggetti JavaScript personalizzati, con un risultato divertente e colorato.
+Negli articoli precedenti abbiamo esaminato tutti i dettagli essenziali della teoria e della sintassi degli oggetti JavaScript, fornendo una solida base da cui iniziare. In questo articolo approfondiremo un esercizio pratico, offrendo ulteriore pratica nella costruzione di oggetti JavaScript personalizzati, con un risultato divertente e colorato.
 
 <table>
   <tbody>
@@ -15,14 +15,14 @@ Nei precedenti articoli abbiamo esaminato tutta la teoria essenziale sugli ogget
       <th scope="row">Prerequisiti:</th>
       <td>
         Familiarità con le basi di JavaScript
-        (in particolare
-        <a href="/it/docs/Learn_web_development/Core/Scripting/Object_basics">le basi degli oggetti</a>) e i concetti orientati agli oggetti JavaScript trattati nelle lezioni precedenti di questo modulo.
+        (in particolare con le
+        <a href="/it/docs/Learn_web_development/Core/Scripting/Object_basics">Basi degli oggetti</a>) e con i concetti di JavaScript orientato agli oggetti trattati nelle lezioni precedenti di questo modulo.
       </td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
-        Pratica l'uso di oggetti e tecniche orientate agli oggetti
+        Esercitarsi nell'uso di oggetti e tecniche orientate agli oggetti
         in un contesto reale.
       </td>
     </tr>
@@ -31,19 +31,19 @@ Nei precedenti articoli abbiamo esaminato tutta la teoria essenziale sugli ogget
 
 ## Facciamo rimbalzare alcune palline
 
-In questo articolo scriveremo un classico demo di "palline rimbalzanti", per mostrarti quanto possano essere utili gli oggetti in JavaScript. Le nostre piccole palline rimbalzeranno sullo schermo e cambieranno colore quando si toccheranno. L'esempio finito assomiglierà un po' a questo:
+In questo articolo scriveremo una classica demo di "palline rimbalzanti", per mostrare quanto possano essere utili gli oggetti in JavaScript. Le nostre piccole palline rimbalzeranno sullo schermo e cambieranno colore quando si toccano tra loro. L'esempio completato avrà un aspetto simile a questo:
 
-![Screenshot di una pagina web intitolata "Palline rimbalzanti". 23 palline di vari colori pastello e dimensioni sono visibili su uno schermo nero con lunghe scie dietro che indicano il movimento.](bouncing-balls.png)
+![Schermata di una pagina web intitolata "Bouncing balls". Su uno schermo nero sono visibili 23 palline di vari colori pastello e dimensioni, con lunghe scie dietro di esse che ne indicano il movimento.](bouncing-balls.png)
 
-Questo esempio userà la [Canvas API](/it/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics) per disegnare le palline sullo schermo, e l'API [`requestAnimationFrame`](/it/docs/Web/API/Window/requestAnimationFrame) per animare l'intero display — non è necessario avere una conoscenza preliminare di queste API, e speriamo che, al termine di questo articolo, sarai interessato a esplorarle ulteriormente. Durante il percorso, useremo alcuni oggetti intelligenti e ti mostreremo un paio di belle tecniche come far rimbalzare le palline sui muri e controllare se si sono colpite a vicenda (conosciuto altrimenti come _rilevamento delle collisioni_).
+Questo esempio utilizzerà la [Canvas API](/it/docs/Learn_web_development/Extensions/Client-side_APIs/Drawing_graphics) per disegnare le palline sullo schermo e l'API [`requestAnimationFrame`](/it/docs/Web/API/Window/requestAnimationFrame) per animare l'intera visualizzazione — non è necessaria alcuna conoscenza pregressa di queste API e, al termine di questo articolo, si spera che nasca l'interesse di esplorarle più a fondo. Durante il percorso useremo alcuni oggetti ingegnosi e mostreremo alcune tecniche utili, come far rimbalzare le palline contro i muri e verificare se si sono urtate (altrimenti noto come _rilevamento delle collisioni_).
 
-## Iniziare
+## Per iniziare
 
-Per cominciare, crea copie locali dei nostri file [`index.html`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/index.html), [`style.css`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/style.css), e [`main.js`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/main.js). Questi contengono rispettivamente:
+Per prima cosa, creare copie locali dei file [`index.html`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/index.html), [`style.css`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/style.css) e [`main.js`](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/main.js). Questi contengono rispettivamente:
 
-1. Un documento HTML molto semplice con un elemento {{HTMLElement("Heading_Elements", "h1")}}, un elemento {{HTMLElement("canvas")}} per disegnare le nostre palline, ed elementi per applicare il nostro CSS e JavaScript al nostro HTML.
-2. Alcuni stili molto semplici, che servono principalmente per stilizzare e posizionare l'`<h1>`, e rimuovere eventuali barre di scorrimento o margini attorno ai bordi della pagina (in modo che si presenti in modo carino e ordinato).
-3. Un po' di JavaScript che serve per impostare l'elemento `<canvas>` e fornire una funzione generale che useremo.
+1. Un documento HTML molto semplice con un elemento {{HTMLElement("Heading_Elements", "h1")}}, un elemento {{HTMLElement("canvas")}} su cui disegnare le palline e gli elementi per applicare CSS e JavaScript all'HTML.
+2. Alcuni stili molto semplici, che servono principalmente a definire lo stile e la posizione di `<h1>` e a eliminare eventuali barre di scorrimento o margini lungo il bordo della pagina, per ottenere un aspetto ordinato.
+3. JavaScript che serve a configurare l'elemento `<canvas>` e a fornire una funzione generale che verrà utilizzata.
 
 La prima parte dello script è la seguente:
 
@@ -55,13 +55,13 @@ const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
 ```
 
-Questo script ottiene un riferimento all'elemento `<canvas>`, quindi chiama il metodo [`getContext()`](/it/docs/Web/API/HTMLCanvasElement/getContext) su di esso per darci un contesto su cui possiamo iniziare a disegnare. La costante risultante (`ctx`) è l'oggetto che rappresenta direttamente l'area di disegno del canvas e ci consente di disegnarci forme 2D.
+Questo script ottiene un riferimento all'elemento `<canvas>`, quindi chiama su di esso il metodo [`getContext()`](/it/docs/Web/API/HTMLCanvasElement/getContext) per fornire un contesto sul quale iniziare a disegnare. La costante risultante (`ctx`) è l'oggetto che rappresenta direttamente l'area di disegno del canvas e consente di disegnarvi forme 2D.
 
-Successivamente, impostiamo le costanti chiamate `width` e `height`, e la larghezza e l'altezza dell'elemento canvas (rappresentate dalle proprietà `canvas.width` e `canvas.height`) per corrispondere alla larghezza e altezza del viewport del browser (l'area su cui appare la pagina web — che può essere ottenuta dalle proprietà [`Window.innerWidth`](/it/docs/Web/API/Window/innerWidth) e [`Window.innerHeight`](/it/docs/Web/API/Window/innerHeight)).
+Successivamente, vengono impostate le costanti denominate `width` e `height`, nonché la larghezza e l'altezza dell'elemento canvas (rappresentate dalle proprietà `canvas.width` e `canvas.height`), affinché siano uguali alla larghezza e all'altezza della viewport del browser (l'area in cui viene visualizzata la pagina web — ottenibile dalle proprietà [`Window.innerWidth`](/it/docs/Web/API/Window/innerWidth) e [`Window.innerHeight`](/it/docs/Web/API/Window/innerHeight)).
 
-Nota che stiamo concatenando più assegnazioni insieme, per ottenere le variabili impostate più rapidamente — questo è perfettamente lecito.
+Si noti che più assegnazioni vengono concatenate insieme per impostare più rapidamente tutte le variabili: è perfettamente corretto.
 
-Poi abbiamo due funzioni di supporto:
+Sono poi presenti due funzioni di supporto:
 
 ```js
 function random(min, max) {
@@ -73,11 +73,11 @@ function randomRGB() {
 }
 ```
 
-La funzione `random()` prende due numeri come argomenti e restituisce un numero casuale nell'intervallo tra i due. La funzione `randomRGB()` genera un colore casuale rappresentato come una stringa [`rgb()`](/it/docs/Web/CSS/color_value/rgb).
+La funzione `random()` accetta due numeri come argomenti e restituisce un numero casuale nell'intervallo compreso tra essi. La funzione `randomRGB()` genera un colore casuale rappresentato come stringa {{cssxref("color_value/rgb")}}.
 
-## Modellare una pallina nel nostro programma
+## Modellare una pallina nel programma
 
-Il nostro programma presenterà molte palline che rimbalzano sullo schermo. Poiché queste palline si comporteranno tutte allo stesso modo, ha senso rappresentarle con un oggetto. Iniziamo aggiungendo la seguente definizione di classe alla fine del nostro codice.
+Il programma includerà molte palline che rimbalzano sullo schermo. Poiché queste palline si comporteranno tutte nello stesso modo, è sensato rappresentarle con un oggetto. Iniziare aggiungendo la seguente definizione di classe alla fine del codice.
 
 ```js
 class Ball {
@@ -92,18 +92,18 @@ class Ball {
 }
 ```
 
-Finora questa classe contiene solo un costruttore, nel quale possiamo inizializzare le proprietà che ciascuna pallina necessita per funzionare nel nostro programma:
+Per ora questa classe contiene soltanto un costruttore, nel quale è possibile inizializzare le proprietà necessarie a ogni pallina per funzionare nel programma:
 
-- Coordinate `x` e `y` — le coordinate orizzontali e verticali dove la pallina inizia sullo schermo. Questo può variare tra 0 (angolo in alto a sinistra) fino alla larghezza e altezza del viewport del browser (angolo in basso a destra).
-- Velocità orizzontale e verticale (`velX` e `velY`) — a ciascuna pallina è assegnata una velocità orizzontale e verticale; in termini reali questi valori sono regolarmente aggiunti ai valori di coordinate `x`/`y` quando animiamo le palline, per spostarle di questa quantità a ogni frame.
-- `color` — a ciascuna pallina viene assegnato un colore.
-- `size` — a ciascuna pallina viene assegnata una dimensione — questo è il suo raggio, in pixel.
+- coordinate `x` e `y` — le coordinate orizzontale e verticale in cui la pallina inizia sullo schermo. Possono variare da 0, nell'angolo superiore sinistro, fino alla larghezza e all'altezza della viewport del browser, nell'angolo inferiore destro.
+- velocità orizzontale e verticale (`velX` e `velY`) — a ogni pallina viene assegnata una velocità orizzontale e verticale; in pratica, questi valori vengono aggiunti regolarmente ai valori delle coordinate `x`/`y` durante l'animazione delle palline, per spostarle di questa quantità a ogni frame.
+- `color` — ogni pallina riceve un colore.
+- `size` — ogni pallina riceve una dimensione, ovvero il suo raggio in pixel.
 
-Questo gestisce le proprietà, ma che dire dei metodi? Vogliamo far fare qualcosa alle nostre palline nel nostro programma.
+Questo gestisce le proprietà, ma che dire dei metodi? Occorre che le palline facciano effettivamente qualcosa nel programma.
 
 ### Disegnare la pallina
 
-Prima aggiungi il seguente metodo `draw()` alla classe `Ball`:
+Per prima cosa, aggiungere il seguente metodo `draw()` alla classe `Ball`:
 
 ```js
 class Ball {
@@ -117,29 +117,28 @@ class Ball {
 }
 ```
 
-Utilizzando questa funzione, possiamo dire alla pallina di disegnarsi sullo schermo, chiamando una serie di membri del contesto canvas 2D che abbiamo definito in precedenza (`ctx`). Il contesto è come la carta, e ora vogliamo comandare la nostra penna per disegnare qualcosa su di essa:
+Usando questa funzione, è possibile indicare alla pallina di disegnarsi sullo schermo, chiamando una serie di membri del contesto canvas 2D definito in precedenza (`ctx`). Il contesto è come la carta e ora occorre comandare la penna affinché disegni qualcosa su di essa:
 
-- Per prima cosa, usiamo [`beginPath()`](/it/docs/Web/API/CanvasRenderingContext2D/beginPath) per dichiarare che vogliamo disegnare una forma sulla carta.
-- Successivamente, usiamo [`fillStyle`](/it/docs/Web/API/CanvasRenderingContext2D/fillStyle) per definire quale colore vogliamo che abbia la forma — lo impostiamo sulla proprietà `color` della nostra pallina.
-- Quindi, usiamo il metodo [`arc()`](/it/docs/Web/API/CanvasRenderingContext2D/arc) per tracciare una forma ad arco sulla carta. I suoi parametri sono:
+- Innanzitutto, si usa [`beginPath()`](/it/docs/Web/API/CanvasRenderingContext2D/beginPath) per dichiarare che si desidera disegnare una forma sulla carta.
+- Successivamente, si usa [`fillStyle`](/it/docs/Web/API/CanvasRenderingContext2D/fillStyle) per definire il colore desiderato per la forma: viene impostato sulla proprietà `color` della pallina.
+- Quindi, si usa il metodo [`arc()`](/it/docs/Web/API/CanvasRenderingContext2D/arc) per tracciare una forma ad arco sulla carta. I suoi parametri sono:
+  - La posizione `x` e `y` del centro dell'arco: vengono specificate le proprietà `x` e `y` della pallina.
+  - Il raggio dell'arco: in questo caso, la proprietà `size` della pallina.
+  - Gli ultimi due parametri specificano il numero di gradi iniziale e finale della circonferenza tra cui viene disegnato l'arco. Qui vengono specificati 0 gradi e `2 * PI`, equivalenti a 360 gradi in radianti (purtroppo, è necessario specificarlo in radianti). Questo produce un cerchio completo. Specificando soltanto `1 * PI`, si otterrebbe un semicerchio, ovvero 180 gradi.
 
-  - La posizione `x` e `y` del centro dell'arco — stiamo specificando le proprietà `x` e `y` della pallina.
-  - Il raggio dell'arco — in questo caso, la proprietà `size` della pallina.
-  - Gli ultimi due parametri specificano l'inizio e la fine del numero di gradi attorno al cerchio che l'arco è disegnato. Qui specifichiamo 0 gradi e `2 * PI`, che è l'equivalente di 360 gradi in radianti (sfortunatamente, devi specificarlo in radianti). Ciò ci dà un cerchio completo. Se avessi specificato solo `1 * PI`, otterresti un semicerchio (180 gradi).
+- Infine, si usa il metodo [`fill()`](/it/docs/Web/API/CanvasRenderingContext2D/fill), che sostanzialmente dichiara: "termina il disegno del percorso iniziato con `beginPath()` e riempi l'area che occupa con il colore specificato in precedenza in `fillStyle`."
 
-- Infine, usiamo il metodo [`fill()`](/it/docs/Web/API/CanvasRenderingContext2D/fill), che in pratica dichiara "finisci di disegnare il percorso che abbiamo iniziato con `beginPath()`, e riempi l'area che occupa con il colore che abbiamo specificato in precedenza in `fillStyle`."
+È già possibile iniziare a testare l'oggetto.
 
-Puoi già iniziare a testare il tuo oggetto.
-
-1. Salva il codice finora e carica il file HTML in un browser.
-2. Apri la console JavaScript del browser e poi aggiorna la pagina in modo che la dimensione del canvas cambi nella piccola finestra visibile che rimane quando si apre la console.
-3. Digita quanto segue per creare una nuova istanza di pallina:
+1. Salvare il codice scritto finora e caricare il file HTML in un browser.
+2. Aprire la console JavaScript del browser, quindi aggiornare la pagina affinché la dimensione del canvas cambi in base alla viewport visibile più piccola che rimane quando la console è aperta.
+3. Digitare quanto segue per creare una nuova istanza della pallina:
 
    ```js
    const testBall = new Ball(50, 100, 4, 4, "blue", 10);
    ```
 
-4. Prova a chiamare i suoi membri:
+4. Provare a chiamarne i membri:
 
    ```js
    testBall.x;
@@ -148,11 +147,11 @@ Puoi già iniziare a testare il tuo oggetto.
    testBall.draw();
    ```
 
-5. Quando inserisci l'ultima riga, dovresti vedere la pallina disegnarsi da qualche parte sul canvas.
+5. Quando viene inserita l'ultima riga, la pallina dovrebbe disegnarsi in un punto del canvas.
 
 ### Aggiornare i dati della pallina
 
-Possiamo disegnare la pallina in posizione, ma per spostare effettivamente la pallina, abbiamo bisogno di una funzione di aggiornamento di qualche tipo. Aggiungi il seguente codice all'interno della definizione della classe `Ball`:
+È possibile disegnare la pallina in una posizione, ma per spostarla effettivamente serve una sorta di funzione di aggiornamento. Aggiungere il seguente codice all'interno della definizione della classe `Ball`:
 
 ```js
 class Ball {
@@ -180,26 +179,26 @@ class Ball {
 }
 ```
 
-Le prime quattro parti della funzione controllano se la pallina ha raggiunto il bordo del canvas. Se lo ha fatto, invertiamo la polarità della velocità rilevante per far viaggiare la pallina nella direzione opposta. Quindi, ad esempio, se la pallina stava viaggiando verso l'alto (`velY` negativo), la velocità verticale viene cambiata in modo che inizi a viaggiare verso il basso (positivo `velY`).
+Le prime quattro parti della funzione verificano se la pallina ha raggiunto il bordo del canvas. In tal caso, invertono la polarità della velocità pertinente per far viaggiare la pallina nella direzione opposta. Per esempio, se la pallina si stava muovendo verso l'alto (`velY` negativo), allora la velocità verticale viene modificata affinché inizi invece a muoversi verso il basso (`velY` positivo).
 
-Nei quattro casi, stiamo controllando:
+Nei quattro casi, viene verificato se:
 
-- se la coordinata `x` è maggiore della larghezza del canvas (la pallina sta andando oltre il bordo destro).
-- se la coordinata `x` è minore di 0 (la pallina sta andando oltre il bordo sinistro).
-- se la coordinata `y` è maggiore dell'altezza del canvas (la pallina sta andando oltre il bordo inferiore).
-- se la coordinata `y` è minore di 0 (la pallina sta andando oltre il bordo superiore).
+- la coordinata `x` è maggiore della larghezza del canvas (la pallina sta uscendo dal bordo destro);
+- la coordinata `x` è minore di 0 (la pallina sta uscendo dal bordo sinistro);
+- la coordinata `y` è maggiore dell'altezza del canvas (la pallina sta uscendo dal bordo inferiore);
+- la coordinata `y` è minore di 0 (la pallina sta uscendo dal bordo superiore).
 
-In ciascun caso, includiamo la `size` della pallina nel calcolo perché le coordinate `x`/`y` sono al centro della pallina, ma vogliamo che il bordo della pallina rimbalzi sul perimetro — non vogliamo che la pallina vada a metà fuori dallo schermo prima che inizi a rimbalzare indietro.
+In ogni caso, il calcolo include la `size` della pallina perché le coordinate `x`/`y` si trovano al centro della pallina, mentre si desidera che sia il bordo della pallina a rimbalzare contro il perimetro: non si vuole che la pallina esca per metà dallo schermo prima di iniziare a rimbalzare.
 
-Le ultime due righe aggiungono il valore `velX` alla coordinata `x`, e il valore `velY` alla coordinata `y` — la pallina viene effettivamente spostata ogni volta che questo metodo viene chiamato.
+Le ultime due righe aggiungono il valore `velX` alla coordinata `x` e il valore `velY` alla coordinata `y`: in effetti, la pallina viene spostata ogni volta che questo metodo viene chiamato.
 
-Questo è tutto per ora; procediamo con un po' di animazione!
+Questo basta per ora; passiamo all'animazione.
 
 ## Animare la pallina
 
-Ora rendiamo tutto più divertente. Ora inizieremo ad aggiungere palline al canvas e ad animarle.
+Ora rendiamo il tutto più divertente. Si inizierà ad aggiungere palline al canvas e ad animarle.
 
-Per prima cosa, dobbiamo creare un posto dove memorizzare tutte le nostre palline e poi popolarlo. Il seguente codice farà questo compito — aggiungilo alla fine del tuo codice ora:
+Per prima cosa, occorre creare un luogo in cui memorizzare tutte le palline e poi popolarlo. Il seguente codice svolgerà questo compito: aggiungerlo ora alla fine del codice.
 
 ```js
 const balls = [];
@@ -221,9 +220,9 @@ while (balls.length < 25) {
 }
 ```
 
-Il ciclo `while` crea una nuova istanza del nostro `Ball()` utilizzando valori casuali generati con le nostre funzioni `random()` e `randomRGB()`, quindi lo `push()` alla fine del nostro array di palline, ma solo mentre il numero di palline nell'array è inferiore a 25. Quindi quando abbiamo 25 palline nell'array, non verranno aggiunte altre palline. Puoi provare a variare il numero in `balls.length < 25` per ottenere più o meno palline nell'array. A seconda di quanta potenza di elaborazione ha il tuo computer/browser, specificare diverse migliaia di palline potrebbe rallentare notevolmente l'animazione!
+Il ciclo `while` crea una nuova istanza di `Ball()` usando valori casuali generati dalle funzioni `random()` e `randomRGB()`, quindi esegue `push()` alla fine dell'array delle palline, ma solo finché il numero di palline nell'array è inferiore a 25. Pertanto, quando l'array contiene 25 palline, non verranno più aggiunte palline. È possibile variare il numero in `balls.length < 25` per ottenere più o meno palline nell'array. A seconda della potenza di elaborazione del computer/browser, specificare diverse migliaia di palline potrebbe rallentare notevolmente l'animazione.
 
-Successivamente, aggiungi il seguente codice alla fine del tuo codice:
+Successivamente, aggiungere quanto segue alla fine del codice:
 
 ```js
 function loop() {
@@ -239,25 +238,25 @@ function loop() {
 }
 ```
 
-Tutti i programmi che animano cose generalmente coinvolgono un ciclo di animazione, che serve per aggiornare le informazioni nel programma e poi renderizzare la vista risultante su ciascun frame dell'animazione; questa è la base per la maggior parte dei giochi e di altri programmi simili. La nostra funzione `loop()` fa quanto segue:
+Tutti i programmi che animano elementi generalmente includono un ciclo di animazione, che serve ad aggiornare le informazioni nel programma e quindi a eseguire il rendering della visualizzazione risultante a ogni frame dell'animazione; questa è la base della maggior parte dei giochi e di altri programmi simili. La funzione `loop()` svolge quanto segue:
 
-- Imposta il colore di riempimento del canvas su nero semi-trasparente, quindi disegna un rettangolo del colore su tutta la larghezza e altezza del canvas, utilizzando `fillRect()` (i quattro parametri forniscono una coordinata iniziale e una larghezza e un'altezza per il rettangolo disegnato). Questo serve a coprire il disegno del frame precedente prima che il prossimo venga disegnato. Se non lo fai, vedrai solo lunghe serpenti strisciare sul canvas invece di palline che si muovono! Il colore del riempimento è impostato su semi-trasparente, `rgb(0 0 0 / 25%)`, per consentire ai frame precedenti di trasparire leggermente, producendo le piccole scie dietro le palline mentre si muovono. Se cambi `0.25` in `1`, non le vedrai affatto più. Prova a variare questo numero per vedere l'effetto che ha.
-- Cicla attraverso tutte le palline nell'array `balls` e esegue la funzione `draw()` e `update()` di ciascuna pallina per disegnarne ciascuna sullo schermo, quindi eseguire gli aggiornamenti necessari alla posizione e velocità in tempo per il prossimo frame.
-- Esegue nuovamente la funzione utilizzando il metodo `requestAnimationFrame()` — quando questo metodo viene eseguito ripetutamente e viene passato lo stesso nome di funzione, esegue quella funzione un numero impostato di volte al secondo per creare un'animazione fluida. Generalmente questo viene fatto ricorsivamente — il che significa che la funzione chiama se stessa ogni volta che viene eseguita, quindi viene eseguita più e più volte.
+- Imposta il colore di riempimento del canvas su nero semitrasparente, quindi disegna un rettangolo di quel colore lungo l'intera larghezza e altezza del canvas, usando `fillRect()` (i quattro parametri forniscono una coordinata iniziale e una larghezza e altezza per il rettangolo disegnato). Questo serve a coprire il disegno del frame precedente prima di disegnare quello successivo. Senza questa operazione, invece di palline in movimento si vedrebbero soltanto lunghi serpenti che si snodano nel canvas. Il colore di riempimento è impostato su semitrasparente, `rgb(0 0 0 / 25%)`, per consentire ai frame precedenti di trasparire leggermente, producendo le piccole scie dietro le palline mentre si muovono. Cambiando 0.25 in 1, non sarebbero più visibili. Provare a variare questo numero per osservare l'effetto prodotto.
+- Esegue un ciclo su tutte le palline nell'array `balls`, quindi esegue le funzioni `draw()` e `update()` di ogni pallina per disegnarla sullo schermo e applicare gli aggiornamenti necessari a posizione e velocità in vista del frame successivo.
+- Esegue nuovamente la funzione usando il metodo `requestAnimationFrame()`: quando questo metodo viene eseguito ripetutamente e gli viene passato lo stesso nome di funzione, esegue tale funzione un determinato numero di volte al secondo per creare un'animazione fluida. In genere viene eseguito ricorsivamente, ossia la funzione chiama sé stessa ogni volta che viene eseguita, continuando a ripetersi.
 
-Infine, aggiungi la seguente riga alla fine del tuo codice — dobbiamo chiamare la funzione una volta per avviare l'animazione.
+Infine, aggiungere la riga seguente alla fine del codice: è necessario chiamare la funzione una volta per avviare l'animazione.
 
 ```js
 loop();
 ```
 
-Questo è tutto per le basi — prova a salvare e aggiornare per testare le tue palline rimbalzanti!
+Questo è tutto per le basi: provare a salvare e aggiornare la pagina per testare le palline rimbalzanti.
 
 ## Aggiungere il rilevamento delle collisioni
 
-Ora per un po' di divertimento, aggiungiamo un po' di rilevamento delle collisioni al nostro programma, in modo che le nostre palline sappiano quando hanno colpito un'altra pallina.
+Ora, per rendere il tutto più divertente, aggiungiamo il rilevamento delle collisioni al programma, in modo che le palline sappiano quando hanno colpito un'altra pallina.
 
-Prima, aggiungi la seguente definizione di metodo alla tua classe `Ball`.
+Per prima cosa, aggiungere la seguente definizione di metodo alla classe `Ball`.
 
 ```js
 class Ball {
@@ -278,14 +277,14 @@ class Ball {
 }
 ```
 
-Questo metodo è un po' complesso, quindi non preoccuparti se non capisci esattamente come funziona per ora. Segue una spiegazione:
+Questo metodo è leggermente complesso, quindi non preoccupatevi se per ora non è chiaro esattamente come funziona. Di seguito è riportata una spiegazione:
 
-- Per ciascuna pallina, dobbiamo controllare ogni altra pallina per vedere se ha colliso con la pallina corrente. Per fare ciò, avviamo un altro ciclo `for...of` per scorrere tutte le palline nell'array `balls[]`.
-- Immediatamente all'interno del ciclo for, usiamo un'istruzione `if` per verificare se la pallina corrente che si sta scorrendo è la stessa pallina di quella che stiamo attualmente controllando. Non vogliamo controllare se una pallina ha colliso con se stessa! Per fare ciò, verifichiamo se la pallina corrente (cioè la pallina il cui metodo collisionDetect è invocato) è la stessa della pallina nel ciclo (cioè la pallina a cui si fa riferimento dall'attuale iterazione del ciclo for nel metodo collisionDetect). Poi usiamo `!` per negare il controllo, in modo che il codice all'interno dell'istruzione `if` si esegua solo se non sono la stessa.
-- Poi usiamo un algoritmo comune per controllare la collisione di due cerchi. In pratica stiamo controllando se le aree dei due cerchi si sovrappongono. Questo è spiegato più approfonditamente in [Rilevamento delle collisioni 2D](/it/docs/Games/Techniques/2D_collision_detection).
-- Se viene rilevata una collisione, il codice all'interno dell'istruzione `if` interna viene eseguito. In questo caso, impostiamo solo la proprietà `color` di entrambi i cerchi su un nuovo colore casuale. Avremmo potuto fare qualcosa di molto più complesso, come far rimbalzare le palline l'una dall'altra realisticamente, ma sarebbe stato molto più complesso da implementare. Per tali simulazioni fisiche, gli sviluppatori tendono a usare librerie di giochi o fisica come [PhysicsJS](https://wellcaffeinated.net/PhysicsJS/), [matter.js](https://brm.io/matter-js/), [Phaser](https://phaser.io/), ecc.
+- Per ogni pallina, occorre controllare tutte le altre palline per vedere se si è verificata una collisione con quella corrente. A tale scopo, viene avviato un altro ciclo `for...of` per scorrere tutte le palline nell'array `balls[]`.
+- Subito all'interno del ciclo for, viene utilizzata un'istruzione `if` per verificare se la pallina corrente attraversata dal ciclo è la stessa pallina che si sta controllando. Non si vuole controllare se una pallina è entrata in collisione con sé stessa. Per farlo, viene verificato se la pallina corrente, ossia la pallina il cui metodo collisionDetect viene invocato, è uguale alla pallina del ciclo, ossia quella a cui fa riferimento l'iterazione corrente del ciclo for nel metodo collisionDetect. Viene quindi usato `!` per negare il controllo, in modo che il codice all'interno dell'istruzione `if` venga eseguito solo se non sono **la stessa** pallina.
+- Viene quindi usato un algoritmo comune per controllare la collisione di due cerchi. In sostanza, viene verificato se le aree dei due cerchi si sovrappongono. Questo è spiegato più dettagliatamente in [Rilevamento delle collisioni 2D](/it/docs/Games/Techniques/2D_collision_detection).
+- Se viene rilevata una collisione, viene eseguito il codice all'interno dell'istruzione `if` interna. In questo caso, viene impostata soltanto la proprietà `color` di entrambi i cerchi su un nuovo colore casuale. Si sarebbe potuto fare qualcosa di molto più complesso, come far rimbalzare realisticamente le palline l'una contro l'altra, ma sarebbe stato molto più complesso da implementare. Per simulazioni fisiche di questo tipo, gli sviluppatori tendono a utilizzare librerie per giochi o fisica come [PhysicsJS](https://wellcaffeinated.net/PhysicsJS/), [matter.js](https://brm.io/matter-js/), [Phaser](https://phaser.io/) e così via.
 
-Devi anche chiamare questo metodo in ogni frame dell'animazione. Aggiorna la tua funzione `loop()` per chiamare `ball.collisionDetect()` dopo `ball.update()`:
+È inoltre necessario chiamare questo metodo in ogni frame dell'animazione. Aggiornare la funzione `loop()` per chiamare `ball.collisionDetect()` dopo `ball.update()`:
 
 ```js
 function loop() {
@@ -302,24 +301,24 @@ function loop() {
 }
 ```
 
-Salva e aggiorna nuovamente il demo, e vedrai le tue palline cambiare colore quando si collidono!
+Salvare e aggiornare nuovamente la demo: le palline cambieranno colore quando entrano in collisione.
 
 > [!NOTE]
-> Se hai problemi a far funzionare questo esempio, prova a confrontare il tuo codice JavaScript con la nostra [versione finita](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/main-finished.js) (vedilo anche [eseguire dal vivo](https://mdn.github.io/learning-area/javascript/oojs/bouncing-balls/index-finished.html)).
+> In caso di problemi nel far funzionare questo esempio, provare a confrontare il codice JavaScript con la nostra [versione completata](https://github.com/mdn/learning-area/blob/main/javascript/oojs/bouncing-balls/main-finished.js) (consultare anche la versione [in esecuzione](https://mdn.github.io/learning-area/javascript/oojs/bouncing-balls/index-finished.html)).
 
 ## Riepilogo
 
-Speriamo che ti sia divertito a scrivere il tuo esempio reale di palline rimbalzanti casuali, utilizzando varie tecniche di oggetti e orientamento agli oggetti da tutto il modulo! Questo dovrebbe averti dato una pratica utile nell'usare gli oggetti e un buon contesto reale.
+Si spera che la scrittura di questo esempio reale di palline casuali rimbalzanti sia stata divertente, utilizzando varie tecniche relative agli oggetti e alla programmazione orientata agli oggetti presenti nel modulo. Questo dovrebbe aver fornito pratica utile nell'uso degli oggetti e un buon contesto reale.
 
-Questo è tutto per le lezioni sugli oggetti — tutto ciò che rimane ora è per te testare le tue abilità nella sfida del modulo.
+Questo è tutto per le lezioni sugli oggetti: ora resta soltanto da mettere alla prova le proprie competenze nella sfida del modulo.
 
 ## Vedi anche
 
-- [Tutorial Canvas](/it/docs/Web/API/Canvas_API/Tutorial) — un tutorial introduttivo su canvas 2D.
+- [Tutorial Canvas](/it/docs/Web/API/Canvas_API/Tutorial) — un tutorial introduttivo sul canvas 2D.
 - [requestAnimationFrame()](/it/docs/Web/API/Window/requestAnimationFrame)
 - [Rilevamento delle collisioni 2D](/it/docs/Games/Techniques/2D_collision_detection)
 - [Rilevamento delle collisioni 3D](/it/docs/Games/Techniques/3D_collision_detection)
-- [Gioco breakout 2D usando JavaScript puro](/it/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript) — un ottimo tutorial per principianti che mostra come costruire un gioco 2D.
-- [Gioco breakout 2D usando Phaser](/it/docs/Games/Tutorials/2D_breakout_game_Phaser) — spiega le basi della costruzione di un gioco 2D utilizzando una libreria di giochi JavaScript.
+- [Gioco breakout 2D con JavaScript puro](/it/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript) — un ottimo tutorial introduttivo che mostra come creare un gioco 2D.
+- [Gioco breakout 2D con Phaser](/it/docs/Games/Tutorials/2D_breakout_game_Phaser) — spiega le basi della creazione di un gioco 2D usando una libreria JavaScript per giochi.
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Advanced_JavaScript_objects/Classes_in_JavaScript", "Learn_web_development/Extensions/Advanced_JavaScript_objects/Adding_bouncing_balls_features", "Learn_web_development/Extensions/Advanced_JavaScript_objects")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Advanced_JavaScript_objects/Test_your_skills/Object-oriented_JavaScript", "Learn_web_development/Extensions/Advanced_JavaScript_objects/Adding_bouncing_balls_features", "Learn_web_development/Extensions/Advanced_JavaScript_objects")}}

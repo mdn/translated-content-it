@@ -3,19 +3,19 @@ title: Panoramica degli strumenti lato client
 short-title: Overview
 slug: Learn_web_development/Extensions/Client-side_tools/Overview
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 710372d69095aaeadfba6c892f3e39ed63df4c54
 ---
 
 {{NextMenu("Learn_web_development/Extensions/Client-side_tools/Package_management", "Learn_web_development/Extensions/Client-side_tools")}}
 
-In questo articolo, forniamo una panoramica degli strumenti moderni per il web, quali tipi di strumenti sono disponibili, dove li incontrerai nel ciclo di sviluppo delle applicazioni web e come trovare aiuto per strumenti specifici.
+In questo articolo viene fornita una panoramica degli strumenti web moderni, dei tipi di strumenti disponibili e di dove vengono utilizzati nel ciclo di vita dello sviluppo di app web, nonché di come trovare assistenza per i singoli strumenti.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i linguaggi principali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        Familiarità con i linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
         <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
         <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>.
       </td>
@@ -23,160 +23,156 @@ In questo articolo, forniamo una panoramica degli strumenti moderni per il web, 
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Capire quali tipi di strumenti lato client esistono e come
-        trovarli e ottenere aiuto con essi.
+        Comprendere quali tipi di strumenti lato client esistono e come
+        trovare strumenti e ottenere assistenza per utilizzarli.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Panoramica sugli strumenti moderni
+## Panoramica degli strumenti moderni
 
-Scrivere software per il web è diventato più sofisticato nel corso del tempo. Sebbene sia ancora del tutto ragionevole scrivere HTML, CSS e JavaScript "manualmente", ora esiste una vasta gamma di strumenti che gli sviluppatori possono utilizzare per accelerare il processo di costruzione di un sito web o un'app.
+Scrivere software per il web è diventato più sofisticato nel corso del tempo. Sebbene sia ancora del tutto ragionevole scrivere HTML, CSS e JavaScript "a mano", oggi esiste una grande quantità di strumenti che gli sviluppatori possono usare per velocizzare il processo di creazione di un sito web o di un'app.
 
-Esistono alcuni strumenti estremamente affermati che sono diventati veri e propri "nomi comuni" tra la comunità degli sviluppatori, e nuovi strumenti vengono scritti e rilasciati ogni giorno per risolvere problemi specifici. Potresti persino trovarti a scrivere un software per agevolare il tuo processo di sviluppo, per risolvere un problema specifico che gli strumenti esistenti non sembrano già gestire.
+Esistono strumenti estremamente consolidati che sono diventati nomi comuni nella comunità di sviluppo, e ogni giorno vengono scritti e pubblicati nuovi strumenti per risolvere problemi specifici. Potrebbe perfino capitare di scrivere un software per agevolare il proprio processo di sviluppo, risolvendo un problema specifico che gli strumenti esistenti non sembrano già gestire.
 
-È facile sentirsi sopraffatti dal numero enorme di strumenti che possono essere inclusi in un unico progetto. Allo stesso modo, un unico file di configurazione per uno strumento come [webpack](https://webpack.js.org/) può contenere centinaia di righe, la maggior parte delle quali sono incantesimi magici che sembrano fare il loro lavoro, ma che solo un maestro ingegnere comprenderà pienamente!
+È facile sentirsi sopraffatti dal semplice numero di strumenti che possono essere inclusi in un singolo progetto. Allo stesso modo, un singolo file di configurazione per uno strumento come [webpack](https://webpack.js.org/) può essere lungo centinaia di righe, la maggior parte delle quali sono formule magiche che sembrano fare il proprio lavoro ma che solo un ingegnere esperto comprenderà pienamente.
 
-Di tanto in tanto, persino gli sviluppatori web più esperti si bloccano su un problema di strumenti; è possibile perdere ore tentando di far funzionare una pipeline di strumenti prima ancora di toccare una singola riga di codice dell'applicazione. Se hai avuto difficoltà in passato, non preoccuparti: non sei solo.
+Di tanto in tanto, anche gli sviluppatori web più esperti si bloccano davanti a un problema relativo agli strumenti; è possibile sprecare ore nel tentativo di far funzionare una pipeline di strumenti prima ancora di toccare una sola riga di codice dell'applicazione. Se questo è già capitato in passato, non c'è da preoccuparsi: non si è soli.
 
-In questi articoli, non risponderemo a tutte le domande sugli strumenti web, ma ti forniremo un punto di partenza utile per comprendere le basi, su cui potrai poi costruire. Come con qualsiasi argomento complesso, è bene iniziare in piccolo e gradualmente passare a utilizzi più avanzati.
+In questi articoli non verrà data risposta a ogni domanda sugli strumenti web, ma verrà fornito un utile punto di partenza per comprendere i fondamenti, sui quali sarà poi possibile costruire. Come per qualsiasi argomento complesso, è bene iniziare in piccolo e avanzare gradualmente verso utilizzi più avanzati.
 
 ## L'ecosistema degli strumenti moderni
 
-L'ecosistema degli strumenti per sviluppatori moderni di oggi è enorme, quindi è utile avere una visione generale dei principali problemi che gli strumenti stanno risolvendo. Se cerchi "strumenti per sviluppatori front-end" sul tuo motore di ricerca preferito, otterrai una vasta gamma di risultati che vanno dagli editor di testo, ai browser, ai tipi di penne che puoi usare per prendere appunti.
+L'ecosistema moderno di strumenti per sviluppatori è oggi enorme, quindi è utile avere un'idea generale dei principali problemi risolti dagli strumenti. Cercando "front-end developer tools" con il motore di ricerca preferito, si otterrà un'enorme varietà di risultati, che vanno dagli editor di testo ai browser, fino al tipo di penne utilizzabili per prendere appunti.
 
-Anche se la scelta del tuo editor di codice è certamente una scelta di strumenti, questa serie di articoli andrà oltre, concentrandosi sugli strumenti per sviluppatori che aiutano a produrre codice web più efficiente. Consiglieremo alcuni strumenti particolari e i seguenti tutorial ti mostreranno come usarli. Sono strumenti popolari e standard al momento della scrittura. Ciò non ti esclude dall'utilizzare altri strumenti, se sei consapevole dei loro vantaggi relativi.
+Sebbene la scelta dell'editor di codice sia certamente una scelta relativa agli strumenti, questa serie di articoli andrà oltre, concentrandosi sugli strumenti per sviluppatori che aiutano a produrre codice web in modo più efficiente. Verranno consigliati alcuni strumenti specifici e i tutorial seguenti mostreranno come usarli. Si tratta di strumenti popolari e standard al momento della stesura. Questo non impedisce di usare altri strumenti, se si conoscono i relativi vantaggi.
 
-Da una prospettiva di alto livello, puoi suddividere gli strumenti lato client nelle seguenti quattro ampie categorie di problemi da risolvere:
+Da una prospettiva generale, gli strumenti lato client possono essere suddivisi nelle seguenti quattro ampie categorie di problemi da risolvere:
 
-- **Ambiente** — Strumenti che ti aiutano a configurare il tuo ambiente di sviluppo, come installare ed eseguire altri strumenti.
-- **Rete di sicurezza** — Strumenti utili durante lo sviluppo del tuo codice.
-- **Trasformazione** — Strumenti che trasformano il codice in qualche modo, ad esempio, trasformando un linguaggio intermedio in JavaScript che un browser può comprendere.
-- **Post-sviluppo** — Strumenti utili dopo che hai scritto il tuo codice, come strumenti di testing e di distribuzione.
+- **Ambiente** — Strumenti che aiutano a configurare l'ambiente di sviluppo, ad esempio installando ed eseguendo altri strumenti.
+- **Rete di sicurezza** — Strumenti utili durante lo sviluppo del codice.
+- **Trasformazione** — Strumenti che trasformano il codice in qualche modo, ad esempio convertendo un linguaggio intermedio in JavaScript comprensibile da un browser.
+- **Post-sviluppo** — Strumenti utili dopo aver scritto il codice, come strumenti di testing e deployment.
 
-Esaminiamo ciascuna di queste categorie in dettaglio.
+Esaminiamo ciascuna categoria più nel dettaglio.
 
 ### Ambiente
 
-L'editor, il sistema operativo e il browser sono tutti ambienti di sviluppo. Presumiamo che tu abbia già fatto una scelta con cui ti senti più a tuo agio. Tuttavia, prima di installare ed eseguire altri strumenti, ci sono ancora due scelte da fare:
+L'editor, il sistema operativo e il browser sono tutti ambienti di sviluppo. Si presuppone che sia già stata scelta l'opzione più adatta alle proprie esigenze. Tuttavia, prima di installare ed eseguire altri strumenti, restano ancora due scelte da fare:
 
-- Dove eseguirai gli strumenti. La maggior parte degli strumenti che vengono eseguiti localmente sono scritti in JavaScript, quindi hai bisogno di un interprete JavaScript sul tuo computer che possa essere invocato dalla riga di comando (non quello nel tuo browser). [Node.js](https://nodejs.org/) rimane lo standard industriale e lo useremo. [Bun](https://bun.sh/) è progettato come un sostituto di Node.js, noto per la sua velocità e API potenti.
-- Come installerai gli strumenti, in altre parole, il _gestore dei pacchetti_. Node fornisce [npm](https://www.npmjs.com/) di default, quindi lo useremo. [Yarn](https://yarnpkg.com/) e [pnpm](https://pnpm.io/) sono altre scelte popolari, ognuna con i propri vantaggi come velocità, gestione dei progetti, ecc.
+- Dove eseguire gli strumenti. La maggior parte degli strumenti eseguiti localmente è scritta in JavaScript, quindi è necessario un interprete JavaScript sul computer che possa essere richiamato dalla riga di comando, non quello presente nel browser. [Node.js](https://nodejs.org/) rimane lo standard del settore e verrà utilizzato qui. [Bun](https://bun.com/) è pensato come sostituzione diretta di Node.js ed è noto per la sua velocità e le sue potenti API.
+- Come installare gli strumenti, ovvero il _package manager_. Node fornisce [npm](https://www.npmjs.com/) per impostazione predefinita, quindi verrà utilizzato. [Yarn](https://yarnpkg.com/) e [pnpm](https://pnpm.io/) sono altre scelte popolari, ciascuna con i propri vantaggi, come velocità, gestione dei progetti e così via.
 
 ### Rete di sicurezza
 
-Questi sono strumenti che migliorano un po' il codice che scrivi.
+Si tratta di strumenti che rendono il codice scritto leggermente migliore.
 
-Questa parte degli strumenti dovrebbe essere specifica per il tuo ambiente di sviluppo, anche se non è raro che le aziende abbiano una sorta di politica o configurazione preconfezionata disponibile per l'installazione in modo che tutti i loro sviluppatori utilizzino gli stessi processi.
+Questa parte degli strumenti dovrebbe essere specifica dell'ambiente di sviluppo personale, anche se non è raro che le aziende dispongano di qualche tipo di criterio o configurazione predefinita da installare, in modo che tutti gli sviluppatori utilizzino gli stessi processi.
 
-Questa categoria include qualsiasi cosa renda il tuo processo di sviluppo più semplice per generare codice stabile e affidabile. Gli strumenti della rete di sicurezza dovrebbero anche aiutarti a prevenire errori o correggere errori automaticamente senza dover ricostruire il tuo codice da zero ogni volta.
+Include tutto ciò che semplifica il processo di sviluppo per generare codice stabile e affidabile. Gli strumenti di rete di sicurezza dovrebbero inoltre aiutare a prevenire errori o a correggerli automaticamente senza dover ricompilare il codice da zero ogni volta.
 
-Alcuni tipi di strumenti di rete di sicurezza molto comuni che troverai essere utilizzati dagli sviluppatori sono i seguenti.
+Di seguito sono riportati alcuni tipi molto comuni di strumenti di rete di sicurezza usati dagli sviluppatori.
 
 #### Linters
 
-I **Linters** sono strumenti che controllano il tuo codice e ti informano su eventuali errori presenti, che tipo di errori sono e su quali righe di codice si trovano. Spesso i linters possono essere configurati non solo per segnalare errori, ma anche per segnalare eventuali violazioni di una guida di stile specificata che il tuo team potrebbe utilizzare (ad esempio codice che utilizza il numero sbagliato di spazi per l'indentazione, o utilizza [template literals](/it/docs/Web/JavaScript/Reference/Template_literals) piuttosto che stringhe letterali regolari).
+I **linter** sono strumenti che analizzano il codice e segnalano gli eventuali errori presenti, i relativi tipi e le righe di codice in cui si trovano. Spesso i linter possono essere configurati non solo per segnalare gli errori, ma anche per segnalare eventuali violazioni di una guida di stile specificata usata dal team, ad esempio codice che utilizza un numero errato di spazi per il rientro o che usa [template literals](/it/docs/Web/JavaScript/Reference/Template_literals) anziché string literal regolari.
 
-[ESLint](https://eslint.org/) è il linter JavaScript standard nel settore — un strumento altamente configurabile per rilevare potenziali errori di sintassi e incoraggiare le "migliori pratiche" in tutto il tuo codice. Alcune aziende e progetti hanno anche [condiviso le loro configurazioni ESLint](https://www.npmjs.com/search?q=keywords:eslintconfig).
+[ESLint](https://eslint.org/) è il linter JavaScript standard del settore: uno strumento altamente configurabile per individuare potenziali errori di sintassi e incoraggiare le "best practice" in tutto il codice. Alcune aziende e progetti hanno inoltre [condiviso le proprie configurazioni ESLint](https://www.npmjs.com/search?q=keywords:eslintconfig).
 
-Puoi trovare anche strumenti di linting per altri linguaggi, come [stylelint](https://stylelint.io/).
+È anche possibile trovare strumenti di linting per altri linguaggi, come [stylelint](https://stylelint.io/).
 
 #### Controllo del codice sorgente
 
-Conosciuto anche come **sistemi di controllo delle versioni** (VCS), il **controllo del codice sorgente** è essenziale per fare il backup del lavoro e lavorare in team. Un VCS tipico prevede l'avere una versione locale del codice su cui apporti modifiche. Poi "pussi" le modifiche a una versione "master" del codice all'interno di un repository remoto memorizzato su un server. Di solito c'è un modo per controllare e coordinare quali modifiche vengono fatte alla copia "master" del codice e quando, in modo che un team di sviluppatori non finisca per sovrascrivere continuamente i lavori degli altri.
+Conosciuto anche come **sistema di controllo versione** (VCS), il **controllo del codice sorgente** è essenziale per effettuare il backup del lavoro e lavorare in team. Un VCS tipico prevede una versione locale del codice su cui apportare modifiche. Le modifiche vengono poi sottoposte tramite "push" a una versione "master" del codice all'interno di un repository remoto archiviato su un server. Solitamente esiste un modo per controllare e coordinare quali modifiche vengono apportate alla copia "master" del codice e quando, così da evitare che un team di sviluppatori sovrascriva continuamente il lavoro altrui.
 
-[Git](https://git-scm.com/) è il sistema di controllo del codice sorgente che la maggior parte delle persone utilizza oggi. È accessibile principalmente tramite la riga di comando ma può essere accessibile tramite interfacce utente più amichevoli. Con il tuo codice in un repository git, puoi "spingerlo" al tuo server istanze, oppure utilizzare un sito di controllo sorgente ospitato come [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) o [Bitbucket](https://bitbucket.org/product/).
+[Git](https://git-scm.com/) è il sistema di controllo del codice sorgente usato oggi dalla maggior parte delle persone. Si accede principalmente tramite la riga di comando, ma è possibile accedervi anche tramite interfacce utente intuitive. Con il codice in un repository git, è possibile eseguire il push verso un'istanza del proprio server oppure usare un sito di controllo del codice sorgente ospitato, come [GitHub](https://github.com/), [GitLab](https://about.gitlab.com/) o [Bitbucket](https://bitbucket.org/product/).
 
-Utilizzeremo GitHub in questo modulo. Puoi trovare maggiori informazioni a riguardo in [Git e GitHub](/it/docs/Learn_web_development/Core/Version_control).
+In questo modulo verrà usato GitHub. Maggiori informazioni sono disponibili in [Git e GitHub](/it/docs/Learn_web_development/Core/Version_control).
 
 #### Formattatori di codice
 
-I formattatori di codice sono in qualche modo correlati ai linters, tranne che anziché indicare errori nel codice, di solito tendono a garantire che il tuo codice sia formattato correttamente, secondo le tue regole di stile, correggendo automaticamente gli errori che trovano.
+I formattatori di codice sono in qualche modo correlati ai linter, ma anziché segnalare errori nel codice, tendono solitamente a garantire che il codice sia formattato correttamente secondo le regole di stile, idealmente correggendo automaticamente gli errori rilevati.
 
-[Prettier](https://prettier.io/) è un esempio molto popolare di formattatore di codice, che utilizzeremo successivamente nel modulo.
+[Prettier](https://prettier.io/) è un esempio molto popolare di formattatore di codice, che verrà usato più avanti nel modulo.
 
-#### Checker di tipo
+#### Controllori di tipi
 
-I checker di tipo sono strumenti che aiutano a scrivere codice più affidabile controllando che il tuo codice utilizzi correttamente i tipi di dati nei posti giusti. Questo previene classi comuni di bug come l'accesso a proprietà inesistenti, `undefined` inattesi, ecc.
+I controllori di tipi sono strumenti che aiutano a scrivere codice più affidabile verificando che il codice usi i tipi di dati corretti nei punti appropriati. Questo impedisce classi comuni di bug, come l'accesso a proprietà inesistenti, valori `undefined` imprevisti e così via.
 
-[TypeScript](https://www.typescriptlang.org/) è lo standard di fatto come checker di tipo per JavaScript. Fornisce una propria sintassi di annotazione dei tipi e rappresenta in qualche modo un linguaggio a sé stante, quindi non lo copriremo in questo modulo.
+[TypeScript](https://www.typescriptlang.org/) è lo standard di fatto per il controllo dei tipi in JavaScript. Fornisce una propria sintassi per le annotazioni di tipo ed è in parte un linguaggio a sé stante, quindi non verrà trattato in questo modulo.
 
 ### Trasformazione
 
-Questa fase del ciclo di vita della tua app web di solito ti consente di scrivere codice in "codice futuro" (come le ultime funzionalità CSS o JavaScript che potrebbero non avere ancora supporto nativo nei browser) o di codificare utilizzando un altro linguaggio interamente, come TypeScript. Gli strumenti di trasformazione genereranno quindi codice compatibile con i browser per te, da utilizzare in produzione.
+Questa fase del ciclo di vita dell'app web consente in genere di scrivere codice "del futuro", ad esempio usando le ultime funzionalità CSS o JavaScript che potrebbero non avere ancora supporto nativo nei browser, oppure codice in un linguaggio completamente diverso, come TypeScript. Gli strumenti di trasformazione genereranno quindi codice compatibile con i browser da usare in produzione.
 
-Generalmente, lo sviluppo web è pensato come tre linguaggi: [HTML](/it/docs/Learn_web_development/Core/Structuring_content), [CSS](/it/docs/Learn_web_development/Core/Styling_basics) e [JavaScript](/it/docs/Learn_web_development/Core/Scripting), e ci sono strumenti di trasformazione per tutti questi linguaggi. La trasformazione offre tre principali benefici (tra gli altri):
+In generale, lo sviluppo web è considerato basato su tre linguaggi: [HTML](/it/docs/Learn_web_development/Core/Structuring_content), [CSS](/it/docs/Learn_web_development/Core/Styling_basics) e [JavaScript](/it/docs/Learn_web_development/Core/Scripting), ed esistono strumenti di trasformazione per tutti questi linguaggi. La trasformazione offre tre vantaggi principali, tra gli altri:
 
-1. La possibilità di scrivere codice utilizzando le ultime funzionalità del linguaggio e trasformarlo in codice che funziona sui dispositivi di tutti i giorni. Ad esempio, potresti voler scrivere JavaScript utilizzando le nuove funzionalità all'avanguardia del linguaggio, ma avere comunque il tuo codice di produzione finale funzionante su browser più vecchi che non supportano quelle funzionalità. Buoni esempi qui includono:
+1. La possibilità di scrivere codice usando le più recenti funzionalità del linguaggio e trasformarlo in codice che funziona sui dispositivi di uso quotidiano. Ad esempio, potrebbe essere necessario scrivere JavaScript usando nuove funzionalità all'avanguardia del linguaggio, mantenendo però il codice finale di produzione funzionante su browser meno recenti che non supportano tali funzionalità. Buoni esempi includono:
+   - [Babel](https://babeljs.io/): un compilatore JavaScript che consente agli sviluppatori di scrivere codice usando JavaScript all'avanguardia, che Babel poi converte in JavaScript tradizionale comprensibile da più browser. Gli sviluppatori possono anche scrivere e pubblicare [plugin per Babel](https://babeljs.io/docs/plugins).
+   - [PostCSS](https://postcss.org/): svolge lo stesso tipo di lavoro di Babel, ma per le funzionalità CSS all'avanguardia. Se non esiste un modo equivalente per ottenere un risultato usando funzionalità CSS meno recenti, PostCSS installerà un polyfill JavaScript per emulare l'effetto CSS desiderato.
 
-   - [Babel](https://babeljs.io/): Un compilatore JavaScript che consente agli sviluppatori di scrivere il loro codice utilizzando JavaScript all'avanguardia, che Babel poi converte in JavaScript vecchio stile che più browser possono capire. Gli sviluppatori possono anche scrivere e pubblicare [plugin per Babel](https://babeljs.io/docs/plugins).
-   - [PostCSS](https://postcss.org/): Fa lo stesso tipo di cosa di Babel, ma per funzionalità CSS all'avanguardia. Se non esiste un modo equivalente per fare qualcosa utilizzando funzionalità CSS più vecchie, PostCSS installerà un polyfill JavaScript per emulare l'effetto CSS desiderato.
+2. L'opzione di scrivere il codice in un linguaggio completamente diverso e trasformarlo in un linguaggio compatibile con il web. Ad esempio:
+   - [Sass/SCSS](https://sass-lang.com/): questa estensione CSS consente di usare variabili, regole annidate, mixin, funzioni e molte altre funzionalità, alcune delle quali sono disponibili nel CSS nativo, come le variabili, e altre no.
+   - [TypeScript](https://www.typescriptlang.org/): TypeScript è un superset di JavaScript che offre numerose funzionalità aggiuntive. Il compilatore TypeScript converte il codice TypeScript in JavaScript durante la compilazione per la produzione.
+   - Framework come [React](https://react.dev/), [Ember](https://emberjs.com/) e [Vue](https://vuejs.org/): i framework forniscono gratuitamente molte funzionalità e permettono di usarle tramite una sintassi personalizzata basata su JavaScript vanilla. In background, il codice JavaScript del framework lavora per interpretare questa sintassi personalizzata ed eseguirne il rendering come app web finale.
 
-2. L'opzione per scrivere il tuo codice in un linguaggio interamente diverso e trasformarlo in un linguaggio compatibile con il web. Ad esempio:
-
-   - [Sass/SCSS](https://sass-lang.com/): Questa estensione del CSS ti permette di utilizzare variabili, regole nidificate, mixin, funzioni e molte altre funzionalità, alcune delle quali sono disponibili nel CSS nativo (come le variabili), e alcune delle quali non lo sono.
-   - [TypeScript](https://www.typescriptlang.org/): TypeScript è un superset di JavaScript che offre una serie di funzionalità aggiuntive. Il compilatore TypeScript converte il codice TypeScript in JavaScript durante la build per la produzione.
-   - Frameworks come [React](https://react.dev/), [Ember](https://emberjs.com/) e [Vue](https://vuejs.org/): I framework offrono moltissima funzionalità gratuitamente e ti permettono di utilizzarla tramite una sintassi personalizzata costruita sopra JavaScript puro. In background, il codice JavaScript del framework lavora duramente per interpretare questa sintassi personalizzata e renderla come applicazione web finale.
-
-3. Ottimizzazione. Questa viene fornita dai _bundlers_, che sono strumenti che preparano il tuo codice per la produzione, ad esempio attraverso il "{{Glossary("Tree_shaking", "tree-shaking")}}" per assicurarsi che solo le parti delle librerie di codice che realmente utilizzi vengano messe nel tuo codice di produzione finale, oppure con la "{{Glossary("Minification", "minificazione")}}" per rimuovere tutto lo spazio bianco nel tuo codice di produzione, rendendolo il più piccolo possibile prima che venga caricato su un server. Ad esempio:
-
-   - [Webpack](https://webpack.js.org/) è stato il bundler più popolare per lungo tempo, con un numero enorme di plugin e un sistema di configurazione potente. Tuttavia, è anche noto per essere piuttosto complesso da configurare, ed è lento rispetto ad alternative più moderne.
-   - [Vite](https://vite.dev/) è uno strumento di build più moderno che è popolare per la sua velocità, semplicità e ricchezza di funzionalità.
+3. Ottimizzazione. Questa è fornita dai _bundler_, ovvero strumenti che preparano il codice per la produzione, ad esempio tramite "{{Glossary("Tree_shaking", "tree-shaking")}}" per assicurarsi che nel codice finale di produzione vengano incluse solo le parti delle librerie di codice effettivamente utilizzate, oppure tramite "{{Glossary("Minification", "minificazione")}}" per rimuovere tutti gli spazi bianchi dal codice di produzione, rendendolo il più piccolo possibile prima che venga caricato su un server. Ad esempio:
+   - [webpack](https://webpack.js.org/) è stato per molto tempo il bundler più popolare, con un numero enorme di plugin e un potente sistema di configurazione. Tuttavia, è anche noto per essere piuttosto complesso da configurare e lento rispetto ad alternative più moderne.
+   - [Vite](https://vite.dev/) è uno strumento di build più moderno, popolare per velocità, semplicità e ricchezza di funzionalità.
 
 ### Post-sviluppo
 
-Gli strumenti post-sviluppo assicurano che il tuo software arrivi sul web e continui a funzionare. Include i processi di distribuzione, i framework di testing, gli strumenti di auditing e altro ancora.
+Gli strumenti di post-sviluppo garantiscono che il software venga pubblicato sul web e continui a funzionare. Ciò include processi di deployment, framework di testing, strumenti di audit e altro ancora.
 
-Questa fase del processo di sviluppo è quella con cui desideri avere la minore quantità di interazione attiva possibile, in modo che una volta configurata, funzioni principalmente automaticamente, apparendo solo per dirti qualcosa se qualcosa è andato storto.
+Questa fase del processo di sviluppo è quella in cui si desidera avere il minor numero possibile di interazioni attive, in modo che, una volta configurata, funzioni per lo più automaticamente, intervenendo solo per segnalare eventuali problemi.
 
-#### Strumenti di test
+#### Strumenti di testing
 
-Questi generalmente prendono la forma di uno strumento che eseguirà automaticamente test sul tuo codice per assicurarsi che sia corretto prima che tu vada oltre (ad esempio, quando tenti di spingere le modifiche su un repo di GitHub). Questo può includere il linting, ma anche procedure più sofisticate come i test unitari, dove esegui parte del tuo codice per assicurarti che si comportino come dovrebbero.
+Questi assumono generalmente la forma di uno strumento che esegue automaticamente test sul codice per assicurarsi che sia corretto prima di procedere ulteriormente, ad esempio quando si tenta di eseguire il push delle modifiche in un repository GitHub. Possono includere il linting, ma anche procedure più sofisticate come gli unit test, in cui viene eseguita una parte del codice per assicurarsi che si comporti come previsto.
 
 - I framework per scrivere test includono [Jest](https://jestjs.io/), [Mocha](https://mochajs.org/) e [Jasmine](https://jasmine.github.io/).
-- I sistemi di esecuzione automatica dei test e di notifica includono [Travis CI](https://www.travis-ci.com/), [Jenkins](https://www.jenkins.io/), [Circle CI](https://circleci.com/) e [altri](https://en.wikipedia.org/wiki/List_of_build_automation_software#Continuous_integration).
+- I sistemi automatizzati per l'esecuzione di test e le notifiche includono [Travis CI](https://www.travis-ci.com/), [Jenkins](https://www.jenkins.io/), [Circle CI](https://circleci.com/) e [altri](https://en.wikipedia.org/wiki/List_of_build_automation_software#Continuous_integration).
 
-#### Strumenti di distribuzione
+#### Strumenti di deployment
 
-I sistemi di distribuzione ti consentono di pubblicare il tuo sito web, sono disponibili sia per siti statici che dinamici, e comunemente tendono a lavorare insieme ai sistemi di test. Ad esempio, una tipica toolchain attenderà che tu spinga le modifiche su un repo remoto, esegua alcuni test per vedere se le modifiche sono a posto, e quindi, se i test passano, distribuisce automaticamente la tua app su un sito di produzione.
+I sistemi di deployment consentono di pubblicare il sito web, sono disponibili sia per siti statici sia dinamici e tendono comunemente a funzionare insieme ai sistemi di testing. Ad esempio, una toolchain tipica attenderà il push delle modifiche verso un repository remoto, eseguirà alcuni test per verificare che le modifiche siano corrette e, se i test vengono superati, distribuirà automaticamente l'app su un sito di produzione.
 
-[GitHub Pages](https://pages.github.com/) è ben integrato con GitHub stesso ed è gratuito per tutti i repo pubblici. Altri servizi, come [Netlify](https://www.netlify.com/) e [Vercel](https://vercel.com/), sono anche molto popolari, con quote generose nei livelli gratuiti, workflow di distribuzione fluidi e integrazione con GitHub.
+[GitHub Pages](https://pages.github.com/) è ben integrato con GitHub stesso ed è gratuito per tutti i repository pubblici. Anche altri servizi, come [Netlify](https://www.netlify.com/) e [Vercel](https://vercel.com/), sono molto popolari e offrono quote generose nei piani gratuiti, flussi di lavoro di deployment fluidi e integrazione con GitHub.
 
 #### Altri
 
-Ci sono diversi altri tipi di strumenti disponibili da usare nella fase di post-sviluppo, tra cui [Code Climate](https://codeclimate.com/) per raccogliere metriche di qualità del codice, la [Webhint browser extension](https://webhint.io/docs/user-guide/extensions/extension-browser/) per eseguire analisi di runtime della compatibilità cross-browser e altri controlli, [GitHub bots](https://probot.github.io/) per fornire funzionalità più potenti su GitHub, [Updown](https://updown.io/) per fornire monitoraggio della disponibilità delle app, e molti altri ancora!
+Esistono diversi altri tipi di strumenti utilizzabili nella fase di post-sviluppo, tra cui [Code Climate](https://codeclimate.com/) per raccogliere metriche sulla qualità del codice, l'[estensione del browser Webhint](https://webhint.io/docs/user-guide/extensions/extension-browser/) per eseguire analisi a runtime della compatibilità tra browser e altri controlli, i [bot GitHub](https://probot.github.io/) per fornire funzionalità GitHub più potenti, [Updown](https://updown.io/) per il monitoraggio dell'uptime delle app e molti altri.
 
 ### Alcune considerazioni sui tipi di strumenti
 
-C'è certamente un ordine in cui i diversi tipi di strumenti si applicano nel ciclo di sviluppo, ma stai certo che non _devi_ avere tutti questi strumenti in atto per rilasciare un sito web. In effetti, non hai bisogno di nessuno di questi strumenti. Tuttavia, includere alcuni di questi strumenti nel tuo processo migliorerà la tua esperienza di sviluppo e probabilmente migliorerà la qualità complessiva del tuo codice.
+Esiste certamente un ordine in cui i diversi tipi di strumenti si applicano nel ciclo di vita dello sviluppo, ma non è _necessario_ disporre di tutti questi elementi per pubblicare un sito web. In effetti, non è necessario averne nessuno. Tuttavia, includere alcuni di questi strumenti nel processo migliorerà l'esperienza di sviluppo e probabilmente anche la qualità complessiva del codice.
 
-Spesso ci vuole del tempo affinché nuovi strumenti per sviluppatori si stabilizzino nella loro complessità. Uno degli strumenti più noti, webpack, ha la reputazione di essere eccessivamente complicato da gestire, ma nell'ultimo grande rilascio c'è stata una grande spinta per semplificare l'uso comune in modo che la configurazione richiesta sia ridotta al minimo indispensabile.
+Spesso i nuovi strumenti per sviluppatori richiedono del tempo per stabilizzarsi in termini di complessità. Uno degli strumenti più noti, webpack, ha la reputazione di essere eccessivamente complicato da usare, ma nell'ultima versione principale è stato fatto un grande sforzo per semplificare l'uso comune, riducendo al minimo assoluto la configurazione necessaria.
 
-Non c'è un proiettile d'argento che garantisca il successo con gli strumenti, ma man mano che aumenta la tua esperienza troverai flussi di lavoro che funzionano per _te_ o per il tuo team e i loro progetti. Una volta che tutte le difficoltà nel processo sono appianate, la tua toolchain dovrebbe essere qualcosa che puoi dimenticare e _dovrebbe_ semplicemente funzionare.
+Non esiste certamente una soluzione miracolosa che garantisca il successo con gli strumenti, ma con l'aumentare dell'esperienza si troveranno flussi di lavoro adatti _alle proprie esigenze_ oppure al proprio team e ai suoi progetti. Una volta risolti tutti i problemi del processo, la toolchain dovrebbe essere qualcosa di cui ci si può dimenticare e _dovrebbe_ semplicemente funzionare.
 
-## Come scegliere e ottenere aiuto con uno strumento in particolare
+## Come scegliere e ottenere assistenza per uno strumento specifico
 
-La maggior parte degli strumenti tende a essere scritta e rilasciata in isolamento, quindi anche se c'è quasi certamente aiuto disponibile non è mai nello stesso posto o formato. Può quindi essere difficile trovare aiuto con l'uso di uno strumento, o anche scegliere quale strumento utilizzare. La conoscenza su quali siano i migliori strumenti da usare è un po' tribale, il che significa che se non sei già nella comunità web, è difficile scoprire esattamente quali andare a cercare! Questo è uno dei motivi per cui abbiamo scritto questa serie di articoli, per fornire sperabilmente quel primo passo che è difficile da trovare altrimenti.
+La maggior parte degli strumenti viene sviluppata e pubblicata isolatamente, quindi, anche se quasi certamente è disponibile assistenza, questa non si trova mai nello stesso posto o formato. Può quindi essere difficile trovare assistenza per usare uno strumento, o perfino scegliere quale strumento usare. La conoscenza dei migliori strumenti da utilizzare è in parte tramandata all'interno della comunità, il che significa che, se non si fa già parte della comunità web, è difficile scoprire esattamente quali scegliere. Questo è uno dei motivi per cui è stata scritta questa serie di articoli: fornire, si spera, quel primo passo che altrimenti è difficile da trovare.
 
-Probabilmente avrai bisogno di una combinazione delle seguenti cose:
+Probabilmente sarà necessaria una combinazione dei seguenti elementi:
 
-- Insegnanti esperti, mentori, compagni di studio o colleghi che abbiano qualche esperienza, che abbiano risolto tali problemi prima e che possano dare consigli.
-- Un posto specifico utile da cui cercare. Le ricerche web generali per strumenti per sviluppatori front-end sono generalmente inutili a meno che tu non conosca già il nome dello strumento che stai cercando.
+- Insegnanti, mentori, compagni di studio o colleghi esperti che abbiano affrontato problemi simili in precedenza e possano offrire consigli.
+- Un luogo specifico e utile in cui effettuare la ricerca. Le ricerche web generiche sugli strumenti per sviluppatori front-end sono generalmente inutili, a meno che non si conosca già il nome dello strumento cercato.
+  - Se, ad esempio, si usa il package manager npm per gestire le dipendenze, è una buona idea visitare la [homepage di npm](https://www.npmjs.com/) e cercare il tipo di strumento desiderato. Ad esempio, provare a cercare "date" se serve un'utilità per la formattazione delle date, oppure "formatter" se si cerca un formattatore di codice generico. Prestare attenzione ai punteggi di popolarità, qualità e manutenzione, nonché a quanto recentemente il pacchetto è stato aggiornato l'ultima volta. Fare inoltre clic sulle pagine degli strumenti per scoprire quanti download mensili ha un pacchetto e se dispone di buona documentazione, utile per capire se fa ciò che serve. In base a questi criteri, la [libreria date-fns](https://www.npmjs.com/package/date-fns) sembra essere un buon strumento per la formattazione delle date. Questo strumento verrà mostrato in azione e si apprenderà di più sui package manager in generale nel Capitolo 3 di questo modulo.
+  - Se si cerca un plugin per integrare la funzionalità di uno strumento nell'editor di codice, consultare la pagina dei plugin/delle estensioni dell'editor: vedere, ad esempio, [le estensioni di VS Code](https://marketplace.visualstudio.com/vscode). Esaminare le estensioni in evidenza nella pagina iniziale e, di nuovo, provare a cercare il tipo di estensione desiderata oppure il nome dello strumento; ad esempio, cercare "ESLint" nella pagina delle estensioni di VS Code. Quando si ottengono risultati, esaminare informazioni quali il numero di stelle o download dell'estensione, come indicatore della sua qualità.
 
-  - Se stai usando il gestore dei pacchetti `npm` per gestire le tue dipendenze, ad esempio, è una buona idea andare sull'[homepage di npm](https://www.npmjs.com/) e cercare il tipo di strumento che stai cercando, ad esempio prova a cercare "date" se vuoi un'utilità di formattazione delle date, o "formatter" se stai cercando un formattatore di codice generale. Presta attenzione alla popolarità, alla qualità, e ai punteggi di manutenzione, e a quando è stato aggiornato l'ultima volta il pacchetto. Fai anche clic sulle pagine degli strumenti per scoprire quanti download mensili ha un pacchetto e se ha una buona documentazione che puoi usare per capire se fa quello che ti serve che faccia. In base a questi criteri, la [libreria date-fns](https://www.npmjs.com/package/date-fns) sembra essere un buon strumento di formattazione delle date da usare. Vedrai questo strumento in azione e imparerai di più sui gestori di pacchetti in generale nel Capitolo 3 di questo modulo.
-  - Se stai cercando un plugin per integrare la funzionalità degli strumenti nel tuo editor di codice, guarda la pagina dei plugin/estensioni dell'editor di codice — vedi ad esempio [VS Code extensions](https://marketplace.visualstudio.com/vscode). Dai un'occhiata alle estensioni in evidenza sulla pagina iniziale e, di nuovo, prova a cercare il tipo di estensione che desideri (o il nome dello strumento, ad esempio cerca "ESLint" sulla pagina delle estensioni di VS Code). Quando ottieni risultati, dai un'occhiata a informazioni come quanti stelle o download ha un'estensione, come indicazione della sua qualità.
+- Forum relativi allo sviluppo su cui porre domande sugli strumenti da usare, come [MDN Learn Discourse](https://discourse.mozilla.org/c/mdn/learn/250) o [Stack Overflow](https://stackoverflow.com/).
 
-- Forum legati allo sviluppo su cui porre domande su quali strumenti utilizzare, ad esempio [MDN Learn Discourse](https://discourse.mozilla.org/c/mdn/learn/250), o [Stack Overflow](https://stackoverflow.com/).
+Dopo aver scelto uno strumento da usare, il primo punto di riferimento dovrebbe essere la homepage del progetto dello strumento. Potrebbe essere un sito web completo oppure un singolo documento readme in un repository di codice. La [documentazione di date-fns](https://date-fns.org/docs/Getting-Started), ad esempio, è piuttosto valida, completa e facile da seguire. Alcune documentazioni, tuttavia, possono essere piuttosto tecniche e accademiche, e non adatte alle esigenze di apprendimento.
 
-Quando hai scelto uno strumento da usare, il primo punto di riferimento dovrebbe essere la homepage del progetto dello strumento. Questo potrebbe essere un sito web completo o potrebbe essere un singolo documento readme in un repository di codice. Ad esempio, i [documenti di date-fns](https://date-fns.org/docs/Getting-Started) sono piuttosto buoni, completi e facili da seguire. Tuttavia, alcune documentazioni possono essere piuttosto tecniche e accademiche e non adatte alle tue esigenze di apprendimento.
+Potrebbe invece essere preferibile trovare tutorial dedicati per iniziare a usare tipi specifici di strumenti. Un ottimo punto di partenza è cercare su siti web come [CSS Tricks](https://css-tricks.com/), [Dev](https://dev.to/), [freeCodeCamp](https://www.freecodecamp.org/) e [Smashing Magazine](https://www.smashingmagazine.com/), poiché sono pensati per il settore dello sviluppo web.
 
-Invece, potresti voler trovare qualche tutorial dedicato per iniziare con determinati tipi di strumenti. Un ottimo punto di partenza è cercare su siti web come [CSS Tricks](https://css-tricks.com/), [Dev](https://dev.to/), [freeCodeCamp](https://www.freecodecamp.org/) e [Smashing Magazine](https://www.smashingmagazine.com/), poiché sono orientati all'industria dello sviluppo web.
+Ancora una volta, probabilmente verranno provati diversi strumenti nella ricerca di quelli più adatti, per verificare se sono sensati, ben supportati e in grado di fare ciò che serve. Questo va bene: è utile per l'apprendimento e il percorso diventerà più agevole con l'aumentare dell'esperienza.
 
-Ancora, probabilmente passerai attraverso diversi strumenti mentre cerchi quelli giusti per te, provandoli per vedere se hanno senso, sono ben supportati e fanno ciò che vuoi che facciano. Questo va bene — è tutto utile per l'apprendimento, e la strada diventerà più agevole man mano che acquisirai più esperienza.
+## Riepilogo
 
-## Sommario
-
-Questo conclude la nostra introduzione gentile al tema degli strumenti web lato client, da un alto livello. Il prossimo passo sarà esaminare i gestori di pacchetti.
+Con questo si conclude l'introduzione generale e graduale al tema degli strumenti web lato client. Successivamente verranno esaminati i package manager.
 
 {{NextMenu("Learn_web_development/Extensions/Client-side_tools/Package_management", "Learn_web_development/Extensions/Client-side_tools")}}

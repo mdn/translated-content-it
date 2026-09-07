@@ -2,21 +2,22 @@
 title: Pseudo-classi UI
 slug: Learn_web_development/Extensions/Forms/UI_pseudo-classes
 l10n:
-  sourceCommit: b5437b737639d6952d18b95ebd1045ed73e4bfa7
+  sourceCommit: 870fe25a3e6ed1a44222c52dd8a992b731c1a383
 ---
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Forms/Customizable_select", "Learn_web_development/Extensions/Forms/Form_validation", "Learn_web_development/Extensions/Forms")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Forms/Customizable_select_listboxes", "Learn_web_development/Extensions/Forms/Form_validation", "Learn_web_development/Extensions/Forms")}}
 
-Negli articoli precedenti, abbiamo trattato la stilizzazione di vari controlli dei moduli in modo generale. Questo ha incluso l'uso di alcune pseudo-classi, ad esempio utilizzando `:checked` per targetizzare una checkbox solo quando è selezionata. In questo articolo, esploriamo le diverse pseudo-classi UI disponibili per stilizzare i moduli in diversi stati.
+Negli articoli precedenti, è stato trattato in modo generale lo styling di vari controlli dei moduli. Ciò includeva l'uso di alcune pseudo-classi, per esempio l'uso di `:checked` per selezionare una checkbox solo quando è selezionata. In questo articolo vengono esplorate le diverse pseudo-classi UI disponibili per applicare stili ai moduli in stati differenti.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Una comprensione di base di
+        Una conoscenza di base di
         <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, inclusa la conoscenza generale di
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, inclusa una conoscenza
+        generale di
         <a
           href="/it/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements"
           >pseudo-classi e pseudo-elementi</a
@@ -26,39 +27,39 @@ Negli articoli precedenti, abbiamo trattato la stilizzazione di vari controlli d
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Capire quali parti dei moduli sono difficili da stilizzare, e perché; imparare
-        cosa si può fare per personalizzarli.
+        Comprendere quali parti dei moduli sono difficili da stilizzare e perché;
+        imparare cosa si può fare per personalizzarle.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Quali pseudo-classi abbiamo a disposizione?
+## Quali pseudo-classi sono disponibili?
 
-Le pseudo-classi originali (da [CSS 2.1](https://www.w3.org/TR/CSS21/selector.html#dynamic-pseudo-classes)) che sono rilevanti per i moduli sono:
+Si potrebbe già avere familiarità con le seguenti pseudo-classi:
 
-- {{cssxref(":hover")}}: Seleziona un elemento solo quando è sovrastato dal puntatore del mouse.
-- {{cssxref(":focus")}}: Seleziona un elemento solo quando è in focus (cioè, selezionato tramite il tab dalla tastiera).
-- {{cssxref(":active")}}: seleziona un elemento solo quando è attivato (cioè, mentre viene cliccato, o quando il tasto <kbd>Return</kbd> / <kbd>Enter</kbd> è premuto nel caso di un'attivazione da tastiera).
+- {{cssxref(":hover")}}: seleziona un elemento solo quando il puntatore del mouse passa sopra di esso.
+- {{cssxref(":focus")}}: seleziona un elemento solo quando ha il focus (ovvero quando viene raggiunto tramite il tasto Tab della tastiera).
+- {{cssxref(":active")}}: seleziona un elemento solo quando viene attivato (ovvero mentre viene fatto clic su di esso oppure, nel caso di un'attivazione da tastiera, quando viene tenuto premuto il tasto <kbd>Return</kbd> / <kbd>Enter</kbd>).
 
-Queste pseudo-classi di base dovrebbero esserti ormai familiari. [I selettori CSS](/it/docs/Web/CSS/CSS_selectors) offrono diverse altre pseudo-classi relative ai moduli HTML. Queste forniscono diverse condizioni utili di targetizzazione di cui puoi avvantaggiarti. Ne discuteremo in maggior dettaglio nelle sezioni seguenti, ma brevemente, le principali che esamineremo sono:
+I [selettori CSS](/it/docs/Web/CSS/Guides/Selectors) forniscono diverse altre pseudo-classi correlate ai moduli HTML. Queste offrono varie utili condizioni di selezione che possono essere sfruttate. Verranno esaminate più nel dettaglio nelle sezioni seguenti, ma in breve, quelle principali trattate saranno:
 
-- {{cssxref(':required')}} e {{cssxref(':optional')}}: Mirare elementi che possono essere richiesti (ad esempio, elementi che supportano l'attributo HTML [`required`](/it/docs/Web/HTML/Reference/Attributes/required)), basandosi sul fatto che siano richiesti o opzionali.
-- {{cssxref(":valid")}} e {{cssxref(":invalid")}}, e {{cssxref(":in-range")}} e {{cssxref(":out-of-range")}}: Mirare controlli di modulo che sono validi/invalidi secondo i vincoli di convalida del modulo imposti, o dentro/fuori dal range.
-- {{cssxref(":enabled")}} e {{cssxref(":disabled")}}, e {{cssxref(":read-only")}} e {{cssxref(":read-write")}}: Mirare elementi che possono essere disabilitati (ad esempio, elementi che supportano l'attributo HTML [`disabled`](/it/docs/Web/HTML/Reference/Attributes/disabled)), in base al fatto che siano attualmente abilitati o disabilitati, e controlli di modulo in lettura/scrittura o sola lettura (ad esempio, elementi con l'attributo HTML [`readonly`](/it/docs/Web/HTML/Reference/Attributes/readonly) impostato).
-- {{cssxref(":checked")}}, {{cssxref(":indeterminate")}}, e {{cssxref(":default")}}: Rispettiamente, mirare checkboxes e pulsanti radio che sono selezionati, in uno stato indeterminato (né selezionati né non selezionati), e l'opzione predefinita selezionata quando la pagina viene caricata (ad esempio, un [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox) con l'attributo [`checked`](/it/docs/Web/HTML/Reference/Elements/input#checked) impostato, o un elemento [`<option>`](/it/docs/Web/HTML/Reference/Elements/option) con l'attributo [`selected`](/it/docs/Web/HTML/Reference/Elements/option#selected) impostato).
+- {{cssxref(':required')}} e {{cssxref(':optional')}}: selezionano gli elementi che possono essere obbligatori (per esempio, elementi che supportano l'attributo HTML [`required`](/it/docs/Web/HTML/Reference/Attributes/required)), a seconda che siano obbligatori o facoltativi.
+- {{cssxref(":valid")}} e {{cssxref(":invalid")}}, nonché {{cssxref(":in-range")}} e {{cssxref(":out-of-range")}}: selezionano i controlli dei moduli validi/non validi in base ai vincoli di convalida del modulo impostati su di essi, oppure con dati all'interno/all'esterno dell'intervallo.
+- {{cssxref(":enabled")}} e {{cssxref(":disabled")}}, nonché {{cssxref(":read-only")}} e {{cssxref(":read-write")}}: selezionano gli elementi che possono essere disabilitati (per esempio, elementi che supportano l'attributo HTML [`disabled`](/it/docs/Web/HTML/Reference/Attributes/disabled)), in base al fatto che siano attualmente abilitati o disabilitati, e i controlli del modulo in lettura-scrittura o sola lettura (per esempio, elementi con l'attributo [`readonly`](/it/docs/Web/HTML/Reference/Attributes/readonly) impostato).
+- {{cssxref(":checked")}}, {{cssxref(":indeterminate")}} e {{cssxref(":default")}}: selezionano rispettivamente checkbox e radio button selezionati, in uno stato indeterminato (né selezionati né deselezionati) e l'opzione predefinita selezionata al caricamento della pagina (per esempio, un [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox) con l'attributo [`checked`](/it/docs/Web/HTML/Reference/Elements/input#checked) impostato, oppure un elemento [`<option>`](/it/docs/Web/HTML/Reference/Elements/option) con l'attributo [`selected`](/it/docs/Web/HTML/Reference/Elements/option#selected) impostato).
 
-Ce ne sono molti altri, ma quelli elencati sopra sono i più ovviamente utili. Alcuni di essi sono progettati per risolvere problemi di nicchia molto specifici. Le pseudo-classi UI elencate sopra hanno un eccellente supporto del browser, ma ovviamente, dovresti testare attentamente le tue implementazioni dei moduli per garantire che funzionino per il tuo pubblico di riferimento.
+Ne esistono molte altre, ma quelle elencate sopra sono le più evidentemente utili. Alcune sono pensate per risolvere problemi di nicchia molto specifici. Le pseudo-classi UI elencate sopra dispongono di un eccellente supporto dei browser, ma naturalmente è necessario testare attentamente le implementazioni dei moduli per assicurarsi che funzionino per il pubblico di destinazione.
 
 > [!NOTE]
-> Un certo numero di pseudo-classi discusse qui sono interessate alla stilizzazione dei controlli di modulo in base al loro stato di convalida (i loro dati sono validi o no?). Imparerai molto di più sulla definizione e il controllo dei vincoli di convalida nel nostro prossimo articolo — [Validazione del modulo lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation) — ma per ora terremo le cose semplici riguardo alla convalida dei moduli, così da non confondere le cose.
+> Diverse delle pseudo-classi trattate qui riguardano lo styling dei controlli del modulo in base al loro stato di convalida (i loro dati sono validi o no?). Il prossimo articolo — [Convalida dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation) — illustrerà molto più dettagliatamente come impostare e controllare i vincoli di convalida, ma per ora la convalida del modulo verrà mantenuta semplice, per non complicare le cose.
 
-## Stilizzazione degli input in base al fatto che siano richiesti o meno
+## Applicare stili agli input in base al fatto che siano obbligatori o meno
 
-Uno dei concetti più fondamentali riguardanti la convalida dei moduli lato client è se un input di un modulo sia richiesto (deve essere compilato prima che il modulo possa essere inviato) o opzionale.
+Uno dei concetti più basilari relativi alla convalida dei moduli lato client è stabilire se un input del modulo è obbligatorio (deve essere compilato prima di poter inviare il modulo) oppure facoltativo.
 
-Gli elementi {{htmlelement('input')}}, {{htmlelement('select')}}, e {{htmlelement('textarea')}} hanno un attributo `required` disponibile che, quando impostato, significa che devi compilare quel controllo prima che il modulo venga inviato con successo.
-Ad esempio, il nome e il cognome sono richiesti nel modulo qui sotto, ma l'indirizzo email è opzionale:
+Gli elementi {{htmlelement('input')}}, {{htmlelement('select')}} e {{htmlelement('textarea')}} dispongono dell'attributo `required` che, quando impostato, indica che quel controllo deve essere compilato prima che il modulo possa essere inviato correttamente.
+Per esempio, il nome e il cognome sono obbligatori nel modulo seguente, mentre l'indirizzo email è facoltativo:
 
 ```html live-sample___optional-required-styles
 <form>
@@ -81,7 +82,7 @@ Ad esempio, il nome e il cognome sono richiesti nel modulo qui sotto, ma l'indir
 </form>
 ```
 
-Puoi corrispondere questi due stati usando le pseudo-classi {{cssxref(':required')}} e {{cssxref(':optional')}}. Ad esempio, se applichiamo il seguente CSS all'HTML sopra:
+È possibile associare questi due stati usando le pseudo-classi {{cssxref(':required')}} e {{cssxref(':optional')}}. Per esempio, se si applica il seguente CSS all'HTML precedente:
 
 ```css hidden live-sample___optional-required-styles
 body {
@@ -117,13 +118,13 @@ input {
 }
 
 input {
-  box-shadow: inset 1px 1px 3px #ccc;
+  box-shadow: inset 1px 1px 3px #cccccc;
   border-radius: 5px;
 }
 
 input:hover,
 input:focus {
-  background-color: #eee;
+  background-color: #eeeeee;
 }
 
 button {
@@ -142,12 +143,12 @@ input:optional {
 }
 ```
 
-I controlli richiesti hanno un bordo solido, e il controllo opzionale ha un bordo tratteggiato.
-Puoi anche provare a inviare il modulo senza compilarlo, per vedere i messaggi di errore di convalida lato client che i browser ti forniscono di default:
+I controlli obbligatori hanno un bordo continuo, mentre il controllo facoltativo ha un bordo tratteggiato.
+Si può anche provare a inviare il modulo senza compilarlo, per vedere i messaggi di errore della convalida lato client forniti dai browser per impostazione predefinita:
 
 {{EmbedLiveSample("optional-required-styles", , "400px", , , , , "allow-forms")}}
 
-In generale, dovresti evitare di stilizzare elementi 'richiesti' rispetto a 'opzionali' nei moduli usando solo il colore, perché questo non è ottimo per le persone daltoniche:
+In generale, si dovrebbe evitare di distinguere gli elementi "obbligatori" da quelli "facoltativi" nei moduli usando soltanto il colore, poiché ciò non è ottimale per le persone daltoniche:
 
 ```css example-bad
 input:required {
@@ -159,22 +160,22 @@ input:optional {
 }
 ```
 
-La convenzione standard sul web per lo stato richiesto è un asterisco (`*`), o la parola "richiesto" associata ai rispettivi controlli.
-Nella sezione successiva, vedremo un esempio migliore di indicazione dei campi richiesti utilizzando `:required` e contenuto generato.
+La convenzione standard sul web per indicare lo stato obbligatorio è un asterisco (`*`), oppure la parola "required" associata ai rispettivi controlli.
+Nella sezione successiva verrà esaminato un esempio migliore per indicare i campi obbligatori mediante `:required` e contenuto generato.
 
 > [!NOTE]
-> Probabilmente non ti troverai ad usare spesso la pseudo-classe `:optional`. I controlli di modulo sono opzionali per default, quindi potresti semplicemente fare la tua stilizzazione opzionale di default, e aggiungere stili sopra per i controlli richiesti.
+> Probabilmente non sarà necessario usare spesso la pseudo-classe `:optional`. I controlli dei moduli sono facoltativi per impostazione predefinita, quindi è possibile applicare lo stile facoltativo come impostazione predefinita e aggiungere stili aggiuntivi per i controlli obbligatori.
 
 > [!NOTE]
-> Se un pulsante radio di un gruppo di pulsanti radio con lo stesso nome ha l'attributo `required` impostato, tutti i pulsanti radio saranno invalidi fino a quando non ne viene selezionato uno, ma solo quello a cui l'attributo è assegnato corrisponderà effettivamente a {{cssxref(':required')}}.
+> Se un radio button in un gruppo di radio button con lo stesso nome ha l'attributo `required` impostato, tutti i radio button saranno non validi finché non ne viene selezionato uno, ma solo quello a cui è assegnato l'attributo corrisponderà effettivamente a {{cssxref(':required')}}.
 
-## Uso del contenuto generato con pseudo-classi
+## Uso del contenuto generato con le pseudo-classi
 
-Negli articoli precedenti, abbiamo visto l'uso del [contenuto generato](/it/docs/Web/CSS/CSS_generated_content), ma abbiamo pensato che ora sarebbe un buon momento per parlarne in modo più dettagliato.
+Negli articoli precedenti è già stato visto l'uso del [contenuto generato](/it/docs/Web/CSS/Guides/Generated_content), ma questo è un buon momento per descriverlo con maggior dettaglio.
 
-L'idea è che possiamo usare gli pseudo-elementi [`::before`](/it/docs/Web/CSS/::before) e [`::after`](/it/docs/Web/CSS/::after) insieme alla proprietà [`content`](/it/docs/Web/CSS/content) per fare apparire un pezzo di contenuto prima o dopo l'elemento interessato. Il pezzo di contenuto non viene aggiunto al DOM, quindi può essere invisibile ad alcuni screen reader. Siccome è uno pseudo-elemento, può essere targetizzato con stili nello stesso modo in cui qualsiasi nodo DOM effettivo può esserlo.
+L'idea è che sia possibile usare gli pseudo-elementi {{cssxref("::before")}} e {{cssxref("::after")}} insieme alla proprietà {{cssxref("content")}} per far apparire un blocco di contenuto prima o dopo l'elemento interessato. Il blocco di contenuto non viene aggiunto al DOM, quindi potrebbe essere invisibile ad alcuni screen reader. Poiché è uno pseudo-elemento, può essere selezionato con gli stili nello stesso modo di qualsiasi nodo effettivo del DOM.
 
-Questo è davvero utile quando vuoi aggiungere un indicatore visivo a un elemento, come un'etichetta o un'icona, quando sono disponibili indicatori alternativi per garantire l'accessibilità a tutti gli utenti. Ad esempio, nel nostro [esempio di pulsanti radio personalizzati](https://mdn.github.io/learning-area/html/forms/styling-examples/radios-styled.html), usiamo il contenuto generato per gestire il posizionamento e l'animazione del cerchio interno del pulsante radio personalizzato quando un pulsante radio è selezionato:
+Questo è molto utile quando si desidera aggiungere un indicatore visivo a un elemento, ad esempio un'etichetta o un'icona, mentre sono disponibili anche indicatori alternativi per garantire l'accessibilità a tutti gli utenti. Per esempio, è possibile usare il contenuto generato per gestire il posizionamento e l'animazione del cerchio interno di un radio button personalizzato quando viene selezionato:
 
 ```css
 input[type="radio"]::before {
@@ -196,21 +197,21 @@ input[type="radio"]:checked::before {
 }
 ```
 
-Questo è davvero utile — i lettori di schermo già informano i loro utenti quando un pulsante radio o una checkbox che incontrano è selezionato/spuntato, quindi non vuoi che leggano un altro elemento DOM che indica la selezione — potrebbe confondere. Avere un indicatore puramente visivo risolve questo problema.
+Questo è molto utile: gli screen reader informano già gli utenti quando un radio button o una checkbox che incontrano è selezionato, quindi non è opportuno che leggano un altro elemento DOM che indica la selezione, poiché potrebbe essere fonte di confusione. Un indicatore puramente visivo risolve questo problema.
 
-Non tutti i tipi di `<input>` supportano la presenza di contenuto generato su di essi. Tutti i tipi di input che mostrano testo dinamico in essi, come `text`, `password`, o `button`, non mostrano contenuto generato. Altri, inclusi `range`, `color`, `checkbox`, ecc., mostrano contenuto generato.
+Non tutti i tipi di `<input>` supportano l'inserimento di contenuto generato. Tutti i tipi di input che mostrano testo dinamico, come `text`, `password` o `button`, non visualizzano il contenuto generato. Altri, tra cui `range`, `color`, `checkbox` e così via, visualizzano il contenuto generato.
 
-Tornando al nostro esempio richiesto/opzionale di prima, questa volta non altereremo l'aspetto dell'input stesso — useremo il contenuto generato per aggiungere un'etichetta indicativa ([vedi l'esempio in azione qui](https://mdn.github.io/learning-area/html/forms/pseudo-classes/required-optional-generated.html), e vedi il [codice sorgente qui](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/required-optional-generated.html)).
+Tornando all'esempio obbligatorio/facoltativo precedente, questa volta non verrà modificato l'aspetto dell'input stesso: verrà usato contenuto generato per aggiungere un'etichetta indicativa.
 
-Per prima cosa, aggiungeremo un paragrafo in cima al modulo per dire cosa stai cercando:
+Prima di tutto, verrà aggiunto un paragrafo all'inizio del modulo per spiegare cosa cercare:
 
 ```html
 <p>Required fields are labeled with "required".</p>
 ```
 
-Gli utenti di lettori di schermo sentiranno "required" letto come un'informazione aggiuntiva quando arrivano a ciascun input richiesto, mentre gli utenti vedenti vedranno la nostra etichetta.
+Gli utenti di screen reader sentiranno leggere "required" come informazione aggiuntiva quando raggiungono ciascun input obbligatorio, mentre gli utenti vedenti vedranno l'etichetta.
 
-Come menzionato in precedenza, i text input non supportano il contenuto generato, quindi aggiungiamo uno [`<span>`](/it/docs/Web/HTML/Reference/Elements/span) vuoto su cui attaccare il contenuto generato:
+Come già detto, gli input di testo non supportano il contenuto generato, quindi viene aggiunto uno [`<span>`](/it/docs/Web/HTML/Reference/Elements/span) vuoto a cui agganciare il contenuto generato:
 
 ```html
 <div>
@@ -220,7 +221,7 @@ Come menzionato in precedenza, i text input non supportano il contenuto generato
 </div>
 ```
 
-Il problema immediato con questo era che lo span stava cadendo su una nuova linea sotto l'input perché l'input e l'etichetta sono entrambi impostati con `width: 100%`. Per risolvere questo stile stile il `<div>` genitore per diventare un contenitore flessibile, ma anche indicargli di avvolgere i suoi contenuti su nuove righe se i contenuti diventano troppo lunghi:
+Il problema immediato era che lo span andava su una nuova riga sotto l'input, poiché sia l'input sia l'etichetta sono impostati con `width: 100%`. Per risolvere il problema, al `<div>` genitore viene applicato lo stile per trasformarlo in un contenitore flex, indicando anche di disporre il contenuto su nuove righe se diventa troppo lungo:
 
 ```css
 fieldset > div {
@@ -230,9 +231,9 @@ fieldset > div {
 }
 ```
 
-L'effetto è che l'etichetta e l'input sedano su linee separate perché entrambi hanno `width: 100%`, ma lo `<span>` ha una larghezza di `0` quindi può sedersi sulla stessa linea dell'input.
+L'effetto è che l'etichetta e l'input si trovano su righe separate poiché entrambi sono `width: 100%`, ma lo `<span>` ha una larghezza pari a `0`, pertanto può trovarsi sulla stessa riga dell'input.
 
-Ora passiamo al contenuto generato. Lo creiamo usando questo CSS:
+Ora passiamo al contenuto generato. Viene creato usando questo CSS:
 
 ```css
 input + span {
@@ -251,29 +252,133 @@ input:required + span::after {
 }
 ```
 
-Impostiamo lo `<span>` su `position: relative` in modo da poter impostare il contenuto generato su `position: absolute` e posizionarlo in relazione allo `<span>` piuttosto che al `<body>` (Il contenuto generato agisce come se fosse un nodo figlio dell'elemento su cui è generato, per quanto riguarda il posizionamento).
+Lo `<span>` viene impostato su `position: relative` affinché il contenuto generato possa essere impostato su `position: absolute` e posizionato relativamente allo `<span>` anziché al `<body>` (ai fini del posizionamento, il contenuto generato si comporta come se fosse un nodo figlio dell'elemento su cui viene generato).
 
-Poi diamo al contenuto generato il contenuto "required", che è quello che volevamo che la nostra etichetta dicesse, e lo stiliamo e lo posizioniamo come vogliamo. Il risultato è visibile qui sotto.
+Al contenuto generato viene quindi assegnato il testo "required", ovvero ciò che si desiderava mostrare nell'etichetta, e viene stilizzato e posizionato come desiderato. Il risultato è visibile qui sotto (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente).
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/required-optional-generated.html", '100%', 430)}}
+```html hidden live-sample___required-optional-generated
+<form>
+  <fieldset>
+    <legend>Feedback form</legend>
 
-## Stilizzazione dei controlli in base al fatto che i loro dati siano validi
+    <p>Required fields are labeled with "required".</p>
+    <div>
+      <label for="fname">First name: </label>
+      <input id="fname" name="fname" type="text" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="lname">Last name: </label>
+      <input id="lname" name="lname" type="text" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="email"
+        >Email address (include if you want a response):
+      </label>
+      <input id="email" name="email" type="email" />
+      <span></span>
+    </div>
+    <div><button>Submit</button></div>
+  </fieldset>
+</form>
+```
 
-L'altro concetto davvero importante, fondamentale nella convalida dei moduli è se i dati di un controllo del modulo siano validi o meno (nel caso di dati numerici, possiamo anche parlare di dati dentro o fuori dal range). I controlli di modulo con [limitazioni di vincolo](/it/docs/Web/HTML/Guides/Constraint_validation) possono essere targetizzati basandosi su questi stati.
+```css hidden live-sample___required-optional-generated
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
+
+fieldset {
+  padding: 10px 30px 0;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset > div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+button,
+label,
+input {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+}
+
+input {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+
+input:hover,
+input:focus {
+  background-color: #eeeeee;
+}
+
+input + span {
+  position: relative;
+}
+
+input:required + span::after {
+  font-size: 0.7rem;
+  position: absolute;
+  content: "required";
+  color: white;
+  background-color: black;
+  padding: 5px 10px;
+  top: -26px;
+  left: -70px;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+}
+```
+
+```js hidden live-sample___required-optional-generated
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+```
+
+{{EmbedLiveSample("required-optional-generated", "100%", 430, , , , , "allow-forms")}}
+
+## Applicare stili ai controlli in base alla validità dei dati
+
+L'altro concetto fondamentale molto importante nella convalida dei moduli è stabilire se i dati di un controllo del modulo sono validi o meno (nel caso di dati numerici, si può anche parlare di dati all'interno o all'esterno dell'intervallo). I controlli dei moduli con [vincoli di validazione](/it/docs/Web/HTML/Guides/Constraint_validation) possono essere selezionati in base a questi stati.
 
 ### :valid e :invalid
 
-Puoi targetizzare i controlli di modulo usando le pseudo-classi {{cssxref(":valid")}} e {{cssxref(":invalid")}}. Alcuni punti che vale la pena tenere a mente:
+È possibile selezionare i controlli dei moduli usando le pseudo-classi {{cssxref(":valid")}} e {{cssxref(":invalid")}}. Alcuni punti da tenere presenti:
 
-- I controlli senza convalida del vincolo saranno sempre validi, e quindi corrisponderanno a `:valid`.
-- I controlli con `required` impostato su di essi che non hanno un valore sono considerati invalidi — saranno corrisposti a `:invalid` e `:required`.
-- I controlli con convalida incorporata, come `<input type="email">` o `<input type="url">` sono (corrisposti a) `:invalid` quando i dati immessi in essi non corrispondono al pattern che stanno cercando (ma sono validi quando vuoti).
-- I controlli il cui valore corrente è al di fuori dei limiti di range specificati dagli attributi [`min`](/it/docs/Web/HTML/Reference/Elements/input#min) e [`max`](/it/docs/Web/HTML/Reference/Elements/input#max) sono (corrisposti a) `:invalid`, ma anche corrisposti a {{cssxref(":out-of-range")}}, come vedrai più avanti.
-- Ci sono alcuni altri modi per fare in modo che un elemento venga corrisposto da `:valid`/`:invalid`, come vedrai nell'articolo [Validazione del modulo lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation). Ma per ora terremo le cose semplici.
+- I controlli senza convalida dei vincoli saranno sempre validi e quindi corrisponderanno a `:valid`.
+- I controlli con `required` impostato che non hanno un valore sono considerati non validi: corrisponderanno a `:invalid` e `:required`.
+- I controlli con convalida integrata, come `<input type="email">` o `<input type="url">`, corrispondono a `:invalid` quando i dati inseriti non rispettano il modello previsto (ma sono validi quando sono vuoti).
+- I controlli il cui valore corrente è al di fuori dei limiti dell'intervallo specificati dagli attributi [`min`](/it/docs/Web/HTML/Reference/Elements/input#min) e [`max`](/it/docs/Web/HTML/Reference/Elements/input#max) corrispondono a `:invalid`, ma corrispondono anche a {{cssxref(":out-of-range")}}, come verrà illustrato più avanti.
+- Esistono altri modi per fare in modo che un elemento corrisponda a `:valid`/`:invalid`, come verrà illustrato nell'articolo [Convalida dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation). Per ora, tuttavia, si manterrà tutto semplice.
 
-Andiamo a vedere un esempio di `:valid`/`:invalid` (vedi [valid-invalid.html](https://mdn.github.io/learning-area/html/forms/pseudo-classes/valid-invalid.html) per la versione live, e controlla anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/valid-invalid.html)).
+Esaminiamo un esempio di `:valid`/`:invalid`.
 
-Come nell'esempio precedente, abbiamo aggiunto `<span>` extra per generare contenuto su, che useremo per fornire indicatori di dati validi/invalidi:
+Come nell'esempio precedente, sono presenti ulteriori `<span>` su cui generare contenuto, che verranno usati per fornire indicatori di dati validi/non validi:
 
 ```html
 <div>
@@ -283,7 +388,7 @@ Come nell'esempio precedente, abbiamo aggiunto `<span>` extra per generare conte
 </div>
 ```
 
-Per fornire questi indicatori, usiamo il seguente CSS:
+Per fornire questi indicatori, viene usato il seguente CSS:
 
 ```css
 input + span {
@@ -311,29 +416,153 @@ input:valid + span::before {
 }
 ```
 
-Come prima, impostiamo gli `<span>` su `position: relative` in modo da poter posizionare il contenuto generato in relazione ad essi. Poi posizioniamo in modo assoluto contenuti generati diversi a seconda del fatto che i dati del modulo siano validi o invalidi — rispettivamente un check verde o una croce rossa. Per aggiungere un po' di urgenza extra ai dati invalidi, abbiamo anche dato agli input un bordo rosso spesso quando sono invalidi.
+Come prima, gli `<span>` vengono impostati su `position: relative` affinché il contenuto generato possa essere posizionato relativamente a essi. Viene quindi posizionato in modo assoluto contenuto generato differente a seconda che i dati del modulo siano validi o non validi: rispettivamente un segno di spunta verde o una croce rossa. Per aggiungere un po' di urgenza ai dati non validi, agli input viene inoltre assegnato un bordo rosso spesso quando non sono validi.
 
 > [!NOTE]
-> Abbiamo usato `::before` per aggiungere queste etichette, poiché stavamo già usando `::after` per le etichette "required".
+> È stato usato `::before` per aggiungere queste etichette, poiché `::after` era già utilizzato per le etichette "required".
 
-Puoi provarlo qui sotto:
+Si può provare qui sotto (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/valid-invalid.html", '100%', 430)}}
+```html hidden live-sample___valid-invalid
+<form>
+  <fieldset>
+    <legend>Feedback form</legend>
 
-Nota come i text input richiesti sono invalidi quando vuoti, ma validi quando hanno qualcosa compilato. L'input email invece è valido quando vuoto, poiché non è richiesto, ma invalido quando contiene qualcosa che non è un indirizzo email corretto.
+    <p>Required fields are labeled with "required".</p>
+    <div>
+      <label for="fname">First name: </label>
+      <input id="fname" name="fname" type="text" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="lname">Last name: </label>
+      <input id="lname" name="lname" type="text" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="email"
+        >Email address (include if you want a response):
+      </label>
+      <input id="email" name="email" type="email" />
+      <span></span>
+    </div>
+    <div><button>Submit</button></div>
+  </fieldset>
+</form>
+```
 
-### Dati dentro al range e fuori dal range
+```css hidden live-sample___valid-invalid
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
 
-Come accennato sopra, ci sono altre due pseudo-classi correlate da considerare — {{cssxref(":in-range")}} e {{cssxref(":out-of-range")}}. Queste corrispondono a input numerici dove i limiti di range sono specificati dagli attributi [`min`](/it/docs/Web/HTML/Reference/Elements/input#min) e [`max`](/it/docs/Web/HTML/Reference/Elements/input#max), quando i loro dati sono all'interno o all'esterno del range specificato, rispettivamente.
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
+
+fieldset {
+  padding: 10px 30px 0;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset > div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+button,
+label,
+input {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+}
+
+input {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+
+input:hover,
+input:focus {
+  background-color: #eeeeee;
+}
+
+input + span {
+  position: relative;
+}
+
+input:required + span::after {
+  font-size: 0.7rem;
+  position: absolute;
+  content: "required";
+  color: white;
+  background-color: black;
+  padding: 5px 10px;
+  top: -26px;
+  left: -70px;
+}
+
+input + span::before {
+  position: absolute;
+  right: -20px;
+  top: 5px;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:invalid + span::before {
+  content: "✖";
+  color: red;
+}
+
+input:valid + span::before {
+  content: "✓";
+  color: green;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+}
+```
+
+```js hidden live-sample___valid-invalid
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+```
+
+{{EmbedLiveSample("valid-invalid", "100%", 430, , , , , "allow-forms")}}
+
+Si noti come gli input di testo obbligatori non siano validi quando sono vuoti, ma diventino validi quando contengono qualcosa. L'input email, invece, è valido quando è vuoto, poiché non è obbligatorio, ma non è valido quando contiene qualcosa che non è un indirizzo email corretto.
+
+### Dati all'interno e all'esterno dell'intervallo
+
+Come accennato sopra, vi sono altre due pseudo-classi correlate da considerare: {{cssxref(":in-range")}} e {{cssxref(":out-of-range")}}. Queste corrispondono agli input numerici per i quali i limiti dell'intervallo sono specificati tramite [`min`](/it/docs/Web/HTML/Reference/Elements/input#min) e [`max`](/it/docs/Web/HTML/Reference/Elements/input#max), quando i dati sono rispettivamente all'interno o all'esterno dell'intervallo specificato.
 
 > [!NOTE]
-> I tipi di input numerici sono `date`, `month`, `week`, `time`, `datetime-local`, `number`, e `range`.
+> I tipi di input numerici sono `date`, `month`, `week`, `time`, `datetime-local`, `number` e `range`.
 
-Vale la pena notare che gli input i cui dati sono dentro al range saranno anche corrisposti dalla pseudo-classe `:valid` e gli input i cui dati sono fuori dal range saranno anche corrisposti dalla pseudo-classe `:invalid`. Perché avere entrambi? Il problema è davvero uno di semantica — fuori dal range è un tipo più specifico di comunicazione invalida, quindi potresti voler fornire un messaggio diverso per gli input fuori dal range, che sarà più utile per gli utenti rispetto a dire solo "invalido". Potresti anche voler fornire entrambi.
+Vale la pena notare che gli input i cui dati sono all'interno dell'intervallo corrisponderanno anche alla pseudo-classe `:valid`, mentre gli input i cui dati sono al di fuori dell'intervallo corrisponderanno anche alla pseudo-classe `:invalid`. Perché avere entrambe? La questione riguarda soprattutto la semantica: fuori dall'intervallo è un tipo più specifico di comunicazione di non validità, quindi potrebbe essere opportuno fornire un messaggio diverso per gli input fuori intervallo, che sarà più utile agli utenti rispetto alla semplice indicazione "non valido". Potrebbe persino essere opportuno fornire entrambi.
 
-Diamo un'occhiata a un esempio che fa esattamente questo. La nostra demo [out-of-range.html](https://mdn.github.io/learning-area/html/forms/pseudo-classes/out-of-range.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/out-of-range.html)) si basa sull'esempio precedente per fornire messaggi di fuori dal range per gli input numerici, oltre a dire se sono richiesti.
+Vediamo un esempio che fa esattamente questo, basandosi sull'esempio precedente per fornire messaggi fuori intervallo per gli input numerici, oltre a indicare se sono obbligatori.
 
-L'input numerico appare così:
+L'input numerico ha questo aspetto:
 
 ```html
 <div>
@@ -343,7 +572,7 @@ L'input numerico appare così:
 </div>
 ```
 
-E il CSS appare così:
+Il CSS ha questo aspetto:
 
 ```css
 input + span {
@@ -373,24 +602,159 @@ input:out-of-range + span::after {
 }
 ```
 
-Questa è una storia simile a quella dell'esempio `:required`, tranne per il fatto che qui abbiamo separato le dichiarazioni che si applicano a qualsiasi contenuto `::after` in una regola separata, e abbiamo dato al contenuto `::after` separato per gli stati `:required` e `:out-of-range` il loro contenuto e stile. Puoi provarlo qui:
+La situazione è simile a quella dell'esempio precedente con `:required`, tranne per il fatto che qui le dichiarazioni applicabili a qualsiasi contenuto `::after` sono state separate in una regola distinta, e al contenuto `::after` separato per gli stati `:required` e `:out-of-range` sono stati assegnati contenuto e styling propri. Si può provare qui (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/out-of-range.html", '100%', 430)}}
+```html hidden live-sample___out-of-range
+<form>
+  <fieldset>
+    <legend>Feedback form</legend>
 
-È possibile che l'input del numero sia sia richiesto che fuori dal range allo stesso tempo, quindi cosa succede allora? Poiché la regola `:out-of-range` appare successivamente nel codice sorgente rispetto alla regola `:required`, si attivano le [regole di cascade](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts#understanding_the_cascade), e viene mostrato il messaggio di fuori dal range.
+    <p>Required fields are labeled with "required".</p>
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" name="name" type="text" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="age">Age (must be 12+): </label>
+      <input id="age" name="age" type="number" min="12" max="120" required />
+      <span></span>
+    </div>
+    <div>
+      <label for="email"
+        >Email address (include if you want a response):
+      </label>
+      <input id="email" name="email" type="email" />
+      <span></span>
+    </div>
+    <div><button>Submit</button></div>
+  </fieldset>
+</form>
+```
 
-Questo funziona molto bene — quando la pagina si carica per la prima volta, "Required" viene mostrato, insieme a una croce rossa e un bordo. Quando hai digitato un'età valida (cioè, nel range di 12-120), l'input diventa valido. Se tuttavia, cambi l'ingresso dell'età in uno che è fuori dal range, il messaggio "Outside allowable value range" appare al posto di "Required".
+```css hidden live-sample___out-of-range
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
+
+fieldset {
+  padding: 10px 30px 0;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset > div {
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+button,
+label,
+input {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+}
+
+input {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+
+input:hover,
+input:focus {
+  background-color: #eeeeee;
+}
+
+input + span {
+  position: relative;
+}
+
+input + span::after {
+  font-size: 0.7rem;
+  position: absolute;
+  padding: 5px 10px;
+  top: -26px;
+}
+
+input:required + span::after {
+  color: white;
+  background-color: black;
+  content: "required";
+  left: -70px;
+}
+
+input:out-of-range + span::after {
+  color: white;
+  background-color: red;
+  width: 155px;
+  content: "Outside allowable value range";
+  left: -182px;
+}
+
+input + span::before {
+  position: absolute;
+  right: -20px;
+  top: 5px;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:invalid + span::before {
+  content: "✖";
+  color: red;
+}
+
+input:valid + span::before {
+  content: "✓";
+  color: green;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+}
+```
+
+```js hidden live-sample___out-of-range
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+```
+
+{{EmbedLiveSample("out-of-range", "100%", 430, , , , , "allow-forms")}}
+
+È possibile che l'input numerico sia contemporaneamente obbligatorio e fuori intervallo; cosa succede in questo caso? Poiché la regola `:out-of-range` appare più avanti nel codice sorgente rispetto alla regola `:required`, entrano in gioco le [regole della cascata](/it/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts#understanding_the_cascade) e viene mostrato il messaggio fuori intervallo.
+
+Questo funziona piuttosto bene: quando la pagina viene caricata per la prima volta, viene mostrato "Required", insieme a una croce e a un bordo rossi. Dopo aver inserito un'età valida, ovvero nell'intervallo 12-120, l'input diventa valido. Tuttavia, modificando poi l'età con un valore fuori intervallo, il messaggio "Outside allowable value range" appare al posto di "Required".
 
 > [!NOTE]
-> Per inserire un valore invalido/fuori dal range, dovrai effettivamente focalizzare il modulo e digitarlo usando la tastiera. I pulsanti di spin non ti permetteranno di incrementare/decrementare il valore al di fuori del range consentito.
+> Per inserire un valore non valido/fuori intervallo, è necessario dare effettivamente il focus al modulo e digitarlo usando la tastiera. I pulsanti dello spinner non consentono di incrementare o decrementare il valore oltre l'intervallo consentito.
 
-## Stilizzazione di input abilitati e disabilitati, e solo lettura e lettura/scrittura
+## Applicare stili agli input abilitati e disabilitati, e in sola lettura e lettura-scrittura
 
-Un elemento abilitato è un elemento che può essere attivato; può essere selezionato, cliccato, digitato, ecc. Un elemento disabilitato invece non può essere interagito in alcun modo, e i suoi dati non sono nemmeno inviati al server.
+Un elemento abilitato è un elemento che può essere attivato: può essere selezionato, ricevere clic, ricevere testo e così via. Al contrario, non è possibile interagire in alcun modo con un elemento disabilitato e i suoi dati non vengono nemmeno inviati al server.
 
-Questi due stati possono essere targetizzati usando {{cssxref(":enabled")}} e {{cssxref(":disabled")}}. Perché gli input disabilitati sono utili? Beh, a volte se alcuni dati non si applicano a un determinato utente, potresti non voler nemmeno inviare quei dati quando invia il modulo. Un esempio classico è un modulo di spedizione — comunemente ti viene chiesto se vuoi usare lo stesso indirizzo per la fatturazione e la spedizione; in tal caso, puoi semplicemente inviare un singolo indirizzo al server, e potresti anche disabilitare i campi dell'indirizzo di fatturazione.
+Questi due stati possono essere selezionati usando {{cssxref(":enabled")}} e {{cssxref(":disabled")}}. Perché gli input disabilitati sono utili? Talvolta, se alcuni dati non si applicano a un determinato utente, potrebbe non essere desiderabile inviarli nemmeno quando il modulo viene inviato. Un esempio classico è un modulo di spedizione: comunemente viene chiesto se si desidera usare lo stesso indirizzo per la fatturazione e la spedizione; in tal caso, è possibile inviare un solo indirizzo al server e disabilitare semplicemente i campi dell'indirizzo di fatturazione.
 
-Diamo un'occhiata a un esempio che fa proprio questo. Prima di tutto, l'HTML è un semplice modulo contenente text input, più una checkbox per attivare e disattivare la disabilitazione dell'indirizzo di fatturazione. I campi dell'indirizzo di fatturazione sono disabilitati per default.
+Vediamo un esempio che fa esattamente questo. Prima di tutto, l'HTML è un semplice modulo che contiene input di testo, oltre a una checkbox per attivare e disattivare la disabilitazione dell'indirizzo di fatturazione. I campi dell'indirizzo di fatturazione sono disabilitati per impostazione predefinita.
 
 ```html
 <form>
@@ -437,36 +801,24 @@ Diamo un'occhiata a un esempio che fa proprio questo. Prima di tutto, l'HTML è 
 </form>
 ```
 
-Ora passiamo al CSS. Le parti più rilevanti di questo esempio sono le seguenti:
+Passiamo ora al CSS. Le parti più rilevanti di questo esempio sono le seguenti:
 
 ```css
 input[type="text"]:disabled {
-  background: #eee;
-  border: 1px solid #ccc;
+  background: #eeeeee;
+  border: 1px solid #cccccc;
 }
 
 label:has(+ :disabled) {
-  color: #aaa;
+  color: #aaaaaa;
 }
 ```
 
-Abbiamo direttamente selezionato gli input che vogliamo disabilitare usando `input[type="text"]:disabled`, ma volevamo anche ingrigire le corrispondenti etichette di testo. Poiché le etichette sono subito prima dei loro input, le abbiamo selezionate usando la pseudo-classe [`:has`](/it/docs/Web/CSS/:has).
+Gli input da disabilitare sono stati selezionati direttamente usando `input[type="text"]:disabled`, ma si desiderava anche rendere grigie le etichette di testo corrispondenti. Poiché le etichette si trovano subito prima dei rispettivi input, sono state selezionate usando la pseudo-classe {{cssxref(":has")}}.
 
-Ora infine, abbiamo usato un po' di JavaScript per attivare e disattivare la disabilitazione dei campi dell'indirizzo di fatturazione:
+Infine, è stato usato JavaScript per attivare o disattivare la disabilitazione dei campi dell'indirizzo di fatturazione:
 
 ```js
-// Wait for the page to finish loading
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-    // Attach `change` event listener to checkbox
-    document
-      .getElementById("billing-checkbox")
-      .addEventListener("change", toggleBilling);
-  },
-  false,
-);
-
 function toggleBilling() {
   // Select the billing text fields
   const billingItems = document.querySelectorAll('#billing input[type="text"]');
@@ -476,23 +828,154 @@ function toggleBilling() {
     item.disabled = !item.disabled;
   }
 }
+
+// Attach `change` event listener to checkbox
+document
+  .getElementById("billing-checkbox")
+  .addEventListener("change", toggleBilling);
 ```
 
-Usa l'[`evento change`](/it/docs/Web/API/HTMLElement/change_event) per permettere all'utente di abilitare/disabilitare i campi di fatturazione, e attivare lo styling delle etichette associate.
+Viene usato l'[evento `change`](/it/docs/Web/API/HTMLElement/change_event) per consentire all'utente di abilitare/disabilitare i campi di fatturazione e alternare lo styling delle etichette associate.
 
-Puoi vedere l'esempio in azione qui sotto (vedi anche l'esempio live qui](https://mdn.github.io/learning-area/html/forms/pseudo-classes/enabled-disabled-shipping.html), e vedere il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/enabled-disabled-shipping.html)):
+L'esempio in azione è visibile qui sotto (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/enabled-disabled-shipping.html", '100%', 600)}}
+```html hidden live-sample___enabled-disabled-shipping
+<form>
+  <fieldset id="shipping">
+    <legend>Shipping address</legend>
+    <div>
+      <label for="name1">Name: </label>
+      <input id="name1" name="name1" type="text" required />
+    </div>
+    <div>
+      <label for="address1">Address: </label>
+      <input id="address1" name="address1" type="text" required />
+    </div>
+    <div>
+      <label for="zip-code1">Zip/postal code: </label>
+      <input id="zip-code1" name="zip-code1" type="text" required />
+    </div>
+  </fieldset>
+  <fieldset id="billing">
+    <legend>Billing address</legend>
+    <div>
+      <label for="billing-checkbox">Same as shipping address:</label>
+      <input type="checkbox" id="billing-checkbox" checked />
+    </div>
+    <div>
+      <label for="name" class="billing-label">Name: </label>
+      <input id="name" name="name" type="text" disabled required />
+    </div>
+    <div>
+      <label for="address2" class="billing-label">Address: </label>
+      <input id="address2" name="address2" type="text" disabled required />
+    </div>
+    <div>
+      <label for="zip-code2" class="billing-label">Zip/postal code: </label>
+      <input id="zip-code2" name="zip-code2" type="text" disabled required />
+    </div>
+  </fieldset>
 
-### Solo lettura e lettura/scrittura
+  <div><button>Submit</button></div>
+</form>
+```
 
-In modo simile a `:disabled` e `:enabled`, le pseudo-classi `:read-only` e `:read-write` targetizzano due stati tra cui gli input del modulo alternano. Come con gli input disabilitati, l'utente non può modificare gli input di sola lettura. Tuttavia, a differenza degli input disabilitati, i valori degli input di sola lettura saranno inviati al server. Lettura/scrittura significa che possono essere modificati — il loro stato predefinito.
+```css hidden live-sample___enabled-disabled-shipping
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
 
-Un input è impostato su sola lettura usando l'attributo `readonly`. Come esempio, immagina una pagina di conferma in cui lo sviluppatore ha inviato i dettagli compilati nelle pagine precedenti a questa pagina, con l'obiettivo di farli controllare tutti in un unico posto dall'utente, aggiungere eventuali dati finali necessari, e quindi confermare l'ordine inviando. A questo punto, tutti i dati del modulo finale possono essere inviati al server in un colpo solo.
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
 
-Vediamo come potrebbe apparire un modulo (vedi [readonly-confirmation.html](https://mdn.github.io/learning-area/html/forms/pseudo-classes/readonly-confirmation.html) per l'esempio live; vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/readonly-confirmation.html)).
+fieldset {
+  padding: 10px 30px 0;
+  margin-bottom: 20px;
+}
 
-Un frammento dell'HTML è il seguente — nota l'attributo readonly:
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset > div {
+  margin-bottom: 20px;
+  display: flex;
+}
+
+button,
+label,
+input[type="text"] {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px;
+  height: 30px;
+}
+
+input {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+
+input:hover,
+input:focus {
+  background-color: #eeeeee;
+}
+
+input[type="text"]:disabled {
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+}
+
+label:has(+ :disabled) {
+  color: #aaaaaa;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+}
+```
+
+```js hidden live-sample___enabled-disabled-shipping
+function toggleBilling() {
+  // Select the billing text fields
+  const billingItems = document.querySelectorAll('#billing input[type="text"]');
+
+  // Toggle the billing text fields
+  for (const item of billingItems) {
+    item.disabled = !item.disabled;
+  }
+}
+
+// Attach `change` event listener to checkbox
+document
+  .getElementById("billing-checkbox")
+  .addEventListener("change", toggleBilling);
+
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+```
+
+{{EmbedLiveSample("enabled-disabled-shipping", "100%", 580, , , , , "allow-forms")}}
+
+### Sola lettura e lettura-scrittura
+
+In modo simile a `:disabled` e `:enabled`, le pseudo-classi `:read-only` e `:read-write` selezionano due stati tra i quali gli input del modulo possono alternarsi. Come per gli input disabilitati, l'utente non può modificare gli input in sola lettura. Tuttavia, a differenza degli input disabilitati, i valori degli input in sola lettura verranno inviati al server. Lettura-scrittura significa che possono essere modificati: è il loro stato predefinito.
+
+Un input viene impostato in sola lettura usando l'attributo `readonly`. Per esempio, si immagini una pagina di conferma in cui lo sviluppatore ha inviato a questa pagina i dettagli compilati nelle pagine precedenti, con l'obiettivo di consentire all'utente di controllarli tutti in un unico posto, aggiungere eventuali dati finali necessari e quindi confermare l'ordine tramite invio. A questo punto, tutti i dati finali del modulo possono essere inviati al server in un'unica operazione.
+
+Vediamo come potrebbe essere un modulo.
+
+Un frammento dell'HTML è il seguente: si noti l'attributo `readonly`:
 
 ```html
 <div>
@@ -501,7 +984,7 @@ Un frammento dell'HTML è il seguente — nota l'attributo readonly:
 </div>
 ```
 
-Se provi l'esempio live, vedrai che il set superiore di elementi del modulo non è modificabile, tuttavia, i valori vengono inviati quando il modulo viene inviato. Abbiamo stilizzato i controlli del modulo usando le pseudo-classi `:read-only` e `:read-write`, in questo modo:
+Provando l'esempio dal vivo, si potrà vedere che il gruppo superiore di elementi del modulo non è modificabile; tuttavia, i valori vengono inviati quando il modulo viene inoltrato. I controlli del modulo sono stati stilizzati mediante le pseudo-classi `:read-only` e `:read-write`, in questo modo:
 
 ```css
 input:read-only,
@@ -512,31 +995,157 @@ textarea:read-only {
 }
 
 textarea:read-write {
-  box-shadow: inset 1px 1px 3px #ccc;
+  box-shadow: inset 1px 1px 3px #cccccc;
   border-radius: 5px;
 }
 ```
 
-L'esempio completo appare così:
+L'esempio completo è il seguente (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/readonly-confirmation.html", '100%', 660)}}
+```html hidden live-sample___readonly-confirmation
+<form>
+  <fieldset>
+    <legend>Check shipping details</legend>
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" name="name" type="text" value="Mr Soft" readonly />
+    </div>
+    <div>
+      <label for="address">Address: </label>
+      <textarea id="address" name="address" readonly>
+23 Elastic Way,
+Viscous,
+Bright Ridge,
+CA
+</textarea>
+    </div>
+    <div>
+      <label for="zip-code">Zip/postal code: </label>
+      <input id="zip-code" name="zip-code" type="text" value="94708" readonly />
+    </div>
+  </fieldset>
 
-> **Nota:** `:enabled` e `:read-write` sono due altre pseudo-classi che probabilmente utilizzerai raramente, dato che descrivono gli stati predefiniti degli elementi input.
+  <fieldset>
+    <legend>Final instructions</legend>
+    <div>
+      <label for="sms-confirm">Send confirmation by SMS?</label>
+      <input id="sms-confirm" name="sms-confirm" type="checkbox" />
+    </div>
+    <div>
+      <label for="instructions">Any special instructions?</label>
+      <textarea id="instructions" name="instructions"></textarea>
+    </div>
+  </fieldset>
 
-## Stati di radio e checkbox — checked, default, indeterminate
+  <div><button type="button">Amend details</button></div>
+  <div><button type="submit">Submit</button></div>
+</form>
+```
 
-Come abbiamo visto negli articoli precedenti nel modulo, {{HTMLElement("input/radio", "pulsanti radio")}} e {{HTMLElement("input/checkbox", "checkbox")}} possono essere selezionati o non selezionati. Ma ci sono altri stati da considerare:
+```css hidden live-sample___readonly-confirmation
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
 
-- {{cssxref(":default")}}: Corrisponde ai radio/checkbox che sono selezionati per default, al caricamento della pagina (cioè, impostando l'attributo `checked` su di essi). Questi corrispondono alla pseudo-classe {{cssxref(":default")}}, anche se l'utente li deseleziona.
-- {{cssxref(":indeterminate")}}: Quando i radio/checkbox non sono né selezionati né deselezionati, sono considerati _indeterminate_ e corrisponderanno alla pseudo-classe {{cssxref(":indeterminate")}}. Più avanti su cosa significa questo.
+body {
+  font-family: "Josefin Sans", sans-serif;
+  margin: 20px auto;
+  max-width: 460px;
+}
+
+fieldset {
+  padding: 10px 30px 0;
+  margin-bottom: 20px;
+}
+
+legend {
+  color: white;
+  background: black;
+  padding: 5px 10px;
+}
+
+fieldset > div {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+button,
+label,
+input[type="text"],
+textarea {
+  display: block;
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 5px;
+  height: 30px;
+}
+
+input[type="text"],
+textarea {
+  width: 50%;
+}
+
+textarea {
+  height: 110px;
+  resize: none;
+}
+
+label {
+  width: 40%;
+}
+
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
+  background-color: #eeeeee;
+}
+
+button {
+  width: 60%;
+  margin: 20px auto;
+}
+
+input:read-only,
+textarea:read-only {
+  border: 0;
+  box-shadow: none;
+  background-color: white;
+}
+
+textarea:read-write {
+  box-shadow: inset 1px 1px 3px #cccccc;
+  border-radius: 5px;
+}
+```
+
+```js hidden live-sample___readonly-confirmation
+const form = document.querySelector("form");
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+```
+
+{{EmbedLiveSample("readonly-confirmation", "100%", 660, , , , , "allow-forms")}}
+
+> [!NOTE]
+> `:enabled` e `:read-write` sono altre due pseudo-classi che probabilmente verranno usate raramente, dato che descrivono gli stati predefiniti degli elementi input.
+
+## Stati di radio button e checkbox: selezionato, predefinito, indeterminato
+
+Come visto negli articoli precedenti del modulo, i {{HTMLElement("input/radio", "radio button")}} e le {{HTMLElement("input/checkbox", "checkbox")}} possono essere selezionati o deselezionati. Tuttavia, vi sono anche un paio di altri stati da considerare:
+
+- {{cssxref(":default")}}: corrisponde a radio button/checkbox selezionati per impostazione predefinita, al caricamento della pagina (ovvero impostando su di essi l'attributo `checked`). Questi corrispondono alla pseudo-classe {{cssxref(":default")}}, anche se l'utente li deseleziona.
+- {{cssxref(":indeterminate")}}: quando radio button/checkbox non sono né selezionati né deselezionati, sono considerati _indeterminati_ e corrispondono alla pseudo-classe {{cssxref(":indeterminate")}}. Maggiori informazioni sul significato di questo stato sono riportate di seguito.
 
 ### :checked
 
-Quando selezionati, saranno corrisposti dalla pseudo-classe {{cssxref(":checked")}}.
+Quando sono selezionati, corrispondono alla pseudo-classe {{cssxref(":checked")}}.
 
-L'uso più comune di questo è aggiungere uno stile diverso alla checkbox o pulsante radio quando è selezionato, nei casi in cui hai rimosso lo stile predefinito di sistema con [`appearance: none;`](/it/docs/Web/CSS/appearance) e vuoi ricostruire lo stile da solo. Abbiamo visto esempi di questo nell'articolo precedente quando abbiamo parlato di [Utilizzare `appearance: none` sui radio/checkbox](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling#using_appearance_none_on_radioscheckboxes).
+L'uso più comune consiste nell'aggiungere uno stile differente alla checkbox o al radio button quando è selezionato, nei casi in cui lo stile predefinito di sistema è stato rimosso con [`appearance: none;`](/it/docs/Web/CSS/Reference/Properties/appearance) e si desidera ricostruire manualmente gli stili. Esempi di questo sono stati visti nell'articolo precedente, nella sezione [Applicare stili a checkbox e radio button usando `appearance`](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling#styling_checkboxes_and_radio_buttons_using_appearance).
 
-Come riepilogo, il codice `:checked` dal nostro esempio di [Styled radio buttons](https://mdn.github.io/learning-area/html/forms/styling-examples/radios-styled.html) appare così:
+Come riepilogo, il codice `:checked` dell'esempio Styled radio buttons è questo:
 
 ```css
 input[type="radio"]::before {
@@ -558,25 +1167,85 @@ input[type="radio"]:checked::before {
 }
 ```
 
-Puoi provarlo qui:
+Si può provare qui (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/styling-examples/radios-styled.html", '100%', 200)}}
+```html hidden live-sample___radios-styled
+<form>
+  <fieldset>
+    <legend>Choose your favorite fruit</legend>
+    <p>
+      <label>
+        <input type="radio" name="fruit" value="cherry" />
+        Cherry
+      </label>
+    </p>
+    <p>
+      <label>
+        <input type="radio" name="fruit" value="banana" />
+        Banana
+      </label>
+    </p>
+    <p>
+      <label>
+        <input type="radio" name="fruit" value="strawberry" />
+        Strawberry
+      </label>
+    </p>
+  </fieldset>
+</form>
+```
 
-Fondamentalmente, costruiamo lo stile per il "circolo interno" di un pulsante radio usando lo pseudo-elemento `::before`, ma impostiamo una [`transform`](/it/docs/Web/CSS/transform) `scale(0)` su di esso. Usiamo poi una [`transition`](/it/docs/Web/CSS/transition) per far sì che il contenuto generato sull'etichetta venga animato in modo gradevole quando il radio viene selezionato/spuntato. Il vantaggio di usare una trasformazione piuttosto che una transizione su [`width`](/it/docs/Web/CSS/width)/[`height`](/it/docs/Web/CSS/height) è che puoi usare [`transform-origin`](/it/docs/Web/CSS/transform-origin) per farlo crescere dal centro del cerchio, piuttosto che farlo apparire come se crescesse dall'angolo del cerchio, e non c'è comportamento di salto dato che nessun modello di proprietà delle caselle viene aggiornato.
+```css hidden live-sample___radios-styled
+input[type="radio"] {
+  appearance: none;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  outline: none;
+}
+
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: red;
+  font-size: 1.2em;
+  transform: translate(3px, 3px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
+
+input[type="radio"]:checked::before {
+  transform: translate(3px, 3px) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+```
+
+{{EmbedLiveSample("radios-styled", "100%", 200, , , , , "allow-forms")}}
+
+In sostanza, lo styling del "cerchio interno" del radio button viene creato usando lo pseudo-elemento `::before`, ma impostando su di esso una {{cssxref("transform")}} `scale(0)`. Viene quindi usata una {{cssxref("transition")}} per animare piacevolmente la comparsa del contenuto generato sull'input quando il radio button viene selezionato. Il vantaggio dell'uso di una transform anziché di una transizione di {{cssxref("width")}}/{{cssxref("height")}} è che si può usare {{cssxref("transform-origin")}} per farlo crescere dal centro del cerchio, anziché farlo sembrare crescere dall'angolo del cerchio; inoltre, non si verifica alcun salto poiché nessun valore delle proprietà del box model viene aggiornato.
 
 ### :default e :indeterminate
 
-Come menzionato sopra, la pseudo-classe {{cssxref(":default")}} corrisponde ai radio/checkbox che sono selezionati per default, al caricamento della pagina, anche quando non selezionati. Questo potrebbe essere utile per aggiungere un indicatore a una lista di opzioni per ricordare all'utente quali erano i predefiniti (o le opzioni iniziali), nel caso vogliano resettare le loro scelte.
+Come indicato sopra, la pseudo-classe {{cssxref(":default")}} corrisponde a radio button/checkbox selezionati per impostazione predefinita al caricamento della pagina, anche quando vengono deselezionati. Questo potrebbe essere utile per aggiungere un indicatore a un elenco di opzioni e ricordare all'utente quali erano le opzioni predefinite, o iniziali, nel caso in cui desideri reimpostare le proprie scelte.
 
-Inoltre, i radio/checkbox sopra menzionati saranno corrisposti dalla pseudo-classe {{cssxref(":indeterminate")}} quando sono in uno stato in cui non sono né selezionati né deselezionati. Ma cosa significa? Gli elementi che sono indeterminati includono:
+Inoltre, i radio button/checkbox menzionati sopra corrisponderanno alla pseudo-classe {{cssxref(":indeterminate")}} quando si trovano in uno stato in cui non sono né selezionati né deselezionati. Ma cosa significa? Gli elementi indeterminati includono:
 
-- Input {{HTMLElement("input/radio")}}, quando tutti i pulsanti radio in un gruppo con lo stesso nome sono non selezionati
-- Input {{HTMLElement("input/checkbox")}} la cui proprietà `indeterminate` è impostata su `true` tramite JavaScript
-- Elementi {{HTMLElement("progress")}} che non hanno valore.
+- input {{HTMLElement("input/radio")}}, quando tutti i radio button in un gruppo con lo stesso nome sono deselezionati
+- input {{HTMLElement("input/checkbox")}} la cui proprietà `indeterminate` è impostata su `true` tramite JavaScript
+- elementi {{HTMLElement("progress")}} privi di valore.
 
-Questo non è qualcosa che probabilmente userai molto spesso. Un caso d'uso potrebbe essere un indicatore per dire agli utenti che devono davvero selezionare un pulsante radio prima di procedere.
+Probabilmente questo non verrà usato molto spesso. Un caso d'uso potrebbe essere un indicatore per dire agli utenti che devono selezionare un radio button prima di procedere.
 
-Vediamo un paio di versioni modificate dell'esempio precedente che ricordano all'utente quale era l'opzione predefinita, e stilizzano le etichette dei pulsanti radio quando indeterminate. Entrambi questi hanno la seguente struttura HTML per gli input:
+Esaminiamo un paio di versioni modificate dell'esempio precedente, che ricordano all'utente quale fosse l'opzione predefinita e applicano stili alle etichette dei radio button quando sono indeterminati. Entrambe presentano la seguente struttura HTML per gli input:
 
 ```html
 <p>
@@ -586,7 +1255,7 @@ Vediamo un paio di versioni modificate dell'esempio precedente che ricordano all
 </p>
 ```
 
-Per l'esempio `:default`, abbiamo aggiunto l'attributo `checked` al pulsante radio centrale, quindi sarà selezionato per default quando caricato. Lo stiliamo con il seguente CSS:
+Per l'esempio `:default`, l'attributo `checked` è stato aggiunto all'input del radio button centrale, quindi sarà selezionato per impostazione predefinita al caricamento. Viene quindi stilizzato con il seguente CSS:
 
 ```css
 input ~ span {
@@ -605,16 +1274,92 @@ input:default ~ span::after {
 }
 ```
 
-Questo fornisce una piccola etichetta "Default" sull'elemento che era originariamente selezionato quando la pagina è stata caricata. Nota qui stiamo usando il combinatore di fratello successivo (`~`) piuttosto che il combinatore di fratello successivo (`+`) — dobbiamo fare questo perché lo `<span>` non viene subito dopo l'`<input>` nell'ordine del sorgente.
+Questo fornisce una piccola etichetta "Default" sull'elemento originariamente selezionato al caricamento della pagina. Si noti che qui viene usato il combinatore di fratelli successivi (`~`) anziché il combinatore del fratello successivo (`+`): è necessario farlo perché lo `<span>` non si trova immediatamente dopo l'`<input>` nell'ordine sorgente.
 
-Vedi il risultato live qui sotto:
+Il risultato dal vivo è visibile qui sotto (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/radios-checked-default.html", '100%', 200)}}
+```html hidden live-sample___radios-checked-default
+<form>
+  <fieldset>
+    <legend>Choose your favorite fruit</legend>
+    <p>
+      <input type="radio" name="fruit" value="cherry" id="cherry" />
+      <label for="cherry">Cherry</label>
+      <span></span>
+    </p>
+    <p>
+      <input type="radio" name="fruit" value="banana" id="banana" checked />
+      <label for="banana">Banana</label>
+      <span></span>
+    </p>
+    <p>
+      <input type="radio" name="fruit" value="strawberry" id="strawberry" />
+      <label for="strawberry">Strawberry</label>
+      <span></span>
+    </p>
+  </fieldset>
+</form>
+```
 
-> [!NOTE]
-> Puoi anche trovare l'esempio live su GitHub su [radios-checked-default.html](https://mdn.github.io/learning-area/html/forms/pseudo-classes/radios-checked-default.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/radios-checked-default.html).)
+```css hidden live-sample___radios-checked-default
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
 
-Per l'esempio `:indeterminate`, non abbiamo nessun pulsante radio selezionato per default — questo è importante — se ci fosse, allora non ci sarebbe stato nessuno stato indeterminato da stilizzare. Stilizziamo i pulsanti radio indeterminate con il seguente CSS:
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  outline: none;
+}
+
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: red;
+  font-size: 1.2em;
+  transform: translate(3px, 3px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
+
+input[type="radio"]:checked::before {
+  transform: translate(3px, 3px) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+
+input ~ span {
+  position: relative;
+}
+
+input:default ~ span::after {
+  font-size: 0.7rem;
+  position: absolute;
+  content: "Default";
+  color: white;
+  background-color: black;
+  padding: 5px 10px;
+  right: -65px;
+  top: -3px;
+}
+```
+
+{{EmbedLiveSample("radios-checked-default", "100%", 200, , , , , "allow-forms")}}
+
+Per l'esempio `:indeterminate`, non è presente alcun radio button selezionato per impostazione predefinita: questo è importante; se ce ne fosse stato uno, non vi sarebbe stato alcuno stato indeterminato da stilizzare. I radio button indeterminati vengono stilizzati con il seguente CSS:
 
 ```css
 input[type="radio"]:indeterminate {
@@ -633,37 +1378,109 @@ input[type="radio"]:indeterminate {
 }
 ```
 
-Questo crea un piccolo contorno animato sui pulsanti radio, che indicano si spera che devi selezionarne uno!
+Questo crea un divertente piccolo contorno animato sui radio button, che dovrebbe indicare la necessità di selezionarne uno.
 
-Vedi il risultato live qui sotto:
+Il risultato dal vivo è visibile qui sotto (premere il pulsante **Play** per eseguire l'esempio in MDN Playground e modificare il codice sorgente):
 
-{{EmbedGHLiveSample("learning-area/html/forms/pseudo-classes/radios-checked-indeterminate.html", '100%', 200)}}
+```html hidden live-sample___radios-checked-indeterminate
+<form>
+  <fieldset>
+    <legend>Choose your favorite fruit</legend>
+    <p>
+      <input type="radio" name="fruit" value="cherry" id="cherry" />
+      <label for="cherry">Cherry</label>
+      <span></span>
+    </p>
+    <p>
+      <input type="radio" name="fruit" value="banana" id="banana" />
+      <label for="banana">Banana</label>
+      <span></span>
+    </p>
+    <p>
+      <input type="radio" name="fruit" value="strawberry" id="strawberry" />
+      <label for="strawberry">Strawberry</label>
+      <span></span>
+    </p>
+  </fieldset>
+</form>
+```
+
+```css hidden live-sample___radios-checked-indeterminate
+@import "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap";
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: 2px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  outline: none;
+}
+
+input[type="radio"]::before {
+  display: block;
+  content: " ";
+  width: 10px;
+  height: 10px;
+  border-radius: 6px;
+  background-color: red;
+  font-size: 1.2em;
+  transform: translate(3px, 3px) scale(0);
+  transform-origin: center;
+  transition: all 0.3s ease-in;
+}
+
+input[type="radio"]:checked::before {
+  transform: translate(3px, 3px) scale(1);
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0.56, 2);
+}
+
+input[type="radio"]:indeterminate {
+  border: 2px solid red;
+  animation: 0.4s linear infinite alternate border-pulse;
+}
+
+@keyframes border-pulse {
+  from {
+    border: 2px solid red;
+  }
+
+  to {
+    border: 6px solid red;
+  }
+}
+```
+
+{{EmbedLiveSample("radios-checked-indeterminate", "100%", 200, , , , , "allow-forms")}}
 
 > [!NOTE]
-> Puoi anche trovare l'esempio live su GitHub su [radios-checked-indeterminate.html](https://mdn.github.io/learning-area/html/forms/pseudo-classes/radios-checked-indeterminate.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/forms/pseudo-classes/radios-checked-indeterminate.html).)
-
-> [!NOTE]
-> Puoi trovare un [esempio interessante che coinvolge stati `indeterminate`](/it/docs/Web/HTML/Reference/Elements/input/checkbox#indeterminate_state_checkboxes) sulla pagina di riferimento [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox).
+> Nella pagina di riferimento di [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox) è disponibile un [interessante esempio che coinvolge gli stati `indeterminate`](/it/docs/Web/HTML/Reference/Elements/input/checkbox#indeterminate_state_checkboxes).
 
 ## Altre pseudo-classi
 
-Ci sono un numero di altre pseudo-classi di interesse, e non abbiamo spazio per scriverne tutte dettagliatamente qui. Parliamo di alcune altre che dovresti prendere tempo per esplorare.
+Esistono diverse altre pseudo-classi di interesse e qui non c'è spazio per descriverle tutte dettagliatamente. Vediamone alcune che meritano di essere approfondite.
 
-- La pseudo-classe {{cssxref(":focus-within")}} corrisponde a un elemento che ha ricevuto focus o _contiene_ un elemento che ha ricevuto focus. Questo è utile se vuoi che un intero modulo si evidenzi in qualche modo quando un input all'interno di esso è focalizzato.
-- La pseudo-classe {{cssxref(":focus-visible")}} corrisponde a elementi focalizzati che hanno ricevuto focus tramite interazione con la tastiera (piuttosto che touch o mouse) — utile se vuoi mostrare uno stile diverso per il focus da tastiera rispetto al mouse (o altro) focus.
-- La pseudo-classe {{cssxref(":placeholder-shown")}} corrisponde a elementi {{htmlelement('input')}} e {{htmlelement('textarea')}} che hanno il loro placeholder visibile (cioè, i contenuti dell'attributo [`placeholder`](/it/docs/Web/HTML/Reference/Elements/input#placeholder)) perché il valore dell'elemento è vuoto.
+- La pseudo-classe {{cssxref(":focus-within")}} corrisponde a un elemento che ha ricevuto il focus oppure che _contiene_ un elemento che ha ricevuto il focus. È utile se si desidera evidenziare in qualche modo un intero modulo quando un input al suo interno riceve il focus.
+- La pseudo-classe {{cssxref(":focus-visible")}} corrisponde agli elementi con focus che hanno ricevuto il focus tramite interazione con la tastiera, anziché tramite tocco o mouse; è utile se si desidera mostrare uno stile differente per il focus da tastiera rispetto al focus del mouse, o di altro tipo.
+- La pseudo-classe {{cssxref(":placeholder-shown")}} corrisponde agli elementi {{htmlelement('input')}} e {{htmlelement('textarea')}} che visualizzano il proprio placeholder, ovvero il contenuto dell'attributo [`placeholder`](/it/docs/Web/HTML/Reference/Elements/input#placeholder), perché il valore dell'elemento è vuoto.
 
-I seguenti sono anche interessanti, ma per ora non hanno un buon supporto nei browser:
+Anche le seguenti sono interessanti, ma al momento non sono ben supportate nei browser:
 
-- La pseudo-classe {{cssxref(":blank")}} seleziona i controlli di modulo vuoti. {{cssxref(":empty")}} corrisponde anche a elementi che non hanno figli, come {{HTMLElement("input")}}, ma è più generale — corrisponde anche ad altri {{Glossary("void_element", "elementi vuoti")}} come {{HTMLElement("br")}} e {{HTMLElement("hr")}}. `:empty` ha un ragionevole supporto nei browser; la pseudo-classe `:blank` non è ancora finita nella sua specifica, quindi non è ancora supportata in nessun browser.
-- La pseudo-classe [`:user-invalid`](/it/docs/Web/CSS/:user-invalid), quando supportata, sarà simile a {{cssxref(":invalid")}}, ma con una migliore esperienza utente. Se il valore è valido quando l'input riceve il focus, l'elemento può corrispondere a `:invalid` mentre l'utente inserisce dati se il valore è temporaneamente invalido, ma corrisponderà solo a `:user-invalid` quando l'elemento perde il focus. Se il valore era originariamente invalido, corrisponderà a entrambi `:invalid` e `:user-invalid` per la durata dell'intero focus. In modo simile a `:invalid`, smetterà di corrispondere a `:user-invalid` se il valore diventa valido.
-
-## Testa le tue abilità!
-
-Sei giunto alla fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare di aver trattenuto queste informazioni prima di passare avanti — vedi [Testa le tue abilità: Stilizzazione avanzata](/it/docs/Learn_web_development/Extensions/Forms/Test_your_skills/Advanced_styling).
+- La pseudo-classe {{cssxref(":blank")}} seleziona i controlli dei moduli vuoti. {{cssxref(":empty")}} corrisponde anch'essa a elementi privi di figli, come {{HTMLElement("input")}}, ma è più generale: corrisponde anche ad altri {{Glossary("void_element", "elementi void")}} come {{HTMLElement("br")}} e {{HTMLElement("hr")}}. `:empty` ha un supporto ragionevole nei browser; la specifica della pseudo-classe `:blank` non è ancora terminata, pertanto non è ancora supportata in alcun browser.
+- La pseudo-classe {{cssxref(":user-invalid")}}, quando supportata, sarà simile a {{cssxref(":invalid")}}, ma con una migliore esperienza utente. Se il valore è valido quando l'input riceve il focus, l'elemento può corrispondere a `:invalid` mentre l'utente inserisce dati se il valore è temporaneamente non valido, ma corrisponderà a `:user-invalid` solo quando l'elemento perde il focus. Se il valore era originariamente non valido, corrisponderà sia a `:invalid` sia a `:user-invalid` per tutta la durata del focus. In modo simile a `:invalid`, smetterà di corrispondere a `:user-invalid` se il valore diventa valido.
 
 ## Riepilogo
 
-Questo completa il nostro sguardo alle pseudo-classi UI che riguardano gli input dei moduli. Continua a giocarci e crea alcuni stili di modulo divertenti! A seguire, passeremo a qualcosa di diverso — [validazione del modulo lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation).
+Questo conclude l'analisi delle pseudo-classi UI relative agli input dei moduli. È consigliabile continuare a sperimentare con esse e creare alcuni divertenti stili per moduli. Successivamente si passerà a qualcosa di diverso: la [convalida dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation).
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Forms/Customizable_select", "Learn_web_development/Extensions/Forms/Form_validation", "Learn_web_development/Extensions/Forms")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Forms/Customizable_select_listboxes", "Learn_web_development/Extensions/Forms/Form_validation", "Learn_web_development/Extensions/Forms")}}

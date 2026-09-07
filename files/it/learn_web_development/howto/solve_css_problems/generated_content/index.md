@@ -1,27 +1,27 @@
 ---
-title: Utilizzare il contenuto generato da CSS
-short-title: Utilizzare il contenuto generato
+title: Usare contenuto generato con CSS
+short-title: Usare contenuto generato
 slug: Learn_web_development/Howto/Solve_CSS_problems/Generated_content
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 2b4a2ad5d9ba084a9eaa2f9204102655e7b575c4
 ---
 
-Questo articolo descrive alcuni modi in cui utilizzare CSS per aggiungere contenuto quando un documento viene visualizzato. È possibile modificare il foglio di stile per aggiungere contenuti di testo o immagini.
+Questo articolo descrive alcuni modi in cui è possibile usare CSS per aggiungere contenuto quando viene visualizzato un documento. Si modifica il foglio di stile per aggiungere contenuto testuale o immagini.
 
-Uno dei vantaggi importanti di CSS è che aiuta a separare lo stile di un documento dal suo contenuto. Tuttavia, ci sono situazioni in cui ha senso specificare determinati contenuti come parte del foglio di stile, e non come parte del documento. Si può specificare contenuto di testo o immagine all'interno di un foglio di stile quando quel contenuto è strettamente legato alla struttura del documento.
+Uno degli importanti vantaggi di CSS è che aiuta a separare lo stile di un documento dal suo contenuto. Tuttavia, esistono situazioni in cui è sensato specificare determinati contenuti come parte del foglio di stile, anziché come parte del documento. È possibile specificare contenuto testuale o immagini all'interno di un foglio di stile quando tale contenuto è strettamente collegato alla struttura del documento.
 
 > [!NOTE]
-> Il contenuto specificato in un foglio di stile non diventa parte del DOM.
+> Il contenuto specificato in un foglio di stile non entra a far parte del DOM.
 
-Specificare contenuti in un foglio di stile può causare complicazioni. Ad esempio, si potrebbero avere diverse versioni linguistiche del documento che condividono un foglio di stile. Se si specifica un contenuto nel foglio di stile che richiede traduzione, è necessario mettere quelle parti del foglio di stile in file diversi e disporre che siano collegati con le versioni linguistiche appropriate del documento.
+Specificare contenuto in un foglio di stile può causare complicazioni. Ad esempio, un documento potrebbe avere versioni in lingue diverse che condividono un foglio di stile. Se viene specificato nel foglio di stile un contenuto che richiede traduzione, occorre inserire quelle parti del foglio di stile in file diversi e fare in modo che siano collegati alle versioni del documento nella lingua appropriata.
 
-Questo problema non si presenta se il contenuto specificato è costituito da simboli o immagini applicabili in tutte le lingue e culture.
+Questo problema non si verifica se il contenuto specificato è costituito da simboli o immagini applicabili in tutte le lingue e culture.
 
 ## Esempi
 
 ### Contenuto testuale
 
-CSS può inserire contenuti testuali prima o dopo un elemento, o modificare il contenuto del marcatore di un elenco (come un simbolo di pallino o un numero) prima di un {{HTMLElement('li')}} o di un altro elemento con {{ cssxref("display", "display: list-item;") }}. Per specificare ciò, creare una regola e aggiungere {{ cssxref("::before") }}, {{ cssxref("::after") }}, o {{cssxref("::marker")}} al selettore. Nella dichiarazione, specificare la proprietà {{ cssxref("content") }} con il contenuto testuale come suo valore.
+CSS può inserire contenuto testuale prima o dopo un elemento, oppure modificare il contenuto di un marcatore di elemento di elenco, come un simbolo di punto elenco o un numero, prima di un {{HTMLElement('li')}} o di un altro elemento con {{ cssxref("display", "display: list-item;") }}. Per specificarlo, creare una regola e aggiungere {{ cssxref("::before") }}, {{ cssxref("::after") }} o {{cssxref("::marker")}} al selettore. Nella dichiarazione, specificare la proprietà {{ cssxref("content") }} con il contenuto testuale come valore.
 
 #### HTML
 
@@ -43,15 +43,15 @@ A text where I need to <span class="ref">something</span>
 
 {{ EmbedLiveSample('Text_content', 600, 30) }}
 
-Il set di caratteri di un foglio di stile è di default UTF-8, ma può anche essere specificato nel link, nel foglio di stile stesso o in altri modi. Per i dettagli, vedere [4.4 Rappresentazione del foglio di stile CSS](https://www.w3.org/TR/CSS21/syndata.html#q23) nella Specifica CSS.
+Il set di caratteri di un foglio di stile è UTF-8 per impostazione predefinita, ma può anche essere specificato nel collegamento, nel foglio di stile stesso o in altri modi. Per i dettagli, vedere il riferimento a {{cssxref("@charset")}}.
 
-I singoli caratteri possono anche essere specificati tramite un meccanismo di escape che utilizza la barra obliqua inversa come carattere di escape. Ad esempio, "\265B" è il simbolo degli scacchi per una regina nera ♛. Per i dettagli, vedere [Riferimento a caratteri non rappresentati in una codifica di caratteri](https://www.w3.org/TR/CSS21/syndata.html#q24) e [Caratteri e case](https://www.w3.org/TR/CSS21/syndata.html#q6) nella Specifica CSS.
+I singoli caratteri possono anche essere specificati tramite un meccanismo di escape che usa la barra rovesciata come carattere di escape. Ad esempio, "\265B" è il simbolo degli scacchi per una regina nera ♛.
 
-### Contenuto di immagine
+### Contenuto immagine
 
-Per aggiungere un'immagine prima o dopo un elemento, si può specificare l'URL di un file immagine nel valore della proprietà {{ cssxref("content") }}.
+Per aggiungere un'immagine prima o dopo un elemento, è possibile specificare l'URL di un file immagine nel valore della proprietà {{ cssxref("content") }}.
 
-Questa regola aggiunge uno spazio e un'icona dopo ogni link che ha la classe `glossary`:
+Questa regola aggiunge uno spazio e un'icona dopo ogni collegamento che ha la classe `glossary`:
 
 #### HTML
 

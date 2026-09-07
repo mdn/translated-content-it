@@ -1,35 +1,123 @@
 ---
-title: "Metti alla prova le tue abilità: Testo avanzato HTML"
-short-title: Testo avanzato HTML
+title: "Metti alla prova le tue competenze: Testo HTML avanzato"
+short-title: "Test: Testo HTML avanzato"
 slug: Learn_web_development/Core/Structuring_content/Test_your_skills/Advanced_HTML_text
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 1cf3cb0fb22bf89c780fefe74c3db7f1b9e8ca09
 ---
 
-Lo scopo di questo test è valutare se hai compreso come utilizzare [elementi HTML meno conosciuti per marcare funzionalità semantiche avanzate](/it/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features).
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Advanced_text_features", "Learn_web_development/Core/Structuring_content/Marking_up_a_letter", "Learn_web_development/Core/Structuring_content")}}
+
+Lo scopo di questo test delle competenze è aiutare a valutare se si comprende come utilizzare [elementi HTML meno noti per contrassegnare caratteristiche semantiche avanzate](/it/docs/Learn_web_development/Core/Structuring_content/Advanced_text_features).
 
 > [!NOTE]
-> Puoi provare le soluzioni nei redattori interattivi su questa pagina o in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
->
-> Se incontri difficoltà, puoi contattarci attraverso uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È inoltre possibile contattarci utilizzando uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Testo avanzato 1
 
-In questo compito, vogliamo che tu aggiunga un po' di semantica all'HTML fornito come segue:
+In questa attività, si desidera aggiungere della semantica all'HTML fornito.
 
-- Trasforma il secondo paragrafo in una citazione a livello di blocco e indica semanticamente che la citazione è presa da [Accessibility](/it/docs/Learn_web_development/Core/Accessibility).
-- Marca semanticamente "HTML" e "CSS" come acronimi, fornendo espansioni come tooltip.
-- Usa apice e pedice per fornire la semantica corretta per le formule chimiche e le date e renderle visualizzabili correttamente.
-- Associa semanticamente le date leggibili dalla macchina con le date nel testo.
+Per completare questa attività:
 
-L'esempio finale dovrebbe apparire così:
+1. Trasformare il secondo paragrafo in una citazione a livello di blocco e indicare semanticamente che la citazione è tratta da [Accessibilità](/it/docs/Learn_web_development/Core/Accessibility).
+2. Contrassegnare semanticamente "HTML" e "CSS" come acronimi, fornendo le espansioni come tooltip.
+3. Utilizzare pedice e apice per fornire la semantica corretta alle formule chimiche e alle date, e visualizzarle correttamente.
+4. Associare semanticamente date leggibili dalle macchine alle date nel testo.
 
-{{EmbedGHLiveSample("learning-area/html/introduction-to-html/tasks/advanced-text/advanced-text2-finished.html", '100%', 300)}}
+Il punto di partenza dell'attività è simile a questo:
 
-Prova ad aggiornare il codice attivo qui sotto per ricreare l'esempio finale:
+{{ EmbedLiveSample('advanced-text', "100%", 260) }}
 
-{{EmbedGHLiveSample("learning-area/html/introduction-to-html/tasks/advanced-text/advanced-text2.html", '100%', 700)}}
+Ecco il codice sottostante per questo punto di partenza:
 
-> [!CALLOUT]
->
-> [Scarica il punto di partenza per questo compito](https://github.com/mdn/learning-area/blob/main/html/introduction-to-html/tasks/advanced-text/advanced-text2-download.html) per lavorare nel tuo editor o in un editor online.
+```html live-sample___advanced-text
+<h1>Advanced text semantics</h1>
+
+<p>Let's start with a quote:</p>
+
+<p>
+  HTML, Hypertext Markup Language is by default accessible, if used correctly.
+</p>
+
+<p>CSS can also be used to make web pages more, or less, accessible.</p>
+
+<p>Chemical Formulae: H2O (Water), C2H6O (Ethanol).</p>
+
+<p>
+  Dates: December 25th 2019 (Christmas Day), November 2nd 2019 (Día de los
+  Muertos).
+</p>
+```
+
+```css hidden live-sample___advanced-text live-sample___advanced-text-solution
+body {
+  background-color: white;
+  color: #333333;
+  font:
+    1em / 1.4 "Helvetica Neue",
+    "Helvetica",
+    "Arial",
+    sans-serif;
+  padding: 1em;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: purple;
+}
+
+p {
+  margin: 0.5em 0;
+}
+
+abbr,
+time {
+  color: green;
+}
+```
+
+Il contenuto aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample('advanced-text-solution', "", 260)}}
+
+<details>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
+
+L'HTML finale dovrebbe apparire così:
+
+```html live-sample___advanced-text-solution
+<h1>Advanced text semantics</h1>
+
+<p>Let's start with a quote:</p>
+
+<blockquote cite="https://developer.mozilla.org/en-US/docs/Learn/Accessibility">
+  <p>
+    <abbr title="HyperText Markup Language">HTML</abbr>, Hypertext Markup
+    Language is by default accessible, if used correctly.
+  </p>
+</blockquote>
+
+<p>
+  <abbr title="Cascading Style Sheets">CSS</abbr>, Cascading Style Sheets, can
+  also be used to make web pages more, or less, accessible.
+</p>
+
+<p>
+  Chemical Formulae: H<sub>2</sub>O (Water), C<sub>2</sub>H<sub>6</sub>O
+  (Ethanol).
+</p>
+
+<p>
+  Dates:
+  <time datetime="2019-12-25">December 25<sup>th</sup> 2019</time>
+  (Christmas Day),
+  <time datetime="2019-11-02">November 2<sup>nd</sup> 2019</time> (Día de los
+  Muertos).
+</p>
+```
+
+</details>
+
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Advanced_text_features", "Learn_web_development/Core/Structuring_content/Marking_up_a_letter", "Learn_web_development/Core/Structuring_content")}}

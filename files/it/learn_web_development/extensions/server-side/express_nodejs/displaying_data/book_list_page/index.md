@@ -1,40 +1,42 @@
 ---
-title: Pagina elenco libri
+title: Pagina dell'elenco dei libri
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Book_list_page
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 8443cb34d9944d8eb8e2c5add598bec26ed6d21f
 ---
 
-Successivamente implementeremo la pagina dell'elenco dei libri. Questa pagina deve mostrare un elenco di tutti i libri nel database insieme al loro autore, con ciascun titolo di libro che funge da collegamento ipertestuale alla relativa pagina di dettaglio del libro.
+Ora verrà implementata la pagina dell'elenco dei libri. Questa pagina deve visualizzare un elenco di tutti i libri nel database insieme ai rispettivi autori, con ogni titolo del libro come collegamento ipertestuale alla pagina dei dettagli del libro associata.
 
 ## Controller
 
-La funzione del controller dell'elenco dei libri deve ottenere un elenco di tutti gli oggetti `Book` nel database, ordinarli e quindi passarli al template per il rendering.
+La funzione controller dell'elenco dei libri deve ottenere un elenco di tutti gli oggetti `Book` nel database, ordinarli e quindi passarli al template per il rendering.
 
-Apri **/controllers/bookController.js**. Trova il metodo `book_list()` esportato del controller e sostituiscilo con il seguente codice.
+Aprire **/controllers/bookController.js**. Individuare il metodo controller esportato `book_list()` e sostituirlo con il codice seguente.
 
 ```js
 // Display list of all books.
-exports.book_list = asyncHandler(async (req, res, next) => {
+exports.book_list = async (req, res, next) => {
   const allBooks = await Book.find({}, "title author")
     .sort({ title: 1 })
     .populate("author")
     .exec();
 
   res.render("book_list", { title: "Book List", book_list: allBooks });
-});
+};
 ```
 
-Il gestore della route chiama la funzione `find()` sul modello `Book`, selezionando di restituire solo `title` e `author` poiché non abbiamo bisogno degli altri campi (restituirà anche i campi `_id` e virtuali), e ordinando i risultati alfabeticamente per titolo usando il metodo `sort()`. Chiamiamo anche `populate()` su `Book`, specificando il campo `author`: questo sostituirà l'id dell'autore del libro memorizzato con i dettagli completi dell'autore.
-`exec()` viene quindi concatenato alla fine per eseguire la query e restituire una promessa.
+Il gestore della route chiama la funzione `find()` sul modello `Book`, selezionando di restituire solo `title` e `author`, poiché gli altri campi non sono necessari (restituirà anche i campi `_id` e virtuali), e ordinando i risultati alfabeticamente per titolo mediante il metodo `sort()`.
+Viene inoltre chiamato `populate()` su `Book`, specificando il campo `author`: questo sostituirà l'id dell'autore del libro memorizzato con i dettagli completi dell'autore.
+Alla fine viene concatenato `exec()` per eseguire la query e restituire una promise.
 
-Il gestore della route utilizza `await` per attendere la promessa, sospendendo l'esecuzione fino a quando non è risolta. Se la promessa viene soddisfatta, i risultati della query vengono salvati nella variabile `allBooks` e il gestore continua l'esecuzione.
+Il gestore della route usa `await` per attendere la promise, sospendendo l'esecuzione finché non viene completata.
+Se la promise viene soddisfatta, i risultati della query vengono salvati nella variabile `allBooks` e il gestore continua l'esecuzione.
 
-La parte finale del gestore della route chiama `render()`, specificando il template **book_list** (.pug) e passando i valori per `title` e `book_list` nel template.
+La parte finale del gestore della route chiama `render()`, specificando il template **book_list** (.pug) e passando al template i valori di `title` e `book_list`.
 
-## Visualizzazione
+## Vista
 
-Crea **/views/book_list.pug** e copia il testo qui sotto.
+Creare **/views/book_list.pug** e copiare il testo seguente.
 
 ```pug
 extends layout
@@ -52,21 +54,21 @@ block content
     p There are no books.
 ```
 
-La vista estende il template base **layout.pug** e sovrascrive il `block` denominato '**content**'. Visualizza il `title` che abbiamo passato dal controller (tramite il metodo `render()`) e itera attraverso la variabile `book_list` utilizzando la sintassi `each`-`in`. Viene creato un elemento di elenco per ogni libro visualizzando il titolo del libro come link alla pagina di dettaglio del libro seguito dal nome dell'autore.
-Se non ci sono libri nella `book_list`, allora viene eseguita la clausola `else`, che visualizza il testo 'Non ci sono libri'.
+La vista estende il template di base **layout.pug** e sovrascrive il `block` denominato '**content**'. Visualizza il `title` passato dal controller (tramite il metodo `render()`) e itera sulla variabile `book_list` usando la sintassi `each`-`in`. Viene creato un elemento dell'elenco per ogni libro, visualizzando il titolo del libro come collegamento alla pagina dei dettagli del libro, seguito dal nome dell'autore.
+Se non ci sono libri in `book_list`, viene eseguita la clausola `else` e viene visualizzato il testo "Non ci sono libri".
 
 > [!NOTE]
-> Utilizziamo `book.url` per fornire il link al record dettaglio per ciascun libro (abbiamo implementato questo percorso, ma non la pagina ancora). Questa è una proprietà virtuale del modello `Book` che utilizza il campo `_id` dell'istanza del modello per produrre un percorso URL univoco.
+> Viene usato `book.url` per fornire il collegamento al record dei dettagli di ciascun libro (questa route è stata implementata, ma non ancora la pagina). Si tratta di una proprietà virtuale del modello `Book` che usa il campo `_id` dell'istanza del modello per produrre un percorso URL univoco.
 
-Di particolare interesse qui è che ciascun libro è definito su due righe, utilizzando la pipe per la seconda riga. Questo approccio è necessario perché se il nome dell'autore fosse sulla riga precedente allora farebbe parte del collegamento ipertestuale.
+Un aspetto interessante è che ogni libro è definito su due righe, usando la barra verticale per la seconda riga. Questo approccio è necessario perché, se il nome dell'autore fosse sulla riga precedente, farebbe parte del collegamento ipertestuale.
 
 ## Che aspetto ha?
 
-Esegui l'applicazione (vedi [Testing the routes](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#testing_the_routes) per i comandi pertinenti) e apri il tuo browser su `http://localhost:3000/`. Quindi seleziona il link _All books_. Se tutto è configurato correttamente, il tuo sito dovrebbe apparire come nello screenshot seguente.
+Eseguire l'applicazione (consultare [Testare le route](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes#testing_the_routes) per i comandi pertinenti) e aprire il browser su `http://localhost:3000/`. Quindi selezionare il collegamento _Tutti i libri_. Se tutto è configurato correttamente, il sito dovrebbe avere un aspetto simile allo screenshot seguente.
 
-![Pagina elenco libri - Sito Express Local Library](new_book_list.png)
+![Pagina dell'elenco dei libri - sito Express Local Library](new_book_list.png)
 
-## Prossimi passi
+## Passaggi successivi
 
-- Torna a [Express Tutorial Parte 5: Visualizzare i dati della biblioteca](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
-- Procedi al sottocapitolo successivo della parte 5: [Pagina elenco BookInstance](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_list_page).
+- Tornare a [Tutorial Express Parte 5: Visualizzazione dei dati della biblioteca](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
+- Proseguire al sottoarticolo successivo della parte 5: [Pagina dell'elenco delle istanze di libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_list_page).

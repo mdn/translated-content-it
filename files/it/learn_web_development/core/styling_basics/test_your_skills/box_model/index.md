@@ -1,34 +1,42 @@
 ---
-title: "Metti alla prova le tue competenze: Il modello a scatola"
-short-title: Modello a scatola
+title: "Metti alla prova le tue competenze: il box model"
+short-title: "Test: box model"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Box_model
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: a623d4459e2aa00d17dc0fd6b6bc44f56c589950
 ---
 
-Lo scopo di questo test di abilità è verificare se hai compreso il [modello a scatola CSS](/it/docs/Learn_web_development/Core/Styling_basics/Box_model).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Box_model", "Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics")}}
+
+L'obiettivo di questo test sulle competenze è aiutare a valutare se il [box model CSS](/it/docs/Learn_web_development/Core/Styling_basics/Box_model) è stato compreso.
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (cliccando sull'icona della clipboard) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-> Se incontri difficoltà, puoi contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la nostra Guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Attività 1
+## Sfida interattiva
 
-In questa attività, ci sono due scatole qui sotto, una usa il modello a scatola standard, l'altra il modello a scatola alternativo. Modifica la larghezza della seconda scatola aggiungendo dichiarazioni alla classe `.alternate`, in modo che corrisponda alla larghezza visiva della prima scatola.
+Prima di tutto, viene proposta una divertente sfida interattiva che riguarda la forma abbreviata di `margin`, creata dal nostro [partner per l'apprendimento](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds), [Scrimba](https://scrimba.com/home).
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sotto:
+Guardare lo scrim incorporato e completare le attività nella sequenza temporale (le piccole icone a forma di fantasma) seguendo le istruzioni e modificando il codice. Al termine, è possibile riprendere la visione dello scrim per verificare come la soluzione dell'insegnante si confronta con la propria.
 
-![Due scatole della stessa dimensione](mdn-box-model1.png)
+<mdn-scrim-inline url="https://scrimba.com/learn-html-and-css-c0p/~01s" scrimtitle="Margin shorthand" survey="true"></mdn-scrim-inline>
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
+## Box model 1
 
-```html live-sample___box-models
+In questa attività, sono presenti due riquadri: uno utilizza il box model standard, l'altro il box model alternativo. Occorre modificare la larghezza del secondo riquadro aggiungendo dichiarazioni alla classe `.alternate`, in modo che corrisponda alla larghezza visiva del primo riquadro.
+
+Il punto di partenza dell'attività è il seguente:
+
+{{EmbedLiveSample("box-model1-start", "", "540px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___box-model1-start live-sample___box-model1-finish
 <div class="box">I use the standard box model.</div>
 <div class="box alternate">I use the alternate box model.</div>
 ```
 
-```css live-sample___box-models
+```css live-sample___box-model1-start live-sample___box-model1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -46,14 +54,16 @@ body {
 }
 ```
 
-{{EmbedLiveSample("box-models", "", "540px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("box-model1-finish", "", "540px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Dovrai aumentare la larghezza del secondo blocco, per aggiungere la dimensione del padding e del bordo:
+Occorre aumentare la larghezza del secondo blocco aggiungendo la dimensione del padding e del border:
 
-```css
+```css live-sample___box-model1-finish
 .alternate {
   box-sizing: border-box;
   width: 390px;
@@ -62,28 +72,28 @@ Dovrai aumentare la larghezza del secondo blocco, per aggiungere la dimensione d
 
 </details>
 
-## Attività 2
+## Box model 2
 
-In questa attività, aggiungi le seguenti cose alla scatola:
+Per completare questa attività, aggiungere le seguenti caratteristiche al riquadro fornito:
 
-- Un bordo tratteggiato nero di 5px.
-- Un margine superiore di 20px.
-- Un margine destro di 1em.
-- Un margine inferiore di 40px.
-- Un margine sinistro di 2em.
-- Padding su tutti i lati di 1em.
+- Un border puntinato nero di `5px`.
+- Un margin superiore di `20px`.
+- Un margin destro di `1em`.
+- Un margin inferiore di `40px`.
+- Un margin sinistro di `2em`.
+- Un padding di `1em` su tutti i lati.
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sotto:
+Il punto di partenza dell'attività è il seguente:
 
-![Una scatola con un bordo tratteggiato](mdn-box-model2.png)
+{{EmbedLiveSample("box-model2-start", "100%", "100px")}}
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___mbp
+```html live-sample___box-model2-start live-sample___box-model2-finish
 <div class="box">I use the standard box model.</div>
 ```
 
-```css live-sample___mbp
+```css live-sample___box-model2-start live-sample___box-model2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -92,15 +102,17 @@ body {
 }
 ```
 
-{{EmbedLiveSample("mbp")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("box-model2-finish", "100%", "140px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Questa attività richiede l'uso corretto delle proprietà margin, border e padding.
-Potresti scegliere di utilizzare le proprietà estese ({{cssxref("margin-top")}}, {{cssxref("margin-right")}}, ecc.), tuttavia quando imposti un margine e un padding su tutti i lati, la forma abbreviata è probabilmente la scelta migliore:
+Questa attività richiede l'uso corretto delle proprietà `margin`, `border` e `padding`.
+Si potrebbe scegliere di utilizzare le proprietà estese ({{cssxref("margin-top")}}, {{cssxref("margin-right")}}, ecc.); tuttavia, quando si impostano margin e padding su tutti i lati, probabilmente la forma abbreviata è la scelta migliore:
 
-```css
+```css live-sample___box-model2-finish
 .box {
   border: 5px dotted black;
   margin: 20px 1em 40px 2em;
@@ -110,17 +122,19 @@ Potresti scegliere di utilizzare le proprietà estese ({{cssxref("margin-top")}}
 
 </details>
 
-## Attività 3
+## Box model 3
 
-In questa attività, l'elemento inline ha un margine, padding e bordo. Tuttavia, le righe sopra e sotto lo stanno sovrapponendo. Cosa puoi aggiungere al tuo CSS per fare in modo che la dimensione del margine, padding e bordo venga rispettata dalle altre righe, mantenendo comunque l'elemento inline?
+In questa attività, l'elemento inline ha margin, padding e border. Tuttavia, le righe sopra e sotto si sovrappongono a esso.
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sotto:
+Per completare questa attività, aggiornare il CSS in modo che le dimensioni di margin, padding e border vengano rispettate dalle altre righe, mantenendo comunque l'elemento inline.
 
-![Una scatola inline con spazio tra sé e il testo circostante.](mdn-box-model3.png)
+Il punto di partenza dell'attività è il seguente:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
+{{EmbedLiveSample("box-model3-start", "100%", "220px")}}
 
-```html live-sample___inline-block
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___box-model3-start live-sample___box-model3-finish
 <div class="box">
   <p>
     Veggies es bonus vobis, <span>proinde vos postulo</span> essum magis
@@ -136,7 +150,7 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
 </div>
 ```
 
-```css live-sample___inline-block
+```css live-sample___box-model3-start live-sample___box-model3-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -148,15 +162,17 @@ body {
 }
 ```
 
-{{EmbedLiveSample("inline-block")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("box-model3-finish", "100%", "260px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Risolvere questa attività richiede di capire quando utilizzare diversi valori di {{cssxref("display")}}.
-Dopo aver aggiunto `display: inline-block`, il margine, il bordo e il padding in direzione blocco provocheranno l'allontanamento delle altre righe dall'elemento:
+La soluzione di questa attività richiede di comprendere quando utilizzare diversi valori di {{cssxref("display")}}.
+Dopo aver aggiunto `display: inline-block`, margin, border e padding nella direzione del blocco faranno sì che le altre righe vengano allontanate dall'elemento:
 
-```css
+```css live-sample___box-model3-finish
 .box span {
   background-color: pink;
   border: 5px solid black;
@@ -167,6 +183,4 @@ Dopo aver aggiunto `display: inline-block`, il margine, il bordo e il padding in
 
 </details>
 
-## Vedi anche
-
-- [Basi di styling CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Box_model", "Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics")}}

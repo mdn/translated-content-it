@@ -1,13 +1,13 @@
 ---
-title: Stilizzare le liste
+title: Applicare stili alle liste
 slug: Learn_web_development/Core/Text_styling/Styling_lists
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 1b7c3c1e03f14c3878e4d8518b0f1a89bedfdc9c
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Text_styling/Fundamentals", "Learn_web_development/Core/Text_styling/Styling_links", "Learn_web_development/Core/Text_styling")}}
 
-Le [Liste](/it/docs/Learn_web_development/Core/Structuring_content/Lists) si comportano come qualsiasi altro testo per la maggior parte, ma ci sono alcune proprietà CSS specifiche per le liste che è necessario conoscere, nonché alcune buone pratiche da considerare. Questo articolo spiega tutto.
+Le [liste](/it/docs/Learn_web_development/Core/Structuring_content/Lists) si comportano per la maggior parte come qualsiasi altro testo, ma esistono alcune proprietà CSS specifiche per le liste che è necessario conoscere, oltre ad alcune buone pratiche da considerare. Questo articolo le spiega tutte.
 
 <table>
   <tbody>
@@ -15,16 +15,16 @@ Le [Liste](/it/docs/Learn_web_development/Core/Structuring_content/Lists) si com
       <th scope="row">Prerequisiti:</th>
       <td>
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
-          >Strutturare il contenuto con HTML</a
+          >Strutturare i contenuti con HTML</a
         > e
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Basi dello stile CSS</a>.
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Fondamenti dello stile CSS</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Distanziamento degli elementi della lista, ad esempio con margine o altezza della linea.</li>
+          <li>Spaziatura degli elementi delle liste, ad esempio con margin o line height.</li>
           <li>Utilizzo delle proprietà <code>list-style</code>.</li>
         </ul>
       </td>
@@ -32,13 +32,13 @@ Le [Liste](/it/docs/Learn_web_development/Core/Structuring_content/Lists) si com
   </tbody>
 </table>
 
-## Un semplice esempio di lista
+## Un esempio di lista di base
 
-Per cominciare, diamo un'occhiata a un semplice esempio di lista. In tutto l'articolo esamineremo liste non ordinate, ordinate e di descrizioni — tutte hanno caratteristiche di stile simili, oltre ad alcune particolari. L'esempio non stilizzato è [disponibile su GitHub](https://mdn.github.io/learning-area/css/styling-text/styling-lists/unstyled-list.html) (consulta anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/css/styling-text/styling-lists/unstyled-list.html)).
+Vediamo un esempio di lista di base. Nel corso di questo articolo verranno esaminate liste non ordinate, ordinate e di descrizione: tutte dispongono di funzionalità di stile simili, oltre ad alcune specifiche per ciascun tipo.
 
 L'HTML per il nostro esempio di lista è il seguente:
 
-```html
+```html live-sample___unstyled live-sample___initial-style live-sample___finished-style
 <h2>Shopping (unordered) list</h2>
 
 <p>
@@ -94,25 +94,27 @@ L'HTML per il nostro esempio di lista è il seguente:
 </dl>
 ```
 
-Se ora vai all'esempio dal vivo e indaghi sugli elementi della lista usando gli [strumenti di sviluppo del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools), noterai un paio di valori predefiniti di stile:
+Senza alcuno stile, il rendering è il seguente:
 
-- Gli elementi {{htmlelement("ul")}} e {{htmlelement("ol")}} hanno un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`) e un {{cssxref("padding-left")}} di `40px` (`2.5em`). Se l'attributo di direzionalità [`dir`](/it/docs/Web/HTML/Reference/Global_attributes/dir) è impostato su destra a sinistra (`rtl`) per gli elementi `ul` e `ol`, in quel caso il {{cssxref("padding-right")}} entra in gioco e il suo valore predefinito è `40px` (`2.5em`).
-- Gli elementi della lista (elementi {{htmlelement("li")}}) non hanno valori predefiniti impostati per il distanziamento.
-- L'elemento {{htmlelement("dl")}} ha un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`), ma non è impostato alcun padding.
+{{embedlivesample("unstyled", "100%", 400)}}
+
+Esaminando questi elementi di lista con gli [strumenti di sviluppo del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools), si noteranno alcune impostazioni di stile predefinite:
+
+- Gli elementi {{htmlelement("ul")}} e {{htmlelement("ol")}} hanno un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`) e un {{cssxref("padding-left")}} di `40px` (`2.5em`). Se l'attributo di direzionalità [`dir`](/it/docs/Web/HTML/Reference/Global_attributes/dir) è impostato da destra a sinistra (`rtl`) per gli elementi `ul` e `ol`, entra invece in vigore {{cssxref("padding-right")}}, il cui valore predefinito è `40px` (`2.5em`).
+- Gli elementi della lista (elementi {{htmlelement("li")}}) non hanno impostazioni predefinite per la spaziatura.
+- L'elemento {{htmlelement("dl")}} ha un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`), ma nessun padding impostato.
 - Gli elementi {{htmlelement("dd")}} hanno un {{cssxref("margin-left")}} di `40px` (`2.5em`).
-- Gli elementi {{htmlelement("p")}} che abbiamo incluso come riferimento hanno un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`) — lo stesso dei diversi tipi di lista.
+- Gli elementi {{htmlelement("p")}} inclusi come riferimento hanno un {{cssxref("margin")}} superiore e inferiore di `16px` (`1em`), uguale a quello dei diversi tipi di lista.
 
-## Gestione del distanziamento delle liste
+## Gestire la spaziatura delle liste
 
-Quando si stilizzano le liste, è necessario regolare i loro stili in modo che mantengano lo stesso distanziamento verticale degli elementi circostanti (come paragrafi e immagini; a volte chiamato ritmo verticale) e lo stesso distanziamento orizzontale fra di loro (puoi vedere l'[esempio stilizzato finale](https://mdn.github.io/learning-area/css/styling-text/styling-lists/) su GitHub, e [trova il codice sorgente](https://github.com/mdn/learning-area/blob/main/css/styling-text/styling-lists/index.html) anche).
+Quando si applicano stili alle liste, è necessario regolarli in modo che mantengano la stessa spaziatura verticale degli elementi circostanti, come paragrafi e immagini, talvolta chiamata ritmo verticale, e la stessa spaziatura orizzontale tra loro. Alcuni tipici stili CSS e impostazioni di spaziatura per il testo potrebbero essere così:
 
-Il CSS utilizzato per lo stile del testo e il distanziamento è il seguente:
-
-```css
+```css live-sample___initial-style live-sample___list-style-type live-sample___list-style-position live-sample___custom-bullets live-sample___finished-style
 /* General styles */
 
 html {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Helvetica", "Arial", sans-serif;
   font-size: 10px;
 }
 
@@ -144,65 +146,89 @@ dt {
 }
 ```
 
-- La prima regola imposta un font universalmente e una dimensione del font di base di 10px. Questi sono ereditati da tutto sulla pagina.
-- Le regole 2 e 3 impostano dimensioni relative del font per i titoli, i diversi tipi di liste (i figli degli elementi delle liste ereditano questi), e i paragrafi. Ciò significa che ogni paragrafo e lista avrà la stessa dimensione del font e spaziatura superiore e inferiore, aiutando a mantenere il ritmo verticale coerente.
-- La regola 4 imposta lo stesso {{cssxref("line-height")}} sui paragrafi e sugli elementi della lista — quindi i paragrafi e ogni singolo elemento della lista avranno lo stesso spazio tra le linee. Anche questo aiuterà a mantenere il ritmo verticale coerente.
-- Le regole 5 e 6 si applicano alla lista di descrizione. Impostiamo lo stesso `line-height` nei termini e nelle descrizioni della lista di descrizione come abbiamo fatto con i paragrafi e gli elementi della lista. Ancora una volta, la coerenza è buona! Facciamo anche in modo che i termini della descrizione abbiano un font in grassetto, in modo che si distinguano visivamente più facilmente.
+- La prima regola imposta un font per l'intero sito e una dimensione del font di base pari a 10px. Queste impostazioni vengono ereditate da tutti gli elementi della pagina.
+- Le regole 2 e 3 impostano dimensioni relative del font per intestazioni, diversi tipi di liste (ereditate dai figli degli elementi lista) e paragrafi. Ciò significa che ciascun paragrafo e lista avrà la stessa dimensione del font e la stessa spaziatura superiore e inferiore, contribuendo a mantenere coerente il ritmo verticale.
+- La regola 4 imposta lo stesso {{cssxref("line-height")}} per i paragrafi e gli elementi di lista, quindi i paragrafi e ogni singolo elemento della lista avranno la stessa spaziatura tra le righe. Anche questo contribuisce a mantenere coerente il ritmo verticale.
+- Le regole 5 e 6 si applicano alla lista di descrizione. Viene impostato lo stesso `line-height` per i termini e le descrizioni della lista di descrizione usato per paragrafi ed elementi di lista. Anche in questo caso, la coerenza è utile. Inoltre, i termini di descrizione vengono resi in grassetto, in modo che risaltino più facilmente a livello visivo.
 
-## Stili specifici per le liste
+Quando viene applicato all'HTML mostrato in precedenza, il codice viene visualizzato così:
 
-Ora che abbiamo esaminato le tecniche generali di distanziamento per le liste, esploriamo alcune proprietà specifiche per le liste. Ci sono tre proprietà che dovresti conoscere per iniziare, che possono essere impostate sugli elementi {{htmlelement("ul")}} o {{htmlelement("ol")}}:
+{{embedlivesample("initial-style", "100%", 400)}}
 
-- {{cssxref("list-style-type")}}: Imposta il tipo di punti elenco da utilizzare per la lista, ad esempio punti quadrati o cerchio per una lista non ordinata, o numeri, lettere o numeri romani per una lista ordinata.
-- {{cssxref("list-style-position")}}: Imposta se i punti elenco, all'inizio di ogni elemento, appaiono all'interno o all'esterno delle liste.
-- {{cssxref("list-style-image")}}: Permette di utilizzare un'immagine personalizzata per il punto elenco, invece di un semplice quadrato o cerchio.
+## Stili specifici delle liste
 
-### Stili dei punti elenco
+Dopo aver esaminato le tecniche generali di spaziatura per le liste, esploriamo alcune proprietà specifiche delle liste. Per iniziare, è necessario conoscere tre proprietà, che possono essere impostate sugli elementi {{htmlelement("ul")}} o {{htmlelement("ol")}}:
 
-Come menzionato sopra, la proprietà {{cssxref("list-style-type")}} consente di impostare il tipo di punto da utilizzare per i punti elenco. Nel nostro esempio, abbiamo impostato la lista ordinata per utilizzare numeri romani maiuscoli con:
+- {{cssxref("list-style-type")}}: imposta il tipo di marcatore da usare per la lista, ad esempio marcatori quadrati o circolari per una lista non ordinata, oppure numeri, lettere o numeri romani per una lista ordinata.
+- {{cssxref("list-style-position")}}: imposta se i marcatori, all'inizio di ogni elemento, appaiono all'interno o all'esterno delle liste.
+- {{cssxref("list-style-image")}}: consente di usare un'immagine personalizzata come marcatore, anziché un semplice quadrato o cerchio.
 
-```css
+### Stili dei marcatori
+
+Come già accennato, la proprietà {{cssxref("list-style-type")}} consente di impostare il tipo di marcatore da usare per i punti elenco. Nel nostro esempio, la lista ordinata è stata impostata per usare numeri romani maiuscoli con:
+
+```html hidden live-sample___list-style-type live-sample___list-style-position
+<ol>
+  <li>Toast pita, leave to cool, then slice down the edge.</li>
+  <li>
+    Fry the halloumi in a shallow, non-stick pan, until browned on both sides.
+  </li>
+  <li>Wash and chop the salad.</li>
+  <li>Fill pita with salad, hummus, and fried halloumi.</li>
+</ol>
+```
+
+```css live-sample___list-style-type
 ol {
   list-style-type: upper-roman;
 }
 ```
 
-Questo ci dà il seguente aspetto:
+Questo produce il seguente aspetto:
 
-![una lista ordinata con i punti elenco impostati per apparire fuori dal testo dell'elemento della lista.](outer-bullets.png)
+{{embedlivesample("list-style-type", "100%", 120)}}
 
-Puoi trovare molte più opzioni consultando la pagina di riferimento {{cssxref("list-style-type")}}.
+Sono disponibili molte altre opzioni nella pagina di riferimento di {{cssxref("list-style-type")}}.
 
-### Posizione del punto elenco
+### Posizione dei marcatori
 
-La proprietà {{cssxref("list-style-position")}} imposta se i punti elenco appaiono all'interno degli elementi della lista o all'esterno di essi prima dell'inizio di ogni elemento. Il valore predefinito è `outside`, il che fa sì che i punti elenco si trovino fuori dagli elementi della lista, come visto sopra.
+La proprietà {{cssxref("list-style-position")}} imposta se i marcatori appaiono all'interno degli elementi della lista oppure all'esterno, prima dell'inizio di ciascun elemento. Il valore predefinito è `outside`, che fa sì che i marcatori si trovino all'esterno degli elementi della lista, come mostrato sopra.
 
-Se imposti il valore su `inside`, i punti elenco si troveranno all'interno delle linee:
+Se il valore viene impostato su `inside`, i marcatori si troveranno all'interno delle righe:
 
-```css
+```css live-sample___list-style-position live-sample___finished-style
 ol {
   list-style-type: upper-roman;
   list-style-position: inside;
 }
 ```
 
-![una lista ordinata con i punti elenco impostati per apparire all'interno del testo dell'elemento della lista.](inner-bullets.png)
+{{embedlivesample("list-style-position", "100%", 120)}}
 
-### Usare un'immagine personalizzata per il punto elenco
+### Utilizzare un'immagine personalizzata per i marcatori
 
-La proprietà {{cssxref("list-style-image")}} ti permette di usare un'immagine personalizzata per il tuo punto elenco. La sintassi è abbastanza semplice:
+La proprietà {{cssxref("list-style-image")}} consente di usare un'immagine personalizzata come marcatore. La sintassi è la seguente:
 
 ```css
 ul {
-  list-style-image: url(star.svg);
+  list-style-image: url("https://mdn.github.io/shared-assets/images/examples/star-shape.png");
 }
 ```
 
-Tuttavia, questa proprietà è un po' limitata in termini di controllo della posizione, della dimensione, ecc. dei punti elenco. È meglio utilizzare la famiglia di proprietà {{cssxref("background")}}, che hai imparato nella nostra precedente lezione su [Sfondi e bordi](/it/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders).
+Tuttavia, questa proprietà è piuttosto limitata per quanto riguarda il controllo di posizione, dimensione e altri aspetti dei marcatori. È preferibile usare la famiglia di proprietà {{cssxref("background")}}, illustrata nella precedente lezione su [sfondi e bordi](/it/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders).
 
-Nel nostro esempio finale, abbiamo stilizzato la lista non ordinata in questo modo (sopra a ciò che hai già visto sopra):
+Nell'esempio finale, la lista non ordinata è stata stilizzata nel seguente modo:
 
-```css
+```html hidden live-sample___custom-bullets
+<ul>
+  <li>Hummus</li>
+  <li>Pita</li>
+  <li>Green salad</li>
+  <li>Halloumi</li>
+</ul>
+```
+
+```css live-sample___custom-bullets live-sample___finished-style
 ul {
   padding-left: 2rem;
   list-style-type: none;
@@ -210,36 +236,35 @@ ul {
 
 ul li {
   padding-left: 2rem;
-  background-image: url(star.svg);
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/star-shape.png");
   background-position: 0 0;
   background-size: 1.6rem 1.6rem;
   background-repeat: no-repeat;
 }
 ```
 
-Qui abbiamo fatto quanto segue:
+Qui è stato fatto quanto segue:
 
-- Impostato il {{cssxref("padding-left")}} del {{htmlelement("ul")}} da `40px` predefinito a `20px`, quindi impostato lo stesso quantitativo sugli elementi delle liste. Questo è in modo che, complessivamente, gli elementi delle liste siano ancora allineati con gli elementi delle liste ordinate e le descrizioni delle liste di descrizione, ma gli elementi delle liste abbiano del padding per posizionare le immagini di sfondo all'interno. Se non lo facessimo, le immagini di sfondo si sovrapporrebbero con il testo dell'elemento della lista, il che sembrerebbe disordinato.
-- Impostato il {{cssxref("list-style-type")}} su `none`, in modo che nessun punto elenco appaia di default. Utilizzeremo le proprietà {{cssxref("background")}} per gestire i punti elenco invece.
-- Inserito un punto elenco su ogni elemento della lista non ordinata. Le proprietà rilevanti sono le seguenti:
+- Il {{cssxref("padding-left")}} di {{htmlelement("ul")}} è stato ridotto dal valore predefinito di `40px` a `20px`, quindi è stata impostata la stessa quantità sugli elementi della lista. In questo modo, nel complesso, gli elementi della lista rimangono allineati con quelli della lista ordinata e con le descrizioni della lista di descrizione, ma hanno un padding in cui posizionare le immagini di sfondo. Senza questa impostazione, le immagini di sfondo si sovrapporrebbero al testo degli elementi della lista, con un risultato disordinato.
+- {{cssxref("list-style-type")}} è stato impostato su `none`, in modo che non venga visualizzato alcun marcatore predefinito. Verranno invece usate le proprietà {{cssxref("background")}} per gestire i marcatori.
+- È stato inserito un marcatore in ogni elemento della lista non ordinata. Le proprietà pertinenti sono le seguenti:
+  - {{cssxref("background-image")}}: fa riferimento al percorso del file immagine da usare come marcatore.
+  - {{cssxref("background-position")}}: definisce dove apparirà l'immagine nello sfondo dell'elemento selezionato. In questo caso viene indicato `0 0`, il che significa che il marcatore apparirà nell'angolo superiore sinistro di ciascun elemento della lista.
+  - {{cssxref("background-size")}}: imposta la dimensione dell'immagine di sfondo. Idealmente, i marcatori dovrebbero avere la stessa dimensione degli elementi della lista, oppure essere leggermente più piccoli o più grandi. Viene usata una dimensione di `1.6rem` (`16px`), che si adatta molto bene al padding di `20px` previsto per il marcatore: 16px più 4px di spazio tra il marcatore e il testo dell'elemento della lista funzionano bene.
+  - {{cssxref("background-repeat")}}: per impostazione predefinita, le immagini di sfondo si ripetono finché non riempiono lo spazio di sfondo disponibile. Si desidera inserire una sola copia dell'immagine in ciascun caso, quindi questa proprietà viene impostata sul valore `no-repeat`.
 
-  - {{cssxref("background-image")}}: Questo fa riferimento al percorso del file immagine che vuoi usare come punto elenco.
-  - {{cssxref("background-position")}}: Questo definisce dove nell'area di sfondo dell'elemento selezionato apparirà l'immagine — in questo caso stiamo dicendo `0 0`, il che significa che il punto elenco apparirà in alto a sinistra di ogni elemento della lista.
-  - {{cssxref("background-size")}}: Questo imposta la dimensione dell'immagine di sfondo. Vogliamo idealmente che i punti elenco abbiano la stessa dimensione degli elementi della lista (o molto leggermente più piccoli o più grandi). Stiamo utilizzando una dimensione di `1.6rem` (`16px`), che si adatta molto bene al padding di `20px` che abbiamo lasciato per il punto elenco — 16px più 4px di spazio tra il punto elenco e il testo dell'elemento della lista funziona bene.
-  - {{cssxref("background-repeat")}}: Per impostazione predefinita, le immagini di sfondo si ripetono fino a riempire lo spazio disponibile dello sfondo. Vogliamo solo una copia dell'immagine inserita in ciascun caso, quindi lo impostiamo su un valore di `no-repeat`.
+Il risultato è il seguente:
 
-Questo ci dà il seguente risultato:
-
-![una lista non ordinata con i punti elenco impostati come piccole immagini di stelle](list_formatting.png)
+{{embedlivesample("custom-bullets", "100%", 120)}}
 
 ### Abbreviazione list-style
 
-Le tre proprietà menzionate sopra possono essere tutte impostate utilizzando una singola proprietà abbreviata, {{cssxref("list-style")}}. Ad esempio, il seguente CSS:
+Le tre proprietà menzionate sopra possono essere tutte impostate usando un'unica proprietà abbreviata, {{cssxref("list-style")}}. Ad esempio, il seguente CSS:
 
 ```css
 ul {
   list-style-type: square;
-  list-style-image: url(example.png);
+  list-style-image: url("example.png");
   list-style-position: inside;
 }
 ```
@@ -248,21 +273,27 @@ Potrebbe essere sostituito da questo:
 
 ```css
 ul {
-  list-style: square url(example.png) inside;
+  list-style: square url("example.png") inside;
 }
 ```
 
-I valori possono essere elencati in qualsiasi ordine, e puoi usarne uno, due o tutti e tre (i valori predefiniti utilizzati per le proprietà che non sono incluse sono `disc`, `none`, e `outside`). Se sia un `type` che un `image` sono specificati, il tipo viene utilizzato come fallback se l'immagine non può essere caricata per qualche motivo.
+I valori possono essere elencati in qualsiasi ordine e se ne possono usare uno, due o tutti e tre; i valori predefiniti usati per le proprietà non incluse sono `disc`, `none` e `outside`. Se vengono specificati sia un `type` sia un'`image`, il tipo viene usato come alternativa di riserva se, per qualche motivo, l'immagine non può essere caricata.
+
+## Esempio completo
+
+Nelle ultime sezioni sono stati mostrati gli effetti di alcune funzionalità isolate delle liste. Applicandole tutte all'elenco HTML iniziale, il risultato è il seguente:
+
+{{embedlivesample("finished-style", "100%", 400)}}
 
 ## Controllare la numerazione delle liste
 
-A volte potresti voler contare diversamente in una lista ordinata — ad esempio, a partire da un numero diverso da 1, o contare all'indietro, o contare a passi di più di 1. HTML e CSS hanno alcuni strumenti per aiutarti in questo.
+Talvolta può essere necessario numerare una lista ordinata in modo diverso, ad esempio iniziando da un numero diverso da 1, contando all'indietro oppure aumentando di più di 1 a ogni passaggio. HTML e CSS offrono alcuni strumenti utili per questo.
 
 ### start
 
-L'attributo [`start`](/it/docs/Web/HTML/Reference/Elements/ol#start) ti permette di iniziare la numerazione della lista da un numero diverso da 1. Il seguente esempio:
+L'attributo [`start`](/it/docs/Web/HTML/Reference/Elements/ol#start) consente di iniziare la numerazione della lista da un numero diverso da 1. Il seguente esempio:
 
-```html
+```html live-sample___counting-control
 <ol start="4">
   <li>Toast pita, leave to cool, then slice down the edge.</li>
   <li>
@@ -273,15 +304,15 @@ L'attributo [`start`](/it/docs/Web/HTML/Reference/Elements/ol#start) ti permette
 </ol>
 ```
 
-Ti dà questo output:
+Produce il seguente output:
 
-{{ EmbedLiveSample('start', '100%', 150) }}
+{{ EmbedLiveSample('counting-control', '100%', 150) }}
 
 ### reversed
 
-L'attributo [`reversed`](/it/docs/Web/HTML/Reference/Elements/ol#reversed) inizierà la numerazione della lista in ordine decrescente invece che crescente. Il seguente esempio:
+L'attributo [`reversed`](/it/docs/Web/HTML/Reference/Elements/ol#reversed) farà iniziare il conteggio della lista in ordine decrescente anziché crescente. Il seguente esempio:
 
-```html
+```html live-sample___counting-control-reversed
 <ol start="4" reversed>
   <li>Toast pita, leave to cool, then slice down the edge.</li>
   <li>
@@ -292,18 +323,18 @@ L'attributo [`reversed`](/it/docs/Web/HTML/Reference/Elements/ol#reversed) inizi
 </ol>
 ```
 
-Ti dà questo output:
+Produce il seguente output:
 
-{{ EmbedLiveSample('reversed', '100%', 150) }}
+{{ EmbedLiveSample('counting-control-reversed', '100%', 150) }}
 
 > [!NOTE]
-> Se ci sono più elementi nella lista di quelli indicati dal valore dell'attributo `start`, la conteggio continuerà fino a zero e poi in valori negativi.
+> Se in una lista invertita sono presenti più elementi di lista rispetto al valore dell'attributo `start`, il conteggio proseguirà fino a zero e poi in valori negativi.
 
 ### value
 
-L'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/li#value) ti permette di impostare gli elementi della lista su valori numerici specifici. Il seguente esempio:
+L'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/li#value) consente di impostare valori numerici specifici per gli elementi della lista. Il seguente esempio:
 
-```html
+```html counting-control-values
 <ol>
   <li value="2">Toast pita, leave to cool, then slice down the edge.</li>
   <li value="4">
@@ -314,37 +345,32 @@ L'attributo [`value`](/it/docs/Web/HTML/Reference/Elements/li#value) ti permette
 </ol>
 ```
 
-Ti dà questo output:
+Produce il seguente output:
 
-{{ EmbedLiveSample('value', '100%', 150) }}
+{{ EmbedLiveSample('counting-control-values', '100%', 150) }}
 
 > [!NOTE]
-> Anche se stai utilizzando un {{cssxref("list-style-type")}} non numerico, devi comunque utilizzare i valori numerici equivalenti nell'attributo `value`.
+> Anche quando si usa un {{cssxref("list-style-type")}} non numerico, è comunque necessario usare nell'attributo `value` i valori numerici equivalenti.
 
-## Esercizio pratico: Stilizzare una lista annidata
+## Tocca a te: applicare stili a una lista annidata
 
-In questa sessione di apprendimento attivo, vogliamo che tu prenda ciò che hai imparato sopra e provi a stilizzare una lista annidata. Ti abbiamo fornito l'HTML, e vogliamo che tu:
+È il momento di completare un'altra attività. Questa volta è necessario usare quanto appreso sopra per provare ad applicare stili a una lista annidata.
 
-1. Assegni alla lista non ordinata punti quadrati.
-2. Imposti gli elementi della lista non ordinata e quelli della lista ordinata con un'altezza di linea pari a 1,5 della loro dimensione del carattere.
-3. Assegni alla lista ordinata punti elenco alfabetici in minuscolo.
-4. Sentiti libero di giocare con l'esempio della lista quanto desideri, sperimentando con tipi di punti elenco, spaziatura o qualsiasi altra cosa tu riesca a trovare.
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio nel Playground MDN.
+2. Applicare alla lista non ordinata marcatori quadrati.
+3. Assegnare agli elementi della lista non ordinata e agli elementi della lista ordinata un `line-height` pari a `1.5` della loro `font-size`.
+4. Impostare la lista ordinata con marcatori alfabetici minuscoli.
+5. È possibile sperimentare liberamente con l'esempio di lista, provando tipi di marcatore, spaziatura o qualsiasi altra caratteristica desiderata.
 
-Se commetti un errore, puoi sempre reimpostarlo utilizzando il pulsante _Reset_. Se sei veramente bloccato, premi il pulsante _Show solution_ per vedere una possibile soluzione.
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nel Playground MDN. Se si incontrano particolari difficoltà, la soluzione è disponibile sotto l'output dell'esempio.
 
-```html hidden
-<div
-  class="body-wrapper"
-  style="font-family: 'Open Sans Light',Helvetica,Arial,sans-serif;">
-  <h2>HTML Input</h2>
-  <textarea
-    id="code"
-    class="html-input"
-    style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;">
+```html live-sample___styling_lists
 <ul>
   <li>First, light the candle.</li>
   <li>Next, open the box.</li>
-  <li>Finally, place the three magic items in the box, in this exact order, to complete the spell:
+  <li>
+    Finally, place the three magic items in the box, in this exact order, to
+    complete the spell:
     <ol>
       <li>The book of spells</li>
       <li>The shiny rod</li>
@@ -352,83 +378,37 @@ Se commetti un errore, puoi sempre reimpostarlo utilizzando il pulsante _Reset_.
     </ol>
   </li>
 </ul>
-  </textarea>
-
-  <h2>CSS Input</h2>
-  <textarea
-    id="code"
-    class="css-input"
-    style="width: 90%;height: 10em;padding: 10px;border: 1px solid #0095dd;"></textarea>
-
-  <h2>Output</h2>
-  <div
-    class="output"
-    style="width: 90%;height: 12em;padding: 10px;border: 1px solid #0095dd;overflow: auto;"></div>
-  <div class="controls">
-    <input
-      id="reset"
-      type="button"
-      value="Reset"
-      style="margin: 10px 10px 0 0;" />
-    <input
-      id="solution"
-      type="button"
-      value="Show solution"
-      style="margin: 10px 0 0 10px;" />
-  </div>
-</div>
 ```
 
-```js hidden
-const htmlInput = document.querySelector(".html-input");
-const cssInput = document.querySelector(".css-input");
-const reset = document.getElementById("reset");
-const htmlCode = htmlInput.value;
-const cssCode = cssInput.value;
-const output = document.querySelector(".output");
-const solution = document.getElementById("solution");
+```css live-sample___styling_lists
 
-const styleElem = document.createElement("style");
-const headElem = document.querySelector("head");
-headElem.appendChild(styleElem);
+```
 
-function drawOutput() {
-  output.innerHTML = htmlInput.value;
-  styleElem.textContent = cssInput.value;
-}
+{{ EmbedLiveSample('styling_lists', "100%", 160) }}
 
-reset.addEventListener("click", () => {
-  htmlInput.value = htmlCode;
-  cssInput.value = cssCode;
-  drawOutput();
-});
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-solution.addEventListener("click", () => {
-  htmlInput.value = htmlCode;
-  cssInput.value = `ul {
+Il CSS finale dovrebbe avere un aspetto simile a questo:
+
+```css
+ul {
   list-style-type: square;
 }
 
-ul li,
-ol li {
+li {
   line-height: 1.5;
 }
 
 ol {
   list-style-type: lower-alpha;
-}`;
-  drawOutput();
-});
-
-htmlInput.addEventListener("input", drawOutput);
-cssInput.addEventListener("input", drawOutput);
-window.addEventListener("load", drawOutput);
+}
 ```
 
-{{ EmbedLiveSample('Active_learning_Styling_a_nested_list', 700, 800) }}
+</details>
 
-## Riassunto
+## Riepilogo
 
-Le liste sono relativamente facili da capire come stilizzare una volta che conosci alcuni principi di base associati e proprietà specifiche. Nel prossimo articolo, passeremo alle tecniche di stilizzazione dei link.
+Applicare stili alle liste è relativamente semplice una volta appresi alcuni principi di base associati e proprietà specifiche. Nel prossimo articolo verranno esaminate le tecniche per applicare stili ai link.
 
 {{PreviousMenuNext("Learn_web_development/Core/Text_styling/Fundamentals", "Learn_web_development/Core/Text_styling/Styling_links", "Learn_web_development/Core/Text_styling")}}

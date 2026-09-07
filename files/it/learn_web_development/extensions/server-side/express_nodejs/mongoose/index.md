@@ -1,167 +1,166 @@
 ---
-title: "Express Tutorial Parte 3: Utilizzare un Database (con Mongoose)"
-short-title: "3: Utilizzare i database con Mongoose"
+title: "Tutorial di Express - Parte 3: utilizzo di un database (con Mongoose)"
+short-title: "3: Utilizzo di database con Mongoose"
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose
 l10n:
-  sourceCommit: e6d43da6c6d28a6ac92cdd47882809ffbdf987ce
+  sourceCommit: 3d04bc6079a6b9d051c72c465a6e0421f20f603c
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website", "Learn_web_development/Extensions/Server-side/Express_Nodejs/routes", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}
 
-Questo articolo introduce brevemente i database e come usarli con le app Node/Express. Segue poi una spiegazione su come possiamo utilizzare [Mongoose](https://mongoosejs.com/) per fornire accesso al database per il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website). Viene spiegato come sono dichiarati gli schema degli oggetti e i modelli, i principali tipi di campi e la convalida di base. Mostra anche brevemente alcuni dei principali modi in cui è possibile accedere ai dati del modello.
+Questo articolo introduce brevemente i database e come utilizzarli con le app Node/Express. Mostra poi come utilizzare [Mongoose](https://mongoosejs.com/) per fornire l'accesso al database per il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website). Spiega come dichiarare schemi e modelli di oggetti, i principali tipi di campo e la validazione di base. Mostra inoltre brevemente alcuni dei principali modi per accedere ai dati dei modelli.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website">Express Tutorial Parte 2: Creare un sito web scheletro</a>
+        <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website">Tutorial di Express - Parte 2: creazione dello scheletro di un sito web</a>
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
-      <td>Essere in grado di progettare e creare i propri modelli usando Mongoose.</td>
+      <td>Essere in grado di progettare e creare i propri modelli utilizzando Mongoose.</td>
     </tr>
   </tbody>
 </table>
 
 ## Panoramica
 
-Il personale della biblioteca utilizzerà il sito web Local Library per memorizzare informazioni su libri e prestatori, mentre i membri della biblioteca lo useranno per sfogliare e cercare libri, scoprire se sono disponibili delle copie e quindi prenotarle o prenderle in prestito. Per memorizzare e recuperare informazioni in modo efficiente, le memorizzeremo in un _database_.
+Il personale della biblioteca utilizzerà il sito web Local Library per memorizzare informazioni su libri e mutuatari, mentre i membri della biblioteca lo utilizzeranno per sfogliare e cercare libri, verificare se sono disponibili copie e quindi prenotarle o prenderle in prestito. Per memorizzare e recuperare le informazioni in modo efficiente, le conserveremo in un _database_.
 
-Le app Express possono utilizzare diversi database e ci sono diversi approcci che si possono utilizzare per eseguire operazioni di **C**reazione, **R**icerca, **U**pdate e **D**elete (CRUD). Questo tutorial fornisce una breve panoramica di alcune delle opzioni disponibili e poi prosegue mostrando in dettaglio i meccanismi particolari selezionati.
+Le app Express possono utilizzare molti database diversi ed esistono vari approcci per eseguire operazioni di **C**reazione, **L**ettura, **A**ggiornamento ed **E**liminazione (CRUD). Questo tutorial offre una breve panoramica di alcune delle opzioni disponibili e poi illustra in dettaglio i meccanismi specifici selezionati.
 
-### Quali database posso utilizzare?
+### Quali database si possono utilizzare?
 
-Le app _Express_ possono utilizzare qualsiasi database supportato da _Node_ (Express stesso non definisce alcun comportamento/requisito aggiuntivo specifico per la gestione dei database). Ci sono [molte opzioni popolari](https://expressjs.com/en/guide/database-integration.html), tra cui PostgreSQL, MySQL, Redis, SQLite e MongoDB.
+Le app _Express_ possono usare qualsiasi database supportato da _Node_ (_Express_ stesso non definisce comportamenti o requisiti aggiuntivi specifici per la gestione dei database). Sono disponibili [molte opzioni popolari](https://expressjs.com/en/guide/database-integration/), tra cui PostgreSQL, MySQL, Redis, SQLite e MongoDB.
 
-Quando si sceglie un database, bisogna considerare aspetti come il tempo necessario per diventare produttivi/curva di apprendimento, le prestazioni, la facilità di replicazione/backup, i costi, il supporto della comunità, ecc. Sebbene non ci sia un'unica "migliore" opzione di database, quasi tutte le soluzioni popolari dovrebbero essere più che accettabili per un sito di piccole o medie dimensioni come la nostra Local Library.
+Nella scelta di un database, occorre considerare aspetti quali tempo necessario per essere produttivi/curva di apprendimento, prestazioni, facilità di replica/backup, costo, supporto della comunità e così via. Sebbene non esista un singolo database "migliore", quasi tutte le soluzioni popolari dovrebbero essere più che adeguate per un sito di dimensioni piccole o medie come Local Library.
 
-Per maggiori informazioni sulle opzioni, consulta [Integrazione del database](https://expressjs.com/en/guide/database-integration.html) (documentazione di Express).
+Per maggiori informazioni sulle opzioni, vedere [Integrazione del database](https://expressjs.com/en/guide/database-integration/) (documentazione di Express).
 
 ### Qual è il modo migliore per interagire con un database?
 
-Ci sono due approcci comuni per interagire con un database:
+Esistono due approcci comuni per interagire con un database:
 
-- Utilizzare il linguaggio di query nativo dei database, come SQL.
-- Utilizzare un Object Relational Mapper ("ORM") o Object Document Mapper ("ODM"). Questi rappresentano i dati del sito web come oggetti JavaScript, che vengono poi mappati nel database sottostante. Alcuni ORM e ODM sono legati a un database specifico, mentre altri forniscono un backend agnostico rispetto al database.
+- Utilizzare il linguaggio di query nativo del database, come SQL.
+- Utilizzare un Object Relational Mapper ("ORM") o un Object Document Mapper ("ODM"). Questi rappresentano i dati del sito web come oggetti JavaScript, che vengono poi mappati nel database sottostante. Alcuni ORM e ODM sono legati a un database specifico, mentre altri forniscono un backend indipendente dal database.
 
-Le migliori _prestazioni_ possono essere ottenute utilizzando SQL o qualsiasi linguaggio di query supportato dal database. I mapper degli oggetti sono spesso più lenti perché utilizzano il codice di traduzione per il mapping tra oggetti e il formato del database, che potrebbe non utilizzare le query di database più efficienti (questo è particolarmente vero se il mapper supporta backend diversi per i database e deve fare compromessi più grandi in termini di supporto delle funzionalità del database).
+Le prestazioni migliori in assoluto si possono ottenere utilizzando SQL, oppure qualunque linguaggio di query sia supportato dal database. I mapper di oggetti sono spesso più lenti perché utilizzano codice di traduzione per mappare gli oggetti nel formato del database, che potrebbe non usare le query del database più efficienti; questo è particolarmente vero se il mapper supporta backend di database diversi e deve quindi adottare compromessi maggiori riguardo alle funzionalità del database supportate.
 
-Il vantaggio di utilizzare un ORM/ODM è che i programmatori possono continuare a pensare in termini di oggetti JavaScript piuttosto che in termini di semantica del database — questo è particolarmente vero se è necessario lavorare con database diversi (sullo stesso sito o su siti diversi). Forniscono anche un luogo ovvio per eseguire la convalida dei dati.
+Il vantaggio dell'uso di un ORM/ODM è che i programmatori possono continuare a ragionare in termini di oggetti JavaScript anziché di semantica del database; ciò è particolarmente vero se è necessario lavorare con database diversi, nello stesso sito web o in siti differenti. Forniscono inoltre un luogo evidente in cui eseguire la validazione dei dati.
 
 > [!NOTE]
-> L'uso di ODM/ORMs spesso si traduce in costi di sviluppo e manutenzione inferiori! A meno che non si conosca molto bene il linguaggio di query nativo o le prestazioni siano fondamentali, dovresti considerare fortemente l'utilizzo di un ODM.
+> L'uso di ODM/ORM comporta spesso costi inferiori per lo sviluppo e la manutenzione. A meno che non si conosca molto bene il linguaggio di query nativo o che le prestazioni siano di primaria importanza, è fortemente consigliato considerare l'uso di un ODM.
 
-### Quale ORM/ODM dovrei usare?
+### Quale ORM/ODM usare?
 
-Ci sono molte soluzioni ODM/ORM disponibili sul sito gestore di pacchetti npm (dai un'occhiata ai tag [odm](https://www.npmjs.com/search?q=keywords:odm) e [orm](https://www.npmjs.com/search?q=keywords:orm) per un sottoinsieme!).
+Sono disponibili molte soluzioni ODM/ORM nel gestore di pacchetti npm; consultare i tag [odm](https://www.npmjs.com/search?q=keywords:odm) e [orm](https://www.npmjs.com/search?q=keywords:orm) per un sottoinsieme.
 
-Alcune soluzioni che erano popolari al momento della stesura sono:
+Alcune soluzioni popolari al momento della stesura sono:
 
-- [Mongoose](https://www.npmjs.com/package/mongoose): Mongoose è uno strumento di modellazione degli oggetti di [MongoDB](https://www.mongodb.com/) progettato per funzionare in un ambiente asincrono.
-- [Waterline](https://www.npmjs.com/package/waterline): Un ORM estratto dal framework web basato su Express [Sails](https://sailsjs.com/). Fornisce un'API uniforme per accedere a numerosi database diversi, tra cui Redis, MySQL, LDAP, MongoDB e Postgres.
-- [Bookshelf](https://www.npmjs.com/package/bookshelf): Offre interfacce sia basate su promise che su callback tradizionali, fornendo supporto per le transazioni, caricamento di relazioni eager/nested-eager, associazioni polimorfiche e supporto per relazioni uno a uno, uno a molti e molti a molti. Funziona con PostgreSQL, MySQL e SQLite3.
-- [Objection](https://www.npmjs.com/package/objection): Rende il più semplice possibile l'uso del pieno potere di SQL e del motore di database sottostante (supporta SQLite3, Postgres e MySQL).
-- [Sequelize](https://www.npmjs.com/package/sequelize) è un ORM basato su promise per Node.js e io.js. Supporta i dialetti PostgreSQL, MySQL, MariaDB, SQLite e MSSQL e offre supporto solido per le transazioni, relazioni, replica di lettura e altro.
-- [Node ORM2](https://node-orm.readthedocs.io/en/latest/) è un Object Relationship Manager per NodeJS. Supporta MySQL, SQLite e Postgres, aiutando a lavorare con il database utilizzando un approccio orientato agli oggetti.
-- [GraphQL](https://graphql.org/): Principalmente un linguaggio di query per RESTful APIs, GraphQL è molto popolare e ha funzionalità disponibili per leggere dati dai database.
+- [Mongoose](https://www.npmjs.com/package/mongoose): Mongoose è uno strumento di modellazione degli oggetti per [MongoDB](https://www.mongodb.com/), progettato per funzionare in un ambiente asincrono.
+- [Waterline](https://www.npmjs.com/package/waterline): un ORM estratto dal framework web [Sails](https://sailsjs.com/) basato su Express. Fornisce un'API uniforme per accedere a numerosi database differenti, inclusi Redis, MySQL, LDAP, MongoDB e Postgres.
+- [Bookshelf](https://www.npmjs.com/package/bookshelf): offre sia interfacce basate su promise sia interfacce tradizionali basate su callback, fornendo supporto per transazioni, caricamento eager/nested-eager delle relazioni, associazioni polimorfiche e supporto per relazioni uno-a-uno, uno-a-molti e molti-a-molti. Funziona con PostgreSQL, MySQL e SQLite3.
+- [Objection](https://www.npmjs.com/package/objection): rende il più semplice possibile usare tutta la potenza di SQL e del motore di database sottostante; supporta SQLite3, Postgres e MySQL.
+- [Sequelize](https://www.npmjs.com/package/sequelize): è un ORM basato su promise per Node.js e io.js. Supporta i dialetti PostgreSQL, MySQL, MariaDB, SQLite e MSSQL e offre un solido supporto per transazioni, relazioni, replica in lettura e altro.
+- [Node ORM2](https://node-orm.readthedocs.io/en/latest/): è un Object Relationship Manager per Node.js. Supporta MySQL, SQLite e Postgres, aiutando a lavorare con il database attraverso un approccio orientato agli oggetti.
+- [GraphQL](https://graphql.org/): principalmente un linguaggio di query per API RESTful, GraphQL è molto popolare e offre funzionalità per leggere dati dai database.
 
-Di regola generale, dovresti considerare sia le funzionalità fornite che l'"attività della comunità" (download, contributi, rapporti di bug, qualità della documentazione, ecc.) quando selezioni una soluzione. Al momento della stesura, Mongoose è di gran lunga l'ODM più popolare ed è una scelta ragionevole se stai usando MongoDB per il tuo database.
+Come regola generale, nella scelta di una soluzione è opportuno considerare sia le funzionalità offerte sia l'"attività della comunità" (download, contributi, segnalazioni di bug, qualità della documentazione e così via). Al momento della stesura Mongoose è di gran lunga l'ODM più popolare ed è una scelta ragionevole se si usa MongoDB come database.
 
 ### Utilizzare Mongoose e MongoDB per LocalLibrary
 
-Per l'esempio della _Local Library_ (e il resto di questo argomento) useremo l'[ODM Mongoose](https://www.npmjs.com/package/mongoose) per accedere ai nostri dati della biblioteca. Mongoose agisce come front end di [MongoDB](https://www.mongodb.com/company/what-is-mongodb), un database [NoSQL](https://en.wikipedia.org/wiki/NoSQL) open source che utilizza un modello di dati orientato ai documenti. Una "collection" di "documenti" in un database MongoDB [è analoga a](https://www.mongodb.com/docs/manual/core/databases-and-collections/) una "tabella" di "righe" in un database relazionale.
+Per l'esempio _Local Library_ e per il resto di questo argomento verrà utilizzato l'[ODM Mongoose](https://www.npmjs.com/package/mongoose) per accedere ai dati della biblioteca. Mongoose agisce come front-end per [MongoDB](https://www.mongodb.com/company/what-is-mongodb), un database [NoSQL](https://en.wikipedia.org/wiki/NoSQL) open source che utilizza un modello di dati orientato ai documenti. Una "collection" di "documents" in un database MongoDB [è analoga a](https://www.mongodb.com/docs/manual/core/databases-and-collections/) una "table" di "rows" in un database relazionale.
 
-Questa combinazione di ODM e database è estremamente popolare nella comunità Node, parzialmente perché l'archiviazione e il sistema di query dei documenti sembrano molto simili a JSON e sono quindi familiari agli sviluppatori JavaScript.
+Questa combinazione di ODM e database è estremamente popolare nella comunità Node, in parte perché il sistema di memorizzazione e query dei documenti somiglia molto a JSON ed è quindi familiare agli sviluppatori JavaScript.
 
 > [!NOTE]
-> Non è necessario conoscere MongoDB per utilizzare Mongoose, sebbene parti della [documentazione di Mongoose](https://mongoosejs.com/docs/guide.html) _siano_ più facili da usare e capire se sei già familiare con MongoDB.
+> Non è necessario conoscere MongoDB per utilizzare Mongoose, anche se alcune parti della [documentazione di Mongoose](https://mongoosejs.com/docs/guide.html) sono più semplici da usare e comprendere se si conosce già MongoDB.
 
-Il resto di questo tutorial mostra come definire e accedere agli schema e ai modelli di Mongoose per l'esempio [sito web LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website).
+Il resto di questo tutorial mostra come definire e accedere agli schemi e ai modelli Mongoose per l'esempio del [sito web LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website).
 
 ## Progettare i modelli di LocalLibrary
 
-Prima di iniziare a scrivere i modelli, vale la pena dedicare qualche minuto a pensare a quali dati dovremmo memorizzare e le relazioni tra i diversi oggetti.
+Prima di iniziare a scrivere il codice dei modelli, vale la pena dedicare alcuni minuti a riflettere sui dati da memorizzare e sulle relazioni tra i vari oggetti.
 
-Sappiamo che dobbiamo memorizzare informazioni sui libri (titolo, riassunto, autore, genere, ISBN) e che potremmo avere più copie disponibili (con id unici a livello globale, stati di disponibilità, ecc.). Potremmo dover memorizzare più informazioni sull'autore oltre al suo nome, e potrebbero esserci più autori con nomi uguali o simili. Vogliamo essere in grado di ordinare le informazioni in base al titolo del libro, all'autore, al genere e alla categoria.
+È necessario memorizzare informazioni sui libri, come titolo, riassunto, autore, genere e ISBN, e potrebbe essere necessario avere più copie disponibili, con ID globalmente univoci, stati di disponibilità e così via. Potrebbe essere necessario memorizzare più informazioni sull'autore oltre al semplice nome, e potrebbero esistere più autori con nomi identici o simili. Si desidera poter ordinare le informazioni in base al titolo del libro, all'autore, al genere e alla categoria.
 
-Quando progetti i tuoi modelli, ha senso avere modelli separati per ogni "oggetto" (un gruppo di informazioni correlate). In questo caso, alcuni candidati ovvi per questi modelli sono libri, istanze di libri e autori.
+Nella progettazione dei modelli è sensato avere modelli separati per ogni "oggetto", ovvero un gruppo di informazioni correlate. In questo caso, candidati evidenti per tali modelli sono libri, istanze dei libri e autori.
 
-Potresti anche voler usare modelli per rappresentare opzioni di liste di selezione (ad esempio, come una lista a discesa di scelte), piuttosto che codificare le scelte direttamente nel sito web — questo è consigliato quando tutte le opzioni non sono conosciute in anticipo o possono cambiare. Un buon esempio è un genere (ad es., fantasy, fantascienza, ecc.).
+Potrebbe inoltre essere utile usare modelli per rappresentare le opzioni delle liste di selezione, ad esempio un elenco a discesa di scelte, anziché codificare rigidamente le scelte nel sito web stesso. Questo è consigliato quando tutte le opzioni non sono note in anticipo o possono cambiare. Un buon esempio è un genere, come fantasy, fantascienza e così via.
 
-Una volta deciso sui nostri modelli e campi, dobbiamo pensare alle relazioni tra di essi.
+Dopo aver deciso i modelli e i campi, occorre riflettere sulle relazioni tra essi.
 
-Con questo in mente, il diagramma di associazione UML qui sotto mostra i modelli che definiremo in questo caso (come riquadri). Come discusso sopra, abbiamo creato modelli per il libro (i dettagli generici del libro), l'istanza del libro (stato delle copie fisiche specifiche del libro disponibili nel sistema) e l'autore. Abbiamo anche deciso di avere un modello per il genere in modo che i valori possano essere creati dinamicamente. Abbiamo deciso di non avere un modello per lo `stato` di `BookInstance` — codificheremo a mano i valori accettabili perché non ci aspettiamo che cambino. All'interno di ciascun riquadro, puoi vedere il nome del modello, i nomi e i tipi dei campi, e anche i metodi e i loro tipi di ritorno.
+Tenendo presente questo, il diagramma delle associazioni UML seguente mostra i modelli che verranno definiti in questo caso, rappresentati come riquadri. Come illustrato sopra, sono stati creati modelli per il libro, ovvero i dettagli generici del libro, l'istanza del libro, ovvero lo stato delle copie fisiche specifiche del libro disponibili nel sistema, e l'autore. Si è inoltre deciso di avere un modello per il genere, in modo che i valori possano essere creati dinamicamente. Si è deciso di non avere un modello per `BookInstance:status`: i valori accettabili saranno codificati rigidamente perché non è previsto che cambino. All'interno di ogni riquadro sono visibili il nome del modello, i nomi e i tipi dei campi, nonché i metodi e i rispettivi tipi restituiti.
 
-Il diagramma mostra anche le relazioni tra i modelli, comprese le loro _multiplicità_. Le multiplicità sono i numeri presenti sul diagramma che mostrano i numeri (massimo e minimo) di ciascun modello che possono essere presenti nella relazione. Ad esempio, la linea di collegamento tra i riquadri mostra che `Book` e un `Genre` sono correlati. I numeri vicino al modello `Book` mostrano che un `Genre` deve avere zero o più `Book` (quanti ne vuoi), mentre i numeri sull'altro lato della linea accanto al `Genre` mostrano che un libro può avere zero o più `Genre` associati.
-
-> [!NOTE]
-> Come discusso nel nostro [primer su Mongoose](#primer_su_mongoose) più in basso, è spesso meglio avere il campo che definisce la relazione tra i documenti/model in un solo _modello_ (puoi comunque trovare la relazione inversa cercando l'`_id` associato nell'altro modello). Sotto abbiamo scelto di definire la relazione tra `Book`/`Genre` e `Book`/`Author` nello schema Libri, e la relazione tra `Book`/`BookInstance` nello schema `BookInstance`. Questa scelta era un po' arbitraria — avremmo potuto ugualmente avere il campo nell'altro schema.
-
-![Modello Mongoose Library con cardinalità corretta](library_website_-_mongoose_express.png)
+Il diagramma mostra anche le relazioni tra i modelli, comprese le rispettive _molteplicità_. Le molteplicità sono i numeri nel diagramma che indicano il numero, massimo e minimo, di ciascun modello che può essere presente nella relazione. Ad esempio, la linea di collegamento tra i riquadri mostra che `Book` e `Genre` sono correlati. I numeri vicini al modello `Book` mostrano che un `Genre` può avere zero o più `Book`, tanti quanti se ne desiderano, mentre i numeri all'altra estremità della linea accanto a `Genre` mostrano che un libro può avere zero o più `Genre` associati.
 
 > [!NOTE]
-> La prossima sezione fornisce un primer di base che spiega come sono definiti e utilizzati i modelli. Mentre lo leggi, considera come costruiremo ciascuno dei modelli nel diagramma sopra.
+> Come illustrato nel [primer su Mongoose](#primer_su_mongoose) seguente, spesso è meglio che il campo che definisce la relazione tra documenti/modelli sia presente in un solo modello; è comunque possibile trovare la relazione inversa cercando l'`_id` associato nell'altro modello. Di seguito è stato scelto di definire la relazione tra `Book`/`Genre` e `Book`/`Author` nello schema Book, e la relazione tra `Book`/`BookInstance` nello schema `BookInstance`. Questa scelta è in parte arbitraria: il campo avrebbe potuto essere presente anche nell'altro schema.
 
-### Le API dei database sono asincrone
+![Modello della biblioteca Mongoose con cardinalità corretta](library_website_-_mongoose_express.png)
 
-Metodi di database per creare, trovare, aggiornare o eliminare record sono asincroni.
-Questo significa che i metodi ritornano immediatamente, e il codice che gestisce il successo o il fallimento del metodo viene eseguito in un momento successivo quando l'operazione è completata.
-Altri codici possono essere eseguiti mentre il server attende il completamento dell'operazione del database, quindi il server può rimanere reattivo ad altre richieste.
+> [!NOTE]
+> La sezione successiva fornisce un primer di base che spiega come vengono definiti e usati i modelli. Durante la lettura, considerare come verrà costruito ciascuno dei modelli nel diagramma precedente.
 
-JavaScript ha una serie di meccanismi per supportare il comportamento asincrono.
-Storicamente, JavaScript si basava pesantemente sul passaggio di [funzioni di callback](/it/docs/Learn_web_development/Extensions/Async_JS/Introducing) a metodi asincroni per gestire i casi di successo e errore.
-In JavaScript moderno, i callback sono stati in gran parte sostituiti dalle [Promises](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-Le Promises sono oggetti che sono (immediatamente) ritornati da un metodo asincrono che rappresenta il suo stato futuro.
-Quando l'operazione è completata, l'oggetto promise è "risolto", e restituisce un oggetto che rappresenta il risultato dell'operazione o un errore.
+### Le API del database sono asincrone
 
-Ci sono due modi principali per utilizzare le promises per eseguire codice quando una promise è risolta, e consigliamo vivamente di leggere [Come usare le promises](/it/docs/Learn_web_development/Extensions/Async_JS/Promises) per una panoramica ad alto livello di entrambi gli approcci.
-In questo tutorial, utilizzeremo principalmente [`await`](/it/docs/Web/JavaScript/Reference/Operators/await) per attendere il completamento delle promise all'interno di una [`funzione async`](/it/docs/Web/JavaScript/Reference/Statements/async_function), perché questo porta a un codice asincrono più leggibile e comprensibile.
+I metodi del database per creare, trovare, aggiornare o eliminare record sono asincroni.
+Ciò significa che i metodi restituiscono immediatamente e il codice che gestisce il successo o l'errore del metodo viene eseguito in un momento successivo, quando l'operazione è completata.
+Mentre il server attende il completamento dell'operazione del database, può essere eseguito altro codice, quindi il server può rimanere reattivo ad altre richieste.
 
-Il modo in cui funziona questo approccio è che si utilizza la parola chiave `async function` per contrassegnare una funzione come asincrona, e poi all'interno di tale funzione si applica `await` a qualsiasi metodo che ritorna una promise.
-Quando la funzione asincrona viene eseguita, la sua operazione viene messa in pausa al primo metodo `await` fino a quando la promise è risolta.
-Dal punto di vista del codice circostante, la funzione asincrona ritorna quindi e il codice successivo è in grado di eseguire.
-In seguito, quando la promise è risolta, il metodo `await` all'interno della funzione asincrona ritorna con il risultato, o viene generato un errore se la promise è stata rifiutata.
-Il codice nella funzione asincrona viene quindi eseguito fino a quando non viene incontrato un altro `await`, a quel punto si fermerà di nuovo, o fino a quando tutto il codice della funzione è stato eseguito.
+JavaScript dispone di vari meccanismi per supportare il comportamento asincrono.
+Storicamente JavaScript si è affidato in larga misura al passaggio di [funzioni callback](/it/docs/Learn_web_development/Extensions/Async_JS/Introducing) ai metodi asincroni per gestire i casi di successo ed errore.
+Nel JavaScript moderno, le callback sono state in gran parte sostituite dalle [Promise](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+Le promise sono oggetti restituiti immediatamente da un metodo asincrono che ne rappresentano lo stato futuro.
+Quando l'operazione termina, l'oggetto promise viene "risolto" e restituisce un oggetto che rappresenta il risultato dell'operazione o un errore.
 
-Puoi vedere come funziona questo nell'esempio qui sotto.
-`myFunction()` è una funzione asincrona che viene chiamata all'interno di un blocco [`try...catch`](/it/docs/Web/JavaScript/Reference/Statements/try...catch).
-Quando `myFunction()` viene eseguita, l'esecuzione del codice viene messa in pausa su `methodThatReturnsPromise()` fino a quando la promise è risolta, a quel punto il codice continua su `aFunctionThatReturnsPromise()` e attende di nuovo.
-Il codice nel blocco `catch` viene eseguito se viene generato un errore nella funzione asincrona, e questo accadrà se la promise restituita da uno dei metodi è stata rifiutata.
+Esistono due modi principali per utilizzare le promise al fine di eseguire codice quando una promise viene risolta ed è fortemente consigliato leggere [Come utilizzare le promise](/it/docs/Learn_web_development/Extensions/Async_JS/Promises) per una panoramica generale di entrambi gli approcci.
+In questo tutorial verrà utilizzato principalmente [`await`](/it/docs/Web/JavaScript/Reference/Operators/await) per attendere il completamento di una promise all'interno di una [`async function`](/it/docs/Web/JavaScript/Reference/Statements/async_function), perché questo produce codice asincrono più leggibile e comprensibile.
+
+Questo approccio funziona usando la parola chiave `async function` per contrassegnare una funzione come asincrona, quindi applicando `await` all'interno della funzione a ogni metodo che restituisce una promise.
+Quando la funzione asincrona viene eseguita, la sua operazione viene sospesa al primo metodo `await` finché la promise non viene risolta.
+Dal punto di vista del codice circostante, la funzione asincrona restituisce quindi il controllo e il codice successivo può essere eseguito.
+In seguito, quando la promise viene risolta, il metodo `await` all'interno della funzione asincrona restituisce il risultato oppure viene generato un errore se la promise è stata rifiutata.
+Il codice nella funzione asincrona viene quindi eseguito fino a incontrare un altro `await`, momento in cui verrà nuovamente sospeso, oppure fino all'esecuzione di tutto il codice della funzione.
+
+È possibile vedere il funzionamento nell'esempio seguente.
+`myFunction()` è una funzione asincrona che contiene un blocco [`try...catch`](/it/docs/Web/JavaScript/Reference/Statements/try...catch) attorno alle espressioni `await`.
+Quando viene eseguita `myFunction()`, l'esecuzione del codice viene sospesa in corrispondenza di `methodThatReturnsPromise()` finché la promise non viene risolta; il codice prosegue quindi fino a `functionThatReturnsPromise()` e attende nuovamente.
+Il codice nel blocco `catch` viene eseguito se viene generato un errore nella funzione asincrona, e ciò avviene se la promise restituita da uno dei due metodi viene rifiutata.
 
 ```js
 async function myFunction() {
-  // …
-  await someObject.methodThatReturnsPromise();
-  // …
-  await aFunctionThatReturnsPromise();
-  // …
+  try {
+    // …
+    await someObject.methodThatReturnsPromise();
+    // …
+    await functionThatReturnsPromise();
+    // …
+  } catch (e) {
+    // error handling code
+  }
 }
 
-try {
-  // …
-  myFunction();
-  // …
-} catch (e) {
-  // error handling code
-}
+myFunction();
 ```
 
-I metodi asincroni sopra sono eseguiti in sequenza.
-Se i met
+Una funzione asincrona restituisce una promise che viene rifiutata se l'errore non viene intercettato all'interno della funzione.
+Per intercettare tale errore nel codice chiamante, utilizzare il metodo [`catch()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) della promise restituita oppure applicare `await` alla chiamata della funzione all'interno di un blocco `try...catch`.
+Chiamare la funzione all'interno di un blocco `try...catch` senza `await` non intercetta il rifiuto, poiché è `await` a convertire la promise rifiutata restituita in un errore generato.
 
-odi non dipendono l'uno dall'altro, è possibile eseguirli in parallelo e terminare l'intera operazione più rapidamente.
-Questo viene fatto utilizzando il metodo [`Promise.all()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), che prende un iterabile di promises come input e ritorna una singola `Promise`.
-Questa promise restituita è soddisfatta quando tutte le promises di input sono soddisfatte, con un array di valori di soddisfazione.
-Viene rifiutata quando una qualsiasi delle promises di input è rifiutata, con questa prima ragione di rifiuto.
+I metodi asincroni precedenti vengono eseguiti in sequenza.
+Se i metodi non dipendono l'uno dall'altro, è possibile eseguirli in parallelo e completare l'intera operazione più rapidamente.
+Questo si esegue usando il metodo [`Promise.all()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise/all), che accetta come input un iterabile di promise e restituisce una singola `Promise`.
+La promise restituita viene soddisfatta quando tutte le promise di input vengono soddisfatte, con un array dei valori di soddisfacimento.
+Viene rifiutata quando una qualsiasi delle promise di input viene rifiutata, con il motivo del primo rifiuto.
 
-Il codice sotto mostra come funziona.
-Innanzitutto, abbiamo due funzioni che restituiscono promises.
-Attendiamo entrambe che completino utilizzando la promise restituita da `Promise.all()`.
-Una volta completate entrambe, `await` restituisce e l'array dei risultati viene popolato,
-la funzione poi continua al successivo `await`, e attende fino a quando la promise restituita da `anotherFunctionThatReturnsPromise()` è risolta.
-Dovresti chiamare la `myFunction()` in un blocco `try...catch` per catturare eventuali errori.
+Il codice seguente mostra come funziona.
+Per prima cosa, sono presenti due funzioni che restituiscono promise.
+Si applica `await` a entrambe affinché siano completate usando la promise restituita da `Promise.all()`.
+Dopo che entrambe sono completate, `await` restituisce il controllo e l'array dei risultati viene popolato; la funzione prosegue quindi fino al successivo `await` e attende che la promise restituita da `anotherFunctionThatReturnsPromise()` sia risolta.
+Sarebbe necessario associare un gestore `catch()` alla promise restituita da `myFunction()` per intercettare eventuali errori.
 
 ```js
 async function myFunction() {
@@ -175,42 +174,37 @@ async function myFunction() {
 }
 ```
 
-Le Promises con `await`/`async` permettono sia un controllo flessibile che "comprensibile" sull'esecuzione asincrona!
+Le promise con `await`/`async` consentono un controllo dell'esecuzione asincrona flessibile e comprensibile.
 
 ## Primer su Mongoose
 
-Questa sezione fornisce una panoramica su come connettere Mongoose a un database MongoDB, come definire uno schema e un modello, e come effettuare query di base.
+Questa sezione fornisce una panoramica su come connettere Mongoose a un database MongoDB, definire uno schema e un modello, ed eseguire query di base.
 
 > [!NOTE]
-> Questo primer è fortemente influenzato dal [quick start di Mongoose](https://www.npmjs.com/package/mongoose) su _npm_ e dalla [documentazione ufficiale](https://mongoosejs.com/docs/guide.html).
+> Questo primer è fortemente ispirato alla [guida rapida di Mongoose](https://www.npmjs.com/package/mongoose) su _npm_ e alla [documentazione ufficiale](https://mongoosejs.com/docs/guide.html).
 
 ### Installare Mongoose e MongoDB
 
-Mongoose è installato nel tuo progetto (**package.json**) come qualsiasi altra dipendenza, utilizzando npm.
-Per installarlo, utilizza il seguente comando all'interno della tua cartella di progetto:
+Mongoose viene installato nel progetto, in **package.json**, come qualsiasi altra dipendenza, utilizzando npm.
+Per installarlo, utilizzare il comando seguente all'interno della cartella del progetto:
 
 ```bash
 npm install mongoose
 ```
 
-Installare _Mongoose_ aggiunge tutte le sue dipendenze, incluso il driver del database MongoDB, ma non installa MongoDB stesso. Se vuoi installare un server MongoDB, puoi [scaricare gli installer da qui](https://www.mongodb.com/try/download/community) per vari sistemi operativi e installarlo localmente. Puoi anche utilizzare istanze MongoDB basate su cloud.
+L'installazione di _Mongoose_ aggiunge tutte le sue dipendenze, incluso il driver del database MongoDB, ma non installa MongoDB stesso. Per installare un server MongoDB, è possibile [scaricare gli installer da qui](https://www.mongodb.com/try/download/community) per vari sistemi operativi e installarlo localmente. È inoltre possibile utilizzare istanze MongoDB basate sul cloud.
 
 > [!NOTE]
-> Per questo tutorial, useremo il tier gratuito del servizio cloud [MongoDB Atlas](https://www.mongodb.com/), che fornisce il database. È adatto per lo sviluppo e ha senso per il tutorial perché rende "l'installazione" indipendente dal sistema operativo (il _database as a service_ è anche un approccio che potresti utilizzare per il tuo database in produzione).
+> Per questo tutorial verrà utilizzato il livello gratuito del _database as a service_ basato sul cloud [MongoDB Atlas](https://www.mongodb.com/) per fornire il database. Questo è adatto allo sviluppo e ha senso per il tutorial perché rende l'"installazione" indipendente dal sistema operativo; il database-as-a-service è anche uno degli approcci utilizzabili per il database di produzione.
 
 ### Connessione a MongoDB
 
 _Mongoose_ richiede una connessione a un database MongoDB.
-Puoi usare `require()` e connetterti a un database ospitato localmente con `mongoose.connect()` come mostrato qui sotto (per il tutorial ci connetteremo invece a un database ospitato su Internet).
+È possibile usare `require()` e connettersi a un database ospitato localmente con `mongoose.connect()`, come mostrato di seguito; per il tutorial ci si connetterà invece a un database ospitato su Internet.
 
 ```js
 // Import the mongoose module
 const mongoose = require("mongoose");
-
-// Set `strictQuery: false` to globally opt into filtering by properties that aren't in the schema
-// Included because it removes preparatory warnings for Mongoose 7.
-// See: https://mongoosejs.com/docs/migrating_to_6.html#strictquery-is-removed-and-replaced-by-strict
-mongoose.set("strictQuery", false);
 
 // Define the database URL to connect to.
 const mongoDB = "mongodb://127.0.0.1/my_database";
@@ -223,26 +217,26 @@ async function main() {
 ```
 
 > [!NOTE]
-> Come discusso nella sezione [Le API dei database sono asincrone](#le_api_dei_database_sono_asincrone), qui attendiamo sulla promise restituita dal metodo `connect()` all'interno di una funzione `async`.
-> Usiamo il gestore `catch()` della promise per gestire eventuali errori quando si cerca di connettersi, ma potremmo anche chiamare `main()` all'interno di un blocco `try...catch`.
+> Come illustrato nella sezione [Le API del database sono asincrone](#le_api_del_database_sono_asincrone), qui si applica `await` alla promise restituita dal metodo `connect()` all'interno di una funzione `async`.
+> Si utilizza il gestore `catch()` della promise per gestire eventuali errori durante il tentativo di connessione, ma sarebbe stato possibile usare anche `await main()` all'interno di un blocco `try...catch` in un'altra funzione `async`.
 
-Puoi ottenere l'oggetto `Connection` predefinito con `mongoose.connection`.
-Se hai bisogno di creare connessioni aggiuntive, puoi usare `mongoose.createConnection()`.
-Questo prende la stessa forma di URI di database (con host, database, porta, opzioni, ecc.) di `connect()` e restituisce un oggetto `Connection`).
-Nota che `createConnection()` restituisce immediatamente; se devi attendere che la connessione sia stabilita puoi chiamarla con `asPromise()` per restituire una promise (`mongoose.createConnection(mongoDB).asPromise()`).
+È possibile ottenere l'oggetto `Connection` predefinito con `mongoose.connection`.
+Se è necessario creare connessioni aggiuntive, è possibile usare `mongoose.createConnection()`.
+Questo accetta la stessa forma di URI del database, con host, database, porta, opzioni e così via, di `connect()` e restituisce un oggetto `Connection`.
+Si noti che `createConnection()` restituisce immediatamente; se è necessario attendere che la connessione venga stabilita, è possibile chiamarlo con `asPromise()` per restituire una promise: `mongoose.createConnection(mongoDB).asPromise()`.
 
-### Definire e creare modelli
+### Definizione e creazione dei modelli
 
-I modelli vengono _definiti_ utilizzando l'interfaccia `Schema`. Lo Schema ti consente di definire i campi memorizzati in ogni documento insieme ai loro requisiti di convalida e valori predefiniti. Inoltre, puoi definire metodi helper statici e di istanza per rendere più facile lavorare con i tuoi tipi di dati, e anche proprietà virtuali che puoi usare come qualsiasi altro campo, ma che non vengono effettivamente memorizzate nel database (ne discuteremo un po' più avanti).
+I modelli vengono _definiti_ usando l'interfaccia `Schema`. Lo schema consente di definire i campi memorizzati in ciascun documento insieme ai relativi requisiti di validazione e valori predefiniti. Inoltre, è possibile definire metodi helper statici e di istanza per semplificare il lavoro con i tipi di dati, nonché proprietà virtuali utilizzabili come qualsiasi altro campo ma che non sono effettivamente memorizzate nel database; l'argomento verrà approfondito poco più avanti.
 
-Gli Schema vengono poi "compilati" in modelli usando il metodo `mongoose.model()`. Una volta che hai un modello puoi usarlo per trovare, creare, aggiornare ed eliminare oggetti del tipo dato.
+Gli schemi vengono poi "compilati" in modelli usando il metodo `mongoose.model()`. Una volta ottenuto un modello, è possibile utilizzarlo per trovare, creare, aggiornare ed eliminare oggetti del tipo specificato.
 
 > [!NOTE]
-> Ogni modello mappa una _collection_ di _documenti_ nel database MongoDB. I documenti conterranno i campi/tipi di schema definiti nel modello `Schema`.
+> Ogni modello viene mappato a una _collection_ di _documents_ nel database MongoDB. I documenti conterranno i campi/tipi di schema definiti nel modello `Schema`.
 
-#### Definire gli schema
+#### Definizione degli schemi
 
-Il frammento di codice qui sotto mostra come potresti definire uno schema semplice. Prima usi `require()` per caricare mongoose, poi utilizzi il costruttore Schema per creare una nuova istanza di schema, definendo i vari campi al suo interno nel parametro oggetto del costruttore.
+Il frammento di codice seguente mostra come definire un semplice schema. Innanzitutto si esegue `require()` su mongoose, quindi si utilizza il costruttore Schema per creare una nuova istanza di schema, definendo i vari campi all'interno del parametro oggetto del costruttore.
 
 ```js
 // Require Mongoose
@@ -257,11 +251,11 @@ const SomeModelSchema = new Schema({
 });
 ```
 
-Nel caso sopra abbiamo solo due campi, una stringa e una data. Nelle sezioni successive, mostreremo alcuni degli altri tipi di campi, la convalida e altri metodi.
+Nel caso precedente sono presenti solo due campi, una stringa e una data. Nelle sezioni successive verranno illustrati alcuni degli altri tipi di campo, la validazione e altri metodi.
 
-#### Creare un modello
+#### Creazione di un modello
 
-I modelli vengono creati dagli schema usando il metodo `mongoose.model()`:
+I modelli vengono creati dagli schemi usando il metodo `mongoose.model()`:
 
 ```js
 // Define schema
@@ -276,15 +270,15 @@ const SomeModelSchema = new Schema({
 const SomeModel = mongoose.model("SomeModel", SomeModelSchema);
 ```
 
-Il primo argomento è il nome singolare della collection che verrà creata per il tuo modello (Mongoose creerà la collection del database per il modello _SomeModel_ qui sopra), e il secondo argomento è lo schema che vuoi utilizzare per creare il modello.
+Il primo argomento è il nome singolare della collection che verrà creata per il modello; Mongoose creerà la collection del database per il modello _SomeModel_ precedente. Il secondo argomento è lo schema da utilizzare per creare il modello.
 
 > [!NOTE]
-> Una volta che hai definito le tue classi modello puoi usarle per creare, aggiornare o eliminare record, ed eseguire query per ottenere tutti i record o particolari sottoinsiemi di record. Ti mostreremo come farlo nella sezione [Utilizzare i modelli](#utilizzare_i_modelli), e quando creeremo le nostre viste.
+> Dopo aver definito le classi di modello, è possibile utilizzarle per creare, aggiornare o eliminare record ed eseguire query per ottenere tutti i record o particolari sottoinsiemi di record. Questo verrà mostrato nella sezione [Utilizzo dei modelli](#utilizzo_dei_modelli) e durante la creazione delle viste.
 
 #### Tipi di schema (campi)
 
-Uno schema può avere un numero arbitrario di campi — ciascuno rappresenta un campo nei documenti memorizzati in _MongoDB_.
-Un esempio di schema che mostra molti dei tipi di campi comuni e come vengono dichiarati è mostrato di seguito.
+Uno schema può avere un numero arbitrario di campi: ciascuno rappresenta un campo nei documenti memorizzati in _MongoDB_.
+Di seguito è mostrato un esempio di schema che presenta molti dei tipi di campo comuni e il modo in cui vengono dichiarati.
 
 ```js
 const schema = new Schema({
@@ -301,39 +295,37 @@ const schema = new Schema({
 });
 ```
 
-La maggior parte dei [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (i descrittori dopo "type:" o dopo i nomi dei campi) sono autoesplicativi. Le eccezioni sono:
+La maggior parte degli [SchemaTypes](https://mongoosejs.com/docs/schematypes.html), ovvero i descrittori dopo "type:" o dopo i nomi dei campi, sono autoesplicativi. Le eccezioni sono:
 
-- `ObjectId`: Rappresenta istanze specifiche di un modello nel database. Per esempio, un libro potrebbe utilizzarlo per rappresentare il suo oggetto autore. Questo conterrà effettivamente l'ID univoco (`_id`) per l'oggetto specificato. Possiamo usare il metodo `populate()` per inserire le informazioni associate quando necessario.
-- [`Mixed`](https://mongoosejs.com/docs/schematypes.html#mixed): Un tipo di schema arbitrario.
-- `[]`: Un array di elementi. È possibile eseguire operazioni sugli array JavaScript su questi modelli (push, pop, unshift, ecc.). Gli esempi sopra mostrano un array di oggetti senza un tipo specificato e un array di oggetti `String`, ma puoi avere un array di qualsiasi tipo di oggetto.
+- `ObjectId`: rappresenta istanze specifiche di un modello nel database. Ad esempio, un libro potrebbe utilizzarlo per rappresentare l'oggetto autore. Questo conterrà effettivamente l'ID univoco, `_id`, dell'oggetto specificato. È possibile utilizzare il metodo `populate()` per recuperare le informazioni associate quando necessario.
+- [`Mixed`](https://mongoosejs.com/docs/schematypes.html#mixed): un tipo di schema arbitrario.
+- `[]`: un array di elementi. È possibile eseguire operazioni sugli array JavaScript su questi modelli, come push, pop e unshift. Gli esempi precedenti mostrano un array di oggetti senza un tipo specificato e un array di oggetti `String`, ma è possibile avere un array di qualsiasi tipo di oggetto.
 
-Il codice mostra anche entrambi i modi di dichiarare un campo:
+Il codice mostra inoltre entrambi i modi per dichiarare un campo:
 
-- Nome e tipo del campo come coppia chiave-valore (cioè, come fatto con i campi `name`, `binary` e `living`).
-- Nome del campo seguito da un oggetto che definisce il `type`, e qualsiasi altra opzione per il campo. Le opzioni includono cose come:
+- _Nome_ e _tipo_ del campo come coppia chiave-valore, come avviene per i campi `name`, `binary` e `living`.
+- _Nome_ del campo seguito da un oggetto che definisce il `type` e qualsiasi altra _opzione_ del campo. Le opzioni includono elementi quali:
+  - valori predefiniti;
+  - validatori incorporati, come valori max/min, e funzioni di validazione personalizzate;
+  - se il campo è obbligatorio;
+  - se i campi `String` devono essere convertiti automaticamente in minuscolo, maiuscolo o sottoposti a trim, ad esempio `{ type: String, lowercase: true, trim: true }`.
 
-  - valori predefiniti.
-  - validator incorporati (ad es., valori max/min) e funzioni di convalida personalizzate.
-  - Se il campo è obbligatorio.
-  - Se i campi `String` devono essere impostati automaticamente in minuscolo, maiuscolo o spazi tagliati (ad esempio, `{ type: String, lowercase: true, trim: true }`).
-
-Per maggiori informazioni sulle opzioni consulta [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (documentazione di Mongoose).
+Per maggiori informazioni sulle opzioni, vedere [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) (documentazione di Mongoose).
 
 #### Validazione
 
-Mongoose fornisce validator incorporati e personalizzati, e validator sincroni e asincroni. Permette di specificare sia l'intervallo accettabile di valori che il messaggio di errore per il fallimento della validazione in tutti i casi.
+Mongoose fornisce validatori incorporati e personalizzati, oltre a validatori sincroni e asincroni. Consente di specificare sia l'intervallo accettabile di valori sia il messaggio di errore in caso di fallimento della validazione.
 
-I validator incorporati includono:
+I validatori incorporati includono:
 
-- Tutti i [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) hanno il validator [required](https://mongoosejs.com/docs/api.html#schematype_SchemaType-required) incorporato. Questo viene utilizzato per specificare se il campo deve essere fornito per salvare un documento.
-- I [Numeri](https://mongoosejs.com/docs/api/schemanumber.html) hanno validator [min](<https://mongoosejs.com/docs/api/schemanumber.html#SchemaNumber.prototype.min()>) e [max](<https://mongoosejs.com/docs/api/schemanumber.html#SchemaNumber.prototype.max()>).
-- Le [Stringhe](https://mongoosejs.com/docs/api/schemastring.html) hanno:
-
-  - [enum](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.enum()>): specifica l'insieme dei valori consentiti per il campo.
-  - [match](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.match()>): specifica un'espressione regolare che la stringa deve corrispondere.
+- Tutti gli [SchemaTypes](https://mongoosejs.com/docs/schematypes.html) dispongono del validatore incorporato [required](https://mongoosejs.com/docs/api.html#schematype_SchemaType-required). Viene usato per specificare se il campo deve essere fornito per poter salvare un documento.
+- I [numeri](https://mongoosejs.com/docs/api/schemanumber.html) hanno i validatori [min](<https://mongoosejs.com/docs/api/schemanumber.html#SchemaNumber.prototype.min()>) e [max](<https://mongoosejs.com/docs/api/schemanumber.html#SchemaNumber.prototype.max()>).
+- Le [stringhe](https://mongoosejs.com/docs/api/schemastring.html) hanno:
+  - [enum](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.enum()>): specifica l'insieme di valori consentiti per il campo.
+  - [match](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.match()>): specifica un'espressione regolare a cui la stringa deve corrispondere.
   - [maxLength](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.maxlength()>) e [minLength](<https://mongoosejs.com/docs/api/schemastring.html#SchemaString.prototype.minlength()>) per la stringa.
 
-L'esempio sotto (leggermente modificato dai documenti di Mongoose) mostra come puoi specificare alcuni dei tipi di validator e i messaggi di errore:
+L'esempio seguente, leggermente modificato dalla documentazione di Mongoose, mostra come specificare alcuni tipi di validatore e messaggi di errore:
 
 ```js
 const breakfastSchema = new Schema({
@@ -350,37 +342,37 @@ const breakfastSchema = new Schema({
 });
 ```
 
-Per informazioni complete sulla convalida dei campi, vedi [Validation](https://mongoosejs.com/docs/validation.html) (documentazione di Mongoose).
+Per informazioni complete sulla validazione dei campi, vedere [Validation](https://mongoosejs.com/docs/validation.html) (documentazione di Mongoose).
 
 #### Proprietà virtuali
 
-Le proprietà virtuali sono proprietà dei documenti che è possibile ottenere e impostare ma che non vengono memorizzate in MongoDB. I getter sono utili per formattare o combinare campi, mentre i setter sono utili per scomporre un singolo valore in più valori per la memorizzazione. L'esempio nella documentazione costruisce (e decompone) una proprietà virtuale del nome completo da un campo di nome e cognome, il che è più semplice e pulito rispetto a costruire un nome completo ogni volta che viene usato in un modello.
+Le proprietà virtuali sono proprietà di documenti che è possibile ottenere e impostare, ma che non vengono persistite in MongoDB. I getter sono utili per formattare o combinare campi, mentre i setter sono utili per scomporre un singolo valore in più valori da memorizzare. L'esempio nella documentazione costruisce e scompone una proprietà virtuale del nome completo a partire da un campo nome e un campo cognome, operazione più semplice e pulita rispetto alla costruzione di un nome completo ogni volta che viene utilizzato in un template.
 
 > [!NOTE]
-> Useremo una proprietà virtuale nella libreria per definire un URL univoco per ogni record del modello utilizzando un percorso e il valore `_id` del record.
+> Nella biblioteca verrà utilizzata una proprietà virtuale per definire un URL univoco per ogni record del modello, usando un percorso e il valore `_id` del record.
 
-Per maggiori informazioni consulta [Virtuals](https://mongoosejs.com/docs/guide.html#virtuals) (documentazione di Mongoose).
+Per maggiori informazioni, vedere [Virtuals](https://mongoosejs.com/docs/guide.html#virtuals) (documentazione di Mongoose).
 
-#### Metodi e helper di query
+#### Metodi e helper per le query
 
-Uno schema può avere anche [metodi di istanza](https://mongoosejs.com/docs/guide.html#methods), [metodi statici](https://mongoosejs.com/docs/guide.html#statics) e [helper di query](https://mongoosejs.com/docs/guide.html#query-helpers). I metodi di istanza e statici sono simili, ma con la differenza ovvia che un metodo di istanza è associato a un particolare record e ha accesso all'oggetto corrente. Gli helper di query permettono di estendere l'[API del builder di query a concatenazione](https://mongoosejs.com/docs/queries.html) di mongoose (per esempio, permettendo di aggiungere una query "byName" oltre ai metodi `find()`, `findOne()` e `findById()`).
+Uno schema può anche avere [metodi di istanza](https://mongoosejs.com/docs/guide.html#methods), [metodi statici](https://mongoosejs.com/docs/guide.html#statics) e [helper per le query](https://mongoosejs.com/docs/guide.html#query-helpers). I metodi di istanza e statici sono simili, ma con l'ovvia differenza che un metodo di istanza è associato a un record particolare e ha accesso all'oggetto corrente. Gli helper per le query consentono di estendere l'[API del query builder concatenabile](https://mongoosejs.com/docs/queries.html) di mongoose, ad esempio consentendo di aggiungere una query "byName" oltre ai metodi `find()`, `findOne()` e `findById()`.
 
-### Utilizzare i modelli
+### Utilizzo dei modelli
 
-Una volta creato uno schema, puoi usarlo per creare modelli. Il modello rappresenta una collezione di documenti nel database che puoi cercare, mentre le istanze del modello rappresentano i documenti individuali che puoi salvare e recuperare.
+Dopo aver creato uno schema, è possibile utilizzarlo per creare modelli. Il modello rappresenta una collection di documenti nel database su cui è possibile effettuare ricerche, mentre le istanze del modello rappresentano documenti individuali che è possibile salvare e recuperare.
 
-Forniamo una breve panoramica qui sotto. Per maggiori informazioni vedi: [Models](https://mongoosejs.com/docs/models.html) (documentazione di Mongoose).
+Di seguito viene fornita una breve panoramica. Per maggiori informazioni, vedere [Models](https://mongoosejs.com/docs/models.html) (documentazione di Mongoose).
 
 > [!NOTE]
-> La creazione, l'aggiornamento, l'eliminazione e l'esecuzione di query sui record sono operazioni asincrone che restituiscono una [promise](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-> Gli esempi qui sotto mostrano solo l'uso dei metodi rilevanti e `await` (cioè, il codice essenziale per utilizzare i metodi).
-> La funzione asincrona e il blocco `try...catch` circostanti per catturare gli errori sono omessi per motivi di chiarezza.
-> Per ulteriori informazioni sull'uso di `await/async` vedi [Le API dei database sono asincrone](#le_api_dei_database_sono_asincrone) sopra.
+> La creazione, l'aggiornamento, l'eliminazione e l'interrogazione dei record sono operazioni asincrone che restituiscono una [promise](/it/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+> Gli esempi seguenti mostrano solo l'uso dei metodi rilevanti e di `await`, ovvero il codice essenziale per usare i metodi.
+> La funzione `async function` e il blocco `try...catch` circostanti per intercettare gli errori sono omessi per maggiore chiarezza.
+> Per maggiori informazioni sull'uso di `await/async`, vedere [Le API del database sono asincrone](#le_api_del_database_sono_asincrone).
 
-#### Creare e modificare documenti
+#### Creazione e modifica di documenti
 
-Per creare un record puoi definire un'istanza del modello e poi chiamare [`save()`](https://mongoosejs.com/docs/api/model.html#Model.prototype.save) su di essa.
-Gli esempi qui sotto assumono che `SomeModel` sia un modello (con un singolo campo `name`) che abbiamo creato dal nostro schema.
+Per creare un record, è possibile definire un'istanza del modello e poi chiamare [`save()`](https://mongoosejs.com/docs/api/model.html#Model.prototype.save) su di essa.
+Gli esempi seguenti presuppongono che `SomeModel` sia un modello, con un singolo campo `name`, creato dallo schema.
 
 ```js
 // Create an instance of model SomeModel
@@ -390,16 +382,16 @@ const awesome_instance = new SomeModel({ name: "awesome" });
 await awesome_instance.save();
 ```
 
-Puoi anche usare [`create()`](https://mongoosejs.com/docs/api/model.html#Model.create) per definire l'istanza del modello nello stesso momento in cui la salvi.
-Di seguito creiamo solo un'istanza, ma puoi crearne più di una passandole in un array di oggetti.
+È inoltre possibile utilizzare [`create()`](https://mongoosejs.com/docs/api/model.html#Model.create) per definire l'istanza del modello contemporaneamente al suo salvataggio.
+Di seguito ne viene creata una sola, ma è possibile creare più istanze passando un array di oggetti.
 
 ```js
 await SomeModel.create({ name: "also_awesome" });
 ```
 
-Ogni modello ha una connessione associata (questa sarà la connessione predefinita quando usi `mongoose.model()`). Puoi creare una nuova connessione e chiamare `.model()` su di essa per creare i documenti su un database diverso.
+Ogni modello dispone di una connessione associata, che sarà la connessione predefinita quando si utilizza `mongoose.model()`. È possibile creare una nuova connessione e chiamare `.model()` su di essa per creare i documenti in un database diverso.
 
-Puoi accedere ai campi in questo nuovo record usando la sintassi a punto, e modificare i valori. Devi chiamare `save()` o `update()` per memorizzare i valori modificati nel database.
+È possibile accedere ai campi di questo nuovo record usando la sintassi con punto e modificare i valori. È necessario chiamare `save()` o `update()` per memorizzare nuovamente nel database i valori modificati.
 
 ```js
 // Access model field values using dot notation
@@ -410,9 +402,9 @@ awesome_instance.name = "New cool name";
 await awesome_instance.save();
 ```
 
-#### Cercare i record
+#### Ricerca di record
 
-Puoi cercare i record usando metodi di query, specificando le condizioni di query come un documento JSON. Il frammento di codice qui sotto mostra come potresti trovare tutti gli atleti in un database che giocano a tennis, restituendo solo i campi per nome e età dell'atleta. Qui specifichiamo solo un campo di corrispondenza (sport) ma puoi aggiungere più criteri, specificare criteri di espressione regolare o rimuovere le condizioni del tutto per restituire tutti gli atleti.
+È possibile cercare record usando metodi di query e specificando le condizioni della query come documento JSON. Il frammento di codice seguente mostra come trovare tutti gli atleti in un database che giocano a tennis, restituendo solo i campi _name_ e _age_ dell'atleta. Qui viene specificato un solo campo corrispondente, sport, ma è possibile aggiungere altri criteri, specificare criteri con espressioni regolari o rimuovere del tutto le condizioni per restituire tutti gli atleti.
 
 ```js
 const Athlete = mongoose.model("Athlete", yourSchema);
@@ -425,12 +417,12 @@ const tennisPlayers = await Athlete.find(
 ```
 
 > [!NOTE]
-> È importante ricordare che non trovare alcun risultato non è **un errore** per una ricerca — ma potrebbe essere un caso di fallimento nel contesto della tua applicazione.
-> Se la tua applicazione si aspetta che una ricerca trovi un valore, puoi controllare il numero di voci restituite nel risultato.
+> È importante ricordare che non trovare risultati **non è un errore** per una ricerca, ma potrebbe rappresentare un caso di fallimento nel contesto dell'applicazione.
+> Se l'applicazione prevede che una ricerca trovi un valore, è possibile verificare il numero di voci restituite nel risultato.
 
 Le API di query, come [`find()`](<https://mongoosejs.com/docs/api/model.html#Model.find()>), restituiscono una variabile di tipo [Query](https://mongoosejs.com/docs/api/query.html).
-È possibile utilizzare un oggetto di query per creare una query in parti prima di eseguirla con il metodo [`exec()`](https://mongoosejs.com/docs/api/query.html#Query.prototype.exec).
-`exec()` esegue la query e restituisce una promise che puoi attendere per il risultato.
+È possibile usare un oggetto query per costruire una query in parti prima di eseguirla con il metodo [`exec()`](https://mongoosejs.com/docs/api/query.html#Query.prototype.exec).
+`exec()` esegue la query e restituisce una promise a cui è possibile applicare `await` per ottenere il risultato.
 
 ```js
 // find all athletes that play tennis
@@ -449,8 +441,8 @@ query.sort({ age: -1 });
 query.exec();
 ```
 
-Sopra abbiamo definito le condizioni di query nel metodo [`find()`](<https://mongoosejs.com/docs/api/model.html#Model.find()>). Possiamo anche farlo utilizzando una funzione [`where()`](<https://mongoosejs.com/docs/api/model.html#Model.where()>), e possiamo concatenare tutte le parti della nostra query insieme usando l'operatore punto (.) anziché aggiungerle separatamente.
-Il frammento di codice sotto è lo stesso della nostra query sopra, con un ulteriore criterio per l'età.
+In precedenza sono state definite le condizioni della query nel metodo [`find()`](<https://mongoosejs.com/docs/api/model.html#Model.find()>). È possibile farlo anche usando una funzione [`where()`](<https://mongoosejs.com/docs/api/model.html#Model.where()>), concatenando tutte le parti della query con l'operatore punto (`.`) anziché aggiungerle separatamente.
+Il frammento di codice seguente è uguale alla query precedente, con una condizione aggiuntiva per l'età.
 
 ```js
 Athlete.find()
@@ -465,25 +457,25 @@ Athlete.find()
   .exec();
 ```
 
-Il metodo [`find()`](<https://mongoosejs.com/docs/api/model.html#Model.find()>) restituisce tutti i record che corrispondono, ma spesso vuoi solo ottenere una corrispondenza. I seguenti metodi eseguono query per un singolo record:
+Il metodo [`find()`](<https://mongoosejs.com/docs/api/model.html#Model.find()>) ottiene tutti i record corrispondenti, ma spesso si desidera ottenere solo una corrispondenza. I seguenti metodi eseguono query per un singolo record:
 
-- [`findById()`](<https://mongoosejs.com/docs/api/model.html#Model.findById()>): Trova il documento con l'`id` specificato (ogni documento ha un `id` univoco).
-- [`findOne()`](<https://mongoosejs.com/docs/api/model.html#Model.findOne()>): Trova un singolo documento che corrisponde ai criteri specificati.
-- [`findByIdAndDelete()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndDelete()>), [`findByIdAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()>), [`findOneAndRemove()`](<https://mongoosejs.com/docs/api/model.html#Model.findOneAndRemove()>), [`findOneAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()>): Trova un singolo documento per `id` o criteri e lo aggiorna o lo rimuove. Queste sono funzioni di convenienza utili per aggiornare e rimuovere record.
+- [`findById()`](<https://mongoosejs.com/docs/api/model.html#Model.findById()>): trova il documento con l'`id` specificato; ogni documento ha un `id` univoco.
+- [`findOne()`](<https://mongoosejs.com/docs/api/model.html#Model.findOne()>): trova un singolo documento che corrisponde ai criteri specificati.
+- [`findByIdAndDelete()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndDelete()>), [`findByIdAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()>), [`findOneAndRemove()`](<https://mongoosejs.com/docs/api/model.html#Model.findOneAndRemove()>), [`findOneAndUpdate()`](<https://mongoosejs.com/docs/api/model.html#Model.findOneAndUpdate()>): trovano un singolo documento tramite `id` o criteri e lo aggiornano oppure lo rimuovono. Sono funzioni di utilità pratiche per aggiornare e rimuovere record.
 
 > [!NOTE]
-> C'è anche un metodo [`countDocuments()`](<https://mongoosejs.com/docs/api/model.html#Model.countDocuments()>) che puoi usare per ottenere il numero di elementi che corrispondono alle condizioni. Questo è utile se vuoi eseguire un conteggio senza effettivamente recuperare i record.
+> Esiste anche un metodo [`countDocuments()`](<https://mongoosejs.com/docs/api/model.html#Model.countDocuments()>) utilizzabile per ottenere il numero di elementi che corrispondono alle condizioni. È utile se si desidera eseguire un conteggio senza recuperare effettivamente i record.
 
-C'è molto di più che puoi fare con le query. Per ulteriori informazioni vedi: [Queries](https://mongoosejs.com/docs/queries.html) (documentazione di Mongoose).
+Con le query è possibile fare molto altro. Per maggiori informazioni, vedere [Queries](https://mongoosejs.com/docs/queries.html) (documentazione di Mongoose).
 
-#### Lavorare con i documenti correlati — popolamento
+#### Lavorare con documenti correlati — popolamento
 
-Puoi creare riferimenti da un'istanza di documento/modello a un'altra utilizzando il campo schema `ObjectId`, o da un documento a molti utilizzando un array di `ObjectId`. Il campo memorizza l'id del modello correlato. Se hai bisogno del contenuto effettivo del documento associato, puoi usare il metodo [`populate()`](https://mongoosejs.com/docs/populate.html) in una query per sostituire l'id con i dati effettivi.
+È possibile creare riferimenti da un'istanza di documento/modello a un'altra usando il campo schema `ObjectId`, oppure da un documento a molti usando un array di `ObjectId`. Il campo memorizza l'ID del modello correlato. Se è necessario il contenuto effettivo del documento associato, è possibile utilizzare il metodo [`populate()`](https://mongoosejs.com/docs/populate.html) in una query per sostituire l'ID con i dati effettivi.
 
-Ad esempio, il seguente schema definisce autori e storie.
-Ogni autore può avere più storie, che rappresentiamo come un array di `ObjectId`.
-Ogni storia può avere un singolo autore.
-La proprietà `ref` indica lo schema quale modello può essere assegnato a questo campo.
+Ad esempio, lo schema seguente definisce autori e racconti.
+Ogni autore può avere più racconti, rappresentati come un array di `ObjectId`.
+Ogni racconto può avere un singolo autore.
+La proprietà `ref` comunica allo schema quale modello può essere assegnato a questo campo.
 
 ```js
 const mongoose = require("mongoose");
@@ -504,15 +496,15 @@ const Story = mongoose.model("Story", storySchema);
 const Author = mongoose.model("Author", authorSchema);
 ```
 
-Possiamo salvare i nostri riferimenti al documento correlato assegnando il valore `_id`.
-Di seguito creiamo un autore, quindi una storia, e assegniamo l'id dell'autore al campo autore della nostra storia.
+È possibile salvare i riferimenti al documento correlato assegnando il valore `_id`.
+Di seguito viene creato un autore, poi un racconto, e l'ID dell'autore viene assegnato al campo autore del racconto.
 
 ```js
 const bob = new Author({ name: "Bob Smith" });
 
 await bob.save();
 
-// Bob now exists, so lets create a story
+// Bob now exists, so let's create a story
 const story = new Story({
   title: "Bob goes sledding",
   author: bob._id, // assign the _id from our author Bob. This ID is created by default!
@@ -522,11 +514,11 @@ await story.save();
 ```
 
 > [!NOTE]
-> Uno dei grandi vantaggi di questo stile di programmazione è che non dobbiamo complicare il percorso principale del nostro codice con controlli degli errori.
-> Se una delle operazioni `save()` fallisce, la promise verrà rifiutata e verrà generato un errore.
-> Il nostro codice di gestione degli errori gestisce questo separatamente (di solito in un blocco `catch()`), quindi l'intento del nostro codice è molto chiaro.
+> Un grande vantaggio di questo stile di programmazione è che non è necessario complicare il percorso principale del codice con controlli degli errori.
+> Se una qualsiasi delle operazioni `save()` fallisce, la promise viene rifiutata e viene generato un errore.
+> Il codice di gestione degli errori se ne occupa separatamente, di solito in un blocco `catch()`, quindi l'intento del codice è molto chiaro.
 
-Il nostro documento storia ora ha un autore referenziato dall'id del documento autore. Per ottenere le informazioni sull'autore nei risultati della storia utilizziamo [`populate()`](https://mongoosejs.com/docs/api/model.html#Model.populate), come mostrato di seguito.
+Il documento del racconto ora ha un autore a cui fa riferimento tramite l'ID del documento autore. Per ottenere le informazioni dell'autore nei risultati del racconto, viene utilizzato [`populate()`](https://mongoosejs.com/docs/api/model.html#Model.populate), come mostrato di seguito.
 
 ```js
 Story.findOne({ title: "Bob goes sledding" })
@@ -535,19 +527,19 @@ Story.findOne({ title: "Bob goes sledding" })
 ```
 
 > [!NOTE]
-> I lettori attenti avranno notato che abbiamo aggiunto un autore alla nostra storia, ma non abbiamo fatto nulla per aggiungere la nostra storia all'array `stories` dell'autore. Come possiamo fare allora a ottenere tutte le storie di un determinato autore? Un modo sarebbe quello di aggiungere la nostra storia all'array delle storie, ma questo comporterebbe avere due posti in cui le informazioni che collegano autori e storie devono essere mantenute.
+> I lettori più attenti avranno notato che è stato aggiunto un autore al racconto, ma non è stato fatto nulla per aggiungere il racconto all'array `stories` dell'autore. Come si possono quindi ottenere tutti i racconti di un particolare autore? Un modo sarebbe aggiungere il racconto all'array stories, ma ciò comporterebbe due luoghi in cui mantenere le informazioni che collegano autori e racconti.
 >
-> Un modo migliore è ottenere l'`_id` del nostro _autore_, quindi usare `find()` per cercare questo nel campo autore di tutte le storie.
+> Un approccio migliore consiste nell'ottenere l'`_id` dell'_autore_ e poi usare `find()` per cercarlo nel campo autore di tutti i racconti.
 >
 > ```js
 > Story.find({ author: bob._id }).exec();
 > ```
 
-Questo è quasi tutto quello che devi sapere sul lavoro con elementi correlati _per questo tutorial_. Per informazioni più dettagliate, consulta [Population](https://mongoosejs.com/docs/populate.html) (documentazione di Mongoose).
+Questo è quasi tutto ciò che serve sapere per lavorare con elementi correlati _in questo tutorial_. Per informazioni più dettagliate, vedere [Population](https://mongoosejs.com/docs/populate.html) (documentazione di Mongoose).
 
 ### Uno schema/modello per file
 
-Mentre puoi creare schema e modelli utilizzando qualsiasi struttura di file ti piaccia, raccomandiamo vivamente di definire ogni modello di schema in un proprio modulo (file) e quindi esportare il metodo per creare il modello.
+Sebbene sia possibile creare schemi e modelli usando qualunque struttura di file, è fortemente consigliato definire ogni schema del modello nel proprio modulo, ovvero file, e poi esportare il metodo per creare il modello.
 Questo è mostrato di seguito:
 
 ```js
@@ -568,7 +560,7 @@ const SomeModelSchema = new Schema({
 module.exports = mongoose.model("SomeModel", SomeModelSchema);
 ```
 
-Puoi quindi richiedere e utilizzare il modello immediatamente in altri file. Mostriamo di seguito come potresti usarlo per ottenere tutte le istanze del modello.
+È quindi possibile usare `require` e utilizzare immediatamente il modello in altri file. Di seguito viene mostrato come usarlo per ottenere tutte le istanze del modello.
 
 ```js
 // Create a SomeModel model just by requiring the module
@@ -580,104 +572,97 @@ const modelInstances = await SomeModel.find().exec();
 
 ## Configurare il database MongoDB
 
-Ora che abbiamo capito qualcosa su cosa può fare Mongoose e su come vogliamo progettare i nostri modelli, è il momento di iniziare a lavorare sul sito web _LocalLibrary_. La primissima cosa che vogliamo fare è configurare un database MongoDB che possiamo usare per memorizzare i nostri dati della biblioteca.
+Ora che sono state illustrate alcune funzionalità di Mongoose e il modo in cui progettare i modelli, è il momento di iniziare a lavorare sul sito web _LocalLibrary_. La prima cosa da fare è configurare un database MongoDB utilizzabile per memorizzare i dati della biblioteca.
 
-Per questo tutorial, utilizzeremo il sandbox database ospitato su cloud [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database). Questo tier del database non è considerato adatto per siti web in produzione perché non ha ridondanza, ma è ottimo per lo sviluppo e il prototyping. Lo stiamo usando qui perché è gratuito e facile da configurare, e perché MongoDB Atlas è un venditore popolare di _database as a service_ che potresti ragionevolmente scegliere come tuo database di produzione (altre scelte popolari al momento della stesura includono [ScaleGrid](https://scalegrid.io/) e [ObjectRocket](https://www.objectrocket.com/)).
+Per questo tutorial verrà utilizzato il database sandbox ospitato nel cloud [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database). Questo livello di database non è considerato adatto ai siti web in produzione perché non dispone di ridondanza, ma è ottimo per sviluppo e prototipazione. Viene utilizzato qui perché è gratuito e facile da configurare, e perché MongoDB Atlas è un fornitore popolare di _database as a service_ che potrebbe ragionevolmente essere scelto per il database di produzione. Altre scelte popolari al momento della stesura includono [ScaleGrid](https://scalegrid.io/) e [Rackspace](https://www.rackspace.com/data/rackspace-dbaas).
 
 > [!NOTE]
-> Se lo preferisci, puoi configurare un database MongoDB localmente scaricando e installando [i binari appropriati per il tuo sistema](https://www.mongodb.com/try/download/community-edition/releases). Il resto delle istruzioni in questo articolo sarebbe simile, tranne per l'URL del database che specificheresti quando ti connetti.
-> Nel tutorial [Express Tutorial Parte 7: Distribuzione in Produzione](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/deployment) ospitiamo sia l'applicazione che il database su [Railway](https://railway.com/), ma potremmo altrettanto bene aver utilizzato un database su [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
+> Se si preferisce, è possibile configurare un database MongoDB localmente scaricando e installando i [binari appropriati per il sistema](https://www.mongodb.com/try/download/community-edition/releases). Il resto delle istruzioni in questo articolo sarebbe simile, a eccezione dell'URL del database da specificare durante la connessione.
+> Nel tutorial [Tutorial di Express - Parte 7: distribuzione in produzione](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/deployment), sia l'applicazione sia il database vengono ospitati su [Railway](https://railway.com/), ma sarebbe stato ugualmente possibile utilizzare un database su [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database).
 
-Per prima cosa, avrai bisogno di [creare un account](https://www.mongodb.com/cloud/atlas/register) con MongoDB Atlas (è gratuito e richiede solo di inserire dettagli di contatto di base e accettare i loro termini di servizio).
+Per prima cosa sarà necessario [creare un account](https://www.mongodb.com/cloud/atlas/register) con MongoDB Atlas. È gratuito e richiede solo l'inserimento di dati di contatto di base e l'accettazione dei termini di servizio.
 
-Dopo aver effettuato il login, verrai portato alla schermata [home](https://cloud.mongodb.com/v2):
+Dopo aver effettuato l'accesso, verrà visualizzata la schermata [home](https://cloud.mongodb.com/v2):
 
-1. Fai clic sul pulsante **+ Crea** nella sezione _Overview_.
+1. Fare clic sul pulsante **+ Create** nella sezione _Overview_.
 
    ![Creare un database su MongoDB Atlas.](mongodb_atlas_-_createdatabase.jpg)
 
-2. Questo aprirà la schermata _Deploy your cluster_.
-   Fai clic sull'opzione modello **M0 FREE**.
+2. Verrà aperta la schermata _Deploy your cluster_.
+   Fare clic sul modello dell'opzione **M0 FREE**.
 
-   ![Scegliere un'opzione di distribuzione su MongoDB Atlas.](mongodb_atlas_-_deploy.jpg)
+   ![Scegliere un'opzione di distribuzione quando si usa MongoDB Atlas.](mongodb_atlas_-_deploy.jpg)
 
-3. Scorri verso il basso nella pagina per vedere le diverse opzioni che puoi scegliere.
-   ![Scegliere un fornitore di cloud su MongoDB Atlas.](mongodb_atlas_-_createsharedcluster.jpg)
+3. Scorrere la pagina per visualizzare le diverse opzioni disponibili.
+   ![Scegliere un provider cloud quando si usa MongoDB Atlas.](mongodb_atlas_-_createsharedcluster.jpg)
+   - È possibile cambiare il nome del Cluster in _Cluster Name_.
+     In questo tutorial verrà mantenuto `Cluster0`.
+   - Deselezionare la casella di controllo _Preload sample dataset_, perché i dati di esempio verranno importati in seguito.
+   - Selezionare qualsiasi provider e regione dalle sezioni _Provider_ e _Region_. Regioni diverse offrono provider diversi.
+   - I tag sono facoltativi. Non verranno utilizzati qui.
+   - Fare clic sul pulsante **Create deployment**. La creazione del cluster richiederà alcuni minuti.
 
-   - Puoi cambiare il nome del tuo Cluster sotto _Cluster Name_.
-     Lo terremo come `Cluster0` per questo tutorial.
-   - Deseleziona la casella di controllo _Preload sample dataset_, poiché importeremo i nostri dati di esempio più avanti
-   - Seleziona qualsiasi fornitore e regione dalle sezioni _Provider_ e _Region_. Diverse regioni offrono fornitori differenti.
-   - I tag sono opzionali. Non li useremo qui.
-   - Fai clic sul pulsante **Create deployment** (la creazione del cluster richiederà alcuni minuti).
-
-4. Questo aprirà la sezione _Security Quickstart_.
-   ![Impostare le regole di accesso sulla schermata Security Quickstart su MongoDB Atlas.](mongodb_atlas_-_securityquickstart.jpg)
-
-   - Inserisci un nome utente e una password che la tua applicazione utilizzerà per accedere al database (sopra abbiamo creato un nuovo login "cooluser").
-     Ricorda di copiare e memorizzare le credenziali in modo sicuro poiché ne avremo bisogno più avanti.
-     Fai clic sul pulsante **Crea utente**.
+4. Verrà aperta la sezione _Security Quickstart_.
+   ![Configurare le regole di accesso nella schermata Security Quickstart di MongoDB Atlas.](mongodb_atlas_-_securityquickstart.jpg)
+   - Inserire un nome utente e una password che l'applicazione utilizzerà per accedere al database. Nell'esempio precedente è stato creato un nuovo accesso denominato "cooluser".
+     Ricordare di copiare e memorizzare le credenziali in modo sicuro, poiché saranno necessarie in seguito.
+     Fare clic sul pulsante **Create User**.
 
      > [!NOTE]
-     > Evita di utilizzare caratteri speciali nella tua password utente MongoDB poiché mongoose potrebbe non analizzare correttamente la stringa di connessione.
+     > Evitare di usare caratteri speciali nella password dell'utente MongoDB, poiché mongoose potrebbe non analizzare correttamente la stringa di connessione.
 
-   - Seleziona **Aggiungi dall'indirizzo IP corrente** per consentire l'accesso dal tuo computer attuale
-   - Inserisci `0.0.0.0/0` nel campo Indirizzo IP e poi fai clic sul pulsante **Aggiungi voce**.
-     Questo dice a MongoDB che vogliamo consentire l'accesso da ovunque.
+   - Selezionare **Add by current IP address** per consentire l'accesso dal computer corrente.
+   - Inserire `0.0.0.0/0` nel campo IP Address, quindi fare clic sul pulsante **Add Entry**.
+     Questo comunica a MongoDB che si desidera consentire l'accesso da qualsiasi posizione.
 
      > [!NOTE]
-     > È una buona pratica limitare gli indirizzi IP che possono connettersi al tuo database e ad altre risorse. Qui consenti
+     > È una buona pratica limitare gli indirizzi IP che possono connettersi al database e ad altre risorse. Qui viene consentita una connessione da qualunque posizione perché non si sa da dove arriverà la richiesta dopo la distribuzione.
 
-amo un collegamento da ovunque perché non sappiamo da dove arriverà la richiesta dopo il deployment.
+   - Fare clic sul pulsante **Finish and Close**.
 
-- Fare clic sul pulsante **Finish and Close**.
+5. Verrà aperta la schermata seguente. Fare clic sul pulsante **Go to Overview**.
+   ![Andare a Databases dopo aver configurato le regole di accesso in MongoDB Atlas](mongodb_atlas_-_accessrules.jpg)
 
-5. Verrà aperta la seguente schermata. Fai clic sul pulsante **Vai a Panoramica**.
-   ![Vai ai Database dopo aver impostato le regole di accesso su MongoDB Atlas](mongodb_atlas_-_accessrules.jpg)
+6. Verrà visualizzata nuovamente la schermata _Overview_. Fare clic sulla sezione _Database_ nel menu _Deployment_ a sinistra. Fare clic sul pulsante **Browse Collections**.
+   ![Configurare una collection su MongoDB Atlas.](mongodb_atlas_-_createcollection.jpg)
 
-6. Torni alla schermata _Panoramica_. Fai clic sulla sezione _Database_ nel menu _Deployment_ a sinistra. Fai clic sul pulsante **Sfoglia Collezioni**.
-   ![Imposta una raccolta su MongoDB Atlas.](mongodb_atlas_-_createcollection.jpg)
+7. Verrà aperta la sezione _Collections_. Fare clic sul pulsante **Add My Own Data**.
+   ![Creare un database su MongoDB Atlas.](mongodb_atlas_-_adddata.jpg)
 
-7. Questo aprirà la sezione _Collections_. Fai clic sul pulsante **Aggiungi i miei dati**.
-   ![Crea un database su MongoDB Atlas.](mongodb_atlas_-_adddata.jpg)
+8. Verrà aperta la schermata _Create Database_.
 
-8. Questo aprirà la schermata _Crea Database_.
+   ![Dettagli durante la creazione di un database in MongoDB Atlas.](mongodb_atlas_-_databasedetails.jpg)
+   - Inserire `local_library` come nome del nuovo database.
+   - Inserire `Collection0` come nome della collection.
+   - Fare clic sul pulsante **Create** per creare il database.
 
-   ![Dettagli durante la creazione del database su MongoDB Atlas.](mongodb_atlas_-_databasedetails.jpg)
+9. Verrà visualizzata nuovamente la schermata _Collections_ con il database creato.
+   ![Conferma della creazione del database in MongoDB Atlas.](mongodb_atlas_-_databasecreated.jpg)
+   - Fare clic sulla scheda _Overview_ per tornare alla panoramica del cluster.
 
-   - Inserisci il nome del nuovo database come `local_library`.
-   - Inserisci il nome della collezione come `Collection0`.
-   - Fai clic sul pulsante **Crea** per creare il database.
+10. Dalla schermata _Overview_ di Cluster0, fare clic sul pulsante **Connect**.
 
-9. Torni alla schermata _Collections_ con il tuo database creato.
-   ![Conferma della creazione del database su MongoDB Atlas.](mongodb_atlas_-_databasecreated.jpg)
+    ![Configurare la connessione dopo aver creato un cluster in MongoDB Atlas.](mongodb_atlas_-_connectbutton.jpg)
 
-   - Fai clic sulla scheda _Panoramica_ per tornare alla panoramica del cluster.
+11. Verrà aperta la schermata _Connect to Cluster0_.
 
-10. Dalla schermata _Panoramica_ di Cluster0 fai clic sul pulsante **Connetti**.
-
-    ![Configura connessione dopo aver impostato un cluster in MongoDB Atlas.](mongodb_atlas_-_connectbutton.jpg)
-
-11. Questo aprirà la schermata _Connetti a Cluster0_.
-
-    ![Scegli la connessione Short SRV durante l'impostazione di una connessione su MongoDB Atlas.](mongodb_atlas_-_connectforshortsrv.jpg)
-
-    - Seleziona il tuo utente del database.
-    - Seleziona la categoria _Drivers_, poi il _Driver_ **Node.js** e la _Versione_ come mostrato.
+    ![Scegliere la connessione Short SRV durante la configurazione di una connessione in MongoDB Atlas.](mongodb_atlas_-_connectforshortsrv.jpg)
+    - Selezionare l'utente del database.
+    - Selezionare la categoria _Drivers_, quindi il _Driver_ **Node.js** e la _Version_ come mostrato.
     - **NON** installare il driver come suggerito.
-    - Fai clic sull'icona **Copia** per copiare la stringa di connessione.
-    - Incollalo nel tuo editor di testo locale.
-    - Sostituisci il segnaposto `<password>` nella stringa di connessione con la password del tuo utente.
-    - Inserisci il nome del database "local_library" nel percorso prima delle opzioni (`...mongodb.net/local_library?retryWrites...`)
-    - Salva il file contenente questa stringa in un posto sicuro.
+    - Fare clic sull'icona **Copy** per copiare la stringa di connessione.
+    - Incollarla nell'editor di testo locale.
+    - Sostituire il segnaposto `<password>` nella stringa di connessione con la password dell'utente.
+    - Inserire il nome del database "local_library" nel percorso prima delle opzioni (`...mongodb.net/local_library?retryWrites...`).
+    - Salvare il file contenente questa stringa in un luogo sicuro.
 
-Hai ora creato il database e hai un URL (con nome utente e password) che può essere utilizzato per accedervi.
-Questo sarà simile a: `mongodb+srv://your_user_name:your_password@cluster0.cojoign.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0`
+A questo punto il database è stato creato ed è disponibile un URL, con nome utente e password, utilizzabile per accedervi.
+Avrà un aspetto simile a: `mongodb+srv://your_user_name:your_password@cluster0.cojoign.mongodb.net/local_library?retryWrites=true&w=majority&appName=Cluster0`
 
 ## Installare Mongoose
 
-Apri un prompt dei comandi e vai nella directory in cui hai creato il tuo [sito web scheletro Local Library](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website).
-Inserisci il seguente comando per installare Mongoose (e le sue dipendenze) e aggiungerlo al tuo file **package.json**, a meno che non lo abbia già fatto leggendo il [Primer su Mongoose](#installare_mongoose_e_mongodb) sopra.
+Aprire un prompt dei comandi e passare alla directory in cui è stato creato lo [scheletro del sito web Local Library](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website).
+Inserire il comando seguente per installare Mongoose, e le relative dipendenze, e aggiungerlo al file **package.json**, a meno che non sia già stato fatto durante la lettura del [primer su Mongoose](#installare_mongoose_e_mongodb).
 
 ```bash
 npm install mongoose
@@ -685,32 +670,89 @@ npm install mongoose
 
 ## Connettersi a MongoDB
 
-Apri **/app.js** (nella radice del tuo progetto) e copia il seguente testo sotto dove dichiari l'oggetto _Express application_ (dopo la riga `const app = express();`).
-Sostituisci la stringa URL del database ('_inserisci_il_tuo_URL_del_database_quì_') con l'URL del tuo database personale (cioè, utilizzando le informazioni da _MongoDB Atlas_).
+Aprire **bin/www**, dalla radice del progetto, e copiare il testo seguente sotto il punto in cui è impostata la porta, dopo la riga `app.set("port", port);`.
+Sostituire la stringa dell'URL del database (`insert_your_database_url_here`) con l'URL della posizione che rappresenta il database, ovvero usando le informazioni di _MongoDB Atlas_.
 
 ```js
 // Set up mongoose connection
 const mongoose = require("mongoose");
 
-mongoose.set("strictQuery", false);
 const mongoDB = "insert_your_database_url_here";
 
-main().catch((err) => console.log(err));
-async function main() {
+connectMongoose()
+  .then(startServer)
+  .catch((err) => {
+    console.error("Failed to connect to MongoDB:", err);
+    process.exit(1);
+  });
+
+async function connectMongoose() {
   await mongoose.connect(mongoDB);
+
+  // Add connection error handlers
+  mongoose.connection.on("error", (err) => {
+    console.error("MongoDB connection error:", err);
+  });
+
+  mongoose.connection.on("disconnected", () => {
+    console.warn("MongoDB disconnected");
+  });
 }
 ```
 
-Come discusso nel [primer su Mongoose](#connessione_a_mongodb) sopra, questo codice crea la connessione predefinita al database e segnala eventuali errori nella console.
+Come illustrato nel [primer su Mongoose](#connessione_a_mongodb), questo codice crea la connessione predefinita al database e segnala eventuali errori alla console.
+Chiama inoltre una funzione `startServer()` una volta che la connessione ha esito positivo, che verrà creata successivamente.
 
-Nota che non si consiglia di codificare le credenziali del database nel codice sorgente come mostrato sopra.
-Lo facciamo qui perché mostra il codice di connessione di base, e perché durante lo sviluppo non ci sono rischi significativi che trapelando questi dettagli si esponga o corrompa informazioni sensibili.
-Ti mostreremo come farlo in modo più sicuro quando [distribuiamo in produzione](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/deployment#database_configuration)!
+Il file **bin/www** generato crea il server HTTP e inizia immediatamente l'ascolto, indipendentemente dal fatto che la connessione al database riesca.
+Individuare questo codice, più avanti nello stesso file:
 
-## Definire lo Schema di LocalLibrary
+```js
+/**
+ * Create HTTP server.
+ */
 
-Definiremo un modulo separato per ciascun modello, come [discusso sopra](#one_schemamodel_per_file).
-Inizia creando una cartella per i nostri modelli nella radice del progetto (**/models**) e poi crea file separati per ciascuno dei modelli:
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+```
+
+Sostituirlo con il seguente, che sposta la creazione e l'ascolto del server in una funzione `startServer()`, affinché venga eseguita solo dopo la risoluzione di `connectMongoose()`:
+
+```js
+/**
+ * Create HTTP server and listen on provided port, on all network
+ * interfaces, once the MongoDB connection is established.
+ */
+
+var server;
+
+function startServer() {
+  server = http.createServer(app);
+
+  server.listen(port);
+  server.on("error", onError);
+  server.on("listening", onListening);
+}
+```
+
+> [!NOTE]
+> Il codice di connessione al database avrebbe potuto essere inserito nel codice **app.js**.
+> Collocarlo nel punto di ingresso dell'applicazione separa l'applicazione e il database, rendendo più semplice usare un database differente per eseguire il codice di test.
+
+Si noti che non è consigliato codificare rigidamente le credenziali del database nel codice sorgente, come mostrato sopra.
+Questo viene fatto qui perché mostra il codice di connessione principale e perché durante lo sviluppo non vi è un rischio significativo che la divulgazione di questi dettagli esponga o danneggi informazioni sensibili.
+Verrà mostrato come fare in modo più sicuro durante la [distribuzione in produzione](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/deployment#database_configuration).
+
+## Definizione dello schema LocalLibrary
+
+Verrà definito un modulo separato per ogni modello, come [illustrato sopra](#one_schemamodel_per_file).
+Iniziare creando una cartella per i modelli nella radice del progetto, **/models**, quindi creare file separati per ciascuno dei modelli:
 
 ```plain
 /express-locallibrary-tutorial  # the project root
@@ -723,8 +765,8 @@ Inizia creando una cartella per i nostri modelli nella radice del progetto (**/m
 
 ### Modello Author
 
-Copia il codice dello schema `Author` mostrato sotto e incollalo nel tuo file **./models/author.js**.
-Lo schema definisce un autore come avente `String` SchemaTypes per il nome e il cognome (richiesto, con un massimo di 100 caratteri), e campi `Date` per le date di nascita e morte.
+Copiare il codice dello schema `Author` mostrato di seguito e incollarlo nel file **./models/author.js**.
+Lo schema definisce un autore con SchemaTypes `String` per nome e cognome, obbligatori e con un massimo di 100 caratteri, e campi `Date` per le date di nascita e morte.
 
 ```js
 const mongoose = require("mongoose");
@@ -760,19 +802,19 @@ AuthorSchema.virtual("url").get(function () {
 module.exports = mongoose.model("Author", AuthorSchema);
 ```
 
-Abbiamo anche dichiarato una [virtual](#proprietà_virtuali) per l'AuthorSchema chiamata "url" che restituisce l'URL assoluto necessario per ottenere un'istanza particolare del modello — useremo la proprietà nei nostri modelli ogni volta che avremo bisogno di ottenere un collegamento a un particolare autore.
+È stata inoltre dichiarata una [proprietà virtuale](#proprietà_virtuali) per AuthorSchema denominata "url", che restituisce l'URL assoluto necessario per ottenere una particolare istanza del modello. La proprietà verrà utilizzata nei template ogni volta che sarà necessario ottenere un collegamento a un particolare autore.
 
 > [!NOTE]
-> Dichiarare i nostri URL come una virtual nello schema è una buona idea perché in questo modo l'URL di un elemento deve essere modificato solo in un posto.
-> A questo punto, un collegamento che utilizza questo URL non funzionerebbe, perché non abbiamo ancora alcun codice di trattamento delle rotte per le istanze singole del modello.
-> Lo imposteremo in un prossimo articolo!
+> Dichiarare gli URL come proprietà virtuale nello schema è una buona idea perché l'URL di un elemento deve essere modificato in un solo punto.
+> A questo punto, un collegamento che utilizza questo URL non funzionerebbe perché non esiste ancora codice di gestione delle route per singole istanze del modello.
+> Questo verrà configurato in un articolo successivo.
 
-Alla fine del modulo, esportiamo il modello.
+Alla fine del modulo viene esportato il modello.
 
 ### Modello Book
 
-Copia il codice dello schema `Book` mostrato sotto e incollalo nel tuo file **./models/book.js**.
-La maggior parte di questo è simile al modello autore — abbiamo dichiarato uno schema con un numero di campi stringa e un virtual per ottenere l'URL di record di libri specifici, ed esportiamo il modello.
+Copiare il codice dello schema `Book` mostrato di seguito e incollarlo nel file **./models/book.js**.
+La maggior parte di questo è simile al modello autore: è stato dichiarato uno schema con vari campi stringa e una proprietà virtuale per ottenere l'URL di record specifici dei libri, ed è stato esportato il modello.
 
 ```js
 const mongoose = require("mongoose");
@@ -797,15 +839,15 @@ BookSchema.virtual("url").get(function () {
 module.exports = mongoose.model("Book", BookSchema);
 ```
 
-La principale differenza qui è che abbiamo creato due riferimenti ad altri modelli:
+La differenza principale è che sono stati creati due riferimenti ad altri modelli:
 
-- author è un riferimento a un singolo oggetto modello `Author`, ed è richiesto.
-- genre è un riferimento a un array di oggetti modello `Genre`. Non abbiamo ancora dichiarato questo oggetto!
+- author è un riferimento a un singolo oggetto del modello `Author` ed è obbligatorio.
+- genre è un riferimento a un array di oggetti del modello `Genre`. Questo oggetto non è ancora stato dichiarato.
 
 ### Modello BookInstance
 
-Infine, copia il codice dello schema `BookInstance` mostrato sotto e incollalo nel tuo file **./models/bookinstance.js**.
-Il `BookInstance` rappresenta una copia specifica di un libro che qualcuno potrebbe prendere in prestito e include informazioni sul fatto che la copia sia disponibile, su quale data è prevista la restituzione, e dettagli sull'"imprint" (o versione).
+Infine, copiare il codice dello schema `BookInstance` mostrato di seguito e incollarlo nel file **./models/bookinstance.js**.
+`BookInstance` rappresenta una copia specifica di un libro che qualcuno potrebbe prendere in prestito e include informazioni sulla disponibilità della copia, sulla data prevista per la restituzione e sui dettagli dell'"imprint", ovvero edizione o versione.
 
 ```js
 const mongoose = require("mongoose");
@@ -834,66 +876,66 @@ BookInstanceSchema.virtual("url").get(function () {
 module.exports = mongoose.model("BookInstance", BookInstanceSchema);
 ```
 
-Le nuove cose che mostriamo qui sono le opzioni del campo:
+Qui vengono mostrate nuove opzioni di campo:
 
-- `enum`: Ci consente di impostare i valori consentiti di una stringa. In questo caso, lo usiamo per specificare lo stato di disponibilità dei nostri libri (usare un enum significa che possiamo prevenire errori di digitazione e valori arbitrari per il nostro stato).
-- `default`: Usiamo default per impostare lo stato predefinito per le nuove istanze di libri su "Maintenance" e la data `due_back` predefinita su `now` (nota come puoi chiamare la funzione Date quando imposti la data!).
+- `enum`: consente di impostare i valori consentiti di una stringa. In questo caso viene utilizzato per specificare lo stato di disponibilità dei libri. L'uso di un enum consente di evitare errori di ortografia e valori arbitrari per lo stato.
+- `default`: viene usato per impostare lo stato predefinito delle istanze di libri appena create su "Maintenance" e la data `due_back` predefinita su `now`. Si noti come sia possibile chiamare la funzione Date quando si imposta la data.
 
-Tutto il resto dovrebbe essere familiare dai nostri schemi precedenti.
+Tutto il resto dovrebbe essere già noto dagli schemi precedenti.
 
 ### Modello Genre - sfida
 
-Apri il tuo file **./models/genre.js** e crea uno schema per memorizzare i generi (la categoria del libro, ad esempio, se è narrativa o non narrativa, romantico o storia militare, ecc.).
+Aprire il file **./models/genre.js** e creare uno schema per memorizzare i generi, ovvero la categoria del libro, ad esempio se è narrativa o saggistica, romantico o di storia militare e così via.
 
 La definizione sarà molto simile agli altri modelli:
 
-- Il modello dovrebbe avere un SchemaType `String` chiamato `name` per descrivere il genere.
-- Questo nome dovrebbe essere richiesto e avere tra 3 e 100 caratteri.
-- Dichiarare una [virtual](#proprietà_virtuali) per l'URL del genere, chiamata `url`.
+- Il modello deve avere uno SchemaType `String` chiamato `name` per descrivere il genere.
+- Questo nome deve essere obbligatorio e avere da 3 a 100 caratteri.
+- Dichiarare una [proprietà virtuale](#proprietà_virtuali) per l'URL del genere, denominata `url`.
 - Esportare il modello.
 
-## Testare — creare alcuni elementi
+## Test: creazione di alcuni elementi
 
-Questo è tutto. Ora abbiamo impostato tutti i modelli per il sito!
+Questo è tutto. Ora sono configurati tutti i modelli del sito.
 
-Per testare i modelli (e creare alcuni libri di esempio e altri articoli che possiamo usare nei nostri prossimi articoli), eseguiremo ora uno _script indipendente_ per creare elementi di ciascun tipo:
+Per testare i modelli, e per creare alcuni libri ed elementi di esempio utilizzabili nei prossimi articoli, verrà ora eseguito uno script _indipendente_ per creare elementi di ogni tipo:
 
-1. Scarica (o crea in altro modo) il file [populatedb.js](https://raw.githubusercontent.com/mdn/express-locallibrary-tutorial/main/populatedb.js) nella tua directory _express-locallibrary-tutorial_ (al livello di `package.json`).
+1. Scaricare, o creare in altro modo, il file [populatedb.js](https://raw.githubusercontent.com/mdn/express-locallibrary-tutorial/main/populatedb.js) nella directory _express-locallibrary-tutorial_, allo stesso livello di `package.json`.
 
    > [!NOTE]
-   > Il codice in `populatedb.js` può essere utile per imparare JavaScript, ma comprenderlo non è necessario per questo tutorial.
+   > Il codice in `populatedb.js` può essere utile per apprendere JavaScript, ma comprenderlo non è necessario per questo tutorial.
 
-2. Esegui lo script utilizzando node nel tuo prompt dei comandi, passando l'URL del tuo database _MongoDB_ (lo stesso con cui hai sostituito il segnaposto _inserisci_il_tuo_URL_del_database_quì_, all'interno di `app.js` in precedenza):
+2. Eseguire lo script utilizzando node nel prompt dei comandi, passando l'URL del database _MongoDB_, lo stesso con cui è stato sostituito il segnaposto `insert_your_database_url_here` in `app.js` in precedenza:
 
    ```bash
    node populatedb <your MongoDB url>
    ```
 
    > [!NOTE]
-   > Su Windows è necessario racchiudere l'URL del database tra doppie virgolette (").
-   > Su altri sistemi operativi potresti aver bisogno di virgolette singole (').
+   > Su Windows è necessario racchiudere l'URL del database tra virgolette doppie (`"`).
+   > Su altri sistemi operativi potrebbero essere necessarie virgolette singole (`'`).
 
-3. Lo script dovrebbe eseguire fino al completamento, mostrando gli elementi mentre li crea nel terminale.
+3. Lo script dovrebbe essere eseguito fino al completamento, visualizzando gli elementi nel terminale durante la creazione.
 
 > [!NOTE]
-> Vai al tuo database su MongoDB Atlas (nella scheda _Collections_).
-> Dovresti ora essere in grado di esplorare individuali collezioni di Libri, Autori, Generi e Istanze di Libri, e controllare i singoli documenti.
+> Andare al database in MongoDB Atlas, nella scheda _Collections_.
+> Ora dovrebbe essere possibile esplorare singole collection di Books, Authors, Genres e BookInstances e controllare singoli documenti.
 
 ## Riepilogo
 
-In questo articolo, abbiamo imparato un po' sui database e sugli ORM su Node/Express e molto su come sono definiti gli schema e i modelli di Mongoose. Abbiamo quindi utilizzato queste informazioni per progettare e implementare modelli di `Book`, `BookInstance`, `Author` e `Genre` per il sito web _LocalLibrary_.
+In questo articolo sono stati approfonditi i database e gli ORM in Node/Express, nonché il modo in cui vengono definiti gli schemi e i modelli Mongoose. Queste informazioni sono poi state utilizzate per progettare e implementare i modelli `Book`, `BookInstance`, `Author` e `Genre` per il sito web _LocalLibrary_.
 
-Infine, abbiamo testato i nostri modelli creando un certo numero di istanze (utilizzando uno script standalone). Nel prossimo articolo vedremo come creare alcune pagine per visualizzare questi oggetti.
+Infine, i modelli sono stati testati creando diverse istanze tramite uno script autonomo. Nel prossimo articolo verrà illustrata la creazione di alcune pagine per visualizzare questi oggetti.
 
-## Vedi anche
+## Vedere anche
 
-- [Integrazione del database](https://expressjs.com/en/guide/database-integration.html) (documentazione di Express)
+- [Integrazione del database](https://expressjs.com/en/guide/database-integration/) (documentazione di Express)
 - [Sito web di Mongoose](https://mongoosejs.com/) (documentazione di Mongoose)
 - [Guida di Mongoose](https://mongoosejs.com/docs/guide.html) (documentazione di Mongoose)
-- [Validazione](https://mongoosejs.com/docs/validation.html) (documentazione di Mongoose)
-- [Tipi di Schema](https://mongoosejs.com/docs/schematypes.html) (documentazione di Mongoose)
-- [Modelli](https://mongoosejs.com/docs/models.html) (documentazione di Mongoose)
+- [Validation](https://mongoosejs.com/docs/validation.html) (documentazione di Mongoose)
+- [Schema Types](https://mongoosejs.com/docs/schematypes.html) (documentazione di Mongoose)
+- [Models](https://mongoosejs.com/docs/models.html) (documentazione di Mongoose)
 - [Queries](https://mongoosejs.com/docs/queries.html) (documentazione di Mongoose)
-- [Popolamento](https://mongoosejs.com/docs/populate.html) (documentazione di Mongoose)
+- [Population](https://mongoosejs.com/docs/populate.html) (documentazione di Mongoose)
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website", "Learn_web_development/Extensions/Server-side/Express_Nodejs/routes", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}

@@ -3,16 +3,16 @@ title: Come centrare un elemento
 short-title: Centrare un elemento
 slug: Learn_web_development/Howto/Solve_CSS_problems/Center_an_item
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-In questa guida puoi scoprire come centrare un elemento all'interno di un altro elemento, sia orizzontalmente che verticalmente.
+In questa guida viene illustrato come centrare un elemento all'interno di un altro elemento, sia orizzontalmente sia verticalmente.
 
-## Centrare una scatola
+## Centrare un riquadro
 
-Per centrare una scatola all'interno di un'altra utilizzando CSS, è necessario utilizzare le proprietà di [allineamento del box CSS](/it/docs/Web/CSS/CSS_box_alignment) nel contenitore genitore. Poiché queste proprietà di allineamento non hanno ancora supporto nei browser per layout a blocchi e in linea, dovrai trasformare il genitore in un contenitore [flex](/it/docs/Web/CSS/CSS_flexible_box_layout) o [grid](/it/docs/Web/CSS/CSS_grid_layout) per attivare la capacità di utilizzare l'allineamento.
+Per centrare un riquadro all'interno di un altro usando CSS, è necessario utilizzare le proprietà di [allineamento dei riquadri CSS](/it/docs/Web/CSS/Guides/Box_alignment) sul contenitore padre. Poiché queste proprietà di allineamento non dispongono ancora del supporto del browser per il layout a blocchi e inline, è necessario rendere il padre un contenitore [flex](/it/docs/Web/CSS/Guides/Flexible_box_layout) o [grid](/it/docs/Web/CSS/Guides/Grid_layout) per abilitare la possibilità di utilizzare l'allineamento.
 
-Nell'esempio seguente abbiamo dato al contenitore genitore `display: flex`; poi abbiamo impostato {{cssxref("justify-content")}} su center per allinearlo orizzontalmente, e {{cssxref("align-items")}} su center per allinearlo verticalmente.
+Nell'esempio seguente, al contenitore padre è stato assegnato `display: flex`; quindi {{cssxref("justify-content")}} è stato impostato su center per allinearlo orizzontalmente e {{cssxref("align-items")}} su center per allinearlo verticalmente.
 
 ```html live-sample___center
 <div class="wrapper">
@@ -32,16 +32,16 @@ Nell'esempio seguente abbiamo dato al contenitore genitore `display: flex`; poi 
   background-color: rgb(69 164 181);
   border-radius: 5px;
   padding: 10px;
-  color: #fff;
+  color: white;
 }
 ```
 
 {{EmbedLiveSample("center", "", "220px")}}
 
 > [!NOTE]
-> Puoi utilizzare questa tecnica per qualsiasi tipo di allineamento di uno o più elementi all'interno di un altro. Nell'esempio sopra puoi provare a cambiare i valori con qualsiasi valore valido per {{cssxref("justify-content")}} e {{cssxref("align-items")}}.
+> Questa tecnica può essere utilizzata per eseguire qualsiasi tipo di allineamento di uno o più elementi all'interno di un altro. Nell'esempio precedente, è possibile provare a modificare i valori con qualsiasi valore valido per {{cssxref("justify-content")}} e {{cssxref("align-items")}}.
 
 ## Vedi anche
 
-- [Allineamento del box in flexbox](/it/docs/Web/CSS/CSS_box_alignment/Box_alignment_in_flexbox)
-- [Allineamento del box nei layout a griglia](/it/docs/Web/CSS/CSS_box_alignment/Box_alignment_in_grid_layout)
+- [Allineamento dei riquadri in flexbox](/it/docs/Web/CSS/Guides/Box_alignment/In_flexbox)
+- [Allineamento dei riquadri nel layout grid](/it/docs/Web/CSS/Guides/Box_alignment/In_grid_layout)

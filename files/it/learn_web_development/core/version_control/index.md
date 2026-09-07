@@ -2,55 +2,58 @@
 title: Controllo di versione
 slug: Learn_web_development/Core/Version_control
 l10n:
-  sourceCommit: 18ddc28c70a88f1b809d28221db9f5deb824a748
+  sourceCommit: c655f38c10ba17b853b0e66b43cf4cf2b176e424
 ---
 
 {{PreviousMenu("Learn_web_development/Core/Design_for_developers", "Learn_web_development/Core")}}
 
-Gli strumenti di controllo di versione (spesso chiamati **Version Control Systems** o **VCS**) sono una parte essenziale dei flussi di lavoro di codifica moderna – per il backup del codice, la collaborazione su basi di codice e il ripristino a versioni precedenti se necessario.
+Gli strumenti di controllo di versione (spesso chiamati **Version Control Systems** o **VCS**) sono una parte essenziale dei moderni flussi di lavoro di programmazione: consentono di eseguire il backup del codice, collaborare su codebase e ripristinare versioni precedenti quando necessario.
 
-[Git](https://git-scm.com/) è un esempio di strumento di controllo di versione. [GitHub](https://github.com/), d'altra parte, è un sito web e un'infrastruttura che fornisce un server Git più una serie di strumenti utili per lavorare con i repository Git, sia individualmente che in team. GitHub consente di segnalare problemi con il codice, revisionare il codice in modo collaborativo e offre funzionalità di gestione dei progetti come la categorizzazione dei problemi, l'assegnazione di task, la pianificazione dei progetti e altro ancora.
+[Git](https://git-scm.com/) è un esempio di strumento di controllo di versione. [GitHub](https://github.com/), invece, è un sito web e un'infrastruttura che fornisce un server Git insieme a vari strumenti utili per lavorare con repository Git, sia individualmente sia in team. GitHub consente di segnalare problemi nel codice, revisionare il codice in modo collaborativo e offre funzionalità di gestione dei progetti come la classificazione dei problemi, l'assegnazione delle attività, la pianificazione dei progetti e altro ancora.
 
-Questo modulo ti guida attraverso gli elementi essenziali del controllo di versione utilizzando Git e GitHub.
+Questo modulo illustra gli elementi essenziali del controllo di versione con Git e GitHub.
 
 ## Prerequisiti
 
-- Un computer desktop con Git installato (vedi la [pagina di download di Git](https://git-scm.com/downloads)).
-- Uno strumento per utilizzare Git. A seconda di come preferisci lavorare, puoi utilizzare:
-  - Un [client GUI per Git](https://git-scm.com/downloads/guis/) (consigliamo [GitHub Desktop](https://desktop.github.com/download/), [SourceTree](https://www.sourcetreeapp.com/) o [Git Kraken](https://www.gitkraken.com/)).
-  - Una finestra della riga di comando/terminale (dai un'occhiata al nostro [corso introduttivo alla riga di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line) per una introduzione).
-- Un [account GitHub](https://github.com/signup). Se non ne hai già uno, iscriviti ora utilizzando il link fornito.
+- Un computer desktop con Git installato (consultare la [pagina dei download di Git](https://git-scm.com/downloads/)).
+- Uno strumento per usare Git. A seconda delle preferenze di lavoro, è possibile usare:
+  - Un [client GUI per Git](https://git-scm.com/downloads/guis/) (si consigliano [GitHub Desktop](https://desktop.github.com/download/), [SourceTree](https://www.sourcetreeapp.com/) o [Git Kraken](https://www.gitkraken.com/)).
+  - Una finestra della riga di comando/terminale (consultare il nostro [corso intensivo sulla riga di comando](/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line) per un'introduzione).
+- Un [account GitHub](https://github.com/signup). Se non ne è già disponibile uno, registrarsi ora usando il link fornito.
 
 ## Guida
 
-- [Informazioni su GitHub e Git (da GitHub)](https://docs.github.com/en/get-started/start-your-journey/about-github-and-git)
-  - : Questo copre cosa sono Git e GitHub, come lavorano insieme e come iniziare.
-- [Hello, World (da GitHub)](https://docs.github.com/en/get-started/start-your-journey/hello-world)
-  - : Questa guida pratica introduce direttamente all'uso di GitHub, insegnando le basi di Git come la creazione di repository e branch, eseguire commit e aprire e unire pull request.
-- [Utilizzare Git (da GitHub)](https://docs.github.com/en/get-started/using-git)
-  - : Il Git Handbook esplora con un po' più di profondità, spiegando cosa è uno strumento di controllo di versione, cosa è un repository, come funziona il modello base di GitHub, i comandi Git ed esempi, e altro ancora.
+- [Che cos'è GitHub? (da GitHub)](https://docs.github.com/en/get-started/start-your-journey/what-is-github)
+  - : Descrive cosa sono Git e GitHub, come funzionano insieme e come iniziare.
+- [Hello, World (da GitHub)](https://docs.github.com/en/get-started/using-github/hello-world)
+  - : Questa guida pratica passa subito all'uso di GitHub, insegnando le basi di Git, come creare repository e branch, effettuare commit e aprire e unire pull request.
+- [Usare Git (da GitHub)](https://docs.github.com/en/get-started/using-git)
+  - : Il manuale di Git approfondisce leggermente l'argomento, spiegando che cos'è uno strumento di controllo di versione, che cos'è un repository, come funziona il modello di base di GitHub, i comandi Git e relativi esempi, e altro ancora.
 - [Contribuire a un progetto (da GitHub)](https://docs.github.com/en/get-started/exploring-projects-on-github/contributing-to-a-project)
-  - : Il fork di progetti è essenziale quando vuoi contribuire al codice di qualcun altro. Questa guida spiega come farlo.
-- [Informazioni sulle Pull Request (da GitHub)](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests)
-  - : Una guida utile alla gestione delle pull request. Queste richiese sono come proponi modifiche del codice al repository di qualcun altro in modo che possano essere revisionate e potenzialmente unite nella base di codice principale.
-- [Informazioni sui problemi (da GitHub)](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)
-  - : I problemi sono come un forum per il tuo progetto GitHub, dove le persone possono porre domande e segnalare problemi, e puoi gestire gli aggiornamenti (ad esempio assegnare persone per risolvere problemi, chiarire il problema, informare gli utenti che i problemi sono stati risolti). Questo articolo ti dice cosa devi sapere sui problemi.
+  - : Il fork dei progetti è essenziale quando si desidera contribuire al codice di qualcun altro. Questa guida spiega come farlo.
+- [Informazioni sulle Pull Request (da GitHub)](https://docs.github.com/en/pull-requests/reference/pull-requests)
+  - : Una guida utile per gestire le pull request. Queste richieste consentono di proporre modifiche al codice del repository di qualcun altro, affinché possano essere revisionate ed eventualmente unite alla codebase principale.
+- [Informazioni sugli issue (da GitHub)](https://docs.github.com/en/issues/tracking-your-work-with-issues/learning-about-issues/about-issues)
+  - : Gli issue sono simili a un forum per il progetto GitHub, in cui le persone possono porre domande e segnalare problemi, mentre è possibile gestire gli aggiornamenti (ad esempio assegnando persone per risolvere gli issue, chiarendo il problema o informando che i problemi sono stati risolti). Questo articolo spiega tutto ciò che occorre sapere sugli issue.
 
 > [!NOTE]
-> Man mano che approfondisci Git, inizierai a renderti conto che è facile commettere errori quando inizi a usare comandi più complicati. Non ti preoccupare, anche gli sviluppatori web professionisti trovano Git a volte confusionario e spesso risolvono i problemi cercando soluzioni sul web o consultando siti come [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) e [Dangit, git!](https://dangitgit.com/).
+> Man mano che si approfondisce Git, diventa evidente che è facile commettere errori quando si iniziano a usare comandi più complessi. Non preoccuparti: anche gli sviluppatori web professionisti trovano Git talvolta confuso e spesso risolvono i problemi cercando soluzioni sul web o consultando siti come [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) e [Dangit, git!](https://dangitgit.com/).
 
-## Vedi anche
+> [!NOTE]
+> [Intro to Git](https://scrimba.com/intro-to-git-c0l4grs2sa) di Scrimba <sup>[_partner per l'apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> offre un'introduzione pratica all'uso di Git e GitHub.
 
-- Altri argomenti utili trattati nei documenti di GitHub includono:
-  - [Comprendere il flusso di GitHub](https://docs.github.com/en/get-started/using-github/github-flow)
-  - [Affrontare i conflitti di unione](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts)
+## Vedere anche
+
+- Altri argomenti utili trattati nella documentazione di GitHub includono:
+  - [Comprendere il flusso GitHub](https://docs.github.com/en/get-started/using-github/github-flow)
+  - [Risolvere i conflitti di merge](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests)
   - [Ignorare file con .gitignore](https://docs.github.com/en/get-started/git-basics/ignoring-files)
   - [Autenticazione su GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github)
-  - [Padroneggiare il markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (il formato di testo che scrivi nei commenti di PR, issue e file `.md`).
-  - [Iniziare con GitHub Pages](https://docs.github.com/en/pages/quickstart) (come pubblicare demo e siti web su GitHub).
+  - [Padroneggiare Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) (il formato di testo usato nelle PR, nei commenti degli issue e nei file `.md`).
+  - [Iniziare a usare GitHub Pages](https://docs.github.com/en/pages/quickstart) (come pubblicare demo e siti web su GitHub).
 - [Elenco dei comandi Git](https://git-scm.com/docs)
-- [Imparare il branching di Git](https://learngitbranching.js.org/)
-- [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) (un compendio molto utile di modi per ottenere specifiche cose in Git, incluso come correggere quando hai sbagliato).
-- [Dangit, git!](https://dangitgit.com/) (un altro compendio utile, specificamente di modi per correggere quando hai sbagliato).
+- [Imparare il branching Git](https://learngitbranching.js.org/)
+- [Flight rules for Git](https://github.com/k88hudson/git-flight-rules) (un utilissimo compendio di modi per ottenere risultati specifici con Git, incluso come correggere gli errori).
+- [Dangit, git!](https://dangitgit.com/) (un altro utile compendio, specificamente dedicato ai modi per correggere gli errori).
 
 {{PreviousMenu("Learn_web_development/Core/Design_for_developers", "Learn_web_development/Core")}}

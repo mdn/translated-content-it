@@ -1,53 +1,54 @@
 ---
-title: Contenuto traboccante
+title: Contenuto in overflow
 short-title: Overflow
 slug: Learn_web_development/Core/Styling_basics/Overflow
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 936233e89fd5714c957c5931b26dfb56c64f9a91
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Images_media_forms", "Learn_web_development/Core/Styling_basics")}}
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Test_your_skills/Overflow", "Learn_web_development/Core/Styling_basics")}}
 
-Il trabocco è ciò che accade quando c'è troppo contenuto per adattarsi all'interno di una scatola elemento. In questa lezione, imparerai come gestire il trabocco usando CSS.
+L'overflow si verifica quando c'è troppo contenuto per entrare all'interno del riquadro di un elemento. In questa lezione, verrà illustrato come gestire l'overflow usando CSS.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Basi di HTML (studiare
+        Nozioni di base di HTML (studiare
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
           >Sintassi HTML di base</a
-        >), CSS <a href="/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units">Valori e unità</a> e <a href="/it/docs/Learn_web_development/Core/Styling_basics/Sizing">Dimensionamento</a>.
+        >), <a href="/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units">Valori e unità</a> di CSS e <a href="/it/docs/Learn_web_development/Core/Styling_basics/Sizing">Dimensionamento</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati dell'apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Comprendere cos'è il trabocco.</li>
-          <li>Controllare il trabocco con la proprietà <code>overflow</code>.</li>
+          <li>Comprendere che cos'è l'overflow.</li>
+          <li>Controllare l'overflow con la proprietà <code>overflow</code>. </li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Cos'è il trabocco?
+## Che cos'è l'overflow?
 
-Tutto in CSS è una scatola. È possibile vincolare la dimensione di queste scatole assegnando valori come {{cssxref("width")}} e {{cssxref("height")}}. **Il trabocco avviene quando c'è troppo contenuto per entrare in una scatola.** CSS offre vari strumenti per gestire il trabocco. Man mano che si approfondisce il layout e la scrittura CSS, ci si imbatterà in situazioni di trabocco più frequentemente.
+In CSS tutto è un riquadro. È possibile vincolare la dimensione di questi riquadri impostando valori per proprietà come {{cssxref("width")}} e {{cssxref("height")}}. **L'overflow si verifica quando c'è troppo contenuto per entrare in un riquadro.** CSS fornisce vari strumenti per gestire l'overflow. Procedendo con il layout CSS e la scrittura di CSS, si incontreranno ulteriori situazioni di overflow.
 
-## Il CSS cerca di evitare la "perdita di dati"
+## CSS cerca di evitare la "perdita di dati"
 
-Consideriamo due esempi che dimostrano il comportamento predefinito di CSS quando c'è un trabocco.
+Consideriamo due esempi che dimostrano il comportamento predefinito dell'overflow in CSS.
 
-Il primo esempio è una scatola che è stata limitata impostando un `height`. Quindi aggiungiamo contenuto che supera lo spazio assegnato. Il contenuto trabocca dalla scatola e si riversa nel paragrafo sottostante.
+Il primo esempio presenta un riquadro che è stato limitato impostando una `height`. Il contenuto del riquadro supera lo spazio disponibile; pertanto, fuoriesce dal riquadro e si sovrappone al paragrafo sottostante.
 
 ```html live-sample___block-overflow
 <div class="box">
   This box has a height and a width. This means that if there is too much
   content to be displayed within the assigned height, there will be an overflow
-  situation. If overflow is set to hidden then any overflow will not be visible.
+  situation. If overflow is set to hidden, then any overflow will not be
+  visible.
 </div>
 
 <p>This content is outside of the box.</p>
@@ -63,7 +64,7 @@ Il primo esempio è una scatola che è stata limitata impostando un `height`. Qu
 
 {{EmbedLiveSample("block-overflow", "", "200px")}}
 
-Il secondo esempio è una parola in una scatola. La scatola è stata resa troppo piccola per la parola e quindi questa si interrompe fuori dalla scatola.
+Il secondo esempio presenta una parola in un riquadro. La dimensione del riquadro è impostata troppo piccola per la parola, quindi la parola fuoriesce dal riquadro.
 
 ```html live-sample___inline-overflow
 <div class="word">Overflow</div>
@@ -79,128 +80,65 @@ Il secondo esempio è una parola in una scatola. La scatola è stata resa troppo
 
 {{EmbedLiveSample("inline-overflow")}}
 
-Potresti chiederti perché il CSS funziona in modo così disordinato, mostrando il contenuto al di fuori del suo contenitore previsto. Perché non nascondere il contenuto che trabocca? Perché non ridimensionare il contenitore per adattarlo a tutto il contenuto?
+Ci si potrebbe chiedere perché CSS funzioni in modo così disordinato, visualizzando il contenuto al di fuori del contenitore previsto. Perché non nascondere il contenuto in overflow? Perché non ridimensionare il contenitore in modo da adattarlo a tutto il contenuto?
 
-Ovunque possibile, CSS non nasconde il contenuto. Questo causerebbe una perdita di dati. Il problema con la perdita di dati è che potresti non accorgertene. I visitatori del sito potrebbero non accorgersene. Se il pulsante invia di un modulo scompare e nessuno può completare il modulo, questo potrebbe essere un grande problema! Invece, CSS trabocca in modi visibili. È più probabile che tu veda che c'è un problema. Nei casi peggiori, un visitatore del sito ti farà sapere che il contenuto si sta sovrapponendo.
+Ove possibile, CSS non nasconde il contenuto. Ciò causerebbe una perdita di dati. Il problema della perdita di dati è che lo sviluppatore, o i visitatori del sito web, potrebbero non accorgersene. Se il pulsante di invio di un modulo scompare e nessuno può completare il modulo, questo potrebbe essere un grosso problema. CSS, invece, mostra l'overflow in modi visibili. È più probabile che un problema venga notato. Nel peggiore dei casi, un visitatore del sito segnalerà che il contenuto si sovrappone.
 
-Se si restringe una scatola con una `width` o una `height`, CSS si fida che tu sappia cosa stai facendo. CSS presume che tu stia gestendo il potenziale trabocco. In generale, limitare la dimensione del blocco è problematico quando la scatola contiene testo. Potrebbe esserci più testo di quanto ci si aspettasse durante la progettazione del sito, o il testo potrebbe essere più grande (per esempio se l'utente ha aumentato la dimensione del carattere).
+Se si limita un riquadro con una `width` o una `height`, CSS presume che si sappia cosa si sta facendo. CSS presume che venga gestita la possibilità di overflow. In generale, limitare la dimensione del blocco è problematico quando il riquadro contiene testo. Potrebbe esserci più testo del previsto durante la progettazione del sito, oppure il testo potrebbe essere più grande (ad esempio, se l'utente ha aumentato la dimensione del carattere).
 
 ## La proprietà overflow
 
-La proprietà {{cssxref("overflow")}} ti aiuta a gestire il trabocco del contenuto di un elemento. Usando questa proprietà, puoi comunicare a un browser come dovrebbe gestire il contenuto traboccante. Il valore predefinito del tipo di valore [`<overflow>`](/it/docs/Web/CSS/overflow_value) è `visible`. Con questo impostazione predefinita, è possibile vedere il contenuto quando trabocca.
+La proprietà {{cssxref("overflow")}} consente di specificare come il browser deve gestire il contenuto in overflow. Il suo valore predefinito è `visible`, il che significa che il contenuto è visibile quando fuoriesce.
 
-### Nascondere il contenuto traboccante
+I due valori seguenti di `overflow` forniscono il comportamento necessario per risolvere la maggior parte dei problemi di overflow:
 
-Per nascondere il contenuto quando trabocca, puoi impostare `overflow: hidden`. Questo fa esattamente ciò che dice: nasconde il trabocco. Fai attenzione perché questo può rendere invisibile parte del contenuto. Dovresti farlo solo se nascondere il contenuto non causerà problemi.
+- `overflow: clip` taglia il contenuto in overflow, in modo che non sia mai visibile.
+- `overflow: auto` visualizza le barre di scorrimento solo quando necessario, consentendo all'utente di scorrere i riquadri per leggere il contenuto in overflow.
 
-```html live-sample___hidden
+Le due sezioni successive illustrano come usare questi valori. In seguito, verranno esaminati altri valori di `overflow` e verrà spiegato come controllare separatamente l'overflow degli assi x e y.
+
+## Nascondere il contenuto in overflow
+
+Per tagliare il contenuto quando fuoriesce, impostare `overflow: clip`. Tutto ciò che non entra viene tagliato al bordo del riquadro e non può essere raggiunto. Ciò significa che parte del contenuto diventa invisibile, quindi questa impostazione va usata solo quando nascondere il contenuto non causa problemi.
+
+```html live-sample___clip
 <div class="box">
   This box has a height and a width. This means that if there is too much
   content to be displayed within the assigned height, there will be an overflow
-  situation. If overflow is set to hidden then any overflow will not be visible.
+  situation. If overflow is set to clip, then any overflow will not be visible.
 </div>
 
 <p>This content is outside of the box.</p>
 ```
 
-```css live-sample___hidden
+```css live-sample___clip
 .box {
   border: 1px solid #333333;
   width: 250px;
   height: 100px;
-  overflow: hidden;
+  overflow: clip;
 }
 ```
 
-{{EmbedLiveSample("hidden", "", "200px")}}
+{{EmbedLiveSample("clip", "", "200px")}}
 
-### Scorrere il contenuto traboccante
-
-In alternativa, forse vorresti aggiungere barre di scorrimento quando il contenuto trabocca? Usando `overflow: scroll`, i browser con barre di scorrimento visibili le mostreranno sempre—anche se non c'è abbastanza contenuto da traboccare. Questo offre il vantaggio di mantenere il layout coerente, invece che le barre di scorrimento appaiano o scompaiano, a seconda della quantità di contenuto nel contenitore.
-
-Rimuovi un po' di contenuto dalla scatola qui sotto. Nota come le barre di scorrimento rimangono, anche se non c'è bisogno di scorrere:
+Provare a modificare questo esempio impostando `overflow` su `visible`, quindi di nuovo su `clip`, per osservare l'effetto.
 
 > [!NOTE]
-> La visibilità della barra di scorrimento dipende dal sistema operativo.
-> Potresti dover modificare le impostazioni del tuo browser per mostrare sempre le barre di scorrimento affinché compaiano sempre negli esempi seguenti.
+> Per impostazione predefinita, `clip` taglia il contenuto al bordo del riquadro. La proprietà {{cssxref("overflow-clip-margin")}} sposta verso l'esterno tale bordo di ritaglio, consentendo a una quantità specificata del contenuto in overflow di rimanere visibile prima che il resto venga tagliato.
 
-```html live-sample___scroll
-<div class="box">
-  This box has a height and a width. This means that if there is too much
-  content to be displayed within the assigned height, there will be an overflow
-  situation. If overflow is set to hidden then any overflow will not be visible.
-</div>
+## Scorrere il contenuto in overflow
 
-<p>This content is outside of the box.</p>
-```
+In alternativa, potrebbe essere opportuno consentire agli utenti di scorrere il contenuto per leggerlo interamente. Impostando `overflow: auto`, il riquadro diventa scorrevole e i browser con barre di scorrimento visibili mostrano una barra di scorrimento solo quando il contenuto è effettivamente troppo grande per entrare.
 
-```css live-sample___scroll
-.box {
-  border: 1px solid #333333;
-  width: 250px;
-  height: 100px;
-  overflow: scroll;
-}
-```
-
-{{EmbedLiveSample("scroll", "", "200px")}}
-
-Nell'esempio sopra, abbiamo bisogno di scorrere solo sull'asse `y`, tuttavia otteniamo barre di scorrimento su entrambi gli assi. Per scorrere solo sull'asse `y`, potresti usare la proprietà {{cssxref("overflow-y")}}, impostando `overflow-y: scroll`.
-
-```html live-sample___scroll-y
-<div class="box">
-  This box has a height and a width. This means that if there is too much
-  content to be displayed within the assigned height, there will be an overflow
-  situation. If overflow is set to hidden then any overflow will not be visible.
-</div>
-
-<p>This content is outside of the box.</p>
-```
-
-```css live-sample___scroll-y
-.box {
-  border: 1px solid #333333;
-  width: 250px;
-  height: 100px;
-  overflow-y: scroll;
-}
-```
-
-{{EmbedLiveSample("scroll-y", "", "200px")}}
-
-Puoi anche abilitare lo scorrimento lungo l'asse x utilizzando {{cssxref("overflow-x")}}, anche se questo non è un modo raccomandato per gestire parole lunghe! Se hai una parola lunga in una scatola piccola, considera l'uso delle proprietà {{cssxref("word-break")}} o {{cssxref("overflow-wrap")}}. Inoltre, alcuni dei metodi discussi in [Dimensionamento degli elementi in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Sizing) possono aiutarti a creare scatole che si adattano meglio a quantità variabili di contenuto.
-
-```html live-sample___scroll-x
-<div class="word">Overflow</div>
-```
-
-```css live-sample___scroll-x
-.word {
-  border: 5px solid #333333;
-  width: 100px;
-  font-size: 250%;
-  overflow-x: scroll;
-}
-```
-
-{{EmbedLiveSample("scroll-x")}}
-
-Come con `scroll`, ottieni una barra di scorrimento nella dimensione di scorrimento indipendentemente dal fatto che ci sia abbastanza contenuto per causare una barra di scorrimento.
-
-> [!NOTE]
-> È possibile specificare lo scorrimento su x e y utilizzando la proprietà `overflow`, passando due valori. Se si specificano due parole chiave, la prima si applica a `overflow-x` e la seconda si applica a `overflow-y`. Altrimenti, `overflow-x` e `overflow-y` vengono impostati sullo stesso valore. Ad esempio, `overflow: scroll hidden` imposterà `overflow-x` su `scroll` e `overflow-y` su `hidden`.
-
-### Mostrare le barre di scorrimento solo quando necessario
-
-Se desideri che le barre di scorrimento appaiano solo quando c'è più contenuto di quello che può stare nella scatola, usa `overflow: auto`. Questo permette al browser di determinare se mostrare le barre di scorrimento.
-
-Nell'esempio seguente, rimuovi il contenuto finché non si adatta nella scatola. Dovresti vedere le barre di scorrimento scomparire:
+Nell'esempio seguente, rimuovere del contenuto dal `<div>` finché non è più in overflow. La barra di scorrimento dovrebbe scomparire:
 
 ```html live-sample___auto
 <div class="box">
   This box has a height and a width. This means that if there is too much
   content to be displayed within the assigned height, there will be an overflow
-  situation. If overflow is set to hidden then any overflow will not be visible.
+  situation. If overflow is set to auto, then scrollbars appear only when
+  needed.
 </div>
 
 <p>This content is outside of the box.</p>
@@ -217,22 +155,60 @@ Nell'esempio seguente, rimuovi il contenuto finché non si adatta nella scatola.
 
 {{EmbedLiveSample("auto", "", "200px")}}
 
-## Trabocco indesiderato nel design web
+> [!NOTE]
+> La visibilità delle barre di scorrimento dipende dal sistema operativo.
+> Potrebbe essere necessario modificare le impostazioni del browser affinché le barre di scorrimento vengano sempre mostrate nei seguenti esempi.
 
-I metodi di layout moderni (che incontrerai più avanti nel modulo [Layout CSS](/it/docs/Learn_web_development/Core/CSS_layout)) gestiscono il trabocco. Funzionano in gran parte senza ipotesi o dipendenze su quanto contenuto ci sarà su una pagina web.
+## Controllare l'overflow su ciascun asse
 
-Questo non è sempre stato lo standard. In passato, alcuni siti sono stati costruiti con contenitori a altezza fissa per allineare il fondo delle scatole. Queste scatole potrebbero altrimenti non avere una relazione tra loro. Questo era fragile. Se incontri una scatola dove il contenuto si sovrappone ad altro contenuto sulla pagina nelle applicazioni legacy, ora riconoscerai che ciò accade con il trabocco. Idealmente, rifattorerai il layout per evitare di dipendere da contenitori a altezza fissa.
+Specificare una singola parola chiave come valore della proprietà `overflow` imposta il comportamento dell'overflow per gli assi x _e_ y di un contenitore. Nell'esempio precedente, se si imposta `overflow` su `scroll` (che fa [apparire sempre](#visualizzare_sempre_le_barre_di_scorrimento) le barre di scorrimento, indipendentemente dal fatto che il contenuto sia in overflow), saranno visibili barre di scorrimento su entrambi gli assi. Per controllare gli assi separatamente, usare le proprietà {{cssxref("overflow-x")}} e {{cssxref("overflow-y")}}. Provare a impostare `overflow-y: auto` nell'esempio.
 
-Quando sviluppi un sito, tieni sempre presente il trabocco. Testa i design con grandi e piccole quantità di contenuto. Aumenta e diminuisci le dimensioni del carattere di almeno due incrementi. Assicurati che il tuo CSS sia robusto. Cambiare i valori di trabocco per nascondere il contenuto o aggiungere barre di scorrimento è riservato a un numero limitato di casi d'uso selezionati (ad esempio, dove intendi avere una scatola di scorrimento).
+L'esempio successivo dimostra l'abilitazione dello scorrimento lungo l'asse x con `overflow-x`, sebbene questa soluzione non sia consigliata per gestire parole lunghe. Se è presente una parola lunga in un riquadro piccolo, prendere in considerazione l'uso delle proprietà {{cssxref("word-break")}} o {{cssxref("overflow-wrap")}} per spezzare la parola su più righe. Inoltre, alcuni dei metodi trattati in [Dimensionamento degli elementi in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Sizing) possono aiutare a creare riquadri che si adattano meglio a quantità di contenuto variabili.
 
-## Metti alla prova le tue abilità!
+```html live-sample___scroll-x
+<div class="word">Overflow</div>
+```
 
-Sei arrivato alla fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare che tu abbia conservato queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Overflow](/it/docs/Learn_web_development/Core/Styling_basics/Test_your_skills/Overflow).
+```css live-sample___scroll-x
+.word {
+  border: 5px solid #333333;
+  width: 100px;
+  font-size: 250%;
+  overflow-x: auto;
+}
+```
 
-## Riassunto
+{{EmbedLiveSample("scroll-x")}}
 
-Questa lezione ha introdotto il concetto di trabocco. Dovresti capire che il CSS predefinito evita di rendere invisibile il contenuto traboccante. Hai scoperto che puoi gestire il potenziale trabocco e anche che dovresti testare il tuo lavoro per assicurarti che non causi accidentalmente un trabocco problematico.
+> [!NOTE]
+> È inoltre possibile specificare separatamente l'overflow degli assi x e y passando due valori parola chiave alla proprietà `overflow`: il primo si applica a `overflow-x` e il secondo a `overflow-y`. Ad esempio, `overflow: clip auto` imposterebbe `overflow-x` su `clip` e `overflow-y` su `auto`.
 
-Nel prossimo articolo, esamineremo come gestire lo stile di funzionalità speciali della pagina come immagini ed elementi del modulo.
+`clip` è l'unico valore che può essere combinato con `visible` sull'altro asse. Se si imposta un asse su un valore di scorrimento (`auto`, `scroll` o `hidden`) e l'altro su `visible`, il valore `visible` viene invece calcolato come `auto`, poiché un riquadro non può scorrere su un asse lasciando al contempo fuoriuscire il contenuto dall'altro. Quindi `overflow: clip visible` taglia orizzontalmente e consente al contenuto di fuoriuscire verticalmente, mentre `overflow: hidden visible` si comporta come `overflow: hidden auto`.
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Images_media_forms", "Learn_web_development/Core/Styling_basics")}}
+## Visualizzare sempre le barre di scorrimento
+
+Impostando `overflow: scroll`, il riquadro diventa scorrevole come con `overflow: auto`, con la differenza che i browser con barre di scorrimento visibili le mostrano sempre, anche quando il contenuto non è in overflow.
+
+Il motivo principale per usare `scroll` è la coerenza del layout: la barra di scorrimento è sempre presente; pertanto, il contenuto non si sposta quando la quantità di contenuto passa da in overflow a non in overflow. Tuttavia, in un caso simile, combinare `overflow: auto` con un valore `stable` per {{cssxref("scrollbar-gutter")}} è solitamente più appropriato, poiché riserva lo spazio senza forzare il disegno di una barra di scorrimento.
+
+## Il valore hidden
+
+Spesso si incontrerà `overflow: hidden` nel codice esistente. Come `clip`, taglia il contenuto in overflow e non visualizza barre di scorrimento. Diversamente da `clip`, trasforma comunque il riquadro in un contenitore scorrevole e il contenuto può essere fatto scorrere con altri mezzi, ad esempio usando [JavaScript](/it/docs/Learn_web_development/Core/Scripting) o premendo Tab fino a un elemento attivabile più avanti nel contenuto, come un [elemento link](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links).
+
+Nella maggior parte dei casi è opportuno usare il valore `clip`; `hidden` è necessario solo se occorre il comportamento scorrevole descritto sopra.
+
+## Overflow indesiderato nel web design
+
+I moderni metodi di layout (che verranno affrontati più avanti nel modulo [layout CSS](/it/docs/Learn_web_development/Core/CSS_layout)) gestiscono l'overflow. Funzionano in gran parte senza fare supposizioni o avere dipendenze sulla quantità di contenuto presente in una pagina web.
+
+Non è sempre stato così. In passato, alcuni siti venivano creati con contenitori ad altezza fissa per allineare i bordi inferiori dei riquadri. Questi riquadri potrebbero altrimenti non aver avuto alcuna relazione reciproca. Questa soluzione era fragile. Se si incontra un riquadro il cui contenuto si sovrappone ad altro contenuto, ora sarà possibile riconoscere che la causa potrebbe essere l'overflow. Idealmente, il layout dovrebbe essere ristrutturato per evitare contenitori ad altezza fissa.
+
+Durante lo sviluppo di un sito, tenere sempre presente l'overflow. Testare i progetti con quantità grandi e piccole di contenuto. Aumentare e diminuire le dimensioni dei caratteri di almeno due incrementi. Assicurarsi che il CSS sia robusto. La modifica dei valori di overflow per nascondere il contenuto o aggiungere barre di scorrimento è riservata a pochi casi d'uso selezionati (ad esempio, quando si desidera che un riquadro scorrevole visualizzi sempre le barre di scorrimento).
+
+## Riepilogo
+
+Questa lezione ha introdotto il concetto di overflow. Per impostazione predefinita, CSS evita di rendere invisibile il contenuto in overflow. È possibile gestire il potenziale overflow e occorre testare il proprio lavoro per assicurarsi che non causi accidentalmente overflow problematici.
+
+Nel prossimo articolo verranno proposti alcuni test utilizzabili per verificare quanto bene siano state comprese e memorizzate le informazioni fornite sull'overflow.
+
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Test_your_skills/Overflow", "Learn_web_development/Core/Styling_basics")}}

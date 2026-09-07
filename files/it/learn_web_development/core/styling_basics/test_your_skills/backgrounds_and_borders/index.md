@@ -1,56 +1,58 @@
 ---
-title: "Metti alla prova le tue abilità: Sfondi e bordi"
-short-title: Sfondi e bordi
+title: "Metti alla prova le tue competenze: sfondi e bordi"
+short-title: "Test: sfondi e bordi"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Backgrounds_and_borders
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 00d961466c7e388bad444f2bb1b34d5bed629686
 ---
 
-L'obiettivo di questo test di abilità è valutare se comprendi [sfondi e bordi dei box in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Overflow", "Learn_web_development/Core/Styling_basics")}}
+
+Lo scopo di questo test di competenze è aiutare a valutare se si comprendono gli [sfondi e i bordi delle box in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Backgrounds_and_borders).
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona della clipboard) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-> Se incontri difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Sfondi e bordi 1
 
-In questo compito, vogliamo che tu aggiunga uno sfondo, un bordo e alcuni stili di base a un'intestazione di pagina:
+In questa attività, si devono aggiungere uno sfondo, un bordo e alcuni stili di base all'intestazione di una pagina.
 
-1. Assegna al box un bordo nero solido di 5px, con angoli arrotondati di 10px.
-2. Assegna al `<h2>` un colore di sfondo nero semitrasparente e colora il testo di bianco.
-3. Aggiungi un'immagine di sfondo e dimensiona in modo che copra il box. Puoi utilizzare la seguente immagine:
+Per completare l'attività:
+
+1. Assegnare alla box un bordo nero solido di 5px, con angoli arrotondati di 10px.
+2. Assegnare a `<h2>` un colore di sfondo nero semitrasparente e rendere il testo bianco.
+3. Aggiungere un'immagine di sfondo e dimensionarla in modo che copra la box. È possibile usare la seguente immagine:
 
    ```plain
    https://mdn.github.io/shared-assets/images/examples/balloons.jpg
    ```
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine qui sotto:
+Il punto di partenza dell'attività è simile al seguente:
 
-![L'immagine mostra un box con sfondo fotografico, bordo arrotondato e testo bianco su sfondo nero semitrasparente.](backgrounds-task1.png)
+{{EmbedLiveSample("backgrounds1-start", "", "160px")}}
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___backgrounds1
+```html live-sample___backgrounds1-start live-sample___backgrounds1-finish
 <div class="box">
   <h2>Backgrounds & Borders</h2>
 </div>
 ```
 
-```css hidden live-sample___backgrounds1
+```css live-sample___backgrounds1-start live-sample___backgrounds1-finish
 body {
   padding: 1em;
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
+
 .box {
   padding: 0.5em;
 }
-```
 
-```css live-sample___backgrounds1
 .box {
   /* Add styles here */
 }
@@ -60,57 +62,60 @@ h2 {
 }
 ```
 
-{{EmbedLiveSample("backgrounds1", "", "200px")}}
+Lo stile aggiornato dovrebbe essere simile al seguente:
+
+{{EmbedLiveSample("backgrounds1-finish", "", "160px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Dovresti usare `border`, `border-radius`, `background-image` e `background-size` e capire come usare i colori RGB per rendere parzialmente trasparente un colore di sfondo:
+Si dovrebbero usare `border`, `border-radius`, `background-image` e `background-size`, e comprendere come usare i colori RGB per rendere un colore di sfondo parzialmente trasparente:
 
-```css
+```css live-sample___backgrounds1-finish
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
   border-radius: 10px;
-  background-image: url(https://mdn.github.io/shared-assets/images/examples/balloons.jpg);
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/balloons.jpg");
   background-size: cover;
 }
 
 h2 {
   background-color: rgb(0 0 0 / 50%);
-  color: #fff;
+  color: white;
 }
 ```
 
 </details>
 
-## Compito 2
+## Sfondi e bordi 2
 
-In questo compito, vogliamo che tu aggiunga immagini di sfondo, un bordo e altri stili a un box decorativo:
+In questa attività, si devono aggiungere immagini di sfondo, un bordo e altri stili a una box decorativa.
 
-1. Assegna al box un bordo azzurro di 5px e arrotonda l'angolo superiore sinistro di 20px e l'angolo inferiore destro di 40px.
+Per completare l'attività:
 
-2. L'intestazione utilizza l'immagine `star.png` come immagine di sfondo, con una singola stella centrata a sinistra e un pattern ripetuto di stelle a destra.
-   Puoi utilizzare la seguente immagine:
+1. Assegnare alla box un bordo `lightblue` di 5px e arrotondare l'angolo superiore sinistro di 20px e quello inferiore destro di 40px.
+2. Il titolo usa l'immagine `star.png` come immagine di sfondo, con una singola stella centrata a sinistra e un motivo ripetuto di stelle a destra.
+   È possibile usare la seguente immagine:
 
    ```plain
    https://mdn.github.io/shared-assets/images/examples/star.png
    ```
 
-3. Assicurati che il testo dell'intestazione non si sovrapponga all'immagine e che sia centrato — dovrai utilizzare tecniche apprese nelle lezioni precedenti per ottenere questo risultato.
+3. Assicurarsi che il testo del titolo non si sovrapponga all'immagine e che sia centrato: per ottenere questo risultato sarà necessario usare tecniche apprese nelle lezioni precedenti.
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine qui sotto:
+Il punto di partenza dell'attività è simile al seguente:
 
-![L'immagine mostra un box con un bordo blu arrotondato negli angoli in alto a sinistra e in basso a destra. A sinistra del testo c'è una singola stella, a destra 3 stelle.](backgrounds-task2.png)
+{{EmbedLiveSample("backgrounds2-start", "", "200px")}}
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finito:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___backgrounds2
+```html live-sample___backgrounds2-start live-sample___backgrounds2-finish
 <div class="box">
   <h2>Backgrounds & Borders</h2>
 </div>
 ```
 
-```css hidden live-sample___backgrounds2
+```css live-sample___backgrounds2-start live-sample___backgrounds2-finish
 body {
   padding: 1em;
   font: 1.2em / 1.5 sans-serif;
@@ -122,9 +127,7 @@ body {
   width: 300px;
   padding: 0.5em;
 }
-```
 
-```css live-sample___backgrounds2
 .box {
   /* Add styles here */
 }
@@ -134,15 +137,17 @@ h2 {
 }
 ```
 
-{{EmbedLiveSample("backgrounds2", "", "220px")}}
+Lo stile aggiornato dovrebbe essere simile al seguente:
+
+{{EmbedLiveSample("backgrounds2-finish", "", "220px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Devi aggiungere padding all'intestazione in modo che non si sovrapponga all'immagine della stella - ciò è correlato all'apprendimento della [lezione del Modello Box](/it/docs/Learn_web_development/Core/Styling_basics/Box_model).
+È necessario aggiungere padding al titolo affinché non si sovrapponga all'immagine della stella: questo richiama quanto appreso nella precedente [lezione sul Box Model](/it/docs/Learn_web_development/Core/Styling_basics/Box_model).
 Il testo dovrebbe essere allineato con la proprietà `text-align`:
 
-```css
+```css live-sample___backgrounds2-finish
 .box {
   border: 5px solid lightblue;
   border-top-left-radius: 20px;
@@ -153,15 +158,13 @@ h2 {
   padding: 0 40px;
   text-align: center;
   background:
-    url(https://mdn.github.io/shared-assets/images/examples/star.png) no-repeat
-      left center,
-    url(https://mdn.github.io/shared-assets/images/examples/star.png) repeat-y
+    url("https://mdn.github.io/shared-assets/images/examples/star.png")
+      no-repeat left center,
+    url("https://mdn.github.io/shared-assets/images/examples/star.png") repeat-y
       right center;
 }
 ```
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics/Overflow", "Learn_web_development/Core/Styling_basics")}}

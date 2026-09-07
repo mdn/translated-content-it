@@ -2,7 +2,7 @@
 title: Come possiamo progettare per tutti i tipi di utenti?
 slug: Learn_web_development/Howto/Design_and_accessibility/Design_for_all_types_of_users
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 5e815d522e796fb2209fa8470616b37e31c572b4
 ---
 
 Questo articolo fornisce suggerimenti di base per aiutare a progettare siti web per qualsiasi tipo di utente.
@@ -12,56 +12,53 @@ Questo articolo fornisce suggerimenti di base per aiutare a progettare siti web 
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        È consigliabile leggere prima
+        Leggere prima
         <a href="/it/docs/Learn_web_development/Howto/Design_and_accessibility/What_is_accessibility"
           >Che cos'è l'accessibilità?</a
-        >, poiché qui non trattiamo l'accessibilità in dettaglio.
+        >, poiché qui l'accessibilità non viene trattata in dettaglio.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        La progettazione universale significa progettare per tutti, indipendentemente dalle disabilità
-        o dai vincoli tecnici. Questo articolo elenca i guadagni rapidi più importanti per il design universale.
+        Il design universale significa progettare per tutti, indipendentemente da disabilità
+        o vincoli tecnici. Questo articolo elenca le soluzioni rapide più importanti
+        per il design universale.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Sommario
+## Riepilogo
 
-Quando si costruisce un sito web, una delle principali questioni da considerare è la [progettazione universale](https://en.wikipedia.org/wiki/Universal_design): accomodare tutti gli utenti indipendentemente da disabilità, vincoli tecnici, cultura, posizione e così via.
+Quando si crea un sito web, una delle principali questioni da considerare è il [design universale](https://en.wikipedia.org/wiki/Universal_design): soddisfare le esigenze di tutti gli utenti indipendentemente da disabilità, vincoli tecnici, cultura, posizione geografica e così via.
 
-## Apprendimento attivo
+## Approfondimento
 
-_Non è ancora disponibile un apprendimento attivo. [Per favore, considera di contribuire](/it/docs/MDN/Community/Getting_started)._
+### Contrasto dei colori
 
-## Approfondimenti
+Per mantenere il testo leggibile, usare un colore del testo che contrasti bene con il colore di sfondo. Rendere il testo particolarmente facile da leggere aiuta le persone con disabilità visive e le persone che usano il telefono per strada.
 
-### Contrasto del colore
+Il {{Glossary("W3C", "W3C")}} definisce una buona combinazione di colori con un algoritmo che calcola il rapporto di luminosità tra primo piano e sfondo. Il calcolo può sembrare piuttosto complicato, ma è possibile affidarsi a strumenti che svolgono il lavoro.
 
-Per mantenere il testo leggibile, utilizza un colore del testo che contrasti bene con il colore di sfondo. Rendilo particolarmente facile da leggere per aiutare le persone ipovedenti e chi usa il telefono per strada.
-
-Il {{Glossary("W3C", "W3C")}} definisce una buona combinazione di colori con un algoritmo che calcola il rapporto di luminosità tra primo piano e sfondo. Il calcolo può sembrare piuttosto complicato, ma possiamo affidarci a strumenti per il compito.
-
-Scarichiamo e installiamo il [Color Contrast Analyser](https://www.tpgi.com/color-contrast-checker/) del Paciello Group.
+Scaricare e installare [Color Contrast Analyser](https://vispero.com/lp/color-contrast-checker/) di Vispero.
 
 > [!NOTE]
-> In alternativa, puoi trovare numerosi controlli di contrasto online, come il [Color Contrast Checker](https://webaim.org/resources/contrastchecker/) di WebAIM. Suggeriamo un controllo locale perché è corredato di un selettore di colori su schermo per determinare un valore di colore.
+> In alternativa, è possibile trovare diversi strumenti online per verificare il contrasto, come [Color Contrast Checker](https://webaim.org/resources/contrastchecker/) di WebAIM. Si suggerisce uno strumento locale perché include un selettore di colori su schermo per individuare il valore di un colore.
 
-Ad esempio, testiamo i colori su questa pagina e vediamo come ci comportiamo nel Color Contrast Analyser:
+Ad esempio, è possibile testare i colori di questa pagina e vedere il risultato in Color Contrast Analyser:
 
-![Contrasto dei colori su questa pagina: eccellente!](color-contrast.png)
+![Contrasto dei colori in questa pagina: eccellente!](color-contrast.png)
 
-Il rapporto di contrasto di luminosità tra testo e sfondo è 8.30:1, che supera lo standard minimo (4.5:1) e dovrebbe permettere a molte persone ipovedenti di leggere questa pagina.
+Il rapporto di contrasto della luminosità tra testo e sfondo è 8,30:1, che supera lo standard minimo (4,5:1) e dovrebbe consentire a molte persone con disabilità visive di leggere questa pagina.
 
 ### Dimensione del carattere
 
-È possibile specificare la dimensione del carattere su un sito web attraverso unità relative o unità assolute.
+È possibile specificare la dimensione del carattere in un sito web usando unità relative oppure unità assolute.
 
 #### Unità assolute
 
-Le unità assolute non sono calcolate proporzionalmente ma si riferiscono a una dimensione fissa e sono espresse per lo più in pixel (`px`). Ad esempio, se nel tuo CSS dichiari questo:
+Le unità assolute non vengono calcolate proporzionalmente, ma fanno riferimento a una dimensione fissa e sono espresse nella maggior parte dei casi in pixel (`px`). Ad esempio, se nel CSS viene dichiarato quanto segue:
 
 ```css
 body {
@@ -69,24 +66,24 @@ body {
 }
 ```
 
-… stai dicendo al browser che qualunque cosa accada, la dimensione del carattere deve essere di 16 pixel. I browser moderni aggirano questa regola facendo finta che tu stia chiedendo "16 pixel quando l'utente imposta un fattore di zoom del 100%".
+… si indica al browser che, qualunque cosa accada, la dimensione del carattere deve essere di 16 pixel. I browser moderni aggirano questa regola interpretandola come una richiesta di "16 pixel quando l'utente imposta un fattore di zoom del 100%".
 
 #### Unità relative
 
-Chiamate anche _unità proporzionali_, le unità relative sono calcolate rispetto a un elemento genitore. Le unità relative sono più favorevoli all'accessibilità perché rispettano le impostazioni del sistema dell'utente.
+Chiamate anche _unità proporzionali_, le unità relative vengono calcolate rispetto a un elemento padre. Le unità relative sono più adatte all'accessibilità perché rispettano le impostazioni del sistema dell'utente.
 
 Le unità relative sono espresse in `em`, `%` e `rem`:
 
-- Dimensioni basate su percentuali: `%`
-  - : Questa unità dice al tuo browser che la dimensione del carattere di un elemento deve essere N% dell'elemento precedente di cui è stata espressa la dimensione del carattere. Se non si trova un genitore, la dimensione del carattere predefinita nel browser è considerata la dimensione base per il calcolo (di solito equivalente a 16 pixel).
+- Dimensioni basate sulla percentuale: `%`
+  - : Questa unità indica al browser che la dimensione del carattere di un elemento deve essere N% di quella dell'elemento precedente la cui dimensione del carattere è stata espressa. Se non viene trovato alcun elemento padre, per il calcolo viene considerata come dimensione di base la dimensione predefinita del carattere nel browser (solitamente l'equivalente di 16 pixel).
 - Dimensioni basate su em: `em`
-  - : Questa unità è calcolata nello stesso modo delle percentuali, tranne che si computano in porzioni di 1 e non di 100. Si dice che "em" sia la larghezza di una "M" maiuscola nell'alfabeto (grossolanamente parlando, una "M" entra in un quadrato).
+  - : Questa unità viene calcolata nello stesso modo delle percentuali, tranne per il fatto che il calcolo avviene in frazioni di 1 anziché in frazioni di 100. Si dice che "em" sia la larghezza di una "M" maiuscola dell'alfabeto (approssimativamente, una "M" entra in un quadrato).
 - Dimensioni basate su rem: `rem`
-  - : Questa unità è proporzionale alla dimensione del carattere dell'elemento radice ed è espressa come porzioni di 1, come `em`.
+  - : Questa unità è proporzionale alla dimensione del carattere dell'elemento radice ed è espressa in frazioni di 1, come `em`.
 
-Supponiamo di voler una dimensione base del carattere di 16px e un h1 (intestazione principale) all'equivalente di 32px, e se all'interno dell'h1 troviamo uno `span` con la classe `subheading`, anch'esso deve essere reso alla dimensione predefinita del carattere (di solito 16px).
+Supponiamo di voler impostare una dimensione del carattere di base di 16px e un h1 (titolo principale) equivalente a 32px; tuttavia, se all'interno dell'h1 è presente uno `span` con la classe `subheading`, anche questo deve essere visualizzato con la dimensione predefinita del carattere (solitamente 16px).
 
-Ecco l'HTML che stiamo utilizzando:
+Ecco l'HTML utilizzato:
 
 ```html
 <!doctype html>
@@ -104,7 +101,7 @@ Ecco l'HTML che stiamo utilizzando:
 </html>
 ```
 
-Un CSS basato su percentuali apparirà così:
+Un CSS basato sulle percentuali sarà simile al seguente:
 
 ```css
 body {
@@ -121,7 +118,7 @@ span.subheading {
 }
 ```
 
-Lo stesso problema espresso con ems:
+Lo stesso problema espresso con gli em:
 
 ```css
 body {
@@ -138,9 +135,9 @@ span.subheading {
 }
 ```
 
-Come puoi vedere, la matematica si complica rapidamente quando devi tenere traccia del genitore, del genitore del genitore, del genitore del genitore del genitore, e così via. (La maggior parte dei design sono realizzati in software basati su pixel, quindi la matematica deve essere fatta dalla persona che codifica il CSS).
+Come si può vedere, i calcoli diventano rapidamente complessi quando occorre tenere traccia dell'elemento padre, del padre dell'elemento padre, del padre del padre dell'elemento padre e così via. La maggior parte dei design viene realizzata in software basati sui pixel, quindi i calcoli devono essere eseguiti dalla persona che scrive il CSS.
 
-Entra in gioco `rem`. Questa unità è relativa alla dimensione dell'elemento radice e non a un altro genitore. Il CSS può essere riscritto in questo modo:
+Ecco `rem`. Questa unità è relativa alla dimensione dell'elemento radice e non a quella di un altro elemento padre. Il CSS può essere riscritto in questo modo:
 
 ```css
 body {
@@ -157,30 +154,30 @@ span.subheading {
 }
 ```
 
-Più facile, non è vero? Questo funziona in [ogni browser attuale](https://caniuse.com/#search=rem), quindi sentiti libero di usare questa unità.
+Più semplice, vero? Funziona in [tutti i browser attuali](https://caniuse.com/#search=rem), quindi è possibile usare liberamente questa unità.
 
 > [!NOTE]
-> Potresti notare che Opera Mini non supporta il dimensionamento del carattere in rem. Imposterà alla fine una propria dimensione del carattere, quindi non preoccuparti di fornire unità di font.
+> Si può notare che Opera Mini non supporta la dimensione dei caratteri in rem. Finirà per impostare la propria dimensione del carattere, quindi non è necessario fornirgli unità di carattere.
 
-#### Perché dovrei voler usare unità proporzionali?
+#### Perché usare unità proporzionali?
 
-Perché non sai quando un browser verrà fuori e rifiuterà di zoomare il testo la cui dimensione è espressa in pixel. Inoltre, controlla le statistiche del tuo sito web: potresti ricevere visite da browser più vecchi.
+Perché non si sa quando un browser potrebbe rifiutarsi di ingrandire il testo la cui dimensione è espressa in pixel. Inoltre, controllare le statistiche del sito web: potrebbero arrivare visite da browser meno recenti.
 
-Consigliamo quanto segue:
+Si consiglia quanto segue:
 
-- Descrivi i font con unità `rem`, la maggior parte dei browser sarà molto felice con esse;
-- Lascia che i browser più vecchi visualizzino i font con il proprio motore interno. I motori dei browser ignoreranno qualsiasi proprietà o valore nel CSS se non possono gestirli, in modo che il tuo sito web sia ancora utilizzabile anche se non è fedele alla visione del tuo designer. In ogni caso, i browser più vecchi stanno scomparendo.
+- Descrivere i caratteri in unità `rem`; la maggior parte dei browser le gestisce correttamente.
+- Lasciare che i browser meno recenti visualizzino i caratteri con il proprio motore interno. I motori dei browser ignorano qualsiasi proprietà o valore nel CSS che non sono in grado di gestire, quindi il sito web rimane utilizzabile anche se non è fedele alla visione del designer. I browser meno recenti sono comunque in fase di abbandono.
 
 > [!NOTE]
-> Il tuo chilometraggio può variare. Se devi soddisfare i browser più vecchi, dovrai usare gli `em` e fare un po' più di matematica.
+> I risultati possono variare. Se è necessario supportare browser meno recenti, occorrerà usare `em` ed eseguire qualche calcolo in più.
 
-### Larghezza della linea
+### Larghezza delle righe
 
-Esiste un dibattito di lunga data sulla lunghezza delle linee sul web, ma ecco la storia. Quando avevamo i giornali, i tipografi si accorsero che gli occhi del lettore avrebbero avuto difficoltà a passare da una linea all'altra se le linee fossero state troppo lunghe. La soluzione? Colonne.
+Esiste da tempo un dibattito sulla lunghezza delle righe sul Web, ma ecco il punto. Ai tempi dei giornali, i tipografi si resero conto che gli occhi del lettore avevano difficoltà a passare da una riga all'altra quando le righe erano troppo lunghe. La soluzione? Le colonne.
 
-Ovviamente il problema non scompare quando passiamo al Web. Gli occhi del lettore si comportano come una navetta che va da linea a linea. Per rendere il compito più facile agli occhi delle persone, limita la larghezza della linea a circa 60 o 70 caratteri.
+Naturalmente il problema non scompare passando al Web. Gli occhi del lettore si muovono come una navetta da una riga all'altra. Per rendere la lettura più agevole, limitare la larghezza delle righe a circa 60 o 70 caratteri.
 
-Per ottenere ciò, puoi specificare una dimensione per il contenitore del testo. Consideriamo questo HTML:
+Per ottenere questo risultato, è possibile specificare una dimensione per il contenitore del testo. Si consideri questo HTML:
 
 ```html
 <!doctype html>
@@ -202,7 +199,7 @@ Per ottenere ciò, puoi specificare una dimensione per il contenitore del testo.
 </html>
 ```
 
-Abbiamo un `div` con classe `container`. Possiamo stilizzare il `div` impostando la sua larghezza (usando la proprietà `width`) o la sua larghezza massima in modo che non diventi mai troppo grande (usando la proprietà `max-width`). Se vuoi un sito web elastico/responsivo e non conosci la larghezza predefinita del browser, puoi utilizzare la proprietà `max-width` per consentire fino a 70 caratteri per linea e non di più:
+È presente un `div` con classe `container`. È possibile applicare stile al `div` impostandone la larghezza, usando la proprietà `width`, oppure la larghezza massima, in modo che non diventi mai troppo grande, usando la proprietà `max-width`. Per un sito web elastico/responsive, quando non si conosce la larghezza predefinita del browser, è possibile usare la proprietà `max-width` per consentire fino a 70 caratteri per riga e non oltre:
 
 ```css
 div.container {
@@ -210,39 +207,39 @@ div.container {
 }
 ```
 
-### Contenuto alternativo per immagini, audio e video
+### Contenuti alternativi per immagini, audio e video
 
-I siti web spesso includono elementi oltre il semplice testo.
+I siti web spesso includono elementi oltre al semplice testo.
 
 #### Immagini
 
-Le immagini possono essere decorative o informative, ma non c'è alcuna garanzia che i tuoi utenti possano vederle. Ad esempio,
+Le immagini possono essere decorative o informative, ma non vi è alcuna garanzia che gli utenti possano vederle. Ad esempio:
 
-- Gli utenti ipovedenti si affidano a uno screen reader, che può gestire solo il testo.
-- I tuoi lettori potrebbero utilizzare una intranet molto rigida che blocca le immagini provenienti da un {{Glossary("CDN", "CDN")}}.
-- I tuoi lettori potrebbero aver disabilitato le immagini per risparmiare larghezza di banda, soprattutto su dispositivi mobili (vedi sotto).
+- Gli utenti con disabilità visive si affidano a un lettore di schermo, che può gestire solo testo.
+- I lettori potrebbero usare una intranet molto restrittiva che blocca le immagini provenienti da una {{Glossary("CDN", "CDN")}}.
+- I lettori potrebbero aver disabilitato le immagini per risparmiare larghezza di banda, soprattutto sui dispositivi mobili (vedere di seguito).
 
 <!---->
 
 - Immagini decorative
-  - : Sono solo decorative e non trasmettono alcuna informazione reale. Spesso potrebbero essere sostituite da un'immagine di sfondo. Assicurati che abbiano un attributo `alt` vuoto: `<img src="deco.gif" alt="">` in modo che non ingombrino il testo.
+  - : Servono solo come decorazione e non trasmettono informazioni effettive. Nella maggior parte dei casi potrebbero essere sostituite da un'immagine di sfondo. Assicurarsi che abbiano un attributo `alt` vuoto: `<img src="deco.gif" alt="">`, in modo che non ingombrino il testo.
 - Immagini informative
-  - : Sono utilizzate per trasmettere informazioni, da qui il loro nome. Possono, ad esempio, rappresentare un grafico, mostrare il gesto di una persona, o qualsiasi altra informazione. Al minimo, devi fornire un attributo `alt` pertinente.
+  - : Vengono usate per trasmettere informazioni, da cui il nome. Possono ad esempio contenere un grafico, mostrare il gesto di una persona o fornire altre informazioni. Come minimo, occorre fornire un attributo `alt` pertinente.
 
-Se l'immagine può essere descritta brevemente, puoi fornire un attributo `alt` e nient'altro. Se l'immagine non può essere descritta brevemente, dovrai fornire lo stesso contenuto in un'altra forma nella stessa pagina (es., completare un grafico a torta con una tabella che fornisce gli stessi dati) o ricorrere a un attributo `longdesc`. Il valore di questo attributo è un URL che punta a una risorsa che descrive esplicitamente in dettaglio il contenuto dell'immagine.
+Se l'immagine può essere descritta sinteticamente, è possibile fornire un attributo `alt` e nient'altro. Se l'immagine non può essere descritta sinteticamente, sarà necessario fornire lo stesso contenuto in un'altra forma nella stessa pagina, ad esempio completando un grafico a torta con una tabella che fornisca gli stessi dati, oppure ricorrere a un attributo `longdesc`. Il valore di questo attributo è un URL che punta a una risorsa che descrive esplicitamente e in dettaglio il contenuto dell'immagine.
 
 > [!NOTE]
-> L'uso e persino l'esistenza di `longdesc` sono stati oggetto di dibattito per un lungo periodo di tempo. Si prega di fare riferimento ai [Image Description Extension (longdesc)](https://www.w3.org/TR/html-longdesc/) del W3C per la spiegazione completa e esempi dettagliati.
+> L'uso e persino l'esistenza di `longdesc` sono stati discussi per molto tempo. Consultare [Image Description Extension (longdesc)](https://www.w3.org/TR/html-longdesc/) del W3C per la spiegazione completa ed esempi dettagliati.
 
 #### Audio/video
 
-Devi anche fornire alternative ai contenuti multimediali.
+Occorre anche fornire alternative ai contenuti multimediali.
 
-- Sottotitoli/trascrizioni
-  - : Dovresti includere sottotitoli nel tuo video per soddisfare i visitatori che non possono sentire l'audio. Alcuni utenti hanno problemi di udito, non hanno altoparlanti funzionanti o lavorano in un ambiente rumoroso (come sul treno).
+- Sottotitolazione/didascalie
+  - : Includere didascalie nel video per soddisfare le esigenze dei visitatori che non possono ascoltare l'audio. Alcuni utenti hanno difficoltà uditive, non dispongono di altoparlanti funzionanti o lavorano in un ambiente rumoroso, come in treno.
 - Trascrizione
-  - : I sottotitoli funzionano solo se qualcuno guarda il video. Molti utenti non hanno tempo, o non dispongono del plugin o codec adeguato. Inoltre, i motori di ricerca si basano principalmente sul testo per indicizzare i tuoi contenuti. Per tutte queste ragioni, per favore fornisci una trascrizione testuale del file video/audio.
+  - : I sottotitoli funzionano solo se qualcuno guarda il video. Molti utenti non hanno tempo oppure non dispongono del plugin o del codec appropriato. Inoltre, i motori di ricerca si basano principalmente sul testo per indicizzare i contenuti. Per tutti questi motivi, fornire una trascrizione testuale del file video/audio.
 
 ### Compressione delle immagini
 
-Alcuni utenti possono scegliere di visualizzare le immagini, ma avere comunque una larghezza di banda limitata, specialmente nei paesi in via di sviluppo e sui dispositivi mobili. Se vuoi avere un sito web di successo, per favore comprimi le tue immagini. Ci sono vari strumenti per aiutarti, disponibili sia online che localmente. In generale, gli strumenti locali sono preferiti perché possono essere più integrati nel flusso di lavoro di sviluppo; tra questi strumenti ci sono [ImageOptim](https://imageoptim.com/api) (Mac), [OptiPNG](https://optipng.sourceforge.net/) (tutte le piattaforme), e [PNGcrush](https://pmt.sourceforge.io/pngcrush/) (DOS, Unix/Linux).
+Alcuni utenti possono scegliere di visualizzare le immagini, ma disporre comunque di larghezza di banda limitata, soprattutto nei paesi in via di sviluppo e sui dispositivi mobili. Per avere un sito web di successo, comprimere le immagini. Sono disponibili vari strumenti di aiuto, online o locali. In generale, sono preferibili gli strumenti locali perché possono integrarsi maggiormente nel flusso di lavoro di sviluppo; questi strumenti includono [ImageOptim](https://imageoptim.com/api) (Mac), [OptiPNG](https://optipng.sourceforge.net/) (tutte le piattaforme) e [PNGcrush](https://pmt.sourceforge.io/pngcrush/) (DOS, Unix/Linux).

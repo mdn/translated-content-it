@@ -1,74 +1,385 @@
 ---
-title: "Sfida: Composizione tipografica della homepage di una scuola comunitaria"
-short-title: "Sfida: Homepage di una scuola comunitaria"
+title: "Sfida: impaginare la homepage di una scuola della comunità"
+short-title: "Sfida: homepage di una scuola della comunità"
 slug: Learn_web_development/Core/Text_styling/Typesetting_a_homepage
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 9f7e7e9075e9f2b1937d2c8000f52a8ff76bff52
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Text_styling/Web_fonts", "Learn_web_development/Core/CSS_layout", "Learn_web_development/Core/Text_styling")}}
 
-In questa sfida, metteremo alla prova la tua comprensione di tutte le tecniche di stilizzazione del testo che abbiamo coperto in questo modulo, facendoti stilizzare il testo per la homepage di una scuola comunitaria. Potresti anche divertirti lungo la strada.
+In questa sfida, verrà testata la comprensione delle tecniche di stile del testo trattate in questo modulo, chiedendo di impaginare la homepage di una scuola della comunità. Lungo il percorso ci si potrebbe anche divertire.
 
 ## Punto di partenza
 
-Per iniziare questa sfida, dovresti:
+Questa sfida verrà svolta nell'ambiente di sviluppo locale; idealmente, è consigliabile visualizzare l'esempio in una finestra del browser a schermo intero per assicurarsi di procedere nella direzione corretta.
 
-- Scaricare i file [HTML](https://github.com/mdn/learning-area/blob/main/css/styling-text/typesetting-a-homepage-start/index.html) e [CSS](https://github.com/mdn/learning-area/blob/main/css/styling-text/typesetting-a-homepage-start/style.css) per l'esercizio, e l'icona del [collegamento esterno](https://github.com/mdn/learning-area/blob/main/css/styling-text/typesetting-a-homepage-start/external-link-52.png) fornita.
-- Fare una copia di essi sul tuo computer locale.
+1. Creare una nuova cartella sul computer chiamata `typesetting-challenge`.
+2. All'interno della cartella, creare un file `index.html` e incollarvi il seguente contenuto:
 
-In alternativa, potresti utilizzare un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-Potresti incollare l'HTML e inserire il CSS in uno di questi editor online, e usare [questa icona di collegamento esterno](https://mdn.github.io/learning-area/css/styling-text/typesetting-a-homepage-start/external-link-52.png) come immagine di sfondo.
+   ```html
+   <!doctype html>
+   <html lang="en-US">
+     <head>
+       <meta charset="utf-8" />
+       <meta name="viewport" content="width=device-width" />
+       <title>St Huxley's Community College</title>
+       <link href="style.css" type="text/css" rel="stylesheet" />
+     </head>
+     <body>
+       <header>
+         <h1>St Huxley's Community College</h1>
+       </header>
 
-> [!NOTE]
-> Se ti blocchi, puoi contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+       <main>
+         <section>
+           <h2>Brave new world</h2>
 
-## Progetto
+           <p>
+             It's a brave new world out there. Our children are being put in
+             increasingly more competitive situations as they move through the
+             different stages of their life with
+             <a href="https://en.wikipedia.org/wiki/Examination">examinations</a
+             >, <a href="https://en.wikipedia.org/wiki/Jobs">jobs</a>,
+             <a href="https://en.wikipedia.org/wiki/Career">careers</a>, and
+             other life choices. Having the wrong mindset or making the wrong
+             choices can lead to problems at all stages.
+           </p>
 
-Ti è stato fornito del semplice HTML per la homepage di un immaginario college comunitario, oltre a del CSS che stila la pagina in un layout a tre colonne e fornisce qualche altra stilizzazione elementare. Devi scrivere le tue aggiunte CSS sotto il commento in fondo al file CSS per assicurarti che sia facile identificare le parti da te fatte. Non preoccuparti se alcuni selettori sono ripetitivi; tralasceremo questa volta.
+           <p>
+             As concerned parents, guardians, or carers, you will no doubt want
+             to give your children the best possible start in life — and you've
+             come to the right place.
+           </p>
 
-Font:
+           <h2>The best start in life</h2>
 
-- Innanzitutto, scarica un paio di font gratuiti. Poiché si tratta di un college, i font dovrebbero essere scelti per dare alla pagina un aspetto abbastanza serio, formale, e affidabile: un font serif per tutto il sito per il testo generale, accoppiato con un sans-serif o un slab serif per i titoli potrebbe essere una buona scelta.
-- Usa un servizio appropriato per generare codice `@font-face` a prova di futuro per questi due font.
-- Applica il tuo font per il corpo a tutta la pagina e il font per i titoli ai tuoi titoli.
+           <p>
+             At St. Huxley's, we pride ourselves in not only giving our students
+             a top-quality education, but also giving them the
+             <a href="https://en.wikipedia.org/wiki/Society">societal</a> and
+             <a href="https://en.wikipedia.org/wiki/Emotion">emotional</a>
+             intelligence they need to win big in the future. We not only excel
+             at subjects such as genetics, data mining, and chemistry, but we
+             also include compulsory lessons in:
+           </p>
 
-Stilizzazione generale del testo:
+           <ul>
+             <li>Emotional resilience</li>
+             <li>Critical thinking</li>
+             <li>Judgement</li>
+             <li>Assertion</li>
+             <li>Focus and resolve</li>
+           </ul>
 
-- Dai alla pagina una `font-size` generale di `10px`.
-- Dai ai tuoi titoli e ad altri tipi di elementi dimensioni di font appropriate definite usando un'unità relativa adatta.
-- Dai al tuo testo del corpo un `line-height` adeguato.
-- Centra il tuo titolo di livello più alto sulla pagina.
-- Dai ai tuoi titoli un po' di `letter-spacing` per evitare che siano troppo schiacciati e permettere alle lettere di respirare un po'.
-- Dai al tuo testo del corpo del `letter-spacing` e del `word-spacing`, come appropriato.
-- Dai al primo paragrafo dopo ogni titolo nella sezione un po' di rientro, ad esempio 20px.
+           <p>
+             If you are interested, then don't hesitate to get in touch; we'd
+             love to hear from you:
+           </p>
 
-Link:
+           <ol>
+             <li>
+               <a href="#">Call</a> or <a href="#">Email</a> us for more
+               information.
+             </li>
+             <li>
+               <a href="#">Ask for a brochure</a>, which includes a signup form.
+             </li>
+             <li><a href="#">Book a visit</a>!</li>
+           </ol>
+         </section>
 
-- Dai agli stati del link, visitato, messa a fuoco, e al passaggio del mouse dei colori che si accordano con il colore delle barre orizzontali nella parte superiore e inferiore della pagina.
-- Fai sì che i link siano sottolineati per impostazione predefinita, ma quando ci passi sopra col mouse o li metti a fuoco, la sottolineatura scompare.
-- Rimuovi il contorno di messa a fuoco predefinito da TUTTI i link sulla pagina.
-- Dai allo stato attivo una stilizzazione visibilmente diversa affinché si distingua bene, ma che si adatti comunque al design generale della pagina.
-- Assicurati che i link _esterni_ abbiano l'icona del collegamento esterno inserita accanto a loro.
+         <aside>
+           <h2>Top courses</h2>
 
-Liste:
+           <ul>
+             <li><a href="#">Genetic engineering</a></li>
+             <li><a href="#">Organic Chemistry</a></li>
+             <li><a href="#">Pharmaceuticals</a></li>
+             <li><a href="#">Behavioral science</a></li>
+             <li><a href="#">Biochemistry</a></li>
+             <li><a href="#">Data mining</a></li>
+             <li><a href="#">Computer security</a></li>
+             <li><a href="#">Bioinformatics</a></li>
+             <li><a href="#">Cybernetics</a></li>
+           </ul>
 
-- Assicurati che lo spaziamento delle tue liste e dei tuoi elementi di lista funzioni bene con lo stile generale della pagina. Ogni elemento di lista dovrebbe avere lo stesso `line-height` di una linea di un paragrafo, e ogni lista dovrebbe avere lo stesso spazio in cima e in fondo come hai tra i paragrafi.
-- Dai ai tuoi elementi di lista un bel proiettile che sia appropriato per il design della pagina. Sta a te decidere se scegliere un'immagine di proiettile personalizzata o qualcos'altro.
+           <p><a href="#">See all...</a></p>
+         </aside>
 
-Menu di navigazione:
+         <nav>
+           <ul>
+             <li><a href="#">Home</a></li>
+             <li><a href="#">Finding us</a></li>
+             <li><a href="#">Courses</a></li>
+             <li><a href="#">Staff</a></li>
+             <li><a href="#">Media</a></li>
+             <li><a href="#">Prospectus</a></li>
+           </ul>
+         </nav>
+       </main>
 
-- Stila il tuo menu di navigazione in modo che sia in armonia con la pagina.
+       <footer>
+         <p>&copy; 2025 St Huxley's Community College</p>
+       </footer>
+     </body>
+   </html>
+   ```
 
-## Consigli e suggerimenti
+3. All'interno della cartella, creare un file `style.css` e incollarvi il seguente contenuto:
 
-- Non è necessario modificare l'HTML in alcun modo per questo esercizio.
-- Non è necessario che il menu di navigazione sembri dei pulsanti, ma deve essere un po' più alto in modo che non sembri ridicolo sul lato della pagina; ricorda anche che devi farne un menu di navigazione verticale.
+   ```css
+   /* General setup */
+
+   * {
+     box-sizing: border-box;
+   }
+
+   body {
+     margin: 0 auto;
+     padding: 0 20px;
+     min-width: 980px;
+     max-width: 1400px;
+   }
+
+   /* Layout */
+
+   main {
+     display: grid;
+     grid-template-columns: 5fr 2fr 2fr;
+     gap: 40px;
+     padding: 20px 0;
+   }
+
+   /* header and footer */
+
+   header {
+     border-bottom: 5px solid #aa6666;
+   }
+
+   footer {
+     border-top: 5px solid #aa6666;
+   }
+
+   footer p {
+     text-align: center;
+   }
+   ```
+
+4. Scaricare l'icona [`external-link-52.png`](https://mdn.github.io/shared-assets/images/examples/external-link-52.png) e salvarla nella cartella, allo stesso livello dei file di codice.
+
+5. Salvare i file e caricare `index.html` in un browser, pronti per il test.
+
+## Specifiche del progetto
+
+Sono stati forniti dell'HTML per la homepage di un immaginario college della comunità, oltre a del CSS che dispone il contenuto in tre colonne e fornisce altri stili rudimentali. Occorre aggiungere delle regole in fondo al file CSS per risolvere le sfide descritte nelle sezioni seguenti.
+
+### Applicare i font alla pagina
+
+1. Scegliere i font per i titoli e per il corpo del testo da applicare alla pagina:
+   - Poiché si tratta di un college, i font dovrebbero dare al sito un aspetto piuttosto serio e affidabile. Un font serif per l'intero sito, destinato al corpo del testo generale, abbinato a un font pesante/slab per i titoli potrebbe funzionare.
+   - Si può scegliere se utilizzare un servizio di font online come Google Fonts per accedere ai font oppure scaricare localmente i file dei font nel progetto. Qualunque sia la scelta, rendere i font disponibili alla pagina. Se si scelgono file di font locali, utilizzare un servizio adeguato per generare codice `@font-face` affidabile per essi.
+2. Applicare il font del corpo del testo all'intera pagina e il font dei titoli ai titoli.
+
+### Stile generale del testo
+
+1. Assegnare ai titoli e agli altri tipi di elementi dimensioni del font appropriate, definite usando un'unità relativa adatta.
+2. Assegnare al corpo del testo un `line-height` adatto.
+3. Centrare sulla pagina il titolo di livello più alto.
+4. Rimuovere il margine inferiore dai titoli di secondo livello.
+5. Assegnare ai titoli e al corpo del testo un po' di `letter-spacing`, affinché non risultino troppo compressi e le lettere abbiano un po' più di spazio.
+6. Assegnare al primo paragrafo dopo ogni titolo nel `<section>` una piccola indentazione del testo, ad esempio `2rem`.
+
+### Stile dei link
+
+1. Assegnare agli stati link, visitato, focus e hover colori che si abbinino al colore delle barre orizzontali nella parte superiore e inferiore della pagina.
+2. Fare in modo che i link siano sottolineati per impostazione predefinita, ma che la sottolineatura scompaia al passaggio del mouse o quando ricevono il focus.
+3. Rimuovere il contorno di focus predefinito da TUTTI i link della pagina.
+4. Fare in modo che nei link _esterni_ venga inserita l'icona del link esterno alla loro destra, con una dimensione adeguata.
+
+### Stile delle liste
+
+1. Assicurarsi che la spaziatura delle liste e degli elementi delle liste funzioni bene con lo stile dell'intera pagina. Ogni lista dovrebbe avere lo stesso `line-height` e gli stessi margini superiore e inferiore dei paragrafi.
+2. Assegnare agli elementi delle liste stili di punto elenco appropriati per il design della pagina. Si può scegliere se utilizzare un'immagine personalizzata come punto elenco oppure qualcos'altro.
+
+### Stile del menu di navigazione
+
+Applicare uno stile al menu di navigazione in modo che si armonizzi con la pagina. Questa parte è lasciata in gran parte alla scelta dello sviluppatore, ma ecco alcuni suggerimenti:
+
+1. Fare in modo che i link appaiano come pulsanti, larghi quanto la colonna in cui si trovano e sufficientemente alti affinché gli elementi di navigazione occupino una quantità adeguata di spazio.
+2. Applicare al testo dei link di navigazione lo stesso font applicato ai titoli.
+3. Assicurarsi che l'area attivabile di ciascun link sia espansa in modo da riempire interamente il relativo elemento della lista padre.
+4. Centrare il testo all'interno di ciascun link.
+5. Trasformare il testo in maiuscolo, usando CSS e non modificando l'HTML.
+
+## Suggerimenti
+
+- Non è necessario modificare l'HTML per questo esercizio, a meno che non sia richiesto per applicare i font alla pagina.
 
 ## Esempio
 
-Lo screenshot seguente mostra un esempio di come potrebbe apparire il design finito:
+La schermata seguente mostra l'aspetto iniziale della pagina:
 
-![Uno screenshot del design di sfida finito. Il titolo principale recita 'St Huxley's Community College'. C'è una linea rossa che separa il banner dell'intestazione dal contenuto. Il contenuto principale ha tre colonne, due contenenti testo, e un menu di navigazione verticale nella terza colonna.](example2.png)
+![Una schermata dello stato iniziale della pagina. Il titolo principale riporta "St Huxley's Community College" e il footer contiene un avviso di copyright. Linee rosse separano header e footer dal contenuto. Il contenuto principale è composto da tre colonne: una contiene il corpo del testo e le altre due contengono liste di link. Il testo è visualizzato con gli stili predefiniti del browser](example-start.png)
+
+La schermata seguente, invece, mostra un esempio del possibile aspetto del design completato:
+
+![Una schermata del design della sfida completato. Il titolo principale riporta "St Huxley's Community College". Una linea rossa separa l'header dal contenuto. Il contenuto principale è composto da tre colonne: una contiene il corpo del testo, una contiene una lista di link e nella terza è presente una barra di navigazione verticale. Il testo è visualizzato con alcuni stili appropriati](example-finished.png)
+
+<details>
+<summary>Fare clic qui per visualizzare una possibile soluzione</summary>
+
+Il nostro CSS completato appare così:
+
+```css
+/* Solution: Apply fonts to the page */
+
+@import "https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap";
+
+html {
+  font-family: "IBM Plex Serif", serif;
+}
+
+h1,
+h2 {
+  font-family: "Bevan", serif;
+}
+
+/* General setup */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  padding: 0 20px;
+  min-width: 980px;
+  max-width: 1400px;
+}
+
+/* Layout */
+
+main {
+  display: grid;
+  grid-template-columns: 5fr 2fr 2fr;
+  gap: 40px;
+  padding: 20px 0;
+}
+
+/* Header and footer */
+
+header {
+  border-bottom: 5px solid #aa6666;
+}
+
+footer {
+  border-top: 5px solid #aa6666;
+}
+
+footer p {
+  text-align: center;
+}
+
+/* Solution: General text styling */
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 0;
+  letter-spacing: 1px;
+}
+
+section h2 + p {
+  text-indent: 2rem;
+}
+
+p,
+li {
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+}
+
+/* Solution: Link styling */
+
+a {
+  outline: none;
+}
+
+a[href*="http"] {
+  padding-right: 16px;
+  background: url("external-link-52.png") no-repeat right center;
+  background-size: 14px 14px;
+}
+
+a:link,
+a:visited {
+  color: #aa6666;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+  color: #773333;
+}
+
+/* Solution: List styling */
+
+ul,
+ol {
+  margin: 1rem 0;
+}
+
+ul {
+  list-style-type: square;
+}
+
+ol {
+  list-style-type: lower-roman;
+}
+
+/* Solution: Navigation menu styling */
+
+nav ul {
+  padding-left: 0;
+}
+
+nav li {
+  list-style-type: none;
+  margin-bottom: 1rem;
+}
+
+nav li a {
+  font-family: "Bevan", serif;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  line-height: 3.5;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: 1px solid #aa6666;
+}
+
+nav li a:focus,
+nav li a:hover {
+  color: white;
+  background: #aa6666;
+}
+
+nav li a:active {
+  color: white;
+  background: black;
+}
+```
+
+</details>
 
 {{PreviousMenuNext("Learn_web_development/Core/Text_styling/Web_fonts", "Learn_web_development/Core/CSS_layout", "Learn_web_development/Core/Text_styling")}}

@@ -1,32 +1,32 @@
 ---
-title: Impostazione del proprio ambiente di test automatizzato
-short-title: Impostazione dell'ambiente di automazione
+title: Configurare il proprio ambiente di automazione dei test
+short-title: Configurazione dell'ambiente di automazione
 slug: Learn_web_development/Extensions/Testing/Your_own_automation_environment
 l10n:
-  sourceCommit: e6d43da6c6d28a6ac92cdd47882809ffbdf987ce
+  sourceCommit: 6030ef1aadf967b80e2c79c3d3463cccc8ea0c95
 ---
 
 {{PreviousMenu("Learn_web_development/Extensions/Testing/Automated_testing", "Learn_web_development/Extensions/Testing")}}
 
-In questo articolo, insegneremo come installare il proprio ambiente di automazione e eseguire i propri test utilizzando Selenium/WebDriver e una libreria di testing come selenium-webdriver per Node. Vedremo anche come integrare il tuo ambiente di test locale con strumenti commerciali come quelli discussi nell'articolo precedente.
+In questo articolo verrà illustrato come installare il proprio ambiente di automazione ed eseguire test usando Selenium/WebDriver e una libreria di test come selenium-webdriver per Node. Verrà inoltre esaminato come integrare l'ambiente di test locale con strumenti commerciali come quelli discussi nell'articolo precedente.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i core linguaggi <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
-        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>; un'idea
-        dei princìpi ad alto livello del
-        <a href="/it/docs/Learn_web_development/Extensions/Testing/Introduction">test cross browser</a>, e
-        dei <a href="/it/docs/Learn_web_development/Extensions/Testing/Automated_testing">test automatizzati</a>.
+        Familiarità con i linguaggi principali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
+        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>; conoscenza
+        dei principi di alto livello dei
+        <a href="/it/docs/Learn_web_development/Extensions/Testing/Introduction">test cross-browser</a> e dei
+        <a href="/it/docs/Learn_web_development/Extensions/Testing/Automated_testing">test automatizzati</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Mostrare come configurare localmente un ambiente di test Selenium ed eseguire test, e come integrarlo con strumenti come LambdaTest, Sauce Labs e BrowserStack.
+        Mostrare come configurare localmente un ambiente di test Selenium ed eseguire test con esso, e come integrarlo con strumenti quali Sauce Labs e BrowserStack.
       </td>
     </tr>
   </tbody>
@@ -34,66 +34,66 @@ In questo articolo, insegneremo come installare il proprio ambiente di automazio
 
 ## Selenium
 
-[Selenium](https://www.selenium.dev/) è lo strumento di automazione del browser più popolare. Esistono altri modi, ma il miglior modo per usare Selenium è tramite WebDriver, un'API potente che si costruisce sopra Selenium e effettua chiamate a un browser per automatizzarlo, eseguendo azioni come "apri questa pagina web", "passa sopra questo elemento sulla pagina", "clicca su questo link", "vedi se il link apre questo URL", ecc. Questo è ideale per l'esecuzione di test automatizzati.
+[Selenium](https://www.selenium.dev/) è lo strumento di automazione del browser più diffuso. Esistono altri modi, ma il modo migliore per usare Selenium è tramite WebDriver, una potente API che si basa su Selenium ed effettua chiamate a un browser per automatizzarlo, eseguendo azioni quali "apri questa pagina web", "spostati su questo elemento della pagina", "fai clic su questo collegamento", "verifica se il collegamento apre questo URL" e così via. È ideale per eseguire test automatizzati.
 
-Come installare e usare WebDriver dipende dall'ambiente di programmazione che si desidera utilizzare per scrivere ed eseguire i test. Gli ambienti più popolari dispongono di un pacchetto o framework che installerà WebDriver e i collegamenti necessari per comunicare con WebDriver usando questo linguaggio, ad esempio Java, C#, Ruby, Python, JavaScript (Node), ecc. Vedi [Impostazione di un progetto Selenium-WebDriver](https://www.selenium.dev/documentation/webdriver/getting_started/) per maggiori dettagli sulle configurazioni di Selenium per diverse lingue.
+Il modo in cui si installa e si usa WebDriver dipende dall'ambiente di programmazione che si desidera usare per scrivere ed eseguire i test. Gli ambienti più diffusi dispongono di un pacchetto o framework che installerà WebDriver e i binding necessari per comunicare con WebDriver usando tale linguaggio, ad esempio Java, C#, Ruby, Python, JavaScript (Node) e così via. Per maggiori dettagli sulle configurazioni Selenium per linguaggi diversi, vedere [Configurare un progetto Selenium-WebDriver](https://www.selenium.dev/documentation/webdriver/getting_started/).
 
-Diversi browser richiedono driver diversi per consentire a WebDriver di comunicare con e controllarli. Vedi [Piattaforme supportate da Selenium](https://www.selenium.dev/downloads/) per ulteriori informazioni su dove ottenere i driver del browser, ecc.
+Browser diversi richiedono driver diversi per consentire a WebDriver di comunicare con essi e controllarli. Per ulteriori informazioni su dove ottenere i driver del browser e così via, vedere [Piattaforme supportate da Selenium](https://www.selenium.dev/downloads/).
 
-Copriamo la scrittura e l'esecuzione di test Selenium usando Node.js, poiché è rapido e facile da iniziare ed è un ambiente più familiare per i programmatori frontend.
+Verranno trattati la scrittura e l'esecuzione di test Selenium usando Node.js, poiché è rapido e semplice da iniziare a usare, nonché un ambiente più familiare per gli sviluppatori front-end.
 
 > [!NOTE]
-> Se desideri scoprire come usare WebDriver con altri ambienti server-side, consulta anche [Piattaforme supportate da Selenium](https://www.selenium.dev/downloads/) per alcuni link utili.
+> Per scoprire come usare WebDriver con altri ambienti server-side, consultare anche [Piattaforme supportate da Selenium](https://www.selenium.dev/downloads/) per alcuni collegamenti utili.
 
-### Configurazione di Selenium in Node
+### Configurare Selenium in Node
 
-1. Per iniziare, configura un nuovo progetto npm, come discusso in [Impostazione di Node e npm](/it/docs/Learn_web_development/Extensions/Testing/Automated_testing#setting_up_node_and_npm) nell'ultimo capitolo. Chiamalo diversamente, ad esempio `selenium-test`.
-2. Successivamente, dobbiamo installare un framework che ci permetta di lavorare con Selenium dall'interno di Node. Sceglieremo il [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) ufficiale di Selenium, poiché sembra che la documentazione sia abbastanza aggiornata ed è ben mantenuta. Se volessi opzioni diverse, [webdriver.io](https://webdriver.io/) e [nightwatch.js](https://nightwatchjs.org/) sono anche buone scelte. Per installare selenium-webdriver, esegui il seguente comando, assicurandoti di essere all'interno della tua cartella progetto:
+1. Per iniziare, configurare un nuovo progetto npm, come illustrato in [Configurare Node e npm](/it/docs/Learn_web_development/Extensions/Testing/Automated_testing#setting_up_node_and_npm) nel capitolo precedente. Assegnargli un nome diverso, come `selenium-test`.
+2. Successivamente, è necessario installare un framework che consenta di lavorare con Selenium all'interno di Node. Verrà scelto il framework ufficiale di Selenium [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver), poiché la documentazione sembra abbastanza aggiornata ed è ben mantenuto. Per opzioni diverse, anche [webdriver.io](https://webdriver.io/) e [nightwatch.js](https://nightwatchjs.org/) sono buone scelte. Per installare selenium-webdriver, eseguire il comando seguente, assicurandosi di trovarsi nella cartella del progetto:
 
    ```bash
    npm install selenium-webdriver
    ```
 
 > [!NOTE]
-> È comunque una buona idea seguire questi passaggi anche se hai precedentemente installato selenium-webdriver e scaricato i driver del browser. Assicurati che tutto sia aggiornato.
+> È comunque consigliabile seguire questi passaggi anche se selenium-webdriver e i driver del browser sono stati installati in precedenza. È necessario assicurarsi che tutto sia aggiornato.
 
-Successivamente, devi scaricare i driver rilevanti per consentire a WebDriver di controllare i browser che desideri testare. Puoi trovare i dettagli su dove ottenerli sulla pagina di [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) (vedi la tabella nella prima sezione). Ovviamente, alcuni dei browser sono specifici per sistema operativo, ma ci atterremo a Firefox e Chrome, poiché sono disponibili in tutti i principali sistemi operativi.
+Successivamente, è necessario scaricare i driver pertinenti per consentire a WebDriver di controllare i browser sui quali eseguire i test. I dettagli su dove ottenerli sono disponibili nella pagina di [selenium-webdriver](https://www.npmjs.com/package/selenium-webdriver) (vedere la tabella nella prima sezione). Ovviamente, alcuni browser sono specifici del sistema operativo, ma verranno usati Firefox e Chrome, poiché sono disponibili su tutti i principali sistemi operativi.
 
-1. Scarica gli ultimi driver [GeckoDriver](https://github.com/mozilla/geckodriver/releases/) (per Firefox) e [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/#stable).
-2. Decomprimi i file in una posizione abbastanza facile da navigare, come la radice della tua directory utente.
-3. Aggiungi la posizione dei driver `chromedriver` e `geckodriver` alla variabile di sistema `PATH`. Questo dovrebbe essere un percorso assoluto dalla radice del tuo disco rigido alla directory contenente i driver. Ad esempio, se fossimo su una macchina macOS, il nostro nome utente fosse bob, e abbiamo inserito i nostri driver nella radice della nostra cartella personale, il percorso sarebbe `/Users/bob`.
+1. Scaricare le versioni più recenti dei driver [GeckoDriver](https://github.com/mozilla/geckodriver/releases/) (per Firefox) e [ChromeDriver](https://googlechromelabs.github.io/chrome-for-testing/#stable).
+2. Estrarli in una posizione facilmente raggiungibile, ad esempio la radice della directory utente home.
+3. Aggiungere la posizione dei driver `chromedriver` e `geckodriver` alla variabile di sistema `PATH`. Deve essere un percorso assoluto dalla radice del disco rigido alla directory che contiene i driver. Ad esempio, su una macchina macOS, con nome utente bob e driver collocati nella radice della cartella home, il percorso sarebbe `/Users/bob`.
 
 > [!NOTE]
-> Per ribadire, il percorso che aggiungi a `PATH` deve essere il percorso della directory contenente i driver, non i percorsi dei driver stessi! Questo è un errore comune.
+> Per ribadirlo, il percorso aggiunto a `PATH` deve essere il percorso della directory che contiene i driver, non i percorsi dei driver stessi. Questo è un errore comune.
 
-Per impostare la tua variabile `PATH` su un sistema macOS e sulla maggior parte dei sistemi Linux:
+Per impostare la variabile `PATH` su un sistema macOS e sulla maggior parte dei sistemi Linux:
 
-1. Apri il tuo file `.zprofile` (o `.bash_profile` se il tuo sistema usa la shell `bash`).
+1. Aprire il file `.zprofile` (oppure `.bash_profile` se il sistema usa la shell `bash`).
    > [!NOTE]
-   > Se non riesci a vedere i file nascosti, sarà necessario visualizzarli, vedi [Mostra/Nascondi i file nascosti in macOS](https://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks/) o [Mostra le cartelle nascoste in Ubuntu](https://askubuntu.com/questions/470837/how-to-show-hidden-folders-in-file-manager-nautilus-on-ubuntu)).
-2. Incolla quanto segue alla fine del tuo file (aggiornando il percorso come effettivamente è sul tuo computer):
+   > Se non sono visibili i file nascosti, sarà necessario visualizzarli; vedere [Mostrare/nascondere rapidamente i file nascosti in macOS](https://ianlunn.co.uk/articles/quickly-showhide-hidden-files-mac-os-x-mavericks/) oppure [Mostrare le cartelle nascoste in Ubuntu](https://askubuntu.com/questions/470837/how-to-show-hidden-folders-in-file-manager-nautilus-on-ubuntu)).
+2. Incollare quanto segue in fondo al file, aggiornando il percorso in base a quello effettivo sulla macchina:
 
    ```bash
-   #Add WebDriver browser drivers to PATH
+   # Add WebDriver browser drivers to PATH
    export PATH=$PATH:/Users/bob
    ```
 
-3. Salva e chiudi questo file, quindi riavvia il tuo Terminale/prompt dei comandi per riapplicare la configurazione di Bash.
-4. Controlla che i nuovi percorsi siano nella variabile `PATH` inserendo quanto segue nel tuo terminale:
+3. Salvare e chiudere il file, quindi riavviare il Terminale/prompt dei comandi per riapplicare la configurazione Bash.
+4. Verificare che i nuovi percorsi siano nella variabile `PATH` inserendo quanto segue nel terminale:
 
    ```bash
    echo $PATH
    ```
 
-   Dovresti vederlo stampato nel terminale.
+   Il valore dovrebbe essere stampato nel terminale.
 
 > [!NOTE]
-> Per impostare la tua variabile `PATH` su Windows, segui le istruzioni su [Come posso aggiungere una nuova cartella al mio system path?](https://www.itprotoday.com/)
+> Per impostare la variabile `PATH` su Windows, seguire le istruzioni in [Come posso aggiungere una nuova cartella al percorso di sistema?](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots)
 
-Proviamo un test rapido per assicurarci che tutto funzioni.
+Proviamo un test rapido per verificare che tutto funzioni.
 
-1. Crea un nuovo file all'interno della tua directory di progetto chiamato `duck_test.js`:
-2. Inserisci il seguente contenuto, quindi salvalo:
+1. Creare un nuovo file nella directory del progetto chiamato `duck_test.js`:
+2. Assegnargli il seguente contenuto, quindi salvarlo:
 
    ```js
    const { Builder, Browser, By, Key, until } = require("selenium-webdriver");
@@ -115,30 +115,30 @@ Proviamo un test rapido per assicurarci che tutto funzioni.
    ```
 
    > [!NOTE]
-   > Questa funzione è un {{Glossary("IIFE", "IIFE")}} (Immediately Invoked Function Expression).
+   > Questa funzione è una {{Glossary("IIFE", "IIFE")}} (Immediately Invoked Function Expression).
 
-3. Nel terminale, assicurati di essere all'interno della tua cartella progetto, quindi inserisci il seguente comando:
+3. Nel terminale, assicurarsi di trovarsi nella cartella del progetto, quindi inserire il comando seguente:
 
    ```bash
    node duck_test
    ```
 
-Dovresti vedere un'istanza di Firefox aprirsi automaticamente! DuckDuckGo verrà caricato automaticamente in una scheda, "webdriver" verrà inserito nella casella di ricerca, e il pulsante di ricerca verrà cliccato. WebDriver aspetterà poi per 1 secondo; il titolo del documento verrà quindi accesso, e se è "webdriver at DuckDuckGo", restituiremo un messaggio per indicare che il test è passato.
+Dovrebbe aprirsi automaticamente un'istanza di Firefox. DuckDuckGo verrà caricato automaticamente in una scheda, verrà inserito "webdriver" nella casella di ricerca e verrà fatto clic sul pulsante di ricerca. WebDriver attenderà quindi 1 secondo; verrà quindi letto il titolo del documento e, se è "webdriver at DuckDuckGo", verrà restituito un messaggio che indica che il test è superato.
 
-Aspettiamo poi 2 secondi, dopo di che WebDriver chiuderà l'istanza di Firefox e si fermèrà.
+Vengono quindi attesi 2 secondi, dopo i quali WebDriver chiuderà l'istanza di Firefox e si fermerà.
 
-## Testare in più browser contemporaneamente
+## Eseguire test in più browser contemporaneamente
 
-Non c'è nulla che impedisca di eseguire il test su più browser allo stesso tempo. Proviamo!
+Nulla impedisce inoltre di eseguire il test su più browser simultaneamente. Proviamo.
 
-1. Crea un altro nuovo file all'interno della tua directory di progetto chiamato `duck_test_multiple.js`. Puoi tranquillamente cambiare i riferimenti ad alcuni degli altri browser che abbiamo aggiunto, rimuoverli, ecc., a seconda dei browser disponibili sul tuo sistema operativo per effettuare i test. Dovrai assicurarti di avere i driver dei browser corretti installati nel tuo sistema. In termini di quale stringa usare all'interno del metodo `.forBrowser()` per altri browser, consulta la pagina di riferimento [Browser enum](https://www.selenium.dev/selenium/docs/api/javascript/global.html#Browser).
-2. Fornisci al tuo file il seguente contenuto, quindi salvalo:
+1. Creare un altro file nella directory del progetto chiamato `duck_test_multiple.js`. È possibile modificare i riferimenti ad alcuni degli altri browser aggiunti, rimuoverli e così via, in base ai browser disponibili per i test nel sistema operativo. Sarà necessario assicurarsi di avere configurato nel sistema i driver del browser corretti. Per sapere quale stringa usare nel metodo `.forBrowser()` per altri browser, vedere la pagina di riferimento [Browser enum](https://www.selenium.dev/selenium/docs/api/javascript/global.html#Browser).
+2. Assegnare al file il seguente contenuto, quindi salvarlo:
 
    ```js
    const { Builder, Browser, By, Key } = require("selenium-webdriver");
 
-   const driver_fx = new Builder().forBrowser(Browser.FIREFOX).build();
-   const driver_chr = new Builder().forBrowser(Browser.CHROME).build();
+   const driverFx = new Builder().forBrowser(Browser.FIREFOX).build();
+   const driverChr = new Builder().forBrowser(Browser.CHROME).build();
 
    async function searchTest(driver) {
      try {
@@ -156,28 +156,28 @@ Non c'è nulla che impedisca di eseguire il test su più browser allo stesso tem
      }
    }
 
-   searchTest(driver_fx);
-   searchTest(driver_chr);
+   searchTest(driverFx);
+   searchTest(driverChr);
    ```
 
-3. Nel terminale, assicurati di essere all'interno della tua cartella progetto, quindi inserisci il seguente comando:
+3. Nel terminale, assicurarsi di trovarsi nella cartella del progetto, quindi inserire il comando seguente:
 
    ```bash
    node duck_test_multiple
    ```
 
 > [!NOTE]
-> Se stai usando un Mac e decidi di testare Safari, potresti ricevere un messaggio di errore del tipo "Could not create a session: You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver." Se ricevi questo, segui l'istruzione fornita e riprova.
+> Se si usa un Mac e si decide di testare Safari, potrebbe essere visualizzato un messaggio di errore simile a "Could not create a session: You must enable the 'Allow Remote Automation' option in Safari's Develop menu to control Safari via WebDriver." In questo caso, seguire l'istruzione indicata e riprovare.
 >
-> Potresti ricevere un messaggio che indica che non puoi aprire un'app driver perché non è stata scaricata da una fonte verificata. Se ricevi questo, puoi ignorare quell'impostazione di sicurezza solo per quell'app driver. Ad esempio, su Mac, <kbd>Ctrl</kbd> + clic sull'app, seleziona _Apri_, e seleziona di nuovo _Apri_ dal dialogo risultante.
+> Potrebbe essere visualizzato un messaggio che indica l'impossibilità di aprire un'app driver perché non è stata scaricata da una fonte verificata. In questo caso, è possibile ignorare tale impostazione di sicurezza solo per quell'app driver. Ad esempio, su Mac, fare <kbd>Ctrl</kbd> + clic sull'app, scegliere _Apri_ e scegliere nuovamente _Apri_ nella finestra di dialogo risultante.
 
-Quindi qui abbiamo eseguito il test come prima, eccetto che questa volta lo abbiamo incapsulato all'interno di una funzione, `searchTest()`. Abbiamo creato nuove istanze di browser per diversi browser, quindi passato ciascuno alla funzione in modo che il test venga eseguito su tutti.
+Qui il test è stato eseguito come prima, tranne che questa volta è stato racchiuso all'interno di una funzione, `searchTest()`. Sono state create nuove istanze del browser per più browser, quindi ciascuna è stata passata alla funzione affinché il test venga eseguito su tutti.
 
-Proseguiamo e diamo un'occhiata alle basi della sintassi di WebDriver, in modo più dettagliato.
+Passiamo ora a esaminare più in dettaglio le basi della sintassi di WebDriver.
 
-## Corso intensivo di sintassi di WebDriver
+## Corso rapido sulla sintassi di WebDriver
 
-Diamo un'occhiata ad alcune caratteristiche chiave della sintassi di webdriver. Per dettagli più completi, dovresti consultare la [riferimento API di selenium-webdriver JavaScript](https://www.selenium.dev/selenium/docs/api/javascript/) per un riferimento dettagliato e la documentazione principale di Selenium [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/), che contiene molti esempi da cui imparare scritti in diverse lingue.
+Diamo un'occhiata ad alcune caratteristiche fondamentali della sintassi di webdriver. Per dettagli più completi, consultare il [riferimento API JavaScript di selenium-webdriver](https://www.selenium.dev/selenium/docs/api/javascript/) e la documentazione principale di Selenium, [Selenium WebDriver](https://www.selenium.dev/documentation/webdriver/), che contiene numerosi esempi da cui imparare scritti in linguaggi diversi.
 
 ### Avviare un nuovo test
 
@@ -187,26 +187,26 @@ Per avviare un nuovo test, è necessario includere il modulo `selenium-webdriver
 const { Builder, Browser } = require("selenium-webdriver");
 ```
 
-Usi il costruttore `Builder()` per creare una nuova istanza di un driver, concatenando il metodo `forBrowser()` per specificare quale browser desideri testare con questo costruttore.
-Il metodo `build()` viene concatenato alla fine per costruire effettivamente l'istanza del driver (vedi il [riferimento della classe Builder](https://www.selenium.dev/selenium/docs/api/javascript/Builder.html) per informazioni dettagliate su queste caratteristiche).
+Il costruttore `Builder()` viene usato per creare una nuova istanza di un driver, concatenando il metodo `forBrowser()` per specificare il browser sul quale si desidera eseguire il test con questo builder.
+Il metodo `build()` viene concatenato alla fine per costruire effettivamente l'istanza del driver (per informazioni dettagliate su queste funzionalità, vedere il [riferimento della classe Builder](https://www.selenium.dev/selenium/docs/api/javascript/Builder.html)).
 
 ```js
 let driver = new Builder().forBrowser(Browser.FIREFOX).build();
 ```
 
-Nota che è possibile impostare opzioni di configurazione specifiche per i browser da testare, ad esempio puoi impostare una versione specifica e un sistema operativo da testare nel metodo `forBrowser()`:
+Si noti che è possibile impostare opzioni di configurazione specifiche per i browser da testare; ad esempio, è possibile impostare una versione e un sistema operativo specifici da testare nel metodo `forBrowser()`:
 
 ```js
 let driver = new Builder().forBrowser(Browser.FIREFOX, "130", "MAC").build();
 ```
 
-Puoi anche impostare queste opzioni usando una variabile di ambiente, ad esempio:
+Queste opzioni possono anche essere impostate usando una variabile d'ambiente, ad esempio:
 
 ```bash
 SELENIUM_BROWSER=firefox:130:MAC
 ```
 
-Creiamo un nuovo test per permetterci di esplorare questo codice mentre ne parliamo. All'interno della tua directory di progetto di test selenium, crea un nuovo file chiamato `quick_test.js`, e aggiungi il seguente codice a esso:
+Creiamo un nuovo test per esplorare questo codice mentre ne parliamo. Nella directory del progetto di test Selenium, creare un nuovo file chiamato `quick_test.js` e aggiungervi il codice seguente:
 
 ```js
 const { Builder, Browser } = require("selenium-webdriver");
@@ -216,38 +216,38 @@ const { Builder, Browser } = require("selenium-webdriver");
 })();
 ```
 
-Puoi testare l'esempio inserendo il seguente comando nel tuo terminale:
+È possibile testare l'esempio inserendo il comando seguente nel terminale:
 
 ```bash
 node quick_test
 ```
 
-### Ottenere il documento che desideri testare
+### Ottenere il documento da testare
 
-Per caricare la pagina che vuoi effettivamente testare, usi il metodo `get()` dell'istanza di driver che hai creato precedentemente, ad esempio:
+Per caricare la pagina che si desidera effettivamente testare, usare il metodo `get()` dell'istanza del driver creata in precedenza, ad esempio:
 
 ```js
 driver.get("http://www.google.com");
 ```
 
 > [!NOTE]
-> Consulta il [riferimento della classe WebDriver](https://www.selenium.dev/selenium/docs/api/javascript/WebDriver.html) per i dettagli delle caratteristiche in questa sezione e quelle che la seguono.
+> Per i dettagli sulle funzionalità in questa sezione e in quelle seguenti, vedere il [riferimento della classe WebDriver](https://www.selenium.dev/selenium/docs/api/javascript/WebDriver.html).
 
-Puoi usare qualsiasi URL per puntare alla tua risorsa, inclusi URL `file://` per testare un documento locale:
+È possibile usare qualsiasi URL per puntare alla risorsa, incluso un URL `file://` per testare un documento locale:
 
 ```js
 driver.get("file:///Users/bob/git/examples/test_file.html");
 ```
 
-o
+oppure
 
 ```js
 driver.get("http://localhost:8888/test_file.html");
 ```
 
-Ma è meglio usare una posizione su server remoto in modo che il codice sia più flessibile — quando inizi a utilizzare un server remoto per eseguire i tuoi test (vedi più avanti), il tuo codice si romperà se provi a usare percorsi locali.
+Tuttavia, è preferibile usare una posizione su un server remoto affinché il codice sia più flessibile: quando si inizierà a usare un server remoto per eseguire i test (come illustrato più avanti), il codice non funzionerà se si tenta di usare percorsi locali.
 
-Aggiorna la tua funzione `example()` come segue, sostituendo il percorso segnaposto con un vero percorso locale a un file HTML sul tuo computer, quindi prova a eseguirlo:
+Aggiornare la funzione `example()` come segue, sostituendo il percorso segnaposto con un percorso locale reale a un file HTML sul computer, quindi provare a eseguirla:
 
 ```js
 const { Builder, Browser } = require("selenium-webdriver");
@@ -260,15 +260,15 @@ const { Builder, Browser } = require("selenium-webdriver");
 
 ### Interagire con il documento
 
-Ora che abbiamo un documento da testare, dobbiamo interagire con esso in qualche modo, il che di solito comporta prima la selezione di un elemento specifico per testare qualcosa a riguardo. Puoi [selezionare elementi UI in molti modi](https://www.selenium.dev/documentation/webdriver/elements/) in WebDriver, inclusi per ID, classe, nome dell'elemento, ecc. La selezione effettiva è fatta dal metodo `findElement()`, il quale accetta come parametro un metodo di selezione. Ad esempio, per selezionare un elemento per ID:
+Ora che è disponibile un documento da testare, è necessario interagirvi in qualche modo, operazione che solitamente implica dapprima la selezione di un elemento specifico su cui testare qualcosa. È possibile [selezionare elementi dell'interfaccia utente in molti modi](https://www.selenium.dev/documentation/webdriver/elements/) in WebDriver, anche tramite ID, classe, nome dell'elemento e così via. La selezione effettiva viene eseguita dal metodo `findElement()`, che accetta come parametro un metodo di selezione. Ad esempio, per selezionare un elemento tramite ID:
 
 ```js
 const element = driver.findElement(By.id("myElementId"));
 ```
 
-Uno dei modi più utili per trovare un elemento è tramite CSS — il metodo `By.css()` ti consente di selezionare un elemento usando un selettore CSS.
+Uno dei modi più utili per trovare un elemento è tramite CSS: il metodo `By.css()` consente di selezionare un elemento usando un selettore CSS.
 
-Aggiorna ora la tua funzione `example()` come segue, quindi esegui l'esempio:
+Aggiornare ora la funzione `example()` come segue, quindi eseguire l'esempio:
 
 ```js
 const { Builder, Browser, By } = require("selenium-webdriver");
@@ -282,11 +282,11 @@ const { Builder, Browser, By } = require("selenium-webdriver");
 })();
 ```
 
-### Testare il tuo elemento
+### Testare l'elemento
 
-Ci sono molti modi per interagire con i tuoi documenti web e gli elementi al loro interno. Puoi vedere esempi comuni a partire da [Ottenere valori di testo](https://www.selenium.dev/documentation/webdriver/elements/information/#text-content) nella documentazione di WebDriver.
+Esistono molti modi per interagire con documenti web e gli elementi al loro interno. È possibile vedere esempi comuni utili a partire da [Ottenere valori di testo](https://www.selenium.dev/documentation/webdriver/elements/information/#text-content) nella documentazione WebDriver.
 
-Se volessimo ottenere il testo all'interno del nostro pulsante, potremmo farlo così:
+Per ottenere il testo all'interno del pulsante, è possibile fare quanto segue:
 
 ```js
 button.getText().then((text) => {
@@ -294,7 +294,7 @@ button.getText().then((text) => {
 });
 ```
 
-Aggiungi questo alla fine della funzione `example()` ora come mostrato sotto:
+Aggiungere ora questo codice in fondo alla funzione `example()`, come mostrato di seguito:
 
 ```js
 const { Builder, Browser, By } = require("selenium-webdriver");
@@ -314,9 +314,9 @@ const { Builder, Browser, By } = require("selenium-webdriver");
 })();
 ```
 
-Esegui l'esempio con `node` nello stesso modo in cui hai fatto in precedenza. Dovresti vedere l'etichetta di testo del pulsante riportata all'interno della console.
+Eseguire l'esempio con `node` nello stesso modo usato in precedenza. L'etichetta di testo del pulsante dovrebbe essere riportata nella console.
 
-Facciamo qualcosa di un po' più utile. Sostituisci la voce di codice precedente con `button.click();` come mostrato sotto:
+Facciamo qualcosa di più utile. Sostituire la precedente istruzione di codice con `button.click();`, come mostrato di seguito:
 
 ```js
 const { Builder, Browser, By } = require("selenium-webdriver");
@@ -333,9 +333,9 @@ const { Builder, Browser, By } = require("selenium-webdriver");
 })();
 ```
 
-Prova a eseguire di nuovo il tuo test; il pulsante verrà cliccato e dovrebbe apparire un popup `alert()`. Almeno sappiamo che il pulsante funziona!
+Provare a eseguire nuovamente il test; verrà fatto clic sul pulsante e dovrebbe comparire una finestra popup `alert()`. Almeno è possibile verificare che il pulsante funzioni.
 
-Puoi anche interagire con il popup. Aggiorna la funzione `example()` come segue, e prova a testarla di nuovo:
+È possibile interagire anche con il popup. Aggiornare la funzione `example()` come segue e provare a testarla nuovamente:
 
 ```js
 const { Builder, Browser, By, until } = require("selenium-webdriver");
@@ -363,7 +363,7 @@ const { Builder, Browser, By, until } = require("selenium-webdriver");
 })();
 ```
 
-Successivamente, proviamo a inserire del testo negli elementi del modulo. Aggiorna la funzione `example()` come segue e prova a eseguire di nuovo il tuo test:
+Proviamo ora a inserire del testo negli elementi del modulo. Aggiornare la funzione `example()` come segue e provare a eseguire nuovamente il test:
 
 ```js
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
@@ -384,25 +384,25 @@ const { Builder, Browser, By, Key } = require("selenium-webdriver");
 })();
 ```
 
-Puoi inviare tasti che non possono essere rappresentati da caratteri normali usando le proprietà dell'oggetto `Key`. Ad esempio, sopra abbiamo usato quanto segue per passare da un input del modulo all'altro:
+È possibile inviare pressioni di tasti che non possono essere rappresentate da caratteri normali usando le proprietà dell'oggetto `Key`. Ad esempio, in precedenza è stato usato quanto segue per passare da un input del modulo all'altro:
 
 ```js
 input.sendKeys(Key.TAB);
 ```
 
-### Attendere che qualcosa si completi
+### Attendere il completamento di un'operazione
 
-Ci sono momenti in cui vorrai far aspettare WebDriver che qualcosa si completi prima di proseguire. Ad esempio, se carichi una nuova pagina, vorrai aspettare che il DOM della pagina finisca di caricarsi prima di tentare di interagire con uno qualsiasi dei suoi elementi, altrimenti il test probabilmente fallirà.
+In alcuni casi sarà necessario fare in modo che WebDriver attenda il completamento di un'operazione prima di proseguire. Ad esempio, se viene caricata una nuova pagina, sarà necessario attendere che il DOM della pagina termini il caricamento prima di tentare di interagire con uno qualsiasi dei suoi elementi; in caso contrario, il test probabilmente fallirà.
 
-Nel nostro test `duck_test_multiple.js`, ad esempio, abbiamo incluso questa linea:
+Ad esempio, nel test `duck_test_multiple.js` è stata inclusa questa riga:
 
 ```js
 await driver.sleep(2000);
 ```
 
-Il metodo `sleep()` accetta un valore che specifica il tempo di attesa in millisecondi — il metodo restituisce un {{jsxref("Promise")}} che si risolve alla fine di quel tempo. Usiamo la keyword `await` per mettere in pausa la funzione contenente fino a quando la promessa si risolve, dopo di che il codice seguente al metodo viene eseguito.
+Il metodo `sleep()` accetta un valore che specifica il tempo di attesa in millisecondi: il metodo restituisce una {{jsxref("Promise")}} che viene risolta al termine di tale intervallo. La parola chiave `await` viene usata per mettere in pausa la funzione che la racchiude fino alla risoluzione della promise, dopo la quale viene eseguito il codice successivo al metodo.
 
-Potremmo aggiungere un metodo `sleep()` anche al nostro test `quick_test.js` — prova ad aggiornare la tua funzione `example()` in questo modo:
+È possibile aggiungere un metodo `sleep()` anche al test `quick_test.js`: provare ad aggiornare la funzione `example()` in questo modo:
 
 ```js
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
@@ -428,14 +428,14 @@ const { Builder, Browser, By, Key } = require("selenium-webdriver");
 })();
 ```
 
-Prova a eseguire il codice aggiornato. WebDriver ora riempirà il primo campo del modulo, aspetterà per un secondo, quindi testerà se il suo valore è stato riempito (cioè, non è vuoto) usando `getAttribute()` per recuperare il suo valore dell'attributo `value`. Stamperà quindi un messaggio sulla console per segnalare il successo o il fallimento.
+Provare a eseguire il codice aggiornato. WebDriver compilerà ora il primo campo del modulo, attenderà un secondo, quindi verificherà se il suo valore è stato compilato, ossia se non è vuoto, usando `getAttribute()` per recuperare il valore dell'attributo `value`. Quindi stamperà un messaggio nella console per segnalare l'esito positivo o negativo.
 
 > [!NOTE]
-> Esiste anche un metodo chiamato [`wait()`](https://www.selenium.dev/selenium/docs/api/javascript/WebDriver.html#wait), che testa ripetutamente una condizione per un certo periodo di tempo, e poi continua a eseguire il codice. Questo utilizza anche la [libreria util](https://www.selenium.dev/selenium/docs/api/javascript/lib_until.js.html), che definisce condizioni comuni da usare insieme a `wait()`.
+> Esiste anche un metodo chiamato [`wait()`](https://www.selenium.dev/selenium/docs/api/javascript/WebDriver.html#wait), che testa ripetutamente una condizione per un certo periodo di tempo, quindi prosegue l'esecuzione del codice. Usa inoltre la [libreria util](https://www.selenium.dev/selenium/docs/api/javascript/lib_until.js.html), che definisce condizioni comuni da usare insieme a `wait()`.
 
-### Spegnere i driver dopo l'uso
+### Arrestare i driver dopo l'uso
 
-Dopo aver terminato l'esecuzione di un test, dovresti spegnere tutte le istanze di driver che hai aperto usando il metodo `driver.quit()`, per assicurarti che non continuino a usare risorse inutilmente. Aggiorna `quick_test.js` come segue:
+Dopo aver terminato l'esecuzione di un test, è necessario arrestare tutte le istanze del driver aperte usando il metodo `driver.quit()`, per assicurarsi che non continuino a usare risorse inutilmente. Aggiornare `quick_test.js` come segue:
 
 ```js
 const { Builder, Browser, By, Key } = require("selenium-webdriver");
@@ -466,45 +466,46 @@ const { Builder, Browser, By, Key } = require("selenium-webdriver");
 })();
 ```
 
-Ora, quando lo esegui, dovresti vedere il test eseguire e l'istanza del browser chiudersi di nuovo dopo che il test è completo.
+Ora, durante l'esecuzione, dovrebbe essere visibile il test in esecuzione e l'istanza del browser dovrebbe chiudersi nuovamente dopo il completamento del test.
 
-## Migliori pratiche di test
+## Buone pratiche per i test
 
-È stato scritto molto sulle migliori pratiche per scrivere test. Puoi trovare alcune buone informazioni di base su [Test Practices](https://www.selenium.dev/documentation/test_practices/). In generale, dovresti assicurarti che i tuoi test siano:
+È stato scritto molto sulle buone pratiche per la scrittura dei test. Alcune utili informazioni di base sono disponibili in [Pratiche di test](https://www.selenium.dev/documentation/test_practices/). In generale, assicurarsi che i test:
 
-1. Usando buone strategie di localizzazione: Quando stai [interagendo con il documento](#interagire_con_il_documento), assicurati di usare localizzatori e oggetti pagina che non cambiano — se hai un elemento testabile su cui vuoi eseguire un test, assicurati che abbia un ID stabile, o una posizione sulla pagina che possa essere selezionata usando un selettore CSS, che non cambierà con la prossima iterazione del sito. Vuoi rendere i tuoi test il meno fragili possibile, cioè, non si romperanno solo quando qualcosa cambia.
-2. Scrivi test atomici: Ogni test dovrebbe testare una sola cosa, rendendo facile tenere traccia di quale file di test sta testando quale criterio. Il test `duck_test.js` che abbiamo visto sopra è abbastanza buono, in quanto testa solo una singola cosa — se il titolo di una pagina dei risultati di ricerca è impostato correttamente. Potremmo lavorare su dargli un nome migliore in modo che sia più facile capire cosa fa se aggiungiamo più test. Forse `results_page_title_set_correctly.js` sarebbe leggermente migliore?
-3. Scrivi test autonomi: Ogni test dovrebbe funzionare da solo e non dipendere da altri test per funzionare.
+1. Usino buone strategie di localizzazione: durante l'[interazione con il documento](#interagire_con_il_documento), assicurarsi di usare locator e page object che difficilmente cambieranno. Se è presente un elemento testabile sul quale si desidera eseguire un test, assicurarsi che abbia un ID stabile o una posizione nella pagina selezionabile tramite un selettore CSS, che non cambierà semplicemente con la successiva iterazione del sito. È opportuno rendere i test il meno fragili possibile, cioè che non si interrompano semplicemente quando qualcosa cambia.
+2. Scrivano test atomici: ogni test dovrebbe verificare una sola cosa, rendendo semplice tenere traccia di quale file di test verifica quale criterio. Il test `duck_test.js` esaminato in precedenza è piuttosto valido, poiché verifica una sola cosa: se il titolo di una pagina di risultati di ricerca è impostato correttamente. Si potrebbe assegnargli un nome migliore, in modo che sia più facile capire cosa fa se vengono aggiunti altri test. Forse `results_page_title_set_correctly.js` sarebbe leggermente migliore.
+3. Scrivano test autonomi: ogni test dovrebbe funzionare da solo e non dipendere da altri test per funzionare.
 
-Inoltre, dovremmo menzionare i risultati dei test/reporting — nei nostri esempi sopra, abbiamo riportato i risultati utilizzando semplici dichiarazioni `console.log()`, ma tutto ciò è fatto in JavaScript, quindi puoi usare qualsiasi sistema di esecuzione e reporting di test vuoi, sia esso [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), o qualche altro strumento. Esaminiamo attraverso un esempio rapido:
+Inoltre, è opportuno menzionare i risultati/report dei test: negli esempi precedenti sono stati riportati risultati usando semplici istruzioni `console.log()`, ma tutto ciò viene eseguito in JavaScript, quindi è possibile usare qualsiasi sistema di esecuzione e report dei test desiderato, sia esso [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) o un altro strumento. Analizziamo un rapido esempio:
 
-1. Fai una copia locale del nostro esempio [`mocha_test.js`](https://github.com/mdn/learning-area/blob/main/tools-testing/cross-browser-testing/selenium/mocha_test.js) all'interno della tua directory di progetto. Mettilo all'interno di una sottocartella chiamata `test`. Questo esempio usa una lunga catena di promise per eseguire tutti i passaggi richiesti nel nostro test — i metodi basati su promise che WebDriver usa devono risolversi affinché funzioni correttamente.
-2. Installa il framework di test mocha eseguendo il seguente comando all'interno della tua directory di progetto:
+1. Creare una copia locale dell'esempio [`mocha_test.js`](https://github.com/mdn/learning-area/blob/main/tools-testing/cross-browser-testing/selenium/mocha_test.js) nella directory del progetto. Collocarlo in una sottocartella chiamata `test`. Questo esempio usa una lunga catena di promise per eseguire tutti i passaggi richiesti nel test: i metodi basati su promise usati da WebDriver devono essere risolti affinché funzioni correttamente.
+2. Installare l'harness di test Mocha eseguendo il comando seguente nella directory del progetto:
 
    ```bash
    npm install --save-dev mocha
    ```
 
-3. Ora puoi eseguire il test (e altri che metti dentro la tua directory `test`) usando il seguente comando:
+3. Ora è possibile eseguire il test, e qualsiasi altro test inserito nella directory `test`, usando il comando seguente:
 
    ```bash
    npx mocha --no-timeouts
    ```
 
-4. Dovresti includere l'opzione `--no-timeouts` per assicurarti che i tuoi test non falliscano a causa del timeout arbitrario di Mocha (che è di 3 secondi).
+4. Includere il flag `--no-timeouts` per assicurarsi che i test non finiscano per fallire a causa del timeout arbitrario di Mocha, che è di 3 secondi.
 
-> **Nota:** [saucelabs-sample-test-frameworks](https://github.com/saucelabs-sample-test-frameworks) contiene diversi esempi utili che mostrano come configurare diverse combinazioni di strumenti di test/asserzioni.
+> [!NOTE]
+> [saucelabs-sample-test-frameworks](https://github.com/saucelabs-sample-test-frameworks) contiene diversi esempi utili che mostrano come configurare varie combinazioni di strumenti di test/assertion.
 
 ## Eseguire test remoti
 
-Risulta che eseguire test su server remoti non è poi così difficile rispetto a eseguirli localmente. Devi solo creare la tua istanza di driver, ma con un paio di caratteristiche in più specificate, incluse le capacità del browser su cui vuoi testare, l'indirizzo del server, e le credenziali utente che hai bisogno (se ci sono) per accedervi.
+L'esecuzione di test su server remoti non è molto più difficile dell'esecuzione locale. È sufficiente creare l'istanza del driver, ma con alcune funzionalità aggiuntive specificate, incluse le capability del browser su cui eseguire il test, l'indirizzo del server e le credenziali utente necessarie, se presenti, per accedervi.
 
 ### BrowserStack
 
-Creiamo un esempio per mostrare come ottenere l'esecuzione di un test Selenium remotamente su [BrowserStack](https://www.browserstack.com/automate):
+Creiamo un esempio per mostrare come eseguire un test Selenium in remoto su [BrowserStack](https://www.browserstack.com/automate):
 
-1. All'interno della tua directory di progetto, crea un nuovo file chiamato `bstack_duck_test.js`.
-2. Dai al file il seguente contenuto:
+1. Nella directory del progetto, creare un nuovo file chiamato `bstack_duck_test.js`.
+2. Assegnargli il seguente contenuto:
 
    ```js
    const { Builder, By, Key } = require("selenium-webdriver");
@@ -546,41 +547,41 @@ Creiamo un esempio per mostrare come ottenere l'esecuzione di un test Selenium r
    })();
    ```
 
-3. Dalla tua [pagina dei dettagli dell'account e del profilo BrowserStack](https://www.browserstack.com/accounts/profile/details), ottieni il tuo nome utente e la chiave di accesso (vedi _Username and Access Keys_).
-4. Sostituisci i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con il tuo nome utente e i valori della chiave di accesso effettivi (e assicurati di mantenerli sicuri).
-5. Esegui il tuo test con il seguente comando:
+3. Dalla pagina [Dettagli account e profilo](https://www.browserstack.com/accounts/profile/details) di BrowserStack, recuperare il nome utente e la chiave di accesso, vedere _Username and Access Keys_.
+4. Sostituire i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con i valori effettivi del nome utente e della chiave di accesso, assicurandosi di mantenerli protetti.
+5. Eseguire il test con il comando seguente:
 
    ```bash
    node bstack_google_test
    ```
 
-   Il test verrà inviato a BrowserStack, e il risultato del test verrà restituito alla tua console. Ciò dimostra l'importanza di includere un qualche tipo di meccanismo di reporting dei risultati!
+   Il test verrà inviato a BrowserStack e il risultato del test verrà restituito alla console. Questo mostra l'importanza di includere un qualche meccanismo di report dei risultati.
 
-6. Ora, se torni alla [dashboard Automate di BrowserStack](https://automate.browserstack.com/dashboard/), vedrai il tuo test elencato, con dettagli inclusi una registrazione video del test e molteplici log dettagliati delle informazioni riguardanti:
-   ![Risultati automatici di BrowserStack](bstack_automated_results.png)
+6. Se ora si torna alla [dashboard Automate di BrowserStack](https://automate.browserstack.com/dashboard/), verrà visualizzato il test nell'elenco, con dettagli tra cui una registrazione video del test e vari log dettagliati delle informazioni a esso relative:
+   ![Risultati automatizzati BrowserStack](bstack_automated_results.png)
 
 > [!NOTE]
-> L'opzione di menu _Resources_ sulla dashboard di automazione BrowserStack contiene una ricchezza di informazioni utili su come usarlo per eseguire test automatizzati. Vedi [Selenium con NodeJS](https://www.browserstack.com/docs/automate/selenium/getting-started/nodejs) per informazioni specifiche su Node.
+> L'opzione di menu _Resources_ nella dashboard di automazione BrowserStack contiene molte informazioni utili sul suo utilizzo per eseguire test automatizzati. Per informazioni specifiche per Node, vedere [Selenium con NodeJS](https://www.browserstack.com/docs/automate/selenium/getting-started/nodejs).
 
-#### Inserimento programmato dei dettagli del test di BrowserStack
+#### Compilare programmaticamente i dettagli del test BrowserStack
 
-Puoi usare l'API REST di BrowserStack e alcune altre capacità per annotare il tuo test con più dettagli, come se il test è passato, perché è passato, a quale progetto appartiene il test, ecc. BrowserStack non conosce questi dettagli di default.
+È possibile usare l'API REST di BrowserStack e altre capability per annotare il test con maggiori dettagli, ad esempio se è stato superato, perché è stato superato, di quale progetto fa parte il test e così via. BrowserStack non conosce questi dettagli per impostazione predefinita.
 
-Aggiorniamo il nostro demo `bstack_duck_test.js`, per mostrare come funzionano queste caratteristiche:
+Aggiorniamo la demo `bstack_duck_test.js` per mostrare come funzionano queste funzionalità:
 
-1. Installa il modulo [axios](https://www.npmjs.com/package/axios) eseguendo il seguente comando all'interno della tua directory di progetto:
+1. Installare il modulo [axios](https://www.npmjs.com/package/axios) eseguendo il comando seguente nella directory del progetto:
 
    ```bash
    npm install axios
    ```
 
-2. Importa il modulo axios in modo che possiamo usarlo per inviare richieste all'API REST di BrowserStack. Aggiungi la seguente linea all'inizio del tuo codice:
+2. Importare il modulo axios per poterlo usare nell'invio di richieste all'API REST di BrowserStack. Aggiungere la riga seguente all'inizio del codice:
 
    ```js
    const axios = require("axios");
    ```
 
-3. Ora aggiorneremo il nostro oggetto `capabilities` per includere un nome di progetto — aggiungi la seguente linea prima della parentesi graffa di chiusura, ricordando di aggiungere una virgola alla fine della linea precedente (puoi variare i nomi di build e project per organizzare i test in finestre diverse nella dashboard di automazione di BrowserStack):
+3. Ora verrà aggiornato l'oggetto `capabilities` per includere un nome di progetto: aggiungere la riga seguente prima della parentesi graffa di chiusura, ricordando di aggiungere una virgola alla fine della riga precedente. È possibile variare i nomi di build e progetto per organizzare i test in diverse finestre nella dashboard di automazione BrowserStack:
 
    ```js
    const capabilities = {
@@ -589,7 +590,7 @@ Aggiorniamo il nostro demo `bstack_duck_test.js`, per mostrare come funzionano q
    };
    ```
 
-4. Successivamente, recupereremo l'`sessionId` della sessione corrente, e lo useremo (insieme al tuo `userName` e `accessKey`) per assemblare l'URL a cui inviare richieste per aggiornare i dati di BrowserStack. Includi le seguenti linee appena sotto il blocco che crea l'oggetto `driver` (che inizia con `const driver = new Builder()`):
+4. Successivamente, verrà recuperato il `sessionId` della sessione corrente e verrà usato, insieme a `userName` e `accessKey`, per assemblare l'URL a cui inviare richieste per aggiornare i dati BrowserStack. Includere le righe seguenti subito sotto il blocco che crea l'oggetto `driver`, che inizia con `const driver = new Builder()`:
 
    ```js
    let sessionId;
@@ -601,7 +602,7 @@ Aggiorniamo il nostro demo `bstack_duck_test.js`, per mostrare come funzionano q
    });
    ```
 
-5. Infine, aggiorna il blocco `if ... else` vicino al fondo del codice per inviare le chiamate API appropriate a BrowserStack a seconda se il test è passato o fallito:
+5. Infine, aggiornare il blocco `if...else` vicino alla fine del codice per inviare chiamate API appropriate a BrowserStack a seconda che il test sia riuscito o fallito:
 
    ```js
    if (title === "webdriver at DuckDuckGo") {
@@ -619,18 +620,18 @@ Aggiorniamo il nostro demo `bstack_duck_test.js`, per mostrare come funzionano q
    }
    ```
 
-Una volta che il test è completato, inviamo una chiamata API a BrowserStack per aggiornare il test con un stato di passaggio o fallimento e una ragione per il risultato.
+Al termine del test, viene inviata una chiamata API a BrowserStack per aggiornare il test con uno stato superato o non superato e una motivazione del risultato.
 
-Se ora torni alla [dashboard Automate di BrowserStack](https://automate.browserstack.com/dashboard/), dovresti vedere la tua sessione di test come prima, ma con i tuoi dati personalizzati allegati. Mostra uno stato di "PASSED", e la ragione riportata dall'API REST per il passaggio:
+Se ora si torna alla [dashboard Automate di BrowserStack](https://automate.browserstack.com/dashboard/), la sessione di test dovrebbe essere visibile come prima, ma con i dati personalizzati associati. Mostra lo stato "PASSED" e il motivo del superamento riportato dall'API REST:
 
-![Risultati personalizzati di BrowserStack](bstack_custom_results.png)
+![Risultati personalizzati BrowserStack](bstack_custom_results.png)
 
 ### Sauce Labs
 
-Diamo un'occhiata a un esempio che dimostra come ottenere l'esecuzione dei test Selenium remotamente su Sauce Labs:
+Vediamo un esempio che dimostra l'esecuzione remota di test Selenium su Sauce Labs:
 
-1. All'interno della tua directory di progetto, crea un nuovo file chiamato `sauce_google_test.js`.
-2. Dai al file il seguente contenuto:
+1. Nella directory del progetto, creare un nuovo file chiamato `sauce_google_test.js`.
+2. Assegnargli il seguente contenuto:
 
    ```js
    const { Builder, By, Key } = require("selenium-webdriver");
@@ -674,43 +675,43 @@ Diamo un'occhiata a un esempio che dimostra come ottenere l'esecuzione dei test 
    driver.quit();
    ```
 
-3. Dalle [impostazioni utente di Sauce Labs](https://app.saucelabs.com/user-settings), ottieni il tuo nome utente e la chiave di accesso. Sostituisci i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con il tuo nome utente e i valori della chiave di accesso effettivi (e assicurati di tenerli al sicuro).
-4. Esegui il tuo test con il seguente comando:
+3. Dalle [impostazioni utente di Sauce Labs](https://app.saucelabs.com/user-settings), recuperare il nome utente e la chiave di accesso. Sostituire i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con i valori effettivi del nome utente e della chiave di accesso, assicurandosi di mantenerli protetti.
+4. Eseguire il test con il comando seguente:
 
    ```bash
    node sauce_google_test
    ```
 
-   Il test verrà inviato a Sauce Labs, e il risultato del test verrà restituito alla tua console. Ciò dimostra l'importanza di includere un qualche tipo di meccanismo di reporting dei risultati!
+   Il test verrà inviato a Sauce Labs e il risultato del test verrà restituito alla console. Questo mostra l'importanza di includere un qualche meccanismo di report dei risultati.
 
-5. Ora, se vai alla pagina [Dashboard dei test automatici di Sauce Labs](https://app.saucelabs.com/dashboard/tests), vedrai il tuo test elencato; da qui potrai vedere video, screenshot e altri dati simili.
-   ![Test automatico di Sauce Labs](sauce_labs_automated_test.png)
-
-> [!NOTE]
-> Il [Platform Configurator](https://saucelabs.com/products/platform-configurator#/) di Sauce Labs è uno strumento utile per generare oggetti di capacità da fornire alle tue istanze di driver, basato su quale browser/sistema operativo desideri testare.
+5. Se ora si va alla pagina della [dashboard dei test automatizzati Sauce Labs](https://app.saucelabs.com/dashboard/tests), verrà visualizzato il test nell'elenco; da qui sarà possibile vedere video, screenshot e altri dati simili.
+   ![Test automatizzato Sauce Labs](sauce_labs_automated_test.png)
 
 > [!NOTE]
-> Per dettagli più utili sui test con Sauce Labs e Selenium, controlla [Getting Started with Selenium for Automated Website Testing](https://docs.saucelabs.com/web-apps/automated-testing/selenium/), e [Instant Selenium Node.js Tests](https://docs.saucelabs.com/web-apps/automated-testing/selenium/sample-scripts/#nodejs).
+> Il [Platform Configurator](https://saucelabs.com/products/platform-configurator#/) di Sauce Labs è uno strumento utile per generare oggetti capability da fornire alle istanze del driver, in base al browser/sistema operativo sul quale si desidera eseguire i test.
 
-#### Inserire dettagli del test di Sauce Labs programmaticamente
+> [!NOTE]
+> Per ulteriori dettagli utili sui test con Sauce Labs e Selenium, consultare [Introduzione a Selenium per i test automatizzati dei siti web](https://docs.saucelabs.com/web-apps/automated-testing/selenium/) e [Test Selenium Node.js istantanei](https://docs.saucelabs.com/web-apps/automated-testing/selenium/sample-scripts/#nodejs).
 
-Puoi usare l'API di Sauce Labs per annotare il tuo test con più dettagli, come se il test è passato, il nome del test, ecc. Sauce Labs non conosce questi dettagli di default!
+#### Compilare programmaticamente i dettagli dei test Sauce Labs
 
-Per farlo, devi:
+È possibile usare l'API Sauce Labs per annotare il test con maggiori dettagli, ad esempio se è stato superato, il nome del test e così via. Sauce Labs non conosce questi dettagli per impostazione predefinita.
 
-1. Installare il wrapper Node di Sauce Labs usando il seguente comando (se non l'hai già fatto per questo progetto):
+Per farlo, è necessario:
+
+1. Installare il wrapper Node di Sauce Labs usando il comando seguente, se non è già stato fatto per questo progetto:
 
    ```bash
    npm install saucelabs --save-dev
    ```
 
-2. Richiede saucelabs — inserisci questo all'inizio del tuo file `sauce_google_test.js`, appena sotto le dichiarazioni variabili precedenti:
+2. Richiedere saucelabs: inserire questo all'inizio del file `sauce_google_test.js`, subito sotto le precedenti dichiarazioni di variabili:
 
    ```js
    const SauceLabs = require("saucelabs");
    ```
 
-3. Crea una nuova istanza di SauceLabs, aggiungendo quanto segue subito sotto a quello:
+3. Creare una nuova istanza di SauceLabs aggiungendo quanto segue subito sotto:
 
    ```js
    const saucelabs = new SauceLabs({
@@ -719,9 +720,9 @@ Per farlo, devi:
    });
    ```
 
-   Di nuovo, sostituisci i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con i tuoi valori effettivi di nome utente e chiave di accesso (nota che il pacchetto npm di saucelabs usa piuttosto confusamente `password`, non `accessKey`). Poiché li usi due volte ora, potresti voler creare un paio di variabili aiuto per memorizzarli.
+   Anche in questo caso, sostituire i segnaposto `YOUR-USER-NAME` e `YOUR-ACCESS-KEY` nel codice con i valori effettivi del nome utente e della chiave di accesso. Si noti che il pacchetto npm saucelabs usa, in modo piuttosto confuso, `password` anziché `accessKey`. Poiché ora vengono usati due volte, potrebbe essere opportuno creare un paio di variabili di supporto per memorizzarli.
 
-4. Sotto il blocco in cui definisci la variabile `driver` (appena sotto la linea `build()`), aggiungi il seguente blocco — questo ottiene l'`sessionID` corretto del driver che ci serve per scrivere dati al lavoro (puoi vederlo in azione nel blocco di codice successivo):
+4. Sotto il blocco in cui viene definita la variabile `driver`, subito sotto la riga `build()`, aggiungere il blocco seguente: questo ottiene il corretto `sessionID` del driver necessario per scrivere dati nel job. Lo si può vedere in azione nel blocco di codice successivo:
 
    ```js
    driver.getSession().then((sessionid) => {
@@ -729,7 +730,7 @@ Per farlo, devi:
    });
    ```
 
-5. Infine, sostituisci il blocco `driver.sleep(2000)` vicino al fondo del codice con quanto segue:
+5. Infine, sostituire il blocco `driver.sleep(2000)` vicino alla fine del codice con il seguente:
 
    ```js
    driver.sleep(2000).then(() => {
@@ -750,32 +751,32 @@ Per farlo, devi:
    });
    ```
 
-Qui abbiamo impostato una variabile `testPassed` a `true` o `false` a seconda se il test è passato o fallito, poi abbiamo usato il metodo `saucelabs.updateJob()` per aggiornare i dettagli.
+Qui è stata impostata una variabile `testPassed` su `true` o `false` a seconda che il test sia superato o fallisca, quindi è stato usato il metodo `saucelabs.updateJob()` per aggiornare i dettagli.
 
-Se ora torni alla pagina [Dashboard dei test automatici di Sauce Labs](https://app.saucelabs.com/dashboard/tests), dovresti vedere che il tuo nuovo lavoro ha ora i dati aggiornati allegati a esso:
+Se ora si torna alla pagina della [dashboard dei test automatizzati Sauce Labs](https://app.saucelabs.com/dashboard/tests), il nuovo job dovrebbe ora avere i dati aggiornati associati:
 
-![Informazioni di lavoro aggiornate di Sauce Labs](sauce_labs_updated_job_info.png)
+![Informazioni aggiornate sul job Sauce Labs](sauce_labs_updated_job_info.png)
 
-### Il tuo server remoto
+### Il proprio server remoto
 
-Se non vuoi usare un servizio come Sauce Labs o BrowserStack, puoi sempre configurare il tuo server di test remoto. Esaminiamo come farlo.
+Se non si desidera usare un servizio come Sauce Labs o BrowserStack, è sempre possibile configurare il proprio server di test remoto. Vediamo come farlo.
 
-1. Il server remoto Selenium richiede Java per funzionare. Scarica l'ultimo JDK per la tua piattaforma dalla [pagina dei download di Java SE](https://www.oracle.com/java/technologies/downloads/). Installalo quando è scaricato.
-2. Successivamente, scarica l'ultimo [server standalone di Selenium](https://selenium-release.storage.googleapis.com/index.html) — questo funge da proxy tra il tuo script e i driver del browser. Scegli il numero dell'ultima versione stabile (cioè, non una beta), e dall'elenco scegli un file che inizi con "selenium-server-standalone". Quando è stato scaricato, mettilo in un posto sensato, come nella tua directory home. Se non hai già aggiunto la posizione a `PATH`, fallo ora (vedi la sezione [Impostazione di Selenium in Node](#configurazione_di_selenium_in_node)).
-3. Esegui il server standalone inserendo quanto segue in un terminale sul tuo server computer
+1. Il server remoto Selenium richiede Java per essere eseguito. Scaricare l'ultimo JDK per la piattaforma dalla [pagina dei download Java SE](https://www.oracle.com/java/technologies/downloads/). Installarlo una volta scaricato.
+2. Successivamente, scaricare l'ultimo [server standalone Selenium](https://selenium-release.storage.googleapis.com/index.html), che funge da proxy tra lo script e i driver del browser. Scegliere il numero di versione stabile più recente, ossia non beta, e nell'elenco scegliere un file che inizia con "selenium-server-standalone". Al termine del download, collocarlo in una posizione appropriata, ad esempio nella directory home. Se la posizione non è stata ancora aggiunta a `PATH`, farlo ora, vedere la sezione [Configurare Selenium in Node](#configurare_selenium_in_node).
+3. Eseguire il server standalone inserendo quanto segue in un terminale sul computer server:
 
    ```bash
    java -jar selenium-server-standalone-3.0.0.jar
    ```
 
-   (aggiorna il nome file `.jar`) in modo che corrisponda esattamente al file che hai.
+   Aggiornare il nome file `.jar` affinché corrisponda esattamente al file disponibile.
 
-4. Il server verrà eseguito su `http://localhost:4444/wd/hub` — prova a visitarci ora per vedere cosa ottieni.
+4. Il server verrà eseguito su `http://localhost:4444/wd/hub`: provare a visitare ora questo indirizzo per vedere cosa viene restituito.
 
-Ora che abbiamo il server in esecuzione, creiamo un test demo che verrà eseguito sul server selenium remoto.
+Ora che il server è in esecuzione, creiamo un test dimostrativo che verrà eseguito sul server Selenium remoto.
 
-1. Crea una copia del tuo file `google_test.js`, e chiamalo `google_test_remote.js`; mettilo nella tua directory di progetto.
-2. Aggiorna la linea di codice (che inizia con `const driver = …`) come segue
+1. Creare una copia del file `google_test.js` e chiamarla `google_test_remote.js`; collocarla nella directory del progetto.
+2. Aggiornare la riga di codice, che inizia con `const driver = …`, come segue:
 
    ```js
    const driver = new Builder()
@@ -784,34 +785,31 @@ Ora che abbiamo il server in esecuzione, creiamo un test demo che verrà eseguit
      .build();
    ```
 
-3. Esegui il tuo test, e dovresti vederlo eseguire come previsto; questa volta però lo eseguirai sul server standalone:
+3. Eseguire il test: dovrebbe essere eseguito come previsto; questa volta, tuttavia, verrà eseguito sul server standalone:
 
    ```bash
    node google_test_remote.js
    ```
 
-Quindi questo è piuttosto interessante. Abbiamo testato questo localmente, ma potresti configurarlo su praticamente qualsiasi server insieme ai driver del browser rilevanti, e poi connettere i tuoi script ad esso usando l'URL che scegli di esporlo.
+Questo è molto utile. Il test è stato eseguito localmente, ma questa configurazione può essere predisposta su quasi qualsiasi server insieme ai driver del browser pertinenti, per poi connettere gli script a esso usando l'URL scelto per esporlo.
 
-## Integrazione di Selenium con strumenti CI
+## Integrare Selenium con strumenti CI
 
-Come altro punto, è anche possibile integrare Selenium e strumenti relativi come LambdaTest e Sauce Labs con strumenti di integrazione continua (CI) — questo è utile, poiché significa che puoi eseguire i tuoi test tramite uno strumento CI, e commettere solo nuove modifiche al tuo repository di codice se i test passano.
+È inoltre possibile integrare Selenium e strumenti correlati come Sauce Labs con strumenti di {{Glossary("continuous_integration", "integrazione continua")}} (CI). È utile perché consente di eseguire i test tramite uno strumento CI e di effettuare il commit di nuove modifiche al repository del codice solo se i test vengono superati.
 
-È fuori ambito esaminare quest'area in dettaglio in questo articolo, ma suggeriamo di iniziare con Travis CI — questo è probabilmente lo strumento CI più semplice con cui iniziare e ha buone integrazioni con strumenti web come GitHub e Node.
+L'analisi dettagliata di quest'area non rientra nello scopo di questo articolo, ma è consigliabile iniziare con Travis CI: è probabilmente lo strumento CI più semplice da iniziare a usare e dispone di una buona integrazione con strumenti web quali GitHub e Node.
 
-Per iniziare, vedi ad esempio:
+Per iniziare, vedere ad esempio:
 
-- [Travis CI per principianti completi](https://docs.travis-ci.com/user/for-beginners)
-- [Costruire un progetto Node.js](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/) (con Travis)
-- [Usare LambdaTest con Travis CI](https://www.lambdatest.com/support/docs/travis-ci-with-lambdatest/)
-- [Usare LambdaTest con CircleCI](https://www.lambdatest.com/support/docs/circleci-integration-with-lambdatest/)
-- [Usare LambdaTest con Jenkins](https://www.lambdatest.com/support/docs/jenkins-with-lambdatest/)
+- [Travis CI per principianti assoluti](https://docs.travis-ci.com/user/for-beginners)
+- [Creare un progetto Node.js](https://docs.travis-ci.com/user/languages/javascript-with-nodejs/) (con Travis)
 - [Usare Sauce Labs con Travis CI](https://docs.travis-ci.com/user/sauce-connect/)
 
 > [!NOTE]
-> Se desideri eseguire test continui mediante **automazione senza codice** puoi utilizzare [Endtest](https://www.endtest.io/) o [TestingBot](https://testingbot.com/).
+> Per eseguire test continui con **automazione senza codice**, è possibile usare [Endtest](https://endtest.io/) oppure [TestingBot](https://testingbot.com/).
 
 ## Riepilogo
 
-Questo modulo dovrebbe essere stato divertente e dovrebbe averti dato abbastanza informazioni sull'argomento della scrittura e dell'esecuzione di test automatizzati per farti iniziare con la scrittura dei tuoi test automatizzati.
+Questo modulo dovrebbe essere stato divertente e dovrebbe aver fornito informazioni sufficienti sulla scrittura e sull'esecuzione di test automatizzati per iniziare a scrivere i propri test automatizzati.
 
 {{PreviousMenu("Learn_web_development/Extensions/Testing/Automated_testing", "Learn_web_development/Extensions/Testing")}}

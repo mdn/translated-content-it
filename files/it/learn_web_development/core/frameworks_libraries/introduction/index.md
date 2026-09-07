@@ -3,97 +3,100 @@ title: Introduzione ai framework lato client
 short-title: Introduction
 slug: Learn_web_development/Core/Frameworks_libraries/Introduction
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 238b07dfeb8c347c590bd02a63140867525d511c
 ---
 
 {{NextMenu("Learn_web_development/Core/Frameworks_libraries/Main_features", "Learn_web_development/Core/Frameworks_libraries")}}
 
-Iniziamo il nostro esame dei framework con una panoramica generale dell'area, guardando una breve storia di JavaScript e dei framework, perché i framework esistono e cosa ci offrono, come iniziare a pensare di scegliere un framework da imparare e quali alternative esistono ai framework lato client.
+Iniziamo l'analisi dei framework con una panoramica generale dell'ambito, esaminando una breve storia di JavaScript e dei framework, perché esistono i framework e cosa offrono, come iniziare a scegliere un framework da imparare e quali alternative esistono ai framework lato client.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i linguaggi <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a>, e
-        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a> core.
+        Conoscenza dei linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
+        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Obiettivi di apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Cos'è il codice di terze parti e come sono nati i framework JavaScript lato client.</li>
-          <li>Quali problemi risolvono i framework, quali alternative ci sono e come sceglierne uno.</li>
+          <li>Cosa sia il codice di terze parti e come sono nati i framework JavaScript lato client.</li>
+          <li>Quali problemi risolvono i framework, quali alternative esistono e come sceglierne uno.</li>
           <li>La differenza tra librerie e framework.</li>
-          <li>Quando i framework dovrebbero e non dovrebbero essere utilizzati.</li>
+          <li>Quando usare e quando non usare i framework.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## L'emergere di librerie e framework
+## La nascita di librerie e framework
 
-Quando JavaScript è stato lanciato nel 1996, aggiungeva interattività e vivacità occasionali a un web che era, fino ad allora, composto di documenti statici. Il web è diventato non solo un luogo per _leggere_, ma per _fare cose_. La popolarità di JavaScript è aumentata costantemente. Gli sviluppatori che lavoravano con JavaScript hanno scritto strumenti per risolvere i problemi che affrontavano e li hanno confezionati in pacchetti riutilizzabili chiamati **librerie**, in modo da poter condividere le loro soluzioni con altri. Questo ecosistema condiviso di librerie ha aiutato a plasmare la crescita del web, e alla fine ha aperto la strada ai framework.
+Quando JavaScript debuttò nel 1996, aggiunse interattività e vivacità occasionali a un web che, fino ad allora, era composto da documenti statici. Il web divenne non solo un luogo in cui _leggere cose_, ma anche in cui _fare cose_. La popolarità di JavaScript aumentò costantemente. Gli sviluppatori che lavoravano con JavaScript scrissero strumenti per risolvere i problemi che incontravano e li raccolsero in pacchetti riutilizzabili chiamati **librerie**, così da poter condividere le proprie soluzioni con altri. Questo ecosistema condiviso di librerie contribuì a plasmare la crescita del web e alla fine portò ai framework.
 
-Un **framework** è una libreria che offre opinioni su come dovrebbe essere costruito il software. Queste opinioni consentono una prevedibilità e una omogeneità in un'applicazione; la prevedibilità consente al software di scalare fino a dimensioni enormi e di rimanere comunque mantenibile; la prevedibilità e la manutenibilità sono essenziali per la salute e la longevità del software. L'avvento dei moderni framework JavaScript ha reso molto più facile costruire applicazioni altamente dinamiche e interattive.
+Un **framework** è una libreria che propone un approccio preciso alla costruzione del software. Questo approccio consente prevedibilità e omogeneità in un'applicazione; la prevedibilità permette al software di crescere fino a dimensioni enormi restando comunque manutenibile; prevedibilità e manutenibilità sono essenziali per la salute e la longevità del software. L'avvento dei moderni framework JavaScript ha reso molto più semplice creare applicazioni altamente dinamiche e interattive.
 
-I framework JavaScript alimentano gran parte del software impressionante sul web moderno, comprese molte delle pagine web che probabilmente usi ogni giorno.
+I framework JavaScript alimentano gran parte del notevole software presente sul web moderno, inclusi molti dei siti web che probabilmente vengono usati ogni giorno.
 
-## Quali framework sono disponibili?
+## Quali framework esistono?
 
-Ci sono molti framework disponibili, ma attualmente i "quattro grandi" sono considerati i seguenti.
+Esistono molti framework, ma attualmente i "quattro grandi" sono considerati i seguenti.
 
 ### Ember
 
-[Ember](https://emberjs.com/) è stato inizialmente rilasciato nel dicembre 2011 come continuazione del lavoro iniziato nel progetto [SproutCore](https://en.wikipedia.org/wiki/SproutCore). È un framework più vecchio che ha meno utenti rispetto a soluzioni più moderne come React e Vue, ma gode ancora di una discreta popolarità grazie alla sua stabilità, al supporto della comunità e a alcuni principi di codifica intelligenti.
+[Ember](https://emberjs.com/) fu inizialmente rilasciato nel dicembre 2011 come continuazione del lavoro iniziato nel progetto [SproutCore](https://en.wikipedia.org/wiki/SproutCore). È un framework meno recente che ha meno utenti rispetto ad alternative più moderne come React e Vue, ma gode ancora di una discreta popolarità grazie alla sua stabilità, al supporto della community e ad alcuni ingegnosi principi di programmazione.
 
 ### Angular
 
-[Angular](https://angular.dev/) è un framework open-source per applicazioni web guidato dal Team Angular di Google e da una comunità di persone e aziende. È una riscrittura completa del team che ha costruito [AngularJS](https://angularjs.org/). Angular è stato ufficialmente rilasciato il 14 settembre 2016.
+[Angular](https://angular.dev/) è un framework open source per applicazioni web guidato dall'Angular Team di Google e da una community di individui e aziende. È una riscrittura completa realizzata dallo stesso team che ha creato [AngularJS](https://angularjs.org/). Angular è stato rilasciato ufficialmente il 14 settembre 2016.
 
-Angular è un framework basato su componenti che utilizza template HTML dichiarativi. Al momento della creazione, in modo trasparente per gli sviluppatori, il compilatore del framework traduce i template in istruzioni JavaScript ottimizzate. Angular utilizza [TypeScript](https://www.typescriptlang.org/), un superset di JavaScript che esamineremo più dettagliatamente nel capitolo successivo.
+Angular è un framework basato su componenti che usa template HTML dichiarativi. Durante la fase di build, in modo trasparente per gli sviluppatori, il compilatore del framework traduce i template in istruzioni JavaScript ottimizzate. Angular utilizza [TypeScript](https://www.typescriptlang.org/), un superset di JavaScript che verrà analizzato con un po' più di dettaglio nel prossimo capitolo.
 
 ### Vue
 
-Dopo aver lavorato e imparato dal progetto originale [AngularJS](https://angularjs.org/), Evan You ha rilasciato [Vue](https://vuejs.org/) nel 2014. Vue è il più giovane dei quattro grandi, ma ha recentemente goduto di un aumento di popolarità.
+Dopo aver lavorato al progetto originale [AngularJS](https://angularjs.org/) e averne tratto insegnamenti, Evan You rilasciò [Vue](https://vuejs.org/) nel 2014. Vue è il più giovane dei quattro grandi, ma ha recentemente registrato un aumento di popolarità.
 
-Vue, come [AngularJS](https://angularjs.org/), estende l'HTML con parte del suo codice. A parte questo, si affida principalmente a JavaScript moderno e standard.
+Vue, come Angular, estende HTML con parte del proprio codice. A parte questo, si basa principalmente su JavaScript moderno e standard.
 
 ### React
 
-Facebook ha rilasciato [React](https://react.dev/) nel 2013. A quel punto, lo aveva già utilizzato internamente per risolvere molti dei suoi problemi. Tecnicamente, React stesso _non è_ un framework; è una libreria per il rendering di componenti UI. React è usato in combinazione con _altre_ librerie per creare applicazioni — React e [React Native](https://reactnative.dev/) consentono agli sviluppatori di creare applicazioni mobili; React e [ReactDOM](https://react.dev/reference/react-dom) permettono loro di creare applicazioni web, ecc.
+Facebook rilasciò [React](https://react.dev/) nel 2013. A quel punto, stava già usando React internamente per risolvere molti dei suoi problemi. Tecnicamente, React in sé _non_ è un framework; è una libreria per il rendering di componenti UI. React viene usato in combinazione con _altre_ librerie per creare applicazioni — React e [React Native](https://reactnative.dev/) consentono agli sviluppatori di creare applicazioni mobili; React e [ReactDOM](https://react.dev/reference/react-dom) consentono di creare applicazioni web, e così via.
 
-Poiché React e ReactDOM sono così spesso usati insieme, React è colloquialmente inteso come un framework JavaScript. Man mano che leggerai questo modulo, lavoreremo con questa comprensione colloquiale.
+Poiché React e ReactDOM vengono così spesso usati insieme, React è comunemente considerato un framework JavaScript. Durante la lettura di questo modulo, verrà adottata questa interpretazione comune.
 
 React estende JavaScript con una sintassi simile a HTML, nota come [JSX](https://react.dev/learn/writing-markup-with-jsx).
 
 ## Perché esistono i framework?
 
-Abbiamo discusso dell'ambiente che ha ispirato la creazione dei framework, ma non davvero _perché_ gli sviluppatori hanno sentito il bisogno di crearli. Esplorare il perché richiede prima di esaminare le sfide dello sviluppo di software.
+È stato discusso il contesto che ha ispirato la creazione dei framework, ma non davvero il _perché_ gli sviluppatori abbiano sentito la necessità di crearli. Per esplorare il perché, è necessario prima esaminare le difficoltà dello sviluppo software.
 
-Considera un tipo comune di applicazione: un creatore di liste di cose da fare, che esamineremo implementando con una varietà di framework nei capitoli futuri. Questa applicazione dovrebbe consentire agli utenti di fare cose come visualizzare un elenco di attività, aggiungere una nuova attività e eliminare un'attività; e deve farlo mantenendo in modo affidabile il tracciamento e l'aggiornamento dei dati sottostanti l'applicazione. Nel contesto dello sviluppo software, questi dati sottostanti sono conosciuti come stato.
+Si consideri un tipo comune di applicazione: un creatore di liste di cose da fare, che verrà implementato usando una varietà di framework nei capitoli successivi. Questa applicazione dovrebbe permettere agli utenti di fare cose come visualizzare una lista di attività, aggiungere una nuova attività ed eliminare un'attività; inoltre, deve farlo tenendo traccia e aggiornando in modo affidabile i dati sottostanti all'applicazione. Nello sviluppo software, questi dati sottostanti sono noti come stato.
 
-Ogni nostro obiettivo è teoricamente semplice in isolamento. Possiamo iterare sui dati per visualizzarli; possiamo aggiungere a un oggetto per creare una nuova attività; possiamo utilizzare un identificatore per trovare, modificare o eliminare un'attività. Quando ricordiamo che l'applicazione deve consentire all'utente di fare _tutte_ queste cose attraverso il browser, iniziano a emergere delle crepe. **Il vero problema è questo: ogni volta che cambiamo lo stato della nostra applicazione, abbiamo bisogno di aggiornare l'interfaccia utente per farla corrispondere.**
+Ciascuno degli obiettivi è teoricamente semplice se considerato isolatamente. È possibile iterare sui dati per visualizzarli; è possibile aggiungere a un oggetto per creare una nuova attività; è possibile usare un identificatore per trovare, modificare o eliminare un'attività. Quando si ricorda che l'applicazione deve permettere all'utente di fare _tutte_ queste cose tramite il browser, iniziano a emergere alcune difficoltà. **Il vero problema è questo: ogni volta che si modifica lo stato dell'applicazione, occorre aggiornare la UI affinché corrisponda.**
 
-Possiamo esaminare la difficoltà di questo problema osservando solo _una_ caratteristica della nostra app di lista delle cose da fare: visualizzare un elenco di attività.
+È possibile esaminare la difficoltà di questo problema osservando una sola funzionalità dell'app di lista di cose da fare: il rendering di una lista di attività.
 
-## La verbosità dei cambiamenti del DOM
+## La verbosità delle modifiche al DOM
 
-Creare elementi HTML e visualizzarli nel browser al momento giusto richiede sorprendentemente un sacco di codice. Supponiamo che il nostro stato sia un array di oggetti strutturato in questo modo:
+Costruire elementi HTML e visualizzarli nel browser al momento opportuno richiede una quantità sorprendente di codice. Si supponga che lo stato sia un archivio chiave-valore contenente `taskName` (controllato dall'input di testo) e la lista di `tasks`:
 
 ```js
-const state = [
-  {
-    id: "todo-0",
-    name: "Learn some frameworks!",
-  },
-];
+const state = {
+  taskName: "",
+  tasks: [
+    {
+      id: "todo-0",
+      name: "Learn some frameworks!",
+    },
+  ],
+};
 ```
 
-Come mostriamo uno di questi compiti ai nostri utenti? Vogliamo rappresentare ogni compito come un elemento della lista – un elemento HTML [`<li>`](/it/docs/Web/HTML/Reference/Elements/li) all'interno di un elemento della lista non ordinata (un [`<ul>`](/it/docs/Web/HTML/Reference/Elements/ul)). Come lo facciamo? Potrebbe sembrare qualcosa del genere:
+Come viene mostrata una di queste attività agli utenti? Si desidera rappresentare ogni attività come un elemento di lista, ovvero un elemento HTML [`<li>`](/it/docs/Web/HTML/Reference/Elements/li) all'interno di un elemento lista non ordinata (un [`<ul>`](/it/docs/Web/HTML/Reference/Elements/ul)). Come si crea? Potrebbe avere un aspetto simile al seguente:
 
 ```js
 function buildTodoItemEl(id, name) {
@@ -110,21 +113,31 @@ function buildTodoItemEl(id, name) {
 }
 ```
 
-Qui, usiamo il metodo [`document.createElement()`](/it/docs/Web/API/Document/createElement) per creare il nostro `<li>`, e molte più righe di codice per creare le proprietà e gli elementi figli di cui ha bisogno.
+Qui viene usato il metodo [`document.createElement()`](/it/docs/Web/API/Document/createElement) per creare il `<li>` e diverse altre righe di codice per creare le proprietà e gli elementi figli necessari.
 
-Il frammento precedente fa riferimento a un'altra funzione di costruzione: `buildDeleteButtonEl()`. Segue un modello simile a quello che abbiamo usato per costruire un elemento della lista:
+Lo snippet precedente fa riferimento a un'altra funzione di costruzione: `buildDeleteButtonEl()`. Segue un modello simile a quello usato per costruire un elemento di lista:
 
 ```js
 function buildDeleteButtonEl(id) {
   const button = document.createElement("button");
   button.setAttribute("type", "button");
+  button.addEventListener("click", () => {
+    state.tasks = state.tasks.filter((t) => t.id !== id);
+    renderTodoList();
+  });
   button.textContent = "Delete";
 
   return button;
 }
 ```
 
-Questo pulsante non fa ancora nulla, ma lo farà più tardi una volta che decidiamo di implementare la nostra funzione di eliminazione. Il codice che renderà i nostri elementi sulla pagina potrebbe essere qualcosa di simile a questo:
+La parte interessante da notare è che ogni volta che lo stato viene aggiornato, occorre chiamare manualmente `renderTodoList` affinché lo stato venga sincronizzato con lo schermo. Il codice che visualizzerà gli elementi sulla pagina potrebbe essere simile al seguente:
+
+```js hidden
+const todoFormEl = document.querySelector("#todo-form");
+const todoInputEl = document.querySelector("#todo-input");
+const todoListEl = document.querySelector("#todo-list");
+```
 
 ```js
 function renderTodoList() {
@@ -134,22 +147,118 @@ function renderTodoList() {
     frag.appendChild(item);
   });
 
-  while (todoListEl.firstChild) {
-    todoListEl.removeChild(todoListEl.firstChild);
+  while (todoListEl.lastChild) {
+    todoListEl.removeChild(todoListEl.lastChild);
   }
   todoListEl.appendChild(frag);
 }
 ```
 
-Ora abbiamo quasi trenta righe di codice dedicate _solo_ all'interfaccia utente – _solo_ per visualizzare qualcosa nel DOM – e in nessun momento aggiungiamo classi che potremmo utilizzare in seguito per stilizzare i nostri elementi della lista!
+Ora ci sono quasi trenta righe di codice dedicate _solo_ alla UI, _solo_ al rendering di qualcosa nel DOM, e in nessun momento vengono aggiunte classi che potrebbero essere usate in seguito per assegnare stili agli elementi della lista.
 
-Lavorare direttamente con il DOM, come in questo esempio, richiede di capire molte cose su come funziona il DOM: come creare elementi; come cambiare le loro proprietà; come mettere gli elementi dentro gli altri; come farli apparire sulla pagina. Nessuno di questo codice gestisce effettivamente le interazioni degli utenti o si occupa di aggiungere o eliminare un'attività. Se aggiungiamo queste funzionalità, dobbiamo ricordare di aggiornare la nostra interfaccia utente al momento giusto e nel modo giusto.
+Per chi fosse curioso, di seguito è disponibile una demo completa e funzionante. È possibile fare clic sul pulsante "Play" per visualizzare il codice sorgente nel playground.
 
-I framework JavaScript sono stati creati per rendere questo tipo di lavoro molto più facile — esistono per fornire una migliore _esperienza dello sviluppatore_. Non portano nuovi poteri a JavaScript; ti danno un accesso più facile ai poteri di JavaScript in modo che tu possa costruire per il web di oggi.
+```html hidden
+<h1>TodoMatic</h1>
+<form id="todo-form">
+  <label for="todo-input">What needs to be done?</label>
+  <input type="text" id="todo-input" autocomplete="on" />
+  <button type="submit">Add</button>
+</form>
+<ul id="todo-list"></ul>
+```
 
-Se vuoi vedere esempi di codice di questa sezione in azione, puoi dare un'occhiata a una [versione funzionante dell'app su CodePen](https://codepen.io/mxmason/pen/XWbPNmw), che consente agli utenti di aggiungere ed eliminare nuove attività.
+```css hidden
+* + * {
+  margin-top: 0.4rem;
+}
 
-Leggi di più sulle funzionalità JavaScript utilizzate in questa sezione:
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2rem;
+  line-height: 1.25;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Roboto", "Helvetica", "Arial",
+    sans-serif;
+  color: hsl(0 0 0.13);
+
+  width: 95%;
+  max-width: 30em;
+  padding-bottom: 2em;
+  margin: 0 auto;
+}
+
+button,
+input[type="text"] {
+  font-size: 100%;
+  line-height: 1.15;
+  font-family: inherit;
+  margin: 0;
+
+  padding: 0.5rem;
+  border: 1px solid #707070;
+  border-radius: 2px;
+}
+
+* + button {
+  margin-left: 0.4rem;
+}
+
+label {
+  display: table;
+}
+
+ul {
+  margin-top: 1.6rem;
+  padding-left: 2em;
+}
+
+label + input[type="text"] {
+  margin-top: 0.4rem;
+}
+```
+
+```js hidden
+function generateUniqueId(prefix = "prefix") {
+  return `${prefix}-${Math.floor(Math.random() * Date.now())}`;
+}
+
+function createTask(name) {
+  return {
+    name,
+    id: generateUniqueId("todo"),
+  };
+}
+
+function renderInput() {
+  todoInputEl.value = state.taskName;
+}
+
+todoInputEl.addEventListener("change", (e) => {
+  state.taskName = e.target.value;
+});
+todoFormEl.addEventListener("submit", (e) => {
+  e.preventDefault();
+  state.tasks = [...state.tasks, createTask(state.taskName)];
+  state.taskName = "";
+  renderInput();
+  renderTodoList();
+});
+renderInput();
+renderTodoList();
+```
+
+{{EmbedLiveSample("the_verbosity_of_dom_change", "", "400", , , , , "allow-forms")}}
+
+Lavorare direttamente con il DOM, come in questo esempio, richiede di comprendere molte cose sul funzionamento del DOM: come creare elementi; come modificarne le proprietà; come inserire elementi uno dentro l'altro; come visualizzarli nella pagina. Nessuno di questo codice gestisce realmente le interazioni dell'utente o affronta l'aggiunta o l'eliminazione di un'attività. Se si aggiungono queste funzionalità, occorre ricordarsi di aggiornare la UI al momento giusto e nel modo giusto.
+
+I framework JavaScript sono stati creati per rendere questo tipo di lavoro molto più semplice: esistono per offrire una migliore _esperienza di sviluppo_. Non conferiscono nuovi poteri a JavaScript; rendono più semplice accedere alle capacità di JavaScript per poter sviluppare per il web attuale.
+
+Approfondire le funzionalità JavaScript usate in questa sezione:
 
 - [`Array.forEach()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 - [`Document.createDocumentFragment()`](/it/docs/Web/API/Document/createDocumentFragment)
@@ -159,11 +268,11 @@ Leggi di più sulle funzionalità JavaScript utilizzate in questa sezione:
 - [`Node.removeChild()`](/it/docs/Web/API/Node/removeChild)
 - [`Node.textContent`](/it/docs/Web/API/Node/textContent)
 
-## Un altro modo di costruire le interfacce utente
+## Un altro modo per creare UI
 
-Ogni framework JavaScript offre un modo per scrivere interfacce utente più _dichiarativamente_. Cioè, ti permettono di scrivere codice che descrive come dovrebbe apparire la tua interfaccia utente, e il framework lo realizza nel DOM dietro le quinte.
+Ogni framework JavaScript offre un modo per scrivere interfacce utente in modo più _dichiarativo_. Ovvero, consentono di scrivere codice che descrive come dovrebbe apparire la UI, e il framework lo realizza nel DOM dietro le quinte.
 
-L'approccio JavaScript vanilla al costruire nuovi elementi DOM in ripetizione era difficile da capire a colpo d'occhio. Al contrario, il seguente blocco di codice illustra il modo in cui potresti utilizzare Vue per descrivere la nostra lista di compiti:
+L'approccio JavaScript vanilla per creare ripetutamente nuovi elementi DOM era difficile da comprendere a colpo d'occhio. Al contrario, il seguente blocco di codice illustra il modo in cui Vue potrebbe essere usato per descrivere la lista di attività:
 
 ```html
 <ul>
@@ -174,110 +283,110 @@ L'approccio JavaScript vanilla al costruire nuovi elementi DOM in ripetizione er
 </ul>
 ```
 
-Ecco. Questo frammento riduce quasi trenta righe di codice a sei righe. Se le parentesi graffe e gli attributi `v-` qui ti sono estranei, va bene; imparerai la sintassi specifica di Vue più avanti nel modulo. La cosa da osservare qui è che questo codice somiglia alla UI che rappresenta, mentre il codice JavaScript vanilla no.
+Tutto qui. Questo snippet riduce quasi trenta righe di codice a sei righe. Se le parentesi graffe e gli attributi `v-` non sono familiari, non è un problema; la sintassi specifica di Vue verrà illustrata più avanti nel modulo. L'aspetto importante è che questo codice assomiglia alla UI che rappresenta, mentre il codice JavaScript vanilla no.
 
-Grazie a Vue, non abbiamo dovuto scrivere le nostre funzioni per costruire la UI; il framework si occuperà di ciò per noi in un modo ottimizzato ed efficiente. Il nostro unico ruolo qui è stato quello di descrivere a Vue come dovrebbe apparire ogni elemento. Gli sviluppatori che sono familiari con Vue possono rapidamente capire cosa sta succedendo quando si uniscono al nostro progetto. Vue non è solo in questo: usare un framework migliora l'efficienza del team oltre che quella individuale.
+Grazie a Vue, non è stato necessario scrivere funzioni per costruire la UI; il framework se ne occuperà in modo ottimizzato ed efficiente. L'unico ruolo qui era descrivere a Vue l'aspetto che dovrebbe avere ogni elemento. Gli sviluppatori che conoscono Vue possono comprendere rapidamente cosa sta accadendo quando entrano nel progetto. Vue non è l'unico in questo: l'uso di un framework migliora l'efficienza sia del team sia del singolo sviluppatore.
 
-È possibile fare cose _simili_ a questa in JavaScript vanilla. [Le stringhe di literal template](/it/docs/Web/JavaScript/Reference/Template_literals) rendono facile scrivere stringhe di HTML che rappresentano quello che l'elemento finale sembrerebbe. Potrebbe essere un'idea utile per qualcosa di semplice come la nostra applicazione di lista delle cose da fare, ma non è sostenibile per grandi applicazioni che gestiscono migliaia di record di dati e potrebbero visualizzare altrettanti elementi unici in una interfaccia utente.
+È possibile fare cose _simili_ in JavaScript vanilla. Le [stringhe template literal](/it/docs/Web/JavaScript/Reference/Template_literals) facilitano la scrittura di stringhe HTML che rappresentano l'aspetto dell'elemento finale. Potrebbe essere un'idea utile per qualcosa di semplice come l'applicazione di lista di cose da fare, ma non è manutenibile per applicazioni di grandi dimensioni che gestiscono migliaia di record di dati e potrebbero visualizzare altrettanti elementi unici in un'interfaccia utente.
 
-## Altre cose che i framework ci offrono
+## Altri vantaggi offerti dai framework
 
-Vediamo alcuni dei vantaggi offerti dai framework. Come abbiamo suggerito prima, i vantaggi dei framework sono raggiungibili con JavaScript vanilla, ma usare un framework elimina tutto il carico cognitivo di dover risolvere questi problemi da soli.
+Esaminiamo alcuni degli altri vantaggi offerti dai framework. Come accennato in precedenza, i vantaggi dei framework sono ottenibili con JavaScript vanilla, ma l'uso di un framework elimina tutto il carico cognitivo necessario per risolvere personalmente questi problemi.
 
 ### Strumenti
 
-Poiché ognuno dei framework in questo modulo ha una grande e attiva comunità, l'ecosistema di ogni framework fornisce strumenti che migliorano l'esperienza dello sviluppatore. Questi strumenti rendono facile aggiungere cose come test (per assicurarti che la tua applicazione si comporti come dovrebbe) o linting (per assicurarti che il tuo codice sia privo di errori e stilisticamente coerente).
+Poiché ciascuno dei framework di questo modulo dispone di una community ampia e attiva, l'ecosistema di ogni framework offre strumenti che migliorano l'esperienza di sviluppo. Questi strumenti facilitano l'aggiunta di elementi quali test (per assicurare che l'applicazione si comporti come previsto) o linting (per assicurare che il codice sia privo di errori e coerente nello stile).
 
 > [!NOTE]
-> Se vuoi scoprire maggiori dettagli sui concetti di strumenti web, dai un'occhiata alla nostra [Panoramica degli strumenti lato client](/it/docs/Learn_web_development/Extensions/Client-side_tools/Overview).
+> Per maggiori dettagli sui concetti relativi agli strumenti web, consultare la [panoramica degli strumenti lato client](/it/docs/Learn_web_development/Extensions/Client-side_tools/Overview).
 
-### Compartmentalization
+### Compartimentazione
 
-La maggior parte dei framework principali incoraggia gli sviluppatori ad astrarre le diverse parti delle loro interfacce utente in _componenti_ — blocchi di codice manutenibili e riutilizzabili che possono comunicare tra loro. Tutto il codice relativo a un determinato componente può trovarsi in un file (o in un paio di file specifici) in modo che tu, come sviluppatore, sappia esattamente dove andare per apportare modifiche a quel componente. In un'app JavaScript vanilla, dovresti creare il tuo insieme di convenzioni per ottenere questo in modo efficiente e scalabile. Molti sviluppatori JavaScript, se lasciati alle loro disposizioni, potrebbero finire con tutto il codice relativo a una parte dell'interfaccia utente sparso in tutto un file, o in un altro file del tutto.
+La maggior parte dei framework principali incoraggia gli sviluppatori ad astrarre le diverse parti delle proprie interfacce utente in _componenti_: porzioni di codice manutenibili e riutilizzabili che possono comunicare tra loro. Tutto il codice relativo a un determinato componente può risiedere in un file, o in un paio di file specifici, così che lo sviluppatore sappia esattamente dove intervenire per apportare modifiche a quel componente. In un'app JavaScript vanilla, sarebbe necessario creare un insieme di convenzioni per ottenere questo risultato in modo efficiente e scalabile. Molti sviluppatori JavaScript, lasciati a se stessi, potrebbero finire per distribuire in tutto un file il codice relativo a una parte della UI, oppure collocarlo del tutto in un altro file.
 
 ### Routing
 
-La caratteristica più essenziale del web è che consente agli utenti di navigare da una pagina all'altra – è, dopo tutto, una rete di documenti interconnessi. Quando segui un link su questo stesso sito, il tuo browser comunica con un server e recupera nuovi contenuti da visualizzare per te. Mentre lo fa, l'URL nella barra degli indirizzi cambia. Puoi salvare questo nuovo URL e tornare alla pagina in seguito, o condividerlo con altri in modo che possano trovare facilmente la stessa pagina. Il tuo browser ricorda la tua cronologia di navigazione e ti consente di navigare avanti e indietro. Questo è chiamato **routing lato server**.
+La funzionalità più essenziale del web è che consente agli utenti di navigare da una pagina all'altra: è, dopotutto, una rete di documenti interconnessi. Seguendo un collegamento su questo stesso sito web, il browser comunica con un server e recupera nuovo contenuto da visualizzare. Nel farlo, l'URL nella barra degli indirizzi cambia. È possibile salvare questo nuovo URL e tornare alla pagina in seguito, oppure condividerlo con altri affinché possano trovare facilmente la stessa pagina. Il browser ricorda anche la cronologia di navigazione e consente di navigare avanti e indietro. Questo è chiamato **routing lato server**.
 
-Le applicazioni web moderne di solito non recuperano e visualizzano nuovi file HTML: caricano un unico shell HTML e aggiornano continuamente il DOM al suo interno (denominati **app a pagina singola**, o **SPAs**) senza navigare gli utenti verso nuovi indirizzi sul web. Ogni nuova pseudo-pagina web è di solito chiamata _vista_, e per impostazione predefinita, nessuna routing viene effettuato.
+Le applicazioni web moderne in genere non recuperano e visualizzano nuovi file HTML: caricano una singola struttura HTML e aggiornano continuamente il DOM al suo interno (denominate **single page app**, o **SPA**) senza portare gli utenti a nuovi indirizzi sul web. Ogni nuova pseudo-pagina web viene generalmente chiamata _view_ e, per impostazione predefinita, non viene effettuato alcun routing.
 
-Quando un SPA è abbastanza complesso e visualizza abbastanza viste uniche, è importante introdurre la funzionalità di routing nella tua applicazione. Le persone sono abituate a poter collegarsi a pagine specifiche in un'applicazione, viaggiare avanti e indietro nella loro cronologia di navigazione, ecc., e la loro esperienza ne risente quando queste funzionalità standard del web vengono interrotte. Quando il routing è gestito da un'applicazione client in questo modo, è giustamente chiamato **routing lato client**.
+Quando una SPA è sufficientemente complessa e visualizza un numero adeguato di view uniche, è importante introdurre la funzionalità di routing nell'applicazione. Le persone sono abituate a poter creare collegamenti a pagine specifiche di un'applicazione, navigare avanti e indietro nella propria cronologia di navigazione e così via, e la loro esperienza peggiora quando queste funzionalità web standard non funzionano. Quando il routing viene gestito in questo modo da un'applicazione client, viene opportunamente chiamato **routing lato client**.
 
-È _possibile_ realizzare un router utilizzando le capacità native di JavaScript e del browser, ma i framework popolari e attivamente sviluppati hanno librerie correlate che rendono il routing una parte più intuitiva del processo di sviluppo.
+È _possibile_ creare un router usando le capacità native di JavaScript e del browser, ma i framework popolari e sviluppati attivamente dispongono di librerie complementari che rendono il routing una parte più intuitiva del processo di sviluppo.
 
-## Cose da considerare quando si utilizzano i framework
+## Aspetti da considerare quando si usano i framework
 
-Essere uno sviluppatore web efficace significa usare gli strumenti più appropriati per il lavoro. I framework JavaScript rendono lo sviluppo di applicazioni front-end facile, ma non sono una soluzione che risolverà tutti i problemi. Questa sezione discute alcune delle cose che dovresti considerare quando usi i framework. Tieni presente che potresti non avere bisogno di un framework del tutto — attenzione a non finire per usare un framework solo per il gusto di farlo.
+Essere uno sviluppatore web efficace significa usare gli strumenti più appropriati per il lavoro. I framework JavaScript rendono semplice lo sviluppo di applicazioni front-end, ma non sono una soluzione miracolosa che risolverà tutti i problemi. Questa sezione tratta alcuni aspetti da considerare quando si usano i framework. Tenere presente che potrebbe non essere necessario alcun framework: evitare di usare un framework soltanto per usarne uno.
 
 ### Familiarità con lo strumento
 
-Proprio come JavaScript vanilla, i framework richiedono tempo per essere appresi e hanno le loro peculiarità. Prima di decidere di usare un framework per un progetto, assicurati di avere tempo per imparare abbastanza delle sue caratteristiche perché sia utile a te piuttosto che lavorare contro di te, e assicurati che i tuoi compagni di squadra siano a loro agio con esso.
+Proprio come JavaScript vanilla, i framework richiedono tempo per essere imparati e hanno le proprie peculiarità. Prima di decidere di usare un framework per un progetto, assicurarsi di avere tempo per imparare abbastanza delle sue funzionalità affinché sia utile anziché d'ostacolo, e assicurarsi che anche i membri del team lo conoscano con sufficiente sicurezza.
 
 ### Sovraingegnerizzazione
 
-Se il tuo progetto di sviluppo web è un portfolio personale con alcune pagine, e quelle pagine hanno poche o nessuna funzionalità interattiva, un framework (e tutto il suo JavaScript) potrebbe non essere affatto necessario. Detto ciò, i framework non sono monolitici, e alcuni di essi sono più adatti a progetti piccoli rispetto ad altri. In un articolo per Smashing Magazine, Sarah Drasner scrive di come [Vue può sostituire jQuery](https://www.smashingmagazine.com/2018/02/jquery-vue-javascript/) come strumento per rendere interattiva una parte piccola di una pagina web.
+Se il progetto di sviluppo web è un portfolio personale con poche pagine e tali pagine hanno poca o nessuna capacità interattiva, un framework, e tutto il relativo JavaScript, potrebbe non essere affatto necessario. Detto questo, i framework non sono monolitici e alcuni sono più adatti di altri ai piccoli progetti. In un articolo per Smashing Magazine, Sarah Drasner scrive di come [Vue possa sostituire jQuery](https://www.smashingmagazine.com/2018/02/jquery-vue-javascript/) come strumento per rendere interattive piccole porzioni di una pagina web.
 
-### Maggiore base di codice e astrazione
+### Base di codice più ampia e astrazione
 
-I framework ti consentono di scrivere codice più dichiarativo e a volte _meno_ codice in generale, gestendo per te le interazioni con il DOM, dietro le quinte. Questa astrazione è ottima per la tua esperienza come sviluppatore, ma non è gratuita. Per tradurre ciò che scrivi in cambiamenti del DOM, i framework devono eseguire il proprio codice, che a sua volta rende il tuo pezzo finale di software più grande e più dispendioso in termini di calcoli da operare.
+I framework consentono di scrivere codice più dichiarativo, e talvolta _meno_ codice nel complesso, gestendo le interazioni con il DOM dietro le quinte. Questa astrazione è ottima per l'esperienza dello sviluppatore, ma non è gratuita. Per tradurre ciò che viene scritto in modifiche al DOM, i framework devono eseguire il proprio codice, rendendo a sua volta il software finale più grande e più costoso dal punto di vista computazionale.
 
-Un po' di codice extra è inevitabile, e un framework che supporta il tree-shaking (rimozione di qualsiasi codice che non viene effettivamente utilizzato nell'app durante il processo di build) ti permetterà di mantenere le tue applicazioni piccole, ma questo è comunque un fattore che devi tenere a mente quando consideri le prestazioni della tua app, specialmente su dispositivi con vincoli di rete/memoria, come i telefoni cellulari.
+Una certa quantità di codice aggiuntivo è inevitabile e un framework che supporta il tree-shaking, ovvero la rimozione durante il processo di build di qualsiasi codice non effettivamente utilizzato nell'app, permetterà di mantenere piccole le applicazioni. Tuttavia, questo è comunque un fattore da tenere presente quando si considerano le prestazioni dell'app, specialmente su dispositivi con maggiori limitazioni di rete o archiviazione, come i telefoni cellulari.
 
-L'astrazione dei framework influenza non solo il tuo JavaScript, ma anche il tuo rapporto con la natura stessa del web. Indipendentemente da come costruisci per il web, il risultato finale, lo strato con cui i tuoi utenti interagiscono effettivamente, è HTML. Scrivere tutta la tua applicazione in JavaScript può farti perdere di vista l'HTML e lo scopo dei suoi vari tag, e portarti a produrre un documento HTML non semantico e inaccessibile. Infatti, è possibile scrivere un'applicazione fragile che dipende interamente da JavaScript e non funzionerà senza di essa.
+L'astrazione dei framework influisce non solo sul JavaScript, ma anche sul rapporto con la natura stessa del web. Indipendentemente da come si sviluppa per il web, il risultato finale, il livello con cui gli utenti interagiscono in ultima analisi, è HTML. Scrivere l'intera applicazione in JavaScript può far perdere di vista HTML e lo scopo dei suoi vari tag, portando alla produzione di un documento HTML non semantico e non accessibile. Infatti, è possibile scrivere un'applicazione fragile che dipende interamente da JavaScript e che non funzionerà senza di esso.
 
-I framework non sono la fonte dei nostri problemi. Con le priorità sbagliate, qualsiasi applicazione può essere fragile, ingombrante e inaccessibile. I framework, tuttavia, amplificano le nostre priorità come sviluppatori. Se la tua priorità è fare un'app web complessa, è facile farlo. Tuttavia, se le tue priorità non proteggono attentamente prestazioni e accessibilità, i framework amplificheranno la tua fragilità, il tuo ingombro e la tua inaccessibilità. Le priorità degli sviluppatori moderni, amplificate dai framework, hanno invertito la struttura del web in molti luoghi. Invece di una rete robusta, orientata ai contenuti dei documenti, il web ora spesso mette JavaScript al primo posto e l'esperienza utente all'ultimo.
+I framework non sono la fonte dei problemi. Con priorità sbagliate, qualsiasi applicazione può essere fragile, gonfia e inaccessibile. Tuttavia, i framework amplificano le priorità degli sviluppatori. Se la priorità è creare un'app web complessa, è semplice farlo. Tuttavia, se le priorità non proteggono attentamente prestazioni e accessibilità, i framework amplificheranno fragilità, peso e inaccessibilità. Le priorità moderne degli sviluppatori, amplificate dai framework, hanno invertito la struttura del web in molti contesti. Invece di una solida rete di documenti incentrata sui contenuti, il web ora spesso mette JavaScript al primo posto e l'esperienza utente all'ultimo.
 
-## Accessibilità su un web guidato dai framework
+## Accessibilità in un web guidato dai framework
 
-Costruiamo su quanto detto nella sezione precedente e parliamo un po' di più dell'accessibilità. Rendere accessibili le interfacce utente richiede sempre un po' di pensiero e sforzo, e i framework possono complicare tale processo. Spesso devi utilizzare API avanzate del framework per accedere alle funzionalità native del browser, come le [regioni dal vivo](/it/docs/Web/Accessibility/ARIA/Guides/Live_regions) ARIA o la gestione del focus.
+Partendo da quanto detto nella sezione precedente, parliamo un po' più approfonditamente di accessibilità. Rendere accessibili le interfacce utente richiede sempre riflessione e impegno, e i framework possono complicare questo processo. Spesso è necessario utilizzare API avanzate del framework per accedere a funzionalità native del browser come le [live region](/it/docs/Web/Accessibility/ARIA/Guides/Live_regions) ARIA o la gestione del focus.
 
-In alcuni casi, le applicazioni del framework creano barriere all'accessibilità che non esistono per i siti web tradizionali. L'esempio più grande di questo è nel routing lato client, come menzionato in precedenza.
+In alcuni casi, le applicazioni basate su framework creano barriere di accessibilità che non esistono nei siti web tradizionali. L'esempio principale è il routing lato client, menzionato in precedenza.
 
-Con il routing tradizionale (lato server), navigare sul web produce risultati prevedibili. Il browser sa di dover impostare il focus in cima alla pagina e le tecnologie assistive annunceranno il titolo della pagina. Queste cose accadono ogni volta che navighi verso una nuova pagina.
+Con il routing tradizionale lato server, la navigazione sul web produce risultati prevedibili. Il browser sa di dover impostare il focus nella parte superiore della pagina e le tecnologie assistive annunceranno il titolo della pagina. Queste operazioni avvengono ogni volta che si naviga verso una nuova pagina.
 
-Con il routing lato client, il tuo browser non carica nuove pagine web, quindi non sa che dovrebbe regolare automaticamente il focus o annunciare un nuovo titolo di pagina. Gli autori dei framework hanno dedicato enormi quantità di tempo e lavoro per scrivere JavaScript che ricrea queste funzionalità e, anche allora, nessun framework lo ha fatto perfettamente.
+Con il routing lato client, il browser non sta caricando nuove pagine web, quindi non sa che dovrebbe regolare automaticamente il focus o annunciare il titolo di una nuova pagina. Gli autori dei framework hanno dedicato enormi quantità di tempo e lavoro alla scrittura di JavaScript che ricrea queste funzionalità e, anche così, nessun framework è riuscito a farlo perfettamente.
 
-Il vantaggio è che dovresti considerare l'accessibilità sin dall'inizio di _ogni_ progetto web, ma tieni presente che le basi di codice astratte che utilizzano i framework hanno maggiori probabilità di soffrire di importanti problemi di accessibilità se non lo fai.
+La conclusione è che l'accessibilità dovrebbe essere considerata fin dall'inizio di _ogni_ progetto web, ma occorre tenere presente che le basi di codice astratte che usano framework hanno maggiori probabilità di soffrire di importanti problemi di accessibilità se non lo si fa.
 
 ## Come scegliere un framework
 
-Ognuno dei framework discussi in questo modulo adotta approcci diversi allo sviluppo di applicazioni web. Ognuno migliora o cambia regolarmente e ciascuno ha i propri pro e contro. Scegliere il framework giusto è un processo che dipende dal team e dal progetto, e dovresti fare le tue ricerche per scoprire quello che si adatta meglio alle tue esigenze. Detto ciò, abbiamo identificato alcune domande che puoi porre per ricercare le tue opzioni in modo più efficace:
+Ciascuno dei framework discussi in questo modulo adotta approcci diversi allo sviluppo di applicazioni web. Ognuno viene regolarmente migliorato o modificato e ciascuno ha vantaggi e svantaggi. Scegliere il framework giusto è un processo che dipende dal team e dal progetto, e occorre svolgere ricerche personali per individuare ciò che soddisfa le esigenze. Detto questo, sono state individuate alcune domande che possono essere poste per esaminare le opzioni in modo più efficace:
 
 1. Quali browser supporta il framework?
-2. Quali linguaggi specifici del dominio utilizza il framework?
-3. Il framework ha una forte comunità e buone documentazioni (e altro supporto) disponibili?
+2. Quali linguaggi specifici di dominio utilizza il framework?
+3. Il framework ha una community solida e buona documentazione, oltre ad altro supporto disponibile?
 
-La tabella in questa sezione fornisce un riepilogo conciso dell'attuale _supporto dei browser_ offerto da ciascun framework, oltre ai **linguaggi specifici del dominio** con i quali può essere utilizzato.
+La tabella in questa sezione fornisce un riepilogo immediato dell'attuale _supporto dei browser_ offerto da ciascun framework, nonché dei **linguaggi specifici di dominio** con cui può essere usato.
 
-In generale, i {{Glossary("DSL/Domain_specific_language", "linguaggi specifici del dominio (DSLs)")}} sono linguaggi di programmazione rilevanti in aree specifiche dello sviluppo software. Nel contesto dei framework, i DSL sono varianti di JavaScript o HTML che semplificano lo sviluppo con quel framework. Fondamentalmente, nessuno dei framework _richiede_ che uno sviluppatore usi un DSL specifico, ma sono stati quasi tutti progettati con un DSL specifico in mente. Scegliere di non utilizzare il DSL preferito di un framework significherà perdere funzionalità che altrimenti migliorerebbero la tua esperienza di sviluppo.
+In generale, i {{Glossary("DSL/Domain_specific_language", "linguaggi specifici di dominio (DSL)")}} sono linguaggi di programmazione rilevanti in aree specifiche dello sviluppo software. Nel contesto dei framework, i DSL sono varianti di JavaScript o HTML che facilitano lo sviluppo con quel framework. È importante notare che nessuno dei framework _richiede_ allo sviluppatore di usare un DSL specifico, ma quasi tutti sono stati progettati pensando a un DSL specifico. Scegliere di non usare il DSL preferito da un framework significa rinunciare a funzionalità che altrimenti migliorerebbero l'esperienza di sviluppo.
 
-Dovresti considerare seriamente la matrice di supporto e i DSL di un framework quando fai una scelta per un nuovo progetto. Un supporto del browser non allineato può essere un ostacolo per i tuoi utenti; un supporto DSL non allineato può essere un ostacolo per te e i tuoi compagni di squadra.
+Quando si sceglie un framework per qualsiasi nuovo progetto, è necessario considerare seriamente la matrice di supporto e i DSL. Un supporto dei browser non adeguato può rappresentare una barriera per gli utenti; un supporto dei DSL non adeguato può rappresentare una barriera per lo sviluppatore e il suo team.
 
-| Framework | Supporto browser                     | DSL preferito | DSL supportati         | Citazione                                                                        |
-| --------- | ----------------------------------- | ------------- | ---------------------- | ------------------------------------------------------------------------------- |
-| Angular   | Moderno                             | TypeScript    | Basato su HTML; TypeScript | [documentazione ufficiale](https://angular.dev/guide/browser-support)                      |
-| React     | Moderno                             | JSX           | JSX; TypeScript        | [documentazione ufficiale](https://react.dev/reference/react-dom/client#browser-support)   |
-| Vue       | Moderno (IE9+ in Vue 2)             | Basato su HTML| Basato su HTML, JSX, Pug   | [documentazione ufficiale](https://cli.vuejs.org/guide/browser-compatibility.html)         |
-| Ember     | Moderno (IE9+ in versione Ember 2.18)| Handlebars    | Handlebars, TypeScript | [documentazione ufficiale](https://guides.emberjs.com/v3.3.0/templates/handlebars-basics/) |
+| Framework | Supporto browser                      | DSL preferito  | DSL supportati             | Riferimento                                                                                |
+| --------- | ------------------------------------- | -------------- | -------------------------- | ------------------------------------------------------------------------------------------ |
+| Angular   | Moderni                               | TypeScript     | Basato su HTML; TypeScript | [documentazione ufficiale](https://angular.dev/guide/browser-support)                      |
+| React     | Moderni                               | JSX            | JSX; TypeScript            | [documentazione ufficiale](https://react.dev/reference/react-dom/client#browser-support)   |
+| Vue       | Moderni (IE9+ in Vue 2)               | Basato su HTML | Basato su HTML, JSX, Pug   | [documentazione ufficiale](https://cli.vuejs.org/guide/browser-compatibility.html)         |
+| Ember     | Moderni (IE9+ in Ember versione 2.18) | Handlebars     | Handlebars, TypeScript     | [documentazione ufficiale](https://guides.emberjs.com/v3.3.0/templates/handlebars-basics/) |
 
 > [!NOTE]
-> I DSL che abbiamo descritto come "basati su HTML" non hanno nomi ufficiali. Non sono realmente veri DSL, ma sono HTML non standard, quindi crediamo che valga la pena sottolinearli.
+> I DSL descritti come "basati su HTML" non hanno nomi ufficiali. Non sono davvero DSL veri e propri, ma sono HTML non standard, quindi si ritiene utile evidenziarli.
 
-### Il framework ha una forte comunità?
+### Il framework ha una community solida?
 
-Questo è forse il parametro più difficile da misurare perché la dimensione della comunità non si traduce direttamente in numeri facilmente accessibili. Puoi controllare il numero di stelle GitHub di un progetto o i download settimanali di npm per farti un'idea della sua popolarità, ma a volte la cosa migliore da fare è cercare su alcuni forum o parlare con altri sviluppatori. Non si tratta solo delle dimensioni della comunità, ma anche di quanto sia accogliente e inclusiva, e di quanto buona sia la documentazione disponibile.
+Questa è forse la metrica più difficile da misurare, poiché la dimensione della community non è direttamente correlata a numeri facilmente accessibili. È possibile controllare il numero di stelle GitHub di un progetto o i download npm settimanali per farsi un'idea della sua popolarità, ma a volte la cosa migliore da fare è cercare in alcuni forum o parlare con altri sviluppatori. Non conta solo la dimensione della community, ma anche quanto sia accogliente e inclusiva, nonché la qualità della documentazione disponibile.
 
 ### Opinioni sul web
 
-Non prendere solo la nostra parola in merito: ci sono discussioni su tutto il web. La Wikimedia Foundation ha recentemente deciso di utilizzare Vue per il suo front-end e ha pubblicato una [richiesta di commenti (RFC) sull'adozione del framework](https://phabricator.wikimedia.org/T241180). Eric Gardner, l'autore dell'RFC, ha preso del tempo per delineare le esigenze del progetto Wikimedia e perché certi framework fossero buone scelte per il team. Questa RFC serve come un grande esempio del tipo di ricerca che dovresti fare da solo quando pianifichi di utilizzare un framework front-end.
+Non limitarsi a credere a quanto viene detto qui: esistono discussioni in tutto il web. La Wikimedia Foundation ha recentemente scelto di usare Vue per il proprio front-end e ha pubblicato una [richiesta di commenti (RFC) sull'adozione di un framework](https://phabricator.wikimedia.org/T241180). Eric Gardner, autore dell'RFC, ha dedicato tempo a delineare le esigenze del progetto Wikimedia e il motivo per cui alcuni framework erano buone scelte per il team. Questo RFC rappresenta un ottimo esempio del tipo di ricerca da svolgere quando si pianifica di usare un framework front-end.
 
-Il [sondaggio State of JavaScript](https://stateofjs.com/) è una collezione utile di feedback degli sviluppatori JavaScript. Copre molti argomenti correlati a JavaScript, inclusi dati sia sull'uso dei framework che sul sentimento degli sviluppatori nei loro confronti. Attualmente, ci sono diversi anni di dati disponibili, permettendoti di avere un'idea della popolarità di un framework.
+Il [sondaggio State of JavaScript](https://stateofjs.com/) è un'utile raccolta di feedback da parte degli sviluppatori JavaScript. Copre molti argomenti relativi a JavaScript, inclusi dati sia sull'uso dei framework sia sul giudizio degli sviluppatori nei loro confronti. Attualmente sono disponibili dati relativi a diversi anni, che consentono di farsi un'idea della popolarità di un framework.
 
-Il team di Vue ha [confrontato esaustivamente Vue con altri framework popolari](https://v2.vuejs.org/v2/guide/comparison.html). Potrebbe esserci un po' di bias in questo confronto (che sottolineano), ma è comunque una risorsa preziosa.
+Il team Vue ha [confrontato esaustivamente Vue con altri framework popolari](https://v2.vuejs.org/v2/guide/comparison.html). Potrebbe esserci qualche pregiudizio in questo confronto, come viene segnalato dagli stessi autori, ma rimane comunque una risorsa preziosa.
 
 ## Alternative ai framework lato client
 
-Se stai cercando strumenti per accelerare il processo di sviluppo web e sai che il tuo progetto non richiederà JavaScript lato client intensivo, potresti optare per una delle tante altre soluzioni per costruire il web:
+Se si cercano strumenti per velocizzare il processo di sviluppo web e si sa che il progetto non richiederà JavaScript lato client intensivo, è possibile ricorrere a una delle diverse altre soluzioni per creare il web:
 
 - Un sistema di gestione dei contenuti
 - Rendering lato server
@@ -285,33 +394,33 @@ Se stai cercando strumenti per accelerare il processo di sviluppo web e sai che 
 
 ### Sistemi di gestione dei contenuti
 
-I **sistemi di gestione dei contenuti** (**CMS**) sono strumenti che consentono a un utente di creare contenuti per il web senza scrivere direttamente codice. Sono una buona soluzione per progetti di grandi dimensioni, in particolare progetti che richiedono input da parte di scrittori di contenuti con capacità limitate di coding, o per programmatori che vogliono risparmiare tempo. Tuttavia, richiedono un tempo significativo per essere configurati, e utilizzare un CMS significa che rinunci almeno a una parte del controllo sul risultato finale del tuo sito web. Ad esempio: se il CMS scelto non crea contenuti accessibili per impostazione predefinita, spesso è difficile migliorare questo aspetto.
+I **sistemi di gestione dei contenuti** (**CMS**) sono strumenti che consentono a un utente di creare contenuti per il web senza scrivere direttamente il codice. Sono una buona soluzione per progetti di grandi dimensioni, specialmente per progetti che richiedono il contributo di autori di contenuti con capacità di programmazione limitate, o per programmatori che desiderano risparmiare tempo. Tuttavia, richiedono una quantità significativa di tempo per la configurazione e l'uso di un CMS implica rinunciare almeno a una parte del controllo sull'output finale del sito web. Ad esempio, se il CMS scelto non crea contenuti accessibili per impostazione predefinita, spesso è difficile migliorare questo aspetto.
 
 Alcuni CMS popolari includono [WordPress](https://wordpress.com/), [Joomla](https://www.joomla.org/) e [Drupal](https://new.drupal.org/).
 
 ### Rendering lato server
 
-Il **Rendering lato server** (**SSR**) è un'architettura applicativa in cui è compito del _server_ effettuare il rendering di un'applicazione a pagina singola. Questo è l'opposto del _rendering lato client_, che è il modo più comune e semplice per costruire un'applicazione JavaScript. Il rendering lato server è più facile sul dispositivo del client perché stai soltanto inviando loro un file HTML renderizzato, ma può essere difficile da configurare rispetto a un'applicazione renderizzata lato client.
+Il **rendering lato server** (**SSR**) è un'architettura applicativa in cui il compito di visualizzare una single-page application è del _server_. È l'opposto del _rendering lato client_, che è il modo più comune e diretto per creare un'applicazione JavaScript. Il rendering lato server grava meno sul dispositivo client, perché viene inviato soltanto un file HTML già visualizzato, ma può essere più difficile da configurare rispetto a un'applicazione visualizzata lato client.
 
-Tutti i framework trattati in questo modulo supportano il rendering lato server così come il rendering lato client. Dai un'occhiata a [Next.js](https://nextjs.org/) per React, [Nuxt](https://nuxt.com/) per Vue (sì, è confuso, e no, questi progetti non sono correlati!), [FastBoot](https://github.com/ember-fastboot/ember-cli-fastboot) per Ember, e [Angular Universal](https://angular.dev/guide/universal) per Angular.
+Tutti i framework trattati in questo modulo supportano il rendering lato server oltre al rendering lato client. Consultare [Next.js](https://nextjs.org/) per React, [Nuxt](https://nuxt.com/) per Vue (sì, è confuso e no, questi progetti non sono correlati!), [FastBoot](https://github.com/ember-fastboot/ember-cli-fastboot) per Ember e [Angular Universal](https://angular.dev/guide/universal) per Angular.
 
 > [!NOTE]
-> Alcune soluzioni SSR sono scritte e mantenute dalla comunità, mentre alcune sono soluzioni "ufficiali" fornite dal manutentore del framework.
+> Alcune soluzioni SSR sono scritte e gestite dalla community, mentre altre sono soluzioni "ufficiali" fornite dal manutentore del framework.
 
 ### Generatori di siti statici
 
-I {{Glossary("SSG", "generatori di siti statici")}} sono programmi che generano dinamicamente tutte le pagine web di un sito multi-pagina — inclusi eventuali CSS o JavaScript rilevanti — in modo che possano essere pubblicati in qualsiasi numero di posti. L'host di pubblicazione potrebbe essere un ramo di pagine di GitHub, un'istanza Netlify, o qualsiasi server privato di tua scelta, ad esempio. Ci sono una serie di vantaggi in questo approccio, principalmente legati alle prestazioni (il dispositivo del tuo utente non sta costruendo la pagina con JavaScript; è già completa) e alla sicurezza (le pagine statiche hanno meno vettori di attacco). Questi siti possono comunque utilizzare JavaScript dove necessario, ma non ne sono _dipendenti_. I generatori di siti statici richiedono tempo per essere appresi, proprio come qualsiasi altro strumento, che può essere un ostacolo al tuo processo di sviluppo.
+I {{Glossary("SSG", "generatori di siti statici")}} sono programmi che generano dinamicamente tutte le pagine web di un sito web multipagina, incluso qualsiasi CSS o JavaScript pertinente, affinché possano essere pubblicate in un numero qualsiasi di luoghi. L'host di pubblicazione potrebbe essere, ad esempio, un branch GitHub Pages, un'istanza Netlify o qualsiasi server privato scelto. Questo approccio presenta numerosi vantaggi, soprattutto in termini di prestazioni, poiché il dispositivo dell'utente non deve costruire la pagina con JavaScript: è già completa, e sicurezza, poiché le pagine statiche hanno meno vettori di attacco. Questi siti possono comunque utilizzare JavaScript dove necessario, ma non ne sono _dipendenti_. I generatori di siti statici richiedono tempo per essere imparati, come qualsiasi altro strumento, e ciò può rappresentare una barriera al processo di sviluppo.
 
-I siti statici possono avere quante pagine uniche vuoi. Proprio come i framework ti consentono di scrivere rapidamente applicazioni JavaScript lato client, i generatori di siti statici ti permettono di creare rapidamente file HTML che altrimenti avresti scritto singolarmente. Come i framework, i generatori di siti statici consentono agli sviluppatori di scrivere componenti che definiscono pezzi comuni delle tue pagine web e di comporre questi componenti insieme per creare una pagina finale. Nel contesto dei generatori di siti statici, questi componenti sono chiamati **template**. Le pagine web costruite dai generatori di siti statici possono persino ospitare applicazioni framework: se vuoi che una pagina specifica del tuo sito generato staticamente avvii un'applicazione React quando il tuo utente la visita, puoi farlo.
+I siti statici possono avere poche o moltissime pagine uniche. Così come i framework consentono di scrivere rapidamente applicazioni JavaScript lato client, i generatori di siti statici offrono un modo per creare rapidamente file HTML che altrimenti sarebbero stati scritti singolarmente. Come i framework, i generatori di siti statici consentono agli sviluppatori di scrivere componenti che definiscono parti comuni delle pagine web e di comporre tali componenti insieme per creare una pagina finale. Nel contesto dei generatori di siti statici, questi componenti sono chiamati **template**. Le pagine web create dai generatori di siti statici possono persino ospitare applicazioni framework: se si desidera che una pagina specifica del sito web generato staticamente avvii un'applicazione React quando un utente la visita, è possibile farlo.
 
-I generatori di siti statici esistono da molto tempo, e sono in costante ottimizzazione e innovazione. Esistono molte scelte, tra cui [Astro](https://astro.build/), [Eleventy](https://www.11ty.dev/), [Hugo](https://gohugo.io/), [Jekyll](https://jekyllrb.com/), e [Gatsby](https://www.gatsbyjs.com/), che costruiscono su vari stack tecnologici e offrono funzionalità distintive. Altre opzioni, come [Docusaurus](https://docusaurus.io/) e [VitePress](https://vitepress.dev/), utilizzano framework lato client invece di template, ma generano file statici ugualmente ottimizzati.
+I generatori di siti statici esistono da molto tempo e sono oggetto di ottimizzazione e innovazione costanti. Sono disponibili numerose opzioni, tra cui [Astro](https://astro.build/), [Eleventy](https://www.11ty.dev/), [Hugo](https://gohugo.io/), [Jekyll](https://jekyllrb.com/) e [Gatsby](https://www.gatsbyjs.com/), che si basano su vari stack tecnologici e offrono funzionalità distintive. Altre opzioni, come [Docusaurus](https://docusaurus.io/) e [VitePress](https://vitepress.dev/), usano framework lato client invece di template, ma generano file statici ottimizzati in modo analogo.
 
-Se desideri saperne di più sui generatori di siti statici nel complesso, dai un'occhiata alla [Guida per principianti a Eleventy di Tatiana Mac](https://www.tatianamac.com/posts/beginner-eleventy-tutorial-parti/). Nel primo articolo della serie, spiegano cosa è un generatore di siti statici e come si relazione ad altri mezzi di pubblicazione di contenuti web.
+Per approfondire i generatori di siti statici in generale, consultare la [guida per principianti a Eleventy](https://www.tatianamac.com/posts/beginner-eleventy-tutorial-parti/) di Tatiana Mac. Nel primo articolo della serie viene spiegato cosa sia un generatore di siti statici e come si relazioni ad altri modi di pubblicare contenuti web.
 
-## Sommario
+## Riepilogo
 
-E questo ci porta alla fine della nostra introduzione ai framework — non abbiamo ancora insegnato alcun codice, ma speriamo di averti fornito un contesto utile sul perché useresti i framework in primo luogo e come sceglierne uno, e farti sentire entusiasta di imparare di più e di iniziare a sperimentare!
+Si conclude così l'introduzione ai framework: non è stato ancora illustrato alcun codice, ma si spera sia stato fornito un utile contesto sul perché usare i framework, su come sceglierne uno e sul desiderio di imparare di più e iniziare a lavorare concretamente.
 
-Il nostro prossimo articolo scende a un livello inferiore, esaminando i tipi specifici di funzionalità che i framework tendono ad offrire e perché funzionano così.
+Il prossimo articolo approfondisce maggiormente l'argomento, esaminando i tipi specifici di funzionalità che i framework tendono a offrire e perché funzionano nel modo in cui funzionano.
 
 {{NextMenu("Learn_web_development/Core/Frameworks_libraries/Main_features", "Learn_web_development/Core/Frameworks_libraries")}}

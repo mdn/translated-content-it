@@ -3,20 +3,20 @@ title: Come evidenziare la prima riga di un paragrafo
 short-title: Evidenziare la prima riga di un paragrafo
 slug: Learn_web_development/Howto/Solve_CSS_problems/Highlight_first_line
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-In questa guida scoprirai come evidenziare la prima riga di testo in un paragrafo, anche se non sai quanto sarà lunga quella riga.
+In questa guida viene illustrato come evidenziare la prima riga di testo in un paragrafo, anche se non si conosce la lunghezza della riga.
 
-## Stilizzare la prima riga di testo
+## Applicare stili alla prima riga di testo
 
-Potresti voler rendere la prima riga di un paragrafo più grande e in grassetto. Inserire un `<span>` attorno alla prima riga significa che puoi stilizzarla; tuttavia, se la prima riga diventa più corta a causa di una dimensione del viewport inferiore, il testo stilizzato si sposterà sulla riga successiva.
+Si desidera rendere la prima riga di un paragrafo più grande e in grassetto. Racchiudere la prima riga in uno `<span>` consente di applicarle qualsiasi stile; tuttavia, se la prima riga diventa più corta a causa di una dimensione della viewport ridotta, il testo stilizzato andrà a capo sulla riga successiva.
 
-## Utilizzare un pseudo-elemento
+## Utilizzare uno pseudo-elemento
 
-Un {{cssxref("pseudo-elements", "pseudo-elemento")}} può sostituire il `<span>`; tuttavia, è più flessibile — il contenuto esatto selezionato da un pseudo-elemento viene calcolato una volta che il browser ha eseguito il rendering del contenuto, quindi funzionerà anche se la dimensione del viewport cambia.
+Uno {{cssxref("pseudo-elements", "pseudo-element")}} può sostituire lo `<span>`; tuttavia, è più flessibile — il contenuto esatto selezionato da uno pseudo-elemento viene calcolato dopo che il browser ha renderizzato il contenuto, quindi funzionerà anche se la dimensione della viewport cambia.
 
-In questo caso, dobbiamo utilizzare il pseudo-elemento {{cssxref("::first-line")}}. Seleziona la prima riga formattata di ciascun paragrafo, il che significa che puoi stilizzarla come necessario.
+In questo caso è necessario utilizzare lo pseudo-elemento {{cssxref("::first-line")}}. Seleziona la prima riga formattata di ciascun paragrafo, consentendo di applicarle gli stili necessari.
 
 ```html live-sample___highlight_first_line
 <div class="wrapper">
@@ -43,11 +43,11 @@ In questo caso, dobbiamo utilizzare il pseudo-elemento {{cssxref("::first-line")
 {{EmbedLiveSample("highlight_first_line")}}
 
 > [!NOTE]
-> Tutti i pseudo-elementi agiscono in questo modo. Si comportano come se avessi inserito un elemento nel documento, ma lo fanno in modo dinamico in base al contenuto visualizzato a runtime.
+> Tutti gli pseudo-elementi agiscono in questo modo. Si comportano come se fosse stato inserito un elemento nel documento, ma lo fanno dinamicamente in base a come il contenuto viene visualizzato in fase di esecuzione.
 
 ## Combinare pseudo-elementi con altri selettori
 
-Nell'esempio sopra, il pseudo-elemento seleziona la prima riga di ogni paragrafo. Per selezionare solo la prima riga del primo paragrafo, puoi combinarlo con un altro selettore. In questo caso, utilizziamo la {{cssxref(":first-child")}} {{cssxref("pseudo-classes", "pseudo-classe")}}. Questo ci permette di selezionare la prima riga del primo figlio di `.wrapper` se quel primo figlio è un paragrafo.
+Nell'esempio precedente, lo pseudo-elemento seleziona la prima riga di ogni paragrafo. Per selezionare solo la prima riga del primo paragrafo, è possibile combinarlo con un altro selettore. In questo caso viene utilizzata la {{cssxref(":first-child")}} {{cssxref("pseudo-classes", "pseudo-class")}}. Questo consente di selezionare la prima riga del primo elemento figlio di `.wrapper`, se tale primo elemento figlio è un paragrafo.
 
 ```html live-sample___highlight_first_line2
 <div class="wrapper">
@@ -74,9 +74,9 @@ Nell'esempio sopra, il pseudo-elemento seleziona la prima riga di ogni paragrafo
 {{EmbedLiveSample("highlight_first_line2")}}
 
 > [!NOTE]
-> Quando si combinano pseudo-elementi con altri selettori in un [complesso](/it/docs/Web/CSS/CSS_selectors/Selector_structure#complex_selector) o [composto](/it/docs/Web/CSS/CSS_selectors/Selector_structure#compound_selector) selettore, i pseudo-elementi devono apparire dopo tutti gli altri componenti nel selettore in cui appaiono.
+> Quando si combinano pseudo-elementi con altri selettori in un selettore [complesso](/it/docs/Web/CSS/Guides/Selectors/Selector_structure#complex_selector) o [composto](/it/docs/Web/CSS/Guides/Selectors/Selector_structure#compound_selector), gli pseudo-elementi devono comparire dopo tutti gli altri componenti nel selettore in cui sono presenti.
 
-## Vedi anche
+## Vedere anche
 
-- La pagina di riferimento sui {{cssxref("pseudo-elements", "pseudo-elementi")}}.
-- [Learn CSS: Pseudo-classi e pseudo-elementi](/it/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements).
+- La pagina di riferimento sugli {{cssxref("pseudo-elements", "pseudo-elements")}}.
+- [Imparare CSS: pseudo-classi e pseudo-elementi](/it/docs/Learn_web_development/Core/Styling_basics/Pseudo_classes_and_elements).

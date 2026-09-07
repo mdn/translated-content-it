@@ -1,62 +1,62 @@
 ---
-title: HTML images
+title: Immagini HTML
 short-title: Images
 slug: Learn_web_development/Core/Structuring_content/HTML_images
 l10n:
-  sourceCommit: c99b4f2d0ea81c0e8822a749d218015c75995b5b
+  sourceCommit: 2066cc916dfdcbb782340bf0ce562b230e947cba
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Structuring_a_page_of_content", "Learn_web_development/Core/Structuring_content/HTML_video_and_audio", "Learn_web_development/Core/Structuring_content")}}
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Structuring_a_page_of_content", "Learn_web_development/Core/Structuring_content/Test_your_skills/Images", "Learn_web_development/Core/Structuring_content")}}
 
-All'inizio, il web era solo testo, ed era davvero piuttosto noioso. Fortunatamente, non passò molto tempo prima che fosse aggiunta la possibilità di incorporare immagini (e altri tipi di contenuto più interessanti) all'interno delle pagine web. In questo articolo esamineremo in dettaglio come utilizzare l'elemento {{htmlelement("img")}}, inclusi i concetti di base, annotandolo con didascalie utilizzando {{htmlelement("figure")}} e dettagliando come si relaziona alle immagini di sfondo in {{Glossary("CSS", "CSS")}}.
+All'inizio, il web era costituito solo da testo ed era davvero piuttosto noioso. Fortunatamente, non passò molto tempo prima che venisse aggiunta la possibilità di incorporare immagini (e altri tipi di contenuto più interessanti) nelle pagine web. In questo articolo verrà esaminato in dettaglio come usare l'elemento {{htmlelement("img")}}, incluse le basi, l'aggiunta di didascalie tramite {{htmlelement("figure")}} e il rapporto con le immagini di sfondo in {{Glossary("CSS", "CSS")}}.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità di base con HTML, come spiegato in
+        Conoscenza di base di HTML, come illustrato in
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi di base di HTML</a
-        >. Semantica a livello di testo come <a href="/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
-          >intestazioni e paragrafi</a
-        > e <a href="/it/docs/Learn_web_development/Core/Structuring_content/Lists"
+          >Sintassi HTML di base</a
+        >. Semantica a livello di testo, come <a href="/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
+          >titoli e paragrafi</a
+        > ed <a href="/it/docs/Learn_web_development/Core/Structuring_content/Lists"
           >elenchi</a
         >.
       </td>
     </tr>
     <tr>
-      <th scope="row">Obiettivi di apprendimento:</th>
+      <th scope="row">Risultati dell'apprendimento:</th>
       <td>
         <ul>
-          <li>Il termine "elemento sostituito" — cosa significa?</li>
-          <li>Sintassi base del tag <code>&lt;img&gt;</code></li>
-          <li>Utilizzo di <code>src</code> per puntare a una risorsa.</li>
-          <li>Utilizzo di <code>width</code> e <code>height</code>, ad esempio, per evitare aggiornamenti bruschi sgradevoli all'interfaccia utente una volta che un'immagine è stata caricata e visualizzata.</li>
-          <li>Ottimizzazione delle risorse multimediali per il web — mantenere le dimensioni dei file ridotte.</li>
-          <li>Comprendere il licensing dei media — diversi tipi di licenze, come conformarsi a esse e come cercare file multimediali con licenze appropriate da utilizzare nei progetti.</li>
+          <li>Il termine "replaced element": che cosa significa?</li>
+          <li>Sintassi di base del tag <code>&lt;img&gt;</code></li>
+          <li>Uso di <code>src</code> per puntare a una risorsa.</li>
+          <li>Uso di <code>width</code> e <code>height</code>, ad esempio per evitare spiacevoli aggiornamenti bruschi dell'interfaccia utente quando un'immagine ha terminato il caricamento ed è visualizzata.</li>
+          <li>Ottimizzazione delle risorse multimediali per il web: mantenere ridotte le dimensioni dei file.</li>
+          <li>Comprensione delle licenze delle risorse multimediali: diversi tipi di licenza, come rispettarli e come cercare file multimediali con licenza appropriata da usare nei progetti.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Come inseriamo un'immagine su una pagina web?
+## Come inserire un'immagine in una pagina web?
 
-Per inserire un'immagine in una pagina web, utilizziamo l'elemento {{htmlelement("img")}}. Questo è un {{Glossary("void_element", "elemento vuoto")}} (cioè, non può avere contenuto figlio e non può avere un tag di chiusura) che richiede due attributi per essere utile: `src` e `alt`. L'attributo `src` contiene un URL che punta all'immagine che si desidera incorporare nella pagina. Come con l'attributo `href` per gli elementi {{htmlelement("a")}}, l'attributo `src` può essere un URL relativo o assoluto. Senza un attributo `src`, un elemento `img` non ha immagine da caricare.
+Per inserire un'immagine in una pagina web, si usa l'elemento {{htmlelement("img")}}. Si tratta di un {{Glossary("void_element", "elemento vuoto")}} (ovvero, non può avere contenuto figlio e non può avere un tag di chiusura) che richiede due attributi per essere utile: `src` e `alt`. L'attributo `src` contiene un URL che punta all'immagine che si desidera incorporare nella pagina. Come per l'attributo `href` degli elementi {{htmlelement("a")}}, l'attributo `src` può essere un URL relativo o un URL assoluto. Senza un attributo `src`, un elemento `img` non ha alcuna immagine da caricare.
 
-L'attributo [`alt` è descritto di seguito](#testo_alternativo).
+L'[attributo `alt` è descritto di seguito](#testo_alternativo).
 
 > [!NOTE]
-> Dovreste leggere [Un rapido primer su URL e percorsi](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#a_quick_primer_on_urls_and_paths) per rinfrescare la memoria su URL relativi e assoluti prima di continuare.
+> Prima di proseguire, è consigliabile leggere [Una rapida introduzione a URL e percorsi](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#a_quick_primer_on_urls_and_paths) per ripassare gli URL relativi e assoluti.
 
-Ad esempio, se la tua immagine si chiama `dinosaur.jpg` e si trova nella stessa directory della tua pagina HTML, potresti incorporare l'immagine in questo modo:
+Ad esempio, se l'immagine si chiama `dinosaur.jpg` e si trova nella stessa directory della pagina HTML, è possibile incorporarla in questo modo:
 
 ```html
 <img src="dinosaur.jpg" alt="Dinosaur" />
 ```
 
-Se l'immagine fosse in una sottodirectory `images`, che si trova all'interno della stessa directory della pagina HTML, allora la incorporeresti così:
+Se l'immagine si trovasse in una sottodirectory `images`, all'interno della stessa directory della pagina HTML, verrebbe incorporata così:
 
 ```html
 <img src="images/dinosaur.jpg" alt="Dinosaur" />
@@ -65,33 +65,31 @@ Se l'immagine fosse in una sottodirectory `images`, che si trova all'interno del
 E così via.
 
 > [!NOTE]
-> I motori di ricerca leggono anche i nomi file delle immagini e li considerano per la SEO. Pertanto, dovresti dare alla tua immagine un nome file descrittivo; `dinosaur.jpg` è meglio di `img835.png`.
+> Anche i motori di ricerca leggono i nomi dei file delle immagini e li considerano ai fini della SEO. È quindi opportuno assegnare all'immagine un nome file descrittivo; `dinosaur.jpg` è meglio di `img835.png`.
 
-Potresti anche incorporare l'immagine utilizzando il suo URL assoluto, ad esempio:
+È anche possibile incorporare l'immagine usando il suo URL assoluto, ad esempio:
 
 ```html
 <img src="https://www.example.com/images/dinosaur.jpg" alt="Dinosaur" />
 ```
 
-Tuttavia, non è consigliato collegarsi tramite URL assoluti. Dovresti ospitare le immagini che vuoi utilizzare sul tuo sito, il che in configurazioni semplici significa mantenere le immagini per il tuo sito web sullo stesso server del tuo HTML. Inoltre, è più efficiente usare URL relativi piuttosto che URL assoluti in termini di manutenzione (quando sposti il tuo sito su un dominio diverso, non dovrai aggiornare tutti i tuoi URL per includere il nuovo dominio). In configurazioni più avanzate, potresti utilizzare un {{Glossary("CDN", "CDN (Content Delivery Network)")}} per distribuire le tue immagini.
+Tuttavia, non è consigliabile creare collegamenti tramite URL assoluti. Le immagini da utilizzare dovrebbero essere ospitate sul proprio sito, il che, nelle configurazioni semplici, significa mantenere le immagini del sito web sullo stesso server dell'HTML. Inoltre, dal punto di vista della manutenzione, è più efficiente usare URL relativi anziché assoluti (quando il sito viene spostato in un dominio diverso, non sarà necessario aggiornare tutti gli URL includendo il nuovo dominio). Nelle configurazioni più avanzate, potrebbe essere usata una {{Glossary("CDN", "CDN (Content Delivery Network)")}} per distribuire le immagini.
 
-Se non hai creato le immagini, dovresti assicurarti di avere il permesso di usarle alle condizioni della licenza sotto la quale sono pubblicate (vedi [Risorse multimediali e licensing](#risorse_multimediali_e_licensing) di seguito per maggiori informazioni).
+Se le immagini non sono state create direttamente, occorre assicurarsi di avere il permesso di usarle secondo le condizioni della licenza con cui sono pubblicate (per maggiori informazioni, vedere [Risorse multimediali e licenze](#risorse_multimediali_e_licenze) di seguito).
 
-> **Warning:** _Mai_ puntare l'attributo `src` a un'immagine ospitata sul sito web di qualcun altro _senza permesso_. Questo è chiamato "hotlinking". È considerato non etico, poiché qualcun altro pagherebbe i costi della larghezza di banda per fornire l'immagine quando qualcuno visita la tua pagina. Inoltre, ti lascia senza controllo sull'immagine che viene rimossa o sostituita con qualcosa di imbarazzante.
+> [!WARNING]
+> Non impostare _mai_ l'attributo `src` su un'immagine ospitata sul sito web di qualcun altro _senza autorizzazione_. Questa pratica è chiamata "hotlinking". È considerata poco etica, poiché qualcun altro pagherebbe i costi di larghezza di banda per distribuire l'immagine quando qualcuno visita la pagina. Inoltre, non si avrebbe alcun controllo sull'eventuale rimozione dell'immagine o sulla sua sostituzione con qualcosa di imbarazzante.
 
-Il precedente frammento di codice, sia con l'URL assoluto che relativo, ci darà il seguente risultato:
+Il precedente frammento di codice, sia con l'URL assoluto sia con quello relativo, produrrà il seguente risultato:
 
-![Un'immagine base di un dinosauro, incorporata in un browser, con sopra scritto "Immagini in HTML"](basic-image.png)
-
-> [!NOTE]
-> Elementi come {{htmlelement("img")}} e {{htmlelement("video")}} sono talvolta chiamati **elementi sostituiti**. Questo perché il contenuto e la dimensione dell'elemento sono definiti da una risorsa esterna (come un file immagine o video), non dai contenuti dell'elemento stesso. Puoi leggere di più su di essi in {{Glossary("replaced_elements", "elementi sostituiti")}}.
+![Immagine di base di un dinosauro, incorporata in un browser, con la scritta "Images in HTML" sopra di essa](basic-image.png)
 
 > [!NOTE]
-> Puoi trovare l'esempio completo di questa sezione [in esecuzione su GitHub](https://mdn.github.io/learning-area/html/multimedia-and-embedding/images-in-html/index.html) (vedi anche il [codice sorgente](https://github.com/mdn/learning-area/blob/main/html/multimedia-and-embedding/images-in-html/index.html)).
+> Elementi come {{htmlelement("img")}} e {{htmlelement("video")}} sono talvolta indicati come **replaced elements**. Questo perché il contenuto e le dimensioni dell'elemento sono definiti da una risorsa esterna, come un file immagine o video, e non dal contenuto dell'elemento stesso. Per ulteriori informazioni, vedere {{Glossary("replaced_elements", "replaced elements")}}.
 
 ### Testo alternativo
 
-Il prossimo attributo che esamineremo è `alt`. Il suo valore dovrebbe essere una descrizione testuale dell'immagine, per l'uso in situazioni in cui l'immagine non può essere vista/visualizzata o impiega molto tempo a essere renderizzata a causa di una connessione internet lenta. Ad esempio, il nostro codice sopra potrebbe essere modificato così:
+L'attributo successivo da esaminare è `alt`. Il suo valore dovrebbe essere una descrizione testuale dell'immagine, da usare nelle situazioni in cui l'immagine non può essere vista/visualizzata oppure richiede molto tempo per il rendering a causa di una connessione Internet lenta. Ad esempio, il codice precedente potrebbe essere modificato così:
 
 ```html
 <img
@@ -100,35 +98,38 @@ Il prossimo attributo che esamineremo è `alt`. Il suo valore dovrebbe essere un
           it has a large head with long sharp teeth" />
 ```
 
-Il modo più semplice per testare il tuo testo `alt` è quello di scrivere intenzionalmente in modo errato il nome del tuo file. Se, ad esempio, il nome della nostra immagine fosse scritto `dinosooooor.jpg`, il browser non visualizzerebbe l'immagine e mostrerebbe invece il testo alternativo:
+Il modo più semplice per testare il testo `alt` consiste nello scrivere intenzionalmente in modo errato il nome del file. Se, ad esempio, il nome dell'immagine fosse scritto `dinosooooor.jpg`, il browser non visualizzerebbe l'immagine e mostrerebbe invece il testo alternativo:
 
-![Il titolo Immagini in HTML, ma questa volta l'immagine del dinosauro non è visualizzata e il testo alternativo è al suo posto.](alt-text.png)
+![Il titolo Images in HTML, ma questa volta l'immagine del dinosauro non è visualizzata e al suo posto compare il testo alternativo.](alt-text.png)
 
-Quindi, perché mai dovresti vedere o avere bisogno di testo alternativo? Può tornare utile per diversi motivi:
+Perché potrebbe essere necessario visualizzare o usare il testo alternativo? Può risultare utile per diversi motivi:
 
-- L'utente è ipovedente e sta utilizzando un [lettore di schermo](https://en.wikipedia.org/wiki/Screen_reader) per leggere il web. Infatti, avere testo alternativo disponibile per descrivere le immagini è utile per quasi tutti gli utenti.
-- Come descritto sopra, la scrittura del nome file o del percorso potrebbe essere sbagliata.
-- Il browser non supporta il tipo di immagine. Alcune persone utilizzano ancora browser solo testo, come [Lynx](https://en.wikipedia.org/wiki/Lynx_%28web_browser%29), che visualizza il testo alternativo delle immagini.
-- Potresti voler fornire testo ai motori di ricerca da utilizzare; ad esempio, i motori di ricerca possono abbinare il testo alternativo con le query di ricerca.
-- Gli utenti hanno disattivato le immagini per ridurre il volume di trasferimento dati e le distrazioni. Questo è particolarmente comune sui telefoni cellulari e nei paesi in cui la larghezza di banda è limitata o costosa.
+- L'utente ha una disabilità visiva e usa un [lettore di schermo](https://en.wikipedia.org/wiki/Screen_reader) per leggere il web. In effetti, disporre di testo alternativo per descrivere le immagini è utile alla maggior parte degli utenti.
+- Come descritto sopra, l'ortografia del nome del file o del percorso potrebbe essere errata.
+- Il browser non supporta il tipo di immagine. Alcune persone usano ancora browser di solo testo, come [Lynx](https://en.wikipedia.org/wiki/Lynx_%28web_browser%29), che visualizza il testo alternativo delle immagini.
+- Potrebbe essere necessario fornire testo che i motori di ricerca possano utilizzare; ad esempio, i motori di ricerca possono confrontare il testo alternativo con le query di ricerca.
+- Gli utenti hanno disattivato le immagini per ridurre il volume di trasferimento dati e le distrazioni. Questo è particolarmente comune sui telefoni cellulari e nei Paesi in cui la larghezza di banda è limitata o costosa.
 
-Cosa dovresti effettivamente scrivere dentro il tuo attributo `alt`? Dipende da _perché_ l'immagine è lì in primo luogo. In altre parole, cosa perdi se la tua immagine non viene visualizzata:
+Che cosa si dovrebbe scrivere esattamente nell'attributo `alt`? Dipende dal _motivo_ per cui l'immagine è presente. In altre parole, da ciò che andrebbe perso se l'immagine non venisse visualizzata:
 
-- **Decorazione.** Dovresti usare [immagini di sfondo CSS](#immagini_di_sfondo_css) per le immagini decorative, ma se devi usare HTML, aggiungi un `alt=""` vuoto. Se l'immagine non fa parte del contenuto, un lettore di schermo non dovrebbe perdere tempo a leggerla.
-- **Contenuto.** Se la tua immagine fornisce informazioni significative, fornisci le stesse informazioni in un testo `alt` _breve_ – o ancora meglio, nel testo principale che tutti possono vedere. Non scrivere testo `alt` ridondante. Quanto sarebbe fastidioso per un utente che vede se tutti i paragrafi fossero scritti due volte nel contenuto principale? Se l'immagine è descritta adeguatamente dal corpo del testo principale, puoi semplicemente usare `alt=""`.
-- **Link.** Se metti un'immagine all'interno di tag {{htmlelement("a")}}, per trasformare un'immagine in un collegamento, devi comunque fornire [testo di collegamento accessibile](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#use_clear_link_wording). In tali casi puoi, o scriverlo all'interno dello stesso elemento `<a>`, o all'interno dell'attributo `alt` dell'immagine – qualunque funzione meglio nel tuo caso.
-- **Testo.** Non dovresti mettere il testo nelle immagini. Se il tuo titolo principale ha bisogno di un'ombra, ad esempio, usa [CSS](/it/docs/Web/CSS/text-shadow) invece di mettere il testo in un'immagine. Tuttavia, se _proprio non puoi evitare di farlo_, dovresti fornire il testo all'interno dell'attributo `alt`.
+- **Decorazione.** Per le immagini decorative dovrebbero essere usate le [immagini di sfondo CSS](#immagini_di_sfondo_css), ma se è necessario usare HTML, aggiungere un `alt=""` vuoto. Se l'immagine non fa parte del contenuto, un lettore di schermo non dovrebbe perdere tempo a leggerla.
+- **Contenuto.** Se l'immagine fornisce informazioni significative, fornire le stesse informazioni in un testo `alt` _breve_ oppure, ancora meglio, nel testo principale che tutti possono vedere. Non scrivere testo `alt` ridondante. Quanto sarebbe fastidioso per un utente vedente se tutti i paragrafi fossero scritti due volte nel contenuto principale? Se l'immagine è descritta adeguatamente dal corpo del testo principale, è sufficiente usare `alt=""`.
+- **Collegamento.** Se un'immagine viene inserita all'interno di tag {{htmlelement("a")}} per trasformarla in un collegamento, è comunque necessario fornire un [testo del collegamento accessibile](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#use_clear_link_wording). In questi casi, il testo può essere scritto nello stesso elemento `<a>` oppure nell'attributo `alt` dell'immagine, a seconda di quale soluzione funzioni meglio nel caso specifico.
+- **Testo.** Il testo non dovrebbe essere inserito nelle immagini. Se il titolo principale necessita, ad esempio, di un'ombra esterna, è preferibile [usare CSS](/it/docs/Web/CSS/Reference/Properties/text-shadow) anziché inserire il testo in un'immagine. Tuttavia, se _davvero non è possibile evitarlo_, il testo dovrebbe essere fornito nell'attributo `alt`.
 
-Essenzialmente, la chiave è fornire un'esperienza utilizzabile, anche quando le immagini non possono essere viste. Questo assicura che non manchi alcun contenuto a nessun utente. Prova a disattivare le immagini nel tuo browser e guarda come appaiono le cose. Ti renderai presto conto di quanto sia utile il testo alternativo se l'immagine non può essere vista.
+In sostanza, la chiave è offrire un'esperienza utilizzabile anche quando le immagini non possono essere viste. Questo garantisce che nessun utente perda parte del contenuto. Provare a disattivare le immagini nel browser e osservare il risultato. Diventerà subito chiaro quanto sia utile il testo alternativo quando l'immagine non può essere visualizzata.
 
 > [!NOTE]
-> Vedi la nostra guida ai [Testi Alternativi](/it/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives) e [Un albero decisionale per alt](https://www.w3.org/WAI/tutorials/images/decision-tree/) per imparare a usare un attributo `alt` per le immagini in varie situazioni.
+> Consultare la nostra guida alle [alternative testuali](/it/docs/Learn_web_development/Core/Accessibility/HTML#text_alternatives) e [Un albero decisionale per `alt`](https://www.w3.org/WAI/tutorials/images/decision-tree/) per imparare a usare un attributo `alt` per le immagini in varie situazioni.
+
+> [!NOTE]
+> [Tag HTML](https://scrimba.com/html-css-crash-course-c02l/~0d?via=mdn) <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> di Scrimba è una lezione interattiva che fornisce informazioni sulle immagini e mini-sfide.
 
 ### Larghezza e altezza
 
-Puoi utilizzare gli attributi [`width`](/it/docs/Web/HTML/Reference/Elements/img#width) e [`height`](/it/docs/Web/HTML/Reference/Elements/img#height) per specificare la larghezza e l'altezza della tua immagine. Sono dati come interi senza un'unità e rappresentano la larghezza e l'altezza dell'immagine in pixel.
+È possibile usare gli attributi [`width`](/it/docs/Web/HTML/Reference/Elements/img#width) e [`height`](/it/docs/Web/HTML/Reference/Elements/img#height) per specificare la larghezza e l'altezza dell'immagine. Vengono forniti come numeri interi senza unità e rappresentano la larghezza e l'altezza dell'immagine in pixel.
 
-Puoi trovare la larghezza e l'altezza della tua immagine in diversi modi. Ad esempio, su Mac puoi usare <kbd>Cmd</kbd> + <kbd>I</kbd> per ottenere le informazioni di visualizzazione per il file immagine. Tornando al nostro esempio, potremmo fare questo:
+La larghezza e l'altezza dell'immagine possono essere individuate in vari modi. Ad esempio, su Mac è possibile usare <kbd>Cmd</kbd> + <kbd>I</kbd> per ottenere le informazioni di visualizzazione del file immagine. Tornando all'esempio, si potrebbe fare così:
 
 ```html
 <img
@@ -139,7 +140,7 @@ Puoi trovare la larghezza e l'altezza della tua immagine in diversi modi. Ad ese
   height="341" />
 ```
 
-C'è un buon motivo per farlo. L'HTML per la tua pagina e l'immagine sono risorse separate, ottenute dal browser come richieste HTTP(S) separate. Non appena il browser ha ricevuto l'HTML, inizierà a visualizzarlo all'utente. Se le immagini non sono state ancora ricevute (e questo sarà spesso il caso, poiché le dimensioni dei file delle immagini sono spesso molto più grandi dei file HTML), il browser renderà solo l'HTML e aggiornerà la pagina con l'immagine non appena sarà ricevuta.
+C'è un ottimo motivo per farlo. L'HTML della pagina e l'immagine sono risorse separate, recuperate dal browser come richieste HTTP(S) separate. Non appena il browser riceve l'HTML, inizia a visualizzarlo per l'utente. Se le immagini non sono ancora state ricevute, situazione che spesso si verifica poiché le dimensioni dei file immagine sono spesso molto maggiori di quelle dei file HTML, il browser eseguirà il rendering solo dell'HTML e aggiornerà la pagina con l'immagine non appena questa verrà ricevuta.
 
 Ad esempio, supponiamo di avere del testo dopo l'immagine:
 
@@ -165,32 +166,35 @@ Ad esempio, supponiamo di avere del testo dopo l'immagine:
 </blockquote>
 ```
 
-Non appena il browser scarica l'HTML, il browser inizierà a visualizzare la pagina.
+Non appena il browser scarica l'HTML, inizierà a visualizzare la pagina.
 
-Una volta caricata l'immagine, il browser aggiunge l'immagine alla pagina. Poiché l'immagine occupa spazio, il browser deve spostare il testo in basso nella pagina, per fare spazio all'immagine sopra:
+Una volta caricata l'immagine, il browser la aggiunge alla pagina. Poiché l'immagine occupa spazio, il browser deve spostare il testo più in basso nella pagina per inserirvi l'immagine sopra di esso:
 
-![Confronto del layout della pagina mentre il browser sta caricando una pagina e quando ha finito, quando non è specificata alcuna dimensione per l'immagine.](no-size.png)
+![Confronto del layout della pagina mentre il browser carica una pagina e quando ha terminato, senza dimensioni specificate per l'immagine.](no-size.png)
 
-Spostare il testo in questo modo è estremamente distrattivo per gli utenti, soprattutto se hanno già iniziato a leggerlo.
+Spostare il testo in questo modo distrae moltissimo gli utenti, specialmente se hanno già iniziato a leggerlo, e causa inoltre un nuovo rendering della pagina da parte del browser, il che è negativo per le prestazioni.
 
-Se specifichi la dimensione effettiva dell'immagine nel tuo HTML, utilizzando gli attributi `width` e `height`, allora il browser sa, prima di aver scaricato l'immagine, quanto spazio deve lasciare per essa.
+Se si specificano le dimensioni effettive dell'immagine nell'HTML usando gli attributi `width` e `height`, il browser sa quanto spazio riservare all'immagine prima di averla scaricata.
 
-Questo significa che quando l'immagine è stata scaricata, il browser non deve spostare il contenuto circostante.
+Ciò significa che, quando l'immagine è stata scaricata, il browser non deve spostare il contenuto circostante.
 
-![Confronto del layout della pagina mentre il browser sta caricando una pagina e quando ha finito, quando la dimensione dell'immagine è specificata.](size.png)
+![Confronto del layout della pagina mentre il browser carica una pagina e quando ha terminato, quando le dimensioni dell'immagine sono specificate.](size.png)
 
-Per un ottimo articolo sulla storia di questa funzionalità, vedi [Impostare altezza e larghezza sulle immagini è di nuovo importante](https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/).
+Per un eccellente articolo sulla storia di questa funzionalità, vedere [Setting height and width on images is important again](https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/).
 
-> [!NOTE]
-> Anche se, come abbiamo detto, è buona prassi specificare la dimensione _effettiva_ delle immagini utilizzando attributi HTML, non dovresti usarli per _ridimensionare_ le immagini.
->
-> Se imposti una dimensione troppo grande per l'immagine, finirai per avere immagini che sembrano sgranate, sfocate o troppo piccole, e sprecare banda scaricando un'immagine che non soddisfa le esigenze dell'utente. L'immagine potrebbe anche finire per apparire distorta, se non mantieni il corretto {{Glossary("aspect_ratio", "rapporto d'aspetto")}}. Dovresti usare un editor di immagini per rendere la tua immagine della dimensione corretta prima di metterla sulla tua pagina web.
->
-> Se hai bisogno di alterare la dimensione di un'immagine, dovresti usare [CSS](/it/docs/Learn_web_development/Core/Styling_basics) invece.
+Tenere presente che se non c'è contenuto sotto l'immagine, il nuovo rendering non è un problema perché il ridimensionamento dell'immagine non causerà lo spostamento di altri elementi. In tal caso, è possibile impostare solo `width` dell'immagine. Se si imposta `width` ma non `height`, `height` assume per impostazione predefinita il valore `auto`, il che significa che viene impostato su un valore che mantiene le {{Glossary("Aspect_ratio", "proporzioni")}} dell'immagine.
+
+#### Ridimensionare le immagini
+
+Sebbene, come detto, sia buona pratica specificare la dimensione _effettiva_ delle immagini usando attributi HTML, non dovrebbero essere usati per _ridimensionare_ le immagini.
+
+Se si imposta una dimensione troppo grande per l'immagine, si otterranno immagini dall'aspetto granuloso, sfocato o troppo piccolo, oltre a sprecare larghezza di banda scaricando un'immagine non adatta alle esigenze dell'utente. L'immagine potrebbe anche apparire distorta se non vengono mantenute le corrette {{Glossary("aspect_ratio", "proporzioni")}}. Prima di inserire un'immagine nella pagina web, occorre usare un editor di immagini per impostarla alla dimensione corretta.
+
+Se è necessario modificare le dimensioni di un'immagine, è preferibile usare [CSS](/it/docs/Learn_web_development/Core/Styling_basics).
 
 ### Titoli delle immagini
 
-Come [con i collegamenti](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#adding_supporting_information_with_the_title_attribute), puoi anche aggiungere attributi `title` alle immagini, per fornire ulteriori informazioni di supporto se necessario. Nel nostro esempio, potremmo fare questo:
+Come [per i collegamenti](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links#adding_supporting_information_with_the_title_attribute), è possibile aggiungere attributi `title` alle immagini per fornire ulteriori informazioni di supporto, se necessario. Nell'esempio, si potrebbe fare così:
 
 ```html
 <img
@@ -202,223 +206,111 @@ Come [con i collegamenti](/it/docs/Learn_web_development/Core/Structuring_conten
   title="A T-Rex on display in the Manchester University Museum" />
 ```
 
-Questo ci dà un tooltip al passaggio del mouse, proprio come i titoli dei collegamenti:
+Questo produce un tooltip al passaggio del mouse, proprio come i titoli dei collegamenti:
 
-![L'immagine del dinosauro, con un titolo del tooltip su di essa che legge Un T-Rex esposto al Manchester University Museum](image-with-title.png)
+![L'immagine del dinosauro, con un tooltip sopra di essa che recita A T-Rex on display at the Manchester University Museum](image-with-title.png)
 
-Tuttavia, non è consigliato — `title` ha una serie di problemi di accessibilità, principalmente basati sul fatto che il supporto del lettore di schermo è molto imprevedibile e la maggior parte dei browser non lo mostrerà a meno che non si passi con un mouse (quindi, ad esempio, nessun accesso per gli utenti della tastiera). Se sei interessato a maggiori informazioni su questo, leggi [Le prove e le tribolazioni dell'attributo Title](https://www.24a11y.com/2017/the-trials-and-tribulations-of-the-title-attribute/) di Scott O'Hara.
+Tuttavia, questo non è consigliato: `title` presenta diversi problemi di accessibilità, dovuti principalmente al fatto che il supporto dei lettori di schermo è molto imprevedibile e che la maggior parte dei browser non lo mostra se non al passaggio del mouse, quindi, ad esempio, gli utenti della tastiera non vi hanno accesso. Per ulteriori informazioni al riguardo, leggere [The Trials and Tribulations of the Title Attribute](https://www.24a11y.com/2017/the-trials-and-tribulations-of-the-title-attribute/) di Scott O'Hara.
 
-È meglio includere tali informazioni di supporto nel testo principale dell'articolo, piuttosto che attaccate all'immagine.
+È preferibile includere tali informazioni di supporto nel testo principale dell'articolo anziché associarle all'immagine.
 
-### Apprendimento attivo: incorporare un'immagine
+### Esercitazione sull'incorporamento di immagini
 
-Ora è il tuo turno di giocare! Questa sezione di apprendimento attivo ti farà passare a un esercizio di incorporamento. Ti viene fornito un tag di base {{htmlelement("img")}}; vorremmo che incorporassi l'immagine situata al seguente URL:
+Ora è il momento di fare pratica. Questa attività richiede di incorporare un'immagine.
 
-```url
-https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio nell'MDN Playground.
+2. Modificare l'elemento {{htmlelement("img")}} esistente affinché incorpori l'immagine `dinosaur_small.jpg`.
+3. Aggiungere un attributo `alt` all'immagine. È possibile verificare che il testo alternativo funzioni scrivendo temporaneamente in modo errato il nome del file dell'immagine.
+4. Impostare `width` e `height` corretti dell'immagine (suggerimento: è larga `200px` e alta `171px`), quindi sperimentare altri valori per vedere quale effetto producono.
+5. Impostare un `title` sull'immagine.
+
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nell'MDN Playground. Se si è davvero bloccati, è possibile visualizzare la soluzione sotto il blocco di codice.
+
+```html live-sample___images-1
+<img />
 ```
 
-In precedenza abbiamo detto di non mai fare hotlink alle immagini su altri server, ma questo è solo a scopo didattico, quindi ti perdoneremo questa volta.
+{{ EmbedLiveSample('images-1', "100%", 60) }}
 
-Vorremmo anche che tu:
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-- Aggiungessi un po' di testo alternativo e verificassi che funzioni scrivendo male l'URL dell'immagine.
-- Impostassi la `width` e `height` corrette dell'immagine (suggerimento: è larga 200px e alta 171px), quindi sperimentassi con altri valori per vedere quale effetto hanno.
-- Impostassi un `title` sull'immagine.
+L'HTML completato dovrebbe avere un aspetto simile al seguente:
 
-Se fai un errore, puoi sempre reimpostarlo usando il pulsante _Reset_. Se sei davvero bloccato, premi il pulsante _Mostra soluzione_ per vedere una risposta:
-
-```html hidden
-<h2>Live output</h2>
-
-<div class="output" style="min-height: 50px;"></div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="input" style="min-height: 100px; width: 95%">
-<img>
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+```html
+<img
+  src="dinosaur_small.jpg"
+  alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"
+  width="200"
+  height="171"
+  title="A T-Rex on display in the Manchester University Museum" />
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+</details>
 
-h2 {
-  font-size: 16px;
-}
+## Risorse multimediali e licenze
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+Le immagini, e altri tipi di risorse multimediali, trovate sul web vengono pubblicate con vari tipi di licenza. Prima di usare un'immagine in un sito in fase di sviluppo, assicurarsi di possederla, di avere il permesso di usarla o di rispettare le condizioni di licenza del proprietario.
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
+### Comprendere i tipi di licenza
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
-
-const htmlSolution =
-  '<img src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"\n alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"\n width="200"\n height="171"\n title="A T-Rex on display in the Manchester University Museum">';
-let solutionEntry = htmlSolution;
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = function () {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_embedding_an_image', 700, 350) }}
-
-## Risorse multimediali e licensing
-
-Le immagini (e altri tipi di risorse multimediali) che trovi sul web sono rilasciate sotto vari tipi di licenza. Prima di utilizzare un'immagine su un sito che stai costruendo, assicurati di possederla, avere il permesso di usarla o di rispettare le condizioni di licenza del proprietario.
-
-### Compresione dei tipi di licenza
-
-Diamo un'occhiata ad alcune comuni categorie di licenze che probabilmente troverai sul web.
+Esaminiamo alcune categorie comuni di licenze che probabilmente si incontreranno sul web.
 
 #### Tutti i diritti riservati
 
-I creatori di opere originali come canzoni, libri o software spesso rilasciano il loro lavoro sotto protezione di copyright chiuso. Ciò significa che, per impostazione predefinita, essi (o il loro editore) hanno diritti esclusivi di usare (ad esempio, mostrare o distribuire) il loro lavoro. Se vuoi usare immagini protette da copyright con una licenza _tutti i diritti riservati_, devi fare una delle seguenti cose:
+I creatori di opere originali come canzoni, libri o software pubblicano spesso le loro opere con protezione del copyright chiusa. Ciò significa che, per impostazione predefinita, essi, o il loro editore, hanno diritti esclusivi sull'uso, ad esempio la visualizzazione o la distribuzione, delle loro opere. Per usare immagini protette da copyright con una licenza _tutti i diritti riservati_, è necessario effettuare una delle seguenti operazioni:
 
-- Ottenere un permesso esplicito e scritto dal detentore del copyright.
-- Pagare una tassa di licenza per usarle. Questo può essere un pagamento una tantum per un uso illimitato ("royalty-free"), o potrebbe essere "gestito dai diritti", nel qual caso potresti dover pagare tariffe specifiche per utilizzo per intervallo di tempo, area geografica, industria o tipo di media, ecc.
-- Limitare i tuoi usi a quelli che sarebbero considerati [fair use](https://fairuse.stanford.edu/overview/fair-use/what-is-fair-use/) o [fair dealing](https://copyrightservice.co.uk/copyright/p27_work_of_others) nella tua giurisdizione.
+- Ottenere un'autorizzazione scritta esplicita dal titolare del copyright.
+- Pagare una tariffa di licenza per usarle. Può trattarsi di una tariffa una tantum per un uso illimitato ("royalty-free") oppure di una licenza "rights-managed", nel qual caso potrebbe essere necessario pagare tariffe specifiche per ogni uso in base a fascia oraria, regione geografica, settore o tipo di mezzo, e così via.
+- Limitare gli usi a quelli che sarebbero considerati [fair use](https://fairuse.stanford.edu/overview/fair-use/what-is-fair-use/) o [fair dealing](https://copyrightservice.co.uk/copyright/p27_work_of_others) nella propria giurisdizione.
 
-Gli autori non sono tenuti ad includere un avviso di copyright o termini di licenza con il loro lavoro. Il diritto d'autore esiste automaticamente in un'opera originale di paternità una volta che è stata creata in un mezzo tangibile. Quindi se trovi un'immagine online e non ci sono avvisi di copyright o termini di licenza, il corso più sicuro è presumere che sia protetta da copyright con tutti i diritti riservati.
+Gli autori non sono obbligati a includere un avviso di copyright o i termini di licenza nelle loro opere. Il copyright esiste automaticamente per un'opera originale di autore una volta creata in un supporto tangibile. Pertanto, se si trova un'immagine online senza avvisi di copyright o termini di licenza, l'approccio più sicuro è presumere che sia protetta da copyright con tutti i diritti riservati.
 
-#### Permissiva
+#### Permissive
 
-Se l'immagine è rilasciata sotto una licenza permissiva, come [MIT](https://mit-license.org/), [BSD](https://opensource.org/license/BSD-3-clause), o una [licenza Creative Commons (CC) adatta](https://creativecommons.org/chooser/), non è necessario pagare una tassa di licenza o cercare il permesso di utilizzarla. Tuttavia, ci sono varie condizioni di licensing che dovrai soddisfare, che variano a seconda della licenza.
+Se l'immagine viene pubblicata con una licenza permissiva, come [MIT](https://mit-license.org/), [BSD](https://opensource.org/license/BSD-3-clause) o una licenza [Creative Commons (CC)](https://creativecommons.org/chooser/) adatta, non è necessario pagare una tariffa di licenza né richiedere autorizzazione per usarla. Restano comunque varie condizioni di licenza da rispettare, che variano in base alla licenza.
 
-Ad esempio, potresti dover:
+Ad esempio, potrebbe essere necessario:
 
-- Fornire un link alla fonte originale dell'immagine e attribuirla al suo creatore.
-- Indicare se sono state apportate modifiche a essa.
-- Condividere qualsiasi opera derivata creata utilizzando l'immagine sotto la stessa licenza dell'originale.
-- Non condividere alcuna opera derivata.
-- Non utilizzare l'immagine in alcun lavoro commerciale.
-- Includere una copia della licenza insieme a qualsiasi pubblicazione che utilizzi l'immagine.
+- Fornire un collegamento alla fonte originale dell'immagine e attribuirne la creazione al suo autore.
+- Indicare se sono state apportate modifiche.
+- Condividere le opere derivate create usando l'immagine con la stessa licenza dell'originale.
+- Non condividere affatto opere derivate.
+- Non usare l'immagine in opere commerciali.
+- Includere una copia della licenza insieme a ogni pubblicazione che usa l'immagine.
 
-Dovresti consultare la licenza applicabile per i termini specifici che dovrai seguire.
+Occorre consultare la licenza applicabile per conoscere i termini specifici da seguire.
 
 > [!NOTE]
-> Potresti incontrare il termine "copyleft" nel contesto di licenze permissive. Le licenze copyleft (come la [GNU General Public License (GPL)](https://www.gnu.org/licenses/gpl-3.0.en.html) o le licenze Creative Commons "Share Alike") stabiliscono che le opere derivate devono essere rilasciate sotto la stessa licenza dell'originale.
+> Nel contesto delle licenze permissive può comparire il termine "copyleft". Le licenze copyleft, come la [GNU General Public License (GPL)](https://www.gnu.org/licenses/gpl-3.0.en.html) o le licenze Creative Commons "Share Alike", stabiliscono che le opere derivate devono essere pubblicate con la stessa licenza dell'originale.
 
-Le licenze copyleft sono prominenti nel mondo del software. L'idea di base è che un nuovo progetto costruito con il codice di un progetto con licenza copyleft (questo è noto come "fork" del software originale) dovrà anche essere concesso in licenza con la stessa licenza copyleft. Questo assicura che il codice sorgente del nuovo progetto sarà anche reso disponibile per altri da studiare e modificare. Nota che, in generale, le licenze che sono state redatte per il software, come la GPL, non sono considerate buone licenze per opere non software poiché non sono state redatte pensando a opere non software.
+Le licenze copyleft sono diffuse nel mondo del software. L'idea di base è che un nuovo progetto creato con il codice di un progetto con licenza copyleft, noto come "fork" del software originale, debba anch'esso essere concesso in licenza con la medesima licenza copyleft. Ciò garantisce che il codice sorgente del nuovo progetto sia reso disponibile anche ad altri per essere studiato e modificato. Si noti che, in generale, le licenze redatte per il software, come la GPL, non sono considerate buone licenze per opere non software poiché non sono state concepite tenendo conto delle opere non software.
 
-Esplora i link forniti in precedenza in questa sezione per leggere i diversi tipi di licenze e i tipi di condizioni che specificano.
+Esplorare i collegamenti forniti in precedenza in questa sezione per leggere i diversi tipi di licenza e i tipi di condizioni che specificano.
 
-#### Dominio pubblico/CC0
+#### Pubblico dominio/CC0
 
-Un'opera rilasciata nel dominio pubblico viene talvolta definita "nessun diritto riservato" — non si applica alcun copyright e può essere utilizzata senza permesso e senza dover soddisfare alcune condizioni di licenza. Un'opera può finire nel dominio pubblico attraverso vari mezzi come la scadenza del diritto d'autore o la rinuncia specifica ai diritti.
+Le opere pubblicate nel pubblico dominio sono talvolta definite "nessun diritto riservato": non si applica alcun copyright e possono essere utilizzate senza autorizzazione e senza dover rispettare alcuna condizione di licenza. Un'opera può entrare nel pubblico dominio in vari modi, ad esempio per la scadenza del copyright o per una rinuncia specifica ai diritti.
 
-Uno dei modi più efficaci per collocare un'opera nel dominio pubblico è licenziarla sotto [CC0](https://creativecommons.org/public-domain/cc0/), una licenza di creative commons specifica che fornisce uno strumento legale chiaro e inequivocabile a questo scopo.
+Uno dei modi più efficaci per collocare un'opera nel pubblico dominio consiste nel concederla in licenza con [CC0](https://wiki.creativecommons.org/wiki/CC0), una specifica licenza Creative Commons che fornisce uno strumento giuridico chiaro e inequivocabile per questo scopo.
 
-Quando si utilizzano immagini di dominio pubblico, ottenere la prova che l'immagine è nel dominio pubblico e conservare la prova per i propri registri. Ad esempio, prendi uno screenshot della fonte originale con lo stato della licenza chiaramente visualizzato e considera l'aggiunta di una pagina al tuo sito web con un elenco delle immagini acquisite insieme ai loro requisiti di licenza.
+Quando si usano immagini di pubblico dominio, ottenere una prova che l'immagine appartenga al pubblico dominio e conservarla nei propri archivi. Ad esempio, acquisire una schermata della fonte originale con lo stato della licenza chiaramente visualizzato e considerare l'aggiunta al sito web di una pagina con un elenco delle immagini acquisite e dei relativi requisiti di licenza.
 
-### Ricerca di immagini con licenza permissiva
+### Cercare immagini con licenza permissiva
 
-Puoi trovare immagini con licenza permissiva per i tuoi progetti usando un motore di ricerca di immagini o direttamente dai repository di immagini.
+È possibile trovare immagini con licenza permissiva per i progetti usando un motore di ricerca di immagini oppure direttamente nei repository di immagini.
 
-Cerca immagini utilizzando una descrizione dell'immagine che stai cercando insieme a termini di licenza pertinenti. Ad esempio, quando cerchi "dinosauro giallo" aggiungi "immagini di dominio pubblico", "libreria di immagini di dominio pubblico", "immagini con licenza aperta", o termini simili alla query di ricerca.
+Cercare immagini usando una descrizione dell'immagine desiderata insieme a termini di licenza pertinenti. Ad esempio, quando si cerca "yellow dinosaur", aggiungere alla query di ricerca "public domain images", "public domain image library", "open licensed images" o termini simili.
 
-Alcuni motori di ricerca hanno strumenti per aiutarti a trovare immagini con licenze permissive. Ad esempio, quando usi Google, vai alla scheda "Immagini" per cercare immagini, quindi fai clic su "Strumenti". C'è un menu a discesa "Diritti di utilizzo" sulla barra degli strumenti risultante dove puoi scegliere di cercare specificamente immagini sotto le licenze creative commons.
+Alcuni motori di ricerca dispongono di strumenti per aiutare a trovare immagini con licenze permissive. Ad esempio, usando Google, accedere alla scheda "Immagini" per cercare immagini, quindi fare clic su "Strumenti". Nella barra degli strumenti risultante è presente un menu a discesa "Diritti di utilizzo", in cui è possibile scegliere di cercare specificamente immagini con licenze Creative Commons.
 
-Siti di repository di immagini, come [Flickr](https://flickr.com/), [ShutterStock](https://www.shutterstock.com/), e [Pixabay](https://pixabay.com/), hanno opzioni di ricerca per consentirti di cercare solo immagini con licenza permissiva. Alcuni siti distribuiscono esclusivamente immagini e icone con licenza permissiva, come [Picryl](https://picryl.com/) e [The Noun Project](https://thenounproject.com/).
+Siti repository di immagini come [Flickr](https://flickr.com/), [ShutterStock](https://www.shutterstock.com/) e [Pixabay](https://pixabay.com/) dispongono di opzioni di ricerca che permettono di cercare solo immagini con licenza permissiva. Alcuni siti distribuiscono esclusivamente immagini e icone con licenza permissiva, come [Picryl](https://picryl.com/) e [The Noun Project](https://thenounproject.com/).
 
-Il rispetto della licenza sotto la quale l'immagine è stata rilasciata è una questione di trovare i dettagli della licenza, leggere la pagina della licenza o delle istruzioni fornite dalla fonte, e quindi seguire quelle istruzioni. I repository di immagini rispettabili chiariscono e rendono facili da trovare le condizioni della loro licenza.
+Rispettare la licenza con cui è stata pubblicata un'immagine significa individuare i dettagli della licenza, leggere la licenza o la pagina di istruzioni fornita dalla fonte e quindi seguire tali istruzioni. I repository di immagini affidabili rendono le condizioni di licenza chiare e facili da trovare.
 
 ## Annotare immagini con figure e didascalie
 
-Parlando di didascalie, ci sono diversi modi per aggiungere una didascalia insieme alla tua immagine. Ad esempio, non ci sarebbe nulla che ti impedisca di fare questo:
+A proposito di didascalie, esistono vari modi per aggiungere una didascalia a un'immagine. Ad esempio, nulla impedirebbe di fare quanto segue:
 
 ```html
 <div class="figure">
@@ -433,9 +325,9 @@ Parlando di didascalie, ci sono diversi modi per aggiungere una didascalia insie
 </div>
 ```
 
-Questo va bene. Contiene il contenuto di cui hai bisogno ed è stilizzabile con CSS. Ma c'è un problema qui: non c'è nulla che colleghi semanticamente l'immagine alla sua didascalia, il che può creare problemi per i lettori di schermo. Ad esempio, quando hai 50 immagini e didascalie, quale didascalia va con quale immagine?
+Va bene. Contiene il contenuto necessario ed è facilmente stilizzabile con CSS. Tuttavia, c'è un problema: non c'è nulla che colleghi semanticamente l'immagine alla sua didascalia, il che può causare problemi ai lettori di schermo. Ad esempio, quando ci sono 50 immagini e didascalie, quale didascalia appartiene a quale immagine?
 
-Una soluzione migliore è usare gli elementi HTML {{htmlelement("figure")}} e {{htmlelement("figcaption")}}. Sono stati creati esattamente per questo scopo: fornire un contenitore semantico per le figure e collegare chiaramente la figura alla didascalia. Il nostro esempio precedente potrebbe essere riscritto così:
+Una soluzione migliore consiste nell'usare gli elementi HTML {{htmlelement("figure")}} e {{htmlelement("figcaption")}}. Sono stati creati esattamente per questo scopo: fornire un contenitore semantico per le figure e collegare chiaramente la figura alla didascalia. L'esempio precedente potrebbe essere riscritto così:
 
 ```html
 <figure>
@@ -452,160 +344,63 @@ Una soluzione migliore è usare gli elementi HTML {{htmlelement("figure")}} e {{
 </figure>
 ```
 
-L'elemento {{htmlelement("figcaption")}} dice ai browser e alle tecnologie assistive che la didascalia descrive l'altro contenuto dell'elemento {{htmlelement("figure")}}.
+L'elemento {{htmlelement("figcaption")}} comunica ai browser e alle tecnologie assistive che la didascalia descrive l'altro contenuto dell'elemento {{htmlelement("figure")}}.
 
 > [!NOTE]
-> Da un punto di vista dell'accessibilità, didascalie e il testo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt) hanno ruoli distinti. Le didascalie beneficiano anche delle persone che possono vedere l'immagine, mentre il testo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt) fornisce la stessa funzionalità come un'immagine assente. Pertanto, le didascalie e il testo `alt` non dovrebbero dire esattamente la stessa cosa, perché appaiono entrambi quando l'immagine manca. Prova a disattivare le immagini nel tuo browser e guarda come appare.
+> Dal punto di vista dell'accessibilità, le didascalie e il testo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt) hanno ruoli distinti. Le didascalie sono utili anche per chi può vedere l'immagine, mentre il testo [`alt`](/it/docs/Web/HTML/Reference/Elements/img#alt) fornisce la stessa funzionalità di un'immagine assente. Pertanto, le didascalie e il testo `alt` non dovrebbero dire semplicemente la stessa cosa, perché entrambi vengono visualizzati quando l'immagine non è presente. Provare a disattivare le immagini nel browser e osservare il risultato.
 
-Una figura non deve essere un'immagine. È un'unità indipendente di contenuto che:
+Una figura non deve necessariamente essere un'immagine. È un'unità di contenuto indipendente che:
 
-- Esprime il tuo significato in modo compatto e facile da afferrare.
-- Potrebbe andare in diversi punti nel flusso lineare della pagina.
+- Esprime il significato in modo conciso e facilmente comprensibile.
+- Potrebbe trovarsi in diversi punti del flusso lineare della pagina.
 - Fornisce informazioni essenziali a supporto del testo principale.
 
-Una figura potrebbe essere diverse immagini, un frammento di codice, audio, video, equazioni, una tabella o qualcos'altro.
+Una figura potrebbe essere costituita da più immagini, un frammento di codice, audio, video, equazioni, una tabella o altro.
 
-### Apprendimento attivo: creare una figura
+### Creare una figura
 
-In questa sezione di apprendimento attivo, vorremmo che prendessi il codice finito dalla sezione di apprendimento attivo precedente e lo trasformassi in una figura:
+In questa attività, si deve usare come punto di partenza il codice completato nell'attività precedente e trasformarlo in una figura:
 
-1. Avvolgilo in un elemento {{htmlelement("figure")}}.
-2. Copia il testo dall'attributo `title`, rimuovi l'attributo `title`, e metti il testo all'interno di un elemento {{htmlelement("figcaption")}} sotto l'immagine.
+1. Fare clic su **"Play"** nel blocco di codice seguente per modificare l'esempio nell'MDN Playground.
+2. Racchiudere l'elemento `<img>` in un elemento {{htmlelement("figure")}}.
+3. Copiare il testo dall'attributo `title`, inserirlo in un elemento {{htmlelement("figcaption")}} sotto l'elemento `<img>`, quindi rimuovere l'attributo `title`.
 
-Se fai un errore, puoi sempre reimpostarlo usando il pulsante _Reset_. Se sei davvero bloccato, premi il pulsante _Mostra soluzione_ per vedere una risposta:
+In caso di errore, è possibile cancellare il lavoro usando il pulsante _Reset_ nell'MDN Playground. Se si è davvero bloccati, è possibile visualizzare la soluzione sotto il blocco di codice.
 
-```html hidden
-<h2>Live output</h2>
-
-<div class="output" style="min-height: 50px;"></div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea
-  id="code"
-  class="input"
-  style="min-height: 100px; width: 95%"></textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+```html live-sample___images-2
+<img
+  src="dinosaur_small.jpg"
+  alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"
+  width="200"
+  height="171"
+  title="A T-Rex on display in the Manchester University Museum" />
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample('images-2', "100%", 200) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+L'HTML completato dovrebbe avere questo aspetto:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
+```html
+<figure>
+  <img
+    src="dinosaur_small.jpg"
+    alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"
+    width="200"
+    height="171" />
+  <figcaption>
+    A T-Rex on display in the Manchester University Museum
+  </figcaption>
+</figure>
 ```
 
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-const output = document.querySelector(".output");
-const code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  output.innerHTML = textarea.value;
-}
-
-const htmlSolution =
-  '<figure>\n <img src="https://raw.githubusercontent.com/mdn/learning-area/master/html/multimedia-and-embedding/images-in-html/dinosaur_small.jpg"\n alt="The head and torso of a dinosaur skeleton; it has a large head with long sharp teeth"\n width="200"\n height="171">\n <figcaption>A T-Rex on display in the Manchester University Museum</figcaption>\n</figure>';
-let solutionEntry = htmlSolution;
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = htmlSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
-}
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
-```
-
-{{ EmbedLiveSample('Active_learning_creating_a_figure', 700, 350) }}
+</details>
 
 ## Immagini di sfondo CSS
 
-Puoi anche utilizzare CSS per incorporare immagini nelle pagine web (e JavaScript, ma questa è un'altra storia completamente diversa). La proprietà CSS {{cssxref("background-image")}}, e le altre proprietà `background-*`, vengono utilizzate per controllare il posizionamento delle immagini di sfondo. Ad esempio, per posizionare un'immagine di sfondo su ogni paragrafo di una pagina, potresti fare questo:
+È possibile usare CSS per incorporare immagini nelle pagine web, e anche JavaScript, ma questa è tutta un'altra storia. La proprietà CSS {{cssxref("background-image")}} e le altre proprietà `background-*` vengono usate per controllare il posizionamento delle immagini di sfondo. Ad esempio, per inserire un'immagine di sfondo in ogni paragrafo di una pagina, si potrebbe fare così:
 
 ```css
 p {
@@ -613,16 +408,14 @@ p {
 }
 ```
 
-L'immagine incorporata risultante è forse più facile da posizionare e controllare rispetto alle immagini HTML. Allora perché preoccuparsi delle immagini HTML? Come accennato sopra, le immagini di sfondo CSS sono solo per decorazione. Se vuoi solo aggiungere qualcosa di carino alla tua pagina per migliorare il visivo, va bene. Tuttavia, tali immagini non hanno alcun significato semantico. Non possono avere alcun testo equivalente, sono invisibili ai lettori di schermo, e così via. Qui risplendono le immagini HTML!
+L'immagine incorporata risultante è probabilmente più facile da posizionare e controllare rispetto alle immagini HTML. Perché allora usare le immagini HTML? Come anticipato sopra, le immagini di sfondo CSS sono solo decorative. Se si desidera semplicemente aggiungere qualcosa di gradevole alla pagina per migliorarne l'aspetto visivo, va bene. Tuttavia, tali immagini non hanno alcun significato semantico. Non possono avere equivalenti testuali, sono invisibili ai lettori di schermo e così via. È qui che le immagini HTML eccellono.
 
-In sintesi: se un'immagine ha significato, in termini di contenuto, dovresti usare un'immagine HTML. Se un'immagine è puramente decorativa, dovresti usare immagini di sfondo CSS (copriremo queste in dettaglio più avanti nei moduli principali).
-
-## Metti alla prova le tue abilità!
-
-Hai raggiunto la fine di questo articolo, ma ricordi le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare di aver trattenuto queste informazioni prima di procedere — vedi [Metti alla prova le tue abilità: Immagini HTML](/it/docs/Learn_web_development/Core/Structuring_content/Test_your_skills/Images).
+In sintesi: se un'immagine ha significato in termini di contenuto, dovrebbe essere usata un'immagine HTML. Se un'immagine è puramente decorativa, dovrebbero essere usate immagini di sfondo CSS, che verranno trattate in dettaglio più avanti nei moduli Core.
 
 ## Riepilogo
 
-Questo è tutto per ora. Abbiamo coperto in dettaglio immagini e didascalie. Nel prossimo articolo, porteremo le cose a un livello superiore, guardando come usare HTML per incorporare contenuti video e audio nelle pagine web.
+Per ora è tutto. Sono state trattate in dettaglio immagini e didascalie.
 
-{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Structuring_a_page_of_content", "Learn_web_development/Core/Structuring_content/HTML_video_and_audio", "Learn_web_development/Core/Structuring_content")}}
+Nel prossimo articolo verranno proposti alcuni test per verificare quanto bene sono state comprese e memorizzate le informazioni fornite sulle immagini HTML.
+
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Structuring_a_page_of_content", "Learn_web_development/Core/Structuring_content/Test_your_skills/Images", "Learn_web_development/Core/Structuring_content")}}

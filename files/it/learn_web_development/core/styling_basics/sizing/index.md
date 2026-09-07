@@ -1,34 +1,34 @@
 ---
-title: Dimensionare gli elementi in CSS
+title: Dimensionamento degli elementi in CSS
 short-title: Sizing
 slug: Learn_web_development/Core/Styling_basics/Sizing
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 38397b7418708bd0a7c5ee8e69b16e985c85de33
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Values_and_units", "Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics")}}
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Values", "Learn_web_development/Core/Styling_basics/Test_your_skills/Sizing", "Learn_web_development/Core/Styling_basics")}}
 
-Nelle varie lezioni finora, hai incontrato diversi modi per dimensionare gli elementi su una pagina web utilizzando CSS. Comprendere le dimensioni delle varie caratteristiche del tuo design è importante. Quindi, in questa lezione riassumeremo i vari modi in cui gli elementi ottengono una dimensione tramite CSS e definirà alcuni termini relativi alle dimensioni che ti aiuteranno in futuro.
+Nelle varie lezioni affrontate finora, sono stati illustrati diversi modi per dimensionare gli elementi di una pagina web usando CSS. Comprendere quanto saranno grandi le diverse caratteristiche di un design è importante. In questa lezione verranno quindi riepilogati i vari modi in cui gli elementi ottengono una dimensione tramite CSS e definiti alcuni termini relativi al dimensionamento che saranno utili in futuro.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Nozioni di base sull'HTML (studia
+        Fondamenti di HTML (studiare
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi di base HTML</a
-        >), <a href="/it/docs/Learn_web_development/Core/Styling_basics/Getting_started">Sintassi di base CSS</a>, <a href="/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors">Selettori CSS</a>.
+          >Sintassi HTML di base</a
+        >), <a href="/it/docs/Learn_web_development/Core/Styling_basics/Getting_started">Sintassi CSS di base</a>, <a href="/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors">Selettori CSS</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati dell'apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
           <li>Comprendere il concetto di dimensione intrinseca.</li>
           <li>Impostare dimensioni assolute e percentuali.</li>
           <li>Impostare larghezza e altezza massime e minime.</li>
-          <li>Comprendere le unità del viewport e perché sono utili.</li>
+          <li>Comprendere le unità viewport e perché sono utili.</li>
         </ul>
       </td>
     </tr>
@@ -37,9 +37,9 @@ Nelle varie lezioni finora, hai incontrato diversi modi per dimensionare gli ele
 
 ## La dimensione naturale o intrinseca degli elementi
 
-Gli elementi HTML hanno una dimensione naturale, impostata prima che vengano influenzati da qualsiasi CSS. Un esempio semplice è un'immagine. Un file immagine contiene informazioni sulle dimensioni, descritte come la sua **dimensione intrinseca**. Questa dimensione è determinata dall'immagine _stessa_, non da qualsiasi formattazione che potremmo applicare.
+Gli elementi HTML hanno una dimensione naturale, impostata prima che siano influenzati da qualsiasi CSS. Un esempio semplice è un'immagine. Un file immagine contiene informazioni sulle dimensioni, descritte come **dimensione intrinseca**. Questa dimensione è determinata dall'immagine _stessa_, non da alcuna formattazione applicata.
 
-Se inserisci un'immagine su una pagina e non ne modifichi l'altezza o la larghezza, né utilizzando attributi sul tag `<img>` né tramite CSS, verrà visualizzata utilizzando quella dimensione intrinseca. Abbiamo fornito all'immagine nell'esempio sottostante un bordo in modo che tu possa vedere l'estensione della sua dimensione come definita nel suo file.
+Se si inserisce un'immagine in una pagina e non se ne modifica l'altezza o la larghezza, né tramite attributi `<img>` né tramite CSS, verrà visualizzata usando quella dimensione intrinseca. All'immagine nell'esempio seguente è stato assegnato un bordo, così da poter vedere l'estensione della sua dimensione come definita nel file.
 
 ```html live-sample___intrinsic-image
 <img
@@ -53,9 +53,11 @@ img {
 }
 ```
 
-{{EmbedLiveSample("intrinsic-image")}}
+{{EmbedLiveSample("intrinsic-image","100%", "80")}}
 
-Una {{htmlelement("div")}} vuota, invece, non ha dimensioni proprie. Se aggiungi un {{htmlelement("div")}} al tuo HTML senza contenuto, quindi gli dai un bordo come abbiamo fatto con l'immagine, vedrai una linea sulla pagina. Questo è il bordo collassato sull'elemento — non c'è contenuto per tenerlo aperto. Nel nostro esempio sottostante, quel bordo si estende fino alla larghezza del contenitore, perché è un elemento di livello blocco, un comportamento che dovrebbe iniziare a diventare familiare. Non ha altezza (o dimensione nella dimensione del blocco) perché non c'è nessun contenuto.
+Un {{htmlelement("div")}} vuoto, invece, non ha alcuna dimensione propria. Se si aggiunge un {{htmlelement("div")}} all'HTML senza contenuto e poi gli si assegna un bordo, come fatto con l'immagine, nella pagina verrà visualizzata una linea. Questo è il bordo collassato del `<div>`: non esiste alcun contenuto che lo mantenga aperto.
+
+Nell'esempio seguente, quel bordo copre l'intera larghezza del contenitore poiché è un elemento a livello di blocco, un comportamento che dovrebbe iniziare a essere familiare. Non ha altezza (o dimensione nella direzione del blocco) perché non ha contenuto.
 
 ```html live-sample___intrinsic-text
 <div class="box"></div>
@@ -67,13 +69,15 @@ Una {{htmlelement("div")}} vuota, invece, non ha dimensioni proprie. Se aggiungi
 }
 ```
 
-{{EmbedLiveSample("intrinsic-text")}}
+{{EmbedLiveSample("intrinsic-text","100%", "60")}}
 
-Nell'esempio sopra, prova ad aggiungere del testo all'interno dell'elemento vuoto. Il bordo ora contiene quel testo perché l'altezza dell'elemento è definita dal contenuto. Pertanto la dimensione di questo `<div>` nella dimensione del blocco deriva dalla dimensione del contenuto. Ancora una volta, questa è la dimensione intrinseca dell'elemento — la sua dimensione è definita dal suo contenuto.
+Nell'esempio precedente, provare ad aggiungere del testo all'interno dell'elemento vuoto. Il bordo si aprirà perché l'altezza dell'elemento è definita dal contenuto. Anche in questo caso, si tratta della dimensione intrinseca dell'elemento: la sua dimensione è definita dal contenuto.
 
 ## Impostare una dimensione specifica
 
-Naturalmente, possiamo dare agli elementi nel nostro design una dimensione specifica. Quando una dimensione viene data a un elemento (il cui contenuto deve quindi adattarsi a quella dimensione) la si riferisce come **dimensione estrinseca**. Prendiamo il nostro `<div>` dall'esempio sopra — possiamo dargli valori specifici di {{cssxref("width")}} e {{cssxref("height")}}, e avrà ora quella dimensione indipendentemente dal contenuto inserito al suo interno. Un'altezza impostata può causare traboccamento del contenuto se c'è più contenuto di quanto l'elemento abbia spazio per contenerlo (imparerai di più sull'[overflow](/it/docs/Learn_web_development/Core/Styling_basics/Overflow) in una lezione successiva).
+Naturalmente, è possibile assegnare agli elementi di un design una dimensione specifica. Quando a un elemento viene assegnata una dimensione, nella quale deve poi adattarsi il suo contenuto, si parla di **dimensione estrinseca**.
+
+Nell'esempio successivo, a due `<div>` vengono assegnati valori specifici per {{cssxref("width")}} e {{cssxref("height")}}, e avranno quindi tale dimensione indipendentemente dal contenuto inserito al loro interno. Come dimostra il `<div>` a destra, un'altezza impostata può causare l'overflow del contenuto se è presente più contenuto di quanto possa entrare nell'elemento contenitore (si approfondirà [l'overflow](/it/docs/Learn_web_development/Core/Styling_basics/Overflow) in una lezione successiva).
 
 ```html live-sample___height
 <div class="wrapper">
@@ -106,14 +110,16 @@ body {
 
 {{EmbedLiveSample("height", "", "200px")}}
 
-A causa di questo problema di traboccamento, fissare l'altezza degli elementi con lunghezze o percentuali è qualcosa che dobbiamo fare con molta attenzione sul web.
+A causa di questo problema di overflow, impostare l'altezza degli elementi con lunghezze o percentuali è un'operazione da eseguire con molta attenzione sul web.
 
-### Utilizzo delle percentuali
+### Usare le percentuali
 
-In molti modi, le percentuali agiscono come unità di lunghezza e come abbiamo [discusso nella lezione sui valori e unità](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#percentages), possono spesso essere utilizzate in modo intercambiabile con le lunghezze. Quando si utilizza una percentuale è necessario essere consapevoli di cosa si tratta una percentuale _di_. Nel caso di una casella all'interno di un altro contenitore, se si assegna alla casella figlia una larghezza in percentuale, sarà una percentuale della larghezza del contenitore padre.
+Per molti aspetti, le percentuali si comportano come unità di lunghezza e, come [illustrato nella lezione sui valori e sulle unità](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units#percentages), spesso possono essere usate in modo intercambiabile con le lunghezze. Quando si usa una percentuale, occorre sapere rispetto a cosa rappresenta una percentuale. Nel caso di un riquadro all'interno di un altro contenitore, assegnando al riquadro figlio una larghezza percentuale, questa sarà una percentuale della larghezza del contenitore padre.
 
 ```html live-sample___percent-width
-<div class="box">I have a percentage width.</div>
+<div class="container">
+  <div class="box">I have a percentage width.</div>
+</div>
 ```
 
 ```css live-sample___percent-width
@@ -129,11 +135,19 @@ body {
 
 {{EmbedLiveSample("percent-width")}}
 
-Questo perché le percentuali si risolvono rispetto alla dimensione del blocco contenitore. Senza una percentuale applicata, il nostro `<div>` occuperebbe il `100%` dello spazio disponibile, in quanto è un elemento di livello blocco. Se gli assegniamo una larghezza in percentuale, questa diventa una percentuale dello spazio che normalmente riempirebbe.
+Questo avviene perché le percentuali vengono risolte rispetto alla dimensione del blocco contenitore. Senza alcuna percentuale applicata, il `<div>` `box` occupa il `100%` dello spazio disponibile, poiché è un elemento a livello di blocco. Se gli viene assegnata una larghezza percentuale, questa diventa una percentuale dello spazio che normalmente riempirebbe.
 
-### Margini e padding in percentuale
+Provare a modificare l'esempio precedente:
 
-Se imposti `margins` e `padding` come percentuale, potresti notare un comportamento strano. Nell'esempio sottostante abbiamo una casella. Abbiamo dato alla casella interna un {{cssxref("margin")}} del 10% e un {{cssxref("padding")}} di `10%`. Il padding e il margine sulla parte superiore e inferiore della casella sono della stessa dimensione del padding e margine sulla sinistra e destra.
+1. Rimuovere la dichiarazione `width` del `<div>` `box` per verificare che, per impostazione predefinita, occupi il `100%` della `width` disponibile.
+2. Ripristinare la modifica precedente: assegnare di nuovo al `<div>` `box` una `width` di `50%`.
+3. Ora assegnare al `<div>` `container` una `width` di `50%`. La `width` del `<div>` `box` diventerà più piccola, perché è relativa alla `width` del suo contenitore.
+
+### Margini e padding percentuali
+
+Se si impostano `margins` e `padding` come percentuali, potrebbe essere osservato un comportamento insolito.
+
+Nell'esempio seguente è presente un riquadro, al quale sono stati assegnati un {{cssxref("margin")}} del 10% e un {{cssxref("padding")}} del `10%`. Il padding e il margine nella parte superiore e inferiore del riquadro hanno la stessa dimensione del padding e del margine a sinistra e a destra.
 
 ```html live-sample___percent-mp
 <div class="box">I have margin and padding set to 10% on all sides.</div>
@@ -153,21 +167,21 @@ body {
 
 {{EmbedLiveSample("percent-mp", "", "380px")}}
 
-Potresti aspettarti, ad esempio, che i margini superiori e inferiori in percentuale siano una percentuale dell'altezza dell'elemento, mentre i margini sinistra e destra in percentuale siano una percentuale della larghezza dell'elemento. Tuttavia, non è così!
+Ci si potrebbe aspettare che i margini percentuali superiore e inferiore siano una percentuale dell'altezza dell'elemento e che i margini percentuali sinistro e destro siano una percentuale della larghezza dell'elemento. Tuttavia, non è così.
 
-Quando si utilizzano margine e padding impostati in percentuale, il valore viene calcolato dalla **dimensione in linea** del blocco contenitore — quindi la larghezza quando si lavora in una lingua orizzontale. Nel nostro esempio, tutti i margini e padding sono `10%` della larghezza. Questo significa che puoi avere margini e padding di dimensioni uguali attorno alla casella. Questo è un fatto che vale la pena ricordare se usi le percentuali in questo modo.
+Quando si usano margin e padding impostati in percentuale, il valore viene calcolato a partire dalla **dimensione inline** del blocco contenitore, quindi dalla larghezza quando si lavora in una lingua orizzontale. Nell'esempio, tutti i margini e i padding sono il `10%` della larghezza. Questo significa che è possibile avere margini e padding della stessa dimensione su tutti i lati del riquadro. È un fatto da ricordare se si usano le percentuali in questo modo.
 
 ## Dimensioni minime e massime
 
-Oltre a dare agli elementi una dimensione fissa, possiamo chiedere al CSS di dare a un elemento una dimensione minima o massima. Se hai una casella che potrebbe contenere una quantità variabile di contenuto e vuoi sempre che sia _almeno_ di una certa altezza, puoi impostare la proprietà {{cssxref("min-height")}}. La casella sarà sempre almeno di questa altezza, ma crescerà in altezza se c'è più contenuto di quanto la casella abbia spazio per contenere alla sua altezza minima.
+Oltre a fornire agli elementi una dimensione fissa, è possibile chiedere a CSS di assegnare a un elemento una dimensione minima o massima. Se è presente un riquadro che potrebbe contenere una quantità variabile di contenuto e si desidera che abbia sempre _almeno_ una certa altezza, è possibile impostare su di esso la proprietà {{cssxref("min-height")}}. Il riquadro avrà sempre almeno questa altezza, ma aumenterà poi in altezza se è presente più contenuto di quanto spazio disponibile alla sua altezza minima.
 
-Nell'esempio sotto puoi vedere due caselle, entrambe con un `min-height` definito di 100 pixel. La casella a sinistra è alta 100 pixel; la casella a destra ha un contenuto che richiede più spazio e quindi è cresciuta oltre i 100 pixel.
+Nell'esempio successivo sono visibili due riquadri, entrambi con un `min-height` definito di 100 pixel. Il riquadro a sinistra è alto 100 pixel; il riquadro a destra contiene contenuto che richiede più spazio e, pertanto, è diventato più alto di 100 pixel.
 
 ```html live-sample___min-height
 <div class="wrapper">
   <div class="box"></div>
   <div class="box">
-    These boxes both have a min-height set, this box has content in it which
+    These boxes both have a min-height set. This box has content in it, which
     will need more space than the assigned height, and so it grows from the
     minimum.
   </div>
@@ -196,15 +210,21 @@ body {
 
 {{EmbedLiveSample("min-height", "", "220px")}}
 
-Questo è molto utile per evitare trabocchi quando si lavora con quantità variabili di contenuto.
+Questo è molto utile per evitare l'overflow quando si gestiscono quantità variabili di contenuto.
 
-Un uso comune di {{cssxref("max-width")}} è quello di far ridimensionare le immagini se non c'è abbastanza spazio per visualizzarle alla loro larghezza intrinseca, assicurandosi allo stesso tempo che non diventino più grandi di quella larghezza.
+### `max-width` sulle immagini
 
-Ad esempio, se imposti `width: 100%` su un'immagine e la sua larghezza intrinseca è minore del contenitore, l'immagine sarà costretta ad allungarsi e diventare più grande, causando un aspetto pixelato.
+Un uso comune di {{cssxref("max-width")}} consiste nel fare in modo che le immagini si ridimensionino verso il basso quando non c'è spazio sufficiente per visualizzarle alla loro larghezza intrinseca, assicurandosi al tempo stesso che non diventino più grandi di tale larghezza.
 
-Se invece usi `max-width: 100%`, e la sua larghezza intrinseca è minore del contenitore, l'immagine non sarà costretta ad allungarsi e diventare più grande, evitando così la pixelazione.
+Ad esempio, se si impostasse `width: 100%` su un'immagine la cui larghezza intrinseca è minore del suo contenitore, l'immagine verrebbe forzata ad allungarsi e a diventare più grande, assumendo un aspetto pixelato.
 
-Nell'esempio sottostante, abbiamo usato la stessa immagine tre volte. La prima immagine ha un `width: 100%` ed è in un contenitore che è più grande di essa, quindi si allunga fino alla larghezza del contenitore. La seconda immagine ha `max-width: 100%` impostato su di essa e quindi non si allunga per riempire il contenitore. La terza casella contiene la stessa immagine di nuovo, anch'essa con `max-width: 100%` impostato; in questo caso puoi vedere come si è ridimensionata per adattarsi alla casella.
+Se invece si usa `max-width: 100%` e la larghezza intrinseca dell'immagine è minore del suo contenitore, l'immagine non verrà forzata ad allungarsi e a diventare più grande, evitando così la pixelazione.
+
+Nell'esempio seguente, la stessa immagine è stata incorporata tre volte:
+
+- Alla prima immagine è stato assegnato `width: 100%` e si trova in un contenitore più grande di essa; pertanto, si allunga fino alla larghezza del contenitore.
+- Alla seconda immagine è impostato `max-width: 100%` e quindi non si allunga per riempire il contenitore.
+- Il terzo riquadro contiene nuovamente la stessa immagine, anch'essa con `max-width: 100%` impostato; in questo caso è possibile vedere come si sia ridimensionata verso il basso per adattarsi al riquadro.
 
 ```html live-sample___max-width
 <div class="wrapper">
@@ -250,7 +270,7 @@ Nell'esempio sottostante, abbiamo usato la stessa immagine tre volte. La prima i
   width: 200px;
 }
 .mini-box {
-  width: 50px;
+  width: 30px;
 }
 .width {
   width: 100%;
@@ -262,13 +282,13 @@ Nell'esempio sottostante, abbiamo usato la stessa immagine tre volte. La prima i
 
 {{EmbedLiveSample("max-width", "", "260px")}}
 
-Questa tecnica viene utilizzata per rendere le immagini _responsive_, in modo che quando vengono visualizzate su un dispositivo più piccolo si ridimensionino in modo appropriato. Tuttavia, non dovresti usare questa tecnica per caricare immagini molto grandi e poi ridimensionarle nel browser. Le immagini dovrebbero essere dimensionate in modo appropriato per non essere più grandi di quanto necessario per la dimensione più grande in cui vengono visualizzate nel design. Scaricare immagini eccessivamente grandi farà rallentare il tuo sito e potrebbe costare di più agli utenti se sono su una connessione a consumo.
+Questa tecnica viene usata per rendere le immagini _responsive_, affinché vengano ridimensionate adeguatamente verso il basso quando visualizzate su un dispositivo più piccolo. Tuttavia, questa tecnica non dovrebbe essere usata per caricare immagini molto grandi e poi ridimensionarle nel browser. Le immagini dovrebbero avere dimensioni appropriate, senza essere più grandi del necessario per la dimensione massima alla quale vengono visualizzate nel design. Scaricare immagini eccessivamente grandi renderà il sito lento e può costare di più agli utenti che pagano i dati a megabyte.
 
-## Unità del viewport
+## Unità viewport
 
-Il viewport — che è l'area visibile della tua pagina nel browser che stai usando per visualizzare un sito — ha anch'esso una dimensione. In CSS abbiamo unità che si riferiscono alla dimensione del viewport — l'unità `vw` per la larghezza del viewport e `vh` per l'altezza del viewport. Usando queste unità puoi dimensionare qualcosa in relazione al viewport dell'utente.
+La viewport, ovvero l'area visibile della pagina nel browser usato per visualizzare un sito, ha anch'essa una dimensione. In CSS sono disponibili unità relative alla dimensione della viewport: l'unità `vw` per la larghezza della viewport e `vh` per l'altezza della viewport. Usando queste unità, è possibile dimensionare qualcosa in relazione alla viewport dell'utente.
 
-`1vh` è uguale al 1% dell'altezza del viewport e `1vw` è uguale al 1% della larghezza del viewport. Puoi usare queste unità per dimensionare le caselle, ma anche il testo. Nell'esempio sottostante abbiamo una casella che è dimensionata come 20vh e 20vw. La casella contiene una lettera `A`, a cui è stato dato un {{cssxref("font-size")}} di 10vh.
+`1vh` equivale all'`1%` dell'altezza della viewport e `1vw` equivale all'`1%` della larghezza della viewport. Queste unità possono essere usate per dimensionare i riquadri, ma anche il testo. Nell'esempio seguente è presente un riquadro dimensionato con `20vh` e `20vw`. Il riquadro contiene una lettera `A`, alla quale è stato assegnato un {{cssxref("font-size")}} di `10vh`.
 
 ```html live-sample___vw-vh
 <div class="box">A</div>
@@ -289,18 +309,14 @@ body {
 
 {{EmbedLiveSample("vw-vh")}}
 
-Se cambi i valori `vh` e `vw` cambierà la dimensione della casella o del font; cambiare la dimensione del viewport modificherà anche le loro dimensioni perché sono dimensionati in relazione al viewport. Per vedere l'esempio cambiare quando modifichi la dimensione del viewport dovrai caricare l'esempio in una nuova finestra del browser che puoi ridimensionare (poiché l'`<iframe>` incorporato che contiene l'esempio mostrato sopra è il suo viewport). Apri l'esempio, ridimensiona la finestra del browser e osserva cosa succede alla dimensione della casella e del testo.
+La modifica dei valori `vh` e `vw` cambierà rispettivamente la dimensione del riquadro e del carattere; anche la modifica della dimensione della viewport cambierà le dimensioni del riquadro e del carattere, poiché sono dimensionati in relazione alla viewport. Per osservare il cambiamento della dimensione del riquadro e del testo regolando la dimensione della viewport, {{LiveSampleLink("vw-vh", "caricare l'esempio in una nuova scheda")}} e ridimensionare la finestra del browser.
 
-Dimensionare le cose secondo il viewport può essere utile nei tuoi design. Ad esempio, se vuoi una sezione hero a tutta pagina da mostrare prima del resto del tuo contenuto, rendere quella parte della tua pagina alta `100vh` spingerà il resto del contenuto sotto il viewport, significando che apparirà solo quando il documento viene scorrimento.
-
-## Metti alla prova le tue capacità!
-
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare di aver conservato queste informazioni prima di procedere — vedi [Metti alla prova le tue capacità: Dimensionamento](/it/docs/Learn_web_development/Core/Styling_basics/Test_your_skills/Sizing).
+Dimensionare gli elementi in base alla viewport può essere utile nei design. Ad esempio, se si desidera mostrare un banner a pagina intera prima del resto del contenuto, rendere quella parte della pagina alta `100vh` spingerà il resto del contenuto sotto la viewport, facendo sì che venga visualizzato solo dopo lo scorrimento del documento.
 
 ## Riepilogo
 
-Questa lezione ti ha fornito un riassunto di alcune questioni chiave che potresti incontrare nel dimensionamento degli elementi sul web. Quando passerai a [CSS Layout](/it/docs/Learn_web_development/Core/CSS_layout), il dimensionamento diventerà molto importante per padroneggiare i diversi metodi di layout, quindi vale la pena comprendere i concetti qui prima di procedere.
+Questa lezione ha fornito una panoramica di alcuni aspetti chiave che possono presentarsi durante il dimensionamento degli elementi sul web. Passando a [CSS Layout](/it/docs/Learn_web_development/Core/CSS_layout), il dimensionamento diventerà molto importante per padroneggiare i diversi metodi di layout; vale quindi la pena comprendere questi concetti prima di proseguire.
 
-Nel prossimo articolo, daremo un'occhiata a come gli sfondi e i bordi vengono manipolati in CSS.
+Nel prossimo articolo verranno proposti alcuni test che possono essere usati per verificare quanto bene siano state comprese e memorizzate le informazioni fornite sul dimensionamento in CSS.
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Values_and_units", "Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics")}}
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Values", "Learn_web_development/Core/Styling_basics/Test_your_skills/Sizing", "Learn_web_development/Core/Styling_basics")}}

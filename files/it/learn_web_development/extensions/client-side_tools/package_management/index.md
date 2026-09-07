@@ -3,19 +3,19 @@ title: Nozioni di base sulla gestione dei pacchetti
 short-title: Gestione dei pacchetti
 slug: Learn_web_development/Extensions/Client-side_tools/Package_management
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 4c58f4735f986a91bee1b77e336143630df727a2
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Client-side_tools/Overview","Learn_web_development/Extensions/Client-side_tools/Introducing_complete_toolchain", "Learn_web_development/Extensions/Client-side_tools")}}
 
-In questo articolo, esamineremo in dettaglio i gestori di pacchetti per capire come possiamo usarli nei nostri progetti — per installare le dipendenze degli strumenti del progetto, mantenerle aggiornate e altro ancora.
+In questo articolo verranno esaminati in dettaglio i gestori di pacchetti, per comprendere come utilizzarli nei propri progetti: per installare le dipendenze degli strumenti del progetto, mantenerle aggiornate e altro ancora.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con le lingue fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        Familiarità con i linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
         <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
         <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>.
       </td>
@@ -23,96 +23,97 @@ In questo articolo, esamineremo in dettaglio i gestori di pacchetti per capire c
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere cosa sono i gestori di pacchetti e i repository di pacchetti, perché sono necessari e i fondamenti su come utilizzarli.
+        Comprendere cosa sono i gestori di pacchetti e i repository di pacchetti,
+        perché sono necessari e le nozioni di base per utilizzarli.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Una dipendenza nel tuo progetto
+## Una dipendenza nel progetto
 
-Una **dipendenza** è un software di terze parti che probabilmente è stato scritto da qualcun altro e idealmente risolve un singolo problema per te. Un progetto web può avere un numero qualsiasi di dipendenze, da nessuna a molte, e le tue dipendenze potrebbero includere sub-dipendenze che non hai installato esplicitamente — le tue dipendenze possono avere le proprie dipendenze.
+Una **dipendenza** è una componente software di terze parti, probabilmente scritta da qualcun altro, che idealmente risolve un singolo problema. Un progetto web può avere un numero qualsiasi di dipendenze, da nessuna a molte, e le dipendenze possono includere sotto-dipendenze che non sono state installate esplicitamente: le dipendenze possono avere dipendenze proprie.
 
-Un semplice esempio di una dipendenza utile di cui il tuo progetto potrebbe aver bisogno è del codice per calcolare date relative come testo leggibile. Potresti certamente scrivere questo codice da solo, ma è molto probabile che qualcun altro abbia già risolto questo problema — perché sprecare tempo a reinventare la ruota? Inoltre, una dipendenza di terze parti affidabile sarà probabilmente stata testata in molte diverse situazioni, rendendola più robusta e compatibile con i diversi browser rispetto alla tua soluzione personale.
+Un semplice esempio di dipendenza utile di cui un progetto potrebbe avere bisogno è del codice per calcolare date relative come testo leggibile dalle persone. Sarebbe certamente possibile scriverlo autonomamente, ma è molto probabile che qualcun altro abbia già risolto questo problema: perché sprecare tempo reinventando la ruota? Inoltre, una dipendenza affidabile di terze parti sarà probabilmente stata testata in molte situazioni diverse, rendendola più robusta e compatibile tra browser rispetto a una soluzione propria.
 
-Una dipendenza del progetto può essere un'intera libreria o framework JavaScript — come React o Vue — o una piccola utility come la nostra libreria di date leggibili, o può essere uno strumento da riga di comando come Prettier o ESLint, di cui abbiamo parlato in articoli precedenti.
+Una dipendenza di progetto può essere un'intera libreria o framework JavaScript, come React o Vue, oppure una piccolissima utility come la libreria di date leggibili dalle persone, o ancora uno strumento da riga di comando come Prettier o ESLint, di cui si è parlato negli articoli precedenti.
 
-Senza gli strumenti di build moderni, dipendenze come queste potrebbero essere incluse nel tuo progetto usando un semplice elemento [`<script>`](/it/docs/Web/HTML/Reference/Elements/script), ma questo potrebbe non funzionare immediatamente e probabilmente avresti bisogno di strumenti moderni per impacchettare il tuo codice e le dipendenze insieme quando vengono rilasciate sul web. Un bundle è un termine generalmente usato per riferirsi a un singolo file sul tuo server web che contiene tutto il JavaScript per il tuo software — tipicamente compresso il più possibile per aiutare a ridurre il tempo necessario per scaricare e visualizzare il tuo software nel browser dei tuoi visitatori.
+Senza strumenti di build moderni, dipendenze come queste potrebbero essere incluse nel progetto mediante un semplice elemento [`<script>`](/it/docs/Web/HTML/Reference/Elements/script), ma potrebbero non funzionare subito e sarà probabilmente necessario usare strumenti moderni per raggruppare il codice e le dipendenze quando vengono pubblicati sul web. Un bundle è un termine generalmente usato per riferirsi a un singolo file sul server web che contiene tutto il JavaScript del software, in genere compresso il più possibile per ridurre il tempo necessario per scaricare e visualizzare il software nel browser dei visitatori.
 
-Inoltre, cosa succede se trovi un miglior strumento che vuoi usare al posto di quello attuale, o viene rilasciata una nuova versione della tua dipendenza che vuoi aggiornare? Questo non è troppo doloroso per un paio di dipendenze, ma in progetti più grandi con molte dipendenze, questo tipo di cosa può diventare davvero complicata da tenere traccia. Ha più senso usare un **gestore di pacchetti** come npm, poiché questo garantirà che il codice sia aggiunto e rimosso in modo pulito, oltre a offrire una serie di altri vantaggi.
+Inoltre, cosa succede se viene trovato uno strumento migliore da usare al posto di quello corrente, oppure se viene rilasciata una nuova versione della dipendenza che si desidera aggiornare? Questo non è troppo problematico per un paio di dipendenze, ma in progetti più grandi con molte dipendenze può diventare davvero difficile tenere traccia di tutto. Ha più senso usare un **gestore di pacchetti** come npm, poiché garantisce che il codice venga aggiunto e rimosso in modo pulito, oltre a offrire numerosi altri vantaggi.
 
 ## Che cos'è esattamente un gestore di pacchetti?
 
-Abbiamo già incontrato [npm](https://www.npmjs.com/), ma prendendo le distanze da npm stesso, un gestore di pacchetti è un sistema che gestirà le dipendenze del tuo progetto.
+[npm](https://www.npmjs.com/) è già stato incontrato, ma facendo un passo indietro rispetto a npm stesso, un gestore di pacchetti è un sistema che gestisce le dipendenze di un progetto.
 
-Il gestore di pacchetti fornirà un metodo per installare nuove dipendenze (note anche come "pacchetti"), gestire dove i pacchetti sono memorizzati nel tuo file system, e offrire capacità per pubblicare i tuoi pacchetti.
+Il gestore di pacchetti fornisce un metodo per installare nuove dipendenze, chiamate anche "pacchetti", gestire dove i pacchetti sono archiviati nel file system e offrire funzionalità per pubblicare i propri pacchetti.
 
-In teoria, potresti non aver bisogno di un gestore di pacchetti e potresti scaricare manualmente e memorizzare le dipendenze del tuo progetto, ma un gestore di pacchetti gestirà senza soluzione di continuità l'installazione e la disinstallazione dei pacchetti. Se non ne usassi uno, dovresti gestire manualmente:
+In teoria, potrebbe non essere necessario un gestore di pacchetti e si potrebbero scaricare e archiviare manualmente le dipendenze del progetto, ma un gestore di pacchetti si occupa senza difficoltà dell'installazione e della disinstallazione dei pacchetti. Senza usarne uno, sarebbe necessario gestire manualmente:
 
-- Trovare tutti i file JavaScript corretti del pacchetto.
-- Controllarli per assicurarti che non abbiano vulnerabilità conosciute.
-- Scaricarli e metterli nelle posizioni corrette nel tuo progetto.
-- Scrivere il codice per includere il/i pacchetto/i nella tua applicazione (tende ad essere fatto usando [moduli JavaScript](/it/docs/Web/JavaScript/Guide/Modules), un altro argomento su cui vale la pena documentarsi e comprendere).
-- Fare la stessa cosa per tutte le sub-dipendenze dei pacchetti, delle quali potrebbero esserci decine o centinaia.
-- Rimuovere di nuovo tutti i file se vuoi rimuovere i pacchetti.
+- La ricerca di tutti i file JavaScript corretti del pacchetto.
+- Il controllo che non presentino vulnerabilità note.
+- Il download e il posizionamento nelle ubicazioni corrette del progetto.
+- La scrittura del codice per includere i pacchetti nell'applicazione (questa operazione tende a essere eseguita usando i [moduli JavaScript](/it/docs/Web/JavaScript/Guide/Modules), un altro argomento che vale la pena approfondire e comprendere).
+- La stessa operazione per tutte le sotto-dipendenze dei pacchetti, che potrebbero essere decine o centinaia.
+- La rimozione di tutti i file se si desidera rimuovere i pacchetti.
 
-Inoltre, i gestori di pacchetti gestiscono le dipendenze duplicate (qualcosa che diventa importante e comune nello sviluppo front-end).
+Inoltre, i gestori di pacchetti gestiscono le dipendenze duplicate, un aspetto importante e comune nello sviluppo front-end.
 
-Nel caso di npm (e dei gestori di pacchetti basati su JavaScript e Node) hai due opzioni per dove installare le tue dipendenze. Come abbiamo toccato nell'articolo precedente, le dipendenze possono essere installate globalmente o localmente nel tuo progetto. Anche se ci sono più pro nei confronti dell'installazione globale, i pro per l'installazione locale sono più importanti — come la portabilità del codice e il blocco delle versioni.
+Nel caso di npm, e dei gestori di pacchetti basati su JavaScript e Node, esistono due opzioni per l'installazione delle dipendenze. Come accennato nell'articolo precedente, le dipendenze possono essere installate globalmente oppure localmente nel progetto. Sebbene l'installazione globale presenti generalmente più vantaggi, quelli dell'installazione locale sono più importanti, come la portabilità del codice e il blocco delle versioni.
 
-Ad esempio, se il tuo progetto dipende da webpack con una certa configurazione, vorresti assicurarti che se installi quel progetto su un'altra macchina o ci ritorni molto più tardi, la configurazione funzionerebbe ancora. Se una versione diversa di webpack fosse installata, potrebbe non essere compatibile. Per mitigare questo, le dipendenze sono installate localmente in un progetto.
+Ad esempio, se un progetto dipendesse da webpack con una certa configurazione, sarebbe opportuno assicurarsi che tale configurazione continui a funzionare installando il progetto su un'altra macchina o tornando a lavorarci molto tempo dopo. Se fosse installata una versione diversa di webpack, potrebbe non essere compatibile. Per attenuare questo problema, le dipendenze vengono installate localmente in un progetto.
 
-Per vedere davvero brillare le dipendenze locali, tutto ciò che devi fare è provare a scaricare ed eseguire un progetto esistente — se funziona e tutte le dipendenze funzionano immediatamente, allora devi ringraziare le dipendenze locali per il fatto che il codice è portatile.
+Per vedere davvero i vantaggi delle dipendenze locali, basta provare a scaricare ed eseguire un progetto esistente: se funziona e tutte le dipendenze funzionano subito, è grazie alle dipendenze locali che il codice è portabile.
 
 > [!NOTE]
-> npm non è l'unico gestore di pacchetti disponibile. Un'alternativa popolare e di successo è [Yarn](https://yarnpkg.com/). Yarn risolve le dipendenze usando un algoritmo diverso che può significare un'esperienza utente più veloce. Ci sono anche un certo numero di altri client emergenti, come [pnpm](https://pnpm.js.org/).
+> npm non è l'unico gestore di pacchetti disponibile. Un'alternativa di successo e popolare è [Yarn](https://yarnpkg.com/). Yarn risolve le dipendenze usando un algoritmo diverso, che può offrire un'esperienza utente più rapida. Esistono anche numerosi altri client emergenti, come [pnpm](https://pnpm.js.org/).
 
-## Registri dei pacchetti
+## Registry di pacchetti
 
-Affinché un gestore di pacchetti funzioni, deve sapere da dove installare i pacchetti, e questo avviene sotto forma di un registro dei pacchetti. Il registro è un luogo centrale dove un pacchetto è pubblicato e quindi può essere installato. npm, oltre ad essere un gestore di pacchetti, è anche il nome del registro di pacchetti più comunemente usato per i pacchetti JavaScript. Il registro npm esiste su [npmjs.com](https://www.npmjs.com/).
+Affinché un gestore di pacchetti funzioni, deve sapere da dove installare i pacchetti; questo avviene tramite un registry di pacchetti. Il registry è un luogo centrale in cui un pacchetto viene pubblicato e dal quale può quindi essere installato. npm, oltre a essere un gestore di pacchetti, è anche il nome del registry di pacchetti più comunemente usato per i pacchetti JavaScript. Il registry npm si trova su [npmjs.com](https://www.npmjs.com/).
 
-npm non è l'unica opzione. Potresti gestire il tuo registro dei pacchetti — prodotti come [Microsoft Azure](https://azure.microsoft.com/) ti permettono di creare proxy al registro npm (quindi puoi sostituire o bloccare determinati pacchetti), [GitHub offre anche un servizio di registrazione dei pacchetti](https://docs.github.com/en/packages), e potrebbero esserci più opzioni che appariranno col tempo.
+npm non è l'unica opzione. Sarebbe possibile gestire un registry di pacchetti personale: prodotti come [Microsoft Azure](https://azure.microsoft.com/) consentono di creare proxy per il registry npm, in modo da poter sovrascrivere o bloccare determinati pacchetti; [GitHub offre anch'esso un servizio di registry di pacchetti](https://docs.github.com/en/packages), e probabilmente appariranno ulteriori opzioni con il passare del tempo.
 
-Ciò che è importante è che assicuri di aver scelto il miglior registro per te. Molti progetti useranno npm, e continueremo a farlo nei nostri esempi per il resto del modulo.
+L'importante è assicurarsi di avere scelto il registry più adatto. Molti progetti usano npm e questo sarà utilizzato negli esempi per il resto del modulo.
 
-## Usare l'ecosistema dei pacchetti
+## Uso dell'ecosistema dei pacchetti
 
-Passiamo attraverso un esempio per iniziare a usare un gestore di pacchetti e il registro per installare un'utilità da riga di comando.
+Vediamo un esempio per iniziare a usare un gestore di pacchetti e un registry per installare un'utility da riga di comando.
 
-Useremo [Vite](https://vite.dev/) per creare un sito web vuoto. Nel prossimo articolo, espanderemo la toolchain per includere più strumenti e ti mostreremo come distribuire il sito.
+Verrà usato [Vite](https://vite.dev/) per creare un sito web vuoto. Nel prossimo articolo, la toolchain verrà ampliata per includere altri strumenti e verrà mostrato come distribuire il sito.
 
-Vite fornisce alcuni [template di inizializzazione](https://vite.dev/guide/#scaffolding-your-first-vite-project), con tutte le dipendenze e le configurazioni necessarie, per aiutarti a iniziare rapidamente in un progetto reale. A scopo dimostrativo, ne configureremo uno da zero, utilizzando il [template React](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react) come riferimento.
+Vite fornisce alcuni [template di inizializzazione](https://vite.dev/guide/#scaffolding-your-first-vite-project), con tutte le dipendenze e configurazioni necessarie, per iniziare rapidamente un progetto reale. A scopo dimostrativo, ne verrà configurato uno da zero, usando come riferimento il [template React](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react).
 
-### Configurare l'app come un pacchetto npm
+### Configurare l'app come pacchetto npm
 
-Prima di tutto, crea una nuova directory in cui conservare la nostra app sperimentale, in un posto sensato facile da ritrovare. La chiameremo `npm-experiment`, ma puoi chiamarla come preferisci:
+Per prima cosa, creare una nuova directory in cui archiviare l'app sperimentale, in un luogo sensato che sia possibile ritrovare. Verrà chiamata `npm-experiment`, ma può avere qualsiasi nome:
 
 ```bash
 mkdir npm-experiment
 cd npm-experiment
 ```
 
-Successivamente, iniziamo la nostra app come un pacchetto npm, che crea un file di configurazione — `package.json` — che ci consente di salvare i dettagli della configurazione nel caso in cui volessimo ricreare questo ambiente in seguito, o anche pubblicare il pacchetto nel registro npm (anche se non è rilevante per il nostro articolo, poiché stiamo sviluppando un'applicazione, non una libreria riutilizzabile).
+Successivamente, inizializzare l'app come pacchetto npm. Verrà creato un file di configurazione, `package.json`, che consente di salvare i dettagli della configurazione nel caso sia necessario ricreare questo ambiente in seguito, o persino pubblicare il pacchetto nel registry npm, anche se questo non è rilevante per l'articolo perché si sta sviluppando un'applicazione, non una libreria riutilizzabile.
 
-Digita il seguente comando, assicurandoti di essere dentro la directory `npm-experiment`:
+Digitare il comando seguente, assicurandosi di trovarsi nella directory `npm-experiment`:
 
 ```bash
 npm init
 ```
 
-Ora ti verrà chiesto di rispondere a delle domande; npm creerà quindi un file predefinito `package.json` basato sulle risposte. Nota che nessuna di queste è rilevante per i nostri scopi perché vengono utilizzate solo se pubblichi il tuo pacchetto in un registro e altri vogliono installarlo e importarlo.
+Verranno ora poste alcune domande; npm creerà quindi un file `package.json` predefinito in base alle risposte. Nessuna di queste è rilevante per gli scopi attuali, poiché vengono usate solo se il pacchetto viene pubblicato in un registry e altre persone desiderano installarlo e importarlo.
 
-- `name`: Un nome per identificare l'app. Premi semplicemente <kbd>Return</kbd> per accettare il predefinito `npm-experiment`.
-- `version`: Il numero di versione iniziale per l'app. Anche qui, premi <kbd>Return</kbd> per accettare il valore predefinito `1.0.0`.
-- `description`: Una piccola descrizione dello scopo dell'app. Lo ometteremo qui, ma puoi inserire anche qualsiasi cosa ti venga in mente. Premi <kbd>Return</kbd>.
-- `entry point`: Questo sarà il file JavaScript che verrà eseguito quando altri importano il tuo pacchetto. Non è utile per noi, quindi premi semplicemente <kbd>Return</kbd>.
-- `test command`, `git repository`, e `keywords`: premi <kbd>Return</kbd> per lasciare ciascuno di questi campi vuoto per ora.
-- `author`: L'autore del progetto. Digita il tuo nome e premi <kbd>Return</kbd>.
-- `license`: La licenza sotto cui pubblicare il pacchetto. Premi <kbd>Return</kbd> per accettare il predefinito per ora.
+- `name`: un nome per identificare l'app. Premere semplicemente <kbd>Invio</kbd> per accettare il valore predefinito `npm-experiment`.
+- `version`: il numero di versione iniziale dell'app. Anche in questo caso, premere <kbd>Invio</kbd> per accettare il valore predefinito `1.0.0`.
+- `description`: una breve descrizione dello scopo dell'app. Verrà omessa qui, ma è anche possibile inserire qualsiasi testo. Premere <kbd>Invio</kbd>.
+- `entry point`: sarà il file JavaScript eseguito quando altri importano il pacchetto. Non è utile in questo caso, quindi premere semplicemente <kbd>Invio</kbd>.
+- `test command`, `git repository` e `keywords`: premere <kbd>Invio</kbd> per lasciare vuoto ciascuno di questi campi per il momento.
+- `author`: l'autore del progetto. Digitare il proprio nome e premere <kbd>Invio</kbd>.
+- `license`: la licenza con cui pubblicare il pacchetto. Premere <kbd>Invio</kbd> per accettare per ora il valore predefinito.
 
-Premi <kbd>Return</kbd> un'altra volta per accettare queste impostazioni.
+Premere <kbd>Invio</kbd> ancora una volta per accettare queste impostazioni.
 
-Entra nella tua directory `npm-experiment` e ora dovresti trovare un file package.json. Aprilo e dovrebbe apparire qualcosa di simile a questo:
+Entrare nella directory `npm-experiment`; ora dovrebbe essere presente un file package.json. Aprirlo: dovrebbe apparire simile al seguente:
 
 ```json
 {
@@ -128,55 +129,63 @@ Entra nella tua directory `npm-experiment` e ora dovresti trovare un file packag
 }
 ```
 
-Aggiungeremo due altre righe a package.json:
+Verranno aggiunte altre due righe a package.json:
 
-- `"type": "module"`, che fa sì che Node interpreti tutti i file `.js` come [moduli ES](/it/docs/Web/JavaScript/Guide/Modules) piuttosto che i vecchi moduli CommonJS. È una buona abitudine da prendere.
-- `"private": true`, che impedisce di pubblicare accidentalmente il tuo pacchetto nel registro npm.
+- `"type": "module"`, che fa sì che Node interpreti tutti i file `.js` come [moduli ES](/it/docs/Web/JavaScript/Guide/Modules) anziché come i vecchi moduli CommonJS. È generalmente una buona abitudine.
+- `"private": true`, che impedisce di pubblicare accidentalmente il pacchetto nel registry npm.
 
-Aggiungi queste righe subito sotto `"name"`:
+Aggiungere queste righe subito sotto `"name"`:
 
 ```json
-"name": "npm-experiment",
-"type": "module",
-"private": true,
+{
+  "name": "npm-experiment",
+  "type": "module",
+  "private": true
+  // …
+}
 ```
 
-Quindi questo è il file di configurazione che definisce il tuo pacchetto. Per ora è a posto, quindi andiamo avanti.
+Questo è dunque il file di configurazione che definisce il pacchetto. Per ora va bene così, quindi si può proseguire.
 
-### Installazione di Vite
+> [!NOTE]
+> [Il file package.json](https://scrimba.com/intro-to-git-c0l4grs2sa) <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> di Scrimba offre un'introduzione pratica all'uso dei file `package.json`.
 
-Inizieremo installando Vite, lo strumento di costruzione per il nostro sito web. È responsabile dell'impacchettamento dei file HTML, CSS e JavaScript in un bundle ottimizzato per il browser.
+### Installare Vite
+
+Per prima cosa verrà installato Vite, lo strumento di build per il sito web. È responsabile del raggruppamento dei file HTML, CSS e JavaScript in un bundle ottimizzato per il browser.
 
 ```bash
 npm install --save-dev vite
 ```
 
-Una volta fatto tutto il necessario, dai un'altra occhiata al tuo file package.json. Vedrai che npm ha aggiunto un nuovo campo, `devDependencies`:
+Quando avrà terminato di fare _Tutte Le Cose_, dare un'altra occhiata al file package.json. npm avrà aggiunto un nuovo campo, `devDependencies`:
 
 ```json
-"devDependencies": {
-  "vite": "^5.2.13"
+{
+  "devDependencies": {
+    "vite": "^5.2.13"
+  }
 }
 ```
 
-Questa è parte della magia di npm — se in futuro sposti il tuo codice in un'altra posizione, su un'altra macchina, puoi ricreare la stessa configurazione eseguendo il comando `npm install`, e npm guarderà le dipendenze e le installerà per te.
+Questa è parte della magia di npm: se in futuro la codebase viene spostata in un'altra ubicazione, su un'altra macchina, sarà possibile ricreare la stessa configurazione eseguendo il comando `npm install`; npm esaminerà le dipendenze e le installerà.
 
-Uno svantaggio è che Vite è disponibile solo all'interno della nostra app `npm-experiment`; non sarai in grado di eseguirla in una directory diversa. Ma i vantaggi superano gli svantaggi.
+Uno svantaggio è che Vite è disponibile solo all'interno dell'app `npm-experiment`; non sarà possibile eseguirlo in una directory diversa. Tuttavia, i vantaggi superano gli svantaggi.
 
-Nota che abbiamo scelto di installare `vite` come dipendenza di sviluppo. Questa differenza raramente importa per un'applicazione, ma per una libreria, significa che quando altri installano il tuo pacchetto, non installeranno implicitamente Vite. Di solito, per le applicazioni, qualsiasi pacchetto importato nel codice sorgente è una dipendenza reale, mentre qualsiasi pacchetto utilizzato per lo sviluppo (di solito come strumenti da riga di comando) è una dipendenza di sviluppo. Installa le dipendenze reali rimuovendo il flag `--save-dev`.
+Notare che `vite` è stato installato come dipendenza di sviluppo. Questa differenza raramente è importante per un'applicazione, ma per una libreria significa che, quando altre persone installano il pacchetto, non installeranno implicitamente Vite. In genere, per le applicazioni, qualsiasi pacchetto importato nel codice sorgente è una dipendenza effettiva, mentre qualsiasi pacchetto usato per lo sviluppo, generalmente come strumento da riga di comando, è una dipendenza di sviluppo. Per installare dipendenze effettive, rimuovere il flag `--save-dev`.
 
-Troverai anche una serie di nuovi file creati:
+Verranno creati anche numerosi nuovi file:
 
-- `node_modules`: I file di dipendenza richiesti per eseguire Vite. npm li ha scaricati tutti per te.
-- `package-lock.json`: Questo è un file di blocco che memorizza le informazioni esatte necessarie per riprodurre la directory `node_modules`. Ciò assicura che finché il file di blocco rimane invariato, la directory `node_modules` sarà la stessa su macchine diverse.
+- `node_modules`: i file delle dipendenze necessari per eseguire Vite. npm li ha scaricati tutti.
+- `package-lock.json`: un lockfile che memorizza le informazioni esatte necessarie per riprodurre la directory `node_modules`. Questo assicura che, finché il lockfile rimane invariato, la directory `node_modules` sia la stessa su macchine diverse.
 
-Non devi preoccuparti di questi file, poiché sono gestiti da npm. Dovresti aggiungere `node_modules` al tuo file `.gitignore` se stai usando Git, ma dovresti generalmente mantenere `package-lock.json`, perché come detto viene usato per sincronizzare lo stato di `node_modules` su macchine diverse.
+Non è necessario preoccuparsi di questi file, poiché sono gestiti da npm. Se si usa Git, aggiungere `node_modules` al file `.gitignore`, ma in genere è opportuno mantenere `package-lock.json`, perché, come già indicato, viene usato per sincronizzare lo stato di `node_modules` tra macchine diverse.
 
-### Configurare la nostra app di esempio
+### Configurare l'app di esempio
 
-Comunque, continuiamo con la configurazione.
+In ogni caso, proseguiamo con la configurazione.
 
-In Vite, il file `index.html` è centrale. Definisce il punto di partenza della tua app, e Vite lo userà per trovare altri file necessari per costruire la tua app. Crea un file `index.html` nella tua directory `npm-experiment`, e dagli il seguente contenuto:
+In Vite, il file `index.html` è centrale. Definisce il punto di partenza dell'app e Vite lo userà per trovare gli altri file necessari per compilare l'app. Creare un file `index.html` nella directory `npm-experiment` e assegnargli il seguente contenuto:
 
 ```html
 <!doctype html>
@@ -184,7 +193,7 @@ In Vite, il file `index.html` è centrale. Definisce il punto di partenza della 
   <head>
     <meta charset="UTF-8" />
     <title>My test page</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width" />
   </head>
   <body>
     <div id="root"></div>
@@ -193,20 +202,20 @@ In Vite, il file `index.html` è centrale. Definisce il punto di partenza della 
 </html>
 ```
 
-Nota che gli elementi `<script>` creano una dipendenza da un file chiamato `src/main.jsx`, che dichiara il punto di ingresso della logica JavaScript per l'app. Crea la cartella `src` e crea `main.jsx` in questa cartella, ma lascialo vuoto per ora.
+Notare che l'elemento `<script>` crea una dipendenza da un file denominato `src/main.jsx`, che dichiara il punto di ingresso della logica JavaScript dell'app. Creare la cartella `src` e creare `main.jsx` in questa cartella, lasciandolo però vuoto per il momento.
 
 > [!NOTE]
-> L'attributo [`type="module"`](/it/docs/Web/HTML/Reference/Elements/script/type) è importante. Indica al browser di trattare lo script come un modulo ES, il che ci permette di usare la sintassi `import` e `export` nel nostro codice JavaScript. L'estensione del file è `.jsx`, perché nel prossimo articolo aggiungeremo la sintassi JSX di React. I browser non comprendono JSX, ma Vite lo trasformerà in JavaScript regolare per noi, come se i browser lo comprendessero!
+> L'attributo [`type="module"`](/it/docs/Web/HTML/Reference/Elements/script/type) è importante. Indica al browser di trattare lo script come un modulo ES, consentendo di usare la sintassi `import` ed `export` nel codice JavaScript. L'estensione del file è `.jsx` perché, nel prossimo articolo, verrà aggiunta la sintassi React JSX. I browser non comprendono JSX, ma Vite lo trasformerà in JavaScript normale, come se i browser lo comprendessero!
 
-### Divertendoci con Vite
+### Divertirsi con Vite
 
-Ora faremo girare il nostro nuovo strumento Vite appena installato. Nel tuo terminale, esegui il comando seguente:
+Ora verrà eseguito lo strumento Vite appena installato. Nel terminale, eseguire il comando seguente:
 
 ```bash
 npx vite
 ```
 
-Dovresti vedere qualcosa del genere stampato nel tuo terminale:
+Nel terminale dovrebbe essere visualizzato qualcosa di simile:
 
 ```plain
 VITE v5.2.13  ready in 326 ms
@@ -216,26 +225,26 @@ VITE v5.2.13  ready in 326 ms
 ➜  press h + enter to show help
 ```
 
-Ora siamo pronti per beneficiare dell'intero ecosistema dei pacchetti JavaScript. Per cominciare, c'è ora un server web locale in esecuzione su `http://localhost:5173`. Non vedrai niente per ora, ma ciò che è interessante è che quando apporti cambiamenti alla tua app, Vite la ricostruirà e aggiornerà automaticamente il server in modo da poter vedere istantaneamente l'effetto del tuo aggiornamento.
+Ora è possibile sfruttare l'intero ecosistema di pacchetti JavaScript. Per iniziare, è ora in esecuzione un server web locale su `http://localhost:5173`. Per il momento non verrà visualizzato nulla, ma l'aspetto interessante è che quando si apportano modifiche all'app, Vite la ricompilerà e aggiornerà automaticamente il server, in modo da poter vedere immediatamente l'effetto dell'aggiornamento.
 
-Puoi fermare il server di sviluppo in qualsiasi momento con <kbd>Ctrl</kbd> + <kbd>C</kbd> e riavviarlo con lo stesso comando. Se decidi di tenerlo in esecuzione, puoi aprire una nuova finestra del terminale per eseguire altri comandi.
+È possibile arrestare il server di sviluppo in qualsiasi momento con <kbd>Ctrl</kbd> + <kbd>C</kbd> e riavviarlo con lo stesso comando. Se si decide di lasciarlo in esecuzione, è possibile aprire una nuova finestra del terminale per eseguire altri comandi.
 
-Ora per un po' di contenuto della pagina. Come dimostrazione, aggiungiamo un grafico alla pagina. Useremo il pacchetto [plotly.js](https://www.npmjs.com/package/plotly.js), una libreria di visualizzazione dati. Installalo eseguendo il seguente comando:
+Ora aggiungiamo del contenuto alla pagina. Come dimostrazione, aggiungiamo un grafico alla pagina. Verrà usato il pacchetto [plotly.js](https://www.npmjs.com/package/plotly.js), una libreria di visualizzazione dei dati. Installarlo eseguendo il comando seguente:
 
 ```bash
 npm install plotly.js-dist-min
 ```
 
-Nota come lo stiamo installando senza il flag `--save-dev`. Come accennato in precedenza, questo è perché useremo effettivamente questo pacchetto nel nostro codice sorgente, non solo come strumento da riga di comando. Questo comando aggiungerà un nuovo oggetto `"dependencies"` al tuo file `package.json`, con `plotly.js-dist-min` al suo interno.
+Notare che l'installazione avviene senza il flag `--save-dev`. Come già indicato, ciò avviene perché il pacchetto verrà effettivamente usato nel codice sorgente, non solo come strumento da riga di comando. Questo comando aggiungerà un nuovo oggetto `"dependencies"` al file `package.json`, contenente `plotly.js-dist-min`.
 
 > [!NOTE]
-> Qui, abbiamo scelto il pacchetto per te per completare il nostro compito. Quando stai scrivendo il tuo codice, pensa alle seguenti domande quando trovi e installi una dipendenza:
+> In questo caso, il pacchetto è stato scelto per completare l'attività. Quando si scrive il proprio codice, considerare le seguenti domande durante la ricerca e l'installazione di una dipendenza:
 >
-> - Ho davvero bisogno di una dipendenza? È possibile farlo con funzioni integrate, o è abbastanza semplice da scrivere io stesso?
-> - Cosa esattamente devo fare? Più sei dettagliato, più è probabile che tu trovi un pacchetto che faccia esattamente ciò di cui hai bisogno. Puoi cercare parole chiave su npm o Google. Inoltre, preferisci pacchetti piccoli rispetto a quelli grandi, poiché i secondi potrebbero portare a problemi di prestazioni durante l'installazione, l'esecuzione, ecc.
-> - La dipendenza è affidabile e ben mantenuta? Controlla quando è stata pubblicata l'ultima versione, chi è l'autore e quante volte il pacchetto viene scaricato settimanalmente. Determinare l'affidabilità di un pacchetto è una competenza che si acquisisce con l'esperienza, perché devi considerare fattori come la probabilità che il pacchetto abbia bisogno di aggiornamenti o quante persone potrebbero averne bisogno.
+> - È davvero necessaria una dipendenza? È possibile farlo con funzionalità integrate oppure è abbastanza semplice da scrivere autonomamente?
+> - Cosa è necessario fare esattamente? Più si è dettagliati, più sarà probabile trovare un pacchetto che faccia esattamente ciò che serve. È possibile cercare parole chiave su npm o Google. Preferire inoltre pacchetti piccoli rispetto a quelli grandi, poiché questi ultimi possono causare problemi di prestazioni durante l'installazione, l'esecuzione e così via.
+> - La dipendenza è affidabile e ben mantenuta? Verificare quando è stata pubblicata l'ultima versione, chi è l'autore e quanti download settimanali ha il pacchetto. Stabilire l'affidabilità di un pacchetto è una competenza che si acquisisce con l'esperienza, poiché occorre considerare fattori come la probabilità che il pacchetto necessiti di aggiornamenti o quante persone potrebbero averne bisogno.
 
-Nel file `src/main.jsx`, aggiungi il seguente codice e salva:
+Nel file `src/main.jsx`, aggiungere il codice seguente e salvare:
 
 ```js
 import Plotly from "plotly.js-dist-min";
@@ -255,23 +264,23 @@ Plotly.newPlot(
 );
 ```
 
-Torna su `http://localhost:5173` e vedrai un grafico sulla pagina. Modifica i diversi numeri e vedrai il grafico aggiornato ogni volta che salvi il tuo file.
+Tornare a `http://localhost:5173`: verrà visualizzato un grafico nella pagina. Modificare i vari numeri e osservare il grafico aggiornarsi ogni volta che il file viene salvato.
 
-### Compilare il nostro codice per la produzione
+### Compilare il codice per la produzione
 
-Tuttavia, questo codice non è pronto per la produzione. La maggior parte dei sistemi di build tooling, incluso Vite, hanno una "modalità di sviluppo" e una "modalità di produzione". La principale differenza è che molte delle caratteristiche utili che utilizzerai durante lo sviluppo non sono necessarie nel sito finale, quindi verranno rimosse per la produzione, ad esempio "sostituzione a caldo dei moduli", "ricaricamento live", e "codice sorgente non compresso e commentato". Anche se ben lontano dall'essere esaustivo, queste sono alcune delle comuni caratteristiche dello sviluppo web che sono molto utili in fase di sviluppo ma non molto utili in produzione. In produzione, saranno solo un peso per il tuo sito.
+Tuttavia, questo codice non è pronto per la produzione. La maggior parte dei sistemi di strumenti di build, incluso Vite, ha una "modalità di sviluppo" e una "modalità di produzione". La differenza importante è che molte delle funzionalità utili usate durante lo sviluppo non sono necessarie nel sito finale e vengono quindi rimosse per la produzione, ad esempio "hot module replacement", "live reloading" e "codice sorgente non compresso e commentato". Sebbene l'elenco non sia esaustivo, queste sono alcune delle funzionalità comuni dello sviluppo web che sono molto utili nella fase di sviluppo ma non in produzione. In produzione, aumenterebbero solo inutilmente le dimensioni del sito.
 
-Ora fermiamo il server di sviluppo Vite in esecuzione utilizzando <kbd>Ctrl</kbd> + <kbd>C</kbd>.
+Ora arrestare il server di sviluppo Vite in esecuzione con <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 
-Ora possiamo preparare il nostro sito di esempio di base per un'impegnativa distribuzione. Vite fornisce un comando `build` aggiuntivo per generare file adatti alla pubblicazione.
+Ora è possibile preparare il sito di esempio essenziale per una distribuzione immaginaria. Vite fornisce un comando aggiuntivo, `build`, per generare file adatti alla pubblicazione.
 
-Esegui il seguente comando:
+Eseguire il comando seguente:
 
 ```bash
 npx vite build
 ```
 
-Dovresti vedere un output come questo:
+Dovrebbe essere visualizzato un output simile a questo:
 
 ```plain
 vite v5.2.13 building for production...
@@ -286,33 +295,33 @@ dist/assets/index-BlYAJQFz.js  3,723.18 kB │ gzip: 1,167.74 kB
 ✓ built in 4.36s
 ```
 
-Vite creerà una directory chiamata `dist`. Se la guardi, contiene un `index.html`, che sembra molto simile a quello principale, tranne che il sorgente dello `script` ora è sostituito con un percorso nella cartella `assets`. La cartella `assets` contiene l'output JavaScript trasformato, che ora è minimizzato e ottimizzato per la produzione.
+Vite creerà una directory denominata `dist`. Al suo interno contiene un file `index.html`, molto simile a quello nella root, tranne per il fatto che il sorgente dello `script` è stato sostituito con un percorso alla cartella `assets`. La cartella `assets` contiene l'output JavaScript trasformato, ora minificato e ottimizzato per la produzione.
 
 > [!NOTE]
-> Potresti essere preoccupato dell'avviso che c'è un chunk troppo grande. Questo è previsto perché stiamo caricando una libreria che fa molte cose dietro le quinte (immagina di scrivere tutto il codice da solo per disegnare lo stesso grafico). Per ora, non dobbiamo preoccuparcene.
+> L'avviso relativo a un chunk troppo grande potrebbe destare preoccupazione. È previsto, perché viene caricata una libreria che svolge molte operazioni dietro le quinte, come scrivere autonomamente tutto il codice per disegnare lo stesso grafico. Per ora non è necessario preoccuparsene.
 
 ## Una guida approssimativa ai client dei gestori di pacchetti
 
-Questo tutorial ha installato il pacchetto Vite utilizzando npm, ma come menzionato in precedenza ci sono alcune alternative. Vale almeno la pena sapere che esistono e avere una qualche vaga idea dei comandi comuni tra gli strumenti. Hai già visto alcuni in azione, ma diamo un'occhiata agli altri.
+Questo tutorial ha installato il pacchetto Vite usando npm, ma, come già indicato, esistono alcune alternative. Vale la pena sapere almeno che esistono e avere un'idea generale dei comandi comuni tra i vari strumenti. Alcuni sono già stati visti in azione, ma esaminiamo gli altri.
 
-L'elenco crescerà nel tempo, ma al momento della scrittura, i seguenti principali gestori di pacchetti sono disponibili:
+L'elenco crescerà nel tempo, ma al momento della scrittura sono disponibili i seguenti principali gestori di pacchetti:
 
 - npm su [npmjs.org](https://www.npmjs.com/)
 - pnpm su [pnpm.js.org](https://pnpm.js.org/)
 - Yarn su [yarnpkg.com](https://yarnpkg.com/)
 
-npm e pnpm sono simili dal punto di vista della riga di comando — in realtà, pnpm mira ad avere piena parità sulle opzioni degli argomenti che npm offre. Si differenzia per il fatto che utilizza un diverso metodo per scaricare e memorizzare i pacchetti sul tuo computer, mirato a ridurre lo spazio disco complessivo richiesto.
+npm e pnpm sono simili dal punto di vista della riga di comando: infatti, pnpm mira ad avere piena parità nelle opzioni degli argomenti offerte da npm. Si differenzia perché usa un metodo diverso per scaricare e archiviare i pacchetti sul computer, con l'obiettivo di ridurre lo spazio su disco complessivamente richiesto.
 
-Dove npm è mostrato negli esempi seguenti, pnpm può essere scambiato e il comando funzionerà.
+Dove npm viene mostrato negli esempi seguenti, può essere sostituito con pnpm e il comando funzionerà.
 
-Yarn è spesso considerato più veloce di npm in termini di processo di installazione (anche se le tue esperienze potrebbero variare). Questo è importante per gli sviluppatori perché può esserci una quantità significativa di tempo sprecato aspettando che le dipendenze si installino (e si copino sul computer).
+Yarn è spesso considerato più rapido di npm nel processo di installazione, anche se i risultati possono variare. Questo è importante per gli sviluppatori perché può essere sprecata una quantità significativa di tempo nell'attesa dell'installazione delle dipendenze e della copia sul computer.
 
-Tuttavia, vale la pena notare che il gestore di pacchetti npm **non** è obbligatorio per installare i pacchetti dal registro npm. pnpm e Yarn possono consumare lo stesso formato `package.json` di npm, e possono installare qualsiasi pacchetto dal registro npm e altri registri di pacchetti.
+Tuttavia, è importante notare che il gestore di pacchetti npm **non** è necessario per installare pacchetti dal registry npm. pnpm e Yarn possono usare lo stesso formato `package.json` di npm e possono installare qualsiasi pacchetto dal registry npm e da altri registry di pacchetti.
 
-Rivediamo le azioni comuni che vorrai eseguire con i gestori di pacchetti.
+Rivediamo le azioni comuni che sarà necessario eseguire con i gestori di pacchetti.
 
 > [!NOTE]
-> Mostreremo sia i comandi npm che Yarn. Non sono destinati a essere eseguiti nello stesso progetto. Dovresti configurare il tuo progetto con npm o Yarn e utilizzare i comandi di quel gestore di pacchetti in modo coerente.
+> Verranno mostrati i comandi sia di npm sia di Yarn. Non sono pensati per essere eseguiti nello stesso progetto. Il progetto dovrebbe essere configurato con npm o Yarn e i comandi di quel gestore di pacchetti dovrebbero essere usati in modo coerente.
 
 ### Inizializzare un nuovo progetto
 
@@ -321,96 +330,102 @@ npm init
 yarn init
 ```
 
-Come mostrato sopra, ti chiederà e ti guiderà attraverso una serie di domande per descrivere il tuo progetto (nome, licenza, descrizione, e così via) e generare un `package.json` per te che contiene informazioni meta sul tuo progetto e le sue dipendenze.
+Come mostrato sopra, questo comando proporrà una serie di domande per descrivere il progetto, come nome, licenza, descrizione e così via, quindi genererà un file `package.json` contenente meta-informazioni sul progetto e sulle sue dipendenze.
 
-### Installare le dipendenze
+### Installare dipendenze
 
 ```bash
 npm install vite
 yarn add vite
 ```
 
-Abbiamo anche visto `install` in azione sopra. Questo aggiungerebbe direttamente il pacchetto `vite` alla directory di lavoro in una sottodirectory chiamata `node_modules`, insieme alle dipendenze di `vite`.
+Anche `install` è già stato visto in azione. Questo aggiungerebbe direttamente il pacchetto `vite` alla directory di lavoro in una sottodirectory denominata `node_modules`, insieme alle dipendenze di `vite`.
 
-Per impostazione predefinita, questo comando installerà l'ultima versione di `vite`, ma puoi controllarla anche tu. Puoi richiedere `vite@4`, che ti dà l'ultima versione 4.x (che è 4.5.3). Oppure potresti provare `vite@^4.0.0`, che significa l'ultima versione dopo o inclusa 4.0.0 (lo stesso significato di sopra).
+Per impostazione predefinita, questo comando installerà la versione più recente di `vite`, ma è possibile controllare anche questo aspetto. Si può richiedere `vite@4`, che fornisce l'ultima versione 4.x, ovvero 4.5.3. Oppure si può provare `vite@^4.0.0`, che indica l'ultima versione successiva o uguale alla 4.0.0, con lo stesso significato dell'esempio precedente.
 
-### Aggiornamento delle dipendenze
+### Aggiornare dipendenze
 
 ```bash
 npm update
 yarn upgrade
 ```
 
-Questo controllerà le dipendenze attualmente installate e le aggiornerà, se c'è un aggiornamento disponibile, entro l'intervallo specificato nel pacchetto.
+Questo comando esaminerà le dipendenze attualmente installate e le aggiornerà, se è disponibile un aggiornamento, entro l'intervallo specificato nel pacchetto.
 
-L'intervallo è specificato nella versione della dipendenza nel tuo `package.json`, come `"vite": "^5.2.13"` — in questo caso, il carattere capello `^` significa tutti i rilasci minori e di patch successivi e inclusi al 5.2.13, fino a ma non compreso il 6.0.0.
+L'intervallo è specificato nella versione della dipendenza nel file `package.json`, ad esempio `"vite": "^5.2.13"`: in questo caso, il carattere accento circonflesso `^` indica tutte le release minor e patch successive o uguali alla 5.2.13, fino alla 6.0.0 esclusa.
 
-Questo viene determinato usando un sistema chiamato [semver](https://semver.org/), che potrebbe sembrare un po' complicato dalla documentazione ma può essere semplificato considerando solo le informazioni di riepilogo e che una versione è rappresentata da `MAGGIORE.MINORE.CORREZIONE`, come 2.0.1 essendo la versione maggiore 2 con la correzione 1. Un modo eccellente per provare valori semver è usare il [calcolatore semver](https://semver.npmjs.com/).
+Questo viene determinato usando un sistema chiamato [semver](https://semver.org/), che dalla documentazione può sembrare un po' complicato, ma può essere semplificato considerando solo le informazioni riepilogative e che una versione è rappresentata da `MAJOR.MINOR.PATCH`; ad esempio, 2.0.1 è la versione major 2 con versione patch 1. Un ottimo modo per provare i valori semver è usare il [calcolatore semver](https://semver.npmjs.com/).
 
-È importante ricordare che `npm update` non aggiornerà le dipendenze oltre l'intervallo definito nel `package.json` — per farlo dovrai installare quella versione specificamente.
+È importante ricordare che `npm update` non aggiornerà le dipendenze oltre l'intervallo definito nel file `package.json`; per farlo sarà necessario installare specificamente quella versione.
 
 ### Altri comandi
 
-Puoi saperne di più sui singoli comandi per [npm](https://docs.npmjs.com/cli-documentation/) e [yarn](https://classic.yarnpkg.com/en/docs/cli/) online. Ancora, i comandi [pnpm](https://pnpm.io/cli/add) avranno parità con npm, con un certo numero di aggiunte.
+È possibile trovare ulteriori informazioni sui singoli comandi di [npm](https://docs.npmjs.com/cli-documentation/) e [yarn](https://classic.yarnpkg.com/en/docs/cli/) online. Anche i comandi di [pnpm](https://pnpm.io/cli/add) hanno parità con npm, con alcune aggiunte.
 
-## Creare i propri comandi
+## Creare comandi personalizzati
 
-I gestori di pacchetti supportano anche la creazione dei propri comandi e la loro esecuzione dalla riga di comando. Per esempio, in precedenza abbiamo invocato il comando `vite` con `npx` per avviare il server di sviluppo Vite. Potremmo creare il seguente comando:
+I gestori di pacchetti supportano anche la creazione di comandi personalizzati e la loro esecuzione dalla riga di comando. Ad esempio, in precedenza è stato invocato il comando `vite` con `npx` per avviare il server di sviluppo Vite. Potrebbe essere creato il seguente comando:
 
 ```bash
 npm run dev
 # or yarn run dev
 ```
 
-Questo eseguirebbe uno script personalizzato per avviare il nostro progetto in "modalità sviluppo". In effetti, includiamo regolarmente questo in tutti i progetti poiché la configurazione di sviluppo locale tende a funzionare in modo leggermente diverso rispetto a come funzionerebbe in produzione.
+Questo eseguirebbe uno script personalizzato per avviare il progetto in "modalità di sviluppo". In effetti, viene regolarmente incluso in tutti i progetti, poiché la configurazione di sviluppo locale tende a funzionare in modo leggermente diverso rispetto alla produzione.
 
-Se provassi ad eseguirlo nel tuo progetto di test da prima, reclamerebbe (probabilmente) che lo script di "dev" manca. Questo perchè npm, Yarn (e simili) stanno cercando una proprietà chiamata `dev` nella proprietà `scripts` del tuo file `package.json`. Quindi, creiamo un comando scorciatoia personalizzato — "dev" — nel nostro `package.json`. Se hai seguito il tutorial da prima, dovresti avere un file `package.json` dentro la tua directory npm-experiment. Aprilo, e il suo membro `scripts` dovrebbe apparire così:
-
-```json
-"scripts": {
-  "test": "echo \"Error: no test specified\" && exit 1",
-},
-```
-
-Aggiorna in modo che sembri così e salva il file:
+Provando a eseguire questo comando nel progetto di test precedente, probabilmente verrebbe segnalato che lo "script dev è mancante". Questo accade perché npm, Yarn e strumenti simili cercano una proprietà chiamata `dev` nella proprietà `scripts` del file `package.json`. Creiamo quindi un comando abbreviato personalizzato, "dev", nel file `package.json`. Se è stato seguito il tutorial precedente, dovrebbe esserci un file `package.json` nella directory npm-experiment. Aprirlo: il membro `scripts` dovrebbe avere un aspetto simile al seguente:
 
 ```json
-"scripts": {
-  "dev": "vite"
-},
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
 ```
 
-Abbiamo aggiunto un comando `dev` personalizzato come uno script npm.
+Aggiornarlo in modo che appaia così e salvare il file:
 
-Ora prova a eseguire il seguente comando nel tuo terminale, assicurandoti di essere dentro la directory `npm-experiment`:
+```json
+{
+  "scripts": {
+    "dev": "vite"
+  }
+}
+```
+
+È stato aggiunto un comando `dev` personalizzato come script npm.
+
+Ora provare a eseguire quanto segue nel terminale, assicurandosi di trovarsi nella directory `npm-experiment`:
 
 ```bash
 npm run dev
 ```
 
-Questo dovrebbe avviare Vite e avviare lo stesso server di sviluppo locale, come visto in precedenza.
+Questo dovrebbe avviare Vite e lo stesso server di sviluppo locale visto in precedenza.
 
-Nota che lo script che abbiamo definito qui non necessita più del prefisso `npx`. Questo perché i comandi npm (e yarn) sono intelligenti e cercheranno strumenti da riga di comando che sono installati localmente nel progetto prima di provare a trovarli attraverso metodi convenzionali (dove il tuo computer normalmente memorizza e consente al software di essere trovato). Puoi [sapere di più sui dettagli tecnici del comando `run`](https://docs.npmjs.com/cli/run-script/), sebbene nella maggior parte dei casi i tuoi propri script funzioneranno bene.
+Notare che lo script definito qui non necessita più del prefisso `npx`. Questo perché i comandi npm, e yarn, sono intelligenti: cercheranno gli strumenti da riga di comando installati localmente nel progetto prima di tentare di trovarli mediante metodi convenzionali, ovvero dove normalmente il computer archivia e consente di trovare il software. È possibile [approfondire le complessità tecniche del comando `run`](https://docs.npmjs.com/cli/commands/npm-run/), sebbene nella maggior parte dei casi gli script personali funzioneranno senza problemi.
 
-Questo particolare potrebbe sembrare non necessario — `npm run dev` sono più caratteri da digitare rispetto a `npx vite`, ma è una forma di _astrazione_. Ci permette di aggiungere più lavoro al comando `dev` in futuro, come impostare variabili d'ambiente, generare file temporanei, ecc., senza complicare il comando.
+Questo comando specifico potrebbe sembrare superfluo: `npm run dev` richiede più caratteri da digitare rispetto a `npx vite`, ma è una forma di _astrazione_. Consente di aggiungere più operazioni al comando `dev` in futuro, come impostare variabili d'ambiente, generare file temporanei e così via, senza complicare il comando.
 
-Puoi aggiungere ogni sorta di cose alla proprietà `scripts` che ti aiutano a fare il tuo lavoro. Ad esempio, ecco cosa raccomanda Vite nel template:
+Alla proprietà `scripts` possono essere aggiunti tutti i tipi di elementi che aiutano a svolgere il proprio lavoro. Ad esempio, ecco cosa Vite raccomanda nel template:
 
 ```json
-"scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview"
-},
+{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  }
+}
 ```
 
-## Sommario
+## Riepilogo
 
-Questo ci porta alla fine del nostro tour sui gestori di pacchetti. La nostra prossima mossa è costruire una toolchain di esempio, mettendo in pratica tutto ciò che abbiamo imparato finora.
+Questo conclude la panoramica dei gestori di pacchetti. Il prossimo passo consiste nel creare una toolchain di esempio, mettendo in pratica tutto ciò che è stato appreso finora.
 
 ## Vedi anche
 
-- [Riferimento agli script npm](https://docs.npmjs.com/cli/v8/using-npm/scripts/)
-- [Riferimento al file package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json/)
+- [Riferimento degli script npm](https://docs.npmjs.com/cli/v8/using-npm/scripts/)
+- [Riferimento di package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json/)
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Client-side_tools/Overview","Learn_web_development/Extensions/Client-side_tools/Introducing_complete_toolchain", "Learn_web_development/Extensions/Client-side_tools")}}

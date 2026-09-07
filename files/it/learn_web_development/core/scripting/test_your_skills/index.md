@@ -1,14 +1,14 @@
 ---
-title: "Metti alla prova le tue abilità: JavaScript"
-short-title: Metti alla prova le tue abilità
+title: "Metti alla prova le tue competenze: JavaScript"
+short-title: "Test: indice dei test JavaScript"
 slug: Learn_web_development/Core/Scripting/Test_your_skills
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 9d3d642daf9df9ece138fa39972edc5f7d6dcd6b
 ---
 
-Questa pagina elenca test JavaScript che puoi provare per verificare se hai compreso il contenuto di questo modulo.
+Questa pagina elenca i test JavaScript che si possono provare per verificare di aver compreso i contenuti di questo modulo.
 
-## Metti alla prova le tue abilità in JavaScript per argomento
+## Metti alla prova le tue competenze JavaScript per argomento
 
 {{SubpagesWithSummaries}}
 

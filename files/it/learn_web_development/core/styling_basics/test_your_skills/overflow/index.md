@@ -1,27 +1,34 @@
 ---
 title: "Metti alla prova le tue competenze: Overflow"
-short-title: Overflow
+short-title: "Test: Overflow"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Overflow
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: a623d4459e2aa00d17dc0fd6b6bc44f56c589950
 ---
 
-L'obiettivo di questo test di abilità è valutare se hai compreso [l'overflow in CSS e come gestirlo](/it/docs/Learn_web_development/Core/Styling_basics/Overflow).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Overflow", "Learn_web_development/Core/Styling_basics/Size_decorate_content_panel", "Learn_web_development/Core/Styling_basics")}}
+
+Lo scopo di questo test delle competenze è aiutare a valutare se si comprende [l'overflow in CSS e come gestirlo](/it/docs/Learn_web_development/Core/Styling_basics/Overflow).
 
 > [!NOTE]
-> Fai clic su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (cliccando sull'icona della clipboard) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-> Se hai difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la nostra guida sull'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Overflow 1
 
-In questo compito, il contenuto trabocca dalla scatola perché ha un'altezza fissa. Mantieni l'altezza ma fai in modo che la scatola abbia barre di scorrimento solo se c'è abbastanza testo da causare un overflow. Prova a rimuovere parte del testo dall'HTML, in modo che se c'è solo una piccola quantità di testo che non trabocca, non appaia nessuna barra di scorrimento.
+In questa attività, il contenuto fuoriesce dal box perché ha un'altezza fissa.
 
-![Una piccola scatola con un bordo e una barra di scorrimento verticale.](mdn-overflow1.png)
+Per completare l'attività:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+1. Aggiornare il CSS in modo che l'altezza del box venga mantenuta e le barre di scorrimento appaiano solo quando è presente abbastanza testo da causare un overflow.
+2. Testare la soluzione rimuovendo parte del testo dall'HTML e verificando che non appaia alcuna barra di scorrimento quando è presente solo una piccola quantità di testo.
 
-```html live-sample___overflow-scroll
+Il punto di partenza dell'attività ha questo aspetto:
+
+{{EmbedLiveSample("overflow1-start", "", "450px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___overflow1-start live-sample___overflow1-finish
 <div class="box">
   <p>
     Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
@@ -36,7 +43,7 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___overflow-scroll
+```css live-sample___overflow1-start live-sample___overflow1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -49,14 +56,16 @@ body {
 }
 ```
 
-{{EmbedLiveSample("overflow-scroll", "", "450px")}}
+Lo stile aggiornato dovrebbe avere questo aspetto:
+
+{{EmbedLiveSample("overflow1-finish", "", "300px")}}
 
 <details>
-<summary>Fai clic qui per vedere la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Dovresti aggiungere `overflow: auto` in modo che la scatola acquisisca le barre di scorrimento solo quando il contenuto è troppo grande:
+Aggiungere `overflow: auto` affinché il box ottenga le barre di scorrimento solo quando il contenuto è troppo grande:
 
-```css
+```css live-sample___overflow1-finish
 .box {
   overflow: auto;
 }
@@ -64,17 +73,17 @@ Dovresti aggiungere `overflow: auto` in modo che la scatola acquisisca le barre 
 
 </details>
 
-## Compito 2
+## Overflow 2
 
-In questo compito, c'è un'immagine nella scatola che è più grande delle dimensioni della scatola in modo che trabocchi visibilmente. Cambia questo in modo che qualsiasi parte dell'immagine al di fuori della scatola sia nascosta.
+In questa attività, nel box è presente un'immagine più grande delle dimensioni del box, perciò fuoriesce visibilmente. Aggiornare il CSS in modo che qualsiasi parte dell'immagine esterna al box venga nascosta.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività ha questo aspetto:
 
-![Una scatola con un'immagine che riempie la scatola ma non trabocca dai bordi.](mdn-overflow2.png)
+{{EmbedLiveSample("overflow2-start", "", "260px")}}
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___overflow-hidden
+```html live-sample___overflow2-start live-sample___overflow2-finish
 <div class="box">
   <img
     alt="flowers"
@@ -82,7 +91,7 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___overflow-hidden
+```css live-sample___overflow2-start live-sample___overflow2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -93,14 +102,16 @@ body {
 }
 ```
 
-{{EmbedLiveSample("overflow-hidden", "", "300px")}}
+Lo stile aggiornato dovrebbe avere questo aspetto:
+
+{{EmbedLiveSample("overflow2-finish", "", "260px")}}
 
 <details>
-<summary>Fai clic qui per vedere la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Dovresti aggiungere `overflow: hidden` al selettore `.box`:
+Aggiungere `overflow: hidden` al selettore `.box`:
 
-```css
+```css live-sample___overflow2-finish
 .box {
   overflow: hidden;
 }
@@ -108,6 +119,4 @@ Dovresti aggiungere `overflow: hidden` al selettore `.box`:
 
 </details>
 
-## Vedi anche
-
-- [Concetti base di stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Overflow", "Learn_web_development/Core/Styling_basics/Size_decorate_content_panel", "Learn_web_development/Core/Styling_basics")}}

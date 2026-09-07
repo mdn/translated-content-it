@@ -1,27 +1,27 @@
 ---
-title: "Tutorial Express Parte 5: Visualizzare i dati della libreria"
+title: "Tutorial su Express Parte 5: Visualizzare i dati della biblioteca"
 short-title: "5: Visualizzare i dati"
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: afcdfa050626bb7eb05ee693df8997020db9ff2e
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Express_Nodejs/routes", "Learn_web_development/Extensions/Server-side/Express_Nodejs/forms", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}
 
-Siamo ora pronti per aggiungere le pagine che visualizzano i libri e gli altri dati del sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website). Le pagine includeranno una home page che mostra quanti record abbiamo di ciascun tipo di modello e pagine di elenco e dettaglio per tutti i nostri modelli. Nel frattempo, acquisiremo un'esperienza pratica nella recupero dei record dal database e nell'uso dei template.
+Ora è possibile aggiungere le pagine che visualizzano i libri e gli altri dati del sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Tutorial_local_library_website). Le pagine includeranno una home page che mostra quanti record sono disponibili per ciascun tipo di modello e pagine di elenco e di dettaglio per tutti i modelli. Durante il percorso, verrà acquisita esperienza pratica nel recupero di record dal database e nell'uso dei template.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Completare i argomenti tutorial precedenti (compreso <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes">Tutorial Express Parte 4: Rotte e controller</a>).
+        Completare gli argomenti dei tutorial precedenti (incluso <a href="/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes">Tutorial su Express Parte 4: Route e controller</a>).
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere come eseguire operazioni database asincrone utilizzando <code>async</code>/<code>await</code>, come usare il linguaggio di template Pug, e come ottenere dati dall'URL nelle nostre funzioni controller.
+        Comprendere come eseguire operazioni asincrone sul database usando <code>async</code>/<code>await</code>, come usare il linguaggio di template Pug e come ottenere dati dall'URL nelle funzioni del controller.
       </td>
     </tr>
   </tbody>
@@ -29,41 +29,41 @@ Siamo ora pronti per aggiungere le pagine che visualizzano i libri e gli altri d
 
 ## Panoramica
 
-Nei nostri articoli tutorial precedenti, abbiamo definito i [modelli Mongoose](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose) che possiamo utilizzare per interagire con un database e creato alcuni record iniziali della libreria. Abbiamo poi [creato tutte le rotte](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes) necessarie per il sito web LocalLibrary, ma con funzioni "dummy controller" (queste sono funzioni controller scheletro che restituiscono solo un messaggio "non implementato" quando si accede a una pagina).
+Negli articoli precedenti di questo tutorial, sono stati definiti [modelli Mongoose](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/mongoose) utilizzabili per interagire con un database e sono stati creati alcuni record iniziali della biblioteca. Sono state poi [create tutte le route](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/routes) necessarie per il sito web LocalLibrary, ma con funzioni "controller fittizie" (funzioni controller scheletriche che restituiscono semplicemente un messaggio "non implementato" quando si accede a una pagina).
 
-Il passo successivo è fornire implementazioni adeguate per le pagine che _visualizzano_ le informazioni della nostra libreria (vedremo come implementare pagine con moduli per creare, aggiornare o eliminare informazioni in articoli successivi). Questo include l'aggiornamento delle funzioni controller per recuperare i record usando i nostri modelli e la definizione dei template per visualizzare queste informazioni agli utenti.
+Il passaggio successivo consiste nel fornire implementazioni appropriate per le pagine che _visualizzano_ le informazioni della biblioteca (gli articoli successivi analizzeranno l'implementazione di pagine con moduli per creare, aggiornare o eliminare informazioni). Ciò include l'aggiornamento delle funzioni controller per recuperare record usando i modelli e la definizione di template per visualizzare queste informazioni agli utenti.
 
-Inizieremo fornendo argomenti di revisione/introduzione che spiegano come gestire le operazioni asincrone nelle funzioni controller e come scrivere template usando Pug. Quindi forniremo implementazioni per ciascuna delle nostre principali pagine "sola lettura" con una breve spiegazione di eventuali funzionalità speciali o nuove che utilizzano.
+Si inizierà fornendo argomenti introduttivi che spiegano come gestire operazioni asincrone nelle funzioni controller e come scrivere template usando Pug. Verranno quindi fornite implementazioni per ciascuna delle principali pagine di "sola lettura", con una breve spiegazione delle funzionalità speciali o nuove utilizzate.
 
-Alla fine di questo articolo, dovresti avere una buona comprensione end-to-end di come funzionano in pratica rotte, funzioni asincrone, viste e modelli.
+Alla fine di questo articolo, dovrebbe essere disponibile una buona comprensione completa di come funzionano nella pratica route, funzioni asincrone, viste e modelli.
 
-## Sottoarticoli del tutorial sulla visualizzazione dei dati della libreria
+## Sottoarticoli del tutorial sulla visualizzazione dei dati della biblioteca
 
-I seguenti sottoarticoli percorrono il processo di aggiunta delle diverse funzionalità necessarie per visualizzare le pagine richieste del sito web.
-Devi leggere e lavorare su ciascuno di essi a turno, prima di passare al successivo.
+I seguenti sottoarticoli illustrano il processo di aggiunta delle diverse funzionalità necessarie per visualizzare le pagine richieste del sito web.
+È necessario leggere e seguire ciascuno di essi nell'ordine indicato prima di passare a quello successivo.
 
-1. [Primer sui template](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Template_primer)
-2. [Il template base di LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template)
+1. [Introduzione ai template](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Template_primer)
+2. [Il template di base di LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template)
 3. [Home page](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Home_page)
-4. [Pagina elenco libri](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Book_list_page)
-5. [Pagina elenco BookInstance](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_list_page)
+4. [Pagina dell'elenco dei libri](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Book_list_page)
+5. [Pagina dell'elenco di BookInstance](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_list_page)
 6. [Formattazione delle date usando luxon](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Date_formatting_using_moment)
-7. [Sfida pagina elenco Autori e Genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Author_list_page)
-8. [Pagina dettaglio Genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Genre_detail_page)
-9. [Pagina dettaglio Libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Book_detail_page)
-10. [Pagina dettaglio Autore](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Author_detail_page)
-11. [Pagina dettaglio BookInstance e sfida](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_detail_page_and_challenge)
+7. [Sfida sulla pagina dell'elenco degli autori e sulla pagina dell'elenco dei generi](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Author_list_page)
+8. [Pagina di dettaglio del genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Genre_detail_page)
+9. [Pagina di dettaglio del libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Book_detail_page)
+10. [Pagina di dettaglio dell'autore](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Author_detail_page)
+11. [Pagina di dettaglio di BookInstance e sfida](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/BookInstance_detail_page_and_challenge)
 
-## Riassunto
+## Riepilogo
 
-Abbiamo ora creato tutte le pagine "sola lettura" per il nostro sito: una home page che mostra il conteggio delle istanze di ciascuno dei nostri modelli, e pagine di elenco e dettaglio per i nostri libri, istanze di libri, autori e generi. Nel frattempo, abbiamo acquisito molta conoscenza fondamentale sui controller, sulla gestione del controllo di flusso quando si utilizzano operazioni asincrone, sulla creazione di viste usando _Pug_, sull'interrogazione del database del sito utilizzando modelli, sul passaggio di informazioni a una vista e sulla creazione ed estensione di template. Le sfide avranno anche insegnato ai lettori qualcosa sulla gestione delle date usando _Luxon_.
+Sono state ora create tutte le pagine di "sola lettura" del sito: una home page che visualizza il numero di istanze di ciascuno dei modelli e pagine di elenco e di dettaglio per libri, istanze dei libri, autori e generi. Durante il percorso, sono state acquisite molte conoscenze fondamentali sui controller, sulla gestione del flusso di controllo durante l'uso di operazioni asincrone, sulla creazione di viste usando _Pug_, sull'interrogazione del database del sito usando modelli, sul passaggio di informazioni a una vista e sulla creazione e sull'estensione di template. Le sfide avranno inoltre insegnato ai lettori qualcosa sulla gestione delle date usando _Luxon_.
 
-Nel nostro prossimo articolo, svilupperemo la nostra conoscenza, creando moduli HTML e codice di gestione dei moduli per iniziare a modificare i dati memorizzati dal sito.
+Nel prossimo articolo, verranno approfondite queste conoscenze creando moduli HTML e codice per la gestione dei moduli, per iniziare a modificare i dati archiviati dal sito.
 
 ## Vedi anche
 
-- [Utilizzo di motori di template con Express](https://expressjs.com/en/guide/using-template-engines.html) (documentazione Express)
-- [Pug](https://pugjs.org/api/getting-started.html) (documentazione Pug)
-- [Luxon](https://moment.github.io/luxon/#/) (documentazione Luxon)
+- [Uso dei motori di template con Express](https://expressjs.com/en/guide/using-template-engines/) (documentazione di Express)
+- [Pug](https://pugjs.org/api/getting-started.html) (documentazione di Pug)
+- [Luxon](https://moment.github.io/luxon/#/) (documentazione di Luxon)
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Express_Nodejs/routes", "Learn_web_development/Extensions/Server-side/Express_Nodejs/forms", "Learn_web_development/Extensions/Server-side/Express_Nodejs")}}

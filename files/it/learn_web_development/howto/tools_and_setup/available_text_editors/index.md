@@ -2,46 +2,49 @@
 title: Quali editor di testo sono disponibili?
 slug: Learn_web_development/Howto/Tools_and_setup/Available_text_editors
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: afcdfa050626bb7eb05ee693df8997020db9ff2e
 ---
 
-In questo articolo evidenziamo alcuni aspetti da considerare quando si installa un editor di testo per lo sviluppo web.
+In questo articolo vengono evidenziati alcuni aspetti da considerare quando si installa un editor di testo per lo sviluppo web.
 
 <table class="standard-table">
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Dovresti già essere a conoscenza di <a
-          href="/it/docs/Learn_web_development/Howto/Tools_and_setup/What_software_do_I_need">
-          vari software necessari per costruire un sito web</a>.
+        È necessario conoscere già i <a
+          href="/it/docs/Learn_web_development/Howto/Tools_and_setup/What_software_do_I_need"
+        >
+          vari software necessari per creare un sito web</a
+        >.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparare come scegliere un editor di testo che soddisfi al meglio le tue esigenze come sviluppatore web.
+        Imparare a scegliere un editor di testo più adatto alle proprie esigenze
+        come sviluppatore web.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Sommario
+## Riepilogo
 
-Un sito web è composto principalmente da file di testo, quindi per un'esperienza di sviluppo divertente e piacevole dovresti scegliere con saggezza il tuo editor di testo.
+Un sito web è costituito principalmente da file di testo, quindi per un'esperienza di sviluppo piacevole e soddisfacente è opportuno scegliere con cura l'editor di testo.
 
-Il gran numero di scelte può essere un po' opprimente, dato che un editor di testo è così basilare per l'informatica (sì, lo sviluppo web è informatica). Idealmente, sperimenteresti il maggior numero di editor possibile per capire quale si adatta meglio al tuo flusso di lavoro. Ma ti daremo alcuni suggerimenti per iniziare.
+L'enorme numero di possibilità può essere un po' disorientante, poiché un editor di testo è uno strumento fondamentale nell'informatica (sì, lo sviluppo web è informatica). Idealmente, sarebbe utile provare quanti più editor possibile e capire quale si adatta meglio al proprio flusso di lavoro. Tuttavia, verranno forniti alcuni suggerimenti per iniziare.
 
-Ecco le principali domande che dovresti considerare:
+Ecco le principali domande da considerare:
 
-- Con quale sistema operativo (OS) voglio lavorare?
-- Quali tecnologie voglio manipolare?
-- Quali funzionalità di base mi aspetto dal mio editor di testo?
-- Voglio aggiungere funzionalità extra al mio editor di testo?
-- Ho bisogno di supporto/aiuto mentre uso il mio editor di testo?
-- L'aspetto del mio editor di testo è importante per me?
+- Con quale OS (sistema operativo) si desidera lavorare?
+- Quali tecnologie si desidera manipolare?
+- Quali funzionalità di base ci si aspetta dall'editor di testo?
+- Si desidera aggiungere funzionalità extra all'editor di testo?
+- È necessario ricevere supporto/aiuto durante l'uso dell'editor di testo?
+- L'aspetto e l'esperienza d'uso dell'editor di testo sono importanti?
 
-Nota che non abbiamo menzionato il prezzo. Ovviamente, anche quello è importante, ma il costo di un prodotto ha poca connessione con la sua qualità o capacità. C'è una grande probabilità che trovi un editor di testo adatto gratuitamente.
+Si noti che non è stato menzionato il prezzo. Ovviamente è importante anch'esso, ma il costo di un prodotto ha poca relazione con la sua qualità o capacità. È molto probabile trovare gratuitamente un editor di testo adatto.
 
 Ecco alcuni editor popolari:
 
@@ -53,7 +56,7 @@ Ecco alcuni editor popolari:
       <th scope="col">Prezzo</th>
       <th scope="col">OS</th>
       <th scope="col">Supporto</th>
-      <th scope="col">Doc.</th>
+      <th scope="col">Documentazione</th>
       <th scope="col">Estensibile</th>
     </tr>
   </thead>
@@ -65,7 +68,7 @@ Ecco alcuni editor popolari:
       <td>Windows, Mac, Linux</td>
       <td>
         <a href="https://bfwiki.tellefsen.net/index.php/Mailinglists"
-          >Lista di distribuzione</a
+          >Mailing list</a
         >, <a href="https://bfwiki.tellefsen.net/index.php/Main_Page">wiki</a>
       </td>
       <td><a href="https://bluefish.openoffice.nl/manual/">Manuale online</a></td>
@@ -77,13 +80,13 @@ Ecco alcuni editor popolari:
       <td>Gratuito</td>
       <td>Windows, Mac, Linux</td>
       <td>
-        <a href="https://webchat.freenode.net/?channels=brackets" rel="external"
+        <a href="https://irc.com/?channels=brackets" rel="external"
           >IRC</a
         >
       </td>
       <td>
         <a href="https://github.com/adobe/brackets/wiki" rel="external"
-          >GitHub Wiki</a
+          >Wiki di GitHub</a
         >
       </td>
       <td>
@@ -96,7 +99,7 @@ Ecco alcuni editor popolari:
     </tr>
     <tr>
       <td><a href="https://nova.app/" rel="external">Nova</a></td>
-      <td>Closed source</td>
+      <td>Codice chiuso</td>
       <td>$99</td>
       <td>Mac</td>
       <td>
@@ -106,17 +109,6 @@ Ecco alcuni editor popolari:
       </td>
       <td><a href="https://help.panic.com/nova/">eBook</a></td>
       <td><a href="https://extensions.panic.com/">Sì</a></td>
-    </tr>
-    <tr>
-      <td><a href="https://www.codelobster.com">CodeLobster</a></td>
-      <td>Closed source</td>
-      <td>Gratuito</td>
-      <td>Windows, Mac, Linux</td>
-      <td>
-        <a href="https://www.codelobster.com/forum/index.php" rel="external">Forum</a >, <a href="mailto:support@codelobster.com">Email</a>
-      </td>
-      <td><a href="https://www.codelobsteride.com/help/">Manuale online</a></td>
-      <td>Sì</td>
     </tr>
     <tr>
       <td>
@@ -132,10 +124,10 @@ Ecco alcuni editor popolari:
           >FAQ</a
         >,
         <a
-          href="https://mail.gnu.org/mailman/listinfo/help-gnu-emacs"
+          href="https://lists.gnu.org/mailman/listinfo/help-gnu-emacs"
           rel="external"
-          >Lista di distribuzione</a
-        >, <a href="news://gnu.emacs.help" rel="external">Gruppo di Notizie</a>
+          >Mailing list</a
+        >, <a href="news://gnu.emacs.help" rel="external">Gruppo di discussione</a>
       </td>
       <td>
         <a
@@ -146,29 +138,16 @@ Ecco alcuni editor popolari:
       <td>Sì</td>
     </tr>
     <tr>
-      <td><a href="https://espressoapp.com/">Espresso</a></td>
-      <td>Closed source</td>
-      <td>$99</td>
-      <td>Mac</td>
-      <td>
-        <a href="mailto:hello@espressoapp.com">Email</a>
-      </td>
-      <td>
-        <a href="https://help.espressoapp.com/">Manuale online</a>
-      </td>
-      <td>Sì</td>
-    </tr>
-    <tr>
       <td><a href="https://wiki.gnome.org/Apps/Gedit">Gedit</a></td>
       <td>GPL</td>
       <td>Gratuito</td>
       <td>Windows, Mac, Linux</td>
       <td>
-        <a href="https://discourse.gnome.org/tag/gedit"
+        <a href="https://discourse.gnome.org/tag/gedit/27"
           rel="external">Discourse</a>, <a href="irc://irc.gnome.org/%23gedit">IRC</a>
       </td>
       <td>
-        <a href="https://help.gnome.org/users/gedit/stable/">Manuale online</a>
+        <a href="https://gedit-text-editor.org/user-manuals/gedit/">Manuale online</a>
       </td>
       <td><a href="https://wiki.gnome.org/Apps/Gedit/ThirdPartyPlugins">Sì</a></td>
     </tr>
@@ -178,7 +157,7 @@ Ecco alcuni editor popolari:
       <td>Gratuito</td>
       <td>Windows, Mac, Linux</td>
       <td>
-        <a href="mailto:kwrite-devel@kde.org">Lista di distribuzione</a>,
+        <a href="mailto:kwrite-devel@kde.org">Mailing list</a>,
         <a href="irc://irc.kde.org/kate">IRC</a>
       </td>
       <td>
@@ -217,7 +196,7 @@ Ecco alcuni editor popolari:
     </tr>
     <tr>
       <td><a href="https://www.pspad.com/">PSPad</a></td>
-      <td>Closed source</td>
+      <td>Codice chiuso</td>
       <td>Gratuito</td>
       <td>Windows</td>
       <td>
@@ -231,7 +210,7 @@ Ecco alcuni editor popolari:
       <td>
         <a href="https://www.sublimetext.com/" rel="external">Sublime Text</a>
       </td>
-      <td>Closed source</td>
+      <td>Codice chiuso</td>
       <td>$70</td>
       <td>Windows, Mac, Linux</td>
       <td>
@@ -242,7 +221,7 @@ Ecco alcuni editor popolari:
         >
       </td>
       <td>
-        <a href="https://www.sublimetext.com/docs/">Officiale</a>, <a
+        <a href="https://www.sublimetext.com/docs/">Ufficiale</a>, <a
           href="https://docs.sublimetext.io/"
         >
           Non ufficiale</a
@@ -252,14 +231,14 @@ Ecco alcuni editor popolari:
     </tr>
     <tr>
       <td><a href="https://macromates.com/" rel="external">TextMate</a></td>
-      <td>Closed source</td>
+      <td>Codice chiuso</td>
       <td>$50</td>
       <td>Mac</td>
       <td>
         <a href="https://x.com/macromates">Twitter</a>,
-        <a href="https://webchat.freenode.net/?channels=textmate">IRC</a>,
+        <a href="https://irc.com/?channels=textmate">IRC</a>,
         <a href="https://lists.macromates.com/postorius/lists/textmate.lists.macromates.com/" rel="external"
-          >Lista di distribuzione</a
+          >Mailing list</a
         >, <a href="mailto:tm-support@macromates.com">Email</a>
       </td>
       <td>
@@ -278,7 +257,7 @@ Ecco alcuni editor popolari:
           rel="external"
           >BBEdit</a>
       </td>
-      <td>Closed source</td>
+      <td>Codice chiuso</td>
       <td>Gratuito</td>
       <td>Mac</td>
       <td>
@@ -310,7 +289,7 @@ Ecco alcuni editor popolari:
       <td>Windows, Mac, Linux</td>
       <td>
         <a href="https://www.vim.org/maillist.php#vim" rel="external"
-          >Lista di distribuzione</a
+          >Mailing list</a
         >
       </td>
       <td><a href="https://vimdoc.sourceforge.net/">Manuale online</a></td>
@@ -327,7 +306,8 @@ Ecco alcuni editor popolari:
         <a href="https://code.visualstudio.com/download">Visual Studio Code</a>
       </td>
       <td>
-        <a href="https://github.com/microsoft/vscode">Open Source</a> sotto licenza MIT/ Licenza specifica per il prodotto
+        <a href="https://github.com/microsoft/vscode">Open Source</a> con licenza MIT /
+        Licenza specifica per il prodotto
       </td>
       <td>Gratuito</td>
       <td>Windows, Mac, Linux</td>
@@ -340,105 +320,103 @@ Ecco alcuni editor popolari:
   </tbody>
 </table>
 
-## Apprendimento attivo
+## Installazione e utilizzo di un editor di testo
 
-In questa sezione di apprendimento attivo, vorremmo che provassi a utilizzare e/o installare un editor di testo a tua scelta. Il tuo computer potrebbe già avere installato uno degli editor suggeriti sopra (ad esempio, Gedit se usi il desktop GNOME, Kate se usi KDE, ecc.), se non è così dovresti provare a installare uno o più editor di testo di tua scelta.
+È consigliabile provare a utilizzare e/o installare un editor di testo a scelta. Il computer potrebbe già includere uno degli editor suggeriti sopra (ad esempio, Gedit se si usa il desktop GNOME, Kate se si usa KDE e così via); altrimenti, è opportuno provare a installare uno o più editor di testo a scelta.
 
-Prova a esplorare le impostazioni del tuo editor e leggi il manuale o la documentazione per vedere quali sono le sue capacità. In particolare (se possibile nel tuo editor), prova a:
+Esplorare le impostazioni dell'editor e leggere il manuale o la documentazione per verificarne le funzionalità. In particolare, se possibile nell'editor scelto, provare a:
 
-- Cambiare le impostazioni e i colori dell'evidenziazione della sintassi
-- Giocare con la larghezza dell'[indentazione](<https://en.wikipedia.org/wiki/Indentation_(typesetting)#Indentation_in_programming>), impostandola su una configurazione adatta alle tue esigenze
-- Controllare le impostazioni di salvataggio automatico e di salvataggio della sessione
+- Modificare le impostazioni e i colori dell'evidenziazione della sintassi
+- Sperimentare con la larghezza del [rientro](<https://en.wikipedia.org/wiki/Indentation_(typesetting)#Indentation_in_programming>), impostandola su un valore adatto alle proprie esigenze
+- Verificare le impostazioni di salvataggio automatico e di salvataggio della sessione
 - Configurare eventuali [plugin](<https://en.wikipedia.org/wiki/Plug-in_(computing)>) disponibili e scoprire come ottenerne di nuovi
-- Cambiare gli schemi di colore
-- Regolare le impostazioni di visualizzazione e vedere come è possibile cambiare il layout delle visualizzazioni
-- Controllare quali linguaggi di programmazione/tecnologie supporta il tuo editor
+- Modificare le combinazioni di colori
+- Regolare le impostazioni di visualizzazione e verificare come modificare il layout delle viste
+- Verificare quali linguaggi di programmazione/tecnologie sono supportati dall'editor
 
-Mentre stai imparando, le impostazioni predefinite della maggior parte degli editor di testo dovrebbero andare bene, ma è importante diventare familiari con gli strumenti scelti, in modo da poter selezionare il migliore per il tuo utilizzo. Imparerai di più a personalizzare i tuoi editor e strumenti man mano che guadagni esperienza, e più importante, imparerai quali caratteristiche sono più utili ai tuoi scopi.
+Durante l'apprendimento, le impostazioni predefinite della maggior parte degli editor di testo dovrebbero essere adeguate, ma è importante acquisire familiarità con gli strumenti scelti, così da poter selezionare quello migliore per il proprio utilizzo. Con l'esperienza si imparerà di più sulla personalizzazione degli editor e degli strumenti e, soprattutto, quali funzionalità sono più utili ai propri scopi.
 
-## Approfondire
+## Approfondimento
 
 ### Criteri di scelta
 
-Quindi, in dettaglio, a cosa dovresti pensare quando scegli un editor di testo?
+Più nel dettaglio, cosa è opportuno considerare quando si sceglie un editor di testo?
 
-#### Con quale OS (sistema operativo) voglio lavorare?
+#### Con quale OS (sistema operativo) si desidera lavorare?
 
-Ovviamente è una tua scelta. Tuttavia, alcuni editor sono disponibili solo per certi OS, quindi se ti piace passare da uno all'altro, questo restringerebbe le possibilità. Qualsiasi editor di testo _può_ fare il lavoro, se gira sul tuo sistema, ma un editor multipiattaforma facilita la migrazione da un OS all'altro.
+Naturalmente la scelta è personale. Tuttavia, alcuni editor sono disponibili solo per determinati OS, quindi, se si desidera passare frequentemente da uno all'altro, le possibilità saranno più limitate. Qualsiasi editor di testo _può_ svolgere il lavoro, se viene eseguito sul sistema in uso, ma un editor multipiattaforma rende più semplice la migrazione da un OS all'altro.
 
-Quindi, prima di tutto, scopri quale OS stai usando, e poi verifica se un determinato editor supporta il tuo OS. La maggior parte degli editor specifica sul loro sito web se supportano Windows o Mac, anche se alcuni editor supportano solo certe versioni. Se stai usando Ubuntu, il tuo miglior riferimento è cercare all'interno dell'Ubuntu Software Center. In generale, ovviamente, il mondo Linux/UNIX è un posto piuttosto diversificato dove diverse distro funzionano con diversi sistemi di pacchettizzazione incompatibili. Ciò significa che, se hai deciso per un editor di testo poco conosciuto, potresti doverlo compilare da te a partire dal codice sorgente (non per i deboli di cuore).
+Innanzitutto, occorre scoprire quale OS viene utilizzato e verificare poi se un determinato editor lo supporta. La maggior parte degli editor indica sul proprio sito web se supporta Windows o Mac, sebbene alcuni editor supportino solo determinate versioni. Se si usa Ubuntu, la soluzione migliore consiste nella ricerca all'interno dell'Ubuntu Software Center. In generale, il mondo Linux/UNIX è piuttosto variegato, con diverse distribuzioni che usano sistemi di pacchettizzazione diversi e incompatibili. Ciò significa che, se si desidera usare un editor di testo poco comune, potrebbe essere necessario compilarlo autonomamente dal codice sorgente (un'attività non adatta ai principianti).
 
-#### Quali tecnologie voglio manipolare?
+#### Quali tecnologie si desidera manipolare?
 
-Generalmente parlando, qualsiasi editor di testo può aprire qualsiasi file di testo. Questo funziona benissimo per scrivere appunti personali, ma quando stai facendo sviluppo web e scrivendo in {{Glossary("HTML", "HTML")}}, {{Glossary("CSS", "CSS")}} e {{Glossary("JavaScript", "JavaScript")}}, puoi produrre file piuttosto grandi e complessi. Renditi la vita più facile scegliendo un editor di testo che comprenda le tecnologie con cui lavori. Molti editor di testo ti aiutano con funzionalità come:
+In generale, qualsiasi editor di testo può aprire qualsiasi file di testo. Questo funziona molto bene per scrivere appunti personali, ma nello sviluppo web, lavorando con {{Glossary("HTML", "HTML")}}, {{Glossary("CSS", "CSS")}} e {{Glossary("JavaScript", "JavaScript")}}, è possibile produrre file piuttosto grandi e complessi. È quindi consigliabile scegliere un editor di testo che comprenda le tecnologie utilizzate. Molti editor di testo offrono funzionalità utili come:
 
-- **[Evidenziazione della sintassi](https://en.wikipedia.org/wiki/Syntax_highlighting).** Rendi il tuo file più leggibile assegnando un colore ai termini chiave basandoti sulla tecnologia che stai usando.
-- **[Completamento del codice](https://en.wikipedia.org/wiki/Autocomplete#In_source_code_editors).** Risparmiati tempo completando automaticamente le strutture ricorrenti (ad esempio, chiudendo automaticamente i tag HTML, o suggerendo valori validi per una certa proprietà CSS).
-- **[Frammenti di codice](<https://en.wikipedia.org/wiki/Snippet_(programming)>).** Come hai visto iniziando un nuovo documento HTML, molte tecnologie usano la stessa struttura del documento più e più volte. Risparmiati il fastidio di riscrivere tutto questo usando un frammento di codice per precompilare il tuo documento.
+- **[Evidenziazione della sintassi](https://en.wikipedia.org/wiki/Syntax_highlighting).** Rende il file più leggibile colorando le parole chiave in base alla tecnologia utilizzata.
+- **[Completamento del codice](https://en.wikipedia.org/wiki/Autocomplete#In_source_code_editors).** Fa risparmiare tempo completando automaticamente strutture ricorrenti, ad esempio chiudendo automaticamente i tag HTML o suggerendo valori validi per una determinata proprietà CSS.
+- **[Snippet di codice](<https://en.wikipedia.org/wiki/Snippet_(programming)>).** Come visto creando un nuovo documento HTML, molte tecnologie usano ripetutamente la stessa struttura del documento. Uno snippet di codice permette di precompilare il documento ed evitare di riscrivere tutto.
 
-La maggior parte degli editor di testo ora supporta l'evidenziazione della sintassi, ma non necessariamente le altre due funzionalità. Assicurati in particolare che il tuo editor di testo supporti l'evidenziazione per {{Glossary("HTML", "HTML")}}, {{Glossary("CSS", "CSS")}} e {{Glossary("JavaScript", "JavaScript")}}.
+La maggior parte degli editor di testo ora supporta l'evidenziazione della sintassi, ma non necessariamente le altre due funzionalità. Assicurarsi in particolare che l'editor di testo supporti l'evidenziazione per {{Glossary("HTML", "HTML")}}, {{Glossary("CSS", "CSS")}} e {{Glossary("JavaScript", "JavaScript")}}.
 
-#### Quali funzionalità di base mi aspetto dal mio editor di testo?
+#### Quali funzionalità di base ci si aspetta dall'editor di testo?
 
-Dipende dalle tue esigenze e piani. Queste funzionalità sono spesso utili:
+Dipende dalle esigenze e dai progetti. Queste funzionalità sono spesso utili:
 
-- Cerca e sostituisci, in uno o più documenti, basato su {{Glossary("Regular_Expression", "espressioni regolari")}} o altri schemi come necessario
-- Salta rapidamente a una determinata riga
-- Visualizza separatamente due parti di un documento grande
-- Visualizza HTML come apparirà nel browser
-- Seleziona testo in più punti contemporaneamente
-- Visualizza i file e le directory del tuo progetto
-- Format Your code automaticamente con un code beautifier
-- Controlla l'ortografia
-- Auto-indentare codice in base alle impostazioni di indentazione
+- Ricerca e sostituzione in uno o più documenti, basata su {{Glossary("Regular_Expression", "espressioni regolari")}} o altri schemi secondo necessità
+- Passare rapidamente a una determinata riga
+- Visualizzare separatamente due parti di un documento di grandi dimensioni
+- Visualizzare l'HTML come apparirà nel browser
+- Selezionare testo in più punti contemporaneamente
+- Visualizzare file e directory del progetto
+- Formattare automaticamente il codice con un code beautifier
+- Controllare l'ortografia
+- Applicare automaticamente il rientro al codice in base alle impostazioni di rientro
 
-#### Voglio aggiungere funzionalità extra al mio editor di testo?
+#### Si desidera aggiungere funzionalità extra all'editor di testo?
 
-Un editor estensibile viene fornito con meno funzionalità integrate, ma può essere esteso in base alle tue esigenze.
+Un editor estensibile include meno funzionalità integrate, ma può essere ampliato in base alle necessità.
 
-Se non sei sicuro di quali funzionalità desideri, o il tuo editor preferito manca di quelle funzionalità di base, cerca un editor estensibile. I migliori editor offrono molti plugin e, idealmente, un modo per cercare e installare nuovi plugin automaticamente.
+Se non è chiaro quali funzionalità siano necessarie, oppure se l'editor preferito non le offre subito, è opportuno cercare un editor estensibile. I migliori editor mettono a disposizione molti plugin e, idealmente, un modo per cercare e installare automaticamente nuovi plugin.
 
-Se ti piacciono _molte_ funzionalità e il tuo editor sta rallentando a causa di tutti i tuoi plugin, prova a usare un [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (ambiente di sviluppo integrato). Un IDE offre molti strumenti in un'interfaccia ed è un po' scoraggiante per i principianti, ma sempre un'opzione se il tuo editor di testo sembra troppo limitato. Ecco alcuni IDE popolari:
+Se si apprezzano _molte_ funzionalità e l'editor rallenta a causa di tutti i plugin, provare a usare un [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (ambiente di sviluppo integrato). Un IDE fornisce molti strumenti in un'unica interfaccia ed è un po' intimidatorio per i principianti, ma rimane sempre un'opzione se l'editor di testo sembra troppo limitato. Ecco alcuni IDE popolari:
 
-- [Aptana Studio](https://www.axway.com/en/aptana)
 - [Eclipse](https://www.eclipse.org/)
 - [NetBeans IDE](https://netbeans.apache.org/)
 - [Visual Studio](https://visualstudio.microsoft.com/)
 - [WebStorm](https://www.jetbrains.com/webstorm/)
 
-#### Ho bisogno di supporto/aiuto mentre uso il mio editor di testo?
+#### È necessario ricevere supporto/aiuto durante l'uso dell'editor di testo?
 
-È sempre utile sapere se puoi ottenere aiuto o meno durante l'uso del software. Per gli editor di testo, controlla due diversi tipi di supporto:
+È sempre utile sapere se è possibile ricevere aiuto durante l'utilizzo di un software. Per gli editor di testo, verificare due diversi tipi di supporto:
 
-1. Contenuto orientato all'utente (FAQ, manuale, guida online)
+1. Contenuti rivolti agli utenti (FAQ, manuale, guida online)
 2. Discussione con sviluppatori e altri utenti (forum, email, IRC)
 
-Utilizza la documentazione scritta quando stai imparando come usare l'editor. Mettiti in contatto con altri utenti se stai risolvendo problemi durante l'installazione o l'uso dell'editor.
+Usare la documentazione scritta mentre si impara a usare l'editor. Contattare altri utenti quando è necessario risolvere problemi durante l'installazione o l'uso dell'editor.
 
-#### L'aspetto del mio editor di testo è importante per me?
+#### L'aspetto e l'esperienza d'uso dell'editor di testo sono importanti?
 
-Beh, è una questione di gusto, ma alcune persone amano personalizzare ogni dettaglio dell'interfaccia utente (UI), dai colori alle posizioni dei pulsanti. Gli editor variano ampiamente in termini di flessibilità, quindi verifica in anticipo. Non è difficile trovare un editor di testo che permetta di cambiare gli schemi di colore, ma se desideri personalizzazioni forti potresti trovarti meglio con un IDE.
+È una questione di gusti, ma alcune persone desiderano personalizzare ogni parte dell'interfaccia utente (UI), dai colori alla posizione dei pulsanti. Gli editor variano molto in termini di flessibilità, quindi è bene verificarlo in anticipo. Non è difficile trovare un editor di testo che permetta di modificare la combinazione di colori, ma per una personalizzazione più ampia potrebbe essere preferibile un IDE.
 
 ### Installazione e configurazione
 
-Installare un editor di testo è di solito piuttosto diretto. Il metodo varia in base alla tua piattaforma ma non dovrebbe essere troppo difficile:
+L'installazione di un editor di testo è solitamente piuttosto semplice. Il metodo varia in base alla piattaforma, ma non dovrebbe essere troppo difficile:
 
-- **Windows.** Gli sviluppatori ti forniranno un file `.exe` o `.msi`. A volte il software arriva in un archivio compresso come `.zip`, `.7z`, o `.rar`, e in tal caso avrai bisogno di installare un programma aggiuntivo per estrarre il contenuto dall'archivio. Windows supporta `.zip` di default.
-- **Mac.** Sul sito web dell'editor puoi scaricare un file `.dmg`. Alcuni editor di testo li puoi trovare direttamente nell'Apple Store per semplificare ulteriormente l'installazione.
-- **Linux.** Nelle distro più popolari puoi iniziare con il tuo gestore pacchetti grafico (Ubuntu Software Center, mintInstall, GNOME Software, ecc.). Puoi spesso trovare un file `.deb` o `.rpm` per il software preconfezionato, ma la maggior parte del tempo dovrai usare il server del repository della tua distro o, nello scenario peggiore, compilare il tuo editor da sorgente. Prenditi il tempo per controllare attentamente le istruzioni di installazione sul sito web dell'editor di testo.
+- **Windows.** Gli sviluppatori forniranno un file `.exe` o `.msi`. Talvolta il software è disponibile in un archivio compresso, come `.zip`, `.7z` o `.rar`; in questo caso sarà necessario installare un programma aggiuntivo per estrarre il contenuto dall'archivio. Windows supporta `.zip` per impostazione predefinita.
+- **Mac.** Sul sito web dell'editor è possibile scaricare un file `.dmg`. Alcuni editor di testo sono disponibili direttamente nell'Apple Store, rendendo l'installazione ancora più semplice.
+- **Linux.** Nelle distribuzioni più diffuse si può iniziare dal gestore di pacchetti grafico (Ubuntu Software Center, mintInstall, GNOME Software, \&c.). Spesso è possibile trovare un file `.deb` o `.rpm` per software preconfezionato, ma nella maggior parte dei casi sarà necessario usare il server dei repository della distribuzione o, nel peggiore dei casi, compilare l'editor dal codice sorgente. Dedicare il tempo necessario a controllare attentamente le istruzioni di installazione sul sito web dell'editor di testo.
 
-Quando installi un nuovo editor di testo, probabilmente il tuo OS continuerà ad aprire file di testo con il suo editor predefinito fino a quando non modifichi l'_associazione dei file_ (file association). Queste istruzioni ti aiuteranno a specificare che il tuo OS dovrebbe aprire i file nel tuo editor preferito quando li fai doppio clic:
+Quando si installa un nuovo editor di testo, l'OS probabilmente continuerà ad aprire i file di testo con l'editor predefinito finché non viene modificata l'_[associazione dei file](https://en.wikipedia.org/wiki/File_association)._ Queste istruzioni aiutano a specificare che l'OS deve aprire i file nell'editor preferito quando si fa doppio clic su di essi:
 
-- [Windows](https://support.microsoft.com/en-us/windows)
+- [Windows](https://support.microsoft.com/en-us/windows/)
 
 - [macOS](https://support.apple.com/guide/mac-help/choose-an-app-to-open-a-file-on-mac-mh35597/mac)
 
 - Linux
-
   - [Ubuntu Unity](https://askubuntu.com/questions/289337/how-can-i-change-file-association-globally)
-  - [GNOME](https://help.gnome.org/users/gnome-help/stable/files-open.html.en)
+  - [GNOME](https://unix.stackexchange.com/questions/41372/changing-file-associations-in-gnome)
   - [KDE](https://userbase.kde.org/System_Settings/File_Associations)
 
-## Prossimi passi
+## Passaggi successivi
 
-Ora che hai un buon editor di testo, potresti prendere un po' di tempo per finalizzare [il tuo ambiente di lavoro di base](/it/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server), oppure, se vuoi utilizzarlo subito, scrivere [la tua prima pagina web](/it/docs/Learn_web_development/Getting_started/Your_first_website).
+Ora che è disponibile un buon editor di testo, è possibile dedicare del tempo a completare [l'ambiente di lavoro di base](/it/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server) oppure, se si desidera provarlo subito, scrivere [la prima pagina web](/it/docs/Learn_web_development/Getting_started/Your_first_website).

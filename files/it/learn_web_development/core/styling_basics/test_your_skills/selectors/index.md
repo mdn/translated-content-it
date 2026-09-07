@@ -1,33 +1,35 @@
 ---
 title: "Metti alla prova le tue competenze: Selettori"
-short-title: Selectors
+short-title: "Test: Selettori"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Selectors
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 28f5f3b9b463fa842fa686ccc73c9e1d9b06282b
 ---
 
-Lo scopo di questo test sulle competenze è valutare se comprendi i [selettori CSS](/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics/Box_model", "Learn_web_development/Core/Styling_basics")}}
+
+Lo scopo di questo test di competenze è aiutare a valutare se si comprendono i [selettori CSS](/it/docs/Learn_web_development/Core/Styling_basics/Basic_selectors).
+
+Per completare queste attività è necessario modificare solo il CSS, non l'HTML.
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice sottostanti per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona della clipboard) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-> Se hai difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere aiuto, leggere la Guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È inoltre possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Selettori 1
 
-In questo compito, usa CSS per fare le seguenti cose, senza cambiare l'HTML:
+Per completare l'attività:
 
-- Rendere blu gli intestazioni `<h1>`.
-- Dare agli intestazioni `<h2>` uno sfondo blu e testo bianco.
-- Far sì che il testo racchiuso in uno `<span>` abbia una dimensione del carattere del 200%.
+1. Rendere blu le intestazioni `<h1>`.
+2. Assegnare alle intestazioni `<h2>` uno sfondo blu e testo bianco.
+3. Fare in modo che il testo racchiuso in uno `<span>` abbia un `font-size` del `200%`.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Testo con il CSS applicato per la soluzione del compito 1.](selectors1.jpg)
+{{EmbedLiveSample("selectors1-start", "", "370px")}}
 
-Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___type
+```html live-sample___selectors1-start live-sample___selectors1-finish
 <div class="container">
   <h1>This is a heading</h1>
   <p>
@@ -44,21 +46,23 @@ Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___type
+```css live-sample___selectors1-start live-sample___selectors1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("type", "", "260px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("selectors1-finish", "", "400px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Devi selezionare i selettori `h1`, `h2` e `span` per cambiare il loro colore o dimensione.
+È necessario selezionare i selettori `h1`, `h2` e `span` per modificarne il colore o la dimensione.
 
-```css
+```css live-sample___selectors1-finish
 h1 {
   color: blue;
 }
@@ -75,22 +79,22 @@ span {
 
 </details>
 
-## Compito 2
+## Selettori 2
 
-In questo compito, vogliamo che tu faccia le seguenti modifiche all'aspetto del contenuto in questo esempio, senza cambiare l'HTML:
+Per completare l'attività:
 
-- Dare all'elemento con l'id `special` uno sfondo giallo.
-- Dare all'elemento con la classe `alert` un bordo grigio di 2px.
-- Se l'elemento con una classe `alert` ha anche una classe `stop`, rendere lo sfondo rosso.
-- Se l'elemento con una classe `alert` ha anche una classe `go`, rendere lo sfondo verde.
+1. Assegnare uno sfondo giallo all'elemento con un id pari a `special`.
+2. Assegnare all'elemento con una classe pari a `alert` un bordo grigio continuo di `2px`.
+3. Se l'elemento con una classe pari a `alert` ha anche una classe pari a `stop`, rendere lo sfondo rosso.
+4. Se l'elemento con una classe pari a `alert` ha anche una classe pari a `go`, rendere lo sfondo verde.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Testo con il CSS applicato per la soluzione del compito 2.](selectors2.jpg)
+{{EmbedLiveSample("selectors2-start", "", "480px")}}
 
-Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___class-id
+```html live-sample___selectors2-start live-sample___selectors2-finish
 <div class="container">
   <h1>This is a heading</h1>
   <p>
@@ -109,21 +113,23 @@ Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___class-id
+```css live-sample___selectors2-start live-sample___selectors2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("class-id", "", "320px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("selectors2-finish", "", "480px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Questo test verifica se comprendi la differenza tra selettori di classi e id e anche come selezionare elementi con più classi.
+Questo verifica la comprensione della differenza tra selettori di classe e id, e anche di come selezionare più classi su un elemento.
 
-```css
+```css live-sample___selectors2-finish
 #special {
   background-color: yellow;
 }
@@ -143,21 +149,21 @@ Questo test verifica se comprendi la differenza tra selettori di classi e id e a
 
 </details>
 
-## Compito 3
+## Selettori 3
 
-In questo compito, vogliamo che tu apporti le seguenti modifiche senza cambiare l'HTML:
+Per completare l'attività:
 
-- Stilizzare i collegamenti, rendendo lo stato del link arancione, i link visitati verdi e rimuovere la sottolineatura al passaggio del mouse.
-- Rendere il primo elemento all'interno del contenitore `font-size: 150%` e la prima riga di quell'elemento rossa.
-- Stile ogni altra riga nella tabella selezionandole e dando loro un colore di sfondo di `#333` e testo bianco.
+1. Applicare uno stile ai link: rendere arancione lo stato del link, verdi i link visitati e rimuovere la sottolineatura al passaggio del mouse.
+2. Assegnare al primo elemento all'interno del contenitore `font-size: 150%` e rendere rossa la prima riga di quell'elemento.
+3. Creare righe alternate nella tabella selezionando una riga sì e una no e assegnando loro un colore di sfondo `#333333` e testo bianco.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Testo con il CSS applicato per la soluzione del compito 3.](selectors3.jpg)
+{{EmbedLiveSample("selectors3-start", "", "440px")}}
 
-Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___pseudo
+```html live-sample___selectors3-start live-sample___selectors3-finish
 <div class="container">
   <p>
     Veggies es <a href="http://example.com">bonus vobis</a>, proinde vos postulo
@@ -200,7 +206,7 @@ Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___pseudo
+```css live-sample___selectors3-start live-sample___selectors3-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -218,21 +224,21 @@ th {
   padding: 0.2em;
   text-align: left;
 }
-```
 
-```css live-sample___pseudo
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("pseudo", "", "320px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("selectors3-finish", "", "540px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Applica una pseudo-classe (`:first-child`) e un pseudo-elemento (`::first-line`) al contenuto.
-Stilizza gli stati `:link`, `:visited` e `:hover` dell'elemento `a` e crea righe tabellari a righe alterne usando la pseudo-classe `:nth-child`.
+Applicare una pseudo-classe (`:first-child`) e uno pseudo-elemento (`::first-line`) al contenuto.
+Applicare uno stile agli stati `:link`, `:visited` e `:hover` dell'elemento `a`, quindi creare righe alternate nella tabella usando la pseudo-classe `:nth-child`.
 
-```css
+```css live-sample___selectors3-finish
 .container p:first-child {
   font-size: 150%;
 }
@@ -254,27 +260,29 @@ a:hover {
 }
 
 tr:nth-child(even) {
-  background-color: #333;
-  color: #fff;
+  background-color: #333333;
+  color: white;
 }
 ```
 
 </details>
 
-## Compito 4
+## Selettori 4
 
-In questo compito, vogliamo che tu faccia quanto segue:
+Per completare l'attività:
 
-- Rendere rosso qualsiasi paragrafo che segua direttamente un elemento `<h2>`.
-- Rimuovere i punti elenco e aggiungere un bordo inferiore grigio di 1px solo agli elementi di lista che sono figli diretti del `ul` con una classe `list`.
+1. Rendere rosso qualsiasi paragrafo che segue direttamente un elemento `<h2>`.
+2. Applicare il seguente stile agli elementi di elenco che sono figli diretti dell'elemento `<ul>` con classe `list`:
+   - Rimuovere i punti elenco.
+   - Assegnare loro un bordo inferiore grigio di `1px`.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Testo con il CSS applicato per la soluzione del compito 4.](selectors4.jpg)
+{{EmbedLiveSample("selectors4-start", "", "500px")}}
 
-Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___combinators
+```html live-sample___selectors4-start live-sample___selectors4-finish
 <div class="container">
   <h2>This is a heading</h2>
   <p>This paragraph comes after the heading.</p>
@@ -296,49 +304,52 @@ Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
 </div>
 ```
 
-```css live-sample___combinators
+```css live-sample___selectors4-start live-sample___selectors4-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("combinators", "", "350px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("selectors4-finish", "", "500px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Questo compito verifica se comprendi come utilizzare i diversi combinatori.
-Ecco una soluzione adeguata:
+Questa attività verifica la comprensione dell'uso di diversi combinatori.
+Ecco una soluzione appropriata:
 
-```css
+```css live-sample___selectors4-finish
 h2 + p {
   color: red;
 }
 
 .list > li {
   list-style: none;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #cccccc;
 }
 ```
 
 </details>
 
-## Compito 5
+## Selettori 5
 
-In questo compito, aggiungi CSS utilizzando i selettori di attributi per fare quanto segue:
+Per completare l'attività, fornire soluzioni per le seguenti sfide utilizzando i selettori di attributo:
 
-- Selezionare l'elemento `<a>` con un attributo `title` e rendere il bordo rosa (`border-color: pink`).
-- Selezionare l'elemento `<a>` con un attributo `href` che contiene la parola `contact` in qualsiasi parte del suo valore e rendere il bordo arancione (`border-color: orange`).
-- Selezionare l'elemento `<a>` con un valore `href` che inizia con `https` e dargli un bordo verde (`border-color: green`).
+1. Selezionare l'elemento `<a>` con un attributo `title` e rendere rosa il bordo (`border-color: pink`).
+2. Selezionare l'elemento `<a>` con un attributo `href` che contiene la parola `contact` in qualsiasi punto del suo valore e rendere arancione il bordo (`border-color: orange`).
+3. Selezionare l'elemento `<a>` con un valore `href` che inizia con `https` e assegnargli un bordo verde (`border-color: green`).
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Quattro link con bordi di colore diverso.](selectors-attribute.png)
+{{EmbedLiveSample("selectors5-start", "", "300px")}}
 
-Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___attribute-links
+```html live-sample___selectors5-start live-sample___selectors5-finish
 <ul>
   <li><a href="https://example.com">Link 1</a></li>
   <li><a href="http://example.com" title="Visit example.com">Link 2</a></li>
@@ -347,7 +358,7 @@ Prova ad aggiornare il codice sottostante per ricreare l'esempio finale:
 </ul>
 ```
 
-```css hidden live-sample___attribute-links
+```css live-sample___selectors5-start live-sample___selectors5-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -359,36 +370,37 @@ ul {
 }
 
 li {
-  margin: 0 0 0.5em 0;
+  margin-bottom: 0.5em;
 }
 
 a {
   display: block;
   padding: 0.5em;
 }
-```
 
-```css live-sample___attribute-links
 a {
   border: 5px solid grey;
 }
+
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("attribute-links", "", "300px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("selectors5-finish", "", "300px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-- Per selezionare gli elementi con un attributo title, possiamo aggiungere title tra parentesi quadre (`a[title]`), che selezionerà il secondo link, che è l'unico con un attributo title.
+- Per selezionare elementi con un attributo `title`, è possibile aggiungere `title` all'interno delle parentesi quadre (`a[title]`); questo selezionerà il secondo link, che è l'unico con un attributo `title`.
 
-- Seleziona l'elemento `<a>` con un attributo `href` che contiene la parola "contact" ovunque nel suo valore e rendi il bordo arancione (`border-color: orange`).
-  Ci sono due valori che vogliamo abbinare qui, il valore href `/contact` e anche `../contact`. Quindi dobbiamo abbinare la stringa "contact" ovunque nel valore usando `*=`. Questo selezionerà il terzo e quarto link.
+- Selezionare l'elemento `<a>` con un attributo `href` che contiene la parola "contact" in qualsiasi punto del suo valore e rendere arancione il bordo (`border-color: orange`).
+  Vi sono due elementi da trovare: il valore `href` `/contact` e anche `../contact`. Occorre quindi trovare la stringa "contact" in qualsiasi punto del valore usando `*=`. Questo selezionerà il terzo e il quarto link.
 
-- Seleziona l'elemento `<a>` con un valore href che inizia con `https` e dagli un bordo verde (`border-color: green`).
-  Cerca un valore `href` che inizi con "https", quindi usa `^=` per selezionare solo il primo link.
+- Selezionare l'elemento `<a>` con un valore `href` che inizia con `https` e assegnargli un bordo verde (`border-color: green`).
+  Cercare un valore `href` che inizi con "https", quindi usare `^=` per selezionare solo il primo link.
 
-```css
+```css live-sample___selectors5-finish
 a[title] {
   border-color: pink;
 }
@@ -402,6 +414,4 @@ a[href^="https"] {
 
 </details>
 
-## Vedi anche
-
-- [CSS styling basics](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics/Box_model", "Learn_web_development/Core/Styling_basics")}}

@@ -1,12 +1,12 @@
 ---
-title: "Metti alla prova le tue competenze: Strutturare il contenuto con HTML"
-short-title: Metti alla prova le tue competenze
+title: "Metti alla prova le tue competenze: strutturare contenuti con HTML"
+short-title: "Test: indice dei test HTML"
 slug: Learn_web_development/Core/Structuring_content/Test_your_skills
 l10n:
-  sourceCommit: 93f54b6e1fdfef1375233abb265f101bd6866f99
+  sourceCommit: 27f34d8b137f9bb2b467f9f9a1c4e1d04e12ed89
 ---
 
-Questa pagina elenca test HTML che puoi provare per verificare di aver compreso il contenuto di questo modulo.
+Questa pagina elenca i test HTML che è possibile provare per verificare di aver compreso i contenuti di questo modulo.
 
 ## Metti alla prova le tue competenze HTML per argomento
 
@@ -14,4 +14,4 @@ Questa pagina elenca test HTML che puoi provare per verificare di aver compreso 
 
 ## Vedi anche
 
-- [Strutturare il contenuto con HTML](/it/docs/Learn_web_development/Core/Structuring_content)
+- [Strutturare contenuti con HTML](/it/docs/Learn_web_development/Core/Structuring_content)

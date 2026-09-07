@@ -1,29 +1,29 @@
 ---
-title: "Tutorial Django Parte 9: Lavorare con i moduli"
-short-title: "9: Moduli"
+title: "Tutorial Django Parte 9: lavorare con i form"
+short-title: "9: Form"
 slug: Learn_web_development/Extensions/Server-side/Django/Forms
 l10n:
-  sourceCommit: be1922d62a0d31e4e3441db0e943aed8df736481
+  sourceCommit: f46a2540200b2aac78b86c48804f8da60f954c25
 ---
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/Sessions", "Learn_web_development/Extensions/Server-side/Django/Testing", "Learn_web_development/Extensions/Server-side/Django")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/Authentication", "Learn_web_development/Extensions/Server-side/Django/Testing", "Learn_web_development/Extensions/Server-side/Django")}}
 
-In questo tutorial ti mostreremo come lavorare con i moduli HTML in Django, e in particolare, il modo più semplice per scrivere moduli per creare, aggiornare e cancellare istanze di modelli. Come parte di questa dimostrazione, estenderemo il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Django/Tutorial_local_library_website) in modo che i bibliotecari possano rinnovare i libri, e creare, aggiornare e cancellare autori usando i nostri moduli (anziché utilizzare l'applicazione di amministrazione).
+In questo tutorial verrà mostrato come lavorare con i form HTML in Django e, in particolare, il modo più semplice per scrivere form per creare, aggiornare ed eliminare istanze di modello. Nell'ambito di questa dimostrazione, verrà esteso il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Django/Tutorial_local_library_website) affinché i bibliotecari possano rinnovare libri, nonché creare, aggiornare ed eliminare autori utilizzando form propri, anziché usare l'applicazione di amministrazione.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Completare tutti i precedenti argomenti del tutorial, inclusi
-        <a href="/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication">Il Tutorial Django Parte 8: Autenticazione dell'utente e permessi</a>.
+        Completare tutti gli argomenti dei tutorial precedenti, incluso
+        <a href="/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication">Tutorial Django Parte 8: autenticazione utente e autorizzazioni</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere come scrivere moduli per ottenere informazioni dagli utenti e aggiornare il database.
-        Comprendere come le viste di modifica generiche basate su classi possono semplificare notevolmente la creazione di moduli per lavorare con un singolo modello.
+        Comprendere come scrivere form per ottenere informazioni dagli utenti e aggiornare il database.
+        Comprendere come le viste generiche di modifica basate su classi possano semplificare enormemente la creazione di form per lavorare con un singolo modello.
       </td>
     </tr>
   </tbody>
@@ -31,23 +31,23 @@ In questo tutorial ti mostreremo come lavorare con i moduli HTML in Django, e in
 
 ## Panoramica
 
-Un [Modulo HTML](/it/docs/Learn_web_development/Extensions/Forms) è un gruppo di uno o più campi/widget su una pagina web, che possono essere utilizzati per raccogliere informazioni dagli utenti per l'invio a un server. I moduli sono un meccanismo flessibile per raccogliere input dagli utenti perché ci sono widget adatti per inserire molti diversi tipi di dati, inclusi caselle di testo, checkbox, pulsanti radio, selettori di date e così via. I moduli sono anche un modo relativamente sicuro per condividere dati con il server, poiché consentono di inviare dati in richieste `POST` con protezione contro la contraffazione delle richieste tra siti.
+Un [form HTML](/it/docs/Learn_web_development/Extensions/Forms) è un gruppo di uno o più campi/widget in una pagina web, che può essere usato per raccogliere informazioni dagli utenti e inviarle a un server. I form sono un meccanismo flessibile per raccogliere l'input degli utenti perché esistono widget adatti all'inserimento di molti tipi diversi di dati, inclusi caselle di testo, checkbox, radio button, selettori di data e così via. I form sono anche un modo relativamente sicuro per condividere dati con il server, perché consentono di inviare dati nelle richieste `POST` con protezione contro la falsificazione di richieste tra siti.
 
-Sebbene non abbiamo creato alcun modulo in questo tutorial finora, li abbiamo già incontrati nel sito di amministrazione di Django — per esempio, lo screenshot qui sotto mostra un modulo per modificare uno dei nostri modelli [Book](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models), composto da una serie di liste di selezione e editor di testo.
+Sebbene finora non siano stati creati form in questo tutorial, sono già stati incontrati nel sito di amministrazione di Django — ad esempio, lo screenshot seguente mostra un form per modificare uno dei modelli [Book](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models), composto da numerosi elenchi di selezione ed editor di testo.
 
-![Admin Site - Book Add](admin_book_add.png)
+![Sito di amministrazione - Aggiunta libro](admin_book_add.png)
 
-Lavorare con i moduli può essere complicato! Gli sviluppatori devono scrivere HTML per il modulo, convalidare e sanificare correttamente i dati inseriti sul server (e possibilmente anche nel browser), ripostare il modulo con messaggi di errore per informare gli utenti di eventuali campi non validi, gestire i dati quando sono stati inviati con successo e infine rispondere all'utente in qualche modo per indicare il successo. _Django Forms_ elimina molto del lavoro da tutti questi passaggi, fornendo un framework che ti permette di definire i moduli e i loro campi programmaticamente, e poi usare questi oggetti sia per generare il codice HTML del modulo che per gestire gran parte della convalida e dell'interazione con l'utente.
+Lavorare con i form può essere complicato! Gli sviluppatori devono scrivere l'HTML del form, convalidare e sanitizzare correttamente i dati inseriti sul server, e possibilmente anche nel browser, ripubblicare il form con messaggi di errore per informare gli utenti dei campi non validi, gestire i dati quando sono stati inviati correttamente e infine rispondere all'utente in qualche modo per indicare l'esito positivo. I _Django Forms_ semplificano molto tutti questi passaggi, fornendo un framework che consente di definire programmaticamente i form e i relativi campi e quindi di utilizzare questi oggetti sia per generare il codice HTML del form sia per gestire gran parte della convalida e dell'interazione utente.
 
-In questo tutorial, ti mostreremo alcuni dei modi in cui puoi creare e lavorare con i moduli, e in particolare, come le viste di modifica generiche possono ridurre significativamente il lavoro che devi fare per creare moduli per manipolare i tuoi modelli. Lungo il percorso, estenderemo la nostra applicazione _LocalLibrary_ aggiungendo un modulo per permettere ai bibliotecari di rinnovare i libri della biblioteca, e creeremo pagine per creare, modificare e cancellare libri e autori (riproducendo una versione base del modulo mostrato sopra per modificare i libri).
+In questo tutorial verranno mostrati alcuni dei modi per creare e utilizzare i form e, in particolare, come le viste generiche di modifica possano ridurre significativamente la quantità di lavoro necessaria per creare form che manipolano i modelli. Nel frattempo, verrà estesa l'applicazione _LocalLibrary_ aggiungendo un form che permetta ai bibliotecari di rinnovare i libri della biblioteca, e verranno create pagine per creare, modificare ed eliminare libri e autori, riproducendo una versione di base del form mostrato sopra per modificare i libri.
 
-## Moduli HTML
+## Form HTML
 
-Prima, una breve panoramica dei [Moduli HTML](/it/docs/Learn_web_development/Extensions/Forms). Consideriamo un semplice modulo HTML, con un solo campo di testo per inserire il nome di una "squadra", e la sua etichetta associata:
+Per prima cosa, una breve panoramica dei [form HTML](/it/docs/Learn_web_development/Extensions/Forms). Si consideri un semplice form HTML, con un singolo campo di testo per inserire il nome di una "squadra" e la relativa etichetta:
 
-![Simple name field example in HTML form](form_example_name_field.png)
+![Esempio di campo nome semplice in un form HTML](form_example_name_field.png)
 
-Il modulo è definito in HTML come una raccolta di elementi all'interno dei tag `<form>…</form>`, contenente almeno un elemento `input` di `type="submit"`.
+Il form è definito in HTML come una raccolta di elementi all'interno dei tag `<form>…</form>`, contenente almeno un elemento `input` di `type="submit"`.
 
 ```html
 <form action="/team_name_url/" method="post">
@@ -61,70 +61,66 @@ Il modulo è definito in HTML come una raccolta di elementi all'interno dei tag 
 </form>
 ```
 
-Mentre qui abbiamo solo un campo di testo per inserire il nome della squadra, un modulo _può_ avere un qualsiasi numero di altri elementi input e le loro etichette associate. L'attributo `type` del campo definisce quale tipo di widget verrà visualizzato. Il `name` e l'`id` del campo sono usati per identificare il campo in JavaScript/CSS/HTML, mentre `value` definisce il valore iniziale per il campo quando è visualizzato per la prima volta. L'etichetta della squadra corrispondente è specificata usando il tag `label` (vedi "Enter name" sopra), con un campo `for` che contiene il valore `id` del `input` associato.
+Sebbene qui ci sia un solo campo di testo per inserire il nome della squadra, un form _può_ avere qualsiasi numero di altri elementi di input e le relative etichette. L'attributo `type` del campo definisce il tipo di widget che verrà visualizzato. `name` e `id` del campo sono usati per identificarlo in JavaScript/CSS/HTML, mentre `value` definisce il valore iniziale del campo quando viene visualizzato per la prima volta. L'etichetta della squadra corrispondente viene specificata usando il tag `label` (vedere "Enter name" sopra), con un campo `for` che contiene il valore `id` dell'`input` associato.
 
-L'input di tipo `submit` sarà visualizzato come un pulsante di default.
-Questo può essere premuto per caricare i dati di tutti gli altri elementi input del modulo al server (in questo caso, solo il campo `team_name`).
-Gli attributi del modulo definiscono il `method` HTTP usato per inviare i dati e la destinazione dei dati sul server (`action`):
+L'input `submit` verrà visualizzato come pulsante per impostazione predefinita.
+Può essere premuto per caricare sul server i dati di tutti gli altri elementi di input nel form, in questo caso solo il campo `team_name`.
+Gli attributi del form definiscono il `method` HTTP usato per inviare i dati e la destinazione dei dati sul server (`action`):
 
-- `action`: La risorsa/URL al quale i dati devono essere inviati per l'elaborazione quando il modulo viene inviato. Se non impostato (o impostato su una stringa vuota), il modulo sarà inviato di nuovo all'URL della pagina corrente.
-- `method`: Il metodo HTTP utilizzato per inviare i dati: _post_ o _get_.
+- `action`: la risorsa/URL a cui devono essere inviati i dati per l'elaborazione quando il form viene inviato. Se non è impostato, oppure è impostato su una stringa vuota, il form verrà inviato nuovamente all'URL della pagina corrente.
+- `method`: il metodo HTTP usato per inviare i dati: _post_ oppure _get_.
+  - Il metodo `POST` dovrebbe essere sempre utilizzato se i dati produrranno una modifica al database del server, perché può essere reso più resistente agli attacchi di falsificazione di richieste tra siti.
+  - Il metodo `GET` dovrebbe essere utilizzato soltanto per i form che non modificano dati utente, ad esempio un form di ricerca. È consigliato quando si desidera poter aggiungere l'URL ai segnalibri oppure condividerlo.
 
-  - Il metodo `POST` dovrebbe sempre essere utilizzato se i dati causeranno un cambiamento nel database del server, perché può essere reso più resistente agli attacchi di richiesta di contraffazione tra siti.
-  - Il metodo `GET` dovrebbe essere utilizzato solo per i moduli che non cambiano i dati dell'utente (per esempio, un modulo di ricerca). È consigliato quando vuoi poter aggiungere ai segnalibri o condividere l'URL.
+Il ruolo del server è innanzitutto eseguire il rendering dello stato iniziale del form, contenente campi vuoti oppure precompilati con valori iniziali. Dopo che l'utente ha premuto il pulsante di invio, il server riceverà i dati del form con i valori dal browser web e dovrà convalidare le informazioni. Se il form contiene dati non validi, il server dovrebbe visualizzare di nuovo il form, questa volta con i dati inseriti dall'utente nei campi "validi" e messaggi che descrivano il problema per i campi non validi. Una volta che il server riceve una richiesta con tutti i dati del form validi, può eseguire un'azione appropriata, ad esempio salvare i dati, restituire il risultato di una ricerca, caricare un file e così via, e quindi notificare l'utente.
 
-Il ruolo del server è innanzitutto di rendere lo stato iniziale del modulo — contenente campi vuoti o pre-popolati con valori iniziali. Dopo che l'utente ha premuto il pulsante di invio, il server riceverà i dati del modulo con i valori dal browser web e dovrà validare l'informazione. Se il modulo contiene dati non validi, il server dovrebbe visualizzare di nuovo il modulo, questa volta con i dati inseriti dall'utente nei campi "validi" e messaggi per descrivere il problema per i campi non validi. Una volta che il server riceve una richiesta con tutti i dati del modulo validi, può eseguire un'azione appropriata (come: salvare i dati, restituire il risultato di una ricerca, caricare un file, ecc.) e poi notificare l'utente.
+Come si può immaginare, creare l'HTML, convalidare i dati restituiti, visualizzare nuovamente i dati inseriti con report degli errori se necessario ed eseguire l'operazione desiderata sui dati validi può richiedere parecchio impegno per essere eseguito correttamente. Django rende tutto ciò molto più semplice, eliminando parte del lavoro gravoso e del codice ripetitivo.
 
-Come puoi immaginare, creare l'HTML, validare i dati restituiti, ridistribuire i dati inseriti con i report di errore se necessario, e eseguire l'operazione desiderata sui dati validi possono richiedere abbastanza sforzo per essere "fatti bene". Django rende questo molto più facile togliendo parte del lavoro pesante e del codice ripetitivo!
+## Processo di gestione dei form in Django
 
-## Processo di gestione dei moduli in Django
+La gestione dei form in Django utilizza tutte le stesse tecniche apprese nei tutorial precedenti, per visualizzare informazioni sui modelli: la vista riceve una richiesta, esegue tutte le azioni richieste incluso leggere i dati dai modelli, quindi genera e restituisce una pagina HTML, da un template a cui viene passato un _context_ contenente i dati da visualizzare. Ciò che rende le cose più complicate è che il server deve anche essere in grado di elaborare i dati forniti dall'utente e visualizzare nuovamente la pagina se sono presenti errori.
 
-La gestione dei moduli in Django usa tutte le stesse tecniche che abbiamo appreso nei tutorial precedenti (per visualizzare informazioni sui nostri modelli): la vista riceve una richiesta, esegue le azioni necessarie, incluso leggere dati dai modelli, quindi genera e restituisce una pagina HTML (da un template, nel quale passiamo un _context_ contenente i dati da visualizzare). Ciò che complica ulteriormente è che il server deve anche essere in grado di elaborare i dati forniti dall'utente e ridisporre la pagina se ci sono errori.
+Di seguito viene mostrato un diagramma di flusso del modo in cui Django gestisce le richieste dei form, iniziando da una richiesta per una pagina contenente un form, mostrata in verde.
 
-Un diagramma di flusso di processo su come Django gestisce le richieste di moduli è mostrato di seguito, iniziando con una richiesta per una pagina contenente un modulo (mostrata in verde).
+![Documento aggiornato sul processo di gestione dei form](form_handling_-_standard.png)
 
-![Updated form handling process doc.](form_handling_-_standard.png)
+In base al diagramma precedente, le attività principali svolte dalla gestione dei form di Django sono:
 
-Basato sul diagramma sopra, le principali cose che la gestione dei moduli in Django fa sono:
+1. Visualizzare il form predefinito la prima volta che viene richiesto dall'utente.
+   - Il form può contenere campi vuoti se si sta creando un nuovo record oppure può essere precompilato con valori iniziali, ad esempio se si sta modificando un record o se sono disponibili utili valori iniziali predefiniti.
+   - A questo punto il form è definito _unbound_, perché non è associato ad alcun dato inserito dall'utente, anche se può avere valori iniziali.
 
-1. Visualizza il modulo di default la prima volta che viene richiesta dall'utente.
+2. Ricevere dati da una richiesta di invio e associarli al form.
+   - Associare i dati al form significa che i dati inseriti dall'utente e gli eventuali errori sono disponibili quando è necessario visualizzare nuovamente il form.
 
-   - Il modulo può contenere campi vuoti se stai creando un nuovo record, o può essere pre-popolato con valori iniziali (per esempio, se stai modificando un record, o hai valori iniziali predefiniti utili).
-   - Il modulo è indicato come _unbound_ a questo punto, perché non è associato a nessun dato inserito dall'utente (sebbene possa avere valori iniziali).
+3. Pulire e convalidare i dati.
+   - La pulizia dei dati esegue la sanitizzazione dei campi di input, ad esempio rimuovendo caratteri non validi che potrebbero essere usati per inviare contenuto dannoso al server, e li converte in tipi Python coerenti.
+   - La convalida verifica che i valori siano appropriati per il campo, ad esempio che rientrino nell'intervallo di date corretto, che non siano troppo brevi o troppo lunghi e così via.
 
-2. Ricevi dati da una richiesta di invio e legali al modulo.
+4. Se alcuni dati non sono validi, visualizzare nuovamente il form, questa volta con i valori popolati dall'utente e i messaggi di errore per i campi problematici.
+5. Se tutti i dati sono validi, eseguire le azioni richieste, ad esempio salvare i dati, inviare un'email, restituire il risultato di una ricerca, caricare un file e così via.
+6. Una volta completate tutte le azioni, reindirizzare l'utente a un'altra pagina.
 
-   - Legare i dati al modulo significa che i dati inseriti dall'utente e eventuali errori sono disponibili quando dobbiamo ridisporre il modulo.
-
-3. Pulisci e valida i dati.
-
-   - Pulire i dati esegue la sanificazione dei campi di input, come la rimozione di caratteri non validi che potrebbero essere usati per inviare contenuti dannosi al server, e li converte nei tipi Python consistenti.
-   - La validazione controlla che i valori siano appropriati per il campo (per esempio, che siano nel giusto intervallo di date, non siano troppo corti o troppo lunghi, ecc.)
-
-4. Se qualche dato è non valido, ridisponi il modulo, questa volta con eventuali valori popolati dall'utente e messaggi di errore per i campi con problemi.
-5. Se tutti i dati sono validi, esegui le azioni richieste (come salvare i dati, inviare un'e-mail, restituire il risultato di una ricerca, caricare un file, e così via).
-6. Una volta che tutte le azioni sono complete, reindirizza l'utente a un'altra pagina.
-
-Django fornisce una serie di strumenti e approcci per aiutarti con i compiti sopra descritti. La più fondamentale è la classe `Form`, che semplifica sia la generazione dell'HTML del modulo sia la pulizia/validazione dei dati. Nella sezione successiva, descriviamo come funzionano i moduli usando l'esempio pratico di una pagina per permettere ai bibliotecari di rinnovare i libri.
+Django fornisce numerosi strumenti e approcci per aiutare con le attività descritte sopra. Il più fondamentale è la classe `Form`, che semplifica sia la generazione dell'HTML del form sia la pulizia/convalida dei dati. Nella sezione successiva viene descritto il funzionamento dei form usando l'esempio pratico di una pagina che consente ai bibliotecari di rinnovare i libri.
 
 > [!NOTE]
-> Comprendere come viene utilizzata `Form` ti aiuterà quando discuteremo le classi del framework dei moduli di Django più "di alto livello".
+> Comprendere come viene usato `Form` sarà utile nella discussione delle classi del framework di form più "ad alto livello" di Django.
 
-## Modulo per il rinnovo dei libri utilizzando un modulo e una vista funzionale
+## Form di rinnovo libro con un Form e una vista funzione
 
-Successivamente, aggiungeremo una pagina per permettere ai bibliotecari di rinnovare i libri presi in prestito. Per fare questo creeremo un modulo che permette agli utenti di inserire un valore di data. Inseriremo nel campo un valore iniziale di 3 settimane dalla data corrente (il periodo normale di prestito), e aggiungeremo alcune validazioni per garantire che il bibliotecario non possa inserire una data nel passato o una data troppo lontana nel futuro. Quando una data valida è stata inserita, la scriveremo nel campo `BookInstance.due_back` del record corrente.
+Successivamente verrà aggiunta una pagina per consentire ai bibliotecari di rinnovare i libri presi in prestito. A questo scopo verrà creato un form che consente agli utenti di inserire un valore di data. Il campo verrà inizializzato con un valore di 3 settimane dalla data corrente, il normale periodo di prestito, e verrà aggiunta una convalida per assicurarsi che il bibliotecario non possa inserire una data nel passato o una data troppo lontana nel futuro. Quando viene inserita una data valida, verrà scritta nel campo `BookInstance.due_back` del record corrente.
 
-L'esempio userà una vista basata su funzione e una classe `Form`. Le sezioni seguenti spiegano come funzionano i moduli, e le modifiche che devi fare al nostro progetto _LocalLibrary_ in corso.
+L'esempio utilizzerà una vista basata su funzione e una classe `Form`. Le sezioni seguenti spiegano come funzionano i form e le modifiche necessarie nel progetto _LocalLibrary_ in corso.
 
 ### Form
 
-La classe `Form` è il cuore del sistema di gestione dei moduli di Django. Specifica i campi nel modulo, il loro layout, i widget di visualizzazione, le etichette, i valori iniziali, i valori validi, e (una volta convalidati) i messaggi di errore associati ai campi non validi. La classe fornisce anche metodi per rendere sé stessa nei template usando formati predefiniti (tabelle, liste, ecc.) o per ottenere il valore di qualsiasi elemento (abilitando un rendering manuale a grana fine).
+La classe `Form` è il cuore del sistema di gestione dei form di Django. Specifica i campi del form, il relativo layout, i widget di visualizzazione, le etichette, i valori iniziali, i valori validi e, una volta convalidati, i messaggi di errore associati ai campi non validi. La classe fornisce anche metodi per eseguire il rendering di sé stessa nei template utilizzando formati predefiniti, tabelle, elenchi e così via, oppure per ottenere il valore di qualsiasi elemento, consentendo un rendering manuale dettagliato.
 
-#### Dichiarare un modulo
+#### Dichiarazione di un Form
 
-La sintassi di dichiarazione di un `Form` è molto simile a quella per dichiarare un `Model`, e condivide gli stessi tipi di campo (e alcuni parametri simili). Questo ha senso perché in entrambi i casi dobbiamo garantire che ogni campo gestisca i giusti tipi di dati, sia limitato ai dati validi e abbia una descrizione per la visualizzazione/documentazione.
+La sintassi di dichiarazione per un `Form` è molto simile a quella per dichiarare un `Model` e condivide gli stessi tipi di campo, nonché alcuni parametri simili. Questo ha senso perché in entrambi i casi è necessario assicurarsi che ogni campo gestisca i tipi corretti di dati, sia limitato a dati validi e abbia una descrizione per la visualizzazione/documentazione.
 
-I dati del modulo sono memorizzati nel file forms.py di un'applicazione, all'interno della directory dell'applicazione. Crea e apri il file **django-locallibrary-tutorial/catalog/forms.py**. Per creare un `Form`, importiamo la libreria `forms`, deriviamo dalla classe `Form`, e dichiariamo i campi del modulo. Una classe di modulo di base molto semplice per il nostro modulo di rinnovo libri della biblioteca è mostrata di seguito — aggiungilo al tuo nuovo file:
+I dati dei form sono archiviati nel file forms.py di un'applicazione, all'interno della directory dell'applicazione. Creare e aprire il file **django-locallibrary-tutorial/catalog/forms.py**. Per creare un `Form`, importare la libreria `forms`, derivare dalla classe `Form` e dichiarare i campi del form. Di seguito è mostrata una classe di form molto basilare per il form di rinnovo del libro della biblioteca: aggiungerla al nuovo file.
 
 ```python
 from django import forms
@@ -133,11 +129,11 @@ class RenewBookForm(forms.Form):
     renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
 ```
 
-#### Campi del modulo
+#### Campi del form
 
-In questo caso, abbiamo un singolo [`DateField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#datefield) per inserire la data di rinnovo che renderà in HTML con un valore vuoto, l'etichetta di default "_Renewal date:_", e un testo di utilizzo utile: "_Enter a date between now and 4 weeks (default 3 weeks)._". Poiché nessuno degli altri argomenti opzionali è specificato, il campo accetterà date usando i [input_formats](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#django.forms.DateField.input_formats): YYYY-MM-DD (2024-11-06), MM/DD/YYYY (02/26/2024), MM/DD/YY (10/25/24), e sarà reso utilizzando il [widget](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#widget) di default: [DateInput](https://docs.djangoproject.com/en/5.0/ref/forms/widgets/#django.forms.DateInput).
+In questo caso, è presente un singolo [`DateField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#datefield) per inserire la data di rinnovo, che verrà renderizzato in HTML con un valore vuoto, l'etichetta predefinita "_Renewal date:_" e un utile testo di utilizzo: "_Enter a date between now and 4 weeks (default 3 weeks)._". Poiché non sono specificati altri argomenti facoltativi, il campo accetterà date utilizzando gli [input_formats](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#django.forms.DateField.input_formats): YYYY-MM-DD (2024-11-06), MM/DD/YYYY (02/26/2024), MM/DD/YY (10/25/24), e verrà renderizzato utilizzando il [widget](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#widget) predefinito: [DateInput](https://docs.djangoproject.com/en/5.0/ref/forms/widgets/#django.forms.DateInput).
 
-Ci sono molti altri tipi di campi modulo, che riconoscerai in gran parte per la loro somiglianza alle classi di campo modello equivalenti:
+Esistono molti altri tipi di campi form, che saranno in gran parte riconoscibili per la loro somiglianza con le classi di campo del modello equivalenti:
 
 - [`BooleanField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#booleanfield)
 - [`CharField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#charfield)
@@ -168,24 +164,24 @@ Ci sono molti altri tipi di campi modulo, che riconoscerai in gran parte per la 
 - [`ModelMultipleChoiceField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#modelmultiplechoicefield)
 - [`ModelChoiceField`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#modelchoicefield)
 
-Gli argomenti comuni alla maggior parte dei campi sono elencati di seguito (hanno valori predefiniti sensati):
+Gli argomenti comuni alla maggior parte dei campi sono elencati di seguito, e dispongono di valori predefiniti ragionevoli:
 
-- [`required`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#required): Se `True`, il campo non può essere lasciato vuoto o dato un valore `None`. I campi sono obbligatori per default, quindi imposteresti `required=False` per consentire valori vuoti nel modulo.
-- [`label`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label): L'etichetta da utilizzare quando si renderizza il campo in HTML. Se una [label](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label) non è specificata, Django ne creerà una dal nome del campo, capitalizzando la prima lettera e sostituendo gli underscore con spazi (es., _Renewal date_).
-- [`label_suffix`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label-suffix): Di default, viene visualizzato un due punti dopo l'etichetta (es., Renewal date&ZeroWidthSpace;**:**). Questo argomento ti permette di specificare un suffisso diverso contenente altri caratteri.
-- [`initial`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#initial): Il valore iniziale per il campo quando il modulo è visualizzato.
-- [`widget`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#widget): Il widget di visualizzazione da usare.
-- [`help_text`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#help-text) (come visto nell'esempio sopra): Testo aggiuntivo che può essere visualizzato nei moduli per spiegare come usare il campo.
-- [`error_messages`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#error-messages): Un elenco di messaggi di errore per il campo. Puoi sovrascriverli con i tuoi messaggi se necessario.
-- [`validators`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#validators): Un elenco di funzioni che verranno chiamate sul campo quando è convalidato.
-- [`localize`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#localize): Abilita la localizzazione degli input dei dati del modulo (vedi link per ulteriori informazioni).
-- [`disabled`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#disabled): Il campo è visualizzato ma il suo valore non può essere modificato se questo è `True`. Il default è `False`.
+- [`required`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#required): se `True`, il campo non può essere lasciato vuoto né ricevere un valore `None`. I campi sono obbligatori per impostazione predefinita, quindi impostare `required=False` per consentire valori vuoti nel form.
+- [`label`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label): l'etichetta da usare quando viene eseguito il rendering del campo in HTML. Se non viene specificata una [label](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label), Django ne creerà una dal nome del campo rendendo maiuscola la prima lettera e sostituendo gli underscore con spazi, ad esempio _Renewal date_.
+- [`label_suffix`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#label-suffix): per impostazione predefinita, viene visualizzato un due punti dopo l'etichetta, ad esempio Renewal date&ZeroWidthSpace;**:**. Questo argomento consente di specificare un suffisso diverso contenente altri caratteri.
+- [`initial`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#initial): il valore iniziale del campo quando il form viene visualizzato.
+- [`widget`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#widget): il widget di visualizzazione da usare.
+- [`help_text`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#help-text), come nell'esempio precedente: testo aggiuntivo che può essere visualizzato nei form per spiegare come usare il campo.
+- [`error_messages`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#error-messages): un elenco di messaggi di errore per il campo. Se necessario, è possibile sostituirli con messaggi propri.
+- [`validators`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#validators): un elenco di funzioni che verranno chiamate sul campo durante la convalida.
+- [`localize`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#localize): abilita la localizzazione dell'input di dati del form; per ulteriori informazioni, vedere il link.
+- [`disabled`](https://docs.djangoproject.com/en/5.0/ref/forms/fields/#disabled): il campo viene visualizzato, ma il relativo valore non può essere modificato se è `True`. Il valore predefinito è `False`.
 
-#### Validazione
+#### Convalida
 
-Django fornisce numerosi luoghi in cui puoi convalidare i tuoi dati. Il modo più semplice per convalidare un singolo campo è sovrascrivere il metodo `clean_<field_name>()` per il campo che vuoi controllare. Quindi, ad esempio, possiamo validare che i valori `renewal_date` inseriti siano tra oggi e 4 settimane implementando `clean_renewal_date()` come mostrato di seguito.
+Django fornisce numerosi punti in cui è possibile convalidare i dati. Il modo più semplice per convalidare un singolo campo è sovrascrivere il metodo `clean_<field_name>()` per il campo da verificare. Ad esempio, è possibile convalidare che i valori `renewal_date` inseriti siano compresi tra oggi e 4 settimane implementando `clean_renewal_date()` come mostrato di seguito.
 
-Aggiorna il tuo file forms.py in modo che assomigli a questo:
+Aggiornare il file forms.py affinché abbia questo aspetto:
 
 ```python
 import datetime
@@ -213,20 +209,20 @@ class RenewBookForm(forms.Form):
         return data
 ```
 
-Ci sono due cose importanti da notare. La prima è che otteniamo i nostri dati usando `self.cleaned_data['renewal_date']` e che restituiamo questi dati indipendentemente dal fatto che li cambiamo o meno alla fine della funzione.
-Questo passaggio ci consente di ottenere i dati "puliti" e sanificati da input potenzialmente dannosi usando i validator di default, e convertiti nel tipo standard corretto per i dati (in questo caso un oggetto Python `datetime.datetime`).
+Ci sono due aspetti importanti da notare. Il primo è che i dati vengono ottenuti usando `self.cleaned_data['renewal_date']` e che questi dati vengono restituiti indipendentemente dal fatto che siano modificati o meno alla fine della funzione.
+Questo passaggio restituisce dati "puliti" e sanitizzati da input potenzialmente non sicuro utilizzando i validator predefiniti, e convertiti nel tipo standard corretto per i dati, in questo caso un oggetto Python `datetime.datetime`.
 
-Il secondo punto è che se un valore cade fuori dal nostro intervallo solleviamo un `ValidationError`, specificando il testo di errore che vogliamo visualizzare nel modulo se viene inserito un valore non valido.
-L'esempio sopra avvolge anche questo testo in una delle funzioni di traduzione di Django [gettext_lazy()](https://docs.djangoproject.com/en/5.0/topics/i18n/translation/), (importata come `_()`), che è una buona pratica se vuoi tradurre il tuo sito in seguito.
+Il secondo punto è che, se un valore non rientra nell'intervallo, viene sollevato un `ValidationError`, specificando il testo dell'errore da visualizzare nel form se viene inserito un valore non valido.
+L'esempio precedente racchiude inoltre questo testo in una delle [funzioni di traduzione](https://docs.djangoproject.com/en/5.0/topics/i18n/translation/) di Django, `gettext_lazy()`, importata come `_()`, una buona pratica se si desidera tradurre il sito in seguito.
 
 > [!NOTE]
-> Ci sono numerosi altri metodi ed esempi per convalidare i moduli in [Form and field validation](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) (documenti Django). Ad esempio, nei casi in cui hai campi multipli che dipendono l'uno dall'altro, puoi sovrascrivere la funzione [Form.clean()](https://docs.djangoproject.com/en/5.0/ref/forms/api/#django.forms.Form.clean) e ancora sollevare un `ValidationError`.
+> Esistono numerosi altri metodi ed esempi per convalidare i form in [Convalida di form e campi](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) (documentazione Django). Ad esempio, nei casi in cui sono presenti più campi che dipendono l'uno dall'altro, è possibile sovrascrivere la funzione [Form.clean()](https://docs.djangoproject.com/en/5.0/ref/forms/api/#django.forms.Form.clean) e sollevare nuovamente un `ValidationError`.
 
-Questo è tutto ciò di cui abbiamo bisogno per il modulo in questo esempio!
+Questo è tutto ciò che serve per il form di questo esempio.
 
 ### Configurazione URL
 
-Prima di creare la nostra vista, aggiungiamo una configurazione URL per la pagina _renew-books_. Copia la seguente configurazione in fondo a **django-locallibrary-tutorial/catalog/urls.py**:
+Prima di creare la vista, aggiungere una configurazione URL per la pagina _renew-books_. Copiare la seguente configurazione in fondo a **django-locallibrary-tutorial/catalog/urls.py**:
 
 ```python
 urlpatterns += [
@@ -234,19 +230,19 @@ urlpatterns += [
 ]
 ```
 
-La configurazione dell'URL reindirizzerà gli URL nel formato **/catalog/book/_\<bookinstance_id>_/renew/** alla funzione chiamata `renew_book_librarian()` in **views.py**, e invierà l'id di `BookInstance` come parametro chiamato `pk`. Il pattern corrisponde solo se `pk` è un `uuid` formattato correttamente.
+La configurazione URL reindirizzerà gli URL con il formato **/catalog/book/_\<bookinstance_id>_/renew/** alla funzione denominata `renew_book_librarian()` in **views.py** e invierà l'id di `BookInstance` come parametro denominato `pk`. Il pattern corrisponde soltanto se `pk` è un `uuid` formattato correttamente.
 
 > [!NOTE]
-> Possiamo nominare i nostri dati URL catturati come vogliamo, perché abbiamo il completo controllo sulla funzione vista (non stiamo usando una classe vista di dettaglio generica che si aspetta parametri con un certo nome). Tuttavia, `pk`, abbreviazione di "primary key", è una convenzione ragionevole da usare!
+> I dati URL acquisiti possono avere qualsiasi nome, perché esiste il controllo completo sulla funzione della vista, e non viene usata una classe di vista dettagli generica che prevede parametri con un determinato nome. Tuttavia, `pk`, abbreviazione di "primary key", è una convenzione ragionevole da utilizzare.
 
 ### Vista
 
-Come discusso nel [Processo di gestione dei moduli in Django](#processo_di_gestione_dei_moduli_in_django) sopra, la vista deve rendere il modulo di default quando viene chiamata per la prima volta e poi o ridisporlo con messaggi di errore se i dati sono non validi, o elaborare i dati e reindirizzarli a una nuova pagina se i dati sono validi. Per eseguire queste diverse azioni, la vista deve essere in grado di sapere se viene chiamata per la prima volta per visualizzare il modulo di default o per una successiva volta per validare i risultati.
+Come discusso nel [processo di gestione dei form in Django](#processo_di_gestione_dei_form_in_django) sopra, la vista deve eseguire il rendering del form predefinito quando viene chiamata per la prima volta e quindi visualizzarlo nuovamente con messaggi di errore se i dati non sono validi, oppure elaborare i dati e reindirizzare a una nuova pagina se i dati sono validi. Per eseguire queste diverse azioni, la vista deve essere in grado di sapere se viene chiamata per la prima volta per il rendering del form predefinito o in un momento successivo per convalidare i dati.
 
-Per i moduli che usano una richiesta `POST` per inviare informazioni al server, il pattern più comune è che la vista cerchi di questa richiesta `POST` (usando `if request.method == 'POST':`) per identificare le richieste di validazione del modulo e `GET` (usando una condizione `else`) per identificare la richiesta iniziale di creazione del modulo. Se desideri inviare i dati usando una richiesta `GET`, un approccio tipico per identificare se si tratta della prima o di una successiva invocazione della vista è leggere i dati del modulo (ad esempio, leggere un valore nascosto nel modulo).
+Per i form che utilizzano una richiesta `POST` per inviare informazioni al server, il pattern più comune consiste nel verificare il tipo di richiesta `POST`, `if request.method == 'POST':`, per identificare le richieste di convalida del form e `GET`, utilizzando una condizione `else`, per identificare la richiesta iniziale di creazione del form. Se i dati vengono inviati usando una richiesta `GET`, un approccio tipico per identificare se si tratta della prima o di una successiva invocazione della vista consiste nel leggere i dati del form, ad esempio per leggere un valore nascosto nel form.
 
-Il processo di rinnovo del libro scriverà nel nostro database, quindi, per convenzione, usiamo l'approccio della richiesta `POST`.
-Il frammento di codice qui sotto mostra il pattern (molto standard) per questo tipo di vista basata su funzione.
+Il processo di rinnovo del libro scriverà nel database, quindi, per convenzione, viene usato l'approccio con richiesta `POST`.
+Il frammento di codice seguente mostra il pattern, molto standard, per questo tipo di vista funzione.
 
 ```python
 import datetime
@@ -288,15 +284,15 @@ def renew_book_librarian(request, pk):
     return render(request, 'catalog/book_renew_librarian.html', context)
 ```
 
-Prima, importiamo il nostro modulo (`RenewBookForm`) e un numero di altri oggetti/metodi utili utilizzati nel corpo della funzione vista:
+Per prima cosa, vengono importati il form, `RenewBookForm`, e numerosi altri oggetti/metodi utili utilizzati nel corpo della funzione della vista:
 
-- [`get_object_or_404()`](https://docs.djangoproject.com/en/5.0/topics/http/shortcuts/#get-object-or-404): Restituisce un oggetto specificato da un modello in base al suo valore di chiave primaria e solleva un'eccezione `Http404` (non trovato) se il record non esiste.
-- [`HttpResponseRedirect`](https://docs.djangoproject.com/en/5.0/ref/request-response/#django.http.HttpResponseRedirect): Questo crea un reindirizzamento a un URL specificato (codice di stato HTTP 302).
-- [`reverse()`](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/#django.urls.reverse): Questo genera un URL da un nome di configurazione URL e un set di argomenti. È l'equivalente Python del tag `url` che abbiamo usato nei nostri template.
-- [`datetime`](https://docs.python.org/3/library/datetime.html): Una libreria Python per manipolare le date e gli orari.
+- [`get_object_or_404()`](https://docs.djangoproject.com/en/5.0/topics/http/shortcuts/#get-object-or-404): restituisce un oggetto specificato da un modello in base al valore della sua chiave primaria e solleva un'eccezione `Http404`, non trovato, se il record non esiste.
+- [`HttpResponseRedirect`](https://docs.djangoproject.com/en/5.0/ref/request-response/#django.http.HttpResponseRedirect): crea un reindirizzamento a un URL specificato, codice di stato HTTP 302.
+- [`reverse()`](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/#django.urls.reverse): genera un URL da un nome di configurazione URL e da un insieme di argomenti. È l'equivalente Python del tag `url` usato nei template.
+- [`datetime`](https://docs.python.org/3/library/datetime.html): una libreria Python per manipolare date e orari.
 
-Nella vista, usiamo prima l'argomento `pk` in `get_object_or_404()` per ottenere l'attuale `BookInstance` (se questo non esiste, la vista uscirà immediatamente e la pagina mostrerà un errore "non trovato").
-Se questo _non_ è una richiesta `POST` (gestita dalla clausola `else`) allora creiamo il modulo di default passando un valore `initial` per il campo `renewal_date`, 3 settimane dalla data corrente.
+Nella vista, viene dapprima utilizzato l'argomento `pk` in `get_object_or_404()` per ottenere il `BookInstance` corrente; se non esiste, la vista termina immediatamente e la pagina visualizza un errore "not found".
+Se questa _non_ è una richiesta `POST`, gestita dalla clausola `else`, viene creato il form predefinito passando un valore `initial` per il campo `renewal_date`, a 3 settimane dalla data corrente.
 
 ```python
 book_instance = get_object_or_404(BookInstance, pk=pk)
@@ -314,11 +310,11 @@ context = {
 return render(request, 'catalog/book_renew_librarian.html', context)
 ```
 
-Dopo aver creato il modulo, chiamiamo `render()` per creare la pagina HTML, specificando il template e un contesto che contiene il nostro modulo. In questo caso, il contesto contiene anche il nostro `BookInstance`, che useremo nel template per fornire informazioni sul libro che stiamo rinnovando.
+Dopo aver creato il form, viene chiamato `render()` per creare la pagina HTML, specificando il template e un context che contiene il form. In questo caso, il context contiene anche il `BookInstance`, che verrà usato nel template per fornire informazioni sul libro che viene rinnovato.
 
-Tuttavia, se si tratta di una richiesta `POST`, allora creiamo il nostro oggetto `form` e lo popoli con i dati dalla richiesta. Questo processo è chiamato "binding" e ci permette di validare il modulo.
+Tuttavia, se questa è una richiesta `POST`, viene creato l'oggetto `form` e popolato con i dati della richiesta. Questo processo è denominato "binding" e permette di convalidare il form.
 
-Controlliamo quindi se il modulo è valido, il che esegue tutto il codice di validazione su tutti i campi, incluso sia il codice generico per controllare che il nostro campo data sia effettivamente una data valida sia la funzione `clean_renewal_date()` specifica del nostro modulo per controllare che la data sia nel giusto intervallo.
+Viene quindi verificato se il form è valido, eseguendo tutto il codice di convalida su tutti i campi, incluso sia il codice generico per verificare che il campo data sia effettivamente una data valida, sia la funzione `clean_renewal_date()` del form specifico per verificare che la data sia nell'intervallo corretto.
 
 ```python
 book_instance = get_object_or_404(BookInstance, pk=pk)
@@ -346,18 +342,18 @@ context = {
 return render(request, 'catalog/book_renew_librarian.html', context)
 ```
 
-Se il modulo non è valido, chiamiamo `render()` di nuovo, ma questa volta il valore del modulo passa nel contesto includerà i messaggi di errore.
+Se il form non è valido, viene chiamato nuovamente `render()`, ma questa volta il valore del form passato nel context includerà i messaggi di errore.
 
-Se il modulo è valido, allora possiamo iniziare a usare i dati, accedendovi attraverso l'attributo `form.cleaned_data` (ad esempio, `data = form.cleaned_data['renewal_date']`). Qui, salviamo solo i dati nel valore `due_back` dell'oggetto `BookInstance` associato.
+Se il form è valido, è possibile iniziare a utilizzare i dati, accedendovi tramite l'attributo `form.cleaned_data`, ad esempio `data = form.cleaned_data['renewal_date']`. Qui, i dati vengono semplicemente salvati nel valore `due_back` dell'oggetto `BookInstance` associato.
 
 > [!WARNING]
-> Mentre puoi anche accedere ai dati del modulo direttamente tramite la richiesta (ad esempio, `request.POST['renewal_date']` o `request.GET['renewal_date']` se si utilizza una richiesta GET), questo NON è raccomandato. I dati puliti sono sanificati, validati e convertiti in tipi compatibili con Python.
+> Sebbene sia possibile accedere ai dati del form direttamente anche tramite la richiesta, ad esempio `request.POST['renewal_date']` oppure `request.GET['renewal_date']` quando si usa una richiesta GET, questo NON è consigliato. I dati puliti sono sanitizzati, convalidati e convertiti in tipi compatibili con Python.
 
-L'ultimo passaggio nella parte di gestione del modulo della vista è reindirizzare a un'altra pagina, solitamente una pagina di "successo". In questo caso, usiamo `HttpResponseRedirect` e `reverse()` per reindirizzare alla vista chiamata `'all-borrowed'` (questa è stata creata come "sfida" in [Il Tutorial Django Parte 8: Autenticazione dell'utente e permessi](/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication#challenge_yourself)). Se non hai creato quella pagina considera di reindirizzare alla home page all'URL `/`).
+Il passaggio finale nella parte di gestione del form della vista consiste nel reindirizzare a un'altra pagina, solitamente una pagina di "successo". In questo caso vengono usati `HttpResponseRedirect` e `reverse()` per reindirizzare alla vista denominata `'all-borrowed'`, creata come "sfida" in [Tutorial Django Parte 8: autenticazione utente e autorizzazioni](/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication#challenge_yourself). Se quella pagina non è stata creata, considerare il reindirizzamento alla pagina iniziale all'URL `/`.
 
-Questo è tutto ciò che serve per la gestione del modulo stesso, ma dobbiamo ancora limitare l'accesso alla vista solo ai bibliotecari registrati che hanno il permesso di rinnovare i libri. Utilizziamo `@login_required` per richiedere che l'utente sia connesso, e il decoratore `@permission_required` con il nostro permesso esistente `can_mark_returned` per consentire l'accesso (i decoratori sono elaborati nell'ordine). Nota che probabilmente avremmo dovuto creare una nuova impostazione di permesso in `BookInstance` (`can_renew`), ma riutilizzeremo quella esistente per mantenere l'esempio semplice.
+Questo è tutto ciò che serve per la gestione del form, ma è ancora necessario limitare l'accesso alla vista ai soli bibliotecari autenticati che dispongono dell'autorizzazione per rinnovare i libri. Viene usato `@login_required` per richiedere l'autenticazione dell'utente e il decoratore di funzione `@permission_required` con l'autorizzazione esistente `can_mark_returned` per consentire l'accesso, poiché i decoratori vengono elaborati in ordine. Probabilmente sarebbe stata necessaria una nuova impostazione di autorizzazione in `BookInstance`, `can_renew`, ma verrà riutilizzata quella esistente per mantenere semplice l'esempio.
 
-La vista finale è quindi come mostrato di seguito. Si prega di copiarlo in fondo a **django-locallibrary-tutorial/catalog/views.py**.
+La vista finale è pertanto mostrata di seguito. Copiare questo codice in fondo a **django-locallibrary-tutorial/catalog/views.py**.
 
 ```python
 import datetime
@@ -405,7 +401,7 @@ def renew_book_librarian(request, pk):
 
 ### Il template
 
-Crea il template a cui fa riferimento la vista (**/catalog/templates/catalog/book_renew_librarian.html**) e copia il codice qui sotto:
+Creare il template a cui si fa riferimento nella vista, **/catalog/templates/catalog/book_renew_librarian.html**, e copiarvi il codice seguente:
 
 ```django
 {% extends "base_generic.html" %}
@@ -425,17 +421,17 @@ Crea il template a cui fa riferimento la vista (**/catalog/templates/catalog/boo
 {% endblock %}
 ```
 
-La maggior parte di questo sarà completamente familiare dai tutorial precedenti.
+La maggior parte di questo codice sarà completamente familiare dai tutorial precedenti.
 
-Estendiamo il template base e quindi ridefiniamo il blocco di contenuti. Siamo in grado di fare riferimento a `\{{ book_instance }}` (e le sue variabili) perché è stato passato nell'oggetto contesto nella funzione `render()`, e li usiamo per elencare il titolo del libro, il prestatario e la data di scadenza originale.
+Viene esteso il template di base e quindi ridefinito il blocco di contenuto. È possibile fare riferimento a `\{{ book_instance }}`, e alle sue variabili, poiché è stato passato nell'oggetto context nella funzione `render()`, e viene usato per elencare il titolo del libro, il mutuatario e la data di restituzione originale.
 
-Il codice del modulo è relativamente semplice. Per prima cosa, dichiariamo i tag `form`, specificando dove il modulo deve essere inviato (`action`) e il `method` per l'invio dei dati (in questo caso un `POST`) — se ricordi la panoramica sui [Moduli HTML](#moduli_html) in cima alla pagina, un'azione vuota come mostrato, significa che i dati del modulo verranno inviati di nuovo all'URL corrente della pagina (che è ciò che vogliamo). All'interno dei tag, definisci l'input `submit`, che un utente può premere per inviare i dati. Il `{% csrf_token %}` aggiunto proprio all'interno dei tag del modulo è parte della protezione contro la contraffazione dei siti incrociati di Django.
+Il codice del form è relativamente semplice. Innanzitutto vengono dichiarati i tag `form`, specificando dove il form deve essere inviato, `action`, e il `method` per l'invio dei dati, in questo caso un `POST`. Come ricordato nella panoramica dei [form HTML](#form_html) nella parte superiore della pagina, un `action` vuoto, come quello mostrato, indica che i dati del form saranno inviati nuovamente all'URL corrente della pagina, che è ciò che serve. All'interno dei tag viene definito l'input `submit`, che l'utente può premere per inviare i dati. Il tag `{% csrf_token %}` aggiunto subito all'interno dei tag del form fa parte della protezione di Django contro la falsificazione tra siti.
 
 > [!NOTE]
-> Aggiungi il `{% csrf_token %}` a ogni template Django che crei e che usa `POST` per inviare dati. Questo ridurrà le possibilità che i moduli siano dirottati da utenti malintenzionati.
+> Aggiungere `{% csrf_token %}` a ogni template Django creato che usa `POST` per inviare dati. Questo ridurrà la probabilità che i form vengano dirottati da utenti dannosi.
 
-Tutto ciò che rimane è la variabile del template `\{{ form }}`, che abbiamo passato al template nel dizionario del contesto.
-Forse non sorprende, quando usato come mostrato questo fornisce il rendering predefinito di tutti i campi del modulo, comprese le loro etichette, widget e testo di aiuto — il rendering è come mostrato di seguito:
+Rimane soltanto la variabile di template `\{{ form }}`, passata al template nel dizionario context.
+Forse non sorprendentemente, quando viene utilizzata come mostrato fornisce il rendering predefinito di tutti i campi del form, comprese le etichette, i widget e il testo di aiuto; il rendering è mostrato di seguito:
 
 ```html
 <tr>
@@ -456,9 +452,9 @@ Forse non sorprende, quando usato come mostrato questo fornisce il rendering pre
 ```
 
 > [!NOTE]
-> Forse non è ovvio perché abbiamo solo un campo, ma, di default, ogni campo è definito nella propria riga di tabella. Questo stesso rendering viene fornito se fai riferimento alla variabile del template `\{{ form.as_table }}`.
+> Potrebbe non essere evidente poiché è presente un solo campo, ma per impostazione predefinita ogni campo viene definito nella propria riga di tabella. Lo stesso rendering viene fornito facendo riferimento alla variabile di template `\{{ form.as_table }}`.
 
-Se dovessi inserire una data non valida, avresti anche un elenco degli errori visualizzati sulla pagina (vedi `error-list` di seguito).
+Inserendo una data non valida, verrebbe inoltre visualizzato un elenco degli errori renderizzati nella pagina, vedere `error-list` sotto.
 
 ```html
 <tr>
@@ -481,22 +477,22 @@ Se dovessi inserire una data non valida, avresti anche un elenco degli errori vi
 </tr>
 ```
 
-#### Altri modi di usare la variabile del modulo template
+#### Altri modi di utilizzare la variabile di template form
 
-Usando `\{{ form.as_table }}` come mostrato sopra, ogni campo è reso come una riga della tabella. Puoi anche rendere ogni campo come un elemento di lista (usando `\{{ form.as_ul }}`) o come un paragrafo (usando `\{{ form.as_p }}`).
+Usando `\{{ form.as_table }}` come mostrato sopra, ogni campo viene renderizzato come una riga di tabella. È anche possibile renderizzare ogni campo come elemento di elenco, usando `\{{ form.as_ul }}`, oppure come paragrafo, usando `\{{ form.as_p }}`.
 
-È anche possibile avere il pieno controllo sul rendering di ogni parte del modulo, indicando le sue proprietà usando la notazione a punti. Quindi, per esempio, possiamo accedere a un numero di elementi separati per il nostro campo `renewal_date`:
+È inoltre possibile avere il controllo completo sul rendering di ogni parte del form, indicizzando le sue proprietà con la notazione a punti. Ad esempio, è possibile accedere a numerosi elementi separati per il campo `renewal_date`:
 
-- `\{{ form.renewal_date }}:` Il campo intero.
-- `\{{ form.renewal_date.errors }}`: L'elenco degli errori.
-- `\{{ form.renewal_date.id_for_label }}`: L'id dell'etichetta.
-- `\{{ form.renewal_date.help_text }}`: Il testo di aiuto del campo.
+- `\{{ form.renewal_date }}`: l'intero campo.
+- `\{{ form.renewal_date.errors }}`: l'elenco degli errori.
+- `\{{ form.renewal_date.id_for_label }}`: l'id dell'etichetta.
+- `\{{ form.renewal_date.help_text }}`: il testo di aiuto del campo.
 
-Per ulteriori esempi su come rendere manualmente i moduli nei template e fare cicli dinamici sui campi del template, vedi [Lavorare con i moduli > Rendering manuale dei campi](https://docs.djangoproject.com/en/5.0/topics/forms/#rendering-fields-manually) (documenti Django).
+Per ulteriori esempi su come renderizzare manualmente i form nei template ed eseguire dinamicamente un ciclo sui campi del template, vedere [Lavorare con i form > Rendering manuale dei campi](https://docs.djangoproject.com/en/5.0/topics/forms/#rendering-fields-manually) (documentazione Django).
 
-### Testare la pagina
+### Test della pagina
 
-Se hai accettato la "sfida" in [Il Tutorial Django Parte 8: Autenticazione dell'utente e permessi](/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication#challenge_yourself) avrai una vista che mostra tutti i libri presi in prestito nella biblioteca, che è visibile solo al personale della biblioteca.
+Se è stata accettata la "sfida" in [Tutorial Django Parte 8: autenticazione utente e autorizzazioni](/it/docs/Learn_web_development/Extensions/Server-side/Django/Authentication#challenge_yourself), sarà disponibile una vista che mostra tutti i libri in prestito nella biblioteca, visibile solo al personale della biblioteca.
 La vista potrebbe assomigliare a questa:
 
 ```django
@@ -521,39 +517,39 @@ La vista potrebbe assomigliare a questa:
 {% endblock %}
 ```
 
-Possiamo aggiungere un link alla pagina di rinnovo libro accanto a ciascun elemento aggiungendo il seguente codice del template al testo dell'elemento della lista sopra.
-Nota che questo codice del template può funzionare solo all'interno del loop `{% for %}`, perché è lì che viene definito il valore `bookinst`.
+È possibile aggiungere un link alla pagina di rinnovo del libro accanto a ciascun elemento aggiungendo il seguente codice di template al testo dell'elemento dell'elenco sopra.
+Questo codice di template può essere eseguito soltanto all'interno del ciclo `{% for %}`, perché è qui che viene definito il valore `bookinst`.
 
 ```django
 {% if perms.catalog.can_mark_returned %}- <a href="{% url 'renew-book-librarian' bookinst.id %}">Renew</a>{% endif %}
 ```
 
 > [!NOTE]
-> Ricorda che il tuo login di test dovrà avere il permesso `catalog.can_mark_returned` per vedere il nuovo link "Renew" aggiunto sopra, e per accedere alla pagina collegata (forse usa il tuo account superuser).
+> Ricordare che il login di test dovrà disporre dell'autorizzazione `catalog.can_mark_returned` per vedere il nuovo link "Renew" aggiunto sopra e per accedere alla pagina collegata; può essere utilizzato l'account superuser.
 
-Puoi alternativamente costruire manualmente un URL di test come questo — `http://127.0.0.1:8000/catalog/book/<bookinstance_id>/renew/` (un valido `bookinstance_id` può essere ottenuto navigando a una pagina di dettaglio del libro nella tua biblioteca, e copiando il campo `id`).
+In alternativa, è possibile costruire manualmente un URL di test in questo modo: `http://127.0.0.1:8000/catalog/book/<bookinstance_id>/renew/`. Un `bookinstance_id` valido può essere ottenuto navigando alla pagina dei dettagli di un libro nella biblioteca e copiando il campo `id`.
 
 ### Come appare?
 
-Se hai successo, il modulo predefinito apparirà così:
+Se tutto ha avuto successo, il form predefinito apparirà così:
 
-![Default form which displays the book details, due date, renewal date and a submit button appears in case the link works successfully](forms_example_renew_default.png)
+![Form predefinito che visualizza i dettagli del libro, la data di restituzione, la data di rinnovo e un pulsante di invio, nel caso in cui il link funzioni correttamente](forms_example_renew_default.png)
 
-Il modulo con un valore non valido inserito apparirà così:
+Il form con un valore non valido inserito apparirà così:
 
-![Same form as above with an error message: invalid date - renewal in the past](forms_example_renew_invalid.png)
+![Stesso form di sopra con un messaggio di errore: data non valida - rinnovo nel passato](forms_example_renew_invalid.png)
 
-L'elenco di tutti i libri con link di rinnovo apparirà così:
+L'elenco di tutti i libri con i link per il rinnovo apparirà così:
 
-![Displays list of all renewed books along with their details. Past due is in red.](forms_example_renew_allbooks.png)
+![Visualizza l'elenco di tutti i libri rinnovati insieme ai relativi dettagli. Le scadenze superate sono in rosso.](forms_example_renew_allbooks.png)
 
 ## ModelForms
 
-Creare una classe `Form` usando l'approccio sopra descritto è molto flessibile, permettendoti di creare qualsiasi tipo di pagina di modulo tu voglia e associarla a qualsiasi modello o modelli.
+Creare una classe `Form` utilizzando l'approccio descritto sopra è molto flessibile, poiché consente di creare qualsiasi tipo di pagina di form e associarla a qualsiasi modello o modelli.
 
-Tuttavia, se ti serve solo un modulo per mappare i campi di un _singolo_ modello, il tuo modello definirà già la maggior parte delle informazioni di cui hai bisogno nel modulo: campi, etichette, testo di aiuto e così via. Piuttosto che ricreare le definizioni del modello nel tuo modulo, è più facile usare la classe di aiuto [ModelForm](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/) per creare il modulo dal tuo modello. Questo `ModelForm` può quindi essere usato all'interno delle tue viste esattamente allo stesso modo di un normale `Form`.
+Tuttavia, se serve soltanto un form per mappare i campi di un _singolo_ modello, il modello definirà già la maggior parte delle informazioni necessarie nel form: campi, etichette, testo di aiuto e così via. Invece di ricreare le definizioni del modello nel form, è più semplice utilizzare la classe di supporto [ModelForm](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/) per creare il form dal modello. Questo `ModelForm` può quindi essere utilizzato nelle viste esattamente nello stesso modo di un normale `Form`.
 
-Un `ModelForm` di base contenente lo stesso campo del nostro `RenewBookForm` originale è mostrato di seguito. Tutto ciò che devi fare per creare il modulo è aggiungere `class Meta` con il `model` associato (`BookInstance`) e un elenco dei campi del modello da includere nel modulo.
+Di seguito viene mostrato un `ModelForm` di base contenente lo stesso campo del `RenewBookForm` originale. Tutto ciò che serve per creare il form è aggiungere `class Meta` con il `model` associato, `BookInstance`, e un elenco dei `fields` del modello da includere nel form.
 
 ```python
 from django.forms import ModelForm
@@ -567,15 +563,15 @@ class RenewBookModelForm(ModelForm):
 ```
 
 > [!NOTE]
-> Puoi anche includere tutti i campi nel modulo usando `fields = '__all__'`, oppure puoi usare `exclude` (invece di `fields`) per specificare i campi _non_ da includere dal modello).
+> È possibile includere tutti i campi nel form anche usando `fields = '__all__'`, oppure usare `exclude`, invece di `fields`, per specificare i campi da _non_ includere dal modello.
 >
-> Nessuno dei due approcci è raccomandato poiché i nuovi campi aggiunti al modello sono poi automaticamente inclusi nel modulo (senza che lo sviluppatore consideri necessariamente le possibili implicazioni di sicurezza).
+> Nessuno dei due approcci è consigliato, perché i nuovi campi aggiunti al modello vengono quindi inclusi automaticamente nel form, senza che lo sviluppatore consideri necessariamente le possibili implicazioni di sicurezza.
 
 > [!NOTE]
-> Questo potrebbe non sembrare molto più semplice che usare un `Form` (e non lo è in questo caso, perché abbiamo solo un campo). Tuttavia, se hai molti campi, può ridurre considerevolmente la quantità di codice richiesta!
+> Questo potrebbe non sembrare molto più semplice del solo utilizzo di un `Form`, e non lo è in questo caso, perché è presente un solo campo. Tuttavia, se sono presenti molti campi, può ridurre considerevolmente la quantità di codice richiesta.
 
-Il resto delle informazioni proviene dalle definizioni dei campi del modello (ad es., etichette, widget, testo di aiuto, messaggi di errore). Se questi non sono del tutto corretti, possiamo sovrascriverli nel nostro `class Meta`, specificando un dizionario contenente il campo da cambiare e il suo nuovo valore. Ad esempio, in questo modulo, potremmo volere un'etichetta per il nostro campo di "_Renewal date_" (anziché il default basato sul nome del campo: _Due Back_), e vogliamo anche che il nostro testo di aiuto sia specifico per questo caso d'uso.
-Il `Meta` qui sotto mostra come sovrascrivere questi campi, e puoi allo stesso modo impostare `widgets` e `error_messages` se i default non sono sufficienti.
+Il resto delle informazioni proviene dalle definizioni dei campi del modello, ad esempio etichette, widget, testo di aiuto e messaggi di errore. Se non sono del tutto corrette, possono essere sovrascritte in `class Meta`, specificando un dizionario contenente il campo da modificare e il suo nuovo valore. Ad esempio, in questo form potrebbe essere desiderata un'etichetta per il campo "_Renewal date_", anziché quella predefinita basata sul nome del campo, _Due Back_, e potrebbe essere necessario che il testo di aiuto sia specifico per questo caso d'uso.
+Il `Meta` seguente mostra come sovrascrivere questi campi; analogamente, è possibile impostare `widgets` e `error_messages` se i valori predefiniti non sono sufficienti.
 
 ```python
 class Meta:
@@ -585,9 +581,9 @@ class Meta:
     help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
 ```
 
-Per aggiungere la validazione puoi usare lo stesso approccio usato per un normale `Form` — definisci una funzione chiamata `clean_<field_name>()` e solleva eccezioni di `ValidationError` per i valori non validi.
-L'unica differenza rispetto al nostro modulo originale è che il campo del modello è chiamato `due_back` e non `renewal_date`.
-Questo cambiamento è necessario poiché il campo corrispondente in `BookInstance` si chiama `due_back`.
+Per aggiungere la convalida è possibile utilizzare lo stesso approccio di un normale `Form`: definire una funzione denominata `clean_<field_name>()` e sollevare eccezioni `ValidationError` per i valori non validi.
+L'unica differenza rispetto al form originale è che il campo del modello si chiama `due_back` e non `renewal_date`.
+Questa modifica è necessaria poiché il campo corrispondente in `BookInstance` si chiama `due_back`.
 
 ```python
 from django.forms import ModelForm
@@ -616,20 +612,20 @@ class RenewBookModelForm(ModelForm):
         help_texts = {'due_back': _('Enter a date between now and 4 weeks (default 3).')}
 ```
 
-La classe `RenewBookModelForm` sopra è ora funzionalmente equivalente al nostro `RenewBookForm` originale. Puoi importare e usarla ovunque stai attualmente usando `RenewBookForm` finché aggiorni anche il nome della variabile del modulo corrispondente da `renewal_date` a `due_back` come nella seconda dichiarazione del modulo: `RenewBookModelForm(initial={'due_back': proposed_renewal_date}`.
+La classe `RenewBookModelForm` sopra è ora funzionalmente equivalente al `RenewBookForm` originale. Può essere importata e usata ovunque venga usato attualmente `RenewBookForm`, a condizione di aggiornare anche il nome della variabile di form corrispondente da `renewal_date` a `due_back`, come nella seconda dichiarazione del form: `RenewBookModelForm(initial={'due_back': proposed_renewal_date}`.
 
-## Viste di modifica generiche
+## Viste generiche di modifica
 
-L'algoritmo di gestione dei moduli che abbiamo usato nel nostro esempio di vista basata su funzione sopra rappresenta un pattern estremamente comune nelle viste di modifica dei moduli. Django astratta molto di questo "boilerplate" per te, creando [viste di modifica generiche](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/) per creare, modificare e cancellare viste basate sui modelli. Non solo queste gestiscono il comportamento della "vista", ma creano automaticamente la classe del modulo (un `ModelForm`) per te dal modello.
+L'algoritmo di gestione dei form usato nell'esempio della vista funzione sopra rappresenta un pattern estremamente comune nelle viste di modifica dei form. Django astrae gran parte di questo "codice boilerplate" creando [viste generiche di modifica](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/) per creare, modificare ed eliminare viste basate su modelli. Queste non solo gestiscono il comportamento della "vista", ma creano automaticamente anche la classe del form, un `ModelForm`, a partire dal modello.
 
 > [!NOTE]
-> Oltre alle viste di modifica descritte qui, c'è anche una classe [FormView](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/#formview), che si trova da qualche parte tra la nostra vista basata su funzione e le altre viste generiche in termini di "flessibilità" vs. "sforzo di codifica". Usando `FormView`, devi ancora creare il tuo `Form`, ma non devi implementare tutti i pattern standard di gestione dei moduli. Invece, devi solo fornire un'implementazione della funzione che sarà chiamata una volta che la sottomissione è nota per essere valida.
+> Oltre alle viste di modifica descritte qui, esiste anche una classe [FormView](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/#formview), che si colloca a metà tra la vista funzione e le altre viste generiche in termini di "flessibilità" rispetto allo "sforzo di scrittura del codice". Usando `FormView`, è ancora necessario creare il proprio `Form`, ma non è necessario implementare tutti i pattern standard di gestione dei form. È invece sufficiente fornire un'implementazione della funzione che verrà chiamata quando l'invio è noto come valido.
 
-In questa sezione, useremo le viste di modifica generiche per creare pagine per aggiungere funzionalità per creare, modificare e cancellare record di `Author` dalla nostra biblioteca — fornendo effettivamente una reimplementazione di base di parti del sito di amministrazione (questo potrebbe essere utile se hai bisogno di offrire funzionalità di amministrazione in un modo più flessibile di quanto possa essere fornito dal sito di amministrazione).
+In questa sezione verranno usate le viste generiche di modifica per creare pagine che aggiungono funzionalità per creare, modificare ed eliminare record `Author` dalla biblioteca, fornendo di fatto una reimplementazione di base di parti del sito di amministrazione. Questo potrebbe essere utile quando è necessario offrire funzionalità di amministrazione in un modo più flessibile di quanto possa essere fornito dal sito di amministrazione.
 
 ### Viste
 
-Apri il file delle viste (**django-locallibrary-tutorial/catalog/views.py**) e aggiungi il seguente blocco di codice in fondo ad esso:
+Aprire il file delle viste, **django-locallibrary-tutorial/catalog/views.py**, e aggiungere il seguente blocco di codice in fondo:
 
 ```python
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -663,22 +659,22 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
             )
 ```
 
-Come puoi vedere, per creare, aggiornare o eliminare le viste devi derivare da `CreateView`, `UpdateView` e `DeleteView` (rispettivamente) e poi definire il modello associato.
-Limitiamo anche la chiamata a queste viste solo agli utenti che sono loggati e che hanno i permessi `add_author`, `change_author` e `delete_author`, rispettivamente.
+Come si può vedere, per creare, aggiornare o eliminare le viste è necessario derivare rispettivamente da `CreateView`, `UpdateView` e `DeleteView`, quindi definire il modello associato.
+La chiamata a queste viste viene inoltre limitata soltanto agli utenti autenticati con le autorizzazioni `add_author`, `change_author` e `delete_author`, rispettivamente.
 
-Per i casi di "creazione" e "aggiornamento" devi anche specificare i campi da visualizzare nel modulo (usando la stessa sintassi di `ModelForm`). In questo caso, mostriamo come elencarli singolarmente e la sintassi per elencare "tutti" i campi. Puoi anche specificare i valori iniziali per ciascuno dei campi usando un dizionario di coppie _field_name_/_value_ (qui impostiamo arbitrariamente la data di morte per dimostrazione — potresti voler rimuoverlo). Per impostazione predefinita, queste viste reindirizzeranno il successo a una pagina che visualizza l'elemento del modello appena creato/modificato, che nel nostro caso sarà la vista di dettaglio dell'autore che abbiamo creato in un tutorial precedente. Puoi specificare una posizione di reindirizzamento alternativa dichiarando esplicitamente il parametro `success_url`.
+Per i casi di "creazione" e "aggiornamento" è inoltre necessario specificare i campi da visualizzare nel form, usando la stessa sintassi di `ModelForm`. In questo caso viene mostrato come elencarli singolarmente e la sintassi per elencare "tutti" i campi. È inoltre possibile specificare valori iniziali per ciascuno dei campi utilizzando un dizionario di coppie _field_name_/_value_. Qui viene impostata arbitrariamente la data di morte a scopo dimostrativo: potrebbe essere opportuno rimuoverla. Per impostazione predefinita, queste viste reindirizzeranno in caso di successo a una pagina che visualizza l'elemento del modello appena creato o modificato, che in questo caso sarà la vista dettagli dell'autore creata in un tutorial precedente. È possibile specificare una posizione di reindirizzamento alternativa dichiarando esplicitamente il parametro `success_url`.
 
-La classe `AuthorDelete` non ha bisogno di visualizzare alcun campo, quindi questi non devono essere specificati.
-Impostiamo anche un `success_url` (come mostrato sopra), perché non c'è un URL predefinito ovvio verso il quale Django può navigare dopo aver cancellato con successo l'`Author`. Sopra utilizziamo la funzione [`reverse_lazy()`](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/#reverse-lazy) per reindirizzare alla nostra lista degli autori dopo che un autore è stato eliminato — `reverse_lazy()` è una versione eseguita pigramente di `reverse()`, usata qui perché stiamo fornendo un URL a un attributo di vista basata su classe.
+La classe `AuthorDelete` non deve visualizzare alcuno dei campi, quindi non è necessario specificarli.
+Viene inoltre impostato un `success_url`, come mostrato sopra, perché non esiste un URL predefinito ovvio a cui Django possa navigare dopo aver eliminato correttamente l'`Author`. Sopra viene usata la funzione [`reverse_lazy()`](https://docs.djangoproject.com/en/5.0/ref/urlresolvers/#reverse-lazy) per reindirizzare all'elenco degli autori dopo che un autore è stato eliminato. `reverse_lazy()` è una versione di `reverse()` eseguita in modo lazy, usata qui perché viene fornito un URL a un attributo di una vista basata su classi.
 
-Se l'eliminazione degli autori dovrebbe sempre avere successo, ciò sarebbe sufficiente.
-Purtroppo eliminare un `Author` causerà un'eccezione se l'autore ha un libro associato, perché il nostro [`modello Book`](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models#book_model) specifica `on_delete=models.RESTRICT` per il campo `ForeignKey` dell'autore.
-Per gestire questo caso la vista sovrascrive il metodo [`form_valid()`](https://docs.djangoproject.com/en/5.0/ref/class-based-views/mixins-editing/#django.views.generic.edit.FormMixin.form_valid) in modo che se l'eliminazione dell'`Author` riesce, reindirizza all'`success_url`, ma se no, reindirizza semplicemente di nuovo allo stesso modulo.
-Aggiorneremo il template qui sotto per chiarire che non puoi eliminare un'istanza di `Author` che è usata in un qualsiasi `Book`.
+Se l'eliminazione degli autori dovesse sempre riuscire, questo sarebbe tutto.
+Purtroppo l'eliminazione di un `Author` causerà un'eccezione se l'autore ha un libro associato, perché il [`modello Book`](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models#book_model) specifica `on_delete=models.RESTRICT` per il campo `ForeignKey` dell'autore.
+Per gestire questo caso, la vista sovrascrive il metodo [`form_valid()`](https://docs.djangoproject.com/en/5.0/ref/class-based-views/mixins-editing/#django.views.generic.edit.FormMixin.form_valid) in modo che, se l'eliminazione dell'`Author` riesce, reindirizzi a `success_url`; altrimenti, reindirizzi nuovamente allo stesso form.
+Il template verrà aggiornato sotto per chiarire che non è possibile eliminare un'istanza `Author` utilizzata in un `Book`.
 
 ### Configurazioni URL
 
-Apri il tuo file di configurazione dell'URL (**django-locallibrary-tutorial/catalog/urls.py**) e aggiungi la seguente configurazione in fondo al file:
+Aprire il file di configurazione URL, **django-locallibrary-tutorial/catalog/urls.py**, e aggiungere la seguente configurazione in fondo al file:
 
 ```python
 urlpatterns += [
@@ -688,13 +684,13 @@ urlpatterns += [
 ]
 ```
 
-Non c'è niente di particolarmente nuovo qui! Puoi vedere che le viste sono classi, e devono quindi essere chiamate tramite `.as_view()`, e dovresti essere in grado di riconoscere i pattern URL in ogni caso. Dobbiamo usare `pk` come nome per il nostro valore di chiave primaria catturato, poiché questo è il nome del parametro previsto dalle classi vista.
+Non c'è nulla di particolarmente nuovo qui. Si può vedere che le viste sono classi e quindi devono essere chiamate tramite `.as_view()`, e i pattern URL in ciascun caso dovrebbero essere riconoscibili. È necessario usare `pk` come nome per il valore della chiave primaria acquisita, poiché questo è il nome del parametro previsto dalle classi di vista.
 
 ### Template
 
-Le viste "crea" e "aggiorna" usano lo stesso template per impostazione predefinita, che sarà chiamato come il tuo modello: `model_name_form.html` (puoi cambiare il suffisso in qualcosa diverso da **\_form** usando il campo `template_name_suffix` nella tua vista, per esempio, `template_name_suffix = '_other_suffix'`)
+Le viste "create" e "update" usano lo stesso template per impostazione predefinita, che verrà denominato in base al modello: `model_name_form.html`. È possibile cambiare il suffisso in qualcosa di diverso da **\_form** utilizzando il campo `template_name_suffix` nella vista, ad esempio `template_name_suffix = '_other_suffix'`.
 
-Crea il file del template `django-locallibrary-tutorial/catalog/templates/catalog/author_form.html` e copia il testo qui sotto.
+Creare il file template `django-locallibrary-tutorial/catalog/templates/catalog/author_form.html` e copiare il testo seguente.
 
 ```django
 {% extends "base_generic.html" %}
@@ -710,10 +706,10 @@ Crea il file del template `django-locallibrary-tutorial/catalog/templates/catalo
 {% endblock %}
 ```
 
-Questo è simile ai nostri moduli precedenti e rende i campi usando una tabella. Nota anche come dichiariamo di nuovo il `{% csrf_token %}` per assicurare che i nostri moduli siano resistenti agli attacchi CSRF.
+È simile ai form precedenti e renderizza i campi usando una tabella. Si noti inoltre come venga nuovamente dichiarato `{% csrf_token %}` per garantire che i form siano resistenti agli attacchi CSRF.
 
-La vista "elimina" si aspetta di trovare un template denominato nel formato `[model_name]_confirm_delete.html` (di nuovo, puoi cambiare il suffisso usando `template_name_suffix` nella tua vista).
-Crea il file del template `django-locallibrary-tutorial/catalog/templates/catalog/author_confirm_delete.html` e copia il testo qui sotto.
+La vista "delete" prevede di trovare un template denominato nel formato `[model_name]_confirm_delete.html`, e anche in questo caso è possibile modificare il suffisso usando `template_name_suffix` nella vista.
+Creare il file template `django-locallibrary-tutorial/catalog/templates/catalog/author_confirm_delete.html` e copiare il testo seguente.
 
 ```django
 {% extends "base_generic.html" %}
@@ -744,13 +740,13 @@ Crea il file del template `django-locallibrary-tutorial/catalog/templates/catalo
 ```
 
 Il template dovrebbe essere familiare.
-Controlla prima se l'autore è utilizzato in qualche libro e, in tal caso, visualizza l'elenco dei libri che devono essere eliminati prima di poter eliminare il record dell'autore.
-In caso contrario, visualizza un modulo che chiede all'utente di confermare se vogliono eliminare il record dell'autore.
+Innanzitutto verifica se l'autore è utilizzato in qualche libro e, in tal caso, visualizza l'elenco dei libri che devono essere eliminati prima che il record dell'autore possa essere eliminato.
+In caso contrario, visualizza un form che chiede all'utente di confermare di voler eliminare il record dell'autore.
 
-L'ultimo passaggio è collegare le pagine alla barra laterale.
-Per prima cosa, aggiungeremo un link per creare l'autore nel _template base_, in modo che sia visibile in tutte le pagine per gli utenti che sono considerati "staff" e che hanno il permesso di creare autori (`catalog.add_author`).
-Apri **/django-locallibrary-tutorial/catalog/templates/base_generic.html** e aggiungi le righe che permettono agli utenti con il permesso di creare l'autore (nello stesso blocco del link che mostra "Tutti i libri presi in prestito").
-Ricorda di fare riferimento all'URL usando il suo nome `'author-create'` come mostrato di seguito.
+Il passaggio finale consiste nel collegare le pagine nella barra laterale.
+Innanzitutto verrà aggiunto un link per creare l'autore nel _template di base_, affinché sia visibile in tutte le pagine per gli utenti autenticati considerati "staff" e che dispongono dell'autorizzazione per creare autori, `catalog.add_author`.
+Aprire **/django-locallibrary-tutorial/catalog/templates/base_generic.html** e aggiungere le righe che consentono agli utenti con l'autorizzazione di creare l'autore, nello stesso blocco del link che mostra i libri "All Borrowed".
+Ricordare di fare riferimento all'URL usando il suo nome `'author-create'`, come mostrato di seguito.
 
 ```django
 {% if user.is_staff %}
@@ -765,8 +761,8 @@ Ricorda di fare riferimento all'URL usando il suo nome `'author-create'` come mo
 {% endif %}
 ```
 
-Aggiungeremo i link per aggiornare e cancellare gli autori alla pagina dei dettagli dell'autore.
-Apri **catalog/templates/catalog/author_detail.html** e aggiungi il seguente codice.
+I link per aggiornare ed eliminare gli autori verranno aggiunti alla pagina dei dettagli dell'autore.
+Aprire **catalog/templates/catalog/author_detail.html** e aggiungere il seguente codice:
 
 ```django
 {% block sidebar %}
@@ -787,55 +783,55 @@ Apri **catalog/templates/catalog/author_detail.html** e aggiungi il seguente cod
 {% endblock %}
 ```
 
-Questo blocco sovrascrive il blocco `sidebar` nel template base e poi inserisce il contenuto originale usando `\{{ block.super }}`.
-Quindi aggiunge i link per aggiornare o cancellare l'autore, ma solo quando l'utente ha i permessi corretti e il record dell'autore non è associato a libri.
+Questo blocco sovrascrive il blocco `sidebar` nel template di base e quindi include il contenuto originale usando `\{{ block.super }}`.
+Aggiunge quindi link per aggiornare o eliminare l'autore, ma solo quando l'utente dispone delle autorizzazioni corrette e il record dell'autore non è associato ad alcun libro.
 
-Le pagine sono pronte per essere testate!
+Le pagine sono ora pronte per il test.
 
-### Testare la pagina
+### Test della pagina
 
-Prima, accedi al sito con un account che ha i permessi di aggiunta, modifica e cancellazione dell'autore.
+Per prima cosa, accedere al sito con un account che dispone delle autorizzazioni per aggiungere, modificare ed eliminare autori.
 
-Naviga a qualsiasi pagina e seleziona "Creare autore" nella barra laterale (con l'URL `http://127.0.0.1:8000/catalog/author/create/`).
-La pagina dovrebbe apparire come nello screenshot qui sotto.
+Navigare a una pagina qualsiasi e selezionare "Create author" nella barra laterale, con URL `http://127.0.0.1:8000/catalog/author/create/`.
+La pagina dovrebbe apparire come nello screenshot seguente.
 
-![Form Example: Create Author](forms_example_create_author.png)
+![Esempio di form: creazione autore](forms_example_create_author.png)
 
-Inserisci i valori per i campi e poi premi **Submit** per salvare il record dell'autore.
-Dovresti ora essere portato a una vista dettagliata per il tuo nuovo autore, con un URL di qualcosa come `http://127.0.0.1:8000/catalog/author/10`.
+Inserire i valori per i campi e quindi premere **Submit** per salvare il record dell'autore.
+Si dovrebbe ora essere indirizzati a una vista dettagli per il nuovo autore, con un URL simile a `http://127.0.0.1:8000/catalog/author/10`.
 
-![Form Example: Author Detail showing Update and Delete links](forms_example_detail_author_update.png)
+![Esempio di form: dettagli autore che mostrano i link Update e Delete](forms_example_detail_author_update.png)
 
-Puoi testare la modifica del record selezionando il link "Aggiorna autore" (con URL qualcosa come `http://127.0.0.1:8000/catalog/author/10/update/`) — non mostriamo uno screenshot perché è uguale alla pagina "crea"!
+È possibile testare la modifica del record selezionando il link "Update author", con un URL simile a `http://127.0.0.1:8000/catalog/author/10/update/`. Non viene mostrato uno screenshot perché appare esattamente come la pagina "create".
 
-Infine, possiamo eliminare la pagina selezionando "Elimina autore" dalla barra laterale nella pagina dettagli.
-Django dovrebbe visualizzare la pagina di eliminazione mostrata sotto se il record dell'autore non è utilizzato in nessun libro.
-Premi "**Sì, elimina.**" per rimuovere il record e essere portato all'elenco di tutti gli autori.
+Infine, è possibile eliminare la pagina selezionando "Delete author" dalla barra laterale nella pagina dei dettagli.
+Django dovrebbe visualizzare la pagina di eliminazione mostrata sotto se il record dell'autore non è usato in alcun libro.
+Premere "**Yes, delete.**" per rimuovere il record ed essere indirizzati all'elenco di tutti gli autori.
 
-![Form with option to delete author](forms_example_delete_author.png)
+![Form con opzione per eliminare l'autore](forms_example_delete_author.png)
 
-## Sfida te stesso
+## Mettiti alla prova
 
-Crea alcuni moduli per creare, modificare e cancellare i record `Book`. Puoi usare esattamente la stessa struttura per `Authors` (per l'eliminazione, ricorda che non puoi eliminare un `Book` finché tutti i suoi record associati `BookInstance` non sono cancellati) e devi usare i permessi corretti.
-Se il tuo template **book_form.html** è solo una copia-rinominata del template **author_form.html**, allora la nuova pagina "crea libro" apparirà come nello screenshot di seguito:
+Creare alcuni form per creare, modificare ed eliminare record `Book`. È possibile usare esattamente la stessa struttura usata per gli `Authors`. Per l'eliminazione, ricordare che non è possibile eliminare un `Book` finché non vengono eliminati tutti i record `BookInstance` associati, e occorre usare le autorizzazioni corrette.
+Se il template **book_form.html** è semplicemente una copia rinominata del template **author_form.html**, la nuova pagina "create book" apparirà come nello screenshot seguente:
 
-![Screenshot displaying various fields in the form like title, author, summary, ISBN, genre and language](forms_example_create_book.png)
+![Screenshot che mostra vari campi nel form, come titolo, autore, riassunto, ISBN, genere e lingua](forms_example_create_book.png)
 
-## Sommario
+## Riepilogo
 
-Creare e gestire i moduli può essere un processo complicato! Django lo rende molto più facile fornendo meccanismi programmatici per dichiarare, rendere e validare i moduli. Inoltre, Django fornisce viste di modifica generiche dei moduli che possono fare _quasi tutto_ il lavoro di definizione delle pagine che possono creare, modificare e cancellare record associati a un'istanza di modello singola.
+La creazione e la gestione dei form può essere un processo complicato. Django lo rende molto più semplice fornendo meccanismi programmatici per dichiarare, renderizzare e convalidare i form. Inoltre, Django fornisce viste generiche di modifica dei form in grado di svolgere _quasi tutto_ il lavoro necessario per definire pagine che possono creare, modificare ed eliminare record associati a una singola istanza di modello.
 
-C'è molto di più che può essere fatto con i moduli (dai un'occhiata al nostro [Vedi anche](#vedi_anche) elenco qui sotto), ma ora dovresti capire come aggiungere moduli di base e codice di gestione dei moduli ai tuoi siti web.
+Con i form si può fare molto di più, consultare l'elenco [Vedere anche](#vedere_anche) qui sotto, ma a questo punto dovrebbe essere chiaro come aggiungere form di base e codice di gestione dei form ai propri siti web.
 
-## Vedi anche
+## Vedere anche
 
-- [Lavorare con i moduli](https://docs.djangoproject.com/en/5.0/topics/forms/) (documenti Django)
-- [Scrivere la tua prima app Django, parte 4 > Scrivere un modulo semplice](https://docs.djangoproject.com/en/5.0/intro/tutorial04/#write-a-simple-form) (documenti Django)
-- [L'API dei moduli](https://docs.djangoproject.com/en/5.0/ref/forms/api/) (documenti Django)
-- [Campi del modulo](https://docs.djangoproject.com/en/5.0/ref/forms/fields/) (documenti Django)
-- [Validazione del modulo e dei campi](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) (documenti Django)
-- [Gestione dei moduli con le viste basate su classe](https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-editing/) (documenti Django)
-- [Creare moduli dai modelli](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/) (documenti Django)
-- [Viste di modifica generiche](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/) (documenti Django)
+- [Lavorare con i form](https://docs.djangoproject.com/en/5.0/topics/forms/) (documentazione Django)
+- [Scrivere la prima app Django, parte 4 > Scrivere un form semplice](https://docs.djangoproject.com/en/5.0/intro/tutorial04/#write-a-simple-form) (documentazione Django)
+- [L'API Forms](https://docs.djangoproject.com/en/5.0/ref/forms/api/) (documentazione Django)
+- [Campi form](https://docs.djangoproject.com/en/5.0/ref/forms/fields/) (documentazione Django)
+- [Convalida di form e campi](https://docs.djangoproject.com/en/5.0/ref/forms/validation/) (documentazione Django)
+- [Gestione dei form con viste basate su classi](https://docs.djangoproject.com/en/5.0/topics/class-based-views/generic-editing/) (documentazione Django)
+- [Creazione di form dai modelli](https://docs.djangoproject.com/en/5.0/topics/forms/modelforms/) (documentazione Django)
+- [Viste generiche di modifica](https://docs.djangoproject.com/en/5.0/ref/class-based-views/generic-editing/) (documentazione Django)
 
-{{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/authentication_and_sessions", "Learn_web_development/Extensions/Server-side/Django/Testing", "Learn_web_development/Extensions/Server-side/Django")}}
+{{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/Authentication", "Learn_web_development/Extensions/Server-side/Django/Testing", "Learn_web_development/Extensions/Server-side/Django")}}

@@ -1,42 +1,42 @@
 ---
-title: Creare scatole fantasiose
+title: Creare riquadri elaborati
 slug: Learn_web_development/Howto/Solve_CSS_problems/Create_fancy_boxes
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: f78ca75460fbdbc7f17b6e366dad47b9760054b0
 ---
 
-I box CSS sono i mattoni fondamentali di qualsiasi pagina web stilizzata con CSS. Renderli piacevoli alla vista è sia divertente che impegnativo. È divertente perché si tratta di trasformare un'idea di design in codice funzionante; è impegnativo a causa dei vincoli del CSS. Facciamo alcune scatole fantasiose.
+I riquadri CSS sono i blocchi costitutivi di qualsiasi pagina web stilizzata con CSS. Renderli gradevoli è al tempo stesso divertente e impegnativo. È divertente perché consiste nel trasformare un'idea di design in codice funzionante; è impegnativo a causa dei vincoli di CSS. Creiamo quindi dei riquadri elaborati.
 
-Prima di iniziare a passare alla parte pratica, assicurati di essere familiare con [il modello di box CSS](/it/docs/Learn_web_development/Core/Styling_basics/Box_model). È anche una buona idea, ma non un requisito, essere familiari con alcune [basi di layout CSS](/it/docs/Learn_web_development/Core/CSS_layout/Introduction).
+Prima di passare al lato pratico, assicurarsi di conoscere [il box model CSS](/it/docs/Learn_web_development/Core/Styling_basics/Box_model). È inoltre una buona idea, ma non un prerequisito, conoscere alcune [nozioni di base sul layout CSS](/it/docs/Learn_web_development/Core/CSS_layout/Introduction).
 
-Dal punto di vista tecnico, creare scatole fantasiose riguarda tutto il padroneggiare le proprietà di bordi e sfondi del CSS e come applicarle a un box dato. Ma al di là delle tecniche è anche questione di liberare la propria creatività. Non sarà completato in un giorno, e alcuni sviluppatori web passano tutta la vita a divertirsi con questo.
+Dal punto di vista tecnico, creare riquadri elaborati significa padroneggiare le proprietà CSS per bordi e sfondi e sapere come applicarle a un determinato riquadro. Ma oltre alle tecniche, si tratta anche di liberare la creatività. Non sarà fatto in un giorno e alcuni sviluppatori web si divertono a farlo per tutta la vita.
 
-Vedremo molti esempi, ma lavoreremo sempre sull'elemento HTML più semplice possibile:
+Vedremo molti esempi, ma lavoreremo sempre sul più semplice frammento HTML possibile, un semplice elemento:
 
 ```html
 <div class="fancy">Hi! I want to be fancy.</div>
 ```
 
-Ok, questo è un piccolo frammento di HTML, cosa possiamo modificare su quell'elemento? Tutto quanto segue:
+Bene, è un frammento HTML molto piccolo: cosa si può modificare su quell'elemento? Tutto quanto segue:
 
-- Le proprietà del suo modello: {{cssxref("width")}}, {{cssxref("height")}}, {{cssxref("padding")}}, {{cssxref("border")}}, ecc.
-- Le proprietà del suo sfondo: {{cssxref("background")}}, {{cssxref("background-color")}}, {{cssxref("background-image")}}, {{cssxref("background-position")}}, {{cssxref("background-size")}}, ecc.
-- Il suo pseudo-elemento: {{cssxref("::before")}} e {{cssxref("::after")}}
-- e alcune proprietà collaterali come: {{cssxref("box-shadow")}}, {{cssxref("rotate")}}, {{cssxref("outline")}}, ecc.
+- Le sue proprietà del box model: {{cssxref("width")}}, {{cssxref("height")}}, {{cssxref("padding")}}, {{cssxref("border")}}, ecc.
+- Le sue proprietà di sfondo: {{cssxref("background")}}, {{cssxref("background-color")}}, {{cssxref("background-image")}}, {{cssxref("background-position")}}, {{cssxref("background-size")}}, ecc.
+- I suoi pseudo-elementi: {{cssxref("::before")}} e {{cssxref("::after")}}
+- e alcune proprietà aggiuntive come: {{cssxref("box-shadow")}}, {{cssxref("rotate")}}, {{cssxref("outline")}}, ecc.
 
-Quindi abbiamo un ampio campo di gioco. Che il divertimento abbia inizio.
+Quindi si dispone di un'area di sperimentazione molto ampia. Che il divertimento abbia inizio.
 
-## Modifica del modello di box
+## Modificare il box model
 
-Il modello di box da solo ci permette di fare alcune cose basilari, come aggiungere bordi semplici, creare quadrati, ecc. Inizia a diventare interessante quando si spingono le proprietà al limite avendo `padding` negativi e/o `margin` e avendo un `border-radius` più grande della dimensione effettiva del box.
+Il solo box model consente di realizzare alcune operazioni di base, come aggiungere bordi semplici, creare quadrati e così via. Inizia a diventare interessante quando si spingono le proprietà al limite, usando `padding` e/o `margin` negativi oppure un `border-radius` più grande delle dimensioni effettive del riquadro.
 
-### Creazione di cerchi
+### Creare cerchi
 
 ```html hidden
 <div class="fancy">Hi! I want to be fancy.</div>
 ```
 
-Questo è qualcosa di molto semplice e molto divertente. La proprietà {{cssxref("border-radius")}} è fatta per creare un angolo arrotondato applicato ai box, ma cosa succede se la dimensione del raggio è uguale o maggiore della larghezza effettiva del box?
+Questo è qualcosa di molto semplice e al tempo stesso molto divertente. La proprietà {{cssxref("border-radius")}} è progettata per creare angoli arrotondati nei riquadri, ma cosa accade se la dimensione del raggio è uguale o superiore alla larghezza effettiva del riquadro?
 
 ```css
 .fancy {
@@ -65,26 +65,26 @@ Questo è qualcosa di molto semplice e molto divertente. La proprietà {{cssxref
 }
 ```
 
-Sì, otteniamo un cerchio:
+Sì, si ottiene un cerchio:
 
 {{ EmbedLiveSample('Making_circles', '100%', '120') }}
 
 ## Sfondi
 
-Quando parliamo di un box fantasioso, le proprietà principali per gestirlo sono [le proprietà background-\*](/it/docs/Web/CSS/CSS_backgrounds_and_borders). Quando inizi a giocherellare con gli sfondi è come se il tuo box CSS si trasformasse in una tela bianca che riempirai.
+Quando si parla di un riquadro elaborato, le proprietà principali da gestire sono le [proprietà background-\*](/it/docs/Web/CSS/Guides/Backgrounds_and_borders). Quando si inizia a sperimentare con gli sfondi, è come se il riquadro CSS si trasformasse in una tela bianca da riempire.
 
-Prima di passare a degli esempi pratici, facciamo un passo indietro perché ci sono due cose che dovresti sapere sugli sfondi.
+Prima di passare a esempi pratici, è utile fare un passo indietro: ci sono due aspetti da conoscere sugli sfondi.
 
-- È possibile impostare [diversi sfondi](/it/docs/Web/CSS/CSS_backgrounds_and_borders/Using_multiple_backgrounds) su un singolo box. Sono impilati l'uno sopra l'altro come strati.
-- Gli sfondi possono essere sia colori solidi che immagini: il colore solido riempie sempre tutta la superficie, ma le immagini possono essere scalate e posizionate.
+- È possibile impostare [diversi sfondi](/it/docs/Web/CSS/Guides/Backgrounds_and_borders/Using_multiple_backgrounds) su un singolo riquadro. Vengono sovrapposti come livelli.
+- Gli sfondi possono essere colori pieni o immagini: un colore pieno riempie sempre l'intera superficie, mentre le immagini possono essere ridimensionate e posizionate.
 
 ```html hidden
 <div class="fancy">Hi! I want to be fancy.</div>
 ```
 
-Ok, divertiamoci con gli sfondi:
+Bene, divertiamoci con gli sfondi:
 
-```css-nolint
+```css
 .fancy {
   padding: 1em;
   width: 100%;
@@ -100,29 +100,30 @@ Ok, divertiamoci con gli sfondi:
      As you will notice, color gradients are
      considered to be images and can be
      manipulated as such */
-  background-image: linear-gradient(175deg, rgb(0 0 0 / 0%) 95%, #8da389 95%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 95%, #8da389 95%),
-                    linear-gradient(175deg, rgb(0 0 0 / 0%) 90%, #b4b07f 90%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 92%, #b4b07f 92%),
-                    linear-gradient(175deg, rgb(0 0 0 / 0%) 85%, #c5a68e 85%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 89%, #c5a68e 89%),
-                    linear-gradient(175deg, rgb(0 0 0 / 0%) 80%, #ba9499 80%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 86%, #ba9499 86%),
-                    linear-gradient(175deg, rgb(0 0 0 / 0%) 75%, #9f8fa4 75%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 83%, #9f8fa4 83%),
-                    linear-gradient(175deg, rgb(0 0 0 / 0%) 70%, #74a6ae 70%),
-                    linear-gradient( 85deg, rgb(0 0 0 / 0%) 80%, #74a6ae 80%);
+  background-image:
+    linear-gradient(175deg, transparent 95%, #8da389 95%),
+    linear-gradient(85deg, transparent 95%, #8da389 95%),
+    linear-gradient(175deg, transparent 90%, #b4b07f 90%),
+    linear-gradient(85deg, transparent 92%, #b4b07f 92%),
+    linear-gradient(175deg, transparent 85%, #c5a68e 85%),
+    linear-gradient(85deg, transparent 89%, #c5a68e 89%),
+    linear-gradient(175deg, transparent 80%, #ba9499 80%),
+    linear-gradient(85deg, transparent 86%, #ba9499 86%),
+    linear-gradient(175deg, transparent 75%, #9f8fa4 75%),
+    linear-gradient(85deg, transparent 83%, #9f8fa4 83%),
+    linear-gradient(175deg, transparent 70%, #74a6ae 70%),
+    linear-gradient(85deg, transparent 80%, #74a6ae 80%);
 }
 ```
 
 {{ EmbedLiveSample('Backgrounds', '100%', '200') }}
 
 > [!NOTE]
-> I gradienti possono essere utilizzati in modi molto creativi. Se desideri vedere alcuni esempi creativi, dai un'occhiata ai [patterns CSS di Lea Verou](https://projects.verou.me/css3patterns/). Se vuoi saperne di più sui gradienti, sentiti libero di leggere il [nostro articolo dedicato](/it/docs/Web/CSS/CSS_images/Using_CSS_gradients).
+> I gradienti possono essere utilizzati in modi molto creativi. Per vedere alcuni esempi creativi, consultare i [pattern CSS di Lea Verou](https://projects.verou.me/css3patterns/). Per approfondire i gradienti, consultare [l'articolo dedicato](/it/docs/Web/CSS/Guides/Images/Using_gradients).
 
 ## Pseudo-elementi
 
-Quando si stile un singolo box, potresti trovarti limitato e desidereresti avere più box per creare stili ancora più sorprendenti. La maggior parte delle volte, questo porta a inquinare il DOM aggiungendo elementi HTML extra per il solo scopo del design. Anche se è necessario, è considerata una cattiva pratica. Una soluzione per evitare tali trappole è usare [gli pseudo-elementi CSS](/it/docs/Web/CSS/Pseudo-elements).
+Quando si applicano stili a un singolo riquadro, ci si può sentire limitati e desiderare più riquadri per creare stili ancora più sorprendenti. Nella maggior parte dei casi, questo porta a inquinare il DOM aggiungendo elementi HTML aggiuntivi con l'unico scopo di applicare stili. Anche se talvolta è necessario, ciò è generalmente considerato una cattiva pratica. Una soluzione per evitare questi problemi consiste nell'usare gli [pseudo-elementi CSS](/it/docs/Web/CSS/Reference/Selectors/Pseudo-elements).
 
 ### Una nuvola
 
@@ -130,7 +131,7 @@ Quando si stile un singolo box, potresti trovarti limitato e desidereresti avere
 <div class="fancy">Hi! I want to be fancy.</div>
 ```
 
-Facciamo un esempio trasformando il nostro box in una nuvola:
+Vediamo un esempio trasformando il riquadro in una nuvola:
 
 ```css
 .fancy {
@@ -211,7 +212,7 @@ Facciamo un esempio trasformando il nostro box in una nuvola:
 
 ### Blockquote
 
-Un esempio più pratico di utilizzo degli pseudo-elementi è costruire una formattazione piacevole per gli elementi HTML {{HTMLElement('blockquote')}}. Quindi vediamo un esempio con un frammento di HTML leggermente diverso (che ci offre un'opportunità per vedere come gestire anche la localizzazione del design):
+Un esempio più pratico dell'uso degli pseudo-elementi consiste nel creare una gradevole formattazione per gli elementi HTML {{HTMLElement('blockquote')}}. Vediamo quindi un esempio con un frammento HTML leggermente diverso, che offre anche l'opportunità di vedere come gestire la localizzazione del design:
 
 ```html
 <blockquote>
@@ -224,7 +225,7 @@ Un esempio più pratico di utilizzo degli pseudo-elementi è costruire una forma
 </blockquote>
 ```
 
-Ecco il nostro stile:
+Ecco quindi lo stile:
 
 ```css
 blockquote {
@@ -240,9 +241,7 @@ blockquote::after {
   position: absolute;
   height: 3rem;
   font:
-    6rem/100% Georgia,
-    "Times New Roman",
-    Times,
+    6rem/100% "Georgia",
     serif;
 }
 
@@ -280,20 +279,20 @@ blockquote i {
 
 {{ EmbedLiveSample('Blockquote', '100%', '300') }}
 
-## Tutto insieme e oltre
+## Tutto insieme e altro ancora
 
-Quindi è possibile creare un effetto meraviglioso quando mettiamo tutto insieme. Ad un certo punto, per realizzare tale abbellimento del box è una questione di creatività, sia nel design che nell'uso tecnico delle proprietà CSS. Facendo così è possibile creare illusioni ottiche che possono dare vita ai tuoi box come in questo esempio:
+È quindi possibile creare un effetto straordinario mescolando tutti questi elementi. A un certo punto, ottenere tale decorazione dei riquadri diventa una questione di creatività, sia nel design sia nell'uso tecnico delle proprietà CSS. In questo modo è possibile creare illusioni ottiche che possono dare vita ai riquadri, come in questo esempio:
 
 ```html hidden
 <div class="fancy">Hi! I want to be fancy.</div>
 ```
 
-Creiamo degli effetti parziali di ombra cadente. La proprietà {{cssxref("box-shadow")}} ci permette di creare una luce interna e un effetto ombra piatta, ma con qualche lavoro extra diventa possibile creare una geometria più naturale usando uno pseudo-elemento e la proprietà {{cssxref("rotate")}}, una delle tre proprietà individuali di {{cssxref("transform")}}.
+Creiamo alcuni effetti di ombra esterna parziali. La proprietà {{cssxref("box-shadow")}} consente di creare luce interna e un effetto di ombra esterna piatta, ma con un po' di lavoro aggiuntivo diventa possibile creare una geometria più naturale usando uno pseudo-elemento e la proprietà {{cssxref("rotate")}}, una delle tre proprietà individuali {{cssxref("transform")}}.
 
 ```css
 .fancy {
   position: relative;
-  background-color: #ffc;
+  background-color: #ffffcc;
   padding: 2rem;
   text-align: center;
   max-width: 200px;

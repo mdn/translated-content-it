@@ -1,94 +1,257 @@
 ---
-title: "Sfida: Generatore di storie buffe"
-short-title: "Sfida: Generatore di storie"
+title: "Sfida: generatore di storie buffe"
+short-title: "Sfida: generatore di storie"
 slug: Learn_web_development/Core/Scripting/Silly_story_generator
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 7ff752fba26e0bb950998bb5476157ff96c7d314
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting/Conditionals", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Arrays", "Learn_web_development/Core/Scripting/Conditionals", "Learn_web_development/Core/Scripting")}}
 
-In questa sfida ti verrà chiesto di applicare alcune delle conoscenze acquisite negli articoli di questo modulo per creare un'app divertente che genera storie buffe casuali. Buon divertimento!
+In questa sfida, il compito è prendere alcune delle conoscenze acquisite finora in questo modulo e applicarle alla creazione di una divertente app che genera storie buffe casuali. Durante il percorso verranno verificate le conoscenze su variabili, matematica, stringhe e array. Buon divertimento!
 
 ## Punto di partenza
 
-Per iniziare questa sfida, dovresti:
+Per iniziare, fare clic sul pulsante **Play** in uno dei pannelli di codice seguenti per aprire l'esempio fornito nel MDN Playground. Quindi seguire le istruzioni nella sezione [Descrizione del progetto](#descrizione_del_progetto) per completare la funzionalità JavaScript.
 
-- [Scarica il file HTML](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/assessment-start/index.html) per l'esempio, salva una copia locale come `index.html` in una nuova directory sul tuo computer, e svolgi la sfida localmente per cominciare. Include anche il CSS per stilizzare l'esempio.
-- Vai alla [pagina contenente il testo grezzo](https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/assessment-start/raw-text.txt) e tienila aperta in un'altra scheda del browser. Ti servirà più avanti.
+```html live-sample___silly-story-start live-sample___silly-story-finish
+<div>
+  <label for="custom-name">Enter custom name:</label>
+  <input id="custom-name" type="text" placeholder="" />
+</div>
+<fieldset>
+  <legend>Choose locale:</legend>
+  <label for="us">US</label
+  ><input id="us" type="radio" name="uk-us" value="us" checked />
+  <label for="uk">UK</label
+  ><input id="uk" type="radio" name="uk-us" value="uk" />
+</fieldset>
+<div>
+  <button class="generate">Generate random story</button>
+</div>
+<!-- Thanks a lot to Willy Aguirre for his help with the code for this assessment -->
+<p class="story"></p>
+```
 
-In alternativa, puoi usare un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/). Puoi incollare l'HTML, il CSS e il JavaScript in uno di questi editor online. Se l'editor online che stai usando non ha un pannello JavaScript separato, senti libero di metterlo inline in un elemento `<script>` all'interno della pagina HTML.
+```css hidden live-sample___silly-story-start live-sample___silly-story-finish
+body {
+  font: 1.2em / 1.5 system-ui;
+  margin: 0 auto;
+  width: 500px;
+}
 
-> [!NOTE]
-> Se ti blocchi, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+fieldset {
+  border: 0;
+}
+
+fieldset,
+legend {
+  padding: 0;
+  margin: 0;
+}
+
+input[type="text"] {
+  margin-top: 5px;
+  padding: 5px;
+  width: 50%;
+  display: block;
+}
+
+div,
+fieldset {
+  margin-top: 20px;
+}
+
+p {
+  margin-top: 10px;
+  background: #ffc125;
+  padding: 20px;
+  visibility: hidden;
+}
+```
+
+```js live-sample___silly-story-start
+// Complete variable definitions and random functions
+
+const customName = document.getElementById("custom-name");
+const generateBtn = document.querySelector(".generate");
+const story = document.querySelector(".story");
+
+function randomValueFromArray(array) {
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+}
+
+// Raw text strings
+
+// Willy the Goblin
+// Big Daddy
+// Father Christmas
+
+// the soup kitchen
+// Disneyland
+// the White House
+
+// spontaneously combusted
+// melted into a puddle on the sidewalk
+// turned into a slug and slithered away
+
+// Partial return random string function
+
+function returnRandomStoryString() {
+  // It was 94 Fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.
+
+  return storyText;
+}
+
+// Event listener and partial generate function definition
+
+generateBtn.addEventListener("click", generateStory);
+
+function generateStory() {
+  if (customName.value !== "") {
+    const name = customName.value;
+  }
+
+  if (document.getElementById("uk").checked) {
+    const weight = Math.round(300);
+    const temperature = Math.round(94);
+  }
+
+  // TODO: replace "" with the correct expression
+  story.textContent = "";
+  story.style.visibility = "visible";
+}
+```
+
+{{EmbedLiveSample("silly-story-start", "100%", 300)}}
 
 ## Descrizione del progetto
 
-Sono stati forniti alcuni HTML/CSS grezzi e alcune stringhe di testo e funzioni JavaScript; devi scrivere il JavaScript necessario per trasformarlo in un programma funzionante, che faccia quanto segue:
+Sono state fornite alcune stringhe di testo e funzioni JavaScript; occorre scrivere il JavaScript necessario per trasformarle in un programma funzionante, che esegua le seguenti operazioni:
 
-- Genera una storia buffa quando il pulsante "Genera storia casuale" viene premuto.
-- Sostituisce il nome predefinito "Bob" nella storia con un nome personalizzato, solo se un nome personalizzato è inserito nel campo di testo "Inserisci nome personalizzato" prima che il pulsante di generazione venga premuto.
-- Converte i valori e le unità di peso e temperatura predefiniti degli USA nella storia negli equivalenti UK, se il pulsante radio del Regno Unito è selezionato prima che il pulsante di generazione venga premuto.
-- Genera una nuova storia buffa casuale ogni volta che il pulsante viene premuto.
+- Genera una storia buffa quando viene premuto il pulsante "Generate random story".
+- Sostituisce il nome predefinito "Bob" nella storia con un nome personalizzato, solo se viene inserito un nome personalizzato nel campo di testo "Enter custom name" prima di premere il pulsante di generazione.
+- Converte le quantità e le unità di peso e temperatura statunitensi predefinite nella storia nei corrispondenti equivalenti britannici, se viene selezionato il pulsante radio UK prima di premere il pulsante di generazione.
+- Genera una nuova storia buffa casuale ogni volta che viene premuto il pulsante.
 
-La seguente schermata mostra un esempio di quello che dovrebbe generare il programma finito:
+### Variabili e funzioni iniziali
 
-![L'app del generatore di storie buffe consiste in un campo di testo, due pulsanti radio e un pulsante per generare una storia casuale.](screen_shot_2018-09-19_at_10.01.38_am.png)
+Nel JavaScript, sotto il commento "Complete variable definitions and random function", sono presenti tre costanti che memorizzano riferimenti a:
 
-Per darti un'idea più chiara, [dai un'occhiata all'esempio finito](https://mdn.github.io/learning-area/javascript/introduction-to-js-1/assessment-finished/) (non sbirciare il codice sorgente!)
+- Il campo di testo "Enter custom name": `customName`.
+- Il pulsante "Generate random story": `generateBtn`.
+- L'elemento {{htmlelement("p")}} nella parte inferiore del body HTML in cui verrà copiata la storia: `story`.
 
-## Passi da completare
+Inoltre, è presente una funzione chiamata `randomValueFromArray()` che riceve un array come input e restituisce casualmente uno degli elementi memorizzati nell'array.
 
-Le seguenti sezioni descrivono cosa devi fare.
+Sotto il commento "Raw text strings", sono presenti alcune stringhe di testo commentate che fungeranno da input per il programma. È necessario rimuovere il commento da queste stringhe e memorizzarle in costanti nel modo seguente:
 
-Impostazione di base:
+1. Memorizzare il primo gruppo di tre stringhe in un array chiamato `characters`.
+2. Memorizzare il secondo gruppo di tre stringhe in un array chiamato `places`.
+3. Memorizzare il terzo gruppo di tre stringhe in un array chiamato `events`.
 
-1. Crea un nuovo file chiamato `main.js`, nella stessa directory del tuo file `index.html`.
-2. Applica il file JavaScript esterno al tuo HTML inserendo un elemento {{htmlelement("script")}} nel tuo HTML che fa riferimento a `main.js`. Mettilo appena prima del tag di chiusura `</body>`.
+### Completamento della funzione `returnRandomStoryString()`
 
-Variabili iniziali e funzioni:
+Sotto il commento "Partial return random string function" è presente una funzione `returnRandomStoryString()` parzialmente completata, contenente una lunga stringa di testo commentata e un'istruzione `return` che restituisce un valore chiamato `storyText`.
 
-1. Nel file di testo grezzo, copia tutto il codice sotto l'intestazione "1. DEFINIZIONI DI VARIABILI E FUNZIONI COMPLETE" e incollalo all'inizio del file `main.js`. Ti fornisce tre variabili che memorizzano riferimenti al campo di testo "Inserisci nome personalizzato" (`customName`), al pulsante "Genera storia casuale" (`randomize`), e all'elemento {{htmlelement("p")}} in fondo al corpo HTML in cui verrà copiata la storia (`story`), rispettivamente. Inoltre hai una funzione chiamata `randomValueFromArray()` che prende un array e restituisce uno degli elementi memorizzati all'interno dell'array a caso.
-2. Ora guarda la seconda sezione del file di testo grezzo — "2. STRINGHE DI TESTO GREZZO". Questa contiene stringhe di testo che fungeranno da input nel nostro programma. Vorremmo che le contenessi all'interno di variabili dentro `main.js`:
+Per completare questa funzione:
 
-   1. Memorizza la prima stringa di testo, lunga, all'interno di una variabile chiamata `storyText`.
-   2. Memorizza il primo set di tre stringhe all'interno di un array chiamato `insertX`.
-   3. Memorizza il secondo set di tre stringhe all'interno di un array chiamato `insertY`.
-   4. Memorizza il terzo set di tre stringhe all'interno di un array chiamato `insertZ`.
+1. Rimuovere il commento dalla lunga stringa di testo e memorizzarla in una variabile chiamata `storyText`. Dovrebbe essere un template literal.
+2. Aggiungere tre costanti chiamate `randomCharacter`, `randomPlace` e `randomEvent` subito sopra il template literal. Dovrebbero essere impostate uguali a tre chiamate `randomValueFromArray()`, che dovrebbero restituire rispettivamente una stringa casuale dagli array `characters`, `places` ed `events`.
+3. Nel template literal, sostituire le occorrenze di `:insertx:`, `:inserty:` e `:insertz:` con espressioni incorporate contenenti rispettivamente `randomCharacter`, `randomPlace` e `randomEvent`.
 
-Posizionare il gestore degli eventi e la funzione incompleta:
+### Completamento della funzione `generateStory()`
 
-1. Ora torna al file di testo grezzo.
-2. Copia il codice trovato sotto l'intestazione "3. EVENT LISTENER E DEFINIZIONE DI FUNZIONE PARZIALE" e incollalo in fondo al tuo file `main.js`. Questo:
+Sotto il commento "Event listener and partial generate function definition" sono presenti un paio di elementi di codice:
 
-   - Aggiunge un event listener di tipo click alla variabile `randomize` in modo che quando il pulsante che rappresenta viene cliccato, la funzione `result()` viene eseguita.
-   - Aggiunge una definizione della funzione `result()` parzialmente completata al tuo codice. Per il resto della sfida, compilerai le linee all'interno di questa funzione per completarla e farla funzionare correttamente.
+- Una riga che aggiunge un event listener `click` alla variabile `generateBtn`, in modo che la funzione `generateStory()` venga eseguita quando si fa clic sul pulsante che essa rappresenta.
+- Una definizione parzialmente completata della funzione `generateStory()`. Per il resto della sfida, occorre completare le righe all'interno di questa funzione per renderla pienamente funzionante.
 
-Completare la funzione `result()`:
+Seguire questi passaggi per completare la funzione:
 
-1. Crea una nuova variabile chiamata `newStory`, e imposta il suo valore uguale a `storyText`. Questo è necessario in modo da poter creare una nuova storia casuale ogni volta che il pulsante viene premuto e la funzione viene eseguita. Se apportassimo modifiche direttamente a `storyText`, potremmo generare una nuova storia solo una volta.
-2. Crea tre nuove variabili chiamate `xItem`, `yItem`, e `zItem`, e rendile uguali al risultato della chiamata `randomValueFromArray()` sui tuoi tre array (il risultato in ciascun caso sarà un elemento casuale fuori ciascun array su cui viene chiamata la funzione). Ad esempio puoi chiamare la funzione e farla restituire una stringa casuale fuori da `insertX` scrivendo `randomValueFromArray(insertX)`.
-3. Successivamente vogliamo sostituire i tre segnaposti nella stringa `newStory` — `:insertx:`, `:inserty:`, e `:insertz:` — con le stringhe memorizzate in `xItem`, `yItem`, e `zItem`. Ci sono due possibili metodi di stringa che ti aiuteranno qui — in ciascun caso, fai in modo che la chiamata al metodo sia uguale a `newStory`, così che ogni volta che viene chiamato, `newStory` è uguale a se stesso, ma con le sostituzioni effettuate. Quindi ogni volta che il pulsante viene premuto, questi segnaposti sono sostituiti con una stringa buffa casuale. Come ulteriore suggerimento, a seconda del metodo scelto, potrebbe essere necessario eseguire una delle chiamate due volte.
-4. All'interno del primo blocco `if`, aggiungi un'altra chiamata al metodo di sostituzione delle stringhe per sostituire il nome 'Bob' trovato nella stringa `newStory` con la variabile `name`. In questo blocco diciamo "Se un valore è stato inserito nel campo di input del testo `customName`, sostituisci Bob nella storia con quel nome personalizzato."
-5. All'interno del secondo blocco `if`, stiamo verificando se il pulsante radio `uk` è stato selezionato. Se sì, vogliamo convertire i valori di peso e temperatura nella storia da libbre e Fahrenheit in pietre e gradi centigradi. Ciò che devi fare è il seguente:
+1. Creare una nuova variabile chiamata `newStory` e impostarne il valore uguale a una chiamata a `returnRandomStoryString()`. Questa funzione è necessaria per poter creare una nuova storia casuale ogni volta che viene premuto il pulsante. Se `newStory` venisse impostata direttamente su `storyText`, sarebbe possibile generare una nuova storia soltanto una volta.
+2. All'interno del primo blocco `if`, aggiungere una chiamata a un metodo di sostituzione delle stringhe per sostituire il nome `Bob`, trovato nella stringa `newStory`, con la variabile `name`. In questo blocco si sta dicendo: "Se è stato inserito un valore nell'input di testo `customName`, sostituire `Bob` nella storia con quel nome personalizzato."
+3. All'interno del secondo blocco `if`, viene verificato se è stato selezionato il pulsante radio `uk`. In tal caso, occorre convertire i valori di peso e temperatura nella storia da libbre e Fahrenheit a stone e Celsius. Ecco cosa fare:
+   1. Cercare le formule per convertire le libbre in stone e i Fahrenheit in Celsius.
+   2. All'interno della riga che definisce la costante `weight`, sostituire `300` con un calcolo che converta 300 libbre in stone. Concatenare `" stone"` alla fine del risultato della chiamata complessiva a `Math.round()`.
+   3. All'interno della riga che definisce la variabile `temperature`, sostituire `94` con un calcolo che converta 94 Fahrenheit in Celsius. Concatenare `" Celsius"` alla fine del risultato della chiamata complessiva a `Math.round()`.
+   4. Subito sotto le due definizioni di variabili, aggiungere altre due righe di sostituzione delle stringhe che sostituiscano `300 pounds` con il contenuto della variabile `weight` e `94 Fahrenheit` con il contenuto della variabile `temperature`.
+4. Infine, nella penultima riga della funzione, impostare la proprietà `textContent` della variabile `story` (che fa riferimento al paragrafo) uguale a `newStory`.
 
-   1. Cerca le formule per convertire le libbre in pietre, e il Fahrenheit in centigradi.
-   2. All'interno della linea che definisce la variabile `weight`, sostituisci 300 con un calcolo che converte 300 libbre in pietre. Concatenare `' stone'` alla fine del risultato della chiamata totale a `Math.round()`.
-   3. All'interno della linea che definisce la variabile `temperature`, sostituisci 94 con un calcolo che converte 94 Fahrenheit in centigradi. Concatenare `' centigrade'` alla fine del risultato della chiamata totale a `Math.round()`.
-   4. Subito sotto le due definizioni di variabili, aggiungi due linee di sostituzione delle stringhe che sostituiscono '94 fahrenheit' con il contenuto della variabile `temperature`, e '300 pounds' con il contenuto della variabile `weight`.
+## Suggerimenti
 
-6. Infine, nella penultima linea della funzione, imposta la proprietà `textContent` della variabile `story` (che fa riferimento al paragrafo) uguale a `newStory`.
+- Non è necessario modificare in alcun modo HTML e CSS.
+- [`Math.round()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/round) è un metodo JavaScript integrato che arrotonda il risultato di un calcolo al numero intero più vicino.
+- Ci sono tre occorrenze di stringhe da sostituire. Si potrebbe usare il metodo `replace()` o un'altra soluzione.
 
-## Suggerimenti e consigli
+## Esempio
 
-- Non è necessario modificare l'HTML in nessun modo, tranne che per applicare il JavaScript al tuo HTML.
-- Se non sei sicuro che il JavaScript sia applicato correttamente al tuo HTML, prova a rimuovere temporaneamente tutto il resto dal file JavaScript, aggiungendo un semplice pezzo di JavaScript che sai creerà un effetto evidente, poi salva e aggiorna. Il seguente codice ad esempio rende il background dell'elemento {{htmlelement("html")}} rosso — quindi l'intera finestra del browser dovrebbe diventare rossa se il JavaScript è applicato correttamente:
+L'app completata dovrebbe funzionare come nel seguente esempio live:
 
-  ```js
-  document.querySelector("html").style.backgroundColor = "red";
-  ```
+{{EmbedLiveSample("silly-story-finish", "100%", 500)}}
 
-- [`Math.round()`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math/round) è un metodo JavaScript incorporato che arrotonda il risultato di un calcolo al numero intero più vicino.
-- Ci sono tre istanze di stringhe che devono essere sostituite. Puoi ripetere il metodo `replace()` più volte, o puoi usare `replaceAll()`. Ricorda, le stringhe sono immutabili!
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting/Conditionals", "Learn_web_development/Core/Scripting")}}
+Il JavaScript completato dovrebbe avere un aspetto simile al seguente:
+
+```js live-sample___silly-story-finish
+// Complete variable definitions and random function
+
+const customName = document.getElementById("custom-name");
+const generateBtn = document.querySelector(".generate");
+const story = document.querySelector(".story");
+
+function randomValueFromArray(array) {
+  const random = Math.floor(Math.random() * array.length);
+  return array[random];
+}
+
+// Solution: Raw text strings
+
+const characters = ["Willy the Goblin", "Big Daddy", "Father Christmas"];
+const places = ["the soup kitchen", "Disneyland", "the White House"];
+const events = [
+  "spontaneously combusted",
+  "melted into a puddle on the sidewalk",
+  "turned into a slug and slithered away",
+];
+
+// Solution: Partial return random string function
+
+function returnRandomStoryString() {
+  const randomCharacter = randomValueFromArray(characters);
+  const randomPlace = randomValueFromArray(places);
+  const randomEvent = randomValueFromArray(events);
+
+  let storyText = `It was 94 Fahrenheit outside, so ${randomCharacter} went for a walk. When they got to ${randomPlace}, they stared in horror for a few moments, then ${randomEvent}. Bob saw the whole thing, but was not surprised — ${randomCharacter} weighs 300 pounds, and it was a hot day.`;
+
+  return storyText;
+}
+
+// Solution: Event listener and partial generate function definition
+
+generateBtn.addEventListener("click", generateStory);
+
+function generateStory() {
+  let newStory = returnRandomStoryString();
+
+  if (customName.value !== "") {
+    const name = customName.value;
+    newStory = newStory.replace("Bob", name);
+  }
+
+  if (document.getElementById("uk").checked) {
+    const weight = `${Math.round(300 / 14)} stone`;
+    const temperature = `${Math.round((94 - 32) * (5 / 9))} Celsius`;
+    newStory = newStory.replace("300 pounds", weight);
+    newStory = newStory.replace("94 Fahrenheit", temperature);
+  }
+
+  story.textContent = newStory;
+  story.style.visibility = "visible";
+}
+```
+
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Arrays", "Learn_web_development/Core/Scripting/Conditionals", "Learn_web_development/Core/Scripting")}}

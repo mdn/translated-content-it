@@ -1,21 +1,21 @@
 ---
 title: Introduzione a una toolchain completa
-short-title: Esempio di toolchain
+short-title: Toolchain di esempio
 slug: Learn_web_development/Extensions/Client-side_tools/Introducing_complete_toolchain
 l10n:
-  sourceCommit: 759102220c07fb140b3e06971cd5981d8f0f134f
+  sourceCommit: 324c613947adaa5e19ad0f409c5f4c535ee8cf6b
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Client-side_tools/Package_management","Learn_web_development/Extensions/Client-side_tools/Deployment", "Learn_web_development/Extensions/Client-side_tools")}}
 
-Negli ultimi articoli della serie, consolidiamo le conoscenze sugli strumenti guidandoti attraverso il processo di costruzione di una toolchain di studio del caso. Andremo dall'impostare un ambiente di sviluppo sensato e mettere in atto strumenti di trasformazione fino a distribuire effettivamente la tua app. In questo articolo, introdurremo lo studio del caso, configureremo il nostro ambiente di sviluppo e imposteremo i nostri strumenti di trasformazione del codice.
+Negli ultimi due articoli della serie, consolideremo le conoscenze sugli strumenti illustrando il processo di creazione di una toolchain per un caso di studio di esempio. Si partirà dalla configurazione di un ambiente di sviluppo adeguato e dall'introduzione di strumenti di trasformazione, fino all'effettivo deployment dell'app. In questo articolo, presenteremo il caso di studio, configureremo l'ambiente di sviluppo e gli strumenti di trasformazione del codice.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i linguaggi di base <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        Familiarità con i linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
         <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
         <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>.
       </td>
@@ -23,115 +23,115 @@ Negli ultimi articoli della serie, consolidiamo le conoscenze sugli strumenti gu
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Consolidare ciò che abbiamo imparato finora lavorando su uno studio del caso completo
-        della toolchain.
+        Consolidare quanto appreso finora affrontando un caso di studio
+        completo su una toolchain.
       </td>
     </tr>
   </tbody>
 </table>
 
-Esistono combinazioni illimitate di strumenti e modi per usarli, quello che vedi in questo articolo e nel successivo è solo _un_ modo in cui gli strumenti presentati possono essere utilizzati per un progetto.
+Esistono davvero combinazioni illimitate di strumenti e modi per utilizzarli; ciò che viene mostrato in questo articolo e nel successivo è soltanto _uno_ dei modi in cui gli strumenti presentati possono essere usati per un progetto.
 
 > [!NOTE]
-> Vale anche la pena ripetere che non tutti questi strumenti devono essere eseguiti da riga di comando. Molti degli editor di codice di oggi (come VS Code) supportano l'integrazione di _molti_ strumenti tramite plugin.
+> Vale anche la pena ripetere che non tutti questi strumenti devono essere eseguiti dalla riga di comando. Molti degli editor di codice odierni, come VS Code, offrono il supporto di integrazione per _moltissimi_ strumenti tramite plugin.
 
-## Introduzione al nostro case study
+## Presentazione del caso di studio
 
-La toolchain che stiamo creando in questo articolo verrà utilizzata per costruire e distribuire un mini-sito che visualizza dati sul repository [mdn/content](https://github.com/mdn/content), ricavando i suoi dati dall'[API di GitHub](https://docs.github.com/en/rest/metrics/community).
+La toolchain creata in questo articolo sarà utilizzata per creare e distribuire un mini-sito che visualizza dati sul repository [mdn/content](https://github.com/mdn/content), ottenendo i dati dalla [GitHub API](https://docs.github.com/en/rest/metrics/community).
 
-## Strumenti utilizzati nella nostra toolchain
+## Strumenti usati nella toolchain
 
-In questo articolo useremo i seguenti strumenti e funzionalità:
+In questo articolo verranno usati gli strumenti e le funzionalità seguenti:
 
-- [JSX](https://react.dev/learn/writing-markup-with-jsx), un set di estensioni di sintassi relative a [React](https://react.dev/) che ti permettono di fare cose come definire strutture di componenti dentro JavaScript. Non sarà necessario conoscere React per seguire questo tutorial, ma lo abbiamo incluso per darti un'idea di come un linguaggio web non nativo potrebbe essere integrato in una toolchain.
-- Le ultime caratteristiche del JavaScript integrato (al momento della scrittura), come [`import`](/it/docs/Web/JavaScript/Reference/Statements/import).
-- Utili strumenti di sviluppo come [Prettier](https://prettier.io/) per la formattazione e [ESLint](https://eslint.org/) per il linting.
-- [PostCSS](https://postcss.org/) per fornire capacità di annidamento CSS.
-- [Vite](https://vite.dev/) per costruire e minimizzare il nostro codice, e per scrivere automaticamente una serie di contenuti di file di configurazione per noi.
-- [GitHub](/it/docs/Learn_web_development/Core/Version_control) per gestire il controllo del codice sorgente e per distribuire eventualmente il nostro sito (utilizzando GitHub Pages).
+- [JSX](https://react.dev/learn/writing-markup-with-jsx), un insieme di estensioni della sintassi correlate a [React](https://react.dev/) che consentono di fare cose come definire strutture di componenti all'interno di JavaScript. Non è necessario conoscere React per seguire questo tutorial, ma è stato incluso per dare un'idea di come un linguaggio web non nativo possa essere integrato in una toolchain.
+- Le più recenti funzionalità integrate di JavaScript, al momento della scrittura, come [`import`](/it/docs/Web/JavaScript/Reference/Statements/import).
+- Strumenti di sviluppo utili come [Prettier](https://prettier.io/) per la formattazione ed [ESLint](https://eslint.org/) per il linting.
+- [PostCSS](https://postcss.org/) per fornire funzionalità di nesting CSS.
+- [Vite](https://vite.dev/) per creare e minimizzare il codice e per scrivere automaticamente per noi gran parte del contenuto dei file di configurazione.
+- [GitHub](/it/docs/Learn_web_development/Core/Version_control) per gestire il controllo del codice sorgente e infine distribuire il sito, usando GitHub Pages.
 
-Potresti non essere familiare con tutte le funzionalità e strumenti sopra elencati o cosa stanno facendo, ma non preoccuparti — spiegheremo ogni parte man mano che procederemo con questo articolo.
+Potrebbe non esserci familiarità con tutte le funzionalità e gli strumenti precedenti o con ciò che fanno, ma niente panico: ogni parte verrà spiegata nel corso dell'articolo.
 
-## Toolchain e la loro complessità intrinseca
+## Toolchain e complessità intrinseca
 
-Come con qualsiasi catena, più collegamenti hai nella tua toolchain, più complessa e potenzialmente fragile diventa — ad esempio potrebbe essere più complessa da configurare e più facile da rompere. Al contrario, meno collegamenti hai, più resiliente è probabile che sia la toolchain.
+Come per qualsiasi catena, più anelli sono presenti nella toolchain, più questa risulta complessa e potenzialmente fragile: per esempio, potrebbe essere più complessa da configurare e più facile da compromettere. Al contrario, meno anelli sono presenti, più probabilmente la toolchain sarà resiliente.
 
-Tutti i progetti web saranno diversi, e bisogna considerare quali parti della toolchain sono necessarie e valutarle attentamente.
+Tutti i progetti web sono diversi e occorre valutare quali parti della toolchain siano necessarie, considerando attentamente ciascuna parte.
 
-La toolchain più piccola è quella che non ha collegamenti. Codificheresti manualmente l'HTML, useresti "JavaScript puro" (cioè senza framework o linguaggi intermedi) e caricheresti manualmente tutto su un server per l'hosting.
+La toolchain più piccola è quella che non ha alcun anello. Si scriverebbe manualmente l'HTML, si userebbe "vanilla JavaScript" — cioè nessun framework o linguaggio intermedio — e si caricherebbe tutto manualmente su un server per l'hosting.
 
-Tuttavia, requisiti software più complicati probabilmente trarranno beneficio dall'uso di strumenti per aiutare a semplificare il processo di sviluppo. Inoltre, è opportuno includere test prima di distribuire al server di produzione per garantire che il software funzioni come previsto — sembra già una toolchain necessaria.
+Tuttavia, requisiti software più complessi probabilmente beneficeranno dell'uso di strumenti che semplificano il processo di sviluppo. Inoltre, è consigliabile includere test prima del deployment sul server di produzione, per assicurarsi che il software funzioni come previsto: questa sembra già una toolchain necessaria.
 
-Nel nostro progetto di esempio, utilizzeremo una toolchain appositamente progettata per supportare il nostro sviluppo software e supportare le scelte tecniche effettuate durante la fase di progettazione del software. Eviteremo tuttavia qualsiasi strumento superfluo, con l'obiettivo di mantenere la complessità al minimo.
+Per il progetto di esempio, verrà utilizzata una toolchain progettata specificamente per facilitare lo sviluppo software e supportare le scelte tecniche effettuate durante la fase di progettazione del software. Verrà però evitato qualsiasi strumento superfluo, con l'obiettivo di mantenere la complessità al minimo.
 
 ## Verifica dei prerequisiti
 
-Dovresti avere la maggior parte dei pezzi di software già a disposizione se hai seguito i capitoli precedenti. Ecco cosa dovresti avere prima di procedere ai veri passaggi di configurazione. Devono essere eseguiti solo una volta e non è necessario ripeterli per progetti futuri.
+La maggior parte del software dovrebbe già essere disponibile se sono stati seguiti i capitoli precedenti. Ecco cosa occorre avere prima di procedere ai passaggi di configurazione veri e propri. Questi devono essere eseguiti una sola volta e non devono essere ripetuti per progetti futuri.
 
 ### Creazione di un account GitHub
 
-Oltre agli strumenti che installeremo e che contribuiscono alla nostra toolchain, sarà necessario creare un account con GitHub se desideri completare il tutorial. Tuttavia, puoi comunque seguire la parte di sviluppo locale senza di esso. Come menzionato in precedenza, GitHub è un servizio di repository di codice sorgente che aggiunge funzionalità comunitarie come il tracciamento dei problemi, il monitoraggio delle versioni del progetto e molto altro. Nel prossimo capitolo, pubblicheremo su un repository di codice GitHub, il che causerà un effetto a cascata che (dovrebbe) distribuire tutto il software su un sito web.
+Oltre agli strumenti che verranno installati e che contribuiscono alla toolchain, occorre creare un account GitHub per completare il tutorial. È comunque possibile seguire la parte relativa allo sviluppo locale senza un account. Come già detto, GitHub è un servizio di repository di codice sorgente che aggiunge funzionalità di comunità come il tracciamento dei problemi, il monitoraggio delle release dei progetti e molto altro. Nel capitolo successivo, verrà eseguito il push a un repository di codice GitHub, causando un effetto a cascata che dovrebbe distribuire tutto il software in una sede sul web.
 
-Iscriviti a [GitHub](https://github.com/) cliccando sul link _Sign Up_ nella homepage se non hai già un account e segui le istruzioni.
+Registrarsi a [GitHub](https://github.com/) facendo clic sul collegamento _Sign Up_ nella homepage, se non si possiede già un account, quindi seguire le istruzioni.
 
 ### Installazione di git
 
-Installeremo un altro software, git, per aiutare con il controllo delle revisioni.
+Verrà installato un altro software, git, per facilitare il controllo delle revisioni.
 
-È possibile che tu abbia sentito parlare di "git" prima. [Git](https://git-scm.com/) è attualmente lo strumento di controllo delle revisioni del codice sorgente più popolare a disposizione degli sviluppatori — il controllo delle revisioni offre molti vantaggi, come un modo per eseguire il backup del proprio lavoro in un luogo remoto e un meccanismo per lavorare in team sullo stesso progetto senza il timore di sovrascrivere il codice degli altri.
+È possibile che si sia già sentito parlare di "git". [Git](https://git-scm.com/) è attualmente lo strumento di controllo delle revisioni del codice sorgente più diffuso tra gli sviluppatori. Il controllo delle revisioni offre molti vantaggi, come un modo per eseguire il backup del lavoro in una posizione remota e un meccanismo per lavorare in team sullo stesso progetto senza il timore di sovrascrivere il codice altrui.
 
-Potrebbe essere ovvio per alcuni, ma è bene ripetere: Git non è la stessa cosa di GitHub. Git è lo strumento di controllo delle revisioni, mentre [GitHub](https://github.com/) è un archivio online per i repository git (più una serie di strumenti utili per lavorarci). Nota che, sebbene stiamo usando GitHub in questo capitolo, ci sono diverse alternative tra cui [GitLab](https://about.gitlab.com/) e [Bitbucket](https://www.atlassian.com/software/bitbucket), e potresti persino ospitare i tuoi repository git.
+Potrebbe essere ovvio per alcuni, ma vale la pena ripeterlo: Git non è la stessa cosa di GitHub. Git è lo strumento di controllo delle revisioni, mentre [GitHub](https://github.com/) è un archivio online per repository git, oltre a numerosi strumenti utili per lavorare con essi. Si noti che, anche se in questo capitolo viene usato GitHub, esistono varie alternative, tra cui [GitLab](https://about.gitlab.com/) e [Bitbucket](https://www.atlassian.com/software/bitbucket); è persino possibile ospitare i propri repository git.
 
-Usare il controllo delle revisioni nei tuoi progetti e includerlo come parte della toolchain ti aiuterà a gestire l'evoluzione del tuo codice. Offre un modo per "commettere" blocchi di lavoro man mano che procedi, insieme a commenti come "Implementata nuova funzionalità X", o "Risolto bug Z grazie alle modifiche Y".
+Usare il controllo delle revisioni nei progetti e includerlo nella toolchain aiuta a gestire l'evoluzione del codice. Offre un modo per eseguire il "commit" di blocchi di lavoro durante l'avanzamento, insieme a commenti come "Implementata nuova funzionalità X" oppure "Bug Z corretto grazie alle modifiche Y".
 
-Il controllo delle revisioni può anche permetterti di _ramificare_ il codice del tuo progetto, creando una versione separata e provando nuove funzionalità senza che queste modifiche influenzino il tuo codice originale.
+Il controllo delle revisioni consente anche di creare un _branch_ del codice del progetto, creando una versione separata su cui provare nuove funzionalità, senza che tali modifiche influenzino il codice originale.
 
-Infine, può aiutarti a annullare modifiche o ripristinare il codice a un momento in cui "funzionava" se è stato introdotto un errore da qualche parte e hai difficoltà a risolverlo — qualcosa che tutti gli sviluppatori devono fare di tanto in tanto!
+Infine, può aiutare ad annullare modifiche o a ripristinare il codice a un momento "in cui funzionava" se è stato introdotto un errore da qualche parte e risulta difficile correggerlo: qualcosa che tutti gli sviluppatori devono fare di tanto in tanto.
 
-Git può essere [scaricato e installato attraverso il sito web di git-scm](https://git-scm.com/downloads) — scarica l'installer pertinente per il tuo sistema, eseguilo e segui le istruzioni sullo schermo. Questo è tutto ciò che devi fare per ora.
+Git può essere [scaricato e installato tramite il sito web git-scm](https://git-scm.com/downloads/): scaricare l'installer adatto al sistema, eseguirlo e seguire le istruzioni sullo schermo. Per ora è tutto ciò che occorre fare.
 
-Puoi interagire con git in diversi modi, dai comandi tramite riga di comando, all'uso di un'app GUI git per emettere gli stessi comandi premendo pulsanti, o persino direttamente all'interno del tuo editor di codice, come visto nell'esempio di Visual Studio Code qui sotto:
+È possibile interagire con git in diversi modi: dalla riga di comando per impartire comandi, all'uso di un'[app GUI per git](https://git-scm.com/downloads/guis) per impartire gli stessi comandi premendo pulsanti, oppure direttamente dall'interno dell'editor di codice, come mostrato nell'esempio di Visual Studio Code seguente:
 
-![Integrazione di Git mostrata in VS Code](vscode-git.png)
+![Integrazione Git mostrata in VS Code](vscode-git.png)
 
 ### Progetto esistente
 
-Costruiremo sul progetto che abbiamo già iniziato nel capitolo precedente, quindi assicurati di seguire le istruzioni in [Package management](/it/docs/Learn_web_development/Extensions/Client-side_tools/Package_management) per configurare prima il progetto. Per ricapitolare, ecco cosa dovresti avere:
+Si lavorerà sul progetto già avviato nel capitolo precedente, quindi assicurarsi di seguire le istruzioni in [Gestione dei pacchetti](/it/docs/Learn_web_development/Extensions/Client-side_tools/Package_management) per configurare prima il progetto. Per ricapitolare, ecco cosa dovrebbe essere disponibile:
 
 - Node.js e npm installati.
-- Un nuovo progetto chiamato `npm-experiment` (o un altro nome).
-- Vite installato come dipendenza di sviluppo.
-- Il pacchetto `plotly.js-dist-min` installato come dipendenza.
+- Un nuovo progetto chiamato `npm-experiment` o con un altro nome.
+- Vite installato come dev dependency.
+- Il pacchetto `plotly.js-dist-min` installato come dependency.
 - Alcuni script personalizzati definiti in package.json.
 - I file `index.html` e `src/main.jsx` creati.
 
-Come abbiamo discusso in [Capitolo 1](/it/docs/Learn_web_development/Extensions/Client-side_tools/Overview), la toolchain verrà strutturata nelle seguenti fasi:
+Come illustrato nel [Capitolo 1](/it/docs/Learn_web_development/Extensions/Client-side_tools/Overview), la toolchain sarà strutturata nelle seguenti fasi:
 
-- **Ambiente di sviluppo**: Gli strumenti che sono più fondamentali per eseguire il tuo codice. Questa parte è già configurata nel capitolo precedente.
-- **Rete di sicurezza**: Rende l'esperienza di sviluppo del software stabile e più efficiente. Potremmo anche riferirci a questa come al nostro ambiente di sviluppo.
-- **Trasformazione**: Strumenti che ci permettono di usare le ultime funzionalità di un linguaggio (e.g., JavaScript) o un altro linguaggio completamente (e.g., JSX o TypeScript) nel nostro processo di sviluppo, e poi trasforma il nostro codice in modo che la versione di produzione funzioni ancora su un'ampia varietà di browser, moderni e vecchi.
-- **Post sviluppo**: Strumenti che entrano in gioco dopo aver terminato la parte principale dello sviluppo per garantire che il tuo software arrivi sul web e continui a funzionare. In questo caso di studio vedremo come aggiungere test al tuo codice e distribuire la tua app utilizzando GitHub Pages in modo che sia disponibile per tutto il web.
+- **Ambiente di sviluppo**: gli strumenti più fondamentali per eseguire il codice. Questa parte è già stata configurata nel capitolo precedente.
+- **Rete di sicurezza**: rende l'esperienza di sviluppo software stabile e più efficiente. Si può fare riferimento a questa parte anche come ambiente di sviluppo.
+- **Trasformazione**: strumenti che consentono di usare le funzionalità più recenti di un linguaggio, ad esempio JavaScript, o un linguaggio completamente diverso, ad esempio JSX o TypeScript, nel processo di sviluppo, quindi trasformano il codice affinché la versione di produzione continui a funzionare su un'ampia varietà di browser, moderni e meno recenti.
+- **Post-sviluppo**: strumenti che entrano in gioco dopo aver completato la parte principale dello sviluppo, per assicurarsi che il software arrivi sul web e continui a funzionare. In questo caso di studio verranno esaminati l'aggiunta di test al codice e il deployment dell'app tramite GitHub Pages, affinché sia disponibile sul web per tutti.
 
-Iniziamo a lavorare su questi, a partire dal nostro ambiente di sviluppo. Seguiremo gli stessi passaggi di come verrebbe impostato un progetto reale, quindi in futuro, se stai configurando un nuovo progetto, puoi fare riferimento a questo capitolo e seguire nuovamente i passaggi.
+Iniziamo a lavorare su questi aspetti, partendo dall'ambiente di sviluppo. Verranno seguiti gli stessi passaggi impiegati per configurare un progetto reale, così che in futuro, durante la configurazione di un nuovo progetto, sarà possibile fare riferimento a questo capitolo e seguire nuovamente i passaggi.
 
 ## Creazione di un ambiente di sviluppo
 
-Questa parte della toolchain a volte è vista come un ritardo rispetto al lavoro effettivo, e può essere molto facile cadere in un "buco del coniglio" di strumenti in cui si passa molto tempo a cercare di ottenere l'ambiente "proprio giusto".
+A volte questa parte della toolchain viene considerata un ritardo del lavoro effettivo, ed è molto facile cadere in una "tana del coniglio" degli strumenti, spendendo molto tempo per rendere l'ambiente "perfetto".
 
-Ma puoi vederlo nello stesso modo in cui imposteresti il tuo ambiente di lavoro fisico. La sedia deve essere comoda e posizionata in modo da aiutare la tua postura. Hai bisogno di energia, Wi-Fi e porte USB! Potrebbero esserci decorazioni importanti o musica che aiutano il tuo stato mentale — sono tutte importanti per fare il tuo lavoro migliore possibile e dovrebbero anche avere bisogno di essere impostate una sola volta, se fatte correttamente.
+Tuttavia, è possibile guardare a questo processo nello stesso modo in cui si configura l'ambiente di lavoro fisico. La sedia deve essere comoda e collocata in una buona posizione per favorire la postura. Servono alimentazione, Wi-Fi e porte USB. Potrebbero essere importanti decorazioni o musica che aiutano lo stato mentale: tutti questi elementi sono importanti per svolgere il miglior lavoro possibile e, se configurati correttamente, dovrebbero richiedere una sola configurazione.
 
-Allo stesso modo, l'impostazione del tuo ambiente di sviluppo, se fatta bene, deve essere fatta solo una volta e dovrebbe essere riutilizzabile in molti progetti futuri. Vorrai probabilmente rivedere questa parte della toolchain in modo semi-regolare e considerare se ci sono aggiornamenti o modifiche che dovresti introdurre, ma non dovrebbe essere necessario troppo spesso.
+Allo stesso modo, configurare bene l'ambiente di sviluppo richiede di farlo una sola volta e dovrebbe renderlo riutilizzabile in molti progetti futuri. Probabilmente sarà opportuno riesaminare questa parte della toolchain a intervalli semi-regolari e valutare se introdurre aggiornamenti o modifiche, ma ciò non dovrebbe essere necessario troppo spesso.
 
-La tua toolchain dipenderà dalle tue esigenze, ma per questo esempio di una toolchain abbastanza completa, gli strumenti che verranno installati/inzializzati inizialmente saranno:
+La toolchain dipenderà dalle esigenze specifiche, ma per questo esempio di una toolchain abbastanza completa, gli strumenti che verranno installati o inizializzati in anticipo sono:
 
-- Strumenti di installazione delle librerie — per l'aggiunta di dipendenze.
+- Strumenti per l'installazione di librerie, per aggiungere dependency.
 - Controllo delle revisioni del codice.
-- Strumenti per il riordino del codice — per riordinare JavaScript, CSS e HTML.
-- Strumenti di linting del codice — per il linting del nostro codice.
+- Strumenti per riordinare il codice, per riordinare JavaScript, CSS e HTML.
+- Strumenti di linting del codice, per eseguire il linting del codice.
 
-### Strumenti di installazione delle librerie
+### Strumenti per l'installazione di librerie
 
-Lo hai già fatto, ma per facile riferimento, ecco i comandi (eseguiti nella radice della directory `npm-experiment`) per inizializare un pacchetto npm e installare le dipendenze necessarie:
+Questa operazione è già stata eseguita, ma per praticità, ecco i comandi da eseguire nella radice della directory `npm-experiment` per inizializzare un pacchetto npm e installare le dependency necessarie:
 
 ```bash
 npm init
@@ -141,30 +141,30 @@ npm install plotly.js-dist-min
 
 ### Controllo delle revisioni del codice
 
-Inserisci il seguente comando per iniziare a far funzionare la funzionalità di controllo del codice sorgente di git nella directory:
+Inserire il comando seguente per avviare la funzionalità di controllo del codice sorgente di git nella directory:
 
 ```bash
 git init
 ```
 
-Per impostazione predefinita, git traccia le modifiche di tutti i file. Tuttavia, ci sono alcuni file generati che non abbiamo bisogno di tracciare, poiché non sono codice che abbiamo scritto e possono essere rigenerati in qualsiasi momento. Possiamo dire a git di ignorare questi file creando un file `.gitignore` nella radice della directory del progetto. Aggiungi il seguente contenuto al file:
+Per impostazione predefinita, git tiene traccia delle modifiche di tutti i file. Esistono tuttavia alcuni file generati che non è necessario tracciare, poiché non sono codice scritto manualmente e possono essere rigenerati in qualsiasi momento. È possibile comunicare a git di ignorare questi file creando un file `.gitignore` nella radice della directory del progetto. Aggiungere il seguente contenuto al file:
 
 ```plain
 node_modules
 dist
 ```
 
-### Strumenti per il riordino del codice
+### Strumenti per riordinare il codice
 
-Utilizzeremo Prettier, che abbiamo incontrato per la prima volta nel Capitolo 2, per ordinare il nostro codice in questo progetto. Installeremo di nuovo Prettier in questo progetto. Installalo usando il seguente comando:
+Verrà usato Prettier, incontrato per la prima volta nel Capitolo 2, per riordinare il codice di questo progetto. Prettier verrà installato nuovamente nel progetto. Installarlo usando il comando seguente:
 
 ```bash
 npm install --save-dev prettier
 ```
 
-Nota di nuovo che stiamo usando `--save-dev` per aggiungerlo come dipendenza di sviluppo, perché lo usiamo solo durante lo sviluppo.
+Si noti nuovamente che viene usato `--save-dev` per aggiungerlo come dev dependency, perché viene utilizzato solo durante lo sviluppo.
 
-Come molti strumenti creati più di recente, Prettier viene fornito con "default sensati". Ciò significa che potrai usare Prettier senza dover configurare nulla (se sei soddisfatto dei [default](https://prettier.io/docs/configuration.html)). Questo ti permette di occuparti di ciò che è importante: il lavoro creativo. Per dimostrazione, aggiungeremo un file di configurazione. Crea un file nella radice della tua directory `npm-experiment` chiamato `.prettierrc.json`. Aggiungi il seguente contenuto:
+Come molti strumenti creati più di recente, Prettier è dotato di "impostazioni predefinite sensate". Ciò significa che sarà possibile usare Prettier senza configurare nulla, se si è soddisfatti delle [impostazioni predefinite](https://prettier.io/docs/configuration.html). Questo consente di concentrarsi su ciò che è importante: il lavoro creativo. A scopo dimostrativo, verrà aggiunto un file di configurazione. Creare un file nella radice della directory `npm-experiment` chiamato `.prettierrc.json`. Aggiungere il seguente contenuto:
 
 ```json
 {
@@ -172,80 +172,83 @@ Come molti strumenti creati più di recente, Prettier viene fornito con "default
 }
 ```
 
-Con questa impostazione, Prettier stamperà il `>` di un tag di apertura HTML (HTML, JSX, Vue, Angular) multi-line alla fine dell'ultima linea invece di essere da solo sulla linea successiva. Questo è il formato che lo stesso MDN utilizza. Puoi trovare ulteriori informazioni su [come configurare Prettier](https://prettier.io/docs/configuration.html) nella sua documentazione.
+Con questa impostazione, Prettier stamperà il `>` di un tag di apertura HTML su più righe, ossia HTML, JSX, Vue o Angular, alla fine dell'ultima riga anziché lasciarlo da solo sulla riga successiva. Questo è il formato utilizzato da MDN stesso. Per ulteriori informazioni sulla [configurazione di Prettier](https://prettier.io/docs/configuration.html), consultare la relativa documentazione.
 
-Per impostazione predefinita, Prettier formatta tutti i file che specifichi. Tuttavia, di nuovo, non abbiamo bisogno di formattare i file generati, o potrebbero esserci certi codici legacy che non vogliamo toccare. Possiamo dire a Prettier di ignorare sempre questi file creando un `.prettierignore` file nella radice della directory del progetto. Aggiungi il seguente contenuto al file:
+Per impostazione predefinita, Prettier formatta tutti i file specificati. Tuttavia, ancora una volta, non è necessario formattare i file generati, oppure potrebbe esserci del codice legacy che non si desidera modificare. È possibile dire a Prettier di ignorare sempre questi file creando un file `.prettierignore` nella radice della directory del progetto. Aggiungere il seguente contenuto al file:
 
 ```plain
 node_modules
 dist
 ```
 
-Ha lo stesso contenuto del `.gitignore`, ma in un progetto reale, potresti voler ignorare file diversi per Prettier di quanto fai per git.
+Il contenuto è lo stesso di `.gitignore`, ma in un progetto reale si potrebbero voler ignorare file diversi per Prettier rispetto a git.
 
-Ora che Prettier è installato e configurato, eseguire e ordinare il tuo codice può essere fatto da riga di comando, ad esempio:
+Ora che Prettier è installato e configurato, è possibile eseguire la formattazione e il riordino del codice dalla riga di comando, ad esempio:
 
 ```bash
 npx prettier --write ./index.html
 ```
 
 > [!NOTE]
-> Nel comando sopra, usiamo Prettier con il flag `--write`. Prettier lo interpreta come "se c'è qualche problema nel formato del mio codice, vai avanti e risolvilo, quindi salva il mio file". Questo va bene per il nostro processo di sviluppo, ma possiamo anche usare `prettier` senza il flag e controllerà solo il file. Controllare il file (e non salvarlo) è utile per scopi come i controlli che si eseguono prima di un rilascio — cioè "non rilasciare nessun codice che non sia stato formattato correttamente."
+> Nel comando precedente, Prettier viene usato con il flag `--write`. Prettier interpreta questo flag nel senso di "se nel formato del codice c'è qualche problema, correggilo e poi salva il file". Questo va bene per il processo di sviluppo, ma è anche possibile usare `prettier` senza il flag e controllerà soltanto il file. Controllare il file, senza salvarlo, è utile per controlli eseguiti prima di una release, ad esempio: "non distribuire codice che non sia stato formattato correttamente".
 
-Puoi anche sostituire `./index.html` con qualsiasi altro file o cartella per formattarli. Ad esempio, `.` formatterà tutto nella directory corrente. Nel caso potessi dimenticare la sintassi, puoi aggiungerlo anche come uno script personalizzato nel tuo package.json:
+È inoltre possibile sostituire `./index.html` con qualsiasi altro file o cartella per formattarli. Per esempio, `.` formatterà tutto ciò che si trova nella directory corrente. Per evitare di dimenticare la sintassi, è possibile aggiungerla anche come script personalizzato in package.json:
 
 ```json
-"scripts": {
-  // …
-  "format": "prettier --write ."
-},
+{
+  "scripts": {
+    // …
+    "format": "prettier --write ."
+  }
+}
 ```
 
-Ora puoi eseguire il seguente comando per formattare la directory:
+Ora è possibile eseguire quanto segue per formattare la directory:
 
 ```bash
 npm run format
 ```
 
-Può comunque essere arduo eseguire il comando ogni volta che cambiamo qualcosa, e ci sono alcuni modi per automatizzare questo processo:
+Può comunque essere oneroso eseguire il comando ogni volta che viene modificato qualcosa, ed esistono alcuni modi per automatizzare questo processo:
 
-- Usare "git hook" speciali per testare se il codice è formattato prima di un commit.
-- Usare plugin per editor di codice per eseguire i comandi di Prettier ogni volta che un file viene salvato.
+- Usare speciali "git hook" per verificare se il codice è formattato prima di un commit.
+- Usare plugin dell'editor di codice per eseguire comandi Prettier ogni volta che viene salvato un file.
 
 > [!NOTE]
-> Cos'è un git hook? Git (non GitHub) fornisce un sistema che ci permette di allegare azioni pre e post ai compiti che eseguiamo con git (come il commit del tuo codice). Sebbene i git hook possano essere un po' troppo complicati (secondo l'opinione di questo autore), una volta impostati possono essere molto potenti. Se sei interessato a usare i hook, [Husky](https://github.com/typicode/husky) è una via enormemente semplificata per usare i hook.
+> Cos'è un git hook? Git, non GitHub, fornisce un sistema che permette di associare azioni precedenti e successive alle attività eseguite con git, come il commit del codice. Sebbene i git hook possano risultare un po' troppo complicati, secondo l'autore, una volta configurati possono essere molto potenti. Per chi fosse interessato a usare gli hook, [Husky](https://github.com/typicode/husky) offre un percorso notevolmente semplificato.
 
-Per VS Code, un'estensione utile è [Prettier Code Formatter by Esben Petersen](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), che consente a VS Code di formattare automaticamente il codice al momento del salvataggio. Ciò significa che qualsiasi file nel progetto su cui stiamo lavorando viene formattato in modo piacevole, inclusi HTML, CSS, JavaScript, JSON, markdown e altro. Tutto ciò di cui l'editor ha bisogno è "Format On Save" abilitato.
+Per VS Code, un'estensione utile è [Prettier Code Formatter di Esben Petersen](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode), che consente a VS Code di formattare automaticamente il codice al salvataggio. Ciò significa che ogni file del progetto su cui si lavora viene formattato correttamente, inclusi HTML, CSS, JavaScript, JSON, markdown e altro ancora. L'editor deve soltanto avere abilitata l'opzione "Format On Save".
 
 ### Strumenti di linting del codice
 
-Il linting aiuta con la qualità del codice, ma è anche un modo per catturare potenziali errori in anticipo durante lo sviluppo. È un ingrediente chiave di una buona toolchain e quello che molti progetti di sviluppo includeranno di default.
+Il linting aiuta la qualità del codice, ma è anche un modo per rilevare potenziali errori più presto durante lo sviluppo. È un ingrediente fondamentale di una buona toolchain e molti progetti di sviluppo lo includono per impostazione predefinita.
 
-Gli strumenti di linting per lo sviluppo web esistono principalmente per JavaScript (anche se ce ne sono alcuni disponibili per HTML e CSS). Questo ha senso: se viene utilizzato un elemento HTML sconosciuto o una proprietà CSS non valida, a causa della natura resiliente di questi due linguaggi, è improbabile che qualcosa si rompa. JavaScript è molto più fragile — chiamare per errore una funzione che non esiste, ad esempio, provoca la rottura del tuo JavaScript; il linting del JavaScript è quindi molto importante, specialmente per progetti di grandi dimensioni.
+Gli strumenti di linting per lo sviluppo web esistono soprattutto per JavaScript, anche se ne esistono alcuni per HTML e CSS. Questo ha senso: se viene usato un elemento HTML sconosciuto o una proprietà CSS non valida, a causa della natura resiliente di questi due linguaggi è improbabile che qualcosa si interrompa. JavaScript è molto più fragile: chiamare per errore una funzione che non esiste, per esempio, causa l'interruzione di JavaScript. Eseguire il linting di JavaScript è quindi molto importante, specialmente per i progetti più grandi.
 
-Lo strumento di riferimento per il linting del JavaScript è [ESLint](https://eslint.org/). È uno strumento estremamente potente e versatile, ma può essere difficile da configurare correttamente e potresti facilmente consumare molte ore cercando di ottenere una configurazione _proprio giusta_!
+Lo strumento di riferimento per il linting JavaScript è [ESLint](https://eslint.org/). È uno strumento estremamente potente e versatile, ma può essere difficile configurarlo correttamente e si potrebbero facilmente consumare molte ore per ottenere una configurazione _perfetta_.
 
-ESLint è installato tramite npm, quindi come discusso nel Capitolo 2, hai la possibilità di installare questo strumento localmente o globalmente, ma è altamente raccomandata un'installazione locale, perché hai bisogno di un file di configurazione per ciascun progetto comunque. Ricorda il comando da eseguire:
+ESLint viene installato tramite npm, quindi, come discusso nel Capitolo 2, è possibile scegliere se installare lo strumento localmente o globalmente, ma è vivamente consigliata un'installazione locale, poiché è comunque necessario avere un file di configurazione per ogni progetto. Ricordare il comando da eseguire:
 
 ```bash
-npm install --save-dev eslint@8 @eslint/js globals
+npm install --save-dev eslint@9 @eslint/js@9 globals
 ```
 
-> **Nota:** `eslint@8` installa la versione 8 di ESLint, mentre l'ultima è la v9. Questo perché `eslint-plugin-react`, che utilizzeremo più tardi, [non supporta ancora la v9](https://github.com/jsx-eslint/eslint-plugin-react/issues/3699).
+> [!NOTE]
+> Lo specificatore `@9` installa la release più recente della versione major v9. Mantenere allineate le versioni major di `eslint` e `@eslint/js`, affinché le configurazioni predefinite rimangano compatibili. Al momento della scrittura, l'ultima versione di ESLint è v10. Tuttavia, di solito i plugin impiegano un po' di tempo per recuperare, quindi per ora viene mantenuta la v9. Quando problemi come la [compatibilità di `eslint-plugin-react` con ESLint v10](https://github.com/jsx-eslint/eslint-plugin-react/issues/3977) saranno risolti, sono benvenuti contributi per aggiornare l'articolo all'uso delle versioni più recenti.
 
-Il pacchetto `@eslint/js` fornisce una configurazione ESLint predefinita, mentre il pacchetto `globals` fornisce un elenco di nomi globali noti in ciascun ambiente. Li useremo più tardi nella configurazione. Fuori dalla scatola, ESLint si lamenterà se non riesce a trovare il file di configurazione se lo esegui con `npx eslint`:
+Il pacchetto `@eslint/js` fornisce una configurazione ESLint predefinita, mentre il pacchetto `globals` fornisce un elenco di nomi globali noti in ogni ambiente. Verranno usati successivamente nella configurazione. Senza ulteriori configurazioni, ESLint segnalerà di non trovare il file di configurazione se viene eseguito con `npx eslint`:
 
 ```plain
 Oops! Something went wrong! :(
 
-ESLint: 8.57.0
+ESLint: 9.39.4
 
-ESLint couldn't find a configuration file. To set up a configuration file for this project, please run:
+ESLint couldn't find an eslint.config.(js|mjs|cjs) file.
 
 ...
 ```
 
-Ecco un esempio minimale che funziona (in un file chiamato `eslint.config.js`, nella radice del progetto):
+Ecco un esempio minimo funzionante, in un file chiamato `eslint.config.js` nella radice del progetto:
 
 ```js
 import js from "@eslint/js";
@@ -267,27 +270,26 @@ export default [
 ];
 ```
 
-La configurazione ESLint sopra:
+La configurazione ESLint precedente:
 
-- Abilita le impostazioni "consigliate" di ESLint
-- Informa ESLint di ignorare i file generati come abbiamo già fatto per gli altri strumenti
-- Informa ESLint di includere i file `.js` e `.jsx` nel linting
-- Informa ESLint sull'esistenza delle variabili globali del browser (utilizzate dalle regole di linting come `no-undef` per controllare variabili inesistenti).
+- Abilita le impostazioni ESLint "recommended".
+- Indica a ESLint di ignorare i file generati, come già fatto per gli altri strumenti.
+- Indica a ESLint di includere i file `.js` e `.jsx` nel linting.
+- Indica a ESLint l'esistenza delle variabili globali del browser, usate da regole di lint come `no-undef` per controllare variabili inesistenti.
 
-Il parser ESLint non comprende il JSX per impostazione predefinita, e le sue regole consigliate non gestiscono specificità semanticamente corretta per React. Pertanto, aggiungeremo un po' più di configurazione per fargli supportare correttamente JSX e React. Prima installa `eslint-plugin-react` e `eslint-plugin-react-hooks`, che forniscono regole per scrivere corrette ed idiomatiche il codice React:
+Il parser ESLint non comprende JSX per impostazione predefinita e le relative regole consigliate non gestiscono la semantica specifica di React. Verrà quindi aggiunta ulteriore configurazione per supportare correttamente JSX e React. Prima di tutto, installare `eslint-plugin-react` ed `eslint-plugin-react-hooks`, che forniscono regole per scrivere React corretto e idiomatico:
 
 ```bash
 npm install --save-dev eslint-plugin-react eslint-plugin-react-hooks
 ```
 
-Quindi, aggiorna il file di configurazione ESLint per includere la configurazione consigliata di questi plugin, che carica entrambe le regole consigliate e imposta le opzioni del parser per JSX:
+Quindi aggiornare il file di configurazione ESLint per includere la configurazione consigliata di questi plugin, che carica sia le regole consigliate sia le opzioni del parser per JSX:
 
 ```js
 import js from "@eslint/js";
 import globals from "globals";
-import reactRecommended from "eslint-plugin-react/configs/recommended.js";
-import reactJSXRuntime from "eslint-plugin-react/configs/jsx-runtime.js";
-import reactHooksPlugin from "eslint-plugin-react-hooks";
+import reactPlugin from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 
 export default [
   js.configs.recommended,
@@ -307,43 +309,35 @@ export default [
       },
     },
   },
-  reactRecommended,
-  reactJSXRuntime,
-  {
-    plugins: {
-      "react-hooks": reactHooksPlugin,
-    },
-    rules: reactHooksPlugin.configs.recommended.rules,
-  },
+  reactPlugin.configs.flat.recommended,
+  reactPlugin.configs.flat["jsx-runtime"],
+  reactHooks.configs.flat.recommended,
 ];
 ```
 
-> [!NOTE]
-> La nostra configurazione per `eslint-plugin-react-hooks` è un po' scomoda, rispetto alle aggiunte con una sola riga per `eslint-plugin-react`. Questo perché `eslint-plugin-react-hooks` non supporta ancora il nuovo formato di configurazione ESLint. Vedi [facebook/react#28313](https://github.com/facebook/react/issues/28313) per maggiori informazioni.
+Esiste un [elenco completo delle regole ESLint](https://eslint.org/docs/latest/rules/) che può essere modificato e configurato a piacere; molte aziende e team hanno inoltre pubblicato le [proprie configurazioni ESLint](https://www.npmjs.com/search?q=keywords:eslintconfig), talvolta utili per trovare ispirazione o per sceglierne una adatta ai propri standard. Un avvertimento, tuttavia: la configurazione ESLint è una tana del coniglio molto profonda.
 
-C'è un elenco completo di [regole ESLint](https://eslint.org/docs/latest/rules/) che puoi modificare e configurare a tuo piacimento e molte aziende e team hanno pubblicato le loro [configurazioni ESLint](https://www.npmjs.com/search?q=keywords:eslintconfig), che a volte possono essere utili sia per trarre ispirazione che per selezionare una che si adatti ai tuoi standard. Una premessa però: la configurazione di ESLint è un coniglio molto profondo!
+Per semplicità, in questo capitolo non verranno esplorate tutte le funzionalità di ESLint, poiché questa configurazione funziona per il progetto e i relativi requisiti specifici. Tenere comunque presente che, se si desidera perfezionare e applicare una regola relativa all'aspetto o alla validazione del codice, è molto probabile che ciò possa essere fatto con la configurazione ESLint corretta.
 
-Per semplicità, in questo capitolo, non esploreremo tutte le funzionalità di ESLint, poiché questa configurazione funziona per il nostro progetto particolare e le sue esigenze. Tuttavia, tieni presente che se vuoi affinare e imporre una regola su come appare il tuo codice (o convalida), è molto probabile che possa essere fatto con la giusta configurazione ESLint.
-
-Come con gli altri strumenti, il supporto dell'integrazione degli editor di codice è tipicamente buono per ESLint, e potenzialmente più utile poiché può darci un feedback in tempo reale quando emergono problemi:
+Come per gli altri strumenti, il supporto di integrazione con gli editor di codice è generalmente valido per ESLint e potenzialmente più utile perché può fornire feedback in tempo reale quando emergono problemi:
 
 ![Integrazione degli errori ESLint mostrata in VS Code](eslint-error.png)
 
-A questo punto il nostro ambiente di sviluppo è completo. Ora, finalmente siamo (quasi) pronti a codificare.
+A questo punto la configurazione dell'ambiente di sviluppo è completa. Ora, finalmente, è quasi tutto pronto per scrivere codice.
 
-## Costruzione e strumenti di trasformazione
+## Strumenti di build e trasformazione
 
 ### Trasformazione JavaScript
 
-Per questo progetto, come sopra menzionato, verrà usato React, il che significa anche che JSX verrà impiegato nel codice sorgente. Il progetto impiegherà anche le ultime funzionalità di JavaScript. Un problema immediato è che nessun browser supporta nativamente JSX; è un linguaggio intermedio destinato a essere compilato in linguaggi che il browser comprende nel codice di produzione. Se il browser tenta di eseguire il sorgente JavaScript, si lamenterà immediatamente; il progetto necessita di uno strumento di costruzione per trasformare il codice sorgente in qualcosa che il browser possa consumare senza problemi.
+Per questo progetto, come già detto, verrà usato React, il che significa anche che nel codice sorgente verrà usato JSX. Il progetto utilizzerà inoltre le funzionalità JavaScript più recenti. Un problema immediato è che nessun browser supporta JSX in modo nativo: è un linguaggio intermedio destinato a essere compilato in linguaggi compresi dal browser nel codice di produzione. Se il browser tenta di eseguire il JavaScript sorgente, segnalerà immediatamente un problema; il progetto necessita di uno strumento di build per trasformare il codice sorgente in qualcosa che il browser possa usare senza problemi.
 
-Ci sono diverse opzioni per gli strumenti di trasformazione e sebbene Babel sia particolarmente popolare, in Vite, useremo un plugin integrato: `@vitejs/plugin-react`. Installalo utilizzando il seguente comando:
+Esistono diverse opzioni per gli strumenti di trasformazione e, sebbene Babel sia particolarmente diffuso, in Vite verrà usato un plugin integrato: `@vitejs/plugin-react`. Installarlo usando il comando seguente:
 
 ```bash
 npm install --save-dev @vitejs/plugin-react
 ```
 
-Non abbiamo ancora una configurazione Vite! Aggiungine una a `vite.config.js` nella radice della directory del progetto:
+Non esiste ancora una configurazione Vite. Aggiungerne una in `vite.config.js` nella radice della directory del progetto:
 
 ```js
 import { defineConfig } from "vite";
@@ -355,49 +349,49 @@ export default defineConfig({
 });
 ```
 
-Leggi la [documentazione di Vite](https://vite.dev/guide/) per maggiori informazioni su come configurare Vite. Poiché il nostro sito è distribuito su GitHub pages, sarà ospitato a `https://tuo-username.github.io/tuo-nome-repo`, quindi dovresti impostare l'opzione `base` in base al nome del tuo repository GitHub — ma puoi sempre regolarlo in seguito quando arriviamo alla [distribuzione](/it/docs/Learn_web_development/Extensions/Client-side_tools/Deployment).
+Leggere la [documentazione di Vite](https://vite.dev/guide/) per ulteriori informazioni su come configurare Vite. Poiché il sito viene distribuito su GitHub Pages, sarà ospitato all'indirizzo `https://your-username.github.io/your-repo-name`, quindi occorre impostare l'opzione `base` in base al nome del repository GitHub. È comunque possibile modificarla in seguito, quando si arriverà al [deployment](/it/docs/Learn_web_development/Extensions/Client-side_tools/Deployment).
 
 ### Trasformazione CSS
 
-Anche il nostro CSS potrebbe usare sintassi non compresa dai browser. Ad esempio, potresti usare una sintassi che è stata implementata solo nelle ultime versioni di alcuni browser, il che significa che i browser più vecchi falliranno su di essa e mostreranno uno stile rotto. Possiamo usare uno strumento per trasformare il nostro CSS in un formato che tutti i browser che puntiamo possano comprendere.
+Anche il CSS può usare sintassi non compresa dai browser. Per esempio, potrebbe essere usata una sintassi implementata solo nelle ultime versioni di alcuni browser, il che significa che i browser meno recenti non riusciranno a interpretarla e visualizzeranno stili non corretti. È possibile usare uno strumento per trasformare il CSS in un formato comprensibile da tutti i browser di destinazione.
 
-[PostCSS](https://postcss.org/) è uno strumento di post-elaborazione CSS. Rispetto agli strumenti di costruzione come [Sass](https://sass-lang.com/), PostCSS è inteso per scrivere _CSS standard_ (cioè, sintassi CSS che potrebbe essere inclusa nei browser un giorno), mentre Sass è un linguaggio personalizzato di per sé che si compila in CSS. PostCSS è più vicino al web e ha una curva di apprendimento molto più bassa. [Vite supporta PostCSS di default](https://vite.dev/guide/features.html#postcss), quindi basta [configurare PostCSS](https://github.com/postcss/postcss#usage) se si desidera compilare qualsiasi caratteristica. Dà un'occhiata al [cssdb](https://preset-env.cssdb.org/features/) per scoprire quali funzionalità sono supportate.
+[PostCSS](https://postcss.org/) è uno strumento di post-elaborazione CSS. Rispetto agli strumenti di build come [Sass](https://sass-lang.com/), PostCSS è destinato alla scrittura di CSS _standard_, ovvero sintassi CSS che potrebbe arrivare nei browser un giorno, mentre Sass è un linguaggio personalizzato a sé stante che compila in CSS. PostCSS è più vicino al web e ha una curva di apprendimento molto più bassa. [Vite supporta PostCSS per impostazione predefinita](https://vite.dev/guide/features.html#postcss), quindi è sufficiente [configurare PostCSS](https://github.com/postcss/postcss#usage) se si desidera compilare delle funzionalità. Consultare [cssdb](https://preset-env.cssdb.org/features/) per vedere quali funzionalità sono supportate.
 
-Per i nostri scopi, dimostreremo un'altra trasformazione CSS: i [moduli CSS](https://vite.dev/guide/features.html#css-modules). È uno dei modi per ottenere la _modularizzazione del CSS_. Ricorda che i selettori CSS sono tutti globali, quindi se hai un nome di classe come `.button`, tutti gli elementi con il nome di classe `button` verranno stilizzati allo stesso modo. Questo spesso porta a conflitti di nomi — immagina tutte le tue variabili JavaScript definite nello scope globale! I moduli CSS risolvono questo problema rendendo il nome della classe unico per le pagine che li utilizzano. Per capire come funziona, dopo aver scaricato il codice sorgente, puoi verificare come utilizziamo i file `.module.css`, e leggi anche la [documentazione sui moduli CSS](https://github.com/css-modules/css-modules).
+Per questo scopo, verrà mostrata un'altra trasformazione CSS: i [CSS module](https://vite.dev/guide/features.html#css-modules). È uno dei modi per ottenere la _modularizzazione CSS_. Ricordare che tutti i selettori CSS sono globali, quindi se esiste un nome di classe come `.button`, tutti gli elementi con il nome di classe `button` verranno stilizzati allo stesso modo. Ciò porta spesso a conflitti di nomi: immaginare che tutte le variabili JavaScript siano definite nello scope globale. I CSS module risolvono questo problema rendendo il nome della classe univoco per le pagine che lo usano. Per comprendere come funziona, dopo aver scaricato il codice sorgente, è possibile controllare come vengono usati i file `.module.css` e leggere anche la [documentazione dei CSS module](https://github.com/css-modules/css-modules).
 
-Sebbene questa fase della nostra toolchain possa essere piuttosto dolorosa, poiché abbiamo scelto uno strumento che cerca volutamente di ridurre la configurazione e la complessità, non c'è davvero null'altro che dobbiamo fare durante la fase di sviluppo. I moduli sono correttamente importati, il CSS annidato è correttamente trasformato in "CSS regolare", e il nostro sviluppo non è ostacolato dal processo di compilazione.
+Sebbene questa fase della toolchain possa essere piuttosto dolorosa, poiché è stato scelto uno strumento che cerca intenzionalmente di ridurre configurazione e complessità, non c'è davvero altro da fare durante la fase di sviluppo. I moduli vengono importati correttamente, il CSS annidato viene trasformato correttamente in "CSS normale" e lo sviluppo non viene ostacolato dal processo di build.
 
-Ora il nostro software è pronto per essere scritto!
+Ora il software è pronto per essere scritto!
 
 ## Scrittura del codice sorgente
 
-Ora che abbiamo impostato l'intera toolchain di sviluppo, solitamente è il momento di iniziare a scrivere codice reale — la parte in cui dovresti effettivamente investire la maggior parte del tempo. Per il nostro scopo, tuttavia, copieremo semplicemente del codice sorgente esistente e fingeremo di averlo scritto. Non ti insegneremo come funzionano, poiché non è il punto di questo capitolo. Sono qui solo per eseguire gli strumenti, per insegnarti come _loro_ funzionano.
+Ora che la toolchain di sviluppo completa è configurata, di solito è il momento di iniziare a scrivere codice reale: la parte in cui investire effettivamente la maggior parte del tempo. Per questo scopo, tuttavia, verrà soltanto copiato del codice sorgente esistente e fatto finta di averlo scritto. Non verrà insegnato come funziona, poiché non è questo lo scopo del capitolo. Il codice è presente esclusivamente per eseguire gli strumenti su di esso e insegnare come funzionano _questi ultimi_.
 
-Per ottenere i file del codice, visita <https://github.com/mdn/client-toolchain-example> e scarica e decomprimi il contenuto di questo repo sul tuo disco locale da qualche parte. Puoi scaricare l'intero progetto come file zip selezionando _Clone or download_ > _Download ZIP_.
+Per ottenere i file di codice, visitare <https://github.com/mdn/client-toolchain-example> e scaricare e decomprimere il contenuto di questo repository in una posizione sul disco locale. È possibile scaricare l'intero progetto come file zip selezionando _Clone or download_ > _Download ZIP_.
 
-![Il repository di esempio di GitHub](github-repo.png)
+![Il repository di esempio su GitHub](github-repo.png)
 
-Ora copia il contenuto della directory `src` del progetto e usalo per sostituire la tua attuale directory `src`. Non c'è bisogno di preoccuparsi degli altri file.
+Ora copiare il contenuto della directory `src` del progetto e usarlo per sostituire l'attuale directory `src`. Non è necessario preoccuparsi degli altri file.
 
-Installa anche alcune dipendenze che il codice sorgente utilizza:
+Installare inoltre alcune dependency usate dal codice sorgente:
 
 ```bash
 npm install react react-dom @tanstack/react-query
 ```
 
-Abbiamo i file del nostro progetto al loro posto. Questo è tutto ciò che dobbiamo fare per ora!
+I file del progetto sono ora al loro posto. Per ora è tutto ciò che occorre fare.
 
 ## Esecuzione della trasformazione
 
-Per iniziare a lavorare con il nostro progetto, eseguiremo il server Vite da riga di comando. Nella modalità predefinita guarderà per modifiche nel tuo codice e aggiornerà il server. Questo è bello perché non dobbiamo fluttuare avanti e indietro tra il codice e la riga di comando.
+Per iniziare a lavorare con il progetto, verrà eseguito il server Vite dalla riga di comando. Nella modalità predefinita osserverà le modifiche del codice e aggiornerà il server. Questo è utile perché non è necessario passare continuamente dal codice alla riga di comando.
 
-1. Per avviare Vite in secondo piano, vai al tuo terminale ed esegui il seguente comando (usando lo script personalizzato che abbiamo definito in precedenza):
+1. Per avviare Vite in background, aprire il terminale ed eseguire il comando seguente, usando lo script personalizzato definito in precedenza:
 
    ```bash
    npm run dev
    ```
 
-   Dovresti vedere un output come questo (una volta che le dipendenze sono state installate):
+   Dovrebbe essere visualizzato un output simile a questo, dopo l'installazione delle dependency:
 
    ```plain
    > client-toolchain-example@1.0.0 dev
@@ -412,24 +406,24 @@ Per iniziare a lavorare con il nostro progetto, eseguiremo il server Vite da rig
      ➜  press h + enter to show help
    ```
 
-   Il server è ora in esecuzione sull'URL che è stato stampato (in questo caso localhost:5173).
+   Il server ora è in esecuzione all'URL stampato, in questo caso localhost:5173.
 
-2. Vai a questo URL nel tuo browser e vedrai l'app di esempio in esecuzione!
+2. Aprire questo URL nel browser per vedere l'app di esempio in esecuzione.
 
-Ora possiamo apportare alcune modifiche e visualizzare i loro effetti dal vivo.
+Ora è possibile apportare alcune modifiche e visualizzarne gli effetti in tempo reale.
 
-1. Carica il file `src/App.jsx` nel tuo editor di testo preferito.
-2. Sostituisci tutte le occorrenze di `mdn/content` con il tuo repo GitHub preferito, ad esempio `facebook/react`.
-3. Salva il file, poi torna direttamente all'app in esecuzione nel tuo browser. Noterai che il browser si è aggiornato automaticamente e i grafici sono cambiati!
+1. Aprire il file `src/App.jsx` nell'editor di testo preferito.
+2. Sostituire tutte le occorrenze di `mdn/content` con il repository GitHub preferito, ad esempio `facebook/react`.
+3. Salvare il file, quindi tornare direttamente all'app in esecuzione nel browser. Si noterà che il browser si è aggiornato automaticamente e che i grafici sono cambiati.
 
-Puoi anche provare a usare ESLint e Prettier — prova a rimuovere deliberatamente un sacco di spazi bianchi da uno dei tuoi file ed esegui Prettier su di esso per pulirlo, o introduce un errore di sintassi in uno dei tuoi file JavaScript e vedi quali errori ti dà ESLint quando esegui il comando `eslint`, o nel tuo editor.
+È inoltre possibile provare a usare ESLint e Prettier: rimuovere deliberatamente gran parte degli spazi bianchi da uno dei file ed eseguire Prettier su di esso per ripulirlo, oppure introdurre un errore di sintassi in uno dei file JavaScript e vedere quali errori restituisce ESLint quando viene eseguito il comando `eslint`, o nell'editor.
 
 ## Riepilogo
 
-Abbiamo fatto molta strada in questo capitolo, costruendo un ambiente di sviluppo locale piuttosto bello per creare un'applicazione.
+In questo capitolo è stata fatta molta strada, creando un ambiente di sviluppo locale piuttosto valido per sviluppare un'applicazione.
 
-A questo punto durante lo sviluppo del software web, solitamente saresti a creare il tuo codice per il software che intendi costruire. Poiché questo modulo riguarda l'apprendimento degli strumenti intorno allo sviluppo web, non il codice di sviluppo web stesso, non ti insegneremo alcuna codifica reale — troverai quell'informazione nel resto di MDN!
+A questo punto dello sviluppo di software web, normalmente si scriverebbe il codice per il software che si intende creare. Poiché questo modulo riguarda gli strumenti attorno allo sviluppo web, e non il codice di sviluppo web stesso, non verrà insegnata alcuna programmazione effettiva: queste informazioni sono disponibili nel resto di MDN.
 
-Invece, abbiamo scritto un progetto di esempio per te da utilizzare con i tuoi strumenti. Ti suggeriremmo di lavorare attraverso il resto del capitolo utilizzando il nostro codice di esempio, e poi puoi provare a cambiare il contenuto della directory src in un tuo progetto e pubblicarlo invece su GitHub Pages! E infatti, distribuire su GitHub Pages sarà l'obiettivo finale del prossimo capitolo!
+È stato invece scritto un progetto di esempio su cui usare gli strumenti. Si suggerisce di affrontare il resto del capitolo usando il codice di esempio, quindi provare a sostituire il contenuto della directory src con un proprio progetto e pubblicarlo invece su GitHub Pages. Infatti, il deployment su GitHub Pages sarà l'obiettivo finale del prossimo capitolo.
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Client-side_tools/Package_management","Learn_web_development/Extensions/Client-side_tools/Deployment", "Learn_web_development/Extensions/Client-side_tools")}}

@@ -1,25 +1,32 @@
 ---
-title: "Metti alla prova le tue competenze: Design web responsivo e media queries"
-short-title: Design responsivo e media queries
+title: "Metti alla prova le tue competenze: Responsive web design e media query"
+short-title: "Test: RWD e media query"
 slug: Learn_web_development/Core/CSS_layout/Test_your_skills/Responsive_design
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 5bc6436b2e8ba611ec3c5c979b71655aa74fc713
 ---
 
-L'obiettivo di questo test di abilità è valutare se comprendi [come utilizzare le media queries](/it/docs/Learn_web_development/Core/CSS_layout/Media_queries) e farti lavorare con il design web responsivo attraverso un esercizio pratico. Tutto ciò che devi sapere per completare questo compito è trattato nelle lezioni di layout nel [modulo di layout CSS](/it/docs/Learn_web_development/Core/CSS_layout).
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Media_queries", "Learn_web_development/Core/CSS_layout/Mobile-first_challenge", "Learn_web_development/Core/CSS_layout")}}
+
+L'obiettivo di questo test delle competenze è aiutare a valutare se si comprende [come usare le media query](/it/docs/Learn_web_development/Core/CSS_layout/Media_queries) e a lavorare con il responsive web design attraverso un'attività pratica. Tutto ciò che serve sapere per completare questa attività è trattato nelle lezioni sul layout del [modulo sul layout CSS](/it/docs/Learn_web_development/Core/CSS_layout).
 
 > [!NOTE]
-> Poiché devi testare il tuo design su più dimensioni di schermo, non abbiamo editor interattivi su questa pagina.
-> Scarica il codice e lavora localmente, oppure utilizza un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
->
-> Se hai difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ricevere assistenza, leggere la nostra Guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci attraverso uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito
+## Attività
 
-[Scarica il punto di partenza per questo compito](https://github.com/mdn/css-examples/blob/main/learn/tasks/rwd/rwd-download.html). Apri il file HTML scaricato nel tuo browser e troverai un sito con un layout schematico che si caricherà in modo leggibile su un dispositivo mobile. Puoi ridimensionare la tua finestra o usare la [vista design responsivo in Firefox DevTools](https://firefox-source-docs.mozilla.org/devtools-user/index.html#responsive-design-mode) per visualizzarlo come se fosse su un telefono.
+Poiché è necessario testare il design con più dimensioni dello schermo, in questa pagina non sono disponibili editor interattivi.
 
-Il tuo compito è creare una versione desktop di questo layout che venga visualizzata quando c'è abbastanza larghezza di schermo per ospitarla. Il tuo risultato finale dovrebbe assomigliare all'immagine seguente:
+Per iniziare:
 
-![Un layout schematico a due colonne.](rwd-task.png)
+1. [Scaricare il punto di partenza per questa attività](https://github.com/mdn/css-examples/blob/main/learn/tasks/rwd/rwd-download.html).
+2. Aprire il file HTML scaricato nel browser: verrà visualizzato un sito rappresentato come wireframe, che verrà caricato in modo leggibile su un dispositivo mobile.
+3. Ridurre la finestra trascinandola oppure usare la [vista responsive in Firefox DevTools](https://firefox-source-docs.mozilla.org/devtools-user/index.html#responsive-design-mode) per visualizzarlo come se fosse su un telefono.
 
-Ci sono diversi modi in cui potresti creare il layout desktop, divertiti a sperimentare. Potresti anche aggiungere un secondo breakpoint, magari creando un layout che si adatti bene su un tablet in modalità verticale.
+L'attività consiste nel creare una versione desktop di questo layout, visualizzata quando la larghezza dello schermo è sufficiente per contenerla. Il risultato finale dovrebbe assomigliare all'immagine seguente:
+
+![Un layout wireframe a due colonne.](rwd-task.png)
+
+Esistono diversi modi per creare il layout desktop: è possibile sperimentare liberamente. È anche possibile aggiungere un secondo breakpoint, creando ad esempio un layout che funzioni bene su un tablet in modalità verticale.
+
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Media_queries", "Learn_web_development/Core/CSS_layout/Mobile-first_challenge", "Learn_web_development/Core/CSS_layout")}}

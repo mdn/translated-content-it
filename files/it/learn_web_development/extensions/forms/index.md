@@ -2,74 +2,77 @@
 title: Moduli web
 slug: Learn_web_development/Extensions/Forms
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 76936e1d9ff271ac59307a0f858d0d7b57f3866a
 ---
 
 {{NextMenu("Learn_web_development/Extensions/Forms/Your_first_form", "Learn_web_development/Extensions")}}
 
-Questo modulo fornisce una serie di articoli che ti aiuteranno a padroneggiare gli elementi essenziali dei moduli web. I moduli web sono uno strumento molto potente per interagire con gli utenti — più comunemente vengono utilizzati per raccogliere dati dagli utenti o per permettere loro di controllare un'interfaccia utente. Tuttavia, per motivi storici e tecnici, non è sempre ovvio come utilizzarli al loro pieno potenziale. Negli articoli elencati di seguito, copriremo tutti gli aspetti essenziali dei moduli web, inclusa la creazione della loro struttura HTML, la formattazione dei controlli modulo, la validazione dei dati dei moduli e l'invio dei dati al server.
+Questo modulo fornisce una serie di articoli che aiuteranno a padroneggiare gli aspetti essenziali dei moduli web. I moduli web sono uno strumento molto potente per interagire con gli utenti: vengono usati principalmente per raccogliere dati dagli utenti o per consentire loro di controllare un'interfaccia utente. Tuttavia, per ragioni storiche e tecniche, non è sempre evidente come utilizzarli al massimo delle loro potenzialità. Negli articoli elencati di seguito verranno trattati tutti gli aspetti essenziali dei moduli web, inclusi il markup della loro struttura HTML, lo stile dei controlli dei moduli, la convalida dei dati dei moduli e l'invio dei dati al server.
 
 ## Prerequisiti
 
-Prima di iniziare questo modulo, dovresti almeno seguire la nostra [Introduzione all'HTML](/it/docs/Learn_web_development/Core/Structuring_content). A questo punto dovresti trovare i [Tutorial introduttivi](#tutorial_introduttivi) facili da comprendere, e riuscire anche a utilizzare il nostro tutorial sui [Controlli di base dei moduli nativi](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls).
+Prima di iniziare questo modulo, è consigliabile aver almeno completato la nostra [Introduzione a HTML](/it/docs/Learn_web_development/Core/Structuring_content). A questo punto, i [tutorial introduttivi](#tutorial-introduttivi) dovrebbero risultare facili da comprendere e dovrebbe essere possibile utilizzare anche il nostro tutorial sui [controlli dei moduli nativi di base](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls).
 
-Padroneggiare i moduli richiede però più della sola conoscenza dell'HTML — è necessario anche imparare alcune tecniche specifiche per formattare i controlli dei moduli, e alcune conoscenze di scripting sono necessarie per gestire cose come la validazione e la creazione di controlli modulo personalizzati. Pertanto, prima di esaminare le altre sezioni elencate di seguito, ti consiglieremmo di studiare un po' di [CSS](/it/docs/Learn_web_development/Core/Styling_basics) e [JavaScript](/it/docs/Learn_web_development/Core/Scripting).
+Padroneggiare i moduli richiede tuttavia più della sola conoscenza di HTML: è necessario imparare anche alcune tecniche specifiche per applicare lo stile ai controlli dei moduli, oltre a conoscenze di scripting per gestire aspetti quali la convalida e la creazione di controlli dei moduli personalizzati. Pertanto, prima di consultare le altre sezioni elencate di seguito, è consigliabile approfondire prima [CSS](/it/docs/Learn_web_development/Core/Styling_basics) e [JavaScript](/it/docs/Learn_web_development/Core/Scripting).
 
-Il testo sopra è un buon indicatore del motivo per cui abbiamo inserito i moduli web in un modulo autonomo, piuttosto che cercare di mescolare parti di esso nelle aree tematiche di HTML, CSS e JavaScript — gli elementi di modulo sono più complessi della maggior parte degli altri elementi HTML e richiedono anche un forte legame con le tecniche correlate di CSS e JavaScript per sfruttarli al meglio.
+Il testo precedente è un buon indicatore del motivo per cui i moduli web sono stati inseriti in un modulo autonomo, invece di cercare di distribuirne parti nelle aree tematiche HTML, CSS e JavaScript: gli elementi dei moduli sono più complessi della maggior parte degli altri elementi HTML e richiedono inoltre una stretta combinazione di tecniche CSS e JavaScript correlate per sfruttarli al meglio.
 
 > [!NOTE]
-> Se stai lavorando su un computer/tablet/altro dispositivo dove non puoi creare i tuoi file, puoi provare (la maggior parte) degli esempi di codice in un programma di coding online come [JS Bin](https://jsbin.com/) o [Glitch](https://glitch.com/).
+> Se si lavora su un computer, tablet o altro dispositivo su cui non è possibile creare file, è possibile provare a eseguire il codice in un editor online come [CodePen](https://codepen.io/) o [JSFiddle](https://jsfiddle.net/).
 
 ## Tutorial introduttivi
 
-- [Il tuo primo modulo](/it/docs/Learn_web_development/Extensions/Forms/Your_first_form)
-  - : Il primo articolo della nostra serie ti offre la tua prima esperienza nella creazione di un modulo web, incluso il design di un modulo semplice, la sua implementazione utilizzando gli elementi HTML corretti, l'aggiunta di uno stile molto semplice tramite CSS e come i dati vengono inviati a un server.
+- [Il primo modulo](/it/docs/Learn_web_development/Extensions/Forms/Your_first_form)
+  - : Il primo articolo della serie offre la prima esperienza nella creazione di un modulo web, inclusa la progettazione di un modulo semplice, la sua implementazione tramite gli elementi HTML appropriati, l'aggiunta di uno stile molto semplice con CSS e l'invio dei dati a un server.
 - [Come strutturare un modulo web](/it/docs/Learn_web_development/Extensions/Forms/How_to_structure_a_web_form)
-  - : Messo da parte il minimo indispensabile, ora esaminiamo in dettaglio gli elementi utilizzati per fornire struttura e significato alle diverse parti di un modulo.
+  - : Dopo aver trattato le basi, vengono ora esaminati più in dettaglio gli elementi usati per fornire struttura e significato alle diverse parti di un modulo.
 
-## I diversi controlli modulo
+## I diversi controlli dei moduli
 
-- [Controlli di base dei moduli nativi](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls)
-  - : Iniziamo questa sezione esaminando in dettaglio la funzionalità dei tipi originali di {{htmlelement("input")}} dell'HTML, osservando quali opzioni sono disponibili per raccogliere diversi tipi di dati.
-- [I tipi di input di HTML5](/it/docs/Learn_web_development/Extensions/Forms/HTML5_input_types)
-  - : Qui continuiamo il nostro approfondimento sull'elemento `<input>`, esaminando i tipi di input aggiuntivi forniti con il rilascio di HTML5 e i vari controlli dell'interfaccia utente e i miglioramenti nella raccolta dati che offrono. Inoltre, esaminiamo l'elemento {{htmlelement('output')}}.
-- [Altri controlli modulo](/it/docs/Learn_web_development/Extensions/Forms/Other_form_controls)
-  - : Successivamente esaminiamo tutti i controlli di modulo non-`<input>` e gli strumenti associati, come {{htmlelement('select')}}, {{htmlelement('textarea')}}, {{htmlelement('meter')}}, e {{htmlelement('progress')}}.
+- [Controlli dei moduli nativi di base](/it/docs/Learn_web_development/Extensions/Forms/Basic_native_form_controls)
+  - : Questa sezione inizia esaminando in dettaglio la funzionalità dei tipi HTML {{htmlelement("input")}} originali, osservando quali opzioni sono disponibili per raccogliere diversi tipi di dati.
+- [I tipi di input HTML5](/it/docs/Learn_web_development/Extensions/Forms/HTML5_input_types)
+  - : Qui continua l'analisi approfondita dell'elemento `<input>`, esaminando i tipi di input aggiuntivi introdotti con HTML5 e i vari controlli dell'interfaccia utente e miglioramenti per la raccolta dei dati che offrono. Inoltre, viene esaminato l'elemento {{htmlelement('output')}}.
+- [Altri controlli dei moduli](/it/docs/Learn_web_development/Extensions/Forms/Other_form_controls)
+  - : Successivamente vengono esaminati tutti i controlli dei moduli non `<input>` e gli strumenti associati, come {{htmlelement('select')}}, {{htmlelement('textarea')}}, {{htmlelement('meter')}} e {{htmlelement('progress')}}.
 
-## Tutorial sulla formattazione dei moduli
+## Tutorial sullo stile dei moduli
 
-- [Formattare i moduli web](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms)
-  - : Questo articolo fornisce un'introduzione alla formattazione dei moduli con CSS, includendo tutte le basi che potresti dover sapere per compiti di formattazione di base.
-- [Formattazione avanzata dei moduli](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling)
-  - : Qui esploriamo alcune tecniche avanzate di formattazione dei moduli che devono essere utilizzate quando si cerca di gestire alcuni degli elementi di modulo più difficili da formattare.
+- [Applicare lo stile ai moduli web](/it/docs/Learn_web_development/Extensions/Forms/Styling_web_forms)
+  - : Questo articolo fornisce un'introduzione all'applicazione dello stile ai moduli con CSS, incluse tutte le basi necessarie per le attività di styling di base.
+- [Stile avanzato dei moduli](/it/docs/Learn_web_development/Extensions/Forms/Advanced_form_styling)
+  - : Qui vengono esaminate alcune tecniche più avanzate per lo stile dei moduli, necessarie quando si cerca di gestire alcuni degli elementi dei moduli più difficili da stilizzare.
 - [Elementi select personalizzabili](/it/docs/Learn_web_development/Extensions/Forms/Customizable_select)
-  - : Questo articolo spiega come utilizzare insieme funzionalità HTML e CSS moderne e dedicate per creare elementi `<select>` completamente personalizzati. Questo include avere il pieno controllo sulla formattazione del pulsante select, del menu a tendina, dell'icona della freccia, del segno di spunta della selezione corrente e di ciascun elemento `<option>`.
+  - : Questo articolo spiega come usare insieme funzionalità HTML e CSS moderne e dedicate per creare elementi `<select>` completamente personalizzati. Ciò include il controllo completo dello stile del pulsante select, del selettore a discesa, dell'icona della freccia, del segno di spunta della selezione corrente e di ogni singolo elemento `<option>`.
+- [Listbox select personalizzabili](/it/docs/Learn_web_development/Extensions/Forms/Customizable_select_listboxes)
+  - : Questo articolo prosegue il precedente, esaminando come applicare lo stile agli elementi `<select>` listbox personalizzabili.
 - [Pseudo-classi UI](/it/docs/Learn_web_development/Extensions/Forms/UI_pseudo-classes)
-  - : Un'introduzione alle pseudo-classi UI che permettono di indirizzare i controlli modulo HTML in base al loro stato attuale.
+  - : Un'introduzione alle pseudo-classi UI che consentono di selezionare i controlli dei moduli HTML in base al loro stato attuale.
 
-## Validazione e invio dei dati dei moduli
+## Convalida e invio dei dati dei moduli
 
-- [Validazione dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation)
-  - : Inviare dati non basta — dobbiamo anche assicurarci che i dati inseriti dagli utenti nei moduli siano nel formato corretto per essere processati correttamente, e che non mandino in crash le nostre applicazioni. Vogliamo anche aiutare i nostri utenti a compilare correttamente i nostri moduli e non farli frustrate mentre cercano di utilizzare le nostre app. La validazione dei moduli ci aiuta a raggiungere questi obiettivi — questo articolo ti dice ciò che devi sapere.
-- [Invio dei dati dei moduli](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data)
-  - : Questo articolo esamina ciò che accade quando un utente invia un modulo — dove vanno i dati e come li gestiamo quando arrivano? Esaminiamo anche alcune delle preoccupazioni di sicurezza associate all'invio dei dati dei moduli.
+- [Convalida dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation)
+  - : Inviare dati non è sufficiente: occorre anche assicurarsi che i dati inseriti dagli utenti nei moduli siano nel formato corretto per poterli elaborare correttamente e che non compromettano le applicazioni. Si desidera inoltre aiutare gli utenti a compilare correttamente i moduli, evitando che si frustrino durante l'uso delle app. La convalida dei moduli aiuta a raggiungere questi obiettivi: questo articolo spiega ciò che è necessario sapere.
+- [Inviare i dati dei moduli](/it/docs/Learn_web_development/Extensions/Forms/Sending_and_retrieving_form_data)
+  - : Questo articolo esamina cosa accade quando un utente invia un modulo: dove vanno i dati e come vengono gestiti quando arrivano a destinazione? Vengono inoltre esaminate alcune problematiche di sicurezza associate all'invio dei dati dei moduli.
 
-## Articoli aggiuntivi
+## Tutorial aggiuntivi
 
-I seguenti articoli non sono inclusi nel percorso di apprendimento, ma si riveleranno interessanti e utili quando avrai padroneggiato le tecniche sopra e vorrai saperne di più.
+I seguenti articoli non sono inclusi nel percorso di apprendimento, ma risulteranno interessanti e utili una volta padroneggiate le tecniche precedenti e si desideri saperne di più.
 
-- [Come costruire controlli modulo personalizzati](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls)
-  - : Ti imbatterai in alcuni casi in cui i widget modulo nativi non forniscono ciò di cui hai bisogno, ad esempio a causa della formattazione o della funzionalità. In questi casi, potresti dover costruire il tuo widget modulo a partire da HTML grezzo. Questo articolo spiega come farlo e le considerazioni di cui devi essere a conoscenza mentre lo fai, con un caso di studio pratico.
-- [Inviando moduli tramite JavaScript](/it/docs/Learn_web_development/Extensions/Forms/Sending_forms_through_JavaScript)
-  - : Questo articolo esamina i modi per utilizzare un modulo per assemblare una richiesta HTTP e inviarla tramite JavaScript personalizzato, piuttosto che la sottomissione standard del modulo. Esamina anche perché potresti voler farlo e le implicazioni di farlo. (Vedi anche [Utilizzare gli oggetti FormData](/it/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects).)
-- [Elementi select personalizzabili](/it/docs/Learn_web_development/Extensions/Forms/Customizable_select)
-  - : Questo articolo spiega come utilizzare insieme funzionalità HTML e CSS moderne e dedicate per creare elementi {{htmlelement("select")}} completamente personalizzati.
+- [Come creare controlli dei moduli personalizzati](/it/docs/Learn_web_development/Extensions/Forms/How_to_build_custom_form_controls)
+  - : Possono presentarsi casi in cui i widget dei moduli nativi non offrono ciò che serve, ad esempio per ragioni di stile o funzionalità. In tali casi, potrebbe essere necessario creare un proprio widget per moduli a partire da HTML puro. Questo articolo spiega come farlo e quali aspetti considerare, con un caso di studio pratico.
+- [Inviare moduli tramite JavaScript](/it/docs/Learn_web_development/Extensions/Forms/Sending_forms_through_JavaScript)
+  - : Questo articolo esamina i modi per usare un modulo per assemblare una richiesta HTTP e inviarla tramite JavaScript personalizzato, invece dell'invio standard dei moduli. Esamina inoltre i motivi per cui potrebbe essere opportuno farlo e le relative implicazioni. (Vedere anche [Usare gli oggetti FormData](/it/docs/Web/API/XMLHttpRequest_API/Using_FormData_Objects).)
+- [Moduli HTML nei browser legacy](/it/docs/Learn_web_development/Extensions/Forms/HTML_forms_in_legacy_browsers)
+  - : Questo articolo fornisce suggerimenti e trucchi per ridurre le difficoltà nel caso in cui sia necessario supportare browser legacy con i moduli HTML.
+- [Metodi e controlli di input dell'utente](/it/docs/Learn_web_development/Extensions/Forms/User_input_methods)
+  - : Questo articolo illustra i diversi modi in cui gli utenti interagiscono con i moduli e altri contenuti web, e fornisce raccomandazioni per la gestione dell'input dell'utente, esempi reali e collegamenti a ulteriori informazioni.
 
-## Vedi anche
+## Vedere anche
 
 - [Riferimento agli elementi dei moduli HTML](/it/docs/Web/HTML/Reference/Elements#forms)
-- [Riferimento ai tipi di \<input> HTML](/it/docs/Web/HTML/Reference/Elements/input)
+- [Riferimento ai tipi HTML `<input>`](/it/docs/Web/HTML/Reference/Elements/input)
 - [Riferimento agli attributi HTML](/it/docs/Web/HTML/Reference/Attributes)
-- [Metodi di input utente e controlli](/it/docs/Learn_web_development/Extensions/Forms/User_input_methods)
 
 {{NextMenu("Learn_web_development/Extensions/Forms/Your_first_form", "Learn_web_development/Extensions")}}

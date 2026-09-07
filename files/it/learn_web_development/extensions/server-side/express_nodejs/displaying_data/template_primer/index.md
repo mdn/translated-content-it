@@ -1,24 +1,24 @@
 ---
-title: Template primer
+title: Introduzione ai template
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Template_primer
 l10n:
-  sourceCommit: 77d90a23ee0a3b5486a7963f68ad4e56efb06a7b
+  sourceCommit: 4c58f4735f986a91bee1b77e336143630df727a2
 ---
 
-Un modello è un file di testo che definisce la _struttura_ o il layout di un file di output, con segnaposti utilizzati per rappresentare dove verranno inseriti i dati quando il modello viene reso. In _Express_, i modelli sono indicati come _views_ (viste).
+Un template è un file di testo che definisce la _struttura_ o il layout di un file di output, con segnaposto utilizzati per rappresentare i punti in cui verranno inseriti i dati quando il template viene sottoposto a rendering (in _Express_, i template sono chiamati _views_).
 
-## Scelte di modelli Express
+## Scelte di template per Express
 
-Express può essere utilizzato con molti diversi [motori di rendering dei modelli](https://expressjs.com/en/guide/using-template-engines.html). In questo tutorial utilizziamo [Pug](https://pugjs.org/api/getting-started.html) (precedentemente noto come _Jade_) per i nostri modelli. Questo è il linguaggio di modelli più popolare di Node, e si descrive come una "sintassi pulita e sensibile agli spazi bianchi per scrivere HTML, fortemente influenzata da [Haml](https://haml.info/)".
+Express può essere utilizzato con molti diversi [motori di rendering dei template](https://expressjs.com/en/guide/using-template-engines/). In questo tutorial viene utilizzato [Pug](https://pugjs.org/api/getting-started.html) (precedentemente noto come _Jade_) per i template. È il linguaggio di template per Node più popolare e si descrive come una "sintassi pulita, sensibile agli spazi bianchi per scrivere HTML, fortemente influenzata da [Haml](https://haml.info/)".
 
-I diversi linguaggi di modelli utilizzano diversi approcci per definire il layout e contrassegnare i segnaposti per i dati—alcuni usano HTML per definire il layout mentre altri usano diversi formati di markup che possono essere traspilati in HTML. Pug appartiene al secondo tipo; utilizza una _rappresentazione_ di HTML dove la prima parola in ogni riga rappresenta solitamente un elemento HTML, e l'indentazione sulle righe successive è usata per rappresentare il nesting. Il risultato è una definizione di pagina che viene tradotta direttamente in HTML, ma è più concisa e, per certi versi, più facile da leggere.
+Diversi linguaggi di template utilizzano approcci diversi per definire il layout e contrassegnare i segnaposto per i dati: alcuni utilizzano HTML per definire il layout, mentre altri utilizzano formati di markup diversi che possono essere traspilati in HTML. Pug appartiene al secondo tipo; utilizza una _rappresentazione_ di HTML in cui la prima parola di ogni riga rappresenta solitamente un elemento HTML e il rientro nelle righe successive viene utilizzato per rappresentare l'annidamento. Il risultato è una definizione di pagina che si traduce direttamente in HTML, ma è più concisa e, probabilmente, più facile da leggere.
 
 > [!NOTE]
-> Uno svantaggio dell'uso di _Pug_ è che è sensibile all'indentazione e agli spazi bianchi (se si aggiunge uno spazio in più nel punto sbagliato si potrebbe ottenere un codice di errore poco utile). Tuttavia, una volta che i modelli sono in posizione, sono molto facili da leggere e mantenere.
+> Uno svantaggio dell'uso di _Pug_ è che è sensibile al rientro e agli spazi bianchi (se viene aggiunto uno spazio in più nel punto sbagliato, potrebbe essere generato un codice di errore poco utile). Una volta predisposti i template, tuttavia, sono molto facili da leggere e mantenere.
 
-## Configurazione del modello
+## Configurazione dei template
 
-Il _LocalLibrary_ è stato configurato per utilizzare [Pug](https://pugjs.org/api/getting-started.html) quando abbiamo [creato il sito web scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website). Si dovrebbe vedere il modulo pug incluso come dipendenza nel file **package.json** del sito web e le seguenti impostazioni di configurazione nel file **app.js**. Le impostazioni ci dicono che stiamo utilizzando pug come motore di visualizzazione e che _Express_ dovrebbe cercare i modelli nella sottodirectory **/views**.
+_LocalLibrary_ è stata configurata per utilizzare [Pug](https://pugjs.org/api/getting-started.html) quando è stato [creato il sito web scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website). Il modulo pug dovrebbe essere incluso come dipendenza nel file **package.json** del sito web e nel file **app.js** dovrebbero essere presenti le seguenti impostazioni di configurazione. Le impostazioni indicano che pug viene utilizzato come motore di view e che _Express_ deve cercare i template nella sottodirectory **/views**.
 
 ```js
 // View engine setup
@@ -26,7 +26,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 ```
 
-Se si guarda nella directory delle viste si vedranno i file .pug per le viste predefinite del progetto. Questi includono la vista per la home page (**index.pug**) e il modello di base (**layout.pug**) che dovremo sostituire con i nostri contenuti.
+Osservando la directory views, saranno visibili i file .pug per le view predefinite del progetto.
+Questi includono la view per la pagina iniziale (**index.pug**) e il template di base (**layout.pug**), che dovranno essere sostituiti con contenuto personalizzato.
 
 ```plain
 /express-locallibrary-tutorial  # the project root
@@ -36,11 +37,11 @@ Se si guarda nella directory delle viste si vedranno i file .pug per le viste pr
     layout.pug
 ```
 
-## Sintassi del modello
+## Sintassi dei template
 
-Il file di esempio del modello qui sotto mostra molte delle caratteristiche più utili di Pug.
+Il file di template di esempio seguente mostra molte delle funzionalità più utili di Pug.
 
-La prima cosa da notare è che il file mappa la struttura di un tipico file HTML, con la prima parola in (quasi) ogni riga che è un elemento HTML, e l'indentazione usata per indicare gli elementi nidificati. Quindi, ad esempio, l'elemento `body` è all'interno di un elemento `html`, e gli elementi di paragrafo (`p`) sono all'interno dell'elemento `body`, ecc. Gli elementi non nidificati (ad esempio, i singoli paragrafi) sono su linee separate.
+La prima cosa da notare è che il file mappa la struttura di un tipico file HTML: la prima parola in (quasi) ogni riga è un elemento HTML e il rientro viene utilizzato per indicare gli elementi annidati. Ad esempio, l'elemento `body` si trova all'interno di un elemento `html` e gli elementi paragrafo (`p`) si trovano all'interno dell'elemento `body`, e così via. Gli elementi non annidati, ad esempio i singoli paragrafi, si trovano su righe separate.
 
 ```pug
 doctype html
@@ -80,14 +81,14 @@ html(lang="en")
         li= val
 ```
 
-Gli attributi degli elementi sono definiti tra parentesi dopo il loro elemento associato. All'interno delle parentesi, gli attributi sono definiti in elenchi separati da virgole o spazi dei nomi degli attributi e dei valori degli attributi, ad esempio:
+Gli attributi dell'elemento sono definiti tra parentesi dopo l'elemento associato. All'interno delle parentesi, gli attributi sono definiti in elenchi di coppie di nomi e valori degli attributi, separati da virgole o spazi bianchi, ad esempio:
 
 - `script(type='text/javascript')`, `link(rel='stylesheet', href='/stylesheets/style.css')`
-- `meta(name='viewport' content='width=device-width initial-scale=1')`
+- `meta(name='viewport' content='width=device-width')`
 
-I valori di tutti gli attributi sono _escapate_ (ad esempio, caratteri come `>` vengono convertiti nei loro equivalenti in codice HTML come `&gt;`) per prevenire l'iniezione di JavaScript o attacchi di scripting tra siti.
+I valori di tutti gli attributi vengono sottoposti a _escaping_ (ad esempio, caratteri come `>` vengono convertiti nei rispettivi equivalenti in codice HTML, come `&gt;`) per impedire attacchi di injection JavaScript o cross-site scripting.
 
-Se un tag è seguito dal segno di uguale, il testo seguente viene trattato come un'espressione JavaScript. Quindi, ad esempio, nella prima riga qui sotto, il contenuto del tag `h1` sarà la _variabile_ `title` (definita nel file o passata nel modello da Express). Nella seconda riga il contenuto del paragrafo è una stringa di testo concatenata con la variabile `title`. In entrambi i casi il comportamento predefinito è di _eseguire un'esapazione_ della riga.
+Se un tag è seguito dal segno di uguale, il testo seguente viene trattato come un'_espressione_ JavaScript. Ad esempio, nella prima riga seguente, il contenuto del tag `h1` sarà la _variabile_ `title` (definita nel file o passata al template da Express). Nella seconda riga, il contenuto del paragrafo è una stringa di testo concatenata con la variabile `title`. In entrambi i casi, il comportamento predefinito consiste nell'effettuare l'_escaping_ della riga.
 
 ```pug
 h1= title
@@ -95,12 +96,12 @@ p= 'Evaluated and <em>escaped expression</em>:' + title
 ```
 
 > [!NOTE]
-> Nei modelli Pug, una variabile utilizzata ma non passata dal codice di Express (o definita localmente) è "undefined".
-> Se si utilizza questo modello senza passare la variabile `title`, i tag verrebbero creati ma conterrebbero una stringa vuota.
-> Se si usano variabili non definite in istruzioni condizionali, queste valutano a `false`.
-> Altri linguaggi di modelli possono richiedere che le variabili usate nel modello siano definite.
+> Nei template Pug, una variabile utilizzata ma non passata dal codice Express, né definita localmente, è "undefined".
+> Se questo template venisse utilizzato senza passare una variabile `title`, i tag verrebbero creati ma conterrebbero una stringa vuota.
+> Se vengono utilizzate variabili undefined nelle istruzioni condizionali, queste vengono valutate come `false`.
+> Altri linguaggi di template potrebbero richiedere che le variabili utilizzate nel template siano definite.
 
-Se non c'è il simbolo dell'uguale dopo il tag, il contenuto viene trattato come testo normale. All'interno del testo normale si possono inserire dati con escape e senza escape utilizzando rispettivamente la sintassi `#{}` e `!{}`, come mostrato di seguito. Si può anche aggiungere HTML grezzo all'interno del testo normale.
+Se dopo il tag non è presente un simbolo di uguale, il contenuto viene trattato come testo semplice. Nel testo semplice è possibile inserire dati sottoposti a escaping e non sottoposti a escaping utilizzando rispettivamente la sintassi `#{}` e `!{}`, come mostrato di seguito. È inoltre possibile aggiungere HTML non elaborato nel testo semplice.
 
 ```pug
 p This is a line with #[em some emphasis] and #[strong strong text] markup.
@@ -108,16 +109,16 @@ p This line has an un-escaped string: !{'<em> is emphasized</em>'}, an escaped s
 ```
 
 > [!NOTE]
-> Si vorrà quasi sempre eseguire l'escape dei dati dagli utenti (tramite la sintassi **`#{}`**). I dati che possono essere considerati affidabili (ad esempio, conteggi generati di record, ecc.) possono essere visualizzati senza eseguire l'escape dei valori.
+> Quasi sempre sarà opportuno effettuare l'escaping dei dati degli utenti, tramite la sintassi **`#{}`**. I dati affidabili, ad esempio conteggi di record generati, possono essere visualizzati senza effettuare l'escaping dei valori.
 
-È possibile utilizzare il carattere pipe ('**|**') all'inizio di una riga per indicare "[testo normale](https://pugjs.org/language/plain-text.html)". Ad esempio, il testo aggiuntivo mostrato di seguito verrà visualizzato sulla stessa riga del collegamento precedente, ma non sarà collegato.
+È possibile utilizzare il carattere pipe ('**|**') all'inizio di una riga per indicare il "[testo semplice](https://pugjs.org/language/plain-text.html)". Ad esempio, il testo aggiuntivo mostrato di seguito verrà visualizzato sulla stessa riga dell'anchor precedente, ma non sarà un collegamento.
 
 ```pug
 a(href='http://someurl/') Link text
 | Plain text
 ```
 
-Pug consente di eseguire operazioni condizionali utilizzando `if`, `else`, `else if` e `unless` — ad esempio:
+Pug consente di eseguire operazioni condizionali utilizzando `if`, `else`, `else if` e `unless`, ad esempio:
 
 ```pug
 if title
@@ -126,7 +127,7 @@ else
   p A variable named "title" does not exist
 ```
 
-È anche possibile eseguire operazioni di ciclo/iterazione utilizzando la sintassi `each-in` o `while`. Nel frammento di codice sottostante abbiamo effettuato un ciclo attraverso un array per visualizzare una lista di variabili (nota l'uso di 'li=' per valutare "val" come variabile qui sotto. Il valore su cui iterare può anche essere passato nel modello come variabile!
+È inoltre possibile eseguire operazioni di ciclo/iterazione utilizzando la sintassi `each-in` o `while`. Nel frammento di codice seguente, viene eseguito un ciclo attraverso un array per visualizzare un elenco di variabili. Si noti l'uso di `li=` per valutare `val` come variabile. Il valore su cui viene eseguita l'iterazione può anche essere passato al template come variabile.
 
 ```pug
 ul
@@ -134,13 +135,13 @@ ul
     li= val
 ```
 
-La sintassi supporta anche commenti (che possono essere resi nell'output - o meno - a seconda della scelta), mixin per creare blocchi di codice riutilizzabili, dichiarazioni di caso e molte altre funzionalità. Per informazioni più dettagliate si veda [La documentazione di Pug](https://pugjs.org/api/getting-started.html).
+La sintassi supporta inoltre commenti, che possono essere sottoposti a rendering nell'output oppure no, a scelta; mixin per creare blocchi di codice riutilizzabili; istruzioni case e molte altre funzionalità. Per informazioni più dettagliate, consultare [la documentazione di Pug](https://pugjs.org/api/getting-started.html).
 
-## Estendere i modelli
+## Estendere i template
 
-In un sito, è usuale che tutte le pagine abbiano una struttura comune, inclusi markup HTML standard per l'intestazione, il piè di pagina, la navigazione, ecc. Piuttosto che costringere gli sviluppatori a duplicare questo "boilerplate" in ogni pagina, _Pug_ consente di dichiarare un modello di base e poi estenderlo, sostituendo solo le parti che sono diverse per ogni pagina specifica.
+In un sito, è normale che tutte le pagine abbiano una struttura comune, inclusi markup HTML standard per head, footer, navigazione e così via. Anziché costringere gli sviluppatori a duplicare questo "codice boilerplate" in ogni pagina, _Pug_ consente di dichiarare un template di base e quindi estenderlo, sostituendo solo le parti differenti per ogni pagina specifica.
 
-Ad esempio, il modello di base **layout.pug** creato nel nostro [progetto scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website) ha il seguente aspetto:
+Ad esempio, il template di base **layout.pug** creato nel [progetto scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/skeleton_website) ha questo aspetto:
 
 ```pug
 doctype html
@@ -152,9 +153,9 @@ html
     block content
 ```
 
-Il tag `block` è utilizzato per segnare sezioni di contenuto che possono essere sostituite in un modello derivato (se il blocco non viene ridefinito allora viene utilizzata la sua implementazione nella classe base).
+Il tag `block` viene utilizzato per contrassegnare sezioni di contenuto che possono essere sostituite in un template derivato. Se il blocco non viene ridefinito, viene utilizzata la relativa implementazione nella classe di base.
 
-Il **index.pug** predefinito (creato per il nostro progetto scheletro) mostra come sovrascriviamo il modello di base. Il tag `extends` identifica il modello di base da utilizzare, e poi usiamo `block section_name` per indicare il nuovo contenuto della sezione che sovrascriveremo.
+Il file **index.pug** predefinito, creato per il progetto scheletro, mostra come sovrascrivere il template di base. Il tag `extends` identifica il template di base da utilizzare, quindi `block section_name` viene utilizzato per indicare il nuovo contenuto della sezione che verrà sovrascritta.
 
 ```pug
 extends layout
@@ -164,7 +165,7 @@ block content
   p Welcome to #{title}
 ```
 
-## Prossimi passi
+## Passaggi successivi
 
-- Torna a [Express Tutorial Part 5: Displaying library data](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
-- Procedi al prossimo sottoarticolo della parte 5: [Il modello base di LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template).
+- Tornare a [Tutorial su Express, parte 5: Visualizzare i dati della libreria](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
+- Proseguire al sottoarticolo successivo della parte 5: [Il template di base di LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/LocalLibrary_base_template).

@@ -2,32 +2,32 @@
 title: Design per sviluppatori
 slug: Learn_web_development/Core/Design_for_developers
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 73a73bc44e12181c778910f3b7d73962e0dd9a29
 ---
 
 {{NextMenu("Learn_web_development/Core/Version_control", "Learn_web_development/Core")}}
 
 > [!NOTE]
-> Come vedrete di seguito, questo modulo è attualmente solo un curriculum/programma. In futuro intendiamo convertirlo in un corso completo, quando il tempo lo permetterà.
+> Come si vedrà di seguito, questo modulo è attualmente solo una scaletta/programmazione del curriculum. L'intenzione è trasformarlo in un corso completo in futuro, quando il tempo lo consentirà.
 
-L'idea di questo modulo è di (ri)introdurre gli sviluppatori al design thinking. Potrebbero non voler lavorare come designer, ma avere qualche base di esperienza utente e teoria del design è utile a tutti coloro che sono coinvolti nella creazione di siti web, indipendentemente dal loro ruolo. Al minimo, anche lo sviluppatore più tecnico e "non-designer" dovrebbe comprendere i briefing di design, perché le cose sono progettate come sono, e essere in grado di mettersi nei panni dell'utente. E li aiuterà a migliorare l'aspetto dei propri portfolio.
+L'idea di questo modulo è (ri)introdurre gli sviluppatori al design thinking. Potrebbero non voler lavorare come designer, ma avere alcune nozioni di base sulla user experience e sulla teoria del design è utile per tutte le persone coinvolte nella creazione di siti web, indipendentemente dal loro ruolo. Come minimo, anche lo sviluppatore più tecnico e "non designer" dovrebbe comprendere i design brief, il motivo per cui gli elementi sono progettati in un certo modo ed essere in grado di adottare la prospettiva dell'utente. Inoltre, questo aiuterà a rendere migliori i loro portfolio.
 
-Inoltre, gli sviluppatori front-end sono spesso incaricati di svolgere vari compiti di design nei progetti. I clienti e i datori di lavoro spesso presumono che possano farlo perché sono coinvolti negli elementi visivi del sito web. Storicamente, il ruolo di "sviluppatore web" era più un ruolo ibrido designer/sviluppatore rispetto a oggi.
+Inoltre, agli sviluppatori front-end viene spesso affidato lo svolgimento di varie attività di design nei progetti. Clienti e datori di lavoro spesso presumono che possano farlo perché sono coinvolti negli elementi visivi del sito web. Storicamente, il ruolo di "web developer" era più ibrido tra designer e sviluppatore rispetto a oggi.
 
 ## Prerequisiti
 
-Prima di iniziare questo modulo, dovresti avere familiarità con [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e [CSS](/it/docs/Learn_web_development/Core/Styling_basics).
+Prima di iniziare questo modulo, è necessario avere familiarità con [HTML](/it/docs/Learn_web_development/Core/Structuring_content) e [CSS](/it/docs/Learn_web_development/Core/Styling_basics).
 
 > [!NOTE]
-> Se stai lavorando su un computer/tablet/altro dispositivo dove non hai la possibilità di creare i tuoi file, potresti provare (la maggior parte di) gli esempi di codice in un programma di codifica online come [JSBin](https://jsbin.com/) o [Glitch](https://glitch.com/).
+> Se si lavora su un computer, tablet o altro dispositivo su cui non è possibile creare file, è possibile provare a eseguire il codice in un editor online come [CodePen](https://codepen.io/) o [JSFiddle](https://jsfiddle.net/).
 
 ## Lezioni
 
-## Teoria del design di base
+## Teoria di base del design
 
-Risultati dell'apprendimento:
+Risultati di apprendimento:
 
-- Fondamenti di UI design:
+- Fondamenti del design UI:
   - Contrasto.
   - Tipografia.
   - Gerarchia visiva.
@@ -39,48 +39,48 @@ Risultati dell'apprendimento:
 
 Risorse:
 
-- [Fondamenti di testo e stilizzazione dei font](/it/docs/Learn_web_development/Core/Text_styling/Fundamentals)
+- [Stile fondamentale di testo e font](/it/docs/Learn_web_development/Core/Text_styling/Fundamentals)
 
 ## Design incentrato sull'utente
 
-Risultati dell'apprendimento:
+Risultati di apprendimento:
 
-- Comprendere che tutto ciò che facciamo è per l'utente.
-- Introduzione alla ricerca/test con l'utente e alla raccolta dei requisiti dell'utente.
-- Progettare per l'accessibilità — considerare il pubblico di destinazione e quali bisogni aggiuntivi potrebbero avere. Progetta tenendo conto di questi sin dall'inizio.
-- Comprendere cosa sono i pattern di design e i pattern comuni utilizzati sul web, per esempio:
+- Comprendere che tutto ciò che viene realizzato è destinato all'utente.
+- Introduzione alla ricerca/test sugli utenti e ai requisiti degli utenti.
+- Progettare per l'accessibilità: considerare il pubblico di destinazione e le eventuali esigenze aggiuntive. Progettare per queste esigenze fin dall'inizio.
+- Comprendere cosa sono i design pattern e i pattern comuni utilizzati sul web, ad esempio:
   - Modalità scura.
   - Breadcrumb.
-  - Schede.
-  - Registrazione differita/pigra.
-  - Scroll infinito.
-  - Dialoghi modali.
-  - Rivelazione progressiva.
-  - Indicazione di progressione su moduli/registrazione/impostazione.
+  - Card.
+  - Registrazione differita/lazy.
+  - Scorrimento infinito.
+  - Finestre di dialogo modali.
+  - Divulgazione progressiva.
+  - Indicazione dell'avanzamento su moduli/registrazione/configurazione.
   - Carrello della spesa.
 
 Risorse:
 
-- [Panoramica sull'accessibilità](/it/docs/Learn_web_development/Core/Accessibility)
+- [Panoramica dell'accessibilità](/it/docs/Learn_web_development/Core/Accessibility)
 - [Principi di design inclusivo](https://inclusivedesignprinciples.info/)
 
-## Brief di design
+## Design brief
 
-Risultati dell'apprendimento:
+Risultati di apprendimento:
 
 - Parlare il linguaggio del design per comunicare con i designer.
-- Interpretare i requisiti di un brief di design per produrre un'implementazione.
-- Strumenti tipici che i designer utilizzano per comunicare con gli sviluppatori (ad es. Figma).
+- Interpretare i requisiti dei design brief per realizzare un'implementazione.
+- Strumenti tipici usati dai designer per comunicare il proprio messaggio agli sviluppatori (ad esempio, Figma).
 
 ## Vedi anche
 
-- [Impara i Fondamenti del Design UI](https://scrimba.com/intro-to-ui-design-fundamentals-c0q?via=mdn), Scrimba <sup>Partner del Corso</sup>
+- [Impara i fondamenti del design UI](https://scrimba.com/intro-to-ui-design-fundamentals-c0q?via=mdn), Scrimba <sup>Partner del corso</sup>
 - [The Shape of Design](https://shapeofdesignbook.com/chapters/00-introduction/), Frank Chimero
 - [Designing for the Web](https://designingfortheweb.co.uk/), Mark Boulton
 - [Design for web](https://designforweb.org/), Prisca Schmarsow + altri collaboratori
-- [Tipografia Pratica](https://practicaltypography.com/), Matthew Butterick
-- [Guida di Stile del Web](https://webstyleguide.com/), Patrick J. Lynch e Sarah Horton
-- [Regole di design visivo da seguire ogni volta in sicurezza](https://anthonyhobday.com/sideprojects/saferules/), Anthony Hobday
+- [Practical Typography](https://practicaltypography.com/), Matthew Butterick
+- [Web Style Guide](https://webstyleguide.com/), Patrick J. Lynch e Sarah Horton
+- [Regole di design visivo che si possono seguire tranquillamente ogni volta](https://anthonyhobday.com/sideprojects/saferules/), Anthony Hobday
 - [16 piccole regole di design UI che hanno un grande impatto](https://www.adhamdannaway.com/blog/ui-design/ui-design-tips), Adham Dannaway
 
 {{NextMenu("Learn_web_development/Core/Version_control", "Learn_web_development/Core")}}

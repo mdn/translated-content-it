@@ -3,28 +3,28 @@ title: Nozioni di base sugli oggetti JavaScript
 short-title: Objects
 slug: Learn_web_development/Core/Scripting/Object_basics
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: ce12c10364f35c64184dec44be85537b7e10d91f
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Image_gallery","Learn_web_development/Core/Scripting/DOM_scripting", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Events","Learn_web_development/Core/Scripting/Test_your_skills/Object_basics", "Learn_web_development/Core/Scripting")}}
 
-In questo articolo esamineremo la sintassi fondamentale degli oggetti JavaScript, e rivedremo alcune caratteristiche di JavaScript che abbiamo già visto in precedenza nel corso, ribadendo il fatto che molte delle funzionalità con cui hai già lavorato sono oggetti.
+In questo articolo verrà esaminata la sintassi fondamentale degli oggetti JavaScript e verranno riprese alcune funzionalità JavaScript già viste in precedenza nel corso, ribadendo il fatto che molte delle funzionalità già utilizzate sono oggetti.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
-      <td>Comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le basi di JavaScript come trattato nelle lezioni precedenti.</td>
+      <td>Comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>, familiarità con le nozioni di base di JavaScript trattate nelle lezioni precedenti.</td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Capire che in JavaScript la maggior parte delle cose sono oggetti, e probabilmente hai usato oggetti ogni volta che hai toccato JavaScript.</li>
-          <li>Sintassi di base: Oggetti letterali, proprietà e metodi, nidificazione di oggetti e array negli oggetti.</li>
-          <li>Utilizzare i costruttori per creare un nuovo oggetto.</li>
-          <li>Scope dell'oggetto, e <code>this</code>.</li>
-          <li>Accesso a proprietà e metodi — sintassi a parentesi e punto.</li>
+          <li>Comprendere che in JavaScript la maggior parte delle cose sono oggetti e che probabilmente sono stati utilizzati oggetti ogni volta che si è usato JavaScript.</li>
+          <li>Sintassi di base: letterali oggetto, proprietà e metodi, annidamento di oggetti e array negli oggetti.</li>
+          <li>Uso dei costruttori per creare un nuovo oggetto.</li>
+          <li>Ambito degli oggetti e <code>this</code>.</li>
+          <li>Accesso a proprietà e metodi — sintassi con parentesi quadre e punto.</li>
         <ul>
       </td>
     </tr>
@@ -33,19 +33,19 @@ In questo articolo esamineremo la sintassi fondamentale degli oggetti JavaScript
 
 ## Nozioni di base sugli oggetti
 
-Un oggetto è una collezione di dati e/o funzionalità correlati.
-Questi solitamente consistono in diverse variabili e funzioni (che sono chiamate proprietà e metodi quando sono all'interno di oggetti).
-Lavoriamo attraverso un esempio per capire come appaiono.
+Un oggetto è una raccolta di dati e/o funzionalità correlati.
+Questi consistono generalmente di diverse variabili e funzioni, che vengono chiamate proprietà e metodi quando si trovano all'interno degli oggetti.
+Analizziamo un esempio per comprendere il loro aspetto.
 
-Per iniziare, fai una copia locale del nostro file [oojs.html](https://github.com/mdn/learning-area/blob/main/javascript/oojs/introduction/oojs.html). Questo contiene molto poco — un elemento {{HTMLElement("script")}} per scrivere il nostro codice sorgente. Lo useremo come base per esplorare la sintassi degli oggetti di base. Mentre lavori con questo esempio, dovresti avere aperta e pronta a ricevere comandi la tua [console JavaScript degli strumenti per sviluppatori](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools#the_javascript_console).
+Per iniziare, creare una copia locale del file [oojs.html](https://github.com/mdn/learning-area/blob/main/javascript/oojs/introduction/oojs.html). Contiene pochissimo: un elemento {{HTMLElement("script")}} in cui scrivere il codice sorgente. Verrà usato come base per esplorare la sintassi di base degli oggetti. Durante il lavoro su questo esempio, tenere aperta e pronta per digitare alcuni comandi la [console JavaScript degli strumenti di sviluppo](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools#the_javascript_console).
 
-Come avviene in molte cose in JavaScript, la creazione di un oggetto inizia spesso con la definizione e l'inizializzazione di una variabile. Prova a inserire la riga seguente sotto il codice JavaScript già presente nel tuo file, poi salva e aggiorna:
+Come per molte cose in JavaScript, la creazione di un oggetto inizia spesso definendo e inizializzando una variabile. Provare a inserire la seguente riga sotto il codice JavaScript già presente nel file, quindi salvare e aggiornare la pagina:
 
 ```js
 const person = {};
 ```
 
-Ora apri la [console JavaScript](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools#the_javascript_console) del tuo browser, inserisci `person` e premi <kbd>Enter</kbd>/<kbd>Return</kbd>. Dovresti ottenere un risultato simile a una delle righe seguenti:
+Ora aprire la [console JavaScript](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools#the_javascript_console) del browser, inserire `person` e premere <kbd>Enter</kbd>/<kbd>Return</kbd>. Si dovrebbe ottenere un risultato simile a una delle righe seguenti:
 
 ```plain
 [object Object]
@@ -53,7 +53,7 @@ Object { }
 { }
 ```
 
-Congratulazioni, hai appena creato il tuo primo oggetto. Lavoro fatto! Ma questo è un oggetto vuoto, quindi non possiamo fare molto con esso. Aggiorniamo il nostro oggetto JavaScript nel nostro file per assomigliare a questo:
+Congratulazioni, è stato appena creato il primo oggetto. Fatto! Tuttavia, questo è un oggetto vuoto, quindi non è possibile farci molto. Aggiornare l'oggetto JavaScript nel file affinché abbia questo aspetto:
 
 ```js
 const person = {
@@ -68,7 +68,7 @@ const person = {
 };
 ```
 
-Dopo aver salvato e aggiornato, prova a inserire alcuni dei seguenti comandi nella console JavaScript sugli strumenti per sviluppatori del tuo browser:
+Dopo aver salvato e aggiornato, provare a inserire alcuni dei seguenti elementi nella console JavaScript degli strumenti di sviluppo del browser:
 
 ```js
 person.name;
@@ -80,9 +80,9 @@ person.introduceSelf();
 // "Hi! I'm Bob."
 ```
 
-Ora hai alcuni dati e funzionalità all'interno del tuo oggetto e sei in grado di accedervi con una sintassi semplice e chiara!
+L'oggetto ora contiene dati e funzionalità, a cui è possibile accedere con una sintassi semplice e chiara.
 
-Quindi cosa sta succedendo qui? Beh, un oggetto è composto da più membri, ciascuno dei quali ha un nome (ad es., `name` e `age` sopra), e un valore (ad es., `['Bob', 'Smith']` e `32`). Ogni coppia nome/valore deve essere separata da una virgola, e il nome e il valore in ogni caso sono separati da un due punti. La sintassi segue sempre questo schema:
+Cosa sta succedendo qui? Un oggetto è composto da più membri, ciascuno dei quali ha un nome, ad esempio `name` e `age` sopra, e un valore, ad esempio `['Bob', 'Smith']` e `32`. Ogni coppia nome/valore deve essere separata da una virgola, mentre nome e valore in ciascun caso sono separati da due punti. La sintassi segue sempre questo schema:
 
 ```js
 const objectName = {
@@ -92,9 +92,9 @@ const objectName = {
 };
 ```
 
-Il valore di un membro dell'oggetto può essere praticamente qualsiasi cosa — nel nostro oggetto person abbiamo un numero, un array, e due funzioni. I primi due elementi sono elementi di dati, e sono indicati come **proprietà** dell'oggetto. Gli ultimi due elementi sono funzioni che permettono all'oggetto di fare qualcosa con quei dati, e sono indicati come **metodi** dell'oggetto.
+Il valore di un membro dell'oggetto può essere praticamente qualsiasi cosa: nel nostro oggetto person sono presenti un numero, un array e due funzioni. I primi due elementi sono elementi di dati e vengono chiamati **proprietà** dell'oggetto. Gli ultimi due elementi sono funzioni che consentono all'oggetto di fare qualcosa con quei dati e vengono chiamati **metodi** dell'oggetto.
 
-Quando i membri dell'oggetto sono funzioni, esiste una sintassi più semplice. Invece di `bio: function ()` possiamo scrivere `bio()`. In questo modo:
+Quando i membri dell'oggetto sono funzioni, esiste una sintassi più semplice. Invece di `bio: function ()` è possibile scrivere `bio()`. In questo modo:
 
 ```js
 const person = {
@@ -109,24 +109,24 @@ const person = {
 };
 ```
 
-Da ora in poi utilizzeremo questa sintassi abbreviata.
+D'ora in poi verrà usata questa sintassi più breve.
 
-Un oggetto come questo è indicato come **oggetto letterale** — abbiamo scritto letteralmente il contenuto dell'oggetto nel momento della sua creazione. Ciò è diverso rispetto agli oggetti istanziati da classi, che vedremo più avanti.
+Un oggetto di questo tipo viene chiamato **letterale oggetto**: il contenuto dell'oggetto è stato letteralmente scritto durante la sua creazione. Questo è diverso dagli oggetti istanziati dalle classi, che verranno esaminati più avanti.
 
-È molto comune creare un oggetto usando un oggetto letterale quando si vuole trasferire una serie di dati strutturati e correlati in qualche modo, per esempio inviando una richiesta al server per essere inseriti in un database. Inviare un singolo oggetto è molto più efficiente che inviare diversi elementi individualmente, ed è più facile lavorare con esso rispetto a un array, quando vuoi identificare elementi individuali per nome.
+È molto comune creare un oggetto tramite un letterale oggetto quando si desidera trasferire in qualche modo una serie di elementi di dati strutturati e correlati, ad esempio inviando una richiesta al server per inserirli in un database. Inviare un singolo oggetto è molto più efficiente che inviare diversi elementi singolarmente ed è più facile da gestire rispetto a un array quando si vogliono identificare i singoli elementi per nome.
 
-## Notazione a punto
+## Notazione con punto
 
-Sopra, hai avuto accesso alle proprietà e ai metodi dell'oggetto usando la **notazione a punto**. Il nome dell'oggetto (person) agisce da **namespace** — deve essere inserito per primo per accedere a qualsiasi cosa all'interno dell'oggetto. Successivamente si scrive un punto, quindi l'elemento a cui si desidera accedere — questo può essere il nome di una semplice proprietà, un elemento di un array di proprietà, o una chiamata a uno dei metodi dell'oggetto, ad esempio:
+In precedenza, è stato effettuato l'accesso alle proprietà e ai metodi dell'oggetto mediante la **notazione con punto**. Il nome dell'oggetto (`person`) agisce come **spazio dei nomi**: deve essere inserito per primo per accedere a qualsiasi elemento all'interno dell'oggetto. Successivamente si scrive un punto, quindi l'elemento a cui si vuole accedere: può essere il nome di una proprietà semplice, un elemento di una proprietà array o una chiamata a uno dei metodi dell'oggetto, ad esempio:
 
 ```js
 person.age;
 person.bio();
 ```
 
-### Oggetti come proprietà di oggetto
+### Oggetti come proprietà di oggetti
 
-Una proprietà di un oggetto può essere a sua volta un oggetto. Ad esempio, prova a modificare il membro `name` da
+Una proprietà di un oggetto può essere a sua volta un oggetto. Ad esempio, provare a modificare il membro `name` da
 
 ```js
 const person = {
@@ -146,14 +146,14 @@ const person = {
 };
 ```
 
-Per accedere a questi elementi basta concatenare il passaggio aggiuntivo alla fine con un altro punto. Prova questi nella console JS:
+Per accedere a questi elementi è sufficiente concatenare il passaggio aggiuntivo alla fine con un altro punto. Provare questi esempi nella console JS:
 
 ```js
 person.name.first;
 person.name.last;
 ```
 
-Se fai questo, dovrai anche scorrere il codice dei tuoi metodi e cambiare qualsiasi istanza di
+In questo caso, sarà inoltre necessario esaminare il codice dei metodi e modificare tutte le occorrenze di
 
 ```js
 name[0];
@@ -167,33 +167,33 @@ name.first;
 name.last;
 ```
 
-Altrimenti, i tuoi metodi non funzioneranno più.
+Altrimenti, i metodi non funzioneranno più.
 
-## Notazione a parentesi
+## Notazione con parentesi quadre
 
-La notazione a parentesi fornisce un'alternativa per accedere alle proprietà degli oggetti.
-Invece di usare la [notazione a punto](#notazione_a_punto) in questo modo:
+La notazione con parentesi quadre fornisce un modo alternativo per accedere alle proprietà degli oggetti.
+Invece di usare la [notazione con punto](#notazione_con_punto) in questo modo:
 
 ```js
 person.age;
 person.name.first;
 ```
 
-Puoi invece usare le parentesi quadre:
+È possibile invece usare le parentesi quadre:
 
 ```js
 person["age"];
 person["name"]["first"];
 ```
 
-Questo sembra molto simile al modo in cui si accede agli elementi in un array, ed è fondamentalmente la stessa cosa — invece di utilizzare un numero di indice per selezionare un elemento, stai usando il nome associato al valore di ciascun membro.
-Non è sorprendente che gli oggetti siano talvolta chiamati **array associativi** — mappano stringhe ai valori nello stesso modo in cui gli array mappano numeri ai valori.
+Questo è molto simile a come si accede agli elementi di un array ed è essenzialmente la stessa cosa: invece di usare un numero di indice per selezionare un elemento, viene usato il nome associato al valore di ciascun membro.
+Non sorprende che gli oggetti vengano talvolta chiamati **array associativi**: associano stringhe a valori nello stesso modo in cui gli array associano numeri a valori.
 
-La notazione a punto è generalmente preferita alla notazione a parentesi perché è più concisa e facile da leggere.
-Tuttavia ci sono alcuni casi in cui è necessario utilizzare le parentesi quadre.
-Ad esempio, se un nome di proprietà di un oggetto è memorizzato in una variabile, non puoi usare la notazione a punto per accedere al valore, ma puoi accedere al valore utilizzando la notazione a parentesi.
+In genere si preferisce la notazione con punto rispetto alla notazione con parentesi quadre perché è più concisa e facile da leggere.
+Tuttavia, esistono alcuni casi in cui è necessario usare le parentesi quadre.
+Ad esempio, se il nome di una proprietà dell'oggetto è contenuto in una variabile, non è possibile usare la notazione con punto per accedere al valore, ma è possibile accedervi mediante la notazione con parentesi quadre.
 
-Nell'esempio seguente, la funzione `logProperty()` può utilizzare `person[propertyName]` per recuperare il valore della proprietà nominata in `propertyName`.
+Nell'esempio seguente, la funzione `logProperty()` può usare `person[propertyName]` per recuperare il valore della proprietà il cui nome è contenuto in `propertyName`.
 
 ```js
 const person = {
@@ -211,23 +211,23 @@ logProperty("age");
 // 32
 ```
 
-## Impostazione dei membri dell'oggetto
+## Impostare i membri di un oggetto
 
-Finora abbiamo solo esaminato il recupero (o **ottenimento**) dei membri dell'oggetto — puoi anche **impostare** (aggiornare) il valore dei membri dell'oggetto dichiarando il membro che vuoi impostare (usando la notazione a punto o a parentesi), come questo:
+Finora è stato esaminato solo il recupero, o **lettura**, dei membri di un oggetto: è possibile anche **impostare** (aggiornare) il valore dei membri di un oggetto dichiarando il membro da impostare, usando la notazione con punto o con parentesi quadre, in questo modo:
 
 ```js
 person.age = 45;
 person["name"]["last"] = "Cratchit";
 ```
 
-Prova a inserire le righe sopra, e poi ottenere di nuovo i membri per vedere come sono cambiati, in questo modo:
+Provare a inserire le righe precedenti e poi a recuperare nuovamente i membri per vedere come sono cambiati:
 
 ```js
 person.age;
 person["name"]["last"];
 ```
 
-L'impostazione dei membri non si limita ad aggiornare i valori delle proprietà e dei metodi esistenti; puoi anche creare membri completamente nuovi. Prova questi nella console JS:
+L'impostazione dei membri non si limita all'aggiornamento dei valori di proprietà e metodi esistenti: è anche possibile creare membri completamente nuovi. Provare questi esempi nella console JS:
 
 ```js
 person["eyes"] = "hazel";
@@ -236,7 +236,7 @@ person.farewell = function () {
 };
 ```
 
-Ora puoi testare i tuoi nuovi membri:
+Ora è possibile verificare i nuovi membri:
 
 ```js
 person["eyes"];
@@ -244,20 +244,20 @@ person.farewell();
 // "Bye everybody!"
 ```
 
-Un aspetto utile della notazione a parentesi è che può essere utilizzata non solo per impostare i valori dei membri dinamicamente, ma anche per i nomi dei membri. Supponiamo di voler permettere agli utenti di memorizzare tipi di valori personalizzati nei dati delle persone, digitando il nome del membro e il valore in due input di testo. Potremmo ottenere quei valori in questo modo:
+Un aspetto utile della notazione con parentesi quadre è che può essere usata per impostare dinamicamente non solo i valori dei membri, ma anche i loro nomi. Si supponga di voler consentire agli utenti di memorizzare tipi di valori personalizzati nei propri dati sulle persone, digitando il nome e il valore del membro in due input di testo. Questi valori potrebbero essere ottenuti in questo modo:
 
 ```js
 const myDataName = nameInput.value;
 const myDataValue = nameValue.value;
 ```
 
-Potremmo quindi aggiungere questo nuovo nome di membro e valore all'oggetto `person` in questo modo:
+Il nuovo nome e valore del membro potrebbero quindi essere aggiunti all'oggetto `person` in questo modo:
 
 ```js
 person[myDataName] = myDataValue;
 ```
 
-Per testarlo, prova a inserire le seguenti righe nel tuo codice, appena sotto la parentesi graffa di chiusura dell'oggetto `person`:
+Per verificarlo, provare ad aggiungere le seguenti righe nel codice, subito sotto la parentesi graffa di chiusura dell'oggetto `person`:
 
 ```js
 const myDataName = "height";
@@ -265,17 +265,17 @@ const myDataValue = "1.75m";
 person[myDataName] = myDataValue;
 ```
 
-Ora prova a salvare e aggiornare, e inserisci il seguente nei tuoi input di testo:
+Ora provare a salvare e aggiornare la pagina, quindi inserire quanto segue nell'input di testo:
 
 ```js
 person.height;
 ```
 
-Aggiungere una proprietà a un oggetto usando il metodo sopra non è possibile con la notazione a punto, che può accettare solo un nome di membro letterale, non un valore di variabile puntato a un nome.
+L'aggiunta di una proprietà a un oggetto usando il metodo sopra non è possibile con la notazione con punto, che può accettare solo un nome di membro letterale, non il valore di una variabile che punta a un nome.
 
 ## Che cos'è "this"?
 
-Potresti aver notato qualcosa di leggermente strano nei nostri metodi. Guarda questo, per esempio:
+Potrebbe essere stato notato qualcosa di leggermente strano nei metodi. Osservare ad esempio questo:
 
 ```js
 const person = {
@@ -286,9 +286,9 @@ const person = {
 };
 ```
 
-Probabilmente ti stai chiedendo cosa sia "this". La parola chiave `this` normalmente si riferisce all'oggetto corrente in cui il codice viene eseguito. Nel contesto di un metodo di oggetto, `this` si riferisce all'oggetto su cui il metodo è stato chiamato.
+Probabilmente ci si sta chiedendo che cosa sia "this". La parola chiave `this` si riferisce in genere all'oggetto corrente in cui viene eseguito il codice. Nel contesto di un metodo di un oggetto, `this` si riferisce all'oggetto su cui è stato chiamato il metodo.
 
-Illustriamo cosa intendiamo con una coppia semplificata di oggetti person:
+Illustriamo il concetto con una coppia semplificata di oggetti person:
 
 ```js
 const person1 = {
@@ -306,15 +306,15 @@ const person2 = {
 };
 ```
 
-In questo caso, `person1.introduceSelf()` restituisce "Hi! I'm Chris."; `person2.introduceSelf()` restituisce "Hi! I'm Deepti." Ciò accade perché quando il metodo viene chiamato, `this` si riferisce all'oggetto su cui il metodo è chiamato, il che permette alla stessa definizione del metodo di funzionare per più oggetti.
+In questo caso, `person1.introduceSelf()` restituisce "Hi! I'm Chris."; `person2.introduceSelf()` restituisce "Hi! I'm Deepti." Questo accade perché, quando viene chiamato il metodo, `this` si riferisce all'oggetto sul quale il metodo viene chiamato, consentendo alla stessa definizione del metodo di funzionare per più oggetti.
 
-Questo non è molto utile quando si stanno scrivendo oggetti letterali a mano, poiché usare il nome dell'oggetto (`person1` e `person2`) porta esattamente allo stesso risultato, ma sarà essenziale quando inizieremo a usare i **costruttori** per creare più di un oggetto a partire da una singola definizione di oggetto, ed è l'argomento della sezione successiva.
+Questo non è particolarmente utile quando si scrivono letterali oggetto manualmente, poiché usare il nome dell'oggetto (`person1` e `person2`) porta allo stesso identico risultato, ma sarà essenziale quando si inizieranno a usare i **costruttori** per creare più di un oggetto da una singola definizione di oggetto. Questo è l'argomento della sezione successiva.
 
 ## Introduzione ai costruttori
 
-Usare oggetti letterali va bene quando è necessario creare un solo oggetto, ma se devi creare più di uno, come nella sezione precedente, risultano seriamente inadeguati. Dobbiamo scrivere lo stesso codice per ogni oggetto che creiamo, e se vogliamo cambiare alcune proprietà dell'oggetto - come aggiungere una proprietà `height` - allora dobbiamo ricordarci di aggiornare ogni oggetto.
+L'uso dei letterali oggetto va bene quando è necessario creare un solo oggetto, ma se occorre crearne più di uno, come nella sezione precedente, risultano decisamente inadeguati. Bisogna scrivere lo stesso codice per ogni oggetto creato e, se si vogliono modificare alcune proprietà dell'oggetto, ad esempio aggiungere una proprietà `height`, bisogna ricordarsi di aggiornare ogni oggetto.
 
-Vorremmo un modo per definire la "forma" di un oggetto — l'insieme di metodi e le proprietà che può avere — e poi creare quanti oggetti desideriamo, aggiornando solo i valori per le proprietà che sono diverse.
+Sarebbe utile disporre di un modo per definire la "forma" di un oggetto, ovvero l'insieme di metodi e proprietà che può avere, e quindi creare tutti gli oggetti desiderati aggiornando solo i valori delle proprietà che differiscono.
 
 La prima versione di questo è semplicemente una funzione:
 
@@ -329,14 +329,14 @@ function createPerson(name) {
 }
 ```
 
-Questa funzione crea e restituisce un nuovo oggetto ogni volta che la chiamiamo. L'oggetto avrà due membri:
+Questa funzione crea e restituisce un nuovo oggetto ogni volta che viene chiamata. L'oggetto avrà due membri:
 
 - una proprietà `name`
 - un metodo `introduceSelf()`.
 
-Nota che `createPerson()` prende un parametro `name` per impostare il valore della proprietà `name`, ma il valore del metodo `introduceSelf()` sarà lo stesso per tutti gli oggetti creati usando questa funzione. Questo è un pattern molto comune per creare oggetti.
+Notare che `createPerson()` accetta un parametro `name` per impostare il valore della proprietà `name`, ma il valore del metodo `introduceSelf()` sarà lo stesso per tutti gli oggetti creati usando questa funzione. Questo è uno schema molto comune per creare oggetti.
 
-Ora possiamo creare quanti oggetti vogliamo, riutilizzando la definizione:
+Ora è possibile creare tutti gli oggetti desiderati riutilizzando la definizione:
 
 ```js
 const salva = createPerson("Salva");
@@ -348,14 +348,14 @@ frankie.introduceSelf();
 // "Hi! I'm Frankie."
 ```
 
-Questo funziona bene ma è un po' prolisso: dobbiamo creare un oggetto vuoto, inizializzarlo e restituirlo. Un modo migliore è usare un **costruttore**. Un costruttore è semplicemente una funzione chiamata usando la parola chiave {{jsxref("operators/new", "new")}}. Quando chiami un costruttore, farà:
+Questo funziona correttamente, ma è piuttosto prolisso: bisogna creare un oggetto vuoto, inizializzarlo e restituirlo. Un modo migliore consiste nell'usare un **costruttore**. Un costruttore è semplicemente una funzione chiamata usando la parola chiave {{jsxref("new")}}. Quando viene chiamato un costruttore, esso:
 
-- creare un nuovo oggetto
-- legare `this` al nuovo oggetto, quindi puoi riferirti a `this` nel tuo codice del costruttore
-- eseguire il codice nel costruttore
-- restituire il nuovo oggetto.
+- crea un nuovo oggetto
+- associa `this` al nuovo oggetto, in modo da poter fare riferimento a `this` nel codice del costruttore
+- esegue il codice nel costruttore
+- restituisce il nuovo oggetto.
 
-I costruttori, per convenzione, iniziano con una lettera maiuscola e sono nominati per il tipo di oggetto che creano. Quindi potremmo riscrivere il nostro esempio in questo modo:
+Per convenzione, i costruttori iniziano con una lettera maiuscola e prendono il nome dal tipo di oggetto che creano. L'esempio può quindi essere riscritto in questo modo:
 
 ```js
 function Person(name) {
@@ -366,7 +366,7 @@ function Person(name) {
 }
 ```
 
-Per chiamare `Person()` come costruttore, usiamo `new`:
+Per chiamare `Person()` come costruttore, si usa `new`:
 
 ```js
 const salva = new Person("Salva");
@@ -378,43 +378,39 @@ frankie.introduceSelf();
 // "Hi! I'm Frankie."
 ```
 
-## Hai sempre utilizzato oggetti
+## Gli oggetti sono stati usati fin dall'inizio
 
-Mentre passavi attraverso questi esempi, probabilmente hai pensato che la notazione a punto che stavi usando fosse molto familiare. È perché l'hai usata nel corso! Ogni volta che abbiamo lavorato attraverso un esempio che utilizza un'API del browser integrata o un oggetto JavaScript, abbiamo usato oggetti, perché tali funzionalità sono costruite usando lo stesso tipo di strutture di oggetti che abbiamo esaminato qui, sebbene più complesse rispetto ai nostri semplici esempi personalizzati.
+Durante l'analisi di questi esempi, la notazione con punto utilizzata potrebbe essere sembrata molto familiare. Questo perché è stata usata per tutto il corso. Ogni volta che è stato analizzato un esempio che usa un'API del browser integrata o un oggetto JavaScript, sono stati usati oggetti, perché tali funzionalità sono realizzate usando esattamente lo stesso tipo di strutture a oggetti esaminate qui, sebbene più complesse rispetto agli esempi personalizzati di base.
 
-Quindi quando usavi metodi di stringa come:
+Quindi, quando sono stati usati metodi delle stringhe come:
 
 ```js
 myString.split(",");
 ```
 
-Stavi usando un metodo disponibile su un oggetto [`String`](/it/docs/Web/JavaScript/Reference/Global_Objects/String). Ogni volta che crei una stringa nel tuo codice, quella stringa viene automaticamente creata come un'istanza di `String`, e di conseguenza ha diversi metodi e proprietà comuni disponibili su di essa.
+È stato usato un metodo disponibile su un oggetto [`String`](/it/docs/Web/JavaScript/Reference/Global_Objects/String). Ogni volta che viene creata una stringa nel codice, tale stringa viene automaticamente creata come istanza di `String` e dispone quindi di diversi metodi e proprietà comuni.
 
-Quando accedevi al document object model usando righe come questa:
+Quando si è effettuato l'accesso al modello a oggetti del documento usando righe come questa:
 
 ```js
 const myDiv = document.createElement("div");
 const myVideo = document.querySelector("video");
 ```
 
-Stavi usando metodi disponibili su un oggetto [`Document`](/it/docs/Web/API/Document). Per ogni pagina web caricata, viene creata un'istanza di `Document`, chiamata `document`, che rappresenta l'intera struttura della pagina, il contenuto e altre caratteristiche come il suo URL. Ancora una volta, questo significa che ha diversi metodi e proprietà comuni disponibili su di esso.
+Sono stati usati metodi disponibili su un oggetto [`Document`](/it/docs/Web/API/Document). Per ogni pagina web caricata viene creata un'istanza di `Document`, chiamata `document`, che rappresenta l'intera struttura, il contenuto e altre funzionalità della pagina, come il suo URL. Anche questo significa che dispone di diversi metodi e proprietà comuni.
 
-Lo stesso vale per praticamente qualsiasi altro oggetto integrato o API che hai utilizzato — [`Array`](/it/docs/Web/JavaScript/Reference/Global_Objects/Array), [`Math`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math), e così via.
+Lo stesso vale per praticamente qualsiasi altro oggetto integrato o API usata: [`Array`](/it/docs/Web/JavaScript/Reference/Global_Objects/Array), [`Math`](/it/docs/Web/JavaScript/Reference/Global_Objects/Math) e così via.
 
-Nota che gli oggetti e le API incorporati non creano sempre automaticamente istanze di oggetti. Ad esempio, l'[API delle Notifiche](/it/docs/Web/API/Notifications_API) — che consente ai browser moderni di inviare notifiche di sistema — richiede di istanziare una nuova istanza di oggetto utilizzando il costruttore per ogni notifica che vuoi inviare. Prova a inserire quanto segue nella console del tuo JavaScript:
+Notare che gli oggetti e le API integrati non creano sempre automaticamente istanze di oggetti. Ad esempio, la [Notifications API](/it/docs/Web/API/Notifications_API), che consente ai browser moderni di attivare notifiche di sistema, richiede di istanziare un nuovo oggetto usando il costruttore per ogni notifica da attivare. Provare a inserire quanto segue nella console JavaScript:
 
 ```js
 const myNotification = new Notification("Hello!");
 ```
 
-## Metti alla prova le tue competenze!
-
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare che hai memorizzato queste informazioni prima di andare avanti — vedi [Metti alla prova le tue competenze: Nozioni di base sugli oggetti](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills/Object_basics).
-
 ## Riepilogo
 
-Dovresti ora avere una buona idea di come lavorare con gli oggetti in JavaScript — inclusa la creazione dei tuoi semplici oggetti. Dovresti anche apprezzare che gli oggetti sono molto utili come strutture per memorizzare dati e funzionalità correlati — se provi a tenere traccia di tutte le proprietà e dei metodi nel nostro oggetto `person` come variabili e funzioni separate, sarebbe inefficiente e frustrante, e rischieremmo di entrare in conflitto con altre variabili e funzioni che hanno lo stesso nome. Gli oggetti ci permettono di mantenere le informazioni al sicuro nella loro confezione, fuori dai problemi.
+A questo punto dovrebbe essere chiaro come lavorare con gli oggetti in JavaScript, inclusa la creazione di semplici oggetti personalizzati. Dovrebbe anche risultare evidente che gli oggetti sono molto utili come strutture per memorizzare dati e funzionalità correlati: se si provasse a tenere traccia di tutte le proprietà e i metodi del nostro oggetto `person` come variabili e funzioni separate, sarebbe inefficiente e frustrante, con il rischio di entrare in conflitto con altre variabili e funzioni che hanno gli stessi nomi. Gli oggetti consentono di mantenere le informazioni al sicuro nel proprio contenitore, lontano da possibili problemi.
 
-Nel prossimo articolo esamineremo il **DOM scripting**, che sblocca una grande quantità di funzionalità fondamentali delle API del browser.
+Nel prossimo articolo verranno proposti alcuni test per verificare quanto bene sono state comprese e memorizzate tutte queste informazioni.
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Image_gallery","Learn_web_development/Core/Scripting/DOM_scripting", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Test_your_skills/Events","Learn_web_development/Core/Scripting/Test_your_skills/Object_basics", "Learn_web_development/Core/Scripting")}}

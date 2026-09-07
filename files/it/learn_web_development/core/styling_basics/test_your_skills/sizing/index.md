@@ -1,29 +1,35 @@
 ---
-title: "Metti alla prova le tue abilità: Dimensionamento"
-short-title: Sizing
+title: "Metti alla prova le tue competenze: dimensionamento"
+short-title: "Test: dimensionamento"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Sizing
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: a623d4459e2aa00d17dc0fd6b6bc44f56c589950
 ---
 
-L'obiettivo di questo test di abilità è valutare se comprendi i diversi modi di [dimensionare gli elementi in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Sizing).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Sizing", "Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics")}}
+
+L'obiettivo di questo test sulle competenze è aiutare a valutare se si comprendono i diversi modi di [dimensionare gli elementi in CSS](/it/docs/Learn_web_development/Core/Styling_basics/Sizing).
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona della clipboard) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-> Se incontri difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ricevere assistenza, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È inoltre possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Esercizio 1
+## Dimensionamento 1
 
-In questo esercizio, hai due contenitori. Il primo dovrebbe essere dimensionato in modo tale che l'altezza sia di almeno 100 pixel, anche se c'è meno contenuto che potrebbe farlo crescere fino a quell'altezza. Tuttavia, il contenuto non dovrebbe traboccare se c'è più contenuto di quanto entri in 100 pixel. Prova questo contenitore rimuovendo il contenuto dall'HTML per assicurarti di ottenere comunque un contenitore alto 100 pixel anche senza contenuto.
+In questa attività sono presenti due riquadri.
 
-Il secondo contenitore dovrebbe essere fissato a 100 pixel di altezza, in modo che il contenuto trabocchi se ce n'è troppo.
+Per completare l'attività:
 
-![Due contenitori, uno con contenuto che trabocca](mdn-sizing-height-min-height.png)
+1. Dimensionare il primo riquadro in modo che l'altezza sia almeno `100px`, anche se il contenuto è insufficiente per farlo crescere fino a tale altezza. Il contenuto non deve fuoriuscire se non entra nel riquadro.
+2. Per verificarlo, rimuovere il contenuto dall'HTML per assicurarsi di ottenere comunque un riquadro alto `100px` anche senza contenuto.
+3. Dimensionare il secondo riquadro in modo che abbia un'altezza fissa di `100px`. In questo caso, il contenuto deve fuoriuscire.
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+Il punto di partenza dell'attività è simile a questo:
 
-```html live-sample___height-min-height
+{{EmbedLiveSample("sizing1-start", "", "480px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___sizing1-start live-sample___sizing1-finish
 <div class="box box1">
   <p>
     Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
@@ -41,20 +47,18 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___height-min-height
+```css live-sample___sizing1-start live-sample___sizing1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
   padding: 1em;
 }
 
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
   width: 400px;
   margin-bottom: 1em;
 }
-```
 
-```css live-sample___height-min-height
 .box1 {
   /* Add styles here */
 }
@@ -64,14 +68,16 @@ body {
 }
 ```
 
-{{EmbedLiveSample("height-min-height", "", "500px")}}
+Lo stile aggiornato dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("sizing1-finish", "", "460px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Ci sono due contenitori, al primo dovrebbe essere assegnata un'altezza minima, nel qual caso si espanderà per accogliere il contenuto aggiuntivo, ma se rimuovi del contenuto, il contenitore sarà almeno alto quanto il `min-height`. Al secondo è assegnata un'altezza fissa che farà traboccare il contenuto.
+Sono presenti due riquadri. Al primo deve essere assegnato un valore `min-height` affinché si espanda per contenere il contenuto aggiuntivo, ma non si riduca al di sotto di `100px` di altezza se il contenuto viene rimosso. Al secondo riquadro viene assegnata un'altezza fissa, che causerà la fuoriuscita del contenuto.
 
-```css
+```css live-sample___sizing1-finish
 .box1 {
   min-height: 100px;
 }
@@ -83,29 +89,35 @@ Ci sono due contenitori, al primo dovrebbe essere assegnata un'altezza minima, n
 
 </details>
 
-## Esercizio 2
+## Dimensionamento 2
 
-In questo esercizio, hai un contenitore, che ne contiene un altro. Il tuo compito è rendere il contenitore interno il 60% della larghezza del contenitore esterno. Il valore della proprietà {{cssxref("box-sizing")}} è impostato su `border-box`, il che significa che la larghezza totale include eventuali padding e bordi. Dovresti anche dare al contenitore interno un padding del 10% utilizzando la larghezza (o dimensione inline) come misura da cui calcolare quella percentuale.
+In questa attività è presente un riquadro che ne contiene un altro.
 
-Il risultato finale dovrebbe assomigliare all'immagine qui sotto:
+Per completare l'attività:
 
-![Un contenitore con un altro contenitore annidato all'interno](mdn-sizing-percentages.png)
+1. Impostare la larghezza del riquadro interno al `60%` della larghezza del riquadro esterno. La proprietà {{cssxref("box-sizing")}} è impostata su `border-box`, il che significa che la larghezza totale include eventuali `padding` e `border`.
+2. Assegnare al riquadro interno un `padding` del `10%` su tutti i lati.
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+Il punto di partenza dell'attività è simile a questo:
 
-```html live-sample___percentages
+{{EmbedLiveSample("sizing2-start", "", "100px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___sizing2-start live-sample___sizing2-finish
 <div class="box">
   <div class="inner">Make me 60% of my parent's width.</div>
 </div>
 ```
 
-```css hidden live-sample___percentages
+```css live-sample___sizing2-start live-sample___sizing2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
   padding: 1em;
 }
+
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
   width: 400px;
   margin-bottom: 1em;
 }
@@ -115,9 +127,7 @@ body {
   color: white;
   border-radius: 5px;
 }
-```
 
-```css live-sample___percentages
 * {
   box-sizing: border-box;
 }
@@ -126,18 +136,17 @@ body {
 }
 ```
 
-{{EmbedLiveSample("percentages", "", "250px")}}
+Lo stile aggiornato dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("sizing2-finish", "", "220px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Rendi il contenitore il 60% del contenitore esterno e dagli un padding del 10% su tutti i lati.
-Tutti gli elementi hanno già `box-sizing: border-box` per evitare di preoccuparti di quale larghezza stai usando:
+Impostare `width` del riquadro su `60%` e assegnargli un valore `padding` di `10%`.
+Tutti gli elementi hanno già `box-sizing: border-box` impostato, così non è necessario preoccuparsi di calcolare il valore della larghezza al `60%`:
 
-```css
-* {
-  box-sizing: border-box;
-}
+```css live-sample___sizing2-finish
 .inner {
   width: 60%;
   padding: 10%;
@@ -146,17 +155,19 @@ Tutti gli elementi hanno già `box-sizing: border-box` per evitare di preoccupar
 
 </details>
 
-## Esercizio 3
+## Dimensionamento 3
 
-In questo esercizio, hai due immagini in contenitori. Un'immagine è più piccola del contenitore, l'altra è più grande e esce dal contenitore. Se immagini che il contenitore sia responsivo e quindi possa crescere e ridursi, quale proprietà applicheresti all'immagine affinché l'immagine grande si riduca nel contenitore ma l'immagine piccola non si estenda.
+In questa attività sono presenti due immagini in riquadri. Un'immagine è più piccola del riquadro, mentre l'altra è più grande e quindi fuoriesce dal riquadro.
 
-Il risultato finale dovrebbe assomigliare alle immagini qui sotto:
+Per completare l'attività, immaginare che il riquadro sia responsive e che quindi possa crescere e ridursi. Applicare una dichiarazione alle immagini in modo che l'immagine grande si riduca per entrare nel riquadro, mentre l'immagine piccola non venga allungata.
 
-![Due contenitori con immagini all'interno](mdn-sizing-max-width.png)
+Il punto di partenza dell'attività è simile a questo:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("sizing3-start", "", "700px")}}
 
-```html live-sample___max-width
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___sizing3-start live-sample___sizing3-finish
 <div class="box">
   <img
     alt="A pink star"
@@ -170,32 +181,32 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___max-width
+```css live-sample___sizing3-start live-sample___sizing3-finish
 body {
   font: 1.2em / 1.5 sans-serif;
   padding: 1em;
 }
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
   margin-bottom: 1em;
   width: 500px;
 }
-```
 
-```css live-sample___max-width
 img {
   /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("max-width", "", "700px")}}
+Lo stile aggiornato dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("sizing3-finish", "", "720px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-L'esempio ha un'immagine che sta uscendo dal contenitore e una che è più piccola del contenitore, devi usare `max-width` impostato al 100% per far sì che l'immagine più grande cresca solo quanto il contenitore. Se usi `width: 100%`, l'immagine piccola si estenderà.
+Impostare la proprietà `max-width` delle immagini su `100%` per contenere l'immagine grande all'interno del relativo riquadro. Se si usa `width: 100%`, l'immagine piccola verrà allungata.
 
-```css
+```css live-sample___sizing3-finish
 img {
   max-width: 100%;
 }
@@ -203,6 +214,4 @@ img {
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Sizing", "Learn_web_development/Core/Styling_basics/Backgrounds_and_borders", "Learn_web_development/Core/Styling_basics")}}

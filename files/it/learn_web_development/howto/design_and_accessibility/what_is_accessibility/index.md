@@ -1,11 +1,11 @@
 ---
-title: Cos'è l'accessibilità?
+title: Che cos'è l'accessibilità?
 slug: Learn_web_development/Howto/Design_and_accessibility/What_is_accessibility
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: f33de00c56ac53878eb2cb7cb5849df1f9ab8db7
 ---
 
-Questo articolo introduce i concetti di base dietro l'accessibilità web.
+Questo articolo introduce i concetti di base dell'accessibilità web.
 
 <table class="standard-table">
   <tbody>
@@ -15,71 +15,66 @@ Questo articolo introduce i concetti di base dietro l'accessibilità web.
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
-      <td>Imparare cos'è l'accessibilità e perché è importante.</td>
+      <td>Imparare che cos'è l'accessibilità e perché è importante.</td>
     </tr>
   </tbody>
 </table>
 
-## Sommario
+## Riepilogo
 
-A causa di limitazioni fisiche o tecniche, forse i tuoi visitatori non possono vivere il tuo sito web come speravi. In questo articolo forniamo principi generali di accessibilità e spieghiamo alcune regole.
+A causa di limitazioni fisiche o tecniche, forse i visitatori non possono fruire del sito web nel modo previsto. In questo articolo vengono illustrati i principi generali dell'accessibilità e spiegate alcune regole.
 
-## Apprendimento attivo
-
-_Non è ancora disponibile l'apprendimento attivo. [Per favore, considera di contribuire](/it/docs/MDN/Community/Getting_started)._
-
-## Approfondimenti
+## Approfondimento
 
 ### Accessibilità: principi generali
 
-Potremmo associare l'accessibilità inizialmente a limitazioni negative. Questo edificio deve essere accessibile, quindi deve seguire queste normative per la larghezza delle porte, la dimensione dei bagni e il posizionamento degli ascensori.
+All'inizio si potrebbe associare l'accessibilità a limitazioni negative. Questo edificio deve essere accessibile, quindi deve rispettare queste norme sulla larghezza delle porte, sulle dimensioni dei servizi igienici e sul posizionamento degli ascensori.
 
-Questo è un modo ristretto di pensare all'accessibilità. Considerala come un modo meraviglioso per potenziare le persone e servire più clienti. Cosa possono fare le persone in Brasile con il tuo sito web in inglese? Possono le persone con smartphone navigare in un sito pesante e disordinato progettato per un grande monitor desktop e una larghezza di banda illimitata? Andranno altrove. In generale, _dobbiamo pensare al nostro prodotto dal punto di vista di tutti i nostri clienti target e adattarci di conseguenza._ Da qui l'accessibilità.
+Questo è un modo limitato di concepire l'accessibilità. È invece un modo straordinario per rendere le persone più autonome e servire più clienti. Che cosa possono fare le persone in Brasile con un sito web in inglese? Le persone con smartphone possono navigare un sito web pesante e affollato, progettato per un grande monitor desktop e una larghezza di banda illimitata? Andranno altrove. In generale, _è necessario pensare al prodotto dal punto di vista di tutti i clienti target e adattarlo di conseguenza._ Da qui l'accessibilità.
 
 ### Accessibilità web
 
-Nel contesto specifico del web, l'accessibilità significa che chiunque può trarre beneficio dal tuo contenuto, indipendentemente da disabilità, località, limitazioni tecniche o altre circostanze.
+Nel contesto specifico del web, l'accessibilità significa che chiunque può beneficiare dei contenuti, indipendentemente da disabilità, posizione geografica, limitazioni tecniche o altre circostanze.
 
-Consideriamo il video:
+Consideriamo i video:
 
-- Invalidità uditiva
+- Disabilità uditiva
+  - : Come può una persona con disabilità uditiva beneficiare di un video? È necessario fornire sottotitoli — o, ancora meglio, una trascrizione testuale completa.
 
-  - : Come può una persona con udito compromesso beneficiare di un video? Devi fornire sottotitoli — o meglio ancora, una trascrizione completa del testo.
+    Inoltre, assicurarsi che le persone possano regolare il volume in base alle proprie esigenze.
 
-    Inoltre, assicurati che le persone possano regolare il volume per soddisfare le loro esigenze uniche.
+- Disabilità visiva
+  - : Anche in questo caso, fornire una trascrizione testuale che l'utente possa consultare senza dover riprodurre il video e un'audio-descrizione (una voce fuori campo che descrive ciò che accade nel video).
+- Possibilità di mettere in pausa
+  - : Gli utenti potrebbero avere difficoltà a comprendere qualcuno in un video. Consentire loro di mettere in pausa il video per leggere i sottotitoli o elaborare le informazioni.
+- Possibilità di usare la tastiera
+  - : Consentire all'utente di entrare e uscire da un video con il tasto Tab, riprodurlo e metterlo in pausa senza rimanervi intrappolato.
 
-- Invalidità visiva
-  - : Ancora una volta, fornisci una trascrizione testuale che un utente possa consultare senza la necessità di riprodurre il video, e una descrizione audio (una voce fuori campo che descrive ciò che sta accadendo nel video).
-- Capacità di pausa
-  - : Gli utenti potrebbero avere difficoltà a comprendere qualcuno in un video. Permetti loro di mettere in pausa il video per leggere i sottotitoli o elaborare le informazioni.
-- Capacità della tastiera
-  - : Consenti all'utente di spostarsi con il tab dentro/fuori da un video, di riprodurlo e di metterlo in pausa senza restare intrappolato.
+#### Le basi dell'accessibilità web
 
-#### Elementi di base dell'accessibilità Web
+Alcune necessità per l'accessibilità web di base includono:
 
-Alcuni elementi necessari per l'accessibilità web di base includono:
-
-- Ogni volta che il tuo sito ha bisogno di un'immagine per trasmettere un significato, includi un testo come alternativa per utenti con problemi visivi o connessioni lente.
-- Assicurati che tutti gli utenti possano operare interfacce grafiche (come i menu a discesa) solo con una tastiera (ad esempio, con il tasto Tab e il tasto Invio).
-- Fornisci un attributo che specifichi esplicitamente la lingua del tuo contenuto, in modo che i lettori di schermo leggano correttamente il tuo testo.
-- Assicurati che un utente possa navigare verso tutti i widget su una pagina solo con la tastiera, senza restare intrappolato. (Almeno consenti loro di spostarsi con il tab dentro e fuori.)
+- Ogni volta che il sito necessita di un'immagine per trasmettere un significato, includere del testo come alternativa per gli utenti con disabilità visive o con connessioni lente.
+- Assicurarsi che tutti gli utenti possano utilizzare le interfacce grafiche (come i menu espandibili) esclusivamente con la tastiera (ad esempio, con Tab e il tasto Invio).
+- Fornire un attributo che specifichi esplicitamente la lingua dei contenuti, affinché gli screen reader leggano correttamente il testo.
+- Assicurarsi che un utente possa navigare verso tutti i widget di una pagina esclusivamente con la tastiera, senza rimanere intrappolato. (Come minimo, consentire di entrare e uscire con Tab.)
 
 E questo è solo l'inizio.
 
-### Campioni di accessibilità
+### Promotori dell'accessibilità
 
-Dal 1999, il {{Glossary("W3C", "W3C")}} opera un gruppo di lavoro chiamato {{Glossary("WAI", "Iniziativa per l'accessibilità web")}} (WAI) che promuove l'accessibilità attraverso linee guida, materiale di supporto e risorse internazionali.
+Dal 1999, il {{Glossary("W3C", "W3C")}} gestisce un gruppo di lavoro chiamato {{Glossary("WAI", "Web Accessibility Initiative")}} (WAI), che promuove l'accessibilità tramite linee guida, materiale di supporto e risorse internazionali.
 
 ## Maggiori dettagli
 
-Per favore riferisciti a:
+Consultare:
 
 - [Articolo di Wikipedia](https://en.wikipedia.org/wiki/Accessibility) sull'accessibilità
-- [WAI (Iniziativa per l'accessibilità web del W3C)](https://www.w3.org/WAI/)
+- [WAI (Web Accessibility Initiative del W3C)](https://www.w3.org/WAI/)
 
-## Prossimi passi
+## Passaggi successivi
 
-L'accessibilità può influire sia sul design di un sito web che sulla struttura tecnica.
+L'accessibilità può influire sia sul design sia sulla struttura tecnica di un sito web.
 
-- Da un punto di vista del design, suggeriamo di apprendere come [progettare per tutti i tipi di utenti](/it/docs/Learn_web_development/Howto/Design_and_accessibility/Design_for_all_types_of_users).
-- Se ti interessa di più il lato tecnico, potresti imparare come [inserire immagini nelle pagine web](/it/docs/Learn_web_development/Core/Structuring_content/HTML_images).
+- Dal punto di vista del design, si suggerisce di approfondire la [progettazione per tutti i tipi di utenti](/it/docs/Learn_web_development/Howto/Design_and_accessibility/Design_for_all_types_of_users).
+- Se interessa maggiormente l'aspetto tecnico, è possibile imparare come [incorporare immagini nelle pagine web](/it/docs/Learn_web_development/Core/Structuring_content/HTML_images).

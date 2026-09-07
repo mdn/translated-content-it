@@ -1,78 +1,78 @@
 ---
 title: Metodi utili per le stringhe
-short-title: Metodi delle stringhe
+short-title: Metodi per le stringhe
 slug: Learn_web_development/Core/Scripting/Useful_string_methods
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 003b6ceec6ecd0a3e36046a8515ab7fbc8dc220d
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Strings", "Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Strings", "Learn_web_development/Core/Scripting/Test_your_skills/Strings", "Learn_web_development/Core/Scripting")}}
 
-Ora che abbiamo esaminato le basi delle stringhe, facciamo un passo avanti e iniziamo a pensare a quali operazioni utili possiamo fare sulle stringhe con i metodi integrati, come trovare la lunghezza di una stringa di testo, unire e dividere le stringhe, sostituire un carattere in una stringa con un altro e altro ancora.
+Ora che sono state esaminate le basi essenziali delle stringhe, è il momento di passare al livello successivo e iniziare a pensare alle operazioni utili che si possono eseguire sulle stringhe con i metodi integrati, come trovare la lunghezza di una stringa di testo, unire e dividere stringhe, sostituire un carattere in una stringa con un altro e altro ancora.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
-      <td>Comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti del CSS</a>. Conoscenza delle <a href="/it/docs/Learn_web_development/Core/Scripting/Strings">basi delle stringhe</a>.</td>
+      <td>Comprensione di <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a> e dei <a href="/it/docs/Learn_web_development/Core/Styling_basics">fondamenti di CSS</a>. Conoscenza delle <a href="/it/docs/Learn_web_development/Core/Scripting/Strings">basi delle stringhe</a>.</td>
     </tr>
     <tr>
-      <th scope="row">Risultati dell'apprendimento:</th>
+      <th scope="row">Obiettivi di apprendimento:</th>
       <td>
-          Manipolazione delle stringhe utilizzando le proprietà e i metodi comuni integrati in JavaScript.
+          Manipolazione delle stringhe tramite proprietà e metodi comuni integrati in JavaScript.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Stringhe come oggetti
+## Le stringhe come oggetti
 
-La maggior parte dei valori può essere utilizzata come se fossero oggetti in JavaScript. Quando si crea una stringa, per esempio utilizzando
+In JavaScript, la maggior parte dei valori può essere utilizzata come se fosse un oggetto. Quando viene creata una stringa, ad esempio usando
 
 ```js
 const string = "This is my string";
 ```
 
-anche se la variabile in sé non è un oggetto, ha comunque un gran numero di proprietà e metodi disponibili, in virtù del fatto di poter essere utilizzabile come un oggetto quando si accede alle proprietà. Puoi vedere questo se vai alla pagina dell'oggetto {{jsxref("String")}} e guardi l'elenco sul lato della pagina!
+anche se la variabile stessa non è un oggetto, dispone comunque di un gran numero di proprietà e metodi, grazie al fatto che può essere utilizzata come oggetto durante l'accesso alle proprietà. Questo è visibile andando alla pagina dell'oggetto {{jsxref("String")}} e osservando l'elenco sul lato della pagina.
 
-**Ora, prima che il tuo cervello inizi a fondere, non preoccuparti!** Non hai davvero bisogno di conoscere la maggior parte di queste cose all'inizio del tuo percorso di apprendimento. Ma ci sono alcune cose che potresti usare abbastanza spesso che esamineremo qui.
+**Ora, prima che il cervello inizi a fondersi, niente paura!** Non è affatto necessario conoscere la maggior parte di queste cose nelle prime fasi del percorso di apprendimento. Tuttavia, ce ne sono alcune che potrebbero essere usate abbastanza spesso e che verranno esaminate qui.
 
-Inseriamo alcuni esempi nella [console degli sviluppatori del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools).
+Inseriamo alcuni esempi nella [console per sviluppatori del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools).
 
 ## Trovare la lunghezza di una stringa
 
-Questo è facile — si usa la proprietà {{jsxref("String.prototype.length", "length")}}. Prova a inserire le seguenti righe:
+È semplice: si usa la proprietà {{jsxref("String.prototype.length", "length")}}. Provare a inserire le seguenti righe:
 
 ```js
 const browserType = "mozilla";
 browserType.length;
 ```
 
-Questo dovrebbe restituire il numero 7, perché "mozilla" è lunga 7 caratteri. Questo è utile per molti motivi; per esempio, potresti voler trovare le lunghezze di una serie di nomi per poterli visualizzare in ordine di lunghezza, o informare un utente che un nome utente che ha inserito in un campo modulo è troppo lungo se supera una certa lunghezza.
+Il risultato dovrebbe essere il numero 7, perché "mozilla" è lunga 7 caratteri. Questo è utile per molti motivi; per esempio, si potrebbero voler trovare le lunghezze di una serie di nomi per visualizzarli in ordine di lunghezza, oppure informare un utente che il nome utente inserito in un campo di un modulo è troppo lungo se supera una certa lunghezza.
 
 ## Recuperare un carattere specifico di una stringa
 
-In relazione a questo, puoi restituire qualsiasi carattere all'interno di una stringa utilizzando la **notazione a parentesi quadre** — questo significa che si includono parentesi quadre (`[]`) alla fine del nome della variabile. All'interno delle parentesi quadre, si include il numero del carattere che si vuole restituire, quindi per esempio per recuperare la prima lettera si farebbe così:
+In modo analogo, è possibile restituire qualsiasi carattere all'interno di una stringa utilizzando la **notazione con parentesi quadre**: ciò significa includere parentesi quadre (`[]`) alla fine del nome della variabile. All'interno delle parentesi quadre va inserito il numero del carattere da restituire; per esempio, per recuperare la prima lettera si farebbe così:
 
 ```js
 browserType[0];
 ```
 
-Ricorda: i computer contano da 0, non da 1!
+Ricordare: i computer contano a partire da 0, non da 1!
 
-Per recuperare l'ultimo carattere di _qualsiasi_ stringa, potremmo usare la seguente riga, combinando questa tecnica con la proprietà `length` che abbiamo visto sopra:
+Per recuperare l'ultimo carattere di _qualsiasi_ stringa, si potrebbe usare la riga seguente, combinando questa tecnica con la proprietà `length` vista sopra:
 
 ```js
 browserType[browserType.length - 1];
 ```
 
-La lunghezza della stringa "mozilla" è 7, ma siccome il conteggio inizia da 0, la posizione dell'ultimo carattere è 6; usando `length-1` otteniamo l'ultimo carattere.
+La lunghezza della stringa "mozilla" è 7, ma poiché il conteggio inizia da 0, la posizione dell'ultimo carattere è 6; usare `length-1` consente di ottenere l'ultimo carattere.
 
 ## Verificare se una stringa contiene una sottostringa
 
-A volte vorrai sapere se una stringa più piccola è presente all'interno di una più grande (generalmente diciamo _se una sottostringa è presente all'interno di una stringa_). Questo può essere fatto utilizzando il metodo {{jsxref("String.prototype.includes()", "includes()")}}, che prende un singolo {{Glossary("parameter", "parametro")}} — la sottostringa che vuoi cercare.
+Talvolta è necessario scoprire se una stringa più piccola è presente all'interno di una più grande (in genere si dice _se una sottostringa è presente all'interno di una stringa_). Questo può essere fatto utilizzando il metodo {{jsxref("String.prototype.includes()", "includes()")}}, che accetta un solo {{Glossary("parameter", "parametro")}}: la sottostringa da cercare.
 
-Ritorna `true` se la stringa contiene la sottostringa, e `false` altrimenti.
+Restituisce `true` se la stringa contiene la sottostringa, altrimenti `false`.
 
 ```js
 const browserType = "mozilla";
@@ -84,15 +84,15 @@ if (browserType.includes("zilla")) {
 }
 ```
 
-Spesso vorrai sapere se una stringa inizia o termina con una particolare sottostringa. Questo è un bisogno abbastanza comune da avere due metodi speciali per questo: {{jsxref("String.prototype.startsWith()", "startsWith()")}} e {{jsxref("String.prototype.endsWith()", "endsWith()")}}:
+Spesso sarà necessario sapere se una stringa inizia o termina con una determinata sottostringa. Questa esigenza è abbastanza comune da avere due metodi specifici: {{jsxref("String.prototype.startsWith()", "startsWith()")}} e {{jsxref("String.prototype.endsWith()", "endsWith()")}}:
 
 ```js
 const browserType = "mozilla";
 
 if (browserType.startsWith("zilla")) {
-  console.log("Found zilla!");
+  console.log("It starts with zilla!");
 } else {
-  console.log("No zilla here!");
+  console.log("It DOESN'T start with zilla!");
 }
 ```
 
@@ -100,32 +100,32 @@ if (browserType.startsWith("zilla")) {
 const browserType = "mozilla";
 
 if (browserType.endsWith("zilla")) {
-  console.log("Found zilla!");
+  console.log("It ends with zilla!");
 } else {
-  console.log("No zilla here!");
+  console.log("It DOESN'T end with zilla!");
 }
 ```
 
 ## Trovare la posizione di una sottostringa in una stringa
 
-Puoi trovare la posizione di una sottostringa all'interno di una stringa più grande utilizzando il metodo {{jsxref("String.prototype.indexOf()", "indexOf()")}}. Questo metodo prende due {{Glossary("parameter", "parametri")}} – la sottostringa che vuoi cercare, e un parametro opzionale che specifica il punto di partenza della ricerca.
+È possibile trovare la posizione di una sottostringa all'interno di una stringa più grande utilizzando il metodo {{jsxref("String.prototype.indexOf()", "indexOf()")}}. Questo metodo accetta due {{Glossary("parameter", "parametri")}}: la sottostringa da cercare e un parametro facoltativo che specifica il punto iniziale della ricerca.
 
-Se la stringa contiene la sottostringa, `indexOf()` ritorna l'indice della prima occorrenza della sottostringa. Se la stringa non contiene la sottostringa, `indexOf()` ritorna `-1`.
+Se la stringa contiene la sottostringa, `indexOf()` restituisce l'indice della prima occorrenza della sottostringa. Se la stringa non contiene la sottostringa, `indexOf()` restituisce `-1`.
 
 ```js
 const tagline = "MDN - Resources for developers, by developers";
 console.log(tagline.indexOf("developers")); // 20
 ```
 
-Partendo da `0`, se conti il numero di caratteri (incluso lo spazio bianco) dall'inizio della stringa, la prima occorrenza della sottostringa `"developers"` è all'indice `20`.
+Partendo da `0`, contando il numero di caratteri (compresi gli spazi) dall'inizio della stringa, la prima occorrenza della sottostringa `"developers"` si trova all'indice `20`.
 
 ```js
 console.log(tagline.indexOf("x")); // -1
 ```
 
-Questo, invece, ritorna `-1` perché il carattere `x` non è presente nella stringa.
+Questo, invece, restituisce `-1` perché il carattere `x` non è presente nella stringa.
 
-Quindi ora che sai come trovare la prima occorrenza di una sottostringa, come fai a trovare le occorrenze successive? Puoi farlo passando un valore maggiore dell'indice della precedente occorrenza come secondo parametro del metodo.
+Ora che è noto come trovare la prima occorrenza di una sottostringa, come si trovano le occorrenze successive? È possibile farlo passando come secondo parametro del metodo un valore maggiore dell'indice dell'occorrenza precedente.
 
 ```js
 const firstOccurrence = tagline.indexOf("developers");
@@ -135,14 +135,14 @@ console.log(firstOccurrence); // 20
 console.log(secondOccurrence); // 35
 ```
 
-Qui stiamo dicendo al metodo di cercare la sottostringa `"developers"` a partire dall'indice `21` (`firstOccurrence + 1`), e ritorna l'indice `35`.
+Qui viene indicato al metodo di cercare la sottostringa `"developers"` a partire dall'indice `21` (`firstOccurrence + 1`) e viene restituito l'indice `35`.
 
 ## Estrarre una sottostringa da una stringa
 
-Puoi estrarre una sottostringa da una stringa utilizzando il metodo {{jsxref("String.prototype.slice()", "slice()")}}. Gli passi:
+È possibile estrarre una sottostringa da una stringa utilizzando il metodo {{jsxref("String.prototype.slice()", "slice()")}}. A questo metodo vengono passati:
 
-- l'indice da cui iniziare l'estrazione
-- l'indice a cui fermarsi. Questo è esclusivo, il che significa che il carattere a questo indice non è incluso nella sottostringa estratta.
+- l'indice dal quale iniziare l'estrazione;
+- l'indice al quale interrompere l'estrazione. Questo è esclusivo, il che significa che il carattere a questo indice non viene incluso nella sottostringa estratta.
 
 Per esempio:
 
@@ -151,23 +151,24 @@ const browserType = "mozilla";
 console.log(browserType.slice(1, 4)); // "ozi"
 ```
 
-Il carattere all'indice `1` è `"o"`, e il carattere all'indice 4 è `"l"`. Quindi estraiamo tutti i caratteri a partire da `"o"` e terminando appena prima di `"l"`, ottenendo `"ozi"`.
+Il carattere all'indice `1` è `"o"` e il carattere all'indice 4 è `"l"`. Vengono quindi estratti tutti i caratteri a partire da `"o"` e fino a prima di `"l"`, ottenendo `"ozi"`.
 
-Se sai che vuoi estrarre tutti i caratteri rimanenti in una stringa dopo un certo carattere, non devi includere il secondo parametro. Invece, devi solo includere la posizione del carattere da cui vuoi estrarre il resto dei caratteri in una stringa. Prova quanto segue:
+Se si sa di voler estrarre tutti i caratteri rimanenti in una stringa dopo un determinato carattere, non è necessario includere il secondo parametro. È invece sufficiente includere la posizione del carattere dal quale estrarre i caratteri rimanenti della stringa. Provare quanto segue:
 
 ```js
 browserType.slice(2); // "zilla"
 ```
 
-Questo ritorna `"zilla"` — ciò avviene perché la posizione del carattere 2 è la lettera `"z"`, e poiché non hai incluso un secondo parametro, la sottostringa restituita include tutti i caratteri rimanenti nella stringa.
+Questo restituisce `"zilla"`: ciò avviene perché la posizione del carattere 2 è la lettera `"z"` e, poiché non è stato incluso un secondo parametro, la sottostringa restituita contiene tutti i caratteri rimanenti nella stringa.
 
-> **Nota:** `slice()` ha altre opzioni; studia la pagina {{jsxref("String.prototype.slice()", "slice()")}} per vedere cos'altro puoi scoprire.
+> [!NOTE]
+> `slice()` dispone anche di altre opzioni; consultare la pagina {{jsxref("String.prototype.slice()", "slice()")}} per scoprire cos'altro è possibile fare.
 
-## Cambiare maiuscole e minuscole
+## Modificare le maiuscole e le minuscole
 
-I metodi delle stringhe {{jsxref("String.prototype.toLowerCase()", "toLowerCase()")}} e {{jsxref("String.prototype.toUpperCase()", "toUpperCase()")}} prendono una stringa e convertono tutti i caratteri rispettivamente in minuscole o maiuscole. Questo può essere utile per esempio se vuoi normalizzare tutti i dati inseriti dagli utenti prima di memorizzarli in un database.
+I metodi per stringhe {{jsxref("String.prototype.toLowerCase()", "toLowerCase()")}} e {{jsxref("String.prototype.toUpperCase()", "toUpperCase()")}} ricevono una stringa e convertono rispettivamente tutti i caratteri in minuscolo o maiuscolo. Questo può essere utile, per esempio, quando si desidera normalizzare tutti i dati inseriti dagli utenti prima di memorizzarli in un database.
 
-Proviamo a inserire le seguenti righe per vedere cosa succede:
+Provare a inserire le righe seguenti per vedere cosa accade:
 
 ```js
 const radData = "My NaMe Is MuD";
@@ -177,9 +178,9 @@ console.log(radData.toUpperCase());
 
 ## Aggiornare parti di una stringa
 
-Puoi sostituire una sottostringa all'interno di una stringa con un'altra sottostringa utilizzando il metodo {{jsxref("String.prototype.replace()", "replace()")}}.
+È possibile sostituire una sottostringa all'interno di una stringa con un'altra sottostringa usando il metodo {{jsxref("String.prototype.replace()", "replace()")}}.
 
-In questo esempio, stiamo fornendo due parametri — la stringa che vogliamo sostituire e la stringa con cui vogliamo sostituirla:
+In questo esempio vengono forniti due parametri: la stringa da sostituire e la stringa con cui sostituirla:
 
 ```js
 const browserType = "mozilla";
@@ -189,7 +190,7 @@ console.log(updated); // "vanilla"
 console.log(browserType); // "mozilla"
 ```
 
-Nota che `replace()`, come molti metodi di stringa, non cambia la stringa su cui è stato chiamato, ma restituisce una nuova stringa. Se vuoi aggiornare la variabile originale `browserType`, dovresti fare qualcosa del genere:
+Notare che `replace()`, come molti metodi per stringhe, non modifica la stringa sulla quale è stato chiamato, ma restituisce una nuova stringa. Per aggiornare la variabile originale `browserType`, occorrerebbe fare qualcosa di simile:
 
 ```js
 let browserType = "mozilla";
@@ -198,9 +199,9 @@ browserType = browserType.replace("moz", "van");
 console.log(browserType); // "vanilla"
 ```
 
-Nota anche che ora dobbiamo dichiarare `browserType` usando `let`, non `const`, perché la stiamo riassegnando.
+Notare inoltre che ora `browserType` deve essere dichiarata usando `let`, non `const`, perché viene riassegnata.
 
-Tieni presente che `replace()` in questa forma cambia solo la prima occorrenza della sottostringa. Se vuoi cambiare tutte le occorrenze, puoi usare {{jsxref("String.prototype.replaceAll()", "replaceAll()")}}:
+Tenere presente che `replace()` in questa forma modifica soltanto la prima occorrenza della sottostringa. Per modificare tutte le occorrenze, è possibile usare {{jsxref("String.prototype.replaceAll()", "replaceAll()")}}:
 
 ```js
 let quote = "To be or not to be";
@@ -209,535 +210,207 @@ quote = quote.replaceAll("be", "code");
 console.log(quote); // "To code or not to code"
 ```
 
-## Esempi di apprendimento attivo
+## Sfide di apprendimento
 
-In questa sezione, ti invitiamo a provare a scrivere del codice per la manipolazione delle stringhe. In ogni esercizio qui sotto, abbiamo un array di stringhe e un loop che elabora ogni valore nell'array e lo visualizza in un elenco puntato. Non è necessario comprendere gli array o i loop in questo momento — saranno spiegati in articoli futuri. Tutto ciò che devi fare in ogni caso è scrivere il codice che produrrà le stringhe nel formato che desideriamo.
+In questa sezione è possibile cimentarsi nella scrittura di codice per la manipolazione delle stringhe. In ogni esercizio seguente è presente un array di stringhe e un ciclo che elabora ogni valore dell'array e lo visualizza in un elenco puntato. Non è necessario comprendere gli array o i cicli in questo momento: saranno spiegati in articoli futuri. In ogni caso, basta scrivere il codice che produrrà le stringhe nel formato desiderato.
 
-Ogni esempio viene fornito con un pulsante "Reset", che puoi utilizzare per reimpostare il codice se commetti un errore e non riesci a farlo funzionare di nuovo, e un pulsante "Mostra soluzione" che puoi premere per vedere una risposta possibile se rimani davvero bloccato.
+Aprire ogni esempio nell'MDN Playground usando il pulsante **"Play"** nella parte superiore dell'esempio interattivo, quindi seguire le istruzioni per risolvere il problema. Se si rimane bloccati, è possibile visualizzare le soluzioni sotto l'esempio interattivo in ogni caso.
 
-### Filtrare i messaggi di saluto
+È possibile usare il pulsante "Reset" nell'MDN Playground per ripristinare il codice se viene commesso un errore e non si riesce più a farlo funzionare.
 
-Nel primo esercizio, inizieremo in modo semplice — abbiamo un array di messaggi di biglietti di auguri, ma vogliamo ordinarli per elencare solo i messaggi di Natale. Ti invitiamo a riempire un test condizionale all'interno della struttura `if ()` per testare ogni stringa e stamparla nell'elenco solo se è un messaggio di Natale.
+### Filtrare i messaggi di auguri
 
-Pensa a come potresti verificare se il messaggio in ciascun caso è un messaggio di Natale. Quale stringa è presente in tutti quei messaggi e quale metodo potresti utilizzare per verificare se è presente?
+Nel primo esercizio si inizierà in modo semplice: è presente un array di messaggi per biglietti di auguri, ma si desidera ordinarli per elencare soltanto i messaggi natalizi. Occorre completare un test condizionale nella struttura `if ()` per verificare ogni stringa e stamparla nell'elenco solo se è un messaggio natalizio.
 
-```html hidden
-<h2>Live output</h2>
+Riflettere su come verificare se il messaggio in ogni caso è un messaggio natalizio. Quale stringa è presente in tutti quei messaggi e quale metodo può essere usato per verificare se è presente?
 
-<div class="output" style="min-height: 125px;">
-  <ul></ul>
-</div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="playable-code" style="height: 290px; width: 95%">
-const list = document.querySelector('.output ul');
-list.textContent = "";
-const greetings = ['Happy Birthday!',
-                 'Merry Christmas my love',
-                 'A happy Christmas to all the family',
-                 'You\'re all I want for Christmas',
-                 'Get well soon'];
-
-for (const greeting of greetings) {
-  // Your conditional test needs to go inside the parentheses
-  // in the line below, replacing what's currently there
-  if (greeting) {
-    const listItem = document.createElement('li');
-    listItem.textContent = greeting;
-    list.appendChild(listItem);
-  }
-}
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
+```html hidden live-sample___string-methods-1
+<ul></ul>
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
-
-h2 {
-  font-size: 16px;
-}
-
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
-
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
-
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-let code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  eval(textarea.value);
-}
-
-reset.addEventListener("click", () => {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = jsSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", () => {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-const jsSolution = `const list = document.querySelector('.output ul');
-list.textContent = "";
+```js live-sample___string-methods-1
+const list = document.querySelector("ul");
 const greetings = [
-  'Happy Birthday!',
-  'Merry Christmas my love',
-  'A happy Christmas to all the family',
-  'You\\'re all I want for Christmas',
-  'Get well soon',
+  "Happy Birthday!",
+  "Merry Christmas my love",
+  "A happy Christmas to all the family",
+  "You're all I want for Christmas",
+  "Get well soon",
 ];
 
 for (const greeting of greetings) {
   // Your conditional test needs to go inside the parentheses
   // in the line below, replacing what's currently there
-  if (greeting.includes('Christmas')) {
-    const listItem = document.createElement('li');
+  if (greeting) {
+    const listItem = document.createElement("li");
     listItem.textContent = greeting;
     list.appendChild(listItem);
   }
-}`;
-
-let solutionEntry = jsSolution;
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = (e) => {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
 }
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = () => {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
 ```
 
-{{ EmbedLiveSample('Filtering_greeting_messages', '100%', 600) }}
+{{ EmbedLiveSample("string-methods-1", "100%", 150) }}
+
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
+
+Il JavaScript completato dovrebbe avere questo aspetto:
+
+```js
+const list = document.querySelector("ul");
+const greetings = [
+  "Happy Birthday!",
+  "Merry Christmas my love",
+  "A happy Christmas to all the family",
+  "You're all I want for Christmas",
+  "Get well soon",
+];
+
+for (const greeting of greetings) {
+  if (greeting.includes("Christmas")) {
+    const listItem = document.createElement("li");
+    listItem.textContent = greeting;
+    list.appendChild(listItem);
+  }
+}
+```
+
+</details>
 
 ### Correggere le maiuscole
 
-In questo esercizio, abbiamo i nomi delle città del Regno Unito, ma le maiuscole sono tutte sbagliate. Ti invitiamo a modificarli in modo che siano tutte minuscole, tranne la prima lettera che deve essere maiuscola. Un buon modo per farlo è:
+Questo esercizio contiene i nomi di città del Regno Unito, ma l'uso delle maiuscole è completamente errato. Occorre modificarli affinché siano tutti in minuscolo, tranne la prima lettera maiuscola. Un buon modo per farlo è:
 
-1. Convertire l'intera stringa contenuta nella variabile `city` in minuscole e memorizzarla in una nuova variabile.
-2. Estrarre la prima lettera della stringa in questa nuova variabile e memorizzarla in un'altra variabile.
-3. Usando quest'ultima variabile come sottostringa, sostituire la prima lettera della stringa in minuscole con la prima lettera della stringa in minuscole cambiata in maiuscole. Memorizzare il risultato di questa procedura di sostituzione in un'altra nuova variabile.
-4. Modificare il valore della variabile `result` in modo che sia uguale al risultato finale, non a `city`.
+1. Convertire in minuscolo l'intera stringa contenuta nella variabile `city` e memorizzarla in una nuova variabile.
+2. Recuperare la prima lettera della stringa nella nuova variabile e memorizzarla in un'altra variabile.
+3. Usando quest'ultima variabile come sottostringa, sostituire la prima lettera della stringa in minuscolo con la prima lettera della stringa in minuscolo convertita in maiuscolo. Memorizzare il risultato di questa procedura di sostituzione in un'altra nuova variabile.
+4. Modificare il valore della variabile `result` affinché sia uguale al risultato finale, non a `city`.
 
 > [!NOTE]
-> Un suggerimento — i parametri dei metodi delle stringhe non devono essere letterali; possono anche essere variabili, o anche variabili con un metodo invocato su di esse.
+> Un suggerimento: i parametri dei metodi per stringhe non devono essere necessariamente letterali stringa; possono anche essere variabili, o persino variabili sulle quali viene chiamato un metodo.
 
-```html hidden
-<h2>Live output</h2>
+```html hidden live-sample___string-methods-2
+<ul></ul>
+```
 
-<div class="output" style="min-height: 125px;">
-  <ul></ul>
-</div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="playable-code" style="height: 250px; width: 95%">
-const list = document.querySelector('.output ul');
-list.textContent = "";
-const cities = ['lonDon', 'ManCHESTer', 'BiRmiNGHAM', 'liVERpoOL'];
+```js live-sample___string-methods-2
+const list = document.querySelector("ul");
+const cities = ["lonDon", "ManCHESTer", "BiRmiNGHAM", "liVERpoOL"];
 
 for (const city of cities) {
   // write your code just below here
 
   const result = city;
-  const listItem = document.createElement('li');
+  const listItem = document.createElement("li");
   listItem.textContent = result;
   list.appendChild(listItem);
 }
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample("string-methods-2", "100%", 150) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+Il JavaScript completato dovrebbe avere questo aspetto:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
-
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-let code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  eval(textarea.value);
-}
-
-reset.addEventListener("click", function () {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = jsSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", function () {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-const jsSolution = `const list = document.querySelector('.output ul');
-list.textContent = "";
-const cities = ['lonDon', 'ManCHESTer', 'BiRmiNGHAM', 'liVERpoOL'];
+```js
+const list = document.querySelector("ul");
+const cities = ["lonDon", "ManCHESTer", "BiRmiNGHAM", "liVERpoOL"];
 
 for (const city of cities) {
-  // write your code just below here
   const lower = city.toLowerCase();
-  const firstLetter = lower.slice(0,1);
-  const capitalized = lower.replace(firstLetter,firstLetter.toUpperCase());
+  const firstLetter = lower.slice(0, 1);
+  const capitalized = lower.replace(firstLetter, firstLetter.toUpperCase());
   const result = capitalized;
-  const listItem = document.createElement('li');
+  const listItem = document.createElement("li");
   listItem.textContent = result;
   list.appendChild(listItem);
-}`;
-
-let solutionEntry = jsSolution;
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = function (e) {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
 }
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = function () {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
 ```
 
-{{ EmbedLiveSample('Fixing_capitalization', '100%', 570) }}
+</details>
 
-### Creare nuove stringhe da vecchie parti
+### Creare nuove stringhe da parti precedenti
 
-In questo ultimo esercizio, l'array contiene una serie di stringhe che contengono informazioni sulle stazioni ferroviarie nel Nord dell'Inghilterra. Le stringhe sono elementi di dati che contengono il codice stazione a tre lettere, seguito da alcuni dati leggibili dalle macchine, seguiti da un punto e virgola, seguiti dal nome della stazione leggibile dall'uomo. Per esempio:
+In quest'ultimo esercizio, l'array contiene stringhe di informazioni sulle stazioni ferroviarie del Nord dell'Inghilterra. Le stringhe sono elementi di dati che contengono il codice di stazione di tre lettere, seguito da alcuni dati leggibili da una macchina, seguito da un punto e virgola, seguito dal nome della stazione leggibile dalle persone. Per esempio:
 
 ```plain
 MAN675847583748sjt567654;Manchester Piccadilly
 ```
 
-Vogliamo estrarre il codice stazione e il nome e metterli insieme in una stringa con la seguente struttura:
+Si desidera estrarre il codice e il nome della stazione e unirli in una stringa con la struttura seguente:
 
 ```plain
 MAN: Manchester Piccadilly
 ```
 
-Consigliamo di farlo in questo modo:
+Si consiglia di procedere in questo modo:
 
-1. Estrarre il codice stazione a tre lettere e memorizzarlo in una nuova variabile.
-2. Trovare il numero dell'indice del carattere del punto e virgola.
-3. Estrarre il nome della stazione leggibile dall'uomo usando il numero di indice del carattere del punto e virgola come punto di riferimento, e memorizzarlo in una nuova variabile.
-4. Concatenare le due nuove variabili e un letterale di stringa per creare la stringa finale.
-5. Modificare il valore della variabile `result` nella stringa finale, non `station`.
+1. Estrarre il codice di stazione di tre lettere e memorizzarlo in una nuova variabile.
+2. Trovare il numero di indice del carattere punto e virgola.
+3. Estrarre il nome della stazione leggibile dalle persone usando il numero di indice del carattere punto e virgola come punto di riferimento e memorizzarlo in una nuova variabile.
+4. Concatenare le due nuove variabili e un letterale stringa per creare la stringa finale.
+5. Modificare il valore della variabile `result` affinché sia la stringa finale, non `station`.
 
-```html hidden
-<h2>Live output</h2>
+```html hidden live-sample___string-methods-3
+<ul></ul>
+```
 
-<div class="output" style="min-height: 125px;">
-  <ul></ul>
-</div>
-
-<h2>Editable code</h2>
-<p class="a11y-label">
-  Press Esc to move focus away from the code area (Tab inserts a tab character).
-</p>
-
-<textarea id="code" class="playable-code" style="height: 285px; width: 95%">
-const list = document.querySelector('.output ul');
-list.textContent = "";
-const stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
-                  'GNF576746573fhdg4737dh4;Greenfield',
-                  'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
-                  'SYB4f65hf75f736463;Stalybridge',
-                  'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'];
+```js live-sample___string-methods-3
+const list = document.querySelector("ul");
+const stations = [
+  "MAN675847583748sjt567654;Manchester Piccadilly",
+  "GNF576746573fhdg4737dh4;Greenfield",
+  "LIV5hg65hd737456236dch46dg4;Liverpool Lime Street",
+  "SYB4f65hf75f736463;Stalybridge",
+  "HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield",
+];
 
 for (const station of stations) {
   // write your code just below here
 
   const result = station;
-  const listItem = document.createElement('li');
+  const listItem = document.createElement("li");
   listItem.textContent = result;
   list.appendChild(listItem);
 }
-</textarea>
-
-<div class="playable-buttons">
-  <input id="reset" type="button" value="Reset" />
-  <input id="solution" type="button" value="Show solution" />
-</div>
 ```
 
-```css hidden
-html {
-  font-family: sans-serif;
-}
+{{ EmbedLiveSample("string-methods-3", "100%", 150) }}
 
-h2 {
-  font-size: 16px;
-}
+<details>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-.a11y-label {
-  margin: 0;
-  text-align: right;
-  font-size: 0.7rem;
-  width: 98%;
-}
+Il JavaScript completato dovrebbe avere questo aspetto:
 
-body {
-  margin: 10px;
-  background: #f5f9fa;
-}
-```
-
-```js hidden
-const textarea = document.getElementById("code");
-const reset = document.getElementById("reset");
-const solution = document.getElementById("solution");
-let code = textarea.value;
-let userEntry = textarea.value;
-
-function updateCode() {
-  eval(textarea.value);
-}
-
-reset.addEventListener("click", function () {
-  textarea.value = code;
-  userEntry = textarea.value;
-  solutionEntry = jsSolution;
-  solution.value = "Show solution";
-  updateCode();
-});
-
-solution.addEventListener("click", function () {
-  if (solution.value === "Show solution") {
-    textarea.value = solutionEntry;
-    solution.value = "Hide solution";
-  } else {
-    textarea.value = userEntry;
-    solution.value = "Show solution";
-  }
-  updateCode();
-});
-
-const jsSolution = `const list = document.querySelector('.output ul');
-list.textContent = '';
-const stations = ['MAN675847583748sjt567654;Manchester Piccadilly',
-                  'GNF576746573fhdg4737dh4;Greenfield',
-                  'LIV5hg65hd737456236dch46dg4;Liverpool Lime Street',
-                  'SYB4f65hf75f736463;Stalybridge',
-                  'HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield'];
+```js
+const list = document.querySelector("ul");
+const stations = [
+  "MAN675847583748sjt567654;Manchester Piccadilly",
+  "GNF576746573fhdg4737dh4;Greenfield",
+  "LIV5hg65hd737456236dch46dg4;Liverpool Lime Street",
+  "SYB4f65hf75f736463;Stalybridge",
+  "HUD5767ghtyfyr4536dh45dg45dg3;Huddersfield",
+];
 
 for (const station of stations) {
-  // write your code just below here
-  const code = station.slice(0,3);
-  const semiColon = station.indexOf(';');
-  const name = station.slice(semiColon + 1);
-  const result = \`\${code}: \${name}\`;
-  const listItem = document.createElement('li');
+  const code = station.slice(0, 3);
+  const semiColonIndex = station.indexOf(";");
+  const name = station.slice(semiColonIndex + 1);
+  const result = `${code}: ${name}`;
+  const listItem = document.createElement("li");
   listItem.textContent = result;
   list.appendChild(listItem);
-}`;
-
-let solutionEntry = jsSolution;
-
-textarea.addEventListener("input", updateCode);
-window.addEventListener("load", updateCode);
-
-// stop tab key tabbing out of textarea and
-// make it write a tab at the caret position instead
-
-textarea.onkeydown = function (e) {
-  if (e.code === "Tab") {
-    e.preventDefault();
-    insertAtCaret("\t");
-  }
-
-  if (e.code === "Escape") {
-    textarea.blur();
-  }
-};
-
-function insertAtCaret(text) {
-  const scrollPos = textarea.scrollTop;
-  let caretPos = textarea.selectionStart;
-  const front = textarea.value.substring(0, caretPos);
-  const back = textarea.value.substring(
-    textarea.selectionEnd,
-    textarea.value.length,
-  );
-
-  textarea.value = front + text + back;
-  caretPos += text.length;
-  textarea.selectionStart = caretPos;
-  textarea.selectionEnd = caretPos;
-  textarea.focus();
-  textarea.scrollTop = scrollPos;
 }
-
-// Update the saved userCode every time the user updates the text area code
-
-textarea.onkeyup = function () {
-  // We only want to save the state when the user code is being shown,
-  // not the solution, so that solution is not saved over the user code
-  if (solution.value === "Show solution") {
-    userEntry = textarea.value;
-  } else {
-    solutionEntry = textarea.value;
-  }
-
-  updateCode();
-};
 ```
 
-{{ EmbedLiveSample('Making_new_strings_from_old_parts', '100%', 600) }}
+</details>
 
-## Metti alla prova le tue abilità!
+## Riepilogo
 
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare ulteriori test per verificare di aver conservato queste informazioni prima di passare oltre — vedi [Testa le tue abilità: Stringhe](/it/docs/Learn_web_development/Core/Scripting/Test_your_skills/Strings).
+Non si può evitare il fatto che la capacità di gestire parole e frasi nella programmazione sia molto importante, in particolare in JavaScript, dato che i siti web riguardano la comunicazione con le persone. Questo articolo ha fornito le basi necessarie, per ora, sulla manipolazione delle stringhe. Queste conoscenze saranno utili quando si affronteranno argomenti più complessi in futuro.
 
-## Conclusione
+Nel prossimo articolo verranno proposti alcuni test per verificare quanto bene sono state comprese e memorizzate le informazioni fornite sulle stringhe e sui metodi per stringhe.
 
-Non puoi sfuggire al fatto che essere in grado di gestire parole e frasi nella programmazione è molto importante — particolarmente in JavaScript, poiché i siti web riguardano la comunicazione con le persone. Questo articolo ti ha dato le basi che devi sapere sulla manipolazione delle stringhe per ora. Questo dovrebbe servirti bene mentre entri in argomenti più complessi in futuro. Successivamente, esamineremo l'ultimo importante tipo di dati su cui dobbiamo concentrarci a breve termine — gli array.
-
-{{PreviousMenuNext("Learn_web_development/Core/Scripting/Strings", "Learn_web_development/Core/Scripting/Arrays", "Learn_web_development/Core/Scripting")}}
+{{PreviousMenuNext("Learn_web_development/Core/Scripting/Strings", "Learn_web_development/Core/Scripting/Test_your_skills/Strings", "Learn_web_development/Core/Scripting")}}

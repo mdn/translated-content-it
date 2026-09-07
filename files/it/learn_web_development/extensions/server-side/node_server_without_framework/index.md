@@ -1,15 +1,17 @@
 ---
-title: Server Node.js senza un framework
+title: Server Node.js senza framework
+short-title: Server Node.js semplice
 slug: Learn_web_development/Extensions/Server-side/Node_server_without_framework
 l10n:
-  sourceCommit: e4e57ab3ccb5f93319f8fe13848d4895d3e1e771
+  sourceCommit: c5d8af227105b2a6d2ab50ff74295ead221fce64
 ---
 
-Questo articolo mostra un server di file statici costruito in [Node.js](https://nodejs.org/en/) senza utilizzare alcun framework. Lo stato attuale di Node.js è tale che quasi tutto ciò di cui abbiamo bisogno per il server di file statici è fornito dalle API integrate e da poche righe di codice.
+Questo articolo mostra un server di file statici realizzato in [Node.js](https://nodejs.org/en/) senza usare alcun framework.
+Lo stato attuale di Node.js è tale che quasi tutto il necessario per il server di file statici è fornito dalle API integrate e da poche righe di codice.
 
 ## Esempio
 
-Un server di file statici costruito con Node.js:
+Un server di file statici realizzato con Node.js:
 
 ```js
 import * as fs from "node:fs";
@@ -35,13 +37,14 @@ const STATIC_PATH = path.join(process.cwd(), "./static");
 const toBool = [() => true, () => false];
 
 const prepareFile = async (url) => {
-  const paths = [STATIC_PATH, url];
+  const urlAsPath = decodeURI(url);
+  const paths = [STATIC_PATH, urlAsPath];
   if (url.endsWith("/")) paths.push("index.html");
   const filePath = path.join(...paths);
   const pathTraversal = !filePath.startsWith(STATIC_PATH);
   const exists = await fs.promises.access(filePath).then(...toBool);
   const found = !pathTraversal && exists;
-  const streamPath = found ? filePath : STATIC_PATH + "/404.html";
+  const streamPath = found ? filePath : `${STATIC_PATH}/404.html`;
   const ext = path.extname(streamPath).substring(1).toLowerCase();
   const stream = fs.createReadStream(streamPath);
   return { found, ext, stream };
@@ -63,7 +66,7 @@ console.log(`Server running at http://127.0.0.1:${PORT}/`);
 
 ### Analisi
 
-Le seguenti righe importano i moduli interni di Node.js.
+Le righe seguenti importano moduli interni di Node.js.
 
 ```js
 import * as fs from "node:fs";
@@ -71,7 +74,7 @@ import * as http from "node:http";
 import * as path from "node:path";
 ```
 
-Successivamente abbiamo una funzione per creare il server. `https.createServer` restituisce un oggetto `Server`, che possiamo avviare ascoltando su `PORT`.
+Successivamente è presente una funzione per creare il server. `https.createServer` restituisce un oggetto `Server`, che può essere avviato mettendolo in ascolto su `PORT`.
 
 ```js
 http
@@ -83,11 +86,14 @@ http
 console.log(`Server running at http://127.0.0.1:${PORT}/`);
 ```
 
-La funzione asincrona `prepareFile` restituisce la struttura: `{ found: boolean, ext: string, stream: ReadableStream }`. Se il file può essere servito (il processo del server ha accesso e non viene trovata alcuna vulnerabilità di path-traversal), restituiremo lo stato HTTP `200` come `statusCode` indicando successo (altrimenti restituiamo `HTTP 404`). Si noti che altri codici di stato possono essere trovati in `http.STATUS_CODES`. Con lo stato `404` restituiremo il contenuto del file `'/404.html'`.
+La funzione asincrona `prepareFile` restituisce la struttura: `{ found: boolean, ext: string, stream: ReadableStream }`.
+Se il file può essere servito (il processo del server ha accesso e non viene rilevata alcuna vulnerabilità di path traversal), verrà restituito lo stato HTTP `200` come `statusCode` che indica il successo (altrimenti viene restituito `HTTP 404`).
+È possibile trovare altri codici di stato in `http.STATUS_CODES`.
+Con lo stato `404` verrà restituito il contenuto del file `'/404.html'`.
 
-L'estensione del file richiesto verrà analizzata al primo posto e convertita in minuscolo. Subito dopo cercheremo nella collezione di `MIME_TYPES` per i giusti [tipi MIME](/it/docs/Web/HTTP/Guides/MIME_types). Se non viene trovato alcun tipo corrispondente, usiamo `application/octet-stream` come tipo predefinito.
+L'estensione del file richiesto verrà analizzata e convertita in minuscolo. Successivamente verrà cercato nella raccolta `MIME_TYPES` il corretto [tipo MIME](/it/docs/Web/HTTP/Guides/MIME_types). Se non viene trovata alcuna corrispondenza, viene usato `application/octet-stream` come tipo predefinito.
 
-Infine, se non ci sono errori, inviamo il file richiesto. Il `file.stream` conterrà un flusso `Readable` che verrà indirizzato nel `res` (un'istanza del flusso `Writable`).
+Infine, se non sono presenti errori, viene inviato il file richiesto. `file.stream` conterrà uno stream `Readable`, che verrà inoltrato tramite pipe in `res` (un'istanza dello stream `Writable`).
 
 ```js
 res.writeHead(statusCode, { "Content-Type": mimeType });

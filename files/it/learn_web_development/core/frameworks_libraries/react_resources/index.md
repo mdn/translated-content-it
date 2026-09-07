@@ -1,98 +1,104 @@
 ---
-title: Risorse di React
+title: Risorse su React
 slug: Learn_web_development/Core/Frameworks_libraries/React_resources
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 7f138099644a02640a903b2abc39e685ca8ca7cd
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/React_accessibility","Learn_web_development/Core/Accessibility", "Learn_web_development/Core/Frameworks_libraries")}}
 
-Il nostro ultimo articolo ti fornisce un elenco di risorse su React che puoi utilizzare per proseguire il tuo apprendimento.
+Il nostro articolo conclusivo fornisce un elenco di risorse su React da usare per approfondire l'apprendimento.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con i linguaggi core <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
+        Familiarità con i linguaggi fondamentali <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>,
         <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e
-        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, e il <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/command line</a>.
+        <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, nonché con il <a href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Command_line">terminale/riga di comando</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati di apprendimento:</th>
-      <td>Familiarità con ulteriori risorse per approfondire React.</td>
+      <th scope="row">Risultati dell'apprendimento:</th>
+      <td>Familiarità con ulteriori risorse per imparare di più su React.</td>
     </tr>
   </tbody>
 </table>
 
 ## Stili a livello di componente
 
-Mentre abbiamo mantenuto tutti i CSS per il nostro tutorial in un unico file `index.css`, è comune per le applicazioni React definire fogli di stile per componente. In un'applicazione alimentata da Vite, questo può essere fatto creando un file CSS e importandolo nel modulo del componente corrispondente.
+Sebbene in questo tutorial sia stato mantenuto tutto il CSS in un singolo file `index.css`, nelle applicazioni React è comune definire fogli di stile per singolo componente. In un'applicazione basata su Vite, è possibile farlo creando un file CSS e importandolo nel modulo del componente corrispondente.
 
-Ad esempio: avremmo potuto creare un file dedicato `Form.css` per ospitare i CSS relativi al componente `<Form />`, quindi importare gli stili in `Form.jsx`, in questo modo:
+Ad esempio, si sarebbe potuto scrivere un file dedicato `Form.css` per contenere il CSS relativo al componente `<Form />`, quindi importare gli stili in `Form.jsx`, in questo modo:
 
 ```jsx
 import Form from "./Form";
 import "./Form.css";
 ```
 
-Questo approccio rende facile identificare e gestire i CSS che appartengono a un componente specifico e distinguerli dagli stili dell'intera app. Tuttavia, frammenta anche il tuo foglio di stile all'interno del codice, e questa frammentazione potrebbe non valere la pena. Per applicazioni più grandi con centinaia di viste uniche e molte parti in movimento, ha senso utilizzare stili a livello di componente e quindi limitare la quantità di codice irrilevante inviato all'utente in qualsiasi momento.
+Questo approccio semplifica l'identificazione e la gestione del CSS appartenente a un componente specifico, distinguendolo dagli stili dell'intera applicazione. Tuttavia, frammenta anche il foglio di stile nell'intero codice sorgente e questa frammentazione potrebbe non essere vantaggiosa. Per applicazioni più grandi con centinaia di viste uniche e molte parti in movimento, ha senso usare stili a livello di componente e limitare così la quantità di codice irrilevante inviata all'utente in un determinato momento.
 
-Puoi leggere di più su questo e altri approcci per stilizzare i componenti React nell'articolo di Smashing Magazine, [Styling Components In React](https://www.smashingmagazine.com/2020/05/styling-components-react/).
+È possibile leggere ulteriori informazioni su questo e altri approcci per applicare stili ai componenti React nell'articolo di Smashing Magazine, [Styling Components In React](https://www.smashingmagazine.com/2020/05/styling-components-react/).
 
 ## React DevTools
 
-Abbiamo usato `console.log()` per controllare lo stato e i props della nostra applicazione in questo tutorial, e avrai anche visto alcuni degli avvisi e messaggi di errore utili che React ti fornisce sia nel CLI che nella console JavaScript del tuo browser. Ma c'è di più che possiamo fare qui.
+In questo tutorial è stato usato `console.log()` per controllare lo stato e le props dell'applicazione, e sono stati anche mostrati alcuni degli avvisi e messaggi di errore utili forniti da React sia nella CLI sia nella console JavaScript del browser. Ma è possibile fare di più.
 
-L'utility React DevTools ti permette di ispezionare l'interno della tua applicazione React direttamente nel browser. Aggiunge un nuovo pannello agli strumenti per sviluppatori del browser che ti consente di ispezionare lo stato e i props di vari componenti e persino di modificare stato e props per apportare modifiche immediate alla tua applicazione.
+L'utilità React DevTools consente di ispezionare direttamente nel browser gli elementi interni dell'applicazione React. Aggiunge un nuovo pannello agli strumenti per sviluppatori del browser, che permette di ispezionare lo stato e le props dei vari componenti e persino di modificare stato e props per apportare cambiamenti immediati all'applicazione.
 
-Questo screenshot mostra la nostra applicazione finita come appare in React DevTools:
+Questa schermata mostra l'applicazione completata così come appare in React DevTools:
 
-![Il nostro progetto mostrato in React devtools](react-devtools.png)
+![Il nostro progetto mostrato in React DevTools](react-devtools.png)
 
-A sinistra, vediamo tutti i componenti che compongono la nostra applicazione, inclusi chiavi uniche per gli elementi che sono resi da array. A destra, vediamo i props e gli hook che il nostro componente App utilizza. Nota anche che i componenti `Form`, `FilterButton` e `Todo` sono rientrati a destra – questo indica che `App` è il loro genitore. Questa vista è ottima per comprendere rapidamente le relazioni tra genitori e figli ed è inestimabile per comprendere app più complesse.
+A sinistra sono visibili tutti i componenti che costituiscono l'applicazione, comprese le chiavi univoche per gli elementi renderizzati dagli array. A destra sono visibili le props e gli hook utilizzati dal componente App. Si noti inoltre che i componenti `Form`, `FilterButton` e `Todo` sono rientrati verso destra: questo indica che `App` è il loro elemento padre. Questa vista è ottima per comprendere a colpo d'occhio le relazioni padre/figlio ed è preziosa per comprendere applicazioni più complesse.
 
 React DevTools è disponibile in diverse forme:
 
-- Un [estensione per il browser Chrome](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
-- Un [estensione per il browser Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/).
-- Un [estensione per il browser Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil).
-- Un [applicazione standalone che puoi installare con npm o Yarn](https://www.npmjs.com/package/react-devtools).
+- Un'[estensione per il browser Chrome](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en).
+- Un'[estensione per il browser Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/).
+- Un'[estensione per il browser Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil).
+- Un'[applicazione autonoma installabile con npm o Yarn](https://www.npmjs.com/package/react-devtools).
 
-Prova a installarne una e poi usala per ispezionare l'app che hai appena costruito!
+Provare a installarne una e poi a usarla per ispezionare l'applicazione appena creata.
 
-Puoi [leggere di più su React DevTools nella documentazione di React](https://react.dev/learn/react-developer-tools).
+È possibile [leggere ulteriori informazioni su React DevTools nella documentazione di React](https://react.dev/learn/react-developer-tools).
 
 ## L'hook `useReducer()`
 
-In questo tutorial, abbiamo utilizzato l'hook `useState()` per gestire lo stato attraverso una piccola raccolta di funzioni gestore di eventi. Questo andava bene per scopi didattici, ma ha lasciato la nostra logica di gestione dello stato legata ai gestori di eventi del componente – soprattutto quelli del componente `<Todo />`.
+In questo tutorial è stato usato l'hook `useState()` per gestire lo stato in una piccola raccolta di funzioni di gestione degli eventi. Questo andava bene a fini di apprendimento, ma ha lasciato la logica di gestione dello stato legata ai gestori degli eventi del componente, in particolare a quelli del componente `<Todo />`.
 
-L'hook `useReducer()` offre agli sviluppatori un modo per consolidare diverse ma correlate logiche di gestione dello stato in una singola funzione. È un po' più complesso di `useState()`, ma è un buon strumento da avere a disposizione. Puoi [leggere di più su `useReducer()` nella documentazione di React](https://react.dev/learn/extracting-state-logic-into-a-reducer).
+L'hook `useReducer()` offre agli sviluppatori un modo per consolidare in una singola funzione logiche di gestione dello stato diverse ma correlate. È un po' più complesso di `useState()`, ma è un buon strumento da avere a disposizione. È possibile [leggere ulteriori informazioni su `useReducer()` nella documentazione di React](https://react.dev/learn/extracting-state-logic-into-a-reducer).
 
 ## L'API Context
 
-L'applicazione che abbiamo costruito in questo tutorial ha utilizzato i props dei componenti per passare dati dal suo componente `App` ai componenti figli che ne avevano bisogno. La maggior parte delle volte, i props sono un metodo appropriato per condividere dati; tuttavia, per applicazioni complesse e profondamente annidate, non sempre sono la scelta migliore.
+L'applicazione creata in questo tutorial utilizzava le props dei componenti per passare dati dal proprio componente `App` ai componenti figli che ne avevano bisogno. Nella maggior parte dei casi, le props sono un metodo appropriato per condividere dati; tuttavia, per applicazioni complesse e profondamente annidate, non sono sempre la soluzione migliore.
 
-React fornisce l'[API Context](https://react.dev/learn/passing-data-deeply-with-context) come un modo per fornire dati ai componenti che ne hanno bisogno _senza_ passare props lungo l'albero dei componenti. C'è anche un [hook useContext](https://react.dev/reference/react/useContext) che facilita questo.
+React fornisce l'[API Context](https://react.dev/learn/passing-data-deeply-with-context) come modo per fornire dati ai componenti che ne hanno bisogno _senza_ passare le props lungo l'albero dei componenti. Esiste anche [un hook useContext](https://react.dev/reference/react/useContext) che semplifica questa operazione.
 
-Se ti piacerebbe provare questa API tu stesso, Smashing Magazine ha scritto un [articolo introduttivo sull'API React context](https://www.smashingmagazine.com/2020/01/introduction-react-context-api/).
+Per provare questa API, Smashing Magazine ha scritto un [articolo introduttivo sul context di React](https://www.smashingmagazine.com/2020/01/introduction-react-context-api/).
 
 ## Componenti di classe
 
-Anche se questo tutorial non li menziona, è possibile costruire componenti React usando [classi JavaScript](/it/docs/Web/JavaScript/Reference/Classes) – questi sono chiamati componenti di classe. Fino all'arrivo degli hook, le classi erano l'unico modo per portare lo stato nei componenti o gestire effetti collaterali di rendering. Sono ancora l'unico modo per gestire certi casi limite, e sono comuni nei progetti React legacy. La documentazione ufficiale di React mantiene un riferimento per la classe base [`Component`](https://react.dev/reference/react/Component), ma raccomanda di usare gli hook per gestire [stato](https://react.dev/learn/state-a-components-memory) e [effetti collaterali](https://react.dev/learn/synchronizing-with-effects).
+Sebbene questo tutorial non li menzioni, è possibile creare componenti React usando le [classi JavaScript](/it/docs/Web/JavaScript/Reference/Classes): questi sono chiamati componenti di classe. Fino all'arrivo degli hook, le classi erano l'unico modo per introdurre lo stato nei componenti o gestire gli effetti collaterali del rendering. Sono ancora l'unico modo per gestire alcuni casi limite e sono comuni nei progetti React legacy. La documentazione ufficiale di React mantiene un riferimento per la classe base [`Component`](https://react.dev/reference/react/Component), ma raccomanda l'uso degli hook per gestire lo [stato](https://react.dev/learn/state-a-components-memory) e gli [effetti collaterali](https://react.dev/learn/synchronizing-with-effects).
 
 ## Test
 
-Librerie come [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) permettono di scrivere test unitari per i componenti React. Ci sono molti modi per _eseguire_ questi test. Il framework di test [Vitest](https://vitest.dev/) è costruito sopra Vite ed è un ottimo compagno per le tue applicazioni React alimentate da Vite. [Jest](https://jestjs.io/) è un altro popolare framework di test che può essere utilizzato con React.
+Librerie come [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) rendono possibile scrivere test unitari per i componenti React. Esistono molti modi per _eseguire_ questi test. Il framework di test [Vitest](https://vitest.dev/) è basato su Vite ed è un ottimo complemento alle applicazioni React basate su Vite. [Jest](https://jestjs.io/) è un altro popolare framework di test utilizzabile con React.
 
 ## Routing
 
-Sebbene il routing sia tradizionalmente gestito da un server e non da un'applicazione sul computer dell'utente, è possibile configurare un'applicazione web per leggere e aggiornare la posizione del browser, e renderizzare certe interfacce utente. Questo è chiamato _client-side routing_. È possibile creare molteplici percorsi unici per la tua applicazione (come `/home`, `/dashboard` o `/login`).
+Sebbene il routing sia tradizionalmente gestito da un server e non da un'applicazione sul computer dell'utente, è possibile configurare un'applicazione web affinché legga e aggiorni la posizione del browser e renderizzi determinate interfacce utente. Questo è chiamato _routing lato client_. È possibile creare molte route univoche per l'applicazione, ad esempio `/home`, `/dashboard` o `/login`.
 
-[React Router](https://reactrouter.com/) è la libreria di routing lato client più popolare e robusta per React. Consente agli sviluppatori di definire i percorsi della loro applicazione e di associare componenti a tali percorsi. Inoltre, fornisce una serie di hook e componenti utili per gestire la posizione e la cronologia del browser.
+[React Router](https://reactrouter.com/) è la libreria di routing lato client per React più popolare e più robusta. Consente agli sviluppatori di definire le route dell'applicazione e di associare componenti a tali route. Fornisce inoltre numerosi hook e componenti utili per gestire la posizione e la cronologia del browser.
 
 > [!NOTE]
-> Il client-side routing può far sembrare la tua applicazione veloce, ma pone numerosi problemi di accessibilità, specialmente per le persone che si affidano a tecnologie assistive. Puoi leggere di più su questo nell'articolo di Marcy Sutton, ["The Implications of Client-Side Routing"](https://testingaccessibility.com/implications-of-client-side-routing).
+> Il routing lato client può far sembrare veloce l'applicazione, ma pone diversi problemi di accessibilità, specialmente per le persone che si affidano alle tecnologie assistive. È possibile leggere ulteriori informazioni nell'articolo di Marcy Sutton, ["The Implications of Client-Side Routing"](https://testingaccessibility.com/implications-of-client-side-routing).
+
+## Riepilogo
+
+Questo è tutto per i framework JavaScript. Ci auguriamo che questo modulo abbia fornito una buona idea del motivo per cui esistono i framework e di come usarli.
+
+Nel prossimo modulo, l'attenzione sarà rivolta all'[accessibilità web](/it/docs/Learn_web_development/Core/Accessibility).
 
 {{PreviousMenuNext("Learn_web_development/Core/Frameworks_libraries/React_accessibility","Learn_web_development/Core/Accessibility", "Learn_web_development/Core/Frameworks_libraries")}}

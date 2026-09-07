@@ -3,26 +3,26 @@ title: Introduzione alle API web
 short-title: Introduction
 slug: Learn_web_development/Extensions/Client-side_APIs/Introduction
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: f4c14731a1a157fc8d8f7357ac4d74d14a7d7fb5
 ---
 
 {{NextMenu("Learn_web_development/Extensions/Client-side_APIs/Video_and_audio_APIs", "Learn_web_development/Extensions/Client-side_APIs")}}
 
-Per iniziare, esamineremo le API da un alto livello — cosa sono, come funzionano, come utilizzarle nel proprio codice e come sono strutturate? Vedremo anche quali sono le diverse principali classi di API e a quali utilizzi si prestano.
+Per iniziare, esamineremo le API a livello generale: cosa sono, come funzionano, come usarle nel codice e come sono strutturate? Vedremo inoltre quali sono le diverse categorie principali di API e quali tipi di utilizzo consentono.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità con <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>, <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, specialmente le basi degli <a href="/it/docs/Learn_web_development/Core/Scripting/Object_basics">oggetti JavaScript</a> e la copertura delle API core come <a href="/it/docs/Learn_web_development/Core/Scripting/DOM_scripting">scripting DOM</a> e <a href="/it/docs/Learn_web_development/Core/Scripting/Network_requests">Richieste di rete</a>.
+        Familiarità con <a href="/it/docs/Learn_web_development/Core/Structuring_content">HTML</a>, <a href="/it/docs/Learn_web_development/Core/Styling_basics">CSS</a> e <a href="/it/docs/Learn_web_development/Core/Scripting">JavaScript</a>, in particolare con le <a href="/it/docs/Learn_web_development/Core/Scripting/Object_basics">basi degli oggetti JavaScript</a> e con le API fondamentali, come lo <a href="/it/docs/Learn_web_development/Core/Scripting/DOM_scripting">scripting DOM</a> e le <a href="/it/docs/Learn_web_development/Core/Scripting/Network_requests">richieste di rete</a>.
       </td>
     </tr>
     <tr>
       <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Cosa sono le API web e cosa si può fare con esse.</li>
+          <li>Cosa sono le Web API e cosa è possibile fare con esse.</li>
           <li>Come vengono usate le API.</li>
         </ul>
       </td>
@@ -32,85 +32,85 @@ Per iniziare, esamineremo le API da un alto livello — cosa sono, come funziona
 
 ## Cosa sono le API?
 
-Le Application Programming Interfaces (API) sono costrutti resi disponibili nei linguaggi di programmazione per permettere agli sviluppatori di creare funzionalità complesse più facilmente. Astraggono il codice più complesso da voi, fornendo una sintassi più semplice da utilizzare al suo posto.
+Le Application Programming Interfaces (API) sono costrutti messi a disposizione nei linguaggi di programmazione per consentire agli sviluppatori di creare più facilmente funzionalità complesse. Astraggono il codice più complesso, fornendo al suo posto una sintassi più semplice da usare.
 
-Come esempio nel mondo reale, pensate alla fornitura di elettricità nella vostra casa, appartamento o altro luogo di abitazione. Se volete usare un elettrodomestico, lo collegate a una presa e funziona. Non cercate di connetterlo direttamente alla fonte di alimentazione, farlo sarebbe davvero inefficiente e, se non siete elettricisti, difficile e pericoloso.
+Come esempio del mondo reale, si pensi alla fornitura di elettricità in una casa, un appartamento o un'altra abitazione. Per utilizzare un elettrodomestico, lo si collega a una presa elettrica e funziona. Non si cerca di cablarlo direttamente all'alimentazione elettrica: farlo sarebbe molto inefficiente e, senza essere elettricisti, difficile e pericoloso.
 
-![Due multiprese sono collegate a due diverse prese elettriche. Ogni multipresa ha uno slot di collegamento sulla sua parte superiore e frontale. Due spine sono collegate a ciascuna multipresa.](plug-socket.png)
+![Due ciabatte elettriche sono collegate a due diverse prese di corrente. Ogni ciabatta ha uno slot per spina nella parte superiore e sul lato anteriore. Due spine sono collegate a ciascuna ciabatta.](plug-socket.png)
 
-_Sorgente immagine: [Presa elettrica sovraccarica](https://www.flickr.com/photos/easy-pics/9518184890/in/photostream/lightbox/) di [The Clear Communication People](https://www.flickr.com/photos/easy-pics/), su Flickr._
+_Fonte dell'immagine: [Presa elettrica sovraccarica](https://www.flickr.com/photos/easy-pics/9518184890/in/photostream/lightbox/) di [The Clear Communication People](https://www.flickr.com/photos/easy-pics/), su Flickr._
 
-Allo stesso modo, se volete, per esempio, programmare qualche grafica 3D, è molto più semplice farlo utilizzando un'API scritta in un linguaggio di livello superiore come JavaScript o Python, piuttosto che tentare di scrivere codice di basso livello (come C o C++) che controlli direttamente la GPU o altre funzioni grafiche del computer.
+Allo stesso modo, per esempio, per programmare della grafica 3D è molto più semplice utilizzare un'API scritta in un linguaggio di alto livello come JavaScript o Python, anziché tentare di scrivere direttamente codice di basso livello (come C o C++) che controlli direttamente la GPU del computer o altre funzioni grafiche.
 
 > [!NOTE]
-> Vedere anche l'{{Glossary("API", "entry del glossario sulle API")}} per una descrizione più dettagliata.
+> Vedere anche la {{Glossary("API", "voce del glossario relativa alle API")}} per ulteriori informazioni.
 
 ### API in JavaScript lato client
 
-Il JavaScript lato client, in particolare, ha molte API disponibili — queste non fanno parte del linguaggio JavaScript stesso, piuttosto sono costruite sopra il linguaggio base JavaScript, fornendovi superpoteri extra da utilizzare nel vostro codice JavaScript. Generalmente si suddividono in due categorie:
+JavaScript lato client, in particolare, dispone di molte API: queste non fanno parte del linguaggio JavaScript stesso, ma sono costruite sopra il linguaggio JavaScript di base, fornendo superpoteri aggiuntivi da utilizzare nel codice JavaScript. In genere rientrano in due categorie:
 
-- **API del browser** sono integrate nel vostro browser web e sono in grado di esporre dati dal browser e dall'ambiente informatico circostante, e fare cose complesse utili con esso. Per esempio, la [Web Audio API](/it/docs/Web/API/Web_Audio_API) fornisce costrutti JavaScript per manipolare l'audio nel browser — prendere una traccia audio, modificarne il volume, applicargli effetti, ecc. In sottofondo, il browser sta effettivamente utilizzando del codice complesso di livello inferiore (ad es., C++ o Rust) per fare il reale processamento audio. Ma ancora una volta, questa complessità è astratta da voi dall'API.
-- **API di terze parti** non sono integrate nel browser di default e generalmente è necessario recuperare il loro codice e informazioni da qualche parte sul Web. Per esempio, la [Google Maps API](https://developers.google.com/maps/documentation/javascript) vi consente di fare cose come visualizzare una mappa interattiva del vostro ufficio sul vostro sito web. Fornisce un insieme speciale di costrutti che potete usare per interrogare il servizio Google Maps e restituire informazioni specifiche.
+- Le **API del browser** sono integrate nel browser web e possono esporre dati provenienti dal browser e dall'ambiente del computer circostante, oltre a eseguire operazioni complesse utili con essi. Per esempio, la [Web Audio API](/it/docs/Web/API/Web_Audio_API) fornisce costrutti JavaScript per manipolare l'audio nel browser: acquisire una traccia audio, modificarne il volume, applicarvi effetti e così via. In background, il browser usa effettivamente codice di basso livello complesso (ad esempio C++ o Rust) per eseguire l'elaborazione audio. Questa complessità viene però nascosta dall'API.
+- Le **API di terze parti** non sono integrate nel browser per impostazione predefinita e in genere è necessario recuperare il loro codice e le loro informazioni da qualche parte sul Web. Per esempio, la [Google Maps API](https://developers.google.com/maps/documentation/javascript) consente di visualizzare sul sito web una mappa interattiva che mostra il proprio ufficio. Fornisce un insieme speciale di costrutti che permettono di interrogare il servizio Google Maps e restituire informazioni specifiche.
 
-![Uno screenshot del browser con la home page del browser Firefox aperta. Ci sono API integrate nel browser di default. Le API di terze parti non sono integrate nel browser di default. Il loro codice e le informazioni devono essere recuperati da qualche parte sul web per utilizzarli.](browser.png)
+![Una schermata del browser con aperta la pagina iniziale di Firefox. Alcune API sono integrate nel browser per impostazione predefinita. Le API di terze parti non sono integrate nel browser per impostazione predefinita. Per utilizzarle, il loro codice e le loro informazioni devono essere recuperati da qualche parte sul Web.](browser.png)
 
 ### Relazione tra JavaScript, API e altri strumenti JavaScript
 
-Quindi, sopra abbiamo parlato di cosa sono le API JavaScript lato client e come si relazionano al linguaggio JavaScript. Riassumiamo questo per renderlo più chiaro, e menzioniamo anche dove si inquadrano altri strumenti JavaScript:
+Abbiamo quindi parlato di cosa sono le API JavaScript lato client e di come si relazionano al linguaggio JavaScript. Riepiloghiamo per renderlo più chiaro e indichiamo anche dove si collocano gli altri strumenti JavaScript:
 
-- JavaScript — Un linguaggio di scripting di alto livello integrato nei browser che permette di implementare funzionalità su pagine/app web. Nota che JavaScript è disponibile anche in altri ambienti di programmazione, come [Node](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction).
-- API del browser — costrutti integrati nel browser che si appoggiano al linguaggio JavaScript e vi permettono di implementare funzionalità in modo più semplice.
-- API di terze parti — costrutti integrati in piattaforme di terze parti (es. Disqus, Facebook) che vi permettono di usare alcune delle funzionalità di quelle piattaforme nelle vostre pagine web (ad esempio, visualizzare i vostri commenti Disqus su una pagina web).
-- Librerie JavaScript — Di solito uno o più file JavaScript contenenti [funzioni personalizzate](/it/docs/Learn_web_development/Core/Scripting/Functions) che potete allegare alla vostra pagina web per velocizzare o abilitare l'implementazione di funzionalità comuni. Esempi includono jQuery, Mootools e React.
-- Framework JavaScript — Il passo successivo rispetto alle librerie, i framework JavaScript (es., Angular e Ember) tendono ad essere pacchetti di HTML, CSS, JavaScript e altre tecnologie che installate e poi usate per scrivere un'intera applicazione web da zero. La differenza chiave tra una libreria e un framework è "Inversione di Controllo". Quando si chiama un metodo da una libreria, lo sviluppatore è in controllo. Con un framework, il controllo è invertito: il framework chiama il codice dello sviluppatore.
+- JavaScript: un linguaggio di scripting di alto livello integrato nei browser che consente di implementare funzionalità nelle pagine web e nelle app. JavaScript è disponibile anche in altri ambienti di programmazione, come [Node](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Introduction).
+- API del browser: costrutti integrati nel browser che si basano sul linguaggio JavaScript e consentono di implementare più facilmente funzionalità.
+- API di terze parti: costrutti integrati in piattaforme di terze parti (ad esempio Disqus, Facebook) che consentono di utilizzare alcune funzionalità di tali piattaforme nelle proprie pagine web, per esempio visualizzare i commenti Disqus in una pagina web.
+- Librerie JavaScript: in genere uno o più file JavaScript contenenti [funzioni personalizzate](/it/docs/Learn_web_development/Core/Scripting/Functions) che possono essere associati alla pagina web per accelerare o rendere possibile la scrittura di funzionalità comuni. Alcuni esempi sono jQuery, Mootools e React.
+- Framework JavaScript: un livello superiore rispetto alle librerie; i framework JavaScript (ad esempio Angular ed Ember) tendono a essere pacchetti di HTML, CSS, JavaScript e altre tecnologie che vengono installati e poi utilizzati per scrivere un'intera applicazione web da zero. La differenza principale tra una libreria e un framework è l'"inversione del controllo". Quando viene chiamato un metodo di una libreria, lo sviluppatore mantiene il controllo. Con un framework, il controllo è invertito: il framework chiama il codice dello sviluppatore.
 
 ## Cosa possono fare le API?
 
-Ci sono un numero enorme di API disponibili nei browser moderni che permettono di fare una vasta gamma di cose nel vostro codice. Potete vedere questo dando un'occhiata alla [pagina dell'indice delle API di MDN](/it/docs/Web/API).
+Nei browser moderni è disponibile un enorme numero di API che consentono di fare una grande varietà di operazioni nel codice. È possibile verificarlo consultando la [pagina dell'indice delle API di MDN](/it/docs/Web/API).
 
-### API del browser comuni
+### API comuni del browser
 
-In particolare, le categorie più comuni di API del browser che utilizzerete (e che copriremo in questo modulo in modo più dettagliato) sono:
+In particolare, le categorie più comuni di API del browser che verranno utilizzate, e che saranno trattate più dettagliatamente in questo modulo, sono:
 
-- **API per manipolare documenti** caricati nel browser. L'esempio più ovvio è l'[API DOM (Document Object Model)](/it/docs/Web/API/Document_Object_Model), che permette di manipolare HTML e CSS — creare, rimuovere e modificare HTML, applicare dinamicamente nuovi stili alla vostra pagina, ecc. Ogni volta che vedete una finestra popup apparire su una pagina o qualche nuovo contenuto visualizzato, per esempio, è il DOM in azione. Scoprite di più su questo tipo di API nell'[introduzione allo scripting DOM](/it/docs/Learn_web_development/Core/Scripting/DOM_scripting).
-- **API che raccolgono dati dal server** per aggiornare piccole sezioni di una pagina web in autonomia sono molto comunemente usate. Questo dettaglio apparentemente piccolo ha avuto un enorme impatto sulle prestazioni e sul comportamento dei siti — se avete solo bisogno di aggiornare un elenco di azioni o un elenco di nuove storie disponibili, farlo istantaneamente senza dover ricaricare l'intera pagina dal server può far apparire il sito o l'app molto più reattivo e "scattante". L'API principale usata per questo è la [Fetch API](/it/docs/Web/API/Fetch_API), anche se il codice più vecchio potrebbe ancora usare l'API [`XMLHttpRequest`](/it/docs/Web/API/XMLHttpRequest). Potreste anche incontrare il termine **AJAX**, che descrive questa tecnica. Scopri di più su tali API in [Fare richieste di rete con JavaScript](/it/docs/Learn_web_development/Core/Scripting/Network_requests).
-- **API per disegnare e manipolare grafica** sono ampiamente supportate nei browser — le più popolari sono [Canvas](/it/docs/Web/API/Canvas_API) e [WebGL](/it/docs/Web/API/WebGL_API), che vi permettono di aggiornare programmaticamente i dati dei pixel contenuti in un elemento HTML {{htmlelement("canvas")}} per creare scene 2D e 3D. Per esempio, potreste disegnare forme come rettangoli o cerchi, importare un'immagine sulla canvas e applicarvi un filtro come seppia o scala di grigi usando l'API Canvas, o creare una scena 3D complessa con illuminazione e texture usando WebGL. Tali API sono spesso combinate con le API per creare loop di animazione (come [`window.requestAnimationFrame()`](/it/docs/Web/API/Window/requestAnimationFrame)) e altre per creare scene in continuo aggiornamento come cartoni animati e giochi.
-- **[API Audio e Video](/it/docs/Web/Media/Guides/Audio_and_video_delivery)** come [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement), la [Web Audio API](/it/docs/Web/API/Web_Audio_API) e [WebRTC](/it/docs/Web/API/WebRTC_API) vi permettono di fare cose davvero interessanti con i multimedia come creare controlli UI personalizzati per riprodurre audio e video, visualizzare tracce di testo come sottotitoli e didascalie insieme ai vostri video, acquisire video dalla vostra webcam per essere manipolato tramite una canvas (vedi sopra) o visualizzato sul computer di qualcun altro in una web conference, o aggiungere effetti alle tracce audio (come guadagno, distorsione, panning, ecc.).
-- **API dei dispositivi** vi permettono di interagire con l'hardware del dispositivo: per esempio, accedere al GPS del dispositivo per trovare la posizione dell'utente usando l'API [Geolocation](/it/docs/Web/API/Geolocation_API).
-- **API di archiviazione lato client** permettono di memorizzare dati sul lato client, così potete creare un'app che salvi il suo stato tra i carichi di pagina, e forse funzioni anche quando il dispositivo è offline. Ci sono diverse opzioni disponibili, ad esempio, l'archiviazione semplice nome/valore con l'API [Web Storage](/it/docs/Web/API/Web_Storage_API), e l'archiviazione in database più complessa con l'API [IndexedDB](/it/docs/Web/API/IndexedDB_API).
+- **API per manipolare i documenti** caricati nel browser. L'esempio più evidente è la [DOM (Document Object Model) API](/it/docs/Web/API/Document_Object_Model), che consente di manipolare HTML e CSS: creare, rimuovere e modificare HTML, applicare dinamicamente nuovi stili alla pagina e così via. Ogni volta che appare una finestra popup in una pagina o viene visualizzato del nuovo contenuto, per esempio, è il DOM in azione. Per saperne di più su questi tipi di API, consultare l'[introduzione allo scripting DOM](/it/docs/Learn_web_development/Core/Scripting/DOM_scripting).
+- **API che recuperano dati dal server** per aggiornare autonomamente piccole sezioni di una pagina web sono usate molto comunemente. Questo dettaglio apparentemente piccolo ha avuto un enorme impatto sulle prestazioni e sul comportamento dei siti: se è necessario aggiornare soltanto una quotazione azionaria o un elenco di nuove notizie disponibili, farlo istantaneamente senza dover ricaricare l'intera pagina dal server può rendere il sito o l'app molto più reattivo e scattante. L'API principale usata a questo scopo è la [Fetch API](/it/docs/Web/API/Fetch_API), anche se il codice meno recente potrebbe ancora usare l'API [`XMLHttpRequest`](/it/docs/Web/API/XMLHttpRequest). Si potrebbe inoltre incontrare il termine **AJAX**, che descrive questa tecnica. Per saperne di più su tali API, consultare [Effettuare richieste di rete con JavaScript](/it/docs/Learn_web_development/Core/Scripting/Network_requests).
+- **API per disegnare e manipolare la grafica** sono ampiamente supportate nei browser; le più popolari sono [Canvas](/it/docs/Web/API/Canvas_API) e [WebGL](/it/docs/Web/API/WebGL_API), che consentono di aggiornare programmaticamente i dati dei pixel contenuti in un elemento HTML {{htmlelement("canvas")}} per creare scene 2D e 3D. Per esempio, con la Canvas API è possibile disegnare forme come rettangoli o cerchi, importare un'immagine sul canvas e applicarvi un filtro come seppia o scala di grigi, oppure creare una complessa scena 3D con illuminazione e texture usando WebGL. Tali API sono spesso combinate con API per creare cicli di animazione, come [`window.requestAnimationFrame()`](/it/docs/Web/API/Window/requestAnimationFrame), e altre, per realizzare scene in continuo aggiornamento come cartoni animati e giochi.
+- Le **[API audio e video](/it/docs/Web/Media/Guides/Audio_and_video_delivery)**, come [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement), la [Web Audio API](/it/docs/Web/API/Web_Audio_API) e [WebRTC](/it/docs/Web/API/WebRTC_API), consentono di fare operazioni molto interessanti con contenuti multimediali, come creare controlli UI personalizzati per riprodurre audio e video, visualizzare tracce di testo quali didascalie e sottotitoli insieme ai video, acquisire video dalla webcam per manipolarlo tramite un canvas (vedere sopra) o visualizzarlo sul computer di un'altra persona durante una conferenza web, oppure aggiungere effetti alle tracce audio, come guadagno, distorsione, panoramica e così via.
+- Le **API dei dispositivi** consentono di interagire con l'hardware del dispositivo: per esempio, accedere al GPS del dispositivo per individuare la posizione dell'utente mediante la [Geolocation API](/it/docs/Web/API/Geolocation_API).
+- Le **API di archiviazione lato client** consentono di memorizzare dati lato client, in modo da poter creare un'app che salvi il proprio stato tra i caricamenti di pagina e che possa persino funzionare quando il dispositivo è offline. Sono disponibili diverse opzioni, ad esempio un semplice archivio nome/valore con la [Web Storage API](/it/docs/Web/API/Web_Storage_API) e un archivio database più complesso con la [IndexedDB API](/it/docs/Web/API/IndexedDB_API).
 
 ### API di terze parti comuni
 
-Le API di terze parti sono disponibili in una vasta varietà; alcune delle più popolari che potreste voler usare prima o poi sono:
+Le API di terze parti sono molto varie; alcune tra le più popolari che probabilmente verranno utilizzate prima o poi sono:
 
-- API di mappe, come [Mapquest](https://developer.mapquest.com/) e la [Google Maps API](https://developers.google.com/maps/), che vi permettono di fare ogni sorta di cose con le mappe nelle vostre pagine web.
-- La [suite di API di Facebook](https://developers.facebook.com/docs/), che vi permette di utilizzare varie parti dell'ecosistema di Facebook per beneficiare la vostra app, come fornire l'accesso all'app tramite il login di Facebook, accettare pagamenti in-app, avviare campagne pubblicitarie mirate, ecc.
-- Le [API di Telegram](https://core.telegram.org/api), che vi permettono di incorporare contenuti dai canali Telegram sul vostro sito web, oltre a fornire supporto per i bot.
-- L'[API di YouTube](https://developers.google.com/youtube/), che vi permette di incorporare video YouTube sul vostro sito, cercare su YouTube, costruire playlist e altro ancora.
-- L'[API di Pinterest](https://developers.pinterest.com/), che fornisce strumenti per gestire bacheche e pin di Pinterest da includere nel vostro sito web.
-- L'[API di Twilio](https://www.twilio.com/docs), che fornisce un framework per costruire funzionalità di chiamata voce e video nella vostra app, inviare SMS/MMS dalle vostre app e altro ancora.
-- L'[API di Disqus](https://disqus.com/api/docs/), che fornisce una piattaforma di commenti che può essere integrata nel vostro sito.
-- L'[API di Mastodon](https://docs.joinmastodon.org/api/), che vi permette di manipolare programmativamente funzionalità del social network Mastodon.
-- L'[API IFTTT](https://ifttt.com/developers), che permette di integrare più API attraverso una piattaforma.
+- API per mappe, come [Mapquest](https://developer.mapquest.com/) e la [Google Maps API](https://developers.google.com/maps/), che consentono di fare ogni tipo di operazione con le mappe nelle pagine web.
+- La [suite di API Facebook](https://developers.facebook.com/docs/), che consente di usare varie parti dell'ecosistema Facebook a vantaggio dell'app, per esempio fornendo l'accesso all'app tramite Facebook login, accettando pagamenti in-app, avviando campagne pubblicitarie mirate e così via.
+- Le [API Telegram](https://core.telegram.org/api), che consentono di incorporare contenuti dai canali Telegram nel sito web, oltre a fornire supporto per i bot.
+- La [YouTube API](https://developers.google.com/youtube/), che consente di incorporare video YouTube nel sito, effettuare ricerche su YouTube, creare playlist e altro ancora.
+- La [Pinterest API](https://developers.pinterest.com/), che fornisce strumenti per gestire bacheche e pin Pinterest e includerli nel sito web.
+- La [Twilio API](https://www.twilio.com/docs), che fornisce un framework per creare funzionalità di chiamate vocali e video nell'app, inviare SMS/MMS dalle app e altro ancora.
+- La [Disqus API](https://disqus.com/api/docs/), che fornisce una piattaforma di commenti integrabile nel sito.
+- La [Mastodon API](https://docs.joinmastodon.org/api/), che consente di manipolare programmaticamente le funzionalità del social network Mastodon.
+- La [IFTTT API](https://ifttt.com/developers), che consente di integrare più API tramite un'unica piattaforma.
 
 ## Come funzionano le API?
 
-Le diverse API JavaScript funzionano in modi leggermente diversi, ma generalmente hanno caratteristiche comuni e temi simili nel loro funzionamento.
+Le diverse API JavaScript funzionano in modi leggermente diversi, ma in generale condividono caratteristiche comuni e modalità di funzionamento simili.
 
 ### Sono basate su oggetti
 
-Il vostro codice interagisce con le API usando uno o più [oggetti JavaScript](/it/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects), che servono come contenitori per i dati che l'API utilizza (contenuti nelle proprietà degli oggetti) e per la funzionalità che l'API rende disponibile (contenuta nei metodi degli oggetti).
+Il codice interagisce con le API usando uno o più [oggetti JavaScript](/it/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects), che fungono da contenitori per i dati usati dall'API, contenuti nelle proprietà degli oggetti, e per le funzionalità messe a disposizione dall'API, contenute nei metodi degli oggetti.
 
 > [!NOTE]
-> Se non siete già familiari con il funzionamento degli oggetti, dovreste tornare indietro e lavorare attraverso il nostro modulo sugli [oggetti JavaScript](/it/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects) prima di continuare.
+> Se non si ha già familiarità con il funzionamento degli oggetti, è necessario tornare al modulo sugli [oggetti JavaScript](/it/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects) prima di proseguire.
 
-Ritorniamo all'esempio della Web Audio API — questa è un'API abbastanza complessa, che consiste in un numero di oggetti. I più ovvi sono:
+Torniamo all'esempio della Web Audio API: si tratta di un'API abbastanza complessa, composta da diversi oggetti. Quelli più evidenti sono:
 
-- [`AudioContext`](/it/docs/Web/API/AudioContext), che rappresenta un [grafo audio](/it/docs/Web/API/Web_Audio_API/Basic_concepts_behind_Web_Audio_API#audio_graphs) che può essere usato per manipolare l'audio che suona all'interno del browser, e ha un numero di metodi e proprietà disponibili per manipolare quell'audio.
-- [`MediaElementAudioSourceNode`](/it/docs/Web/API/MediaElementAudioSourceNode), che rappresenta un elemento {{htmlelement("audio")}} contenente suono che volete riprodurre e manipolare all'interno del contesto audio.
-- [`AudioDestinationNode`](/it/docs/Web/API/AudioDestinationNode), che rappresenta la destinazione dell'audio, cioè il dispositivo sul vostro computer che lo riprodurrà effettivamente — di solito le vostre casse o cuffie.
+- [`AudioContext`](/it/docs/Web/API/AudioContext), che rappresenta un [grafo audio](/it/docs/Web/API/Web_Audio_API/Basic_concepts_behind_Web_Audio_API#audio_graphs) utilizzabile per manipolare l'audio riprodotto nel browser e dispone di vari metodi e proprietà per manipolare quell'audio.
+- [`MediaElementAudioSourceNode`](/it/docs/Web/API/MediaElementAudioSourceNode), che rappresenta un elemento {{htmlelement("audio")}} contenente il suono da riprodurre e manipolare nel contesto audio.
+- [`AudioDestinationNode`](/it/docs/Web/API/AudioDestinationNode), che rappresenta la destinazione dell'audio, cioè il dispositivo del computer che lo riprodurrà effettivamente, in genere altoparlanti o cuffie.
 
-Quindi, come interagiscono questi oggetti? Se guardate il nostro [esempio semplice di audio web](https://github.com/mdn/learning-area/blob/main/javascript/apis/introduction/web-audio/index.html) ([vedi anche in vivo](https://mdn.github.io/learning-area/javascript/apis/introduction/web-audio/)), vedrete prima il seguente HTML:
+Come interagiscono questi oggetti? Osservando il nostro [semplice esempio di web audio](https://github.com/mdn/learning-area/blob/main/javascript/apis/introduction/web-audio/index.html) ([visualizzabile anche in esecuzione](https://mdn.github.io/learning-area/javascript/apis/introduction/web-audio/)), si vedrà anzitutto il seguente HTML:
 
 ```html
 <audio src="outfoxing.mp3"></audio>
@@ -120,17 +120,17 @@ Quindi, come interagiscono questi oggetti? Se guardate il nostro [esempio sempli
 <input type="range" min="0" max="1" step="0.01" value="1" class="volume" />
 ```
 
-Per prima cosa, includiamo un elemento `<audio>` con il quale incorporiamo un MP3 nella pagina. Non includiamo controlli del browser predefiniti. Successivamente, includiamo un {{htmlelement("button")}} che useremo per riprodurre e fermare la musica, e un elemento {{htmlelement("input")}} di tipo range, che useremo per regolare il volume della traccia mentre suona.
+Innanzitutto, viene incluso un elemento `<audio>` con cui incorporare un MP3 nella pagina. Non vengono inclusi controlli predefiniti del browser. Successivamente, viene incluso un elemento {{htmlelement("button")}} da utilizzare per riprodurre e interrompere la musica, e un elemento {{htmlelement("input")}} di tipo range, da utilizzare per regolare il volume della traccia durante la riproduzione.
 
-Successivamente, diamo un'occhiata al JavaScript per questo esempio.
+Vediamo ora il JavaScript di questo esempio.
 
-Iniziamo creando un'istanza di `AudioContext` all'interno della quale manipolare la nostra traccia:
+Si inizia creando un'istanza `AudioContext` al cui interno manipolare la traccia:
 
 ```js
 const audioCtx = new AudioContext();
 ```
 
-Successivamente creiamo costanti che memorizzano i riferimenti ai nostri elementi `<audio>`, `<button>` e `<input>`, e usiamo il metodo [`AudioContext.createMediaElementSource()`](/it/docs/Web/API/AudioContext/createMediaElementSource) per creare un `MediaElementAudioSourceNode` che rappresenta la fonte del nostro audio — l'elemento `<audio>` da cui si riprodurrà:
+Successivamente, vengono create costanti che memorizzano riferimenti agli elementi `<audio>`, `<button>` e `<input>`, e viene usato il metodo [`AudioContext.createMediaElementSource()`](/it/docs/Web/API/AudioContext/createMediaElementSource) per creare un `MediaElementAudioSourceNode` che rappresenta la sorgente dell'audio, l'elemento `<audio>` da cui verrà riprodotto:
 
 ```js
 const audioElement = document.querySelector("audio");
@@ -140,7 +140,7 @@ const volumeSlider = document.querySelector(".volume");
 const audioSource = audioCtx.createMediaElementSource(audioElement);
 ```
 
-Successivamente includiamo un paio di gestori di eventi che servono per alternare tra play e pausa quando si preme il pulsante e reimpostare la visualizzazione all'inizio quando la canzone ha finito di suonare:
+Successivamente, vengono inclusi un paio di gestori di eventi che consentono di alternare riproduzione e pausa quando viene premuto il pulsante e di riportare la visualizzazione all'inizio quando la riproduzione del brano è terminata:
 
 ```js
 // play/pause audio
@@ -171,9 +171,9 @@ audioElement.addEventListener("ended", () => {
 ```
 
 > [!NOTE]
-> Alcuni di voi potrebbero notare che i metodi `play()` e `pause()` usati per riprodurre e mettere in pausa la traccia non fanno parte della Web Audio API; fanno parte dell'API [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement), che è diversa ma strettamente correlata.
+> Alcuni potrebbero notare che i metodi `play()` e `pause()` usati per riprodurre e mettere in pausa la traccia non fanno parte della Web Audio API; fanno parte dell'API [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement), diversa ma strettamente correlata.
 
-Poi, creiamo un oggetto [`GainNode`](/it/docs/Web/API/GainNode) usando il metodo [`AudioContext.createGain()`](/it/docs/Web/API/BaseAudioContext/createGain), che può essere usato per regolare il volume dell'audio che passa attraverso di esso, e creiamo un altro gestore di eventi che cambia il valore del guadagno (volume) del grafo audio ogni volta che il valore dello slider cambia:
+Successivamente, viene creato un oggetto [`GainNode`](/it/docs/Web/API/GainNode) usando il metodo [`AudioContext.createGain()`](/it/docs/Web/API/BaseAudioContext/createGain), che può essere usato per regolare il volume dell'audio che lo attraversa, e viene creato un altro gestore di eventi che modifica il valore di gain, ovvero il volume, del grafo audio ogni volta che cambia il valore dello slider:
 
 ```js
 // volume
@@ -184,19 +184,19 @@ volumeSlider.addEventListener("input", () => {
 });
 ```
 
-L'ultima cosa da fare per far funzionare tutto è connettere i diversi nodi nel grafo audio, cosa che viene fatta usando il metodo [`AudioNode.connect()`](/it/docs/Web/API/AudioNode/connect) disponibile su ogni tipo di nodo:
+L'ultima operazione necessaria affinché tutto funzioni è collegare i diversi nodi nel grafo audio, usando il metodo [`AudioNode.connect()`](/it/docs/Web/API/AudioNode/connect) disponibile per ogni tipo di nodo:
 
 ```js
 audioSource.connect(gainNode).connect(audioCtx.destination);
 ```
 
-L'audio inizia nella sorgente, viene poi collegato al gain node in modo che il volume dell'audio possa essere regolato. Il gain node è poi collegato al nodo di destinazione in modo che il suono possa essere riprodotto sul vostro computer (la proprietà [`AudioContext.destination`](/it/docs/Web/API/BaseAudioContext/destination) rappresenta qualunque sia il nodo di destinazione audio predefinito disponibile sull'hardware del vostro computer, ad esempio, le vostre casse).
+L'audio inizia nella sorgente, che viene poi collegata al nodo di gain affinché sia possibile regolarne il volume. Il nodo di gain viene quindi collegato al nodo di destinazione affinché il suono possa essere riprodotto sul computer. La proprietà [`AudioContext.destination`](/it/docs/Web/API/BaseAudioContext/destination) rappresenta qualunque [`AudioDestinationNode`](/it/docs/Web/API/AudioDestinationNode) predefinito sia disponibile nell'hardware del computer, per esempio gli altoparlanti.
 
 ### Hanno punti di ingresso riconoscibili
 
-Quando si utilizza un'API, è importante sapere dove si trova il punto di ingresso dell'API. Nella Web Audio API, questo è piuttosto semplice — è l'oggetto [`AudioContext`](/it/docs/Web/API/AudioContext), che deve essere utilizzato per qualsiasi manipolazione audio.
+Quando si usa un'API, è necessario assicurarsi di conoscere il punto di ingresso dell'API. Nella Web Audio API questo è piuttosto semplice: è l'oggetto [`AudioContext`](/it/docs/Web/API/AudioContext), che deve essere usato per eseguire qualsiasi manipolazione audio.
 
-L'API Document Object Model (DOM) ha anche un punto di ingresso semplice — le sue funzionalità tendono a trovarsi legate all'oggetto [`Document`](/it/docs/Web/API/Document), o a un'istanza di un elemento HTML che volete influenzare in qualche modo, ad esempio:
+Anche l'API Document Object Model (DOM) ha un punto di ingresso semplice: le sue funzionalità sono generalmente disponibili dall'oggetto [`Document`](/it/docs/Web/API/Document) o da un'istanza di un elemento HTML che si desidera modificare in qualche modo, per esempio:
 
 ```js
 const em = document.createElement("em"); // create a new em element
@@ -205,14 +205,14 @@ em.textContent = "Hello there!"; // give em some text content
 para.appendChild(em); // embed em inside para
 ```
 
-L'[API Canvas](/it/docs/Web/API/Canvas_API) si basa anche sull'ottenimento di un oggetto contesto da usare per manipolare le cose, anche se in questo caso si tratta di un contesto grafico piuttosto che un contesto audio. Il suo oggetto contesto è creato ottenendo un riferimento all'elemento {{htmlelement("canvas")}} su cui volete disegnare, e poi chiamando il suo metodo [`HTMLCanvasElement.getContext()`](/it/docs/Web/API/HTMLCanvasElement/getContext):
+Anche la [Canvas API](/it/docs/Web/API/Canvas_API) richiede di ottenere un oggetto contesto per manipolare gli elementi, sebbene in questo caso si tratti di un contesto grafico anziché di un contesto audio. Il suo oggetto contesto viene creato ottenendo un riferimento all'elemento {{htmlelement("canvas")}} su cui si desidera disegnare, quindi chiamando il relativo metodo [`HTMLCanvasElement.getContext()`](/it/docs/Web/API/HTMLCanvasElement/getContext):
 
 ```js
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 ```
 
-Qualsiasi cosa vogliate fare sulla canvas viene poi realizzata chiamando le proprietà e i metodi dell'oggetto contesto (che è un'istanza di [`CanvasRenderingContext2D`](/it/docs/Web/API/CanvasRenderingContext2D)), ad esempio:
+Qualsiasi operazione da eseguire sul canvas viene quindi realizzata chiamando proprietà e metodi dell'oggetto contesto, che è un'istanza di [`CanvasRenderingContext2D`](/it/docs/Web/API/CanvasRenderingContext2D), per esempio:
 
 ```js
 Ball.prototype.draw = function () {
@@ -224,15 +224,15 @@ Ball.prototype.draw = function () {
 ```
 
 > [!NOTE]
-> Potete vedere questo codice in azione nella nostra [demo delle palline rimbalzanti](https://github.com/mdn/learning-area/blob/main/javascript/apis/introduction/bouncing-balls.html) (vedete anche [in esecuzione live](https://mdn.github.io/learning-area/javascript/apis/introduction/bouncing-balls.html)).
+> È possibile vedere questo codice in azione nella nostra [demo delle palline rimbalzanti](https://github.com/mdn/learning-area/blob/main/javascript/apis/introduction/bouncing-balls.html) e [in esecuzione](https://mdn.github.io/learning-area/javascript/apis/introduction/bouncing-balls.html).
 
-### Utilizzano spesso eventi per gestire i cambiamenti di stato
+### Spesso usano eventi per gestire i cambiamenti di stato
 
-Abbiamo già discusso di eventi all'inizio del corso nel nostro articolo [Introduzione agli eventi](/it/docs/Learn_web_development/Core/Scripting/Events), che esamina in dettaglio cosa sono gli eventi web lato client e come vengono usati nel vostro codice. Se non siete già familiari con il funzionamento degli eventi delle API web lato client, dovreste leggere questo articolo prima di continuare.
+Gli eventi sono già stati trattati in precedenza nel corso, nell'articolo [Introduzione agli eventi](/it/docs/Learn_web_development/Core/Scripting/Events), che esamina in dettaglio cosa sono gli eventi web lato client e come vengono usati nel codice. Se non si ha già familiarità con il funzionamento degli eventi delle API web lato client, leggere prima questo articolo.
 
-Alcune API web non contengono eventi, ma la maggior parte ne contiene almeno qualcuno. Le proprietà gestore che ci permettono di eseguire funzioni quando gli eventi si attivano sono generalmente elencate nel nostro materiale di riferimento in sezioni separate "Gestori di eventi".
+Alcune API web non contengono eventi, ma la maggior parte ne contiene almeno alcuni. Le proprietà dei gestori che consentono di eseguire funzioni quando si attivano gli eventi sono generalmente elencate nel materiale di riferimento in sezioni separate "Event handlers".
 
-Abbiamo già visto un numero di gestori di eventi in uso nel nostro esempio di Web Audio API sopra:
+Nell'esempio della Web Audio API precedente sono già stati visti diversi gestori di eventi:
 
 ```js
 // play/pause audio
@@ -262,21 +262,21 @@ audioElement.addEventListener("ended", () => {
 });
 ```
 
-### Hanno meccanismi di sicurezza aggiuntivi dove appropriato
+### Dispongono di meccanismi di sicurezza aggiuntivi, quando appropriato
 
-Le funzionalità WebAPI sono soggette alle stesse considerazioni di sicurezza di JavaScript e di altre tecnologie web (ad esempio la [same-origin policy](/it/docs/Web/Security/Same-origin_policy)), ma a volte hanno meccanismi di sicurezza aggiuntivi in atto. Ad esempio, alcune delle funzionalità più recenti delle WebAPI funzionano solo su pagine servite tramite HTTPS a causa della trasmissione di dati potenzialmente sensibili (esempi includono i [Service Workers](/it/docs/Web/API/Service_Worker_API) e [Push](/it/docs/Web/API/Push_API)).
+Le funzionalità delle Web API sono soggette alle stesse considerazioni di sicurezza di JavaScript e delle altre tecnologie web, per esempio la [same-origin policy](/it/docs/Web/Security/Defenses/Same-origin_policy), ma talvolta sono dotate di meccanismi di sicurezza aggiuntivi. Per esempio, alcune delle Web API più moderne funzionano soltanto su pagine servite tramite HTTPS, poiché trasmettono dati potenzialmente sensibili. Alcuni esempi includono [Service Workers](/it/docs/Web/API/Service_Worker_API) e [Push](/it/docs/Web/API/Push_API).
 
-Inoltre, alcune WebAPI richiedono il permesso di essere abilitate dall'utente una volta effettuate le chiamate ad esse nel vostro codice. Ad esempio, l'API [Notifications](/it/docs/Web/API/Notifications_API) chiede il permesso usando una finestra di dialogo a comparsa:
+Inoltre, alcune Web API richiedono all'utente l'autorizzazione per essere abilitate quando vengono effettuate chiamate a esse nel codice. Per esempio, la [Notifications API](/it/docs/Web/API/Notifications_API) richiede l'autorizzazione usando una finestra di dialogo popup:
 
-![Uno screenshot del pop-up di notifica fornito dall'API di Notifiche del browser. Il sito 'mdn.github.io' sta chiedendo permessi per inviare notifiche all'agente utente con una X per chiudere la finestra di dialogo e un menu a tendina di opzioni con 'ricevi sempre notifiche' selezionata di default.](notification-permission.png)
+![Una schermata della finestra di dialogo popup per le notifiche fornita dalla Notifications API del browser. Il sito web 'mdn.github.io' richiede l'autorizzazione per inviare notifiche allo user agent, con una X per chiudere la finestra di dialogo e un menu a discesa di opzioni in cui 'ricevi sempre notifiche' è selezionato per impostazione predefinita.](notification-permission.png)
 
-Le API Web Audio e [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement) sono soggette a un meccanismo di sicurezza chiamato [autoplay policy](/it/docs/Web/API/Web_Audio_API/Best_practices#autoplay_policy) — questo fondamentalmente significa che non è possibile riprodurre audio automaticamente quando una pagina viene caricata — è necessario consentire agli utenti di iniziare la riproduzione audio tramite un controllo come un pulsante. Questo viene fatto perché l'audio in riproduzione automatica è di solito davvero fastidioso, e non dovremmo veramente sottoporre i nostri utenti a esso.
+Le API Web Audio e [`HTMLMediaElement`](/it/docs/Web/API/HTMLMediaElement) sono soggette a un meccanismo di sicurezza chiamato [autoplay policy](/it/docs/Web/API/Web_Audio_API/Best_practices#autoplay_policy): in sostanza, significa che non è possibile riprodurre automaticamente l'audio al caricamento di una pagina; occorre consentire agli utenti di avviare la riproduzione audio tramite un controllo come un pulsante. Questo avviene perché l'audio riprodotto automaticamente è solitamente molto fastidioso e non dovrebbe essere imposto agli utenti.
 
 > [!NOTE]
-> A seconda di quanto sia stretto il browser, tali meccanismi di sicurezza potrebbero persino impedire il funzionamento dell'esempio localmente, cioè, se si carica il file di esempio locale nel browser invece di eseguirlo da un server web. Al momento della scrittura, il nostro esempio di Web Audio API non funzionava localmente su Google Chrome — abbiamo dovuto caricarlo su GitHub prima che funzionasse.
+> A seconda di quanto sia restrittivo il browser, tali meccanismi di sicurezza potrebbero persino impedire il funzionamento dell'esempio in locale, cioè se il file di esempio locale viene caricato nel browser anziché eseguito da un server web. Al momento della stesura, il nostro esempio della Web Audio API non funzionava localmente in Google Chrome: è stato necessario caricarlo su GitHub affinché funzionasse.
 
-## Sommario
+## Riepilogo
 
-A questo punto, dovreste avere una buona idea di cosa sono le API, come funzionano e cosa potete fare con esse nel vostro codice JavaScript. Probabilmente siete entusiasti di iniziare a fare davvero alcune cose divertenti con API specifiche, quindi procediamo! Il prossimo passo, esamineremo le API video e audio.
+A questo punto dovrebbe essere chiaro cosa sono le API, come funzionano e cosa è possibile fare con esse nel codice JavaScript. Probabilmente è arrivato il momento di iniziare a fare operazioni interessanti con API specifiche: procediamo. Successivamente, verranno esaminate le API video e audio.
 
 {{NextMenu("Learn_web_development/Extensions/Client-side_APIs/Video_and_audio_APIs", "Learn_web_development/Extensions/Client-side_APIs")}}

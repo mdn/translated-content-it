@@ -1,14 +1,14 @@
 ---
-title: Gestire diverse direzioni di testo
-short-title: Direzioni di testo multiple
+title: Gestione di diverse direzioni del testo
+short-title: Direzioni multiple del testo
 slug: Learn_web_development/Core/Styling_basics/Handling_different_text_directions
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 2b4a2ad5d9ba084a9eaa2f9204102655e7b575c4
 ---
 
-Molte delle proprietà e dei valori che abbiamo incontrato finora nel nostro apprendimento di CSS sono stati legati alle dimensioni fisiche del nostro schermo. Creiamo bordi sulla parte superiore, destra, inferiore e sinistra di un riquadro, ad esempio. Queste dimensioni fisiche si adattano molto bene ai contenuti visualizzati orizzontalmente, e per impostazione predefinita il web tende a supportare meglio le lingue da sinistra a destra (ad esempio, inglese o francese) rispetto a quelle da destra a sinistra (come l'arabo).
+Molte delle proprietà e dei valori che abbiamo incontrato finora nel nostro apprendimento di CSS sono stati associati alle dimensioni fisiche dello schermo. Creiamo, ad esempio, bordi nella parte superiore, destra, inferiore e sinistra di un riquadro. Queste dimensioni fisiche si adattano molto bene ai contenuti visualizzati orizzontalmente e, per impostazione predefinita, il web tende a supportare meglio le lingue da sinistra a destra (ad esempio, inglese o francese) rispetto alle lingue da destra a sinistra (come l'arabo).
 
-Negli ultimi anni, tuttavia, CSS si è evoluto per supportare meglio diversa direzionalità dei contenuti, non solo da destra a sinistra ma anche dall'alto verso il basso (come il giapponese) — queste diverse direzionalità sono chiamate **modi di scrittura**. Man mano che progredisci nei tuoi studi e inizi a lavorare con il layout, comprendere i modi di scrittura ti sarà molto utile, quindi li introduciamo ora.
+Negli ultimi anni, tuttavia, CSS si è evoluto per supportare meglio le diverse direzionalità dei contenuti, inclusi i contenuti da destra a sinistra ma anche quelli dall'alto verso il basso (come il giapponese): queste diverse direzionalità sono chiamate **modalità di scrittura**. Man mano che si procede nello studio e si inizia a lavorare con il layout, una comprensione delle modalità di scrittura sarà molto utile; per questo motivo le introdurremo ora.
 
 <table>
   <tbody>
@@ -18,29 +18,29 @@ Negli ultimi anni, tuttavia, CSS si è evoluto per supportare meglio diversa dir
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Installing_software"
           >Software di base installato</a
-        >, conoscenza di base di
+        >, conoscenza di base del
         <a
           href="/it/docs/Learn_web_development/Getting_started/Environment_setup/Dealing_with_files"
-          >lavorare con i file</a
-        >, nozioni fondamentali di HTML (studia
+          >lavoro con i file</a
+        >, basi di HTML (studiare
         <a href="/it/docs/Learn_web_development/Core/Structuring_content"
           >Introduzione a HTML</a
-        >), e un'idea di come funziona CSS (studia
-        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Nozioni fondamentali di CSS</a>.)
+        >) e un'idea di come funziona CSS (studiare
+        <a href="/it/docs/Learn_web_development/Core/Styling_basics">Basi dello stile CSS</a>.)
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
-      <td>Comprendere l'importanza dei modi di scrittura nel CSS moderno.</td>
+      <td>Comprendere l'importanza delle modalità di scrittura per il CSS moderno.</td>
     </tr>
   </tbody>
 </table>
 
-## Cosa sono i modi di scrittura?
+## Cosa sono le modalità di scrittura?
 
-Un modo di scrittura in CSS si riferisce a se il testo scorre orizzontalmente o verticalmente. La proprietà {{cssxref("writing-mode")}} ci consente di passare da un modo di scrittura all'altro. Non è necessario lavorare in una lingua che utilizza un modo di scrittura verticale per voler fare ciò — si potrebbe anche cambiare il modo di scrittura di parti del layout per scopi creativi.
+Una modalità di scrittura in CSS indica se il testo scorre orizzontalmente o verticalmente. La proprietà {{cssxref("writing-mode")}} consente di passare da una modalità di scrittura a un'altra. Non è necessario lavorare in una lingua che usa una modalità di scrittura verticale per volerlo fare: è anche possibile modificare la modalità di scrittura di parti del layout per scopi creativi.
 
-Nell'esempio qui sotto, abbiamo un intestazione visualizzata usando `writing-mode: vertical-rl`. Il testo ora scorre verticalmente. Il testo verticale è comune nel design grafico, e può essere un modo per aggiungere un aspetto più interessante al design del tuo sito web.
+Nell'esempio seguente è presente un'intestazione visualizzata con `writing-mode: vertical-rl`. Il testo ora scorre verticalmente. Il testo verticale è comune nel graphic design e può essere un modo per dare un aspetto più interessante al web design.
 
 ```html live-sample___simple-vertical
 <h1>Play with writing modes</h1>
@@ -61,19 +61,19 @@ h1 {
 
 {{EmbedLiveSample("simple-vertical", "", "350px")}}
 
-I tre valori possibili per la proprietà [`writing-mode`](/it/docs/Web/CSS/writing-mode) sono:
+I tre possibili valori della proprietà {{cssxref("writing-mode")}} sono:
 
 - `horizontal-tb`: Direzione del flusso dei blocchi dall'alto verso il basso. Le frasi scorrono orizzontalmente.
 - `vertical-rl`: Direzione del flusso dei blocchi da destra a sinistra. Le frasi scorrono verticalmente.
 - `vertical-lr`: Direzione del flusso dei blocchi da sinistra a destra. Le frasi scorrono verticalmente.
 
-Quindi, la proprietà `writing-mode` in realtà imposta la direzione in cui gli elementi a livello di blocco vengono visualizzati sulla pagina — dall'alto verso il basso, da destra a sinistra, o da sinistra a destra. Questo poi determina la direzione in cui il testo scorre nelle frasi.
+La proprietà `writing-mode` imposta quindi, in realtà, la direzione in cui gli elementi a livello di blocco vengono visualizzati nella pagina: dall'alto verso il basso, da destra a sinistra oppure da sinistra a destra. Questo determina poi la direzione in cui il testo scorre nelle frasi.
 
-## Modi di scrittura e layout a blocchi e in-linea
+## Modalità di scrittura e layout a blocchi e inline
 
-Abbiamo già discusso il [layout a blocchi e in-linea](/it/docs/Web/CSS/CSS_display/Block_and_inline_layout_in_normal_flow), e il fatto che alcune cose si visualizzano come elementi a blocco mentre altre come elementi in-linea. Come abbiamo visto sopra, il blocco e l'in-linea sono legati al modo di scrittura del documento, e non allo schermo fisico. I blocchi vengono visualizzati dall'alto verso il basso della pagina solo se si utilizza un modo di scrittura che visualizza il testo orizzontalmente, come l'inglese.
+Abbiamo già parlato del [layout a blocchi e inline](/it/docs/Web/CSS/Guides/Display/Block_and_inline_layout) e del fatto che alcuni elementi vengono visualizzati come elementi a blocco e altri come elementi inline. Come descritto sopra, blocco e inline sono legati alla modalità di scrittura del documento, non allo schermo fisico. I blocchi vengono visualizzati dall'alto verso il basso nella pagina solo se si utilizza una modalità di scrittura che visualizza il testo orizzontalmente, come l'inglese.
 
-Guardando un esempio questo diventerà più chiaro. In questo prossimo esempio ho due riquadri che contengono un'intestazione e un paragrafo. Il primo utilizza `writing-mode: horizontal-tb`, un modo di scrittura orizzontale che va dalla parte superiore della pagina verso il basso. Il secondo utilizza `writing-mode: vertical-rl`; questo è un modo di scrittura verticale che va da destra a sinistra.
+Osservando un esempio, questo sarà più chiaro. Nell'esempio seguente sono presenti due riquadri contenenti un'intestazione e un paragrafo. Il primo usa `writing-mode: horizontal-tb`, una modalità di scrittura orizzontale e dall'alto verso il basso. Il secondo usa `writing-mode: vertical-rl`; questa è una modalità di scrittura verticale e da destra a sinistra.
 
 ```html live-sample___block-inline
 <div class="wrapper">
@@ -98,7 +98,7 @@ body {
 }
 
 .box {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 0.5em;
   margin: 10px;
 }
@@ -114,27 +114,27 @@ body {
 
 {{EmbedLiveSample("block-inline", "", "350px")}}
 
-Quando cambiamo il modo di scrittura, stiamo cambiando quale direzione è il blocco e quale è l'in-linea. In un modo di scrittura `horizontal-tb`, la direzione del blocco va dall'alto verso il basso; in un modo di scrittura `vertical-rl`, la direzione del blocco va da destra a sinistra orizzontalmente. Quindi la **dimensione del blocco** è sempre la direzione in cui i blocchi vengono visualizzati sulla pagina nel modo di scrittura in uso. La **dimensione in-linea** è sempre la direzione in cui scorre una frase.
+Quando si cambia la modalità di scrittura, si cambia quale direzione è block e quale è inline. In una modalità di scrittura `horizontal-tb`, la direzione block va dall'alto verso il basso; in una modalità di scrittura `vertical-rl`, la direzione block va orizzontalmente da destra a sinistra. Quindi la **dimensione block** è sempre la direzione in cui i blocchi vengono visualizzati nella pagina nella modalità di scrittura in uso. La **dimensione inline** è sempre la direzione in cui scorre una frase.
 
-Questa figura mostra le due dimensioni quando si è in un modo di scrittura orizzontale.![Mostra l'asse del blocco e dell'in-linea per un modo di scrittura orizzontale.](horizontal-tb.png)
+Questa figura mostra le due dimensioni in una modalità di scrittura orizzontale.![Mostra gli assi block e inline per una modalità di scrittura orizzontale.](horizontal-tb.png)
 
-Questa figura mostra le due dimensioni in un modo di scrittura verticale.
+Questa figura mostra le due dimensioni in una modalità di scrittura verticale.
 
-![Mostra l'asse del blocco e dell'in-linea per un modo di scrittura verticale.](vertical.png)
+![Mostra gli assi block e inline per una modalità di scrittura verticale.](vertical.png)
 
-Quando inizi a guardare al layout CSS, e in particolare ai metodi di layout più recenti, questa idea di blocco e in-linea diventa molto importante. La riaffronteremo più avanti.
+Quando si inizia a esaminare il layout CSS, e in particolare i metodi di layout più recenti, questa idea di block e inline diventa molto importante. La riprenderemo più avanti.
 
 ### Direzione
 
-Oltre al modo di scrittura abbiamo anche la direzione del testo. Come menzionato sopra, alcune lingue come l'arabo sono scritte orizzontalmente, ma da destra a sinistra. Non è qualcosa che probabilmente utilizzerai in modo creativo — se vuoi allineare qualcosa a destra ci sono altri modi per farlo — tuttavia è importante comprendere questo come parte della natura di CSS. Il web non è solo per le lingue che vengono visualizzate da sinistra a destra!
+Oltre alla modalità di scrittura, esiste anche la direzione del testo. Come menzionato sopra, alcune lingue, come l'arabo, vengono scritte orizzontalmente, ma da destra a sinistra. Non è probabile che questo venga usato in senso creativo — se si vuole allineare qualcosa a destra esistono altri modi per farlo — tuttavia è importante comprenderlo come parte della natura di CSS. Il web non è solo per le lingue visualizzate da sinistra a destra!
 
-Dato che il modo di scrittura e la direzione del testo possono cambiare, i metodi di layout CSS più recenti non si riferiscono a sinistra e destra, e in alto e in basso. Invece parlano di _inizio_ e _fine_ insieme a questa idea di in-linea e blocco. Non preoccuparti troppo di questo adesso, ma tieni queste idee in mente mentre inizi a guardare al layout; ti sarà davvero utile nella comprensione di CSS.
+Poiché la modalità di scrittura e la direzione del testo possono cambiare, i metodi di layout CSS più recenti non fanno riferimento a sinistra e destra, né ad alto e basso. Parlano invece di _inizio_ e _fine_, insieme a questa idea di inline e block. Non è necessario preoccuparsene troppo per ora, ma è bene tenere a mente queste idee quando si inizia a esaminare il layout: saranno davvero utili per comprendere CSS.
 
 ## Proprietà e valori logici
 
-Il motivo per cui parliamo di modi di scrittura e direzione a questo punto del tuo apprendimento è che abbiamo già esaminato molte proprietà legate alle dimensioni fisiche dello schermo, e queste hanno più senso in un modo di scrittura orizzontale.
+Il motivo per cui parliamo di modalità di scrittura e direzione a questo punto dell'apprendimento è che abbiamo già esaminato molte proprietà legate alle dimensioni fisiche dello schermo, che risultano più intuitive in una modalità di scrittura orizzontale.
 
-Diamo un'occhiata di nuovo ai nostri due riquadri — uno con un modo di scrittura `horizontal-tb` e uno con `vertical-rl`. Ho dato a entrambi questi riquadri una {{cssxref("width")}}. Puoi vedere che quando il riquadro è nel modo di scrittura verticale, ha ancora una larghezza, e questo causa l'overflow del testo.
+Osserviamo di nuovo i due riquadri: uno con modalità di scrittura `horizontal-tb` e uno con `vertical-rl`. A entrambi i riquadri è stata assegnata una {{cssxref("width")}}. È possibile vedere che, quando il riquadro è in modalità di scrittura verticale, mantiene comunque una larghezza, e questo causa l'overflow del testo.
 
 ```html live-sample___width
 <div class="wrapper">
@@ -161,7 +161,7 @@ body {
 }
 
 .box {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 0.5em;
   margin: 10px;
   width: 100px;
@@ -178,11 +178,11 @@ body {
 
 {{EmbedLiveSample("width", "", "350px")}}
 
-Ciò che vogliamo davvero in questo scenario è essenzialmente scambiare altezza con larghezza in accordo con il modo di scrittura. Quando siamo in un modo di scrittura verticale vogliamo che il riquadro si espanda nella dimensione del blocco proprio come fa nel modo orizzontale.
+Ciò che serve realmente in questo scenario è essenzialmente scambiare height e width in base alla modalità di scrittura. In una modalità di scrittura verticale, il riquadro dovrebbe espandersi nella dimensione block proprio come accade nella modalità orizzontale.
 
-Per facilitare questo, CSS ha recentemente sviluppato un set di proprietà mappate. Queste essenzialmente sostituiscono le proprietà fisiche — cose come `width` e `height` — con versioni **logiche**, o **relative al flusso**.
+Per semplificare questo processo, CSS ha sviluppato recentemente un insieme di proprietà mappate. Queste sostituiscono essenzialmente le proprietà fisiche — elementi come `width` e `height` — con versioni **logiche**, o **relative al flusso**.
 
-La proprietà mappata a `width` quando si è in un modo di scrittura orizzontale è chiamata {{cssxref("inline-size")}} — si riferisce alla dimensione nella dimensione in-linea. La proprietà per `height` è chiamata {{cssxref("block-size")}} ed è la dimensione nella dimensione del blocco. Puoi vedere come funziona nell'esempio qui sotto dove abbiamo sostituito `width` con `inline-size`.
+La proprietà mappata a `width` in una modalità di scrittura orizzontale si chiama {{cssxref("inline-size")}}: fa riferimento alla dimensione inline. La proprietà per `height` si chiama {{cssxref("block-size")}} e rappresenta la dimensione block. È possibile vedere come funziona nell'esempio seguente, in cui `width` è stata sostituita con `inline-size`.
 
 ```html live-sample___inline-size
 <div class="wrapper">
@@ -205,7 +205,7 @@ La proprietà mappata a `width` quando si è in un modo di scrittura orizzontale
 }
 
 .box {
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   padding: 0.5em;
   margin: 10px;
   inline-size: 100px;
@@ -222,19 +222,19 @@ La proprietà mappata a `width` quando si è in un modo di scrittura orizzontale
 
 {{EmbedLiveSample("inline-size", "", "300px")}}
 
-### Proprietà logiche di margine, bordo e padding
+### Proprietà logiche per margin, border e padding
 
-Nelle ultime due lezioni abbiamo imparato a conoscere il modello di riquadro CSS e i bordi CSS. Nelle proprietà di margine, bordo e padding troverai molte istanze di proprietà fisiche, ad esempio {{cssxref("margin-top")}}, {{cssxref("padding-left")}}, e {{cssxref("border-bottom")}}. Allo stesso modo in cui abbiamo mappature per larghezza e altezza esistono mappature per queste proprietà.
+Nelle ultime due lezioni abbiamo imparato a conoscere il box model CSS e i bordi CSS. Nelle proprietà margin, border e padding si trovano molti esempi di proprietà fisiche, ad esempio {{cssxref("margin-top")}}, {{cssxref("padding-left")}} e {{cssxref("border-bottom")}}. Allo stesso modo in cui esistono mappature per width e height, esistono mappature anche per queste proprietà.
 
-La proprietà `margin-top` è mappata a {{cssxref("margin-block-start")}} — questa si riferirà sempre al margine all'inizio della dimensione del blocco.
+La proprietà `margin-top` è mappata a {{cssxref("margin-block-start")}}: questa fa sempre riferimento al margin all'inizio della dimensione block.
 
-La proprietà {{cssxref("padding-left")}} è mappata a {{cssxref("padding-inline-start")}}, il padding che viene applicato all'inizio della direzione in-linea. Questo sarà dove iniziano le frasi in quel modo di scrittura. La proprietà {{cssxref("border-bottom")}} è mappata a {{cssxref("border-block-end")}}, che è il bordo alla fine della dimensione del blocco.
+La proprietà {{cssxref("padding-left")}} è mappata a {{cssxref("padding-inline-start")}}, il padding applicato all'inizio della direzione inline. Questo corrisponde al punto in cui iniziano le frasi in quella modalità di scrittura. La proprietà {{cssxref("border-bottom")}} è mappata a {{cssxref("border-block-end")}}, che rappresenta il border alla fine della dimensione block.
 
-Puoi vedere un confronto tra proprietà fisiche e logiche qui sotto.
+Di seguito è possibile vedere un confronto tra proprietà fisiche e logiche.
 
-Se cambi il modo di scrittura dei riquadri cambiando la proprietà `writing-mode` su `.box` in `vertical-rl`, vedrai come le proprietà fisiche restano legate alla loro direzione fisica, mentre le proprietà logiche cambiano con il modo di scrittura.
+Se si modifica la modalità di scrittura dei riquadri impostando la proprietà `writing-mode` su `.box` a `vertical-rl`, sarà possibile vedere come le proprietà fisiche rimangano associate alla loro direzione fisica, mentre le proprietà logiche cambino con la modalità di scrittura.
 
-Puoi anche notare che l'elemento di intestazione {{htmlelement("Heading_Elements", "h2")}} ha un bordo nero in basso. Puoi capire come far sì che quel bordo inferiore vada sempre sotto il testo in entrambi i modi di scrittura?
+È inoltre possibile vedere che {{htmlelement("Heading_Elements", "h2")}} ha un `border-bottom` nero. È possibile capire come fare in modo che il bordo inferiore si trovi sempre sotto il testo in entrambe le modalità di scrittura?
 
 ```html live-sample___logical-mbp
 <div class="wrapper">
@@ -252,7 +252,7 @@ Puoi anche notare che l'elemento di intestazione {{htmlelement("Heading_Elements
 ```css live-sample___logical-mbp
 .wrapper {
   display: flex;
-  border: 5px solid #ccc;
+  border: 5px solid #cccccc;
 }
 
 .box {
@@ -288,15 +288,15 @@ h2 {
 
 {{EmbedLiveSample("logical-mbp", "", "200px")}}
 
-Ci sono un numero enorme di proprietà quando consideri tutti i dettagli specifici dei bordi, e puoi vedere tutte le proprietà mappate sulla pagina MDN dedicata alle [Proprietà e Valori Logici](/it/docs/Web/CSS/CSS_logical_properties_and_values).
+Esiste un numero enorme di proprietà considerando tutte le proprietà longhand individuali per i border; è possibile vedere tutte le proprietà mappate nella pagina MDN dedicata alle [proprietà e ai valori logici](/it/docs/Web/CSS/Guides/Logical_properties_and_values).
 
 ### Valori logici
 
-Finora abbiamo esaminato i nomi delle proprietà logiche. Esistono anche alcune proprietà che prendono valori fisici di `top`, `right`, `bottom`, e `left`. Anche questi valori hanno mappature, a valori logici — `block-start`, `inline-end`, `block-end`, e `inline-start`.
+Finora abbiamo esaminato i nomi delle proprietà logiche. Esistono anche alcune proprietà che accettano i valori fisici `top`, `right`, `bottom` e `left`. Anche questi valori hanno delle mappature verso valori logici: `block-start`, `inline-end`, `block-end` e `inline-start`.
 
-Ad esempio, puoi far fluttuare a sinistra un'immagine per fare in modo che il testo si avvolga attorno ad essa. Potresti sostituire `left` con `inline-start` come mostrato nell'esempio qui sotto.
+Ad esempio, è possibile applicare il float a un'immagine verso sinistra per far sì che il testo fluisca attorno all'immagine. È possibile sostituire `left` con `inline-start`, come mostrato nell'esempio seguente.
 
-Cambia il modo di scrittura in questo esempio a `vertical-rl` per vedere cosa succede all'immagine. Cambia `inline-start` in `inline-end` per cambiare il float:
+Modificare la modalità di scrittura di questo esempio in `vertical-rl` per vedere cosa accade all'immagine. Modificare `inline-start` in `inline-end` per cambiare il float:
 
 ```html live-sample___float
 <div class="wrapper">
@@ -320,7 +320,7 @@ Cambia il modo di scrittura in questo esempio a `vertical-rl` per vedere cosa su
 .box {
   margin: 10px;
   padding: 0.5em;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   inline-size: 200px;
   writing-mode: horizontal-tb;
 }
@@ -334,16 +334,12 @@ img {
 
 {{EmbedLiveSample("float", "", "200px")}}
 
-Qui stiamo anche utilizzando valori di margine logici per garantire che il margine sia nel posto corretto indipendentemente dal modo di scrittura.
+Qui vengono inoltre usati valori logici di margin per assicurare che il margin si trovi nella posizione corretta, indipendentemente dalla modalità di scrittura.
 
-### Dovresti usare proprietà fisiche o logiche?
+### È necessario usare proprietà fisiche o logiche?
 
-Le proprietà e i valori logici sono più recenti dei loro equivalenti fisici, e pertanto sono stati implementati nei browser solo di recente. Puoi controllare qualsiasi pagina delle proprietà su MDN per vedere fino a quale versione del browser arriva il supporto. Se non stai utilizzando più modi di scrittura, per ora potresti preferire utilizzare le versioni fisiche. Tuttavia, in ultima analisi, ci aspettiamo che le persone passino alle versioni logiche per la maggior parte delle cose, poiché hanno molto senso una volta che inizi a utilizzare metodi di layout come flexbox e grid.
+Le proprietà e i valori logici sono più recenti delle loro controparti fisiche e, pertanto, sono stati implementati nei browser solo di recente. È possibile controllare ogni pagina delle proprietà su MDN per vedere fino a quale versione precedente arriva il supporto dei browser. Se non si utilizzano più modalità di scrittura, per ora potrebbe essere preferibile usare le versioni fisiche. Tuttavia, in definitiva, ci si aspetta che le persone passino alle versioni logiche per la maggior parte dei casi, poiché sono molto sensate quando si iniziano a gestire anche metodi di layout come flexbox e grid.
 
-## Testa le tue abilità!
+## Riepilogo
 
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare di aver assimilato queste informazioni prima di procedere — vedi [Testa le tue abilità: Modi di scrittura e proprietà logiche](/it/docs/Learn_web_development/Core/Styling_basics/Test_your_skills/Writing_modes).
-
-## Sommario
-
-I concetti spiegati in questa lezione stanno diventando sempre più importanti in CSS. Una comprensione della direzione del blocco e dell'in-linea — e di come il flusso del testo cambia con un cambiamento nel modo di scrittura — sarà molto utile in avanti. Ti aiuterà a comprendere CSS anche se non utilizzi mai un modo di scrittura diverso da uno orizzontale.
+I concetti illustrati in questa lezione stanno diventando sempre più importanti in CSS. Comprendere la direzione block e inline — e come il flusso del testo cambi quando cambia la modalità di scrittura — sarà molto utile in futuro. Aiuterà a comprendere CSS anche se non verrà mai utilizzata una modalità di scrittura diversa da quella orizzontale.

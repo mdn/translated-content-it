@@ -2,56 +2,58 @@
 title: Introduzione ai worker
 slug: Learn_web_development/Extensions/Async_JS/Introducing_workers
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 3e543cdfe8dddfb4774a64bf3decdcbab42a4111
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Async_JS/Implementing_a_promise-based_API", "Learn_web_development/Extensions/Async_JS/Sequencing_animations", "Learn_web_development/Extensions/Async_JS")}}
 
-In questo articolo finale del nostro modulo "JavaScript asincrono", introdurremo i _worker_, che ti consentono di eseguire alcuni compiti in un {{Glossary("Thread", "thread")}} di esecuzione separato.
+In questo articolo finale del nostro modulo "JavaScript asincrono", verranno presentati i _worker_, che consentono di eseguire alcune attività in un {{Glossary("Thread", "thread")}} di esecuzione separato.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-         Una solida comprensione dei <a href="/it/docs/Learn_web_development/Core/Scripting">fondamenti di JavaScript</a> e dei concetti asincroni, come trattati nelle lezioni precedenti di questo modulo.
+         Una solida conoscenza dei <a href="/it/docs/Learn_web_development/Core/Scripting">fondamenti di JavaScript</a> e dei concetti asincroni, trattati nelle lezioni precedenti di questo modulo.
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati di apprendimento:</th>
+      <th scope="row">Risultati dell'apprendimento:</th>
       <td>
         <ul>
-          <li>Come utilizzare i web worker dedicati, e perché.</li>
-          <li>Comprendere lo scopo di altri tipi di web worker, come i shared worker e i service worker.</li>
+          <li>Come e perché usare i web worker dedicati.</li>
+          <li>Comprendere lo scopo di altri tipi di web worker, come i worker condivisi e i service worker.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-Nel primo articolo di questo modulo, abbiamo visto cosa succede quando nel tuo programma hai un compito sincrono di lunga durata: l'intera finestra diventa totalmente non reattiva. Fondamentalmente, la ragione di ciò è che il programma è _single-threaded_. Un _thread_ è una sequenza di istruzioni che un programma segue. Poiché il programma consiste in un singolo thread, può fare solo una cosa alla volta: quindi se sta aspettando che la nostra chiamata sincrona di lunga durata ritorni, non può fare nient'altro.
+Nel primo articolo di questo modulo, è stato visto cosa accade quando nel programma è presente un'attività sincrona di lunga durata: l'intera finestra diventa completamente non responsiva. Fondamentalmente, la ragione è che il programma è _single-threaded_. Un _thread_ è una sequenza di istruzioni seguita da un programma. Poiché il programma è composto da un singolo thread, può fare una sola cosa alla volta: quindi, se attende il ritorno della chiamata sincrona di lunga durata, non può fare altro.
 
-I worker ti danno la possibilità di eseguire alcuni compiti in un thread differente, così puoi avviare il compito, quindi continuare con altri processi (come gestire le azioni dell'utente).
+I worker consentono di eseguire alcune attività in un thread diverso, permettendo di avviare l'attività e poi continuare con altre elaborazioni, ad esempio gestendo le azioni dell'utente.
 
-Una preoccupazione derivata da tutto questo è che se thread multipli possono avere accesso agli stessi dati condivisi, è possibile che li modifichino in modo indipendente e inaspettato (rispetto a ciascuno di loro). Questo può causare bug difficili da trovare.
+Una preoccupazione è che, se più thread possono accedere agli stessi dati condivisi, è possibile che li modifichino in modo indipendente e inaspettato, l'uno rispetto all'altro.
+Questo può causare bug difficili da individuare.
 
-Per evitare questi problemi sul web, il tuo codice principale e il codice del worker non ottengono mai accesso diretto alle variabili l'uno dell'altro, e possono "condividere" veramente dati solo in casi molto specifici. I worker e il codice principale operano in mondi completamente separati e interagiscono solo inviandosi messaggi. In particolare, ciò significa che i worker non possono accedere al DOM (la finestra, il documento, gli elementi della pagina, e così via).
+Per evitare questi problemi sul web, il codice principale e il codice del worker non ottengono mai accesso diretto alle rispettive variabili e possono realmente "condividere" dati solo in casi molto specifici.
+I worker e il codice principale vengono eseguiti in mondi completamente separati e interagiscono solo inviandosi messaggi. In particolare, questo significa che i worker non possono accedere al DOM (la finestra, il documento, gli elementi della pagina e così via).
 
 Esistono tre diversi tipi di worker:
 
 - worker dedicati
-- shared worker
+- worker condivisi
 - service worker
 
-In questo articolo, esamineremo un esempio del primo tipo di worker, per poi discutere brevemente gli altri due.
+In questo articolo verrà illustrato un esempio del primo tipo di worker, quindi verranno discussi brevemente gli altri due.
 
 ## Uso dei web worker
 
-Ricorda nel primo articolo, dove avevamo una pagina che calcolava i numeri primi? Useremo un worker per eseguire il calcolo dei numeri primi, in modo che la nostra pagina rimanga reattiva alle azioni dell'utente.
+Ricordare il primo articolo, in cui era presente una pagina che calcolava i numeri primi? Verrà usato un worker per eseguire il calcolo dei numeri primi, affinché la pagina resti responsiva alle azioni dell'utente.
 
-### Il generatore di numeri primi sincrono
+### Il generatore sincrono di numeri primi
 
-Diamo prima un'altra occhiata al JavaScript nel nostro esempio precedente:
+Per prima cosa, diamo un'altra occhiata al JavaScript dell'esempio precedente:
 
 ```js
 function generatePrimes(quota) {
@@ -91,18 +93,18 @@ document.querySelector("#reload").addEventListener("click", () => {
 });
 ```
 
-In questo programma, dopo aver chiamato `generatePrimes()`, il programma diventa totalmente non reattivo.
+In questo programma, dopo la chiamata a `generatePrimes()`, il programma diventa completamente non responsivo.
 
 ### Generazione di numeri primi con un worker
 
-Per questo esempio, inizia facendo una copia locale dei file su <https://github.com/mdn/learning-area/tree/main/javascript/asynchronous/workers/start>. Ci sono quattro file in questa directory:
+Per questo esempio, iniziare creando una copia locale dei file disponibili all'indirizzo <https://github.com/mdn/learning-area/tree/main/javascript/asynchronous/workers/start>. In questa directory sono presenti quattro file:
 
 - index.html
 - style.css
 - main.js
 - generate.js
 
-Il file "index.html" e il file "style.css" sono già completi:
+I file "index.html" e "style.css" sono già completi:
 
 ```html
 <!doctype html>
@@ -138,11 +140,11 @@ textarea {
 }
 ```
 
-I file "main.js" e "generate.js" sono vuoti. Inseriremo il codice principale in "main.js", e il codice del worker in "generate.js".
+I file "main.js" e "generate.js" sono vuoti. Il codice principale verrà aggiunto a "main.js", mentre il codice del worker verrà aggiunto a "generate.js".
 
-Quindi prima, possiamo vedere che il codice del worker è tenuto in uno script separato dal codice principale. Possiamo anche vedere, guardando "index.html" sopra, che solo il codice principale è incluso in un elemento `<script>`.
+Per prima cosa, quindi, si può vedere che il codice del worker viene mantenuto in uno script separato dal codice principale. Osservando inoltre "index.html" sopra, si può vedere che solo il codice principale è incluso in un elemento `<script>`.
 
-Ora copia il seguente codice in "main.js":
+Ora copiare il codice seguente in "main.js":
 
 ```js
 // Create a new worker, giving it the code in "generate.js"
@@ -174,18 +176,17 @@ document.querySelector("#reload").addEventListener("click", () => {
 });
 ```
 
-- Per prima cosa, stiamo creando il worker usando il costruttore [`Worker()`](/it/docs/Web/API/Worker/Worker). Gli passiamo un URL che punta allo script del worker. Non appena il worker è creato, lo script del worker viene eseguito.
+- Per prima cosa, viene creato il worker usando il costruttore [`Worker()`](/it/docs/Web/API/Worker/Worker). Viene passato un URL che punta allo script del worker. Non appena il worker viene creato, lo script del worker viene eseguito.
 
-- Poi, come nella versione sincrona, aggiungiamo un gestore dell'evento `click` al pulsante "Generate primes". Ma ora, anziché chiamare una funzione `generatePrimes()`, inviamo un messaggio al worker usando [`worker.postMessage()`](/it/docs/Web/API/Worker/postMessage). Questo messaggio può prendere un argomento, e in questo caso, stiamo passando un oggetto JSON contenente due proprietà:
-
-  - `command`: una stringa che identifica ciò che vogliamo che il worker faccia (nel caso il nostro worker potesse fare più di una cosa)
+- Successivamente, come nella versione sincrona, viene aggiunto un gestore dell'evento `click` al pulsante "Generate primes". Ora, tuttavia, invece di chiamare una funzione `generatePrimes()`, viene inviato un messaggio al worker usando [`worker.postMessage()`](/it/docs/Web/API/Worker/postMessage). Questo messaggio può accettare un argomento e, in questo caso, viene passato un oggetto JSON contenente due proprietà:
+  - `command`: una stringa che identifica l'operazione da eseguire dal worker, nel caso in cui il worker possa fare più di una cosa
   - `quota`: il numero di numeri primi da generare.
 
-- Prossimo passo, aggiungiamo un gestore dell'evento `message` per il worker. Questo serve affinché il worker possa dirci quando ha finito e passarci eventuali dati risultanti. Il nostro gestore prende i dati dalla proprietà `data` del messaggio, e li scrive nell'elemento di output (i dati sono esattamente uguali a `quota`, quindi è un po' inutile, ma mostra il principio).
+- Successivamente, viene aggiunto un gestore dell'evento `message` al worker. Questo permette al worker di segnalare quando ha terminato e di passare eventuali dati risultanti. Il gestore recupera i dati dalla proprietà `data` del messaggio e li scrive nell'elemento di output (i dati sono esattamente uguali a `quota`, quindi ciò è piuttosto inutile, ma mostra il principio).
 
-- Infine, implementiamo il gestore dell'evento `click` per il pulsante "Reload". Questo è esattamente lo stesso rispetto alla versione sincrona.
+- Infine, viene implementato il gestore dell'evento `click` per il pulsante "Reload". È esattamente uguale a quello della versione sincrona.
 
-Ora per il codice del worker. Copia il seguente codice in "generate.js":
+Passiamo ora al codice del worker. Copiare il codice seguente in "generate.js":
 
 ```js
 // Listen for messages from the main thread.
@@ -223,36 +224,36 @@ function generatePrimes(quota) {
 }
 ```
 
-Ricorda che questo viene eseguito non appena il codice principale crea il worker.
+Ricordare che questo codice viene eseguito non appena lo script principale crea il worker.
 
-La prima cosa che il worker fa è iniziare ad ascoltare i messaggi dal codice principale. Lo fa usando `addEventListener()`, che è una funzione globale in un worker. All'interno del gestore degli eventi `message`, la proprietà `data` dell'evento contiene una copia dell'argomento passato dal codice principale. Se il codice principale ha passato il comando `generate`, chiamiamo `generatePrimes()`, passando il valore `quota` dall'evento del messaggio.
+La prima cosa che fa il worker è iniziare ad ascoltare i messaggi provenienti dallo script principale. Lo fa usando `addEventListener()`, che in un worker è una funzione globale. All'interno del gestore dell'evento `message`, la proprietà `data` dell'evento contiene una copia dell'argomento passato dallo script principale. Se lo script principale ha passato il comando `generate`, viene chiamata `generatePrimes()`, passando il valore `quota` dall'evento del messaggio.
 
-La funzione `generatePrimes()` è proprio come nella versione sincrona, eccetto che invece di restituire un valore, inviamo un messaggio al codice principale quando abbiamo finito. Usiamo la funzione [`postMessage()`](/it/docs/Web/API/DedicatedWorkerGlobalScope/postMessage) per questo, che come `addEventListener()` è una funzione globale in un worker. Come abbiamo già visto, il codice principale sta ascoltando questo messaggio e aggiornerà il DOM quando il messaggio viene ricevuto.
+La funzione `generatePrimes()` è uguale a quella della versione sincrona, tranne per il fatto che, anziché restituire un valore, invia un messaggio allo script principale quando termina. A questo scopo viene usata la funzione [`postMessage()`](/it/docs/Web/API/DedicatedWorkerGlobalScope/postMessage), che, come `addEventListener()`, è una funzione globale in un worker. Come già visto, lo script principale è in ascolto di questo messaggio e aggiornerà il DOM quando il messaggio viene ricevuto.
 
 > [!NOTE]
-> Per eseguire questo sito, dovrai eseguire un server web locale, perché gli URL file:// non sono consentiti per caricare i worker. Vedi [Come impostare un server di test locale?](/it/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server) per scoprire come. Fatto ciò, dovresti essere in grado di cliccare "Generate primes" e fare in modo che la tua pagina principale resti reattiva.
+> Per eseguire questo sito, sarà necessario avviare un server web locale, perché gli URL `file://` non possono caricare worker. Consultare [Come configurare un server locale per i test?](/it/docs/Learn_web_development/Howto/Tools_and_setup/set_up_a_local_testing_server) per scoprire come fare. Fatto ciò, dovrebbe essere possibile fare clic su "Generate primes" e mantenere responsiva la pagina principale.
 >
-> Se hai problemi a creare o eseguire l'esempio, puoi esaminare la [versione finita](https://github.com/mdn/learning-area/tree/main/javascript/asynchronous/workers/finished) e provarla [dal vivo](https://mdn.github.io/learning-area/javascript/asynchronous/workers/finished/).
+> In caso di problemi nella creazione o nell'esecuzione dell'esempio, è possibile consultare la [versione completata](https://github.com/mdn/learning-area/tree/main/javascript/asynchronous/workers/finished) e provarla [dal vivo](https://mdn.github.io/learning-area/javascript/asynchronous/workers/finished/).
 
 ## Altri tipi di worker
 
-Il worker che abbiamo appena creato è ciò che viene chiamato un _worker dedicato_. Ciò significa che è utilizzato da una singola istanza di script.
+Il worker appena creato è un cosiddetto _worker dedicato_. Ciò significa che viene usato da una singola istanza di script.
 
-Ci sono però altri tipi di worker:
+Esistono però altri tipi di worker:
 
-- [_Shared worker_](/it/docs/Web/API/SharedWorker) possono essere condivisi da diversi script che vengono eseguiti in finestre diverse.
-- [_Service worker_](/it/docs/Web/API/Service_Worker_API) funzionano come server proxy, memorizzando in cache le risorse affinché le applicazioni web possano funzionare quando l'utente è offline. Sono un componente chiave delle [App Web Progressive](/it/docs/Web/Progressive_web_apps).
+- I [_worker condivisi_](/it/docs/Web/API/SharedWorker) possono essere condivisi da diversi script in esecuzione in finestre diverse.
+- I [_service worker_](/it/docs/Web/API/Service_Worker_API) agiscono come server proxy, memorizzando nella cache le risorse affinché le applicazioni web possano funzionare quando l'utente è offline. Sono un componente chiave delle [Progressive Web App](/it/docs/Web/Progressive_web_apps).
 
-## Sommario
+## Riepilogo
 
-In questo articolo abbiamo introdotto i web worker, che permettono a un'applicazione web di delegare compiti a un thread separato. Il thread principale e il worker non condividono direttamente alcuna variabile, ma comunicano inviandosi messaggi, che vengono ricevuti dall'altro lato come eventi `message`.
+In questo articolo sono stati introdotti i web worker, che consentono a un'applicazione web di delegare attività a un thread separato. Il thread principale e il worker non condividono direttamente alcuna variabile, ma comunicano inviando messaggi, che vengono ricevuti dall'altra parte come eventi `message`.
 
-I worker possono essere un modo efficace per mantenere l'applicazione principale reattiva, sebbene non possano accedere a tutte le API che l'applicazione principale può, e in particolare non possono accedere al DOM.
+I worker possono essere un modo efficace per mantenere responsiva l'applicazione principale, anche se non possono accedere a tutte le API disponibili per l'applicazione principale e, in particolare, non possono accedere al DOM.
 
 ## Vedi anche
 
 - [Uso dei web worker](/it/docs/Web/API/Web_Workers_API/Using_web_workers)
 - [Uso dei service worker](/it/docs/Web/API/Service_Worker_API/Using_Service_Workers)
-- [API dei web worker](/it/docs/Web/API/Web_Workers_API)
+- [API Web Workers](/it/docs/Web/API/Web_Workers_API)
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Async_JS/Implementing_a_promise-based_API", "Learn_web_development/Extensions/Async_JS/Sequencing_animations", "Learn_web_development/Extensions/Async_JS")}}

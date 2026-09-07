@@ -2,109 +2,121 @@
 title: Come funziona Internet?
 slug: Learn_web_development/Howto/Web_mechanics/How_does_the_Internet_work
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 3a5d88d0377791fea0700a772ca047f6c2463083
 ---
 
-Questo articolo discute cos'è Internet e come funziona.
+Questo articolo descrive che cos'è Internet e come funziona.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Nessuno, ma ti incoraggiamo a leggere prima
-        l'<a href="/it/docs/Learn_web_development/Howto/Design_and_accessibility/Thinking_before_coding"
-          >Articolo su come definire gli obiettivi di progetto</a
+        Nessuno, ma si consiglia di leggere prima
+        <a href="/it/docs/Learn_web_development/Howto/Design_and_accessibility/Thinking_before_coding"
+          >l'articolo sulla definizione degli obiettivi del progetto</a
         >
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparerai le basi dell'infrastruttura tecnica del Web e la differenza tra Internet e il Web.
+        Verranno apprese le basi dell'infrastruttura tecnica del Web e
+        la differenza tra Internet e il Web.
       </td>
     </tr>
   </tbody>
 </table>
 
-## Sommario
+## Riepilogo
 
-**Internet** è la spina dorsale del Web, l'infrastruttura tecnica che rende il Web possibile. Alla sua base, Internet è una grande rete di computer che comunicano tutti tra loro.
+**Internet** è la spina dorsale del Web, l'infrastruttura tecnica che rende possibile il Web. Nella sua forma più semplice, Internet è una grande rete di computer che comunicano tra loro.
 
-[La storia di Internet è piuttosto oscura](https://en.wikipedia.org/wiki/Internet#History). È iniziata negli anni '60 come un progetto di ricerca finanziato dall'esercito degli Stati Uniti, poi si è evoluta in un'infrastruttura pubblica negli anni '80 con il supporto di molte università pubbliche e aziende private. Le varie tecnologie che supportano Internet si sono evolute nel tempo, ma il modo in cui funziona non è cambiato molto: Internet è un modo per connettere tutti i computer insieme e garantire che, qualunque cosa accada, trovino un modo per rimanere connessi.
+[La storia di Internet è in parte poco chiara](https://en.wikipedia.org/wiki/Internet#History). È iniziata negli anni Sessanta come progetto di ricerca finanziato dall'esercito statunitense, per poi evolvere in un'infrastruttura pubblica negli anni Ottanta con il sostegno di molte università pubbliche e aziende private. Le varie tecnologie che supportano Internet si sono evolute nel tempo, ma il suo funzionamento non è cambiato molto: Internet è un modo per connettere tra loro i computer e garantire che, qualunque cosa accada, trovino un modo per rimanere connessi.
 
-## Apprendimento attivo
+## Video su Internet
 
-- [Come funziona Internet in 5 minuti](https://www.youtube.com/watch?v=7_LPdttKXPc): Un video di 5 minuti per capire le basi di Internet di Aaron Titus.
-- [Come funziona Internet?](https://www.youtube.com/watch?v=x3c1ih2NJEg) Video dettagliato ben visualizzato di 9 minuti.
+- [Come funziona Internet in 5 minuti](https://www.youtube.com/watch?v=7_LPdttKXPc): un video di 5 minuti per comprendere le basi di Internet, di Aaron Titus.
+- [Come funziona Internet?](https://www.youtube.com/watch?v=x3c1ih2NJEg) Video dettagliato di 9 minuti, ben visualizzato.
 
 ## Approfondimento
 
 ### Una rete semplice
 
-Quando due computer devono comunicare, devi collegarli, sia fisicamente (di solito con un [cavo Ethernet](https://en.wikipedia.org/wiki/Ethernet_crossover_cable)) che senza fili (ad esempio con sistemi [Wi-Fi](https://en.wikipedia.org/wiki/Wi-Fi) o [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)). Tutti i computer moderni possono sostenere qualsiasi di queste connessioni.
+Quando due computer devono comunicare, occorre collegarli, fisicamente (di solito con un [cavo Ethernet](https://en.wikipedia.org/wiki/Ethernet_crossover_cable)) oppure in modalità wireless (per esempio con sistemi [Wi-Fi](https://en.wikipedia.org/wiki/Wi-Fi) o [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)). Tutti i computer moderni possono supportare uno qualsiasi di questi collegamenti.
 
 > [!NOTE]
-> Per il resto di questo articolo, parleremo solo di cavi fisici, ma le reti wireless funzionano allo stesso modo.
+> Nel resto dell'articolo si parlerà soltanto di cavi fisici, ma le reti wireless funzionano allo stesso modo.
 
-![Due computer collegati insieme](internet-schema-1.png)
+![Due computer collegati tra loro](internet-schema-1.png)
 
-Tale rete non è limitata a due computer. Puoi connettere quanti più computer vuoi. Ma diventa complicato rapidamente. Se stai cercando di connettere, diciamo, dieci computer, hai bisogno di 45 cavi, con nove plug per computer!
+Una rete di questo tipo non è limitata a due computer. È possibile connettere tutti i computer desiderati. Tuttavia, la situazione si complica rapidamente. Per connettere, ad esempio, dieci computer, sono necessari 45 cavi, con nove connettori per computer!
 
 ![Dieci computer tutti insieme](internet-schema-2.png)
 
-Per risolvere questo problema, ogni computer su una rete è connesso a un piccolo computer speciale chiamato _switch di rete_ (o semplicemente _switch_). Questo switch ha solo un compito: come un segnalatore in una stazione ferroviaria, garantisce che i messaggi inviati da un determinato computer arrivino solo al computer destinatario previsto. Per inviare un messaggio al computer B, il computer A invia il messaggio allo switch, che a sua volta inoltra il messaggio al computer B — il computer B non riceve messaggi destinati ad altri computer, e nessuno dei messaggi per il computer B raggiunge altri computer nella rete locale.
+Per risolvere questo problema, ogni computer di una rete viene connesso a uno speciale piccolo computer chiamato _network switch_ (o semplicemente _switch_). Questo switch ha un solo compito: come un segnalatore in una stazione ferroviaria, inoltra i messaggi verso i destinatari previsti. Per inviare un messaggio al computer B, il computer A invia il messaggio allo switch, che a sua volta lo inoltra al computer B.
 
-Una volta aggiunto uno switch al sistema, la nostra rete di 10 computer richiede solo 10 cavi: un singolo plug per ciascun computer e uno switch con 10 plug.
+Una volta aggiunto uno switch al sistema, la rete di 10 computer richiede soltanto 10 cavi: un singolo connettore per ciascun computer e uno switch con 10 connettori.
 
 ![Dieci computer con uno switch](internet-schema-3.png)
 
+Per distinguere i computer, lo switch utilizza gli _indirizzi MAC_, che identificano le interfacce di rete per la consegna all'interno della rete locale. Gli indirizzi MAC sono come impronte digitali: in genere vengono assegnati dal produttore, ma possono anche essere assegnati o modificati dal software, una pratica oggi comune per ragioni di privacy. Ogni messaggio contiene gli indirizzi MAC del mittente e del destinatario. Lo switch legge l'indirizzo del mittente e ricorda da quale connessione è arrivato il messaggio, così sa dove inoltrare i futuri messaggi indirizzati a quel mittente. Se non ha ancora appreso dove si trova un destinatario, inoltra il messaggio attraverso tutte le altre connessioni. Quando il destinatario invia un messaggio di risposta, anche lo switch apprende la sua posizione.
+
 ### Una rete di reti
 
-Fin qui tutto bene. Ma che dire di collegare centinaia, migliaia, miliardi di computer? Ovviamente un singolo switch non può scalare così tanto, ma, se hai letto attentamente, abbiamo detto che uno switch è un computer come gli altri, quindi cosa ci impedisce di connettere due switch insieme? Niente, quindi facciamolo.
+Fin qui tutto bene. Ma come si possono connettere centinaia, migliaia o miliardi di computer? Naturalmente un singolo switch non può scalare fino a questo punto, ma, leggendo attentamente, è stato detto che uno switch è un computer come qualsiasi altro: cosa impedisce di connettere due switch tra loro? Nulla, quindi facciamolo.
 
-![Due switch collegati insieme](internet-schema-4.png)
+![Due switch collegati tra loro](internet-schema-4.png)
 
-Puoi immaginare che possiamo collegare switch insieme all'infinito, per formare una rete come questa:
+Si può immaginare di connettere tra loro gli switch all'infinito, formando una rete come questa:
 
-![Switch collegati a switch](internet-schema-5.png)
+![Switch collegati ad altri switch](internet-schema-5.png)
 
-In realtà, questo porta a molti problemi di ingegneria. Più switch un pacchetto deve attraversare, più tempo impiega a raggiungere la sua destinazione. E non puoi avere semplicemente un albero di switch, perché allora un singolo guasto nello switch potrebbe disconnettere una grande porzione di dispositivi. Per risolvere questo problema, manteniamo ogni rete locale il più piccola possibile e colleghiamo queste reti locali utilizzando un dispositivo separato chiamato _router_. Un router è un computer che sa come inoltrare messaggi tra reti. Il router è come un ufficio postale: quando arriva un pacchetto, legge l'indirizzo del destinatario e inoltra il pacchetto direttamente al destinatario giusto, senza passare attraverso livelli di relè.
+Collegare gli switch in questo modo estende una singola rete locale. Ogni switch dispone di un'ampia mappa che indica quale connessione usare per ciascun indirizzo MAC nella propria rete locale. Se si connettessero dieci miliardi di computer in questa rete, ogni switch dovrebbe ricordare fino a dieci miliardi di indirizzi MAC. Ogni volta che l'indirizzo del destinatario è sconosciuto, oppure è stato eliminato per inattività, gli switch devono trasmettere il messaggio a tutti i computer della rete locale. Man mano che la rete cresce, diventa sempre più costoso tenere traccia dei singoli dispositivi e trovare i destinatari sconosciuti.
 
-Una tale rete si avvicina molto a ciò che chiamiamo Internet. Abbiamo solo bisogno del medium fisico (cavi) per collegare tutti questi router. Fortunatamente, tale infrastruttura esisteva già prima di Internet, ed è la rete telefonica. Per collegare la nostra rete all'infrastruttura telefonica, abbiamo bisogno di un pezzo speciale di equipaggiamento chiamato _modem_. Questo _modem_ trasforma le informazioni dalla nostra rete in informazioni gestibili dall'infrastruttura telefonica e viceversa.
+Il problema principale è che gli indirizzi non hanno una gerarchia e non corrispondono alla struttura della rete: è come cercare di capire a chi consegnare la posta confrontando l'impronta digitale di ogni persona. Per risolvere questo problema, i computer vengono divisi in reti locali separate e queste reti vengono connesse usando un dispositivo chiamato _router_. Esso usa un tipo diverso di indirizzo, un _{{Glossary("IP_address", "indirizzo IP")}}_, che è una sequenza di 4 numeri come `142.250.190.78`. A differenza degli indirizzi MAC, che sono "impronte digitali", gli indirizzi IP sono "indirizzi stradali" e vengono assegnati quando un computer si connette a una rete, identificata nell'indirizzo IP da un _prefisso_ condiviso. Un router può quindi memorizzare istruzioni di inoltro per un intero gruppo di indirizzi, ad esempio "inoltra a questo router ogni volta che l'indirizzo IP inizia con `142.250`", senza apprendere la posizione di ogni singolo computer di quel gruppo.
+
+> [!NOTE]
+> Potrebbe sorgere la domanda sul perché siano necessari indirizzi MAC e switch, se gli indirizzi IP e i router possono realizzare una rete end-to-end. Gli switch offrono molti vantaggi pratici. Uno di questi è che una rete locale commutata consente a un dispositivo di mantenere lo stesso indirizzo IP mentre si sposta tra connessioni all'interno della rete, ad esempio tra due punti di accesso Wi-Fi: lo switch apprende nuovamente su quale connessione si trova l'indirizzo MAC, quindi l'indirizzo IP — e tutte le connessioni che lo stanno già utilizzando — continua a funzionare. Un altro vantaggio è che i router stessi necessitano di indirizzi MAC: per passare un pacchetto al router successivo lungo il percorso, un router deve comunque identificare quale dispositivo sulla rete condivisa debba riceverlo.
+
+Una rete di questo tipo si avvicina molto a ciò che viene chiamato Internet. Serve soltanto il mezzo fisico, ovvero i cavi, per connettere tutti questi router. Fortunatamente, un'infrastruttura di questo genere esisteva già prima di Internet: la rete telefonica. Per connettere la rete all'infrastruttura telefonica, è necessaria un'apparecchiatura speciale chiamata _modem_. Questo _modem_ trasforma le informazioni della rete in informazioni gestibili dall'infrastruttura telefonica e viceversa.
 
 ![Un router collegato a un modem](internet-schema-6.png)
 
-Nota che il router commerciale in casa tua è probabilmente una combinazione di uno switch, un router e un modem, tutto in un solo dispositivo.
+Si noti che il router commerciale presente in casa probabilmente combina uno switch, un router e un modem in un unico dispositivo.
 
-Quindi siamo connessi all'infrastruttura telefonica. Il passo successivo è inviare i messaggi dalla nostra rete alla rete che vogliamo raggiungere. Per fare ciò, collegheremo la nostra rete a un Provider di Servizi Internet (ISP). Un ISP è un'azienda che gestisce alcuni _router_ speciali che sono tutti collegati tra loro e possono anche accedere ai router di altri ISP. Quindi il messaggio dalla nostra rete viene trasportato attraverso la rete di reti ISP alla rete di destinazione. Internet è costituito da tutta questa infrastruttura di reti.
+A questo punto la rete è connessa all'infrastruttura telefonica. Il passaggio successivo consiste nell'inviare i messaggi dalla propria rete alla rete che si desidera raggiungere. Per farlo, viene connessa a un Internet Service Provider (ISP). Un ISP è un'azienda che gestisce alcuni _router_ speciali, tutti collegati tra loro e in grado di accedere anche ai router di altri ISP. Il messaggio proveniente dalla rete viene quindi trasportato attraverso la rete di reti degli ISP fino alla rete di destinazione. Internet è costituita da tutta questa infrastruttura di reti.
 
-![Stack completo di Internet](internet-schema-7.png)
+![Stack Internet completo](internet-schema-7.png)
 
-### Trovare i computer
+### Nomi di dominio
 
-Se vuoi inviare un messaggio a un computer, devi specificare quale. Pertanto, ogni computer collegato a una rete ha un indirizzo univoco che lo identifica, chiamato "indirizzo IP" (dove IP sta per _Internet Protocol_). È un indirizzo composto da una serie di quattro numeri separati da punti, ad esempio: `192.0.2.172`.
+Gli indirizzi IP sono perfettamente adatti ai computer, ma per gli esseri umani è difficile ricordare questo tipo di indirizzo. Per semplificare le cose, è possibile associare a un indirizzo IP un nome leggibile dall'uomo chiamato _nome di dominio_. Per esempio, al momento della stesura; gli indirizzi IP possono cambiare, `google.com` è il nome di dominio usato per l'indirizzo IP `142.250.190.78`. Pertanto, usare il nome di dominio è il modo più semplice per raggiungere un computer tramite Internet.
 
-Va benissimo per i computer, ma noi esseri umani abbiamo difficoltà a ricordare quel tipo di indirizzo. Per semplificare le cose, possiamo associare un indirizzo IP a un nome leggibile dall'uomo chiamato _nome di dominio_. Ad esempio (al momento della scrittura; gli indirizzi IP possono cambiare) `google.com` è il nome di dominio usato sopra l'indirizzo IP `142.250.190.78`. Quindi usare il nome di dominio è il modo più semplice per noi di raggiungere un computer su Internet.
+![Mostra come un nome di dominio può essere associato a un indirizzo IP](dns-ip.png)
 
-![Mostrare come un nome di dominio può associare un indirizzo IP](dns-ip.png)
+### Internet e il Web
 
-### Internet e il web
-
-Come avrai notato, quando navighiamo sul Web con un browser Web, di solito usiamo il nome di dominio per raggiungere un sito web. Ciò significa che Internet e il Web sono la stessa cosa? Non è così semplice. Come abbiamo visto, Internet è un'infrastruttura tecnica che consente a miliardi di computer di essere connessi insieme. Tra questi computer, alcuni computer (chiamati _server Web_) possono inviare messaggi intelligibili ai browser web. Internet è un'infrastruttura, mentre il Web è un servizio costruito sopra l'infrastruttura. Vale la pena notare che ci sono diversi altri servizi costruiti sopra Internet, come le email e {{Glossary("IRC", "IRC")}}.
+Come si può notare, quando si naviga sul Web con un browser web, solitamente si usa il nome di dominio per raggiungere un sito web. Significa che Internet e il Web sono la stessa cosa? Non è così semplice. Come visto, Internet è un'infrastruttura tecnica che consente di connettere tra loro miliardi di computer. Tra questi computer, alcuni, chiamati _Web server_, possono inviare messaggi comprensibili ai browser web. Internet è un'infrastruttura, mentre il Web è un servizio costruito sopra l'infrastruttura. Vale la pena notare che esistono molti altri servizi costruiti sopra Internet, come l'email e {{Glossary("IRC", "IRC")}}.
 
 ### Intranet ed Extranet
 
-Le Intranet sono reti _private_ che sono riservate ai membri di una particolare organizzazione. Vengono comunemente usate per fornire un portale ai membri per accedere in sicurezza a risorse condivise, collaborare e comunicare. Ad esempio, l'intranet di un'organizzazione potrebbe ospitare pagine web per condividere informazioni di reparto o team, unità condivise per gestire documenti e file chiave, portali per eseguire compiti di amministrazione aziendale e strumenti di collaborazione come wiki, bacheche di discussione e sistemi di messaggistica.
+Le intranet sono reti _private_ limitate ai membri di una determinata organizzazione.
+Sono comunemente usate per fornire un portale attraverso cui i membri possono accedere in modo sicuro alle risorse condivise, collaborare e comunicare.
+Per esempio, l'intranet di un'organizzazione può ospitare pagine web per condividere informazioni di reparti o team, unità condivise per gestire documenti e file importanti,
+portali per svolgere attività di amministrazione aziendale e strumenti di collaborazione come wiki, forum di discussione e sistemi di messaggistica.
 
-Le Extranet sono molto simili alle Intranet, tranne che aprono tutto o parte di una rete privata per consentire la condivisione e la collaborazione con altre organizzazioni. Sono tipicamente usate per condividere informazioni in modo sicuro con clienti e stakeholder che lavorano a stretto contatto con un'azienda. Spesso le loro funzioni sono simili a quelle fornite da un'intranet: condivisione di informazioni e file, strumenti di collaborazione, bacheche di discussione, ecc.
+Le extranet sono molto simili alle intranet, tranne per il fatto che aprono tutta o parte di una rete privata per consentire la condivisione e la collaborazione con altre organizzazioni.
+Sono tipicamente usate per condividere informazioni in modo sicuro con clienti e parti interessate che collaborano strettamente con un'azienda.
+Spesso le loro funzioni sono simili a quelle fornite da un'intranet: condivisione di informazioni e file, strumenti di collaborazione, forum di discussione e così via.
 
-Sia le intranet che le extranet funzionano sulla stessa infrastruttura di Internet e utilizzano gli stessi protocolli. Possono quindi essere accessibili da membri autorizzati da diverse posizioni fisiche.
+Sia le intranet sia le extranet funzionano sullo stesso tipo di infrastruttura di Internet e utilizzano gli stessi protocolli.
+Possono quindi essere accessibili ai membri autorizzati da diverse ubicazioni fisiche.
 
-![Rappresentazione grafica di come funzionano Extranet e Intranet](internet-schema-8.png)
+![Rappresentazione grafica del funzionamento di Extranet e Intranet](internet-schema-8.png)
 
-## Prossimi passi
+## Passaggi successivi
 
 - [Come funziona il Web](/it/docs/Learn_web_development/Getting_started/Web_standards/How_the_web_works)
-- [Comprendere la differenza tra una pagina web, un sito web, un server web e un motore di ricerca](/it/docs/Learn_web_development/Getting_started/Environment_setup/Browsing_the_web)
+- [Comprendere la differenza tra una pagina web, un sito web, un web server e un motore di ricerca](/it/docs/Learn_web_development/Getting_started/Environment_setup/Browsing_the_web)
 - [Comprendere i nomi di dominio](/it/docs/Learn_web_development/Howto/Web_mechanics/What_is_a_domain_name)

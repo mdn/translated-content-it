@@ -1,36 +1,38 @@
 ---
-title: Pagina elenco degli autori e pagina elenco dei generi
+title: Sfida pagina elenco autori e pagina elenco generi
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Author_list_page
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 8443cb34d9944d8eb8e2c5add598bec26ed6d21f
 ---
 
-La pagina elenco degli autori deve visualizzare un elenco di tutti gli autori nel database, con ogni nome di autore collegato alla relativa pagina di dettaglio dell'autore. La data di nascita e la data di morte devono essere elencate dopo il nome sulla stessa riga.
+La pagina dell'elenco degli autori deve visualizzare un elenco di tutti gli autori nel database, con ogni nome di autore collegato alla relativa pagina di dettaglio dell'autore. La data di nascita e la data di morte devono essere elencate dopo il nome sulla stessa riga.
 
 ## Controller
 
-La funzione del controller dell'elenco degli autori deve ottenere un elenco di tutte le istanze `Author`, e poi passarle al template per il rendering.
+La funzione controller dell'elenco degli autori deve ottenere un elenco di tutte le istanze di `Author`, quindi passarle al template per il rendering.
 
-Aprire **/controllers/authorController.js**. Trovare il metodo `author_list()` esportato vicino alla parte superiore del file e sostituirlo con il codice seguente.
+Aprire **/controllers/authorController.js**. Trovare il metodo controller esportato `author_list()` vicino all'inizio del file e sostituirlo con il codice seguente.
 
 ```js
 // Display list of all Authors.
-exports.author_list = asyncHandler(async (req, res, next) => {
+exports.author_list = async (req, res, next) => {
   const allAuthors = await Author.find().sort({ family_name: 1 }).exec();
   res.render("author_list", {
     title: "Author List",
     author_list: allAuthors,
   });
-});
+};
 ```
 
-La funzione del controller della route segue lo stesso schema delle altre pagine elenco. Definisce una query sul modello `Author`, utilizzando la funzione `find()` per ottenere tutti gli autori, e il metodo `sort()` per ordinarli alfabeticamente per `family_name`. `exec()` è concatenato alla fine per eseguire la query e restituire una promessa che la funzione può `await`.
+La funzione controller della route segue lo stesso schema delle altre pagine di elenco.
+Definisce una query sul modello `Author`, utilizzando la funzione `find()` per ottenere tutti gli autori e il metodo `sort()` per ordinarli in ordine alfabetico in base a `family_name`.
+Alla fine viene concatenato `exec()` per eseguire la query e restituire una promise che la funzione può gestire con `await`.
 
-Una volta che la promessa è soddisfatta, il gestore della route rende il template **author_list**(.pug), passando il `title` della pagina e l'elenco degli autori (`allAuthors`) utilizzando le chiavi del template.
+Una volta soddisfatta la promise, il gestore della route esegue il rendering del template **author_list**(.pug), passando il `title` della pagina e l'elenco degli autori (`allAuthors`) mediante chiavi del template.
 
 ## Vista
 
-Creare **/views/author_list.pug** e sostituire il suo contenuto con il testo sottostante.
+Creare **/views/author_list.pug** e sostituirne il contenuto con il testo seguente.
 
 ```pug
 extends layout
@@ -48,36 +50,35 @@ block content
     p There are no authors.
 ```
 
-Eseguire l'applicazione e aprire il browser su `http://localhost:3000/`. Poi selezionare il link _All authors_. Se tutto è impostato correttamente, la pagina dovrebbe apparire come nello screenshot seguente.
+Eseguire l'applicazione e aprire il browser all'indirizzo `http://localhost:3000/`. Quindi selezionare il collegamento _All authors_. Se tutto è configurato correttamente, la pagina dovrebbe avere un aspetto simile allo screenshot seguente.
 
-![Pagina elenco degli autori - Sito Express Local Library](locallibary_express_author_list.png)
+![Pagina elenco autori - sito Express Local Library](locallibary_express_author_list.png)
 
 > [!NOTE]
-> L'aspetto delle date del _lifespan_ dell'autore è brutto! È possibile migliorarlo usando lo [stesso approccio](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Date_formatting_using_moment) che abbiamo usato per l'elenco `BookInstance` (aggiungendo la proprietà virtuale per il lifespan al modello `Author`).
+> L'aspetto delle date della _lifespan_ dell'autore è sgradevole. È possibile migliorarlo usando lo [stesso approccio](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Date_formatting_using_moment) utilizzato per l'elenco `BookInstance` (aggiungendo la proprietà virtuale per la durata della vita al modello `Author`).
 >
-> Tuttavia, poiché l'autore potrebbe non essere deceduto o potrebbe avere dati di nascita/morte mancanti, in questo caso dobbiamo ignorare date mancanti o riferimenti a proprietà inesistenti. Un modo per affrontare questo è restituire una data formattata o una stringa vuota, a seconda che la proprietà sia definita. Ad esempio:
+> Tuttavia, poiché l'autore potrebbe non essere morto oppure potrebbero mancare i dati di nascita/morte, in questo caso è necessario ignorare le date mancanti o i riferimenti a proprietà inesistenti. Un modo per gestire questo caso consiste nel restituire una data formattata oppure una stringa vuota, a seconda che la proprietà sia definita. Per esempio:
 >
 > `return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED) : '';`
 
-## Pagina elenco dei generi—sfida!
+## Pagina elenco generi: sfida!
 
-In questa sezione dovresti implementare la tua pagina elenco dei generi. La pagina dovrebbe visualizzare un elenco di tutti i generi nel database, con ogni genere collegato alla relativa pagina di dettaglio. Uno screenshot del risultato atteso è mostrato di seguito.
+In questa sezione è necessario implementare una pagina di elenco dei generi. La pagina deve visualizzare un elenco di tutti i generi nel database, con ogni genere collegato alla relativa pagina di dettaglio. Di seguito è mostrato uno screenshot del risultato previsto.
 
-![Elenco dei generi - Sito Express Local Library](locallibary_express_genre_list.png)
+![Elenco generi - sito Express Local Library](locallibary_express_genre_list.png)
 
-La funzione del controller dell'elenco dei generi deve ottenere un elenco di tutte le istanze `Genre`, e poi passarle al template per il rendering.
+La funzione controller dell'elenco dei generi deve ottenere un elenco di tutte le istanze di `Genre`, quindi passarle al template per il rendering.
 
-1. Dovrai modificare `genre_list()` in **/controllers/genreController.js**.
-2. L'implementazione è quasi identica a quella del controller `author_list()`.
+1. Sarà necessario modificare `genre_list()` in **/controllers/genreController.js**.
+2. L'implementazione è quasi identica al controller `author_list()`.
+   - Ordinare i risultati per nome, in ordine crescente.
 
-   - Ordina i risultati per nome, in ordine crescente.
+3. Il template di cui eseguire il rendering deve chiamarsi **genre_list.pug**.
+4. Al template di cui eseguire il rendering devono essere passate le variabili `title` ('Genre List') e `genre_list` (l'elenco dei generi restituito da `Genre.find()`).
+5. La vista deve corrispondere allo screenshot/ai requisiti sopra riportati (dovrebbe avere una struttura/formato molto simile alla vista dell'elenco degli autori, a eccezione del fatto che i generi non hanno date).
 
-3. Il template da rendere dovrebbe essere denominato **genre_list.pug**.
-4. Al template da rendere dovrebbero essere passate le variabili `title` ('Elenco dei Generi') e `genre_list` (l'elenco dei generi restituiti dal tuo callback `Genre.find()`).
-5. La vista dovrebbe corrispondere allo screenshot/requisiti sopra (dovrebbe avere una struttura/formato molto simile alla vista dell'elenco autori, tranne per il fatto che i generi non hanno date).
+## Passaggi successivi
 
-## Prossimi passi
+Tornare a [Tutorial Express - Parte 5: visualizzazione dei dati della libreria](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
 
-Torna a [Tutorial Express Parte 5: Visualizzazione dei dati della biblioteca](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data).
-
-Procedi al prossimo sottoarticolo della parte 5: [Pagina dettagli del genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Genre_detail_page).
+Proseguire al sottoarticolo successivo della parte 5: [Pagina di dettaglio del genere](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data/Genre_detail_page).

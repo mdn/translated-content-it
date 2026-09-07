@@ -1,33 +1,35 @@
 ---
-title: "Metti alla prova le tue abilità: Valori e unità"
-short-title: Valori e unità
+title: "Metti alla prova le tue competenze: valori e unità"
+short-title: "Test: valori e unità"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills/Values
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 8c253b4a3c79adb13bc6a70427cc38f438b6a809
 ---
 
-L'obiettivo di questo test delle abilità è valutare se comprendi i diversi tipi di [valori e unità usati nelle proprietà CSS](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units).
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Values_and_units", "Learn_web_development/Core/Styling_basics/Sizing", "Learn_web_development/Core/Styling_basics")}}
+
+L'obiettivo di questo test sulle competenze è aiutare a valutare se sono stati compresi i diversi tipi di [valori e unità utilizzati nelle proprietà CSS](/it/docs/Learn_web_development/Core/Styling_basics/Values_and_units).
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona degli appunti) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-> Se incontri difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ricevere aiuto, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci utilizzando uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Attività 1
+## Valori e unità 1
 
-In questa attività, al primo elemento dell'elenco è stato assegnato un colore di sfondo usando un codice colore esadecimale. Il tuo compito è completare il CSS utilizzando lo stesso colore in formati diversi, più un elemento finale dove dovresti rendere lo sfondo semiopaco.
+In questa attività, al primo elemento dell'elenco è stato assegnato un colore di sfondo usando un codice colore esadecimale. Completare il CSS utilizzando lo stesso colore in formati diversi, più un elemento finale dell'elenco in cui rendere lo sfondo semiopaco.
 
-- Il secondo elemento dell'elenco dovrebbe utilizzare il colore RGB.
-- Il terzo dovrebbe utilizzare il colore HSL.
-- Il quarto dovrebbe utilizzare il colore RGB ma con il canale alpha impostato a `0.6`.
+- Il secondo elemento dell'elenco deve utilizzare il colore RGB.
+- Il terzo deve utilizzare il colore HSL.
+- Il quarto deve utilizzare il colore RGB, ma con il canale alpha impostato su `0.6`.
 
-Puoi [convertire il colore esadecimale su convertingcolors.com](https://convertingcolors.com/hex-color-86DEFA.html). Devi capire come utilizzare i valori in CSS. Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+È possibile convertire il colore esadecimale usando [convertingcolors.com](https://convertingcolors.com/hex-color-86DEFA.html). Occorre capire come utilizzare i valori in CSS.
 
-![Quattro elementi di elenco. I primi tre con lo stesso colore di sfondo e l'ultimo con uno sfondo più chiaro.](mdn-value-color.png)
+Il punto di partenza dell'attività è simile a questo:
 
-Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("values1-start", "", "300px")}}
 
-```html live-sample___color
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___values1-start live-sample___values1-finish
 <ul>
   <li class="hex">hex color</li>
   <li class="rgb">RGB color</li>
@@ -36,7 +38,7 @@ Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
 </ul>
 ```
 
-```css hidden live-sample___color
+```css live-sample___values1-start live-sample___values1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -50,9 +52,7 @@ li {
   margin: 1em;
   padding: 0.5em;
 }
-```
 
-```css live-sample___color
 .hex {
   background-color: #86defa;
 }
@@ -60,18 +60,16 @@ li {
 /* Add styles here */
 ```
 
-{{EmbedLiveSample("color", "", "300px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("values1-finish", "", "300px")}}
 
 <details>
-<summary>Clicca qui per vedere la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Utilizzando [uno strumento di conversione del colore](https://convertingcolors.com/hex-color-86DEFA.html), dovresti essere in grado di utilizzare diverse [funzioni di colore](/it/docs/Web/CSS/color_value#syntax) per definire lo stesso colore in modi diversi:
+Utilizzando [uno strumento di conversione dei colori](https://convertingcolors.com/hex-color-86DEFA.html), dovrebbero essere disponibili gli strumenti necessari per usare diverse [funzioni di colore](/it/docs/Web/CSS/Reference/Values/color_value#syntax) per definire lo stesso colore in modi diversi:
 
-```css
-.hex {
-  background-color: #86defa;
-}
-
+```css live-sample___values1-finish
 .rgb {
   background-color: rgb(134 222 250);
 }
@@ -87,22 +85,22 @@ Utilizzando [uno strumento di conversione del colore](https://convertingcolors.c
 
 </details>
 
-## Attività 2
+## Valori e unità 2
 
-In questa attività, vogliamo che imposti la dimensione di vari testi, come descritto di seguito:
+In questa attività, impostare la dimensione del carattere di vari elementi di testo:
 
-- L'elemento `<h1>` dovrebbe essere di 50 pixel.
-- L'elemento `<h2>` dovrebbe essere di 2em.
-- Tutti gli elementi `<p>` dovrebbero essere di 16 pixel.
-- Un elemento `<p>` che segue direttamente un `<h1>` dovrebbe essere al 120%.
+- L'elemento `<h1>` deve essere `50px`.
+- L'elemento `<h2>` deve essere `2em`.
+- Tutti gli elementi `<p>` devono essere `16px`.
+- Un elemento `<p>` che si trova direttamente dopo un `<h1>` deve essere `120%`.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Alcuni testi con dimensioni variabili.](mdn-value-length.png)
+{{EmbedLiveSample("values2-start", "", "420px")}}
 
-Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___length
+```html live-sample___values2-start live-sample___values2-finish
 <h1>Level 1 heading</h1>
 <p>
   Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion
@@ -116,34 +114,38 @@ Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
 </p>
 ```
 
-```css hidden live-sample___length
+```css live-sample___values2-start live-sample___values2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
-```
 
-```css live-sample___length
 h1 {
+  /* Add styles here */
 }
 
 h2 {
+  /* Add styles here */
 }
 
 p {
+  /* Add styles here */
 }
 
 h1 + p {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("length", "", "420px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("values2-finish", "", "430px")}}
 
 <details>
-<summary>Clicca qui per vedere la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Puoi utilizzare i seguenti valori di lunghezza:
+È possibile utilizzare i seguenti valori di lunghezza:
 
-```css
+```css live-sample___values2-finish
 h1 {
   font-size: 50px;
 }
@@ -163,44 +165,44 @@ h1 + p {
 
 </details>
 
-## Attività 3
+## Valori e unità 3
 
-In questa attività, vogliamo che sposti l'immagine di sfondo in modo che sia centrata orizzontalmente e si trovi al 20% dalla parte superiore della casella.
+Per completare l'attività, aggiornare il CSS per spostare l'immagine di sfondo in modo che sia centrata orizzontalmente e si trovi al `20%` dalla parte superiore del riquadro.
 
-Il tuo risultato finale dovrebbe apparire come l'immagine qui sotto:
+Il punto di partenza dell'attività è simile a questo:
 
-![Una stat centrata orizzontalmente in una casella e a breve distanza dalla parte superiore della casella.](mdn-value-position.png)
+{{EmbedLiveSample("values3-start", "", "400px")}}
 
-Prova a aggiornare il codice qui sotto per ricreare l'esempio finale:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___position
+```html live-sample___values3-start live-sample___values3-finish
 <div class="box"></div>
 ```
 
-```css hidden live-sample___position
+```css live-sample___values3-start live-sample___values3-finish
 .box {
-  border: 5px solid #000;
+  border: 5px solid black;
   height: 350px;
 }
-```
 
-```css live-sample___position
 .box {
-  background-image: url(https://mdn.github.io/shared-assets/images/examples/purple-star.png);
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/purple-star.png");
   background-repeat: no-repeat;
 }
 ```
 
-{{EmbedLiveSample("position", "", "400px")}}
+Lo stile aggiornato dovrebbe apparire così:
+
+{{EmbedLiveSample("values3-finish", "", "400px")}}
 
 <details>
-<summary>Clicca qui per vedere la soluzione</summary>
+<summary>Fare clic qui per visualizzare la soluzione</summary>
 
-Utilizza `background-position` con la parola chiave `center` e una percentuale:
+Usare `background-position` con la parola chiave `center` e una percentuale:
 
-```css
+```css live-sample___values3-finish
 .box {
-  background-image: url(https://mdn.github.io/shared-assets/images/examples/purple-star.png);
+  background-image: url("https://mdn.github.io/shared-assets/images/examples/purple-star.png");
   background-repeat: no-repeat;
   background-position: center 20%;
 }
@@ -208,6 +210,4 @@ Utilizza `background-position` con la parola chiave `center` e una percentuale:
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo styling CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Values_and_units", "Learn_web_development/Core/Styling_basics/Sizing", "Learn_web_development/Core/Styling_basics")}}

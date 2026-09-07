@@ -1,71 +1,78 @@
 ---
-title: "Sfida: Risoluzione problemi di accessibilità"
+title: "Sfida: Risoluzione dei problemi di accessibilità"
 short-title: "Sfida: Debugging A11y"
 slug: Learn_web_development/Core/Accessibility/Accessibility_troubleshooting
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 1b7c3c1e03f14c3878e4d8518b0f1a89bedfdc9c
 ---
 
 {{PreviousMenuNext("Learn_web_development/Core/Accessibility/Mobile","Learn_web_development/Core/Design_for_developers", "Learn_web_development/Core/Accessibility")}}
 
-Nella sfida di questo modulo, vi presentiamo un semplice sito con una serie di problemi di accessibilità che dovete diagnosticare e correggere.
+Nella sfida di questo modulo, viene presentato un semplice sito con diversi problemi di accessibilità da diagnosticare e risolvere.
 
 ## Punto di partenza
 
-Per iniziare questa sfida, dovresti scaricare lo [ZIP contenente i file che compongono l'esempio](https://raw.githubusercontent.com/mdn/learning-area/main/accessibility/assessment-start/assessment-files.zip). Decomprimi il contenuto in una nuova directory sul tuo computer locale.
+Per iniziare questa sfida, scaricare il [file ZIP contenente i file che compongono l'esempio](https://raw.githubusercontent.com/mdn/learning-area/main/accessibility/assessment-start/assessment-files.zip). Decomprimere il contenuto in una nuova directory sul computer locale.
 
-In alternativa, potresti utilizzare un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-
-Il sito finale della sfida dovrebbe apparire così:
-
-![Screenshot del sito finale della sfida con un buon contrasto colore. L'input di ricerca ha un testo segnaposto e un pulsante di invio che dice "go", ma nessuna etichetta visibile.](assessment-site-finished.png)
-
-Vedrai alcune differenze/problemi con la visualizzazione dello stato iniziale della sfida — questo è principalmente dovuto alle differenze nel markup, che a loro volta causano alcuni problemi di stile poiché il CSS non viene applicato correttamente. Non preoccuparti — risolverai questi problemi nelle sezioni seguenti!
+In alternativa, è possibile usare un editor online come [CodePen](https://codepen.io/) o [JSFiddle](https://jsfiddle.net/).
 
 > [!NOTE]
-> Se ti blocchi, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Se si rimane bloccati, è possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Breve progetto
+## Descrizione del progetto
 
-Per questo progetto, ti viene presentato un sito fittizio sulla natura che visualizza un articolo "fattuale" sugli orsi. Come si presenta attualmente, ha una serie di problemi di accessibilità — il tuo compito è esplorare il sito esistente e correggerli al meglio delle tue capacità, rispondendo alle domande indicate di seguito.
+Per questo progetto, viene presentato un sito fittizio dedicato alla natura che mostra un articolo "informativo" sugli orsi. Nello stato attuale, presenta diversi problemi di accessibilità: il compito consiste nell'esplorare il sito esistente e risolverli al meglio delle proprie capacità, rispondendo alle domande riportate di seguito.
 
 ### Colore
 
-Il testo è difficile da leggere a causa dello schema di colori attuale. Puoi effettuare un test del contrasto di colore attuale (testo/sfondo), riportare i risultati del test e poi correggerlo cambiando i colori assegnati?
+Il testo è difficile da leggere a causa dell'attuale combinazione di colori. È possibile eseguire un test dell'attuale contrasto dei colori (testo/sfondo), riportarne i risultati e poi risolvere il problema modificando i colori assegnati?
 
-### HTML Semantico
+### HTML semantico
 
-1. Il contenuto non è ancora molto accessibile — segnala cosa succede quando provi a navigarlo usando un lettore di schermo.
-2. Puoi aggiornare il testo dell'articolo per renderlo più facile da navigare per gli utenti di lettori di schermo?
-3. La parte del menu di navigazione del sito (racchiusa in `<div class="nav"></div>`) potrebbe essere resa più accessibile inserendola in un corretto elemento semantico HTML. A quale dovrebbe essere aggiornata? Fai l'aggiornamento.
+1. Il contenuto non è ancora molto accessibile: descrivere cosa succede quando si prova a navigarlo usando uno screen reader.
+2. È possibile aggiornare il testo dell'articolo per renderlo più semplice da navigare per gli utenti di screen reader?
+3. La parte del sito relativa al menu di navigazione (racchiusa in `<div class="nav"></div>`) potrebbe essere resa più accessibile inserendola in un elemento HTML semantico appropriato. Quale elemento dovrebbe essere usato? Apportare l'aggiornamento.
 
 > [!NOTE]
-> Dovrai aggiornare i selettori delle regole CSS che stilizzano i tag ai loro equivalenti corretti per le intestazioni semantiche. Una volta aggiunti gli elementi paragrafo, noterai che lo stile appare migliore.
+> Sarà necessario aggiornare i selettori delle regole CSS che applicano lo stile ai tag, sostituendoli con gli equivalenti appropriati per le intestazioni semantiche. Dopo aver aggiunto gli elementi paragrafo, lo stile risulterà migliore.
 
 ### Le immagini
 
-Le immagini sono attualmente inaccessibili agli utenti di lettori di schermo. Puoi correggerlo?
+Le immagini non sono attualmente accessibili agli utenti di screen reader. È possibile risolvere questo problema?
 
 ### Il lettore audio
 
-1. Il lettore `<audio>` non è accessibile alle persone con problemi di udito (sordità): puoi aggiungere un'alternativa accessibile per questi utenti?
-2. Il lettore `<audio>` non è accessibile per coloro che utilizzano browser più vecchi che non supportano l'audio HTML. Come puoi consentire loro di accedere comunque all'audio?
+1. Il lettore `<audio>` non è accessibile alle persone con disabilità uditive (sorde): è possibile aggiungere un qualche tipo di alternativa accessibile per questi utenti?
+2. Il lettore `<audio>` non è accessibile a chi usa browser meno recenti che non supportano l'audio HTML. Come è possibile consentire loro di accedere comunque all'audio?
 
 ### I moduli
 
-1. L'elemento `<input>` nel modulo di ricerca in alto potrebbe avere un'etichetta, ma non vogliamo aggiungere un'etichetta con testo visibile che potrebbe potenzialmente rovinare il design e non è veramente necessaria agli utenti vedenti. Come puoi aggiungere un'etichetta che sia visibile solo ai lettori di schermo?
-2. I due elementi `<input>` nel modulo dei commenti hanno etichette di testo visibili, ma non sono chiaramente associati alle loro etichette — come fai a ottenere questo? Nota che dovrai aggiornare anche alcune delle regole CSS.
+1. L'elemento `<input>` nel modulo di ricerca in alto potrebbe avere un'etichetta, ma non si desidera aggiungere un'etichetta testuale visibile che potrebbe compromettere il design e non è realmente necessaria agli utenti vedenti. Come è possibile aggiungere un'etichetta accessibile solo agli screen reader?
+2. I due elementi `<input>` nel modulo dei commenti hanno etichette di testo visibili, ma non sono associati in modo inequivocabile alle rispettive etichette: come si ottiene questa associazione? Si noti che sarà necessario aggiornare anche alcune regole CSS.
 
-### Il controllo mostra/nascondi commento
+### Il controllo per mostrare/nascondere i commenti
 
-Il pulsante di controllo mostra/nascondi commento non è al momento accessibile tramite tastiera. Puoi renderlo accessibile tramite tastiera, sia in termini di focalizzazione con il tasto tab, sia di attivazione con il tasto invio?
+Il pulsante di controllo per mostrare/nascondere i commenti non è attualmente accessibile tramite tastiera. È possibile renderlo accessibile tramite tastiera, sia per quanto riguarda la messa a fuoco con il tasto Tab sia per l'attivazione con il tasto Invio?
 
 ### La tabella
 
-La tabella dei dati non è al momento molto accessibile — è difficile per gli utenti di lettori di schermo associare righe e colonne di dati, e la tabella non ha alcun tipo di sommario che chiarisca cosa mostra. Puoi aggiungere alcune caratteristiche al tuo HTML per risolvere questo problema?
+La tabella di dati non è attualmente molto accessibile: per gli utenti di screen reader è difficile associare tra loro righe e colonne di dati, e la tabella non dispone nemmeno di un riepilogo che chiarisca cosa mostra. È possibile aggiungere alcune funzionalità all'HTML per risolvere questo problema?
 
 ### Altre considerazioni?
 
-Puoi elencare due altre idee per miglioramenti che renderebbero il sito web più accessibile?
+È possibile elencare altre due idee di miglioramento che renderebbero il sito web più accessibile?
+
+## Esempio
+
+Il sito della sfida completato dovrebbe avere un aspetto simile a questo:
+
+![Screenshot del sito della sfida completato con un buon contrasto dei colori. L'input di ricerca contiene testo segnaposto e un pulsante di invio con la scritta "go", ma nessuna etichetta visibile.](assessment-site-finished.png)
+
+<details>
+<summary>Fare clic qui per la soluzione</summary>
+
+Consultare il [codice dell'esempio completato](https://github.com/mdn/learning-area/tree/main/accessibility/assessment-finished).
+
+</details>
 
 {{PreviousMenuNext("Learn_web_development/Core/Accessibility/Mobile","Learn_web_development/Core/Design_for_developers", "Learn_web_development/Core/Accessibility")}}

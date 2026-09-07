@@ -3,25 +3,25 @@ title: Come aggiungere un'ombra a un elemento
 short-title: Aggiungere un'ombra a un elemento
 slug: Learn_web_development/Howto/Solve_CSS_problems/Add_a_shadow
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-In questa guida puoi scoprire come aggiungere un'ombra a qualsiasi riquadro sulla tua pagina.
+In questa guida è possibile scoprire come aggiungere un'ombra a qualsiasi riquadro della pagina.
 
 ## Aggiungere ombre ai riquadri
 
-Le ombre sono una caratteristica comune del design che può aiutare gli elementi a risaltare sulla tua pagina. In CSS, le ombre sui riquadri degli elementi sono create utilizzando la proprietà {{cssxref("box-shadow")}} (se vuoi aggiungere un'ombra al testo stesso, devi usare {{cssxref("text-shadow")}}).
+Le ombre sono una caratteristica di progettazione comune che può aiutare gli elementi a risaltare nella pagina. In CSS, le ombre sui riquadri degli elementi vengono create utilizzando la proprietà {{cssxref("box-shadow")}} (per aggiungere un'ombra al testo stesso, è necessario usare {{cssxref("text-shadow")}}).
 
-La proprietà `box-shadow` prende un numero di valori:
+La proprietà `box-shadow` accetta diversi valori:
 
-- L'offset sull'asse x
-- L'offset sull'asse y
+- Lo spostamento sull'asse x
+- Lo spostamento sull'asse y
 - Un raggio di sfocatura
-- Un raggio di diffusione
+- Un raggio di espansione
 - Un colore
 - La parola chiave `inset`
 
-Nell'esempio qui sotto abbiamo impostato gli assi X e Y a 5px, la sfocatura a 10px e la diffusione a 2px. Sto usando un nero semi-trasparente come colore. Gioca con i diversi valori per vedere come cambiano l'ombra.
+Nell'esempio seguente, gli assi X e Y sono impostati a 5px, la sfocatura a 10px e l'espansione a 2px. Come colore viene utilizzato un nero semitrasparente. È possibile provare i diversi valori per osservare come modificano l'ombra.
 
 ```html live-sample___box-shadow-button
 <div class="wrapper">
@@ -44,7 +44,7 @@ button {
   font-weight: bold;
   font-size: 140%;
   background-color: #db1f48;
-  color: #fff;
+  color: white;
 }
 ```
 
@@ -57,9 +57,9 @@ button {
 {{EmbedLiveSample("box-shadow-button")}}
 
 > [!NOTE]
-> Non stiamo usando `inset` in questo esempio, il che significa che l'ombra è l'ombra esterna predefinita con il riquadro sopra l'ombra. Le ombre inset appaiono all'interno del riquadro come se il contenuto fosse spinto indietro nella pagina.
+> In questo esempio non viene utilizzato `inset`; ciò significa che l'ombra è la drop shadow predefinita, con il riquadro sopra l'ombra. Le ombre inset appaiono all'interno del riquadro, come se il contenuto fosse spinto indietro nella pagina.
 
 ## Vedi anche
 
-- Il [Generatore di ombre per i riquadri](/it/docs/Web/CSS/CSS_backgrounds_and_borders/Box-shadow_generator)
-- [Guida CSS: Effetti di stile avanzati](/it/docs/Learn_web_development/Core/Styling_basics/Advanced_styling_effects)
+- Il [generatore di box shadow](/it/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator)
+- [Imparare CSS: effetti di stile avanzati](/it/docs/Learn_web_development/Core/Styling_basics/Advanced_styling_effects)

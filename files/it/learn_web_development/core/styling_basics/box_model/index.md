@@ -1,86 +1,86 @@
 ---
-title: Il modello di box
-short-title: Modello di box
+title: Il modello a scatola
+short-title: Modello a scatola
 slug: Learn_web_development/Core/Styling_basics/Box_model
 l10n:
-  sourceCommit: e488eba036b2fee56444fd579c3759ef45ff2ca8
+  sourceCommit: 85fccefc8066bd49af4ddafc12c77f35265c7e2d
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics")}}
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Selectors", "Learn_web_development/Core/Styling_basics/Test_your_skills/Box_model", "Learn_web_development/Core/Styling_basics")}}
 
-Tutto in CSS ha un box attorno e comprendere questi box è la chiave per essere in grado di creare layout più complessi con CSS o per allineare oggetti con altri oggetti. In questa lezione, daremo uno sguardo al _Box model_ di CSS. Otterrai una comprensione di come funziona e della terminologia ad esso relativa.
+Ogni elemento in CSS ha una scatola attorno a sé e comprendere queste scatole è fondamentale per poter creare layout più complessi con CSS o allineare elementi con altri elementi. In questa lezione verrà esaminato il _modello a scatola_ CSS. Sarà possibile comprendere come funziona e la terminologia a esso correlata.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Nozioni di base su HTML (studia
+        Nozioni di base di HTML (studiare la
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
-          >Sintassi HTML di base</a
+          >sintassi HTML di base</a
         >)
       </td>
     </tr>
     <tr>
-      <th scope="row">Risultati dell'apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
           <li>Elementi block e inline</li>
-          <li>I diversi box che compongono un elemento e come stilizzarli — contenuto, margine, bordo, padding.</li>
-          <li>Il modello di box alternativo (accessibile tramite <code>box-sizing: border-box</code>) e come differisce dal modello di box regolare.</li>
+          <li>Le diverse scatole che costituiscono un elemento e come applicare loro stili — contenuto, margine, bordo, padding.</li>
+          <li>Il modello a scatola alternativo (accessibile tramite <code>box-sizing: border-box</code>) e in cosa differisce dal modello a scatola normale.</li>
           <li>Collasso dei margini.</li>
-          <li>Valori di visualizzazione di base e come influenzano il comportamento del box — <code>block</code>, <code>inline</code>, <code>inline-block</code>, <code>none</code>.</li>
+          <li>Valori di display di base e come influenzano il comportamento della scatola — <code>block</code>, <code>inline</code>, <code>inline-block</code>, <code>none</code>.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Box block e inline
+## Scatole block e inline
 
-In CSS abbiamo diversi tipi di box che generalmente rientrano nelle categorie di **box block** e **box inline**. Il tipo si riferisce a come il box si comporta in termini di flusso di pagina e in relazione ad altri box nella pagina. I box hanno un **tipo di visualizzazione interno** e un **tipo di visualizzazione esterno**.
+In CSS esistono diversi tipi di scatole che rientrano generalmente nelle categorie delle **scatole block** e delle **scatole inline**. Il tipo si riferisce al comportamento della scatola in termini di flusso della pagina e in relazione alle altre scatole nella pagina. Le scatole hanno un **tipo di display interno** e un **tipo di display esterno**.
 
-In generale, è possibile impostare vari valori per il tipo di visualizzazione utilizzando la proprietà {{cssxref("display")}}, che può avere diversi valori.
+In generale, è possibile impostare vari valori per il tipo di display utilizzando la proprietà {{cssxref("display")}}.
 
-Se un box ha un valore di visualizzazione `block`, allora:
+Se una scatola ha un valore di display pari a `block`, allora:
 
-- Il box inizierà su una nuova riga.
-- Le proprietà {{cssxref("width")}} e {{cssxref("height")}} sono rispettate.
-- Padding, margine e bordo causeranno lo spostamento di altri elementi lontano dal box.
-- Se {{cssxref("width")}} non è specificato, il box si estenderà nella direzione inline per riempire lo spazio disponibile nel suo contenitore. Nella maggior parte dei casi, il box diventerà ampio quanto il suo contenitore, riempiendo il 100% dello spazio disponibile.
+- La scatola va a capo su una nuova riga.
+- Le proprietà {{cssxref("width")}} e {{cssxref("height")}} vengono rispettate.
+- Padding, margine e bordo fanno sì che gli altri elementi vengano allontanati dalla scatola.
+- Se {{cssxref("width")}} non è specificata, la scatola si estende nella direzione inline per riempire lo spazio disponibile nel suo contenitore. Nella maggior parte dei casi, la scatola diventa larga quanto il suo contenitore, occupando il 100% dello spazio disponibile.
 
-Alcuni elementi HTML, come `<h1>` e `<p>`, utilizzano `block` come loro tipo di visualizzazione esterno per impostazione predefinita.
+Alcuni elementi HTML, come `<h1>` e `<p>`, utilizzano `block` come tipo di display esterno predefinito.
 
-Se un box ha un tipo di visualizzazione `inline`, allora:
+Se una scatola ha un tipo di display pari a `inline`, allora:
 
-- Il box non inizierà su una nuova riga.
-- Le proprietà {{cssxref("width")}} e {{cssxref("height")}} non si applicano.
-- Padding, margini e bordi superiori e inferiori si applicheranno ma non causeranno lo spostamento di altri box inline lontano dal box.
-- Padding, margini e bordi a sinistra e a destra si applicheranno e causeranno lo spostamento di altri box inline lontano dal box.
+- La scatola non va a capo su una nuova riga.
+- {{cssxref("width")}}, {{cssxref("height")}} e i margini superiore e inferiore non hanno effetto.
+- Il padding e i bordi **superiore e inferiore** modificano la dimensione della scatola senza influire sulla posizione del contenuto circostante, il che può causare sovrapposizioni.
+- Il padding, i margini e i bordi **sinistro e destro** influenzano la posizione del contenuto inline circostante.
 
-Alcuni elementi HTML, come `<a>`, `<span>`, `<em>` e `<strong>` utilizzano `inline` come loro tipo di visualizzazione esterno per impostazione predefinita.
+Alcuni elementi HTML, come `<a>`, `<span>`, `<em>` e `<strong>`, utilizzano `inline` come tipo di display esterno predefinito.
 
-Il layout block e inline è il modo predefinito in cui le cose si comportano sul web. Per impostazione predefinita e senza alcuna altra istruzione, gli elementi all'interno di un box sono anche disposti in **[flusso normale](/it/docs/Learn_web_development/Core/CSS_layout/Introduction#normal_layout_flow)** e si comportano come box block o inline.
+Il layout block e inline è il modo predefinito in cui gli elementi si comportano sul Web. Per impostazione predefinita e senza altre istruzioni, gli elementi all'interno di una scatola sono disposti anch'essi nel **[flusso normale](/it/docs/Learn_web_development/Core/CSS_layout/Introduction#normal_layout_flow)** e si comportano come scatole block o inline.
 
-## Tipi di visualizzazione interni ed esterni
+## Tipi di display interno ed esterno
 
-I valori di visualizzazione `block` e `inline` sono detti tipi di **visualizzazione esterna** — influenzano il modo in cui il box è disposto in relazione agli altri box intorno ad esso. I box hanno anche un tipo di **visualizzazione interna**, che determina come gli elementi all'interno di quel box sono disposti.
+I valori di display `block` e `inline` sono detti tipi di **display esterno**: influenzano il modo in cui la scatola viene disposta rispetto alle altre scatole circostanti. Le scatole hanno anche un tipo di **display interno**, che stabilisce come vengono disposti gli elementi al loro interno.
 
-Puoi cambiare il tipo di visualizzazione interna impostando un valore di visualizzazione interno, ad esempio `display: flex;`. L'elemento utilizzerà ancora il tipo di visualizzazione esterno `block` ma questo cambia il tipo di visualizzazione interno in `flex`. Qualsiasi figlio diretto di questo box diventerà un elemento flex e si comporterà secondo la specifica [Flexbox](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox).
+È possibile modificare il tipo di display interno impostando un valore di display interno, ad esempio `display: flex;`. L'elemento utilizzerà comunque il tipo di display esterno `block`, ma il tipo di display interno diventerà `flex`. Tutti i figli diretti di questa scatola diventeranno elementi flex e si comporteranno secondo la specifica [Flexbox](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox).
 
-Quando passerai a studiare CSS Layout in modo più dettagliato, incontrerai [`flex`](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox) e vari altri valori interni che i tuoi box possono avere, ad esempio [`grid`](/it/docs/Learn_web_development/Core/CSS_layout/Grids).
+Proseguendo nello studio più dettagliato di CSS Layout, verranno incontrati [`flex`](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox) e vari altri valori interni che le scatole possono avere, ad esempio [`grid`](/it/docs/Learn_web_development/Core/CSS_layout/Grids).
 
-Non preoccuparti troppo della terminologia interna ed esterna per ora; questo è ciò che sta accadendo internamente, e lo abbiamo menzionato qui nel caso lo incontrassi altrove. Generalmente, ti occuperai solo di valori singoli di `display` e non dovrai pensarci molto.
+Per il momento non bisogna preoccuparsi troppo della terminologia relativa a interno ed esterno; questo è ciò che avviene internamente ed è stato menzionato qui nel caso in cui si incontri altrove. In genere, si avranno a che fare solo con singoli valori di `display` e non sarà necessario rifletterci molto.
 
-## Esempi di diversi tipi di visualizzazione
+## Esempi di diversi tipi di display
 
-L'esempio seguente ha tre diversi elementi HTML, tutti con un tipo di visualizzazione esterno di `block`.
+L'esempio seguente contiene tre diversi elementi HTML, tutti con un tipo di display esterno `block`.
 
-- Un paragrafo con un bordo aggiunto in CSS. Il browser rende questo come un box block. Il paragrafo inizia su una nuova riga ed estende l'intera larghezza disponibile.
+- Un paragrafo con un bordo aggiunto in CSS. Il browser lo renderizza come una scatola block. Il paragrafo inizia su una nuova riga e si estende orizzontalmente per riempire tutta la larghezza disponibile.
 
-- Una lista, che è disposta usando `display: flex`. Questo stabilisce un layout flex per i figli del contenitore, che sono elementi flex. La lista stessa è un box block e — come il paragrafo — si espande per tutta la larghezza del contenitore e si interrompe su una nuova riga.
+- Un elenco disposto usando `display: flex`. Questo stabilisce un layout flex per i figli del contenitore, che sono elementi flex disposti per impostazione predefinita in una riga. L'elenco stesso è una scatola block e, come il paragrafo, si espande fino all'intera larghezza del contenitore e va a capo su una nuova riga.
 
-- Un paragrafo a livello block, all'interno del quale ci sono due elementi `<span>`. Questi elementi sarebbero normalmente `inline`, tuttavia, uno degli elementi ha una classe di "block" che viene impostata su `display: block`.
+- Un paragrafo a livello block, al cui interno sono presenti due elementi `<span>`. Questi elementi sarebbero normalmente `inline`; tuttavia, uno degli elementi ha una classe `block` e viene impostato su `display: block`. Di conseguenza, quella singola parola inizia su una nuova riga che si estende per tutta la larghezza del suo elemento padre.
 
 ```html live-sample___block
 <p>I am a paragraph. A short one.</p>
@@ -123,15 +123,15 @@ ul {
 
 {{EmbedLiveSample("block", "", "220px")}}
 
-Nel prossimo esempio, possiamo vedere come si comportano gli elementi `inline`.
+Nell'esempio successivo è possibile osservare come si comportano gli elementi `inline`.
 
-- Gli elementi `<span>` nel primo paragrafo sono inline per impostazione predefinita e quindi non forzano interruzioni di linea.
+- Gli elementi `<span>` nel primo paragrafo sono inline per impostazione predefinita e quindi non forzano interruzioni di riga.
 
-- L'elemento `<ul>` impostato su `display: inline-flex` crea un box inline contenente alcuni elementi flex.
+- L'elemento `<ul>` impostato su `display: inline-flex` crea una scatola inline contenente alcuni elementi flex.
 
-- I due paragrafi sono entrambi impostati su `display: inline`. Il contenitore inline flex e i paragrafi si trovano tutti insieme su una linea piuttosto che interrompersi su nuove righe (come farebbero se fossero visualizzati come elementi a livello di blocco).
+- Entrambi i paragrafi sono impostati su `display: inline`. Il contenitore flex inline e i paragrafi si trovano tutti sulla stessa riga anziché andare a capo su nuove righe, come farebbero se fossero visualizzati come elementi a livello block.
 
-Per passare tra le modalità di visualizzazione, puoi cambiare `display: inline` in `display: block` o `display: inline-flex` in `display: flex`:
+Per passare da una modalità di display all'altra, è possibile cambiare `display: inline` in `display: block` oppure `display: inline-flex` in `display: flex`:
 
 ```html live-sample___inline
 <p>
@@ -174,32 +174,32 @@ ul {
 
 {{EmbedLiveSample("inline")}}
 
-La cosa principale da ricordare per ora è: Cambiare il valore della proprietà `display` può cambiare se il tipo di visualizzazione esterno di un box è block o inline. Questo cambia il modo in cui viene visualizzato insieme ad altri elementi nel layout.
+L'aspetto principale da ricordare per ora è il seguente: modificare il valore della proprietà `display` può cambiare il tipo di display esterno di una scatola da block a inline o viceversa. Questo modifica il modo in cui viene visualizzata accanto agli altri elementi nel layout.
 
-## Cos'è il modello di box CSS?
+## Cos'è il modello a scatola CSS?
 
-Il modello di box CSS nel suo insieme si applica ai box block e definisce come le diverse parti di un box — margine, bordo, padding e contenuto — lavorano insieme per creare un box che puoi vedere su una pagina. I box inline utilizzano solo _alcuni_ dei comportamenti definiti nel modello di box.
+Il modello a scatola CSS nel suo complesso si applica alle scatole block e definisce come le diverse parti di una scatola — margine, bordo, padding e contenuto — collaborano per creare una scatola visibile in una pagina. Le scatole inline utilizzano solo _alcuni_ dei comportamenti definiti nel modello a scatola.
 
-Per aggiungere complessità, esiste un modello di box standard e uno alternativo. Per impostazione predefinita, i browser utilizzano il modello di box standard.
+Per aggiungere complessità, esistono un modello a scatola standard e uno alternativo. Per impostazione predefinita, i browser utilizzano il modello a scatola standard.
 
-### Parti di un box
+### Parti di una scatola
 
-Componendo un box block in CSS abbiamo:
+Una scatola block in CSS è composta da:
 
-- **Box del contenuto**: L'area in cui viene visualizzato il tuo contenuto; definisci le sue dimensioni utilizzando proprietà come {{cssxref("width")}} e {{cssxref("height")}}.
-- **Box del padding**: Il padding si trova attorno al contenuto come spazio bianco; definiscilo utilizzando {{cssxref("padding")}} e proprietà correlate.
-- **Box del bordo**: Il box del bordo avvolge il contenuto e qualsiasi padding; definiscilo utilizzando {{cssxref("border")}} e proprietà correlate.
-- **Box del margine**: Il margine è lo strato più esterno, che avvolge il contenuto, il padding e il bordo come spazio bianco tra questo box e altri elementi; definiscilo utilizzando {{cssxref("margin")}} e proprietà correlate.
+- **Scatola del contenuto**: l'area in cui viene visualizzato il contenuto; se ne imposta la dimensione usando proprietà come {{cssxref("width")}} e {{cssxref("height")}}.
+- **Scatola del padding**: il padding si trova attorno al contenuto come spazio bianco; se ne imposta la dimensione usando {{cssxref("padding")}} e le proprietà correlate.
+- **Scatola del bordo**: la scatola del bordo racchiude il contenuto e qualsiasi padding; se ne imposta la dimensione usando {{cssxref("border")}} e le proprietà correlate.
+- **Scatola del margine**: il margine è il livello più esterno e racchiude contenuto, padding e bordo come spazio bianco tra questa scatola e gli altri elementi; se ne imposta la dimensione usando {{cssxref("margin")}} e le proprietà correlate.
 
-Il diagramma qui sotto mostra questi strati:
+Il diagramma seguente mostra questi livelli:
 
-![Diagramma del modello di box](box-model.png)
+![Diagramma del modello a scatola](box-model.png)
 
-### Il modello di box CSS standard
+### Il modello a scatola CSS standard
 
-Nel modello di box standard, se imposti i valori delle proprietà `width` e `height` su un box, questi valori definiscono la `width` e la `height` del _box del contenuto_. Qualsiasi padding e bordi vengono quindi aggiunti a tali dimensioni per ottenere la dimensione totale occupata dal box (vedi l'immagine sotto).
+Nel modello a scatola standard, se si impostano valori per le proprietà `width` e `height` di una scatola, questi valori definiscono `width` e `height` della _scatola del contenuto_. A queste dimensioni vengono quindi aggiunti padding e bordi per ottenere la dimensione totale occupata dalla scatola, come mostrato nell'immagine seguente.
 
-Se assumiamo che un box abbia il seguente CSS:
+Supponendo che una scatola abbia il seguente CSS:
 
 ```css
 .box {
@@ -211,18 +211,18 @@ Se assumiamo che un box abbia il seguente CSS:
 }
 ```
 
-Lo spazio _effettivo_ occupato dal box sarà largo 410px (350 + 25 + 25 + 5 + 5) e alto 210px (150 + 25 + 25 + 5 + 5).
+Lo spazio _effettivo_ occupato dalla scatola sarà largo `410px` (350 + 25 + 25 + 5 + 5) e alto `210px` (150 + 25 + 25 + 5 + 5).
 
-![Mostrare la dimensione del box quando si utilizza il modello di box standard.](standard-box-model.png)
+![Dimensione della scatola quando viene utilizzato il modello a scatola standard.](standard-box-model.png)
 
 > [!NOTE]
-> Il margine non viene conteggiato nella dimensione effettiva del box — certo, influisce sullo spazio totale che il box occupa sulla pagina, ma solo lo spazio al di fuori del box. L'area del box si ferma al bordo — non si estende nel margine.
+> Il margine non viene conteggiato nella dimensione effettiva della scatola: certamente influisce sullo spazio totale che la scatola occupa nella pagina, ma solo sullo spazio esterno alla scatola. L'area della scatola termina al bordo e non si estende nel margine.
 
-### Il modello di box CSS alternativo
+### Il modello a scatola CSS alternativo
 
-Nel modello di box alternativo, qualsiasi larghezza è la larghezza del box visibile sulla pagina. La larghezza dell'area del contenuto è quella larghezza meno la larghezza per il padding e il bordo (vedi immagine sotto). Non è necessario sommare il bordo e il padding per ottenere la dimensione reale del box.
+Nel modello a scatola alternativo, qualsiasi larghezza è la larghezza della scatola visibile nella pagina. La larghezza dell'area del contenuto corrisponde a tale larghezza meno la larghezza di padding e bordo, come mostrato nell'immagine seguente. Questo è conveniente perché non è necessario sommare bordo e padding per ottenere la dimensione reale della scatola.
 
-Per attivare il modello alternativo per un elemento, imposta `box-sizing: border-box` su di esso:
+Per attivare il modello alternativo per un elemento, impostare `box-sizing: border-box` su di esso:
 
 ```css
 .box {
@@ -230,7 +230,7 @@ Per attivare il modello alternativo per un elemento, imposta `box-sizing: border
 }
 ```
 
-Se assumiamo che il box abbia lo stesso CSS di cui sopra:
+Supponendo che la scatola abbia lo stesso CSS di prima:
 
 ```css
 .box {
@@ -242,11 +242,11 @@ Se assumiamo che il box abbia lo stesso CSS di cui sopra:
 }
 ```
 
-Ora, lo spazio _effettivo_ occupato dal box sarà 350px nella direzione inline e 150px nella direzione block.
+Lo spazio _effettivo_ occupato dalla scatola sarà ora `350px` nella direzione inline e `150px` nella direzione block.
 
-![Mostrare la dimensione del box quando si utilizza il modello di box alternativo.](alternate-box-model.png)
+![Dimensione della scatola quando viene utilizzato il modello a scatola alternativo.](alternate-box-model.png)
 
-Per utilizzare il modello di box alternativo per tutti i tuoi elementi (che è una scelta comune tra gli sviluppatori), imposta la proprietà `box-sizing` sull'elemento `<html>` e imposta tutti gli altri elementi per ereditare quel valore:
+Per utilizzare il modello a scatola alternativo per tutti gli elementi, scelta comune tra gli sviluppatori, impostare la proprietà `box-sizing` sull'elemento `<html>` e fare in modo che tutti gli altri elementi ereditino quel valore:
 
 ```css
 html {
@@ -260,12 +260,12 @@ html {
 }
 ```
 
-Per comprendere l'idea sottostante, puoi leggere [l'articolo su CSS Tricks riguardante box-sizing](https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/).
+Per comprendere l'idea alla base, è possibile leggere [l'articolo di CSS Tricks su box-sizing](https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/).
 
-## Giocare con i modelli di box
+## Sperimentare con i modelli a scatola
 
-Nell'esempio sotto, puoi vedere due box. Entrambi hanno una classe `.box`, che dà loro gli stessi `width`, `height`, `margin`, `border` e `padding`. L'unica differenza è che il secondo box è stato impostato per utilizzare il modello di box alternativo.
-Puoi cambiare la dimensione del secondo box (aggiungendo CSS alla classe `.alternate`) per farlo coincidere con il primo box in larghezza e altezza?
+Nell'esempio seguente sono visibili due scatole. Entrambe hanno una classe `.box`, che assegna loro gli stessi `width`, `height`, `margin`, `border` e `padding`. L'unica differenza è che la seconda scatola è impostata per utilizzare il modello a scatola alternativo.
+È possibile modificare la dimensione della seconda scatola, aggiungendo CSS alla classe `.alternate`, affinché corrisponda alla prima in larghezza e altezza?
 
 ```html live-sample___box-models
 <div class="box">I use the standard box model.</div>
@@ -290,32 +290,34 @@ Puoi cambiare la dimensione del secondo box (aggiungendo CSS alla classe `.alter
 {{EmbedLiveSample("box-models", "", "400px")}}
 
 > [!NOTE]
-> Puoi trovare una soluzione per questo compito [nel nostro repo css-examples](https://github.com/mdn/css-examples/blob/main/learn/solutions.md#the-box-model).
+> È possibile trovare una soluzione per questa attività [nel nostro repository css-examples](https://github.com/mdn/css-examples/blob/main/learn/solutions.md#the-box-model).
 
-### Utilizza DevTools del browser per visualizzare il modello di box
+### Uso dei DevTools del browser per visualizzare il modello a scatola
 
-I tuoi [strumenti per sviluppatori del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools) possono rendere la comprensione del modello di box molto più facile — possono mostrarti la dimensione dell'elemento più il suo margine, padding e bordo. Ispezionare un elemento in questo modo è un ottimo modo per scoprire se il tuo box ha davvero la dimensione che pensi abbia!
+Gli [strumenti per sviluppatori del browser](/it/docs/Learn_web_development/Howto/Tools_and_setup/What_are_browser_developer_tools) possono rendere molto più semplice la comprensione del modello a scatola: possono mostrare la dimensione dell'elemento insieme a margine, padding e bordo. Ispezionare un elemento in questo modo è un ottimo modo per verificare se la scatola ha davvero la dimensione prevista.
 
-![Ispezionare il modello di box di un elemento utilizzando Firefox DevTools](box-model-devtools.png)
+![Ispezione del modello a scatola di un elemento usando Firefox DevTools](box-model-devtools.png)
 
 ## Margini, padding e bordi
 
-Hai già visto le proprietà {{cssxref("margin")}}, {{cssxref("padding")}} e {{cssxref("border")}} in azione nell'esempio sopra. Le proprietà utilizzate in quell'esempio sono abbreviazioni e ci permettono di impostare contemporaneamente tutti e quattro i lati del box. Queste abbreviazioni hanno anche proprietà equivalenti estese, che consentono il controllo dei diversi lati del box individualmente.
+Nell'esempio precedente sono già state viste in azione le proprietà {{cssxref("margin")}}, {{cssxref("padding")}} e {{cssxref("border")}}. Le proprietà utilizzate in quell'esempio sono **abbreviazioni** e consentono di impostare tutti e quattro i lati della scatola contemporaneamente. Queste abbreviazioni hanno anche proprietà estese equivalenti, che consentono di controllare singolarmente i diversi lati della scatola.
 
-Esploriamo queste proprietà in dettaglio.
+Esaminiamo queste proprietà più in dettaglio.
 
 ### Margine
 
-Il margine è uno spazio invisibile attorno al tuo box. Spinge lontano gli altri elementi dal box. I margini possono avere valori positivi o negativi. Impostare un margine negativo su un lato del tuo box può provocare una sovrapposizione con altri elementi sulla pagina. Che tu stia usando il modello di box standard o alternativo, il margine viene sempre aggiunto dopo che la dimensione del box visibile è stata calcolata.
+Il margine è uno spazio invisibile attorno alla scatola. Allontana gli altri elementi dalla scatola. I margini possono avere valori positivi o negativi. Impostare un margine negativo su un lato della scatola può farla sovrapporre ad altri elementi della pagina. Indipendentemente dall'uso del modello a scatola standard o alternativo, il margine viene sempre aggiunto dopo il calcolo della dimensione della scatola visibile.
 
-Possiamo controllare tutti i margini di un elemento contemporaneamente usando la proprietà {{cssxref("margin")}}, o ciascun lato individualmente usando le proprietà estese equivalenti:
+È possibile controllare tutti i margini di un elemento contemporaneamente usando la proprietà {{cssxref("margin")}}, oppure ciascun lato singolarmente usando le proprietà estese equivalenti:
 
 - {{cssxref("margin-top")}}
 - {{cssxref("margin-right")}}
 - {{cssxref("margin-bottom")}}
 - {{cssxref("margin-left")}}
 
-Nell'esempio sotto, prova a cambiare i valori del margine per vedere come il box viene spinto in giro a causa del margine che crea o rimuove spazio (se è un margine negativo) tra questo elemento e l'elemento contenitore.
+#### Sperimentare con i margini
+
+Modificare l'esempio seguente. Provare a cambiare i valori del margine per osservare come la scatola viene spostata dal margine, che crea o rimuove spazio, nel caso di un margine negativo, tra questo elemento e l'elemento contenitore.
 
 ```html live-sample___margin
 <div class="container">
@@ -346,15 +348,15 @@ Nell'esempio sotto, prova a cambiare i valori del margine per vedere come il box
 
 #### Collasso dei margini
 
-A seconda del fatto che due elementi i cui margini si toccano abbiano margini positivi o negativi, i risultati saranno diversi:
+A seconda che due elementi con margini a contatto abbiano margini positivi o negativi, i risultati saranno diversi:
 
-- Due margini positivi si combineranno per diventare un unico margine. La sua dimensione sarà pari al margine individuale più grande.
-- Due margini negativi collasseranno e verrà utilizzato il valore più piccolo (più lontano da zero).
-- Se un margine è negativo, il suo valore verrà _sottratto_ dal totale.
+- Due margini positivi si combinano in un unico margine. La sua dimensione è uguale al margine individuale più grande.
+- Due margini negativi collassano e viene usato il valore più piccolo, cioè quello più lontano da zero.
+- Se un margine è negativo, il suo valore viene _sottratto_ dal totale.
 
-Nell'esempio sotto, abbiamo due paragrafi. Il paragrafo superiore ha un `margin-bottom` di 50 pixel, l'altro ha un `margin-top` di 30 pixel. I margini sono collassati insieme in modo che il margine effettivo tra i box sia di 50 pixel e non il totale dei due margini.
+Nell'esempio seguente sono presenti due paragrafi. Il paragrafo superiore ha un `margin-bottom` di 50 pixel, mentre l'altro ha un `margin-top` di 30 pixel. I margini sono collassati insieme, quindi il margine effettivo tra le scatole è di 50 pixel e non la somma dei due margini.
 
-Puoi testarlo impostando il `margin-top` del paragrafo due a `0`. Il margine visibile tra i due paragrafi non cambierà — mantiene i 50 pixel impostati nel `margin-bottom` del paragrafo uno. Se lo imposti a `-10px`, vedrai che il margine complessivo diventa `40px` — viene sottratto dai `50px`.
+È possibile verificarlo impostando `margin-top` del secondo paragrafo su `0`. Il margine visibile tra i due paragrafi non cambierà: manterrà i 50 pixel impostati in `margin-bottom` del primo paragrafo. Se lo si imposta su `-10px`, il margine complessivo diventerà `40px`, poiché viene sottratto dai `50px`.
 
 ```html live-sample___margin-collapse
 <div class="container">
@@ -385,30 +387,33 @@ p {
 
 {{EmbedLiveSample("margin-collapse", "", "280px")}}
 
-Una serie di regole sanciscono quando i margini collassano e quando no. Per ulteriori informazioni vedi la pagina dettagliata su [padroneggiare il collasso dei margini](/it/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing). La cosa principale da ricordare è che il collasso dei margini è qualcosa che accade se stai creando spazio con i margini e non ottieni lo spazio che ti aspetti.
+Diverse regole stabiliscono quando i margini collassano e quando non collassano. Per ulteriori informazioni, consultare la pagina dettagliata su [come padroneggiare il collasso dei margini](/it/docs/Web/CSS/Guides/Box_model/Margin_collapsing). L'aspetto principale da ricordare è che il collasso dei margini può verificarsi quando si crea spazio con i margini e non si ottiene lo spazio previsto.
+
+> [!NOTE]
+> [Imparare i margini tramite flag](https://scrimba.com/frontend-path-c0j/~01e?via=mdn) <sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> di Scrimba è una lezione interattiva che offre esercizi utili sui margini.
 
 ### Bordi
 
-Il bordo è disegnato tra il margine e il padding di un box. Se stai utilizzando il modello di box standard, la dimensione del bordo viene aggiunta alla `width` e `height` del box del contenuto. Se stai utilizzando il modello di box alternativo, allora più grande è il bordo, più piccolo sarà il box del contenuto, poiché il bordo occupa parte di quella `width` e `height` disponibili dell'elemento box.
+Il bordo viene disegnato tra il margine e il padding di una scatola. Se si utilizza il modello a scatola standard, la dimensione del bordo viene aggiunta a `width` e `height` della scatola del contenuto. Se si utilizza il modello a scatola alternativo, maggiore è lo spessore del bordo, minore è la scatola del contenuto, poiché il bordo occupa parte di `width` e `height` disponibili della scatola dell'elemento.
 
-Per stilizzare i bordi, ci sono un vasto numero di proprietà — ci sono quattro bordi, e ciascun bordo ha uno stile, una larghezza e un colore che potremmo voler manipolare.
+Per applicare stili ai bordi esiste un gran numero di proprietà: ci sono quattro bordi e ogni bordo ha uno stile, una larghezza e un colore che potrebbero dover essere modificati.
 
-Puoi impostare la larghezza, lo stile o il colore di tutti e quattro i bordi contemporaneamente usando la proprietà {{cssxref("border")}}.
+È possibile impostare larghezza, stile o colore di tutti e quattro i bordi contemporaneamente usando la proprietà {{cssxref("border")}}.
 
-Per impostare le proprietà di ogni lato individualmente, usa:
+Per impostare singolarmente le proprietà di ciascun lato, usare:
 
 - {{cssxref("border-top")}}
 - {{cssxref("border-right")}}
 - {{cssxref("border-bottom")}}
 - {{cssxref("border-left")}}
 
-Per impostare la larghezza, lo stile o il colore di tutti i lati, usa:
+Per impostare larghezza, stile o colore di tutti i lati, usare:
 
 - {{cssxref("border-width")}}
 - {{cssxref("border-style")}}
 - {{cssxref("border-color")}}
 
-Per impostare la larghezza, lo stile o il colore di un singolo lato, usa una delle proprietà estese più granulari:
+Per impostare larghezza, stile o colore di un singolo lato, usare una delle proprietà estese più specifiche:
 
 - {{cssxref("border-top-width")}}
 - {{cssxref("border-top-style")}}
@@ -423,7 +428,9 @@ Per impostare la larghezza, lo stile o il colore di un singolo lato, usa una del
 - {{cssxref("border-left-style")}}
 - {{cssxref("border-left-color")}}
 
-Nell'esempio sotto, abbiamo utilizzato varie abbreviazioni e estensioni per creare bordi. Gioca con le diverse proprietà per verificare che tu abbia capito come funzionano. Le pagine MDN per le proprietà dei bordi forniscono informazioni sui diversi stili di bordo disponibili.
+#### Sperimentare con i bordi
+
+Nell'esempio seguente sono state utilizzate varie abbreviazioni e proprietà estese per creare bordi. Modificare le diverse proprietà per verificare di comprendere come funzionano. Le pagine MDN relative alle proprietà dei bordi forniscono informazioni sui diversi stili di bordo disponibili.
 
 ```html live-sample___border
 <div class="container">
@@ -457,16 +464,18 @@ body {
 
 ### Padding
 
-Il padding si trova tra il bordo e l'area del contenuto ed è utilizzato per spingere il contenuto lontano dal bordo. A differenza dei margini, non puoi avere un padding negativo. Qualsiasi sfondo applicato al tuo elemento verrà visualizzato dietro il padding.
+Il padding si trova tra il bordo e l'area del contenuto e viene utilizzato per allontanare il contenuto dal bordo. A differenza dei margini, non è possibile avere padding negativo. Qualsiasi sfondo applicato all'elemento viene visualizzato dietro il padding.
 
-La proprietà {{cssxref("padding")}} controlla il padding su tutti i lati di un elemento. Per controllare ciascun lato individualmente, utilizza queste proprietà estese:
+La proprietà {{cssxref("padding")}} controlla il padding su tutti i lati di un elemento. Per controllare ogni lato singolarmente, usare queste proprietà estese:
 
 - {{cssxref("padding-top")}}
 - {{cssxref("padding-right")}}
 - {{cssxref("padding-bottom")}}
 - {{cssxref("padding-left")}}
 
-Nell'esempio sotto, puoi cambiare i valori per il padding sulla classe `.box` per vedere che questo cambia dove inizia il testo in relazione al box. Puoi anche cambiare il padding sulla classe `.container` per creare spazio tra il contenitore e il box. Puoi cambiare il padding su qualsiasi elemento per creare spazio tra il suo bordo e qualsiasi cosa vi sia dentro l'elemento.
+#### Sperimentare con il padding
+
+Nell'esempio seguente, modificare i valori del padding nella classe `.box` e osservare come cambia il punto di inizio del testo rispetto alla scatola. È inoltre possibile modificare il padding nella classe `.container` per creare spazio tra il contenitore e la scatola. Il padding può essere modificato su qualsiasi elemento per creare spazio tra il suo bordo e ciò che contiene.
 
 ```html live-sample___padding
 <div class="container">
@@ -496,11 +505,11 @@ body {
 
 {{EmbedLiveSample("padding", "", "220px")}}
 
-## Il modello di box e i box inline
+## Il modello a scatola e le scatole inline
 
-Tutto quanto sopra si applica completamente ai box block. Alcune delle proprietà possono applicarsi anche ai box inline, come quelli creati da un elemento `<span>`.
+Quanto descritto sopra si applica completamente alle scatole block. Alcune proprietà possono essere applicate anche alle scatole inline, come quelle create da un elemento `<span>`.
 
-Nell'esempio sotto, abbiamo uno `<span>` all'interno di un paragrafo. Abbiamo applicato una `width`, `height`, `margin`, `border` e `padding` a esso. Puoi vedere che la larghezza e l'altezza vengono ignorate. Il margine, padding e bordo superiori e inferiori vengono rispettati ma non cambiano la relazione di altri contenuti con il nostro box inline. Il padding e il bordo si sovrappongono ad altre parole nel paragrafo. Il padding, margini e bordi a sinistra e a destra spostano altri contenuti lontano dal box.
+Nell'esempio seguente è presente un `<span>` all'interno di un paragrafo. Sono stati applicati `width`, `height`, `margin`, `border` e `padding`. È possibile osservare che larghezza, altezza e margini superiore e inferiore non influenzano lo `<span>`. Il padding e i bordi superiore e inferiore modificano la dimensione della scatola inline, ma non influenzano la posizione del contenuto circostante. Al contrario, il padding e i bordi superiore e inferiore si sovrappongono alle altre parole nel paragrafo. Solo il padding, i margini e i bordi sinistro e destro influenzano la posizione del testo attorno allo `<span>`.
 
 ```html live-sample___inline-box-model
 <p>
@@ -518,29 +527,32 @@ p {
   width: 200px;
 }
 span {
-  margin: 20px;
-  padding: 20px;
+  margin: 20px 30px;
+  padding: 10px 20px;
   width: 80px;
   height: 150px;
   background-color: lightblue;
-  border: 2px solid blue;
+  border: solid blue;
+  border-width: 7px 1px;
 }
 ```
 
 {{EmbedLiveSample("inline-box-model")}}
 
-## Usare display: inline-block
+## Uso di display: inline-block
 
-`display: inline-block` è un valore speciale di `display`, che fornisce un compromesso tra `inline` e `block`. Usalo se non vuoi che un elemento inizi su una nuova riga, ma vuoi che rispetti `width` e `height` ed eviti la sovrapposizione vista sopra.
+`display: inline-block` è un valore speciale di `display` che offre una via di mezzo tra `inline` e `block`. Usarlo quando non si desidera che un elemento vada a capo su una nuova riga, ma si desidera che rispetti `width` e `height` ed eviti le sovrapposizioni illustrate in precedenza.
 
-Un elemento con `display: inline-block` fa un sottoinsieme delle cose block che già conosciamo:
+Un elemento con `display: inline-block` esegue un sottoinsieme dei comportamenti block già descritti:
 
-- Le proprietà `width` e `height` sono rispettate.
-- `padding`, `margin` e `border` causeranno lo spostamento di altri elementi lontano dal box.
+- Le proprietà `width` e `height` vengono rispettate.
+- `padding`, `margin` e `border` fanno sì che gli altri elementi vengano allontanati dalla scatola.
 
-Tuttavia, non inizia una nuova riga e diventerà più grande del suo contenuto solo se aggiungi esplicitamente le proprietà `width` e `height`.
+Tuttavia, non va a capo su una nuova riga e diventa più grande del proprio contenuto solo se vengono aggiunte esplicitamente le proprietà `width` e `height`.
 
-In questo prossimo esempio, abbiamo aggiunto `display: inline-block` al nostro elemento `<span>`. Prova a cambiare questo in `display: block` o a rimuovere completamente la riga per vedere la differenza nei modelli di visualizzazione:
+### Sperimentare con inline-block
+
+In questo esempio successivo, è stato aggiunto `display: inline-block` all'elemento `<span>`. Provare a cambiarlo in `display: block` oppure a rimuovere completamente la riga per osservare la differenza tra i modelli di display:
 
 ```html live-sample___inline-block
 <p>
@@ -571,11 +583,11 @@ span {
 
 {{EmbedLiveSample("inline-block", "", "240px")}}
 
-Dove questo può essere utile è quando vuoi dare a un link un'area di clic più grande aggiungendo `padding`. `<a>` è un elemento inline come `<span>`; puoi usare `display: inline-block` per permettere che il padding sia impostato su di esso, rendendo più facile per un utente cliccare sul link.
+Questo può essere utile quando si desidera assegnare a un collegamento un'area cliccabile più ampia aggiungendo `padding`. `<a>` è un elemento inline come `<span>`; è possibile utilizzare `display: inline-block` per consentire l'impostazione del padding, rendendo più semplice per un utente fare clic sul collegamento.
 
-Vedrai questo abbastanza frequentemente nelle barre di navigazione. La navigazione qui sotto è visualizzata in una riga usando il flexbox e abbiamo aggiunto padding all'elemento `<a>` perché vogliamo essere in grado di cambiare il `background-color` quando si passa con il mouse sopra `<a>`. Il padding sembra sovrapporsi al bordo sull'elemento `<ul>`. Questo perché `<a>` è un elemento inline.
+Questo si osserva piuttosto frequentemente nelle barre di navigazione. La navigazione seguente viene visualizzata in una riga usando flexbox ed è stato aggiunto padding all'elemento `<a>` perché si desidera poter modificare `background-color` quando il puntatore passa sopra `<a>`. Il padding sembra sovrapporsi al bordo dell'elemento `<ul>`. Questo accade perché `<a>` è un elemento inline.
 
-Aggiungi `display: inline-block;` alla regola con il selettore `.links-list a`, e vedrai come risolve questo problema facendo sì che il padding sia rispettato da altri elementi:
+Aggiungere `display: inline-block;` alla regola con il selettore `.links-list a` e sarà possibile vedere come risolve questo problema facendo sì che il padding venga rispettato dagli altri elementi:
 
 ```html live-sample___inline-block-nav
 <nav>
@@ -592,7 +604,7 @@ ul {
   font-family: sans-serif;
   display: flex;
   list-style: none;
-  border: 1px solid #000;
+  border: 1px solid black;
 }
 
 li {
@@ -601,27 +613,23 @@ li {
 
 .links-list a {
   background-color: rgb(179 57 81);
-  color: #fff;
+  color: white;
   text-decoration: none;
   padding: 1em 2em;
 }
 
 .links-list a:hover {
   background-color: rgb(66 28 40);
-  color: #fff;
+  color: white;
 }
 ```
 
 {{EmbedLiveSample("inline-block-nav")}}
 
-## Metti alla prova le tue abilità!
-
-Hai raggiunto la fine di questo articolo, ma riesci a ricordare le informazioni più importanti? Puoi trovare alcuni ulteriori test per verificare che tu abbia conservato queste informazioni prima di andare avanti — vedi [Metti alla prova le tue abilità: Il modello di box](/it/docs/Learn_web_development/Core/Styling_basics/Test_your_skills/Box_model).
-
 ## Riepilogo
 
-Questo è la maggior parte di quello che devi capire riguardo al modello di box. Potresti voler tornare su questa lezione in futuro se ti trovi mai confuso su quanto grandi siano i box nel tuo layout.
+Questo è quasi tutto ciò che serve comprendere sul modello a scatola. Potrebbe essere utile tornare a questa lezione in futuro nel caso sorgano dubbi sulle dimensioni delle scatole nel layout.
 
-Nel prossimo articolo, daremo uno sguardo a come CSS gestisce i conflitti — quando più regole selezionano lo stesso elemento, quali stili vengono applicati?
+Nel prossimo articolo verranno proposti alcuni test da usare per verificare quanto bene sono state comprese e memorizzate le informazioni fornite sul modello a scatola CSS.
 
-{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Combinators", "Learn_web_development/Core/Styling_basics/Handling_conflicts", "Learn_web_development/Core/Styling_basics")}}
+{{PreviousMenuNext("Learn_web_development/Core/Styling_basics/Test_your_skills/Selectors", "Learn_web_development/Core/Styling_basics/Test_your_skills/Box_model", "Learn_web_development/Core/Styling_basics")}}

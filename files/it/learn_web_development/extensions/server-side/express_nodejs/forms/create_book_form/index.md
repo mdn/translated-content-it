@@ -1,27 +1,27 @@
 ---
-title: Modulo Creazione Libro
+title: Modulo Create Book
 slug: Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_book_form
 l10n:
-  sourceCommit: 2c0f972d873ea2db5163dbcb12987847124751ad
+  sourceCommit: 8443cb34d9944d8eb8e2c5add598bec26ed6d21f
 ---
 
-Questo sottoarticolo mostra come definire una pagina/modulo per creare oggetti `Book`. Questo è un po' più complicato rispetto alle pagine equivalenti `Author` o `Genre` perché dobbiamo ottenere e visualizzare i record di `Author` e `Genre` disponibili nel nostro modulo `Book`.
+Questo sottoarticolo mostra come definire una pagina/modulo per creare oggetti `Book`. È un po' più complicato delle pagine equivalenti per `Author` o `Genre`, perché occorre recuperare e visualizzare i record `Author` e `Genre` disponibili nel modulo `Book`.
 
-## Importare metodi di validazione e sanificazione
+## Importare i metodi di validazione e sanitizzazione
 
-Aprire **/controllers/bookController.js** e aggiungere la seguente linea all'inizio del file (prima delle funzioni di routing):
+Aprire **/controllers/bookController.js** e aggiungere la riga seguente all'inizio del file (prima delle funzioni di route):
 
 ```js
 const { body, validationResult } = require("express-validator");
 ```
 
-## Controller—rotta get
+## Controller — route get
 
-Trovare il metodo controller `book_create_get()` esportato e sostituirlo con il seguente codice:
+Trovare il metodo controller esportato `book_create_get()` e sostituirlo con il codice seguente:
 
 ```js
 // Display book create form on GET.
-exports.book_create_get = asyncHandler(async (req, res, next) => {
+exports.book_create_get = async (req, res, next) => {
   // Get all authors and genres, which we can use for adding to our book.
   const [allAuthors, allGenres] = await Promise.all([
     Author.find().sort({ family_name: 1 }).exec(),
@@ -33,15 +33,15 @@ exports.book_create_get = asyncHandler(async (req, res, next) => {
     authors: allAuthors,
     genres: allGenres,
   });
-});
+};
 ```
 
-Questo utilizza `await` sul risultato di `Promise.all()` per ottenere tutti gli oggetti `Author` e `Genre` in parallelo (lo stesso approccio utilizzato in [Express Tutorial Parte 5: Visualizzare i dati della libreria](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data)).
-Questi vengono poi passati alla vista **`book_form.pug`** come variabili denominate `authors` e `genres` (insieme al `title` della pagina).
+Questo usa `await` sul risultato di `Promise.all()` per recuperare tutti gli oggetti `Author` e `Genre` in parallelo (lo stesso approccio usato in [Tutorial Express Parte 5: Visualizzare i dati della libreria](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/Displaying_data)).
+Questi vengono quindi passati alla vista **`book_form.pug`** come variabili denominate `authors` e `genres` (insieme al `title` della pagina).
 
-## Controller—rotta post
+## Controller — route post
 
-Trovare il metodo controller `book_create_post()` esportato e sostituirlo con il seguente codice.
+Trovare il metodo controller esportato `book_create_post()` e sostituirlo con il codice seguente.
 
 ```js
 // Handle book create on POST.
@@ -72,7 +72,7 @@ exports.book_create_post = [
   body("genre.*").escape(),
   // Process request after validation and sanitization.
 
-  asyncHandler(async (req, res, next) => {
+  async (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
 
@@ -107,20 +107,21 @@ exports.book_create_post = [
         book,
         errors: errors.array(),
       });
-    } else {
-      // Data from form is valid. Save book.
-      await book.save();
-      res.redirect(book.url);
+      return;
     }
-  }),
+
+    // Data from form is valid. Save book.
+    await book.save();
+    res.redirect(book.url);
+  },
 ];
 ```
 
-La struttura e il comportamento di questo codice sono quasi esattamente gli stessi delle funzioni delle rotte post per i moduli [`Genre`](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_genre_form) e [`Author`](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_author_form). Prima si valida e sanifica i dati. Se i dati sono non validi, viene re-visualizzato il modulo insieme ai dati inseriti originalmente dall'utente e a un elenco di messaggi di errore. Se i dati sono validi, si salva il nuovo record `Book` e si reindirizza l'utente alla pagina dei dettagli del libro.
+La struttura e il comportamento di questo codice sono quasi esattamente gli stessi delle funzioni di route post per i moduli [`Genre`](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_genre_form) e [`Author`](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_author_form). Per prima cosa vengono validati e sanificati i dati. Se i dati non sono validi, il modulo viene visualizzato nuovamente insieme ai dati originariamente immessi dall'utente e a un elenco di messaggi di errore. Se i dati sono validi, il nuovo record `Book` viene salvato e l'utente viene reindirizzato alla pagina dei dettagli del libro.
 
-La principale differenza rispetto al codice di gestione di altri moduli è come si sanificano le informazioni sul genere.
-Il modulo restituisce un array di elementi `Genre` (mentre per altri campi restituisce una stringa).
-Per convalidare le informazioni si converte prima la richiesta in un array (necessario per il passo successivo).
+La differenza principale rispetto all'altro codice di gestione dei moduli riguarda il modo in cui vengono sanificate le informazioni sui generi.
+Il modulo restituisce un array di elementi `Genre` (mentre per gli altri campi restituisce una stringa).
+Per validare le informazioni, la richiesta viene prima convertita in un array (necessario per il passaggio successivo).
 
 ```js
 [
@@ -136,7 +137,7 @@ Per convalidare le informazioni si converte prima la richiesta in un array (nece
 ];
 ```
 
-Si utilizza quindi un carattere jolly (`*`) nel sanitizer per convalidare individualmente ciascuna voce dell'array genere. Il codice sotto mostra come - questo si traduce in "sanificare ogni elemento sotto la chiave `genre`".
+Viene quindi usato un carattere jolly (`*`) nel sanitizzatore per validare singolarmente ciascuna voce dell'array dei generi. Il codice seguente mostra come: questo si traduce in "sanifica ogni elemento sotto la chiave `genre`".
 
 ```js
 [
@@ -146,8 +147,8 @@ Si utilizza quindi un carattere jolly (`*`) nel sanitizer per convalidare indivi
 ];
 ```
 
-La differenza finale rispetto al codice di gestione di altri moduli è che dobbiamo passare tutti i generi e gli autori esistenti al modulo.
-Per contrassegnare i generi che sono stati selezionati dall'utente, iteriamo attraverso tutti i generi e aggiungiamo il parametro `checked="true"` a quelli che erano nei dati del nostro post (come riprodotto nel frammento di codice sottostante).
+L'ultima differenza rispetto all'altro codice di gestione dei moduli è che occorre passare al modulo tutti i generi e gli autori esistenti.
+Per contrassegnare i generi selezionati dall'utente, vengono iterati tutti i generi e viene aggiunto il parametro `checked="true"` a quelli presenti nei dati post (come riprodotto nel frammento di codice seguente).
 
 ```js
 // Mark our selected genres as checked.
@@ -160,7 +161,7 @@ for (const genre of allGenres) {
 
 ## Vista
 
-Creare **/views/book_form.pug** e copiare il testo sottostante.
+Creare **/views/book_form.pug** e copiarvi il testo seguente.
 
 ```pug
 extends layout
@@ -210,23 +211,23 @@ block content
 
 La struttura e il comportamento della vista sono quasi gli stessi del template **genre_form.pug**.
 
-Le principali differenze riguardano come implementiamo i campi di tipo selezione: `Author` e `Genre`.
+Le differenze principali riguardano l'implementazione dei campi di tipo selezione: `Author` e `Genre`.
 
-- L'insieme dei generi è visualizzato come checkbox e utilizza il valore `checked` impostato nel controller per determinare se la casella debba essere selezionata o meno.
-- L'insieme degli autori è visualizzato come una lista a discesa a selezione singola ordinata alfabeticamente (la lista passata al template è già ordinata, quindi non dobbiamo farlo nel template).
-  Se l'utente ha precedentemente selezionato un autore del libro (cioè, quando si correggono valori di campo non validi dopo l'invio iniziale del modulo o quando si aggiornano i dettagli del libro), l'autore sarà nuovamente selezionato quando il modulo viene visualizzato. Qui determiniamo quale autore selezionare confrontando l'id dell'opzione autore corrente con il valore inserito precedentemente dall'utente (passato tramite la variabile `book`).
+- L'insieme dei generi viene visualizzato come caselle di controllo e usa il valore `checked` impostato nel controller per determinare se la casella debba essere selezionata o meno.
+- L'insieme degli autori viene visualizzato come un elenco a discesa a selezione singola ordinato alfabeticamente (l'elenco passato al template è già ordinato, quindi non è necessario farlo nel template).
+  Se l'utente ha precedentemente selezionato un autore del libro (ad esempio, durante la correzione di valori di campo non validi dopo l'invio iniziale del modulo, oppure durante l'aggiornamento dei dettagli del libro), l'autore verrà selezionato nuovamente quando il modulo viene visualizzato. Qui l'autore da selezionare viene determinato confrontando l'id dell'opzione dell'autore corrente con il valore precedentemente immesso dall'utente (passato tramite la variabile `book`).
 
 > [!NOTE]
-> Se c'è un errore nel modulo inviato, allora, quando il modulo deve essere ri-renderizzato, l'id del nuovo autore del libro e gli id degli autori dei libri esistenti sono di tipo `Schema.Types.ObjectId`. Quindi per confrontarli dobbiamo prima convertirli in stringhe.
+> Se è presente un errore nel modulo inviato, quando il modulo deve essere nuovamente renderizzato, l'id del nuovo autore del libro e gli id degli autori dei libri esistenti sono di tipo `Schema.Types.ObjectId`. Per confrontarli, occorre quindi convertirli prima in stringhe.
 
 ## Come appare?
 
-Eseguire l'applicazione, aprire il browser su `http://localhost:3000/`, quindi selezionare il link _Create new book_. Se tutto è impostato correttamente, il tuo sito dovrebbe apparire come nello screenshot seguente. Dopo aver inviato un libro valido, dovrebbe essere salvato e verrà indirizzato alla pagina dei dettagli del libro.
+Eseguire l'applicazione, aprire il browser all'indirizzo `http://localhost:3000/`, quindi selezionare il collegamento _Create new book_. Se tutto è configurato correttamente, il sito dovrebbe assomigliare più o meno allo screenshot seguente. Dopo l'invio di un libro valido, questo dovrebbe essere salvato e verrà aperta la pagina dei dettagli del libro.
 
-![Screenshot del modulo Creazione Libro vuoto della Libreria Locale su localhost:3000. La pagina è divisa in due colonne. La colonna stretta a sinistra ha una barra di navigazione verticale con 10 link separati in due sezioni da una linea orizzontale chiara. La sezione superiore ha dei link per i dati già creati. I link inferiori portano ai moduli per creare nuovi dati. La larga colonna a destra ha il modulo di creazione libro con una intestazione 'Create Book' e quattro campi di input etichettati 'Title', 'Author', 'Summary', 'ISBN' e 'Genre' seguito da quattro checkbox di genere: fantasy, science fiction, french poetry e action. C'è un pulsante 'Submit' in fondo al modulo.](locallibary_express_book_create_empty.png)
+![Screenshot del modulo vuoto Create Book di Local Library su localhost:3000. La pagina è divisa in due colonne. La stretta colonna sinistra contiene una barra di navigazione verticale con 10 collegamenti separati in due sezioni da una linea orizzontale chiara. I collegamenti nella sezione superiore puntano a dati già creati. I collegamenti nella sezione inferiore portano ai moduli per creare nuovi dati. L'ampia colonna destra contiene il modulo di creazione del libro con un'intestazione 'Create Book' e quattro campi di input etichettati 'Title', 'Author', 'Summary', 'ISBN' e 'Genre', seguiti da quattro caselle di controllo dei generi: fantasy, fantascienza, poesia francese e azione. Nella parte inferiore del modulo è presente un pulsante 'Submit'.](locallibary_express_book_create_empty.png)
 
-## Prossimi passi
+## Passaggi successivi
 
-Torna a [Express Tutorial Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
+Tornare a [Tutorial Express Parte 6: Lavorare con i moduli](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms).
 
-Procedi al prossimo sottoarticolo della parte 6: [Modulo Creazione Istanza Libro](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_BookInstance_form).
+Procedere al sottoarticolo successivo della parte 6: [Modulo Create BookInstance](/it/docs/Learn_web_development/Extensions/Server-side/Express_Nodejs/forms/Create_BookInstance_form).

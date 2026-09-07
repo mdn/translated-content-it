@@ -1,11 +1,11 @@
 ---
-title: Come assicurarsi che il tuo sito web funzioni correttamente?
+title: Come assicurarsi che il proprio sito web funzioni correttamente?
 slug: Learn_web_development/Howto/Tools_and_setup/Checking_that_your_web_site_is_working_properly
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: f33de00c56ac53878eb2cb7cb5849df1f9ab8db7
 ---
 
-In questo articolo, esaminiamo vari passaggi per la risoluzione dei problemi di un sito web e alcune azioni di base da intraprendere per risolvere questi problemi.
+In questo articolo vengono illustrati vari passaggi per la risoluzione dei problemi di un sito web e alcune azioni di base da intraprendere per risolverli.
 
 <table>
   <tbody>
@@ -22,123 +22,120 @@ In questo articolo, esaminiamo vari passaggi per la risoluzione dei problemi di 
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Imparerai come diagnosticare e risolvere alcuni problemi di base che puoi incontrare con il tuo sito web.
+        Si imparerà a diagnosticare e risolvere alcuni problemi di base che possono
+        verificarsi con il proprio sito web.
       </td>
     </tr>
   </tbody>
 </table>
 
-Hai pubblicato il tuo sito web online? Molto bene! Ma sei sicuro che funzioni correttamente?
+Il sito web è stato pubblicato online? Ottimo! Ma funziona davvero correttamente?
 
-Un server web remoto spesso si comporta in modo molto diverso da uno locale, quindi è una buona idea testare il tuo sito web una volta che è online. Potresti essere sorpreso di quanti problemi si presentano: immagini che non appaiono, pagine che non si caricano o si caricano lentamente e così via. La maggior parte delle volte non è niente di grave, solo un semplice errore o un problema con la configurazione dell'hosting web.
+Un server web remoto si comporta spesso in modo molto diverso da uno locale, quindi è consigliabile testare il sito web una volta online. Potrebbe sorprendere quanti problemi possono emergere: le immagini non vengono visualizzate, le pagine non si caricano o si caricano lentamente e così via. Nella maggior parte dei casi non si tratta di nulla di grave, ma solo di un semplice errore o di un problema nella configurazione dell'hosting web.
 
 Vediamo come diagnosticare e risolvere questi problemi.
 
-## Apprendimento Attivo
-
-_Non ci sono ancora attività di apprendimento attivo disponibili. [Per favore, considera di contribuire](/it/docs/MDN/Community/Getting_started)._
-
 ## Approfondimento
 
-### Test nel tuo browser
+### Test nel browser
 
-Se vuoi sapere se il tuo sito web funziona correttamente, la prima cosa da fare è aprire il browser e andare alla pagina che vuoi testare.
+Per sapere se il sito web funziona correttamente, la prima cosa da fare è aprire il browser e visitare la pagina da testare.
 
-#### Uh-oh, dov'è l'immagine?
+#### Oh no, dov'è l'immagine?
 
-Guardiamo il nostro sito personale, `http://demozilla.examplehostingprovider.net/`. Non mostra l'immagine che ci aspettavamo!
+Osserviamo il sito web personale, `http://demozilla.examplehostingprovider.net/`. L'immagine prevista non viene visualizzata.
 
-![Ops, l'immagine 'unicorn' manca](image-missing.png)
+![Ops, l'immagine del "unicorn" non è presente](image-missing.png)
 
-Apri lo strumento di rete di Firefox (**Strumenti ➤ Sviluppatore Web ➤ Rete**) e ricarica la pagina:
+Aprire lo strumento Rete di Firefox (**Strumenti ➤ Sviluppo web ➤ Rete**) e ricaricare la pagina:
 
 ![L'immagine ha un errore 404](error404.png)
 
-Ecco il problema, quel "404" in fondo. "404" significa "risorsa non trovata", ed è per questo che non abbiamo visto l'immagine.
+Ecco il problema: quel "404" in fondo. "404" significa "risorsa non trovata", ed è per questo che l'immagine non viene visualizzata.
 
-#### Stato HTTP
+#### Stati HTTP
 
 I server rispondono con un messaggio di stato ogni volta che ricevono una richiesta. Ecco gli stati più comuni:
 
 - **200: OK**
   - : La risorsa richiesta è stata consegnata.
-- **301: Spostato permanentemente**
-  - : La risorsa è stata spostata in una nuova posizione. Non lo vedrai molto nel tuo browser, ma è bene sapere del "301" poiché i motori di ricerca usano molto queste informazioni per aggiornare i loro indici.
-- **304: Non modificato**
-  - : Il file non è cambiato dall'ultima volta che lo hai richiesto, quindi il tuo browser può visualizzare la versione dalla sua cache, risultando in tempi di risposta più veloci e un uso più efficiente della larghezza di banda.
-- **403: Vietato**
-  - : Non ti è consentito visualizzare la risorsa. Di solito è dovuto a un errore di configurazione (ad esempio, il tuo provider di hosting ha dimenticato di darti i diritti di accesso a una directory).
-- **404: Non trovato**
-  - : Autoesplicativo. Discuteremo come risolvere questo più avanti.
-- **500: Errore interno del server**
-  - : Qualcosa è andato storto sul server. Ad esempio, forse il linguaggio server-side ({{Glossary("PHP", "PHP")}}, .Net, ecc.) ha smesso di funzionare, o il web server stesso ha un problema di configurazione. Di solito è meglio ricorrere al team di supporto del tuo provider di hosting.
-- **503: Servizio non disponibile**
-  - : Di solito risultante da un sovraccarico di sistema a breve termine. Il server ha qualche tipo di problema. Riprova tra un po'.
+- **301: Moved permanently**
+  - : La risorsa è stata spostata in una nuova posizione. Questo stato non appare spesso nel browser, ma è utile conoscere il "301", poiché i motori di ricerca usano molto questa informazione per aggiornare i propri indici.
+- **304: Not modified**
+  - : Il file non è cambiato dall'ultima richiesta, quindi il browser può visualizzare la versione presente nella cache, ottenendo tempi di risposta più rapidi e un uso più efficiente della larghezza di banda.
+- **403: Forbidden**
+  - : Non è consentito visualizzare la risorsa. Di solito dipende da un errore di configurazione, ad esempio il provider di hosting non ha assegnato i diritti di accesso a una directory.
+- **404: Not found**
+  - : Il significato è evidente. Di seguito verrà illustrato come risolverlo.
+- **500: Internal server error**
+  - : Qualcosa è andato storto sul server. Ad esempio, il linguaggio lato server ({{Glossary("PHP", "PHP")}}, .Net e così via) potrebbe aver smesso di funzionare, oppure il server web stesso potrebbe avere un problema di configurazione. Di solito è preferibile rivolgersi al team di supporto del provider di hosting.
+- **503: Service unavailable**
+  - : In genere è causato da un sovraccarico temporaneo del sistema. Il server ha qualche tipo di problema. Riprovare dopo qualche istante.
 
-Come principianti che controllano il nostro sito web (semplice), ci occuperemo più spesso di 200, 304, 403 e 404.
+Come principianti che controllano un sito web (semplice), gli stati più frequenti saranno 200, 304, 403 e 404.
 
-#### Correzione del 404
+#### Correggere il 404
 
-Quindi cosa è andato storto?
+Che cosa è andato storto?
 
-![Elenco delle immagini nel nostro progetto](demozilla-images-list.png)
+![L'elenco di immagini nel progetto](demozilla-images-list.png)
 
-A prima vista, l'immagine che abbiamo richiesto sembra essere al posto giusto ma lo strumento di rete ha segnalato un "404". Si scopre che abbiamo commesso un errore di battitura nel nostro codice HTML: `unicorn_pics.png` invece di `unicorn_pic.png`. Quindi correggi l'errore di battitura nel tuo editor di codice cambiando l'attributo `src` dell'immagine:
+A prima vista, l'immagine richiesta sembra trovarsi nel posto giusto, ma lo strumento Rete ha segnalato un "404". Si scopre che è stato commesso un errore di battitura nel codice HTML: `unicorn_pics.png` anziché `unicorn_pic.png`. Correggere quindi l'errore nell'editor di codice modificando l'attributo `src` dell'immagine:
 
-![Cancellazione della 's'](code-correct.png)
+![Eliminazione della "s"](code-correct.png)
 
-Salva, [carica sul server](/it/docs/Learn_web_development/Howto/Tools_and_setup/Upload_files_to_a_web_server), e ricarica la pagina nel tuo browser:
+Salvare, [inviare al server](/it/docs/Learn_web_development/Howto/Tools_and_setup/Upload_files_to_a_web_server) e ricaricare la pagina nel browser:
 
-![L'immagine si carica correttamente nel browser](image-corrected.png)
+![L'immagine viene caricata correttamente nel browser](image-corrected.png)
 
-Ecco fatto! Guardiamo di nuovo gli stati {{Glossary("HTTP", "HTTP")}}:
+Ecco fatto! Osserviamo nuovamente gli stati {{Glossary("HTTP", "HTTP")}}:
 
-- **200** per `/` e per `unicorn_pic.png` significa che siamo riusciti a ricaricare la pagina e l'immagine.
-- **304** per `basic.css` significa che questo file non è cambiato dall'ultima richiesta, quindi il browser può usare il file nella sua cache anziché riceverne una copia nuova.
+- **200** per `/` e per `unicorn_pic.png` significa che il ricaricamento della pagina e dell'immagine è riuscito.
+- **304** per `basic.css` significa che questo file non è cambiato dall'ultima richiesta, quindi il browser può usare il file nella cache invece di riceverne una nuova copia.
 
-Quindi abbiamo risolto l'errore e imparato un paio di stati HTTP lungo la strada!
+L'errore è stato risolto e, nel frattempo, sono stati appresi alcuni stati HTTP.
 
 ### Errori frequenti
 
-Gli errori più frequenti che troviamo sono questi:
+Gli errori più frequenti sono i seguenti:
 
 #### Errori di battitura nell'indirizzo
 
-Volevamo digitare `http://demozilla.examplehostingprovider.net/` ma abbiamo digitato troppo in fretta e dimenticato una "l":
+Si voleva digitare `http://demozilla.examplehostingprovider.net/`, ma si è digitato troppo velocemente e si è dimenticata una "l":
 
-![Indirizzo irraggiungibile](cannot-find-server.png)
+![Indirizzo non raggiungibile](cannot-find-server.png)
 
-L'indirizzo non può essere trovato. In effetti.
+L'indirizzo non può essere trovato. Effettivamente.
 
 #### Errori 404
 
-Molte volte l'errore deriva solo da un errore di battitura, ma a volte forse hai dimenticato di caricare una risorsa o hai perso la connessione di rete mentre stavi caricando le tue risorse. Prima verifica la correttezza e l'accuratezza del percorso del file e, se c'è ancora un problema, carica nuovamente i tuoi file. Probabilmente risolverà il problema.
+Molte volte l'errore deriva semplicemente da un errore di battitura, ma a volte potrebbe essere stata dimenticata l'operazione di caricamento di una risorsa oppure potrebbe essersi persa la connessione di rete durante il caricamento delle risorse. Controllare prima l'ortografia e la correttezza del percorso del file; se il problema persiste, caricare nuovamente i file. Questo probabilmente risolverà il problema.
 
 #### Errori JavaScript
 
-Qualcuno (forse tu) ha aggiunto uno script alla pagina e ha commesso un errore. Questo non impedirà il caricamento della pagina, ma noterai che qualcosa è andato storto.
+Qualcuno, forse lo sviluppatore stesso, ha aggiunto uno script alla pagina e ha commesso un errore. Questo non impedirà il caricamento della pagina, ma sarà evidente che qualcosa non ha funzionato.
 
-Apri la console (**Strumenti ➤ Sviluppatore Web ➤ Console Web**) e ricarica la pagina:
+Aprire la console (**Strumenti ➤ Sviluppo web ➤ Console web**) e ricaricare la pagina:
 
-![Un errore JavaScript viene mostrato nella Console](js-error.png)
+![Nella Console viene mostrato un errore JavaScript](js-error.png)
 
-In questo esempio, apprendiamo (abbastanza chiaramente) qual è l'errore e possiamo andare a correggerlo (tratteremo JavaScript in [un'altra serie](/it/docs/Learn_web_development/Core/Scripting) di articoli).
+In questo esempio, viene indicato chiaramente qual è l'errore ed è possibile correggerlo (JavaScript verrà trattato in [un'altra serie](/it/docs/Learn_web_development/Core/Scripting) di articoli).
 
-### Altri elementi da controllare
+### Altri aspetti da controllare
 
-Abbiamo elencato alcuni semplici modi per verificare che il tuo sito web funzioni correttamente, nonché gli errori più comuni che potresti incontrare e come risolverli. Puoi anche testare se la tua pagina soddisfa questi criteri:
+Sono stati elencati alcuni semplici modi per verificare che il sito web funzioni correttamente, oltre agli errori più comuni che potrebbero verificarsi e a come risolverli. È anche possibile verificare se la pagina soddisfa questi criteri:
 
-#### Come va la performance?
+#### Come sono le prestazioni?
 
-La pagina si carica abbastanza velocemente? Risorse come [WebPageTest.org](https://www.webpagetest.org/) o componenti aggiuntivi per browser come [YSlow](https://github.com/marcelduran/yslow) possono dirti alcune cose interessanti:
+La pagina si carica abbastanza velocemente? Risorse come [WebPageTest.org](https://www.webpagetest.org/) o componenti aggiuntivi del browser come [YSlow](https://github.com/marcelduran/yslow) possono fornire alcune informazioni interessanti:
 
 ![Diagnostica di Yslow](yslow-diagnostics.png)
 
-Le valutazioni vanno da A a F. La nostra pagina è piccola e soddisfa la maggior parte dei criteri. Ma possiamo già notare che sarebbe stato meglio utilizzare un {{Glossary("CDN", "CDN")}}. Non importa molto quando stiamo servendo solo un'immagine, ma sarebbe fondamentale per un sito web ad alta larghezza di banda che serve molte migliaia di immagini.
+Le valutazioni vanno da A a F. La pagina è piccola e soddisfa la maggior parte dei criteri. Tuttavia, si può già notare che sarebbe stato meglio utilizzare una {{Glossary("CDN", "CDN")}}. Questo non è molto importante quando viene distribuita una sola immagine, ma sarebbe fondamentale per un sito web a elevata larghezza di banda che distribuisce molte migliaia di immagini.
 
-#### Il server è sufficientemente reattivo?
+#### Il server risponde abbastanza rapidamente?
 
-`ping` è uno strumento della shell utile che testa il nome di dominio fornito e ti dice se il server risponde o meno:
+`ping` è un utile strumento di shell che testa il nome di dominio fornito e indica se il server risponde oppure no:
 
 ```plain
 $ ping mozilla.org
@@ -153,17 +150,17 @@ PING mozilla.org (63.245.215.20): 56 data bytes
 round-trip min/avg/max/stddev = 147.857/148.468/148.741/0.362 ms
 ```
 
-Basta ricordare una comoda scorciatoia da tastiera: **Ctrl+C**. Ctrl+C invia un segnale di "interruzione" al runtime e gli dice di fermarsi. Se non arresti il runtime, `ping` contatterà il server indefinitamente.
+È sufficiente ricordare una comoda scorciatoia da tastiera: **Ctrl+C**. Ctrl+C invia un segnale di "interruzione" al runtime e gli indica di arrestarsi. Se il runtime non viene arrestato, `ping` eseguirà il ping del server indefinitamente.
 
-### Un semplice elenco di controllo
+### Una semplice checklist
 
-- Controlla eventuali 404
-- Assicurati che tutte le pagine web si comportino come previsto
-- Verifica il tuo sito web in diversi browser per assicurarti che si renda in modo coerente
+- Verificare la presenza di errori 404.
+- Assicurarsi che tutte le pagine web si comportino come previsto.
+- Controllare il sito web in diversi browser per assicurarsi che venga visualizzato in modo coerente.
 
-## Prossimi passi
+## Passaggi successivi
 
-Congratulazioni, il tuo sito web è attivo e pronto per essere visitato da chiunque. È un grande traguardo. Ora, puoi iniziare ad approfondire vari argomenti.
+Congratulazioni, il sito web è attivo e funzionante, pronto per essere visitato da chiunque. È un grande traguardo. Ora è possibile approfondire diversi argomenti.
 
-- Poiché le persone possono arrivare al tuo sito web da tutto il mondo, dovresti considerare di renderlo [accessibile a tutti](/it/docs/Learn_web_development/Howto/Design_and_accessibility/What_is_accessibility).
-- Il design del tuo sito web è un po' troppo grezzo? È ora di [saperne di più su CSS](/it/docs/Learn_web_development/Core/Styling_basics).
+- Poiché le persone possono raggiungere il sito web da tutto il mondo, è opportuno valutare di renderlo [accessibile a tutti](/it/docs/Learn_web_development/Howto/Design_and_accessibility/What_is_accessibility).
+- Il design del sito web è un po' troppo grezzo? È il momento di [imparare di più su CSS](/it/docs/Learn_web_development/Core/Styling_basics).

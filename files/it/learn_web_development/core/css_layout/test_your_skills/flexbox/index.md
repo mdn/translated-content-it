@@ -1,29 +1,37 @@
 ---
-title: "Metti alla prova le tue abilità: Flexbox"
-short-title: Flexbox
+title: "Metti alla prova le tue competenze: Flexbox"
+short-title: "Test: Flexbox"
 slug: Learn_web_development/Core/CSS_layout/Test_your_skills/Flexbox
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 143f7345a4276156679d816a153470fe1fc6f3f8
 ---
 
-L'obiettivo di questo test di abilità è valutare se comprendi come [flexbox e gli elementi flex](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox) si comportano. Di seguito sono riportati quattro schemi di design comuni che potresti utilizzare flexbox per creare. Il tuo compito è costruirli.
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Flexbox", "Learn_web_development/Core/CSS_layout/Grids", "Learn_web_development/Core/CSS_layout")}}
+
+L'obiettivo di questo test di competenze è aiutare a valutare se si comprende il comportamento di [flexbox e flex item](/it/docs/Learn_web_development/Core/CSS_layout/Flexbox). Di seguito sono disponibili quattro serie di problemi di progettazione risolvibili usando flexbox. Il compito consiste nel risolvere i problemi.
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice sottostanti per modificare gli esempi nel MDN Playground.
-> Puoi anche copiare il codice (clicca sull'icona degli appunti) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/), o [Glitch](https://glitch.com/).
-> Se incontri difficoltà, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ricevere assistenza, leggere la nostra guida all'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Sfida interattiva
 
-In questo compito, gli elementi della lista sono la navigazione per un sito. Dovrebbero essere disposti in una riga, con una quantità uguale di spazio tra ciascun elemento.
+Prima di tutto, viene proposta una divertente sfida interattiva su flexbox creata dal nostro [partner didattico](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds), [Scrimba](https://scrimba.com/home).
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sottostante:
+Guardare lo scrim incorporato e completare tutte le attività nella timeline (le piccole icone a forma di fantasma) seguendo le istruzioni e modificando il codice. Al termine, è possibile riprendere la visione dello scrim per verificare in che modo la soluzione dell'insegnante corrisponde alla propria.
 
-![Elementi flex disposti come una riga con spazio tra di loro.](flex-task1.png)
+<mdn-scrim-inline url="https://scrimba.com/frontend-path-c0j/~03a" scrimtitle="Sfide di allineamento Flexbox" survey="true"></mdn-scrim-inline>
 
-Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
+## Flexbox 1
 
-```html live-sample___flexbox1
+In questa attività, vengono utilizzati alcuni elementi di elenco per creare la navigazione di un sito. Per completare l'attività, usare flexbox per disporre gli elementi di elenco in una riga, con uno spazio uguale tra ciascun elemento.
+
+Il punto di partenza dell'attività è questo:
+
+{{EmbedLiveSample("flexbox1-start", "", "240px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___flexbox1-start live-sample___flexbox1-finish
 <nav>
   <ul>
     <li><a href="/">Home</a></li>
@@ -34,12 +42,12 @@ Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
 </nav>
 ```
 
-```css hidden live-sample___flexbox1
+```css live-sample___flexbox1-start live-sample___flexbox1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
 nav ul {
-  max-width: 700px;
+  max-width: 750px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -49,26 +57,27 @@ nav a:visited {
   background-color: #4d7298;
   border: 2px solid #77a6b6;
   border-radius: 0.5em;
-  color: #fff;
+  color: white;
   padding: 0.5em;
   display: inline-block;
   text-decoration: none;
 }
-```
 
-```css live-sample___flexbox1
 nav ul {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("flexbox1", "", "240px")}}
+Quando l'attività è completata, gli elementi dovrebbero apparire così:
+
+{{EmbedLiveSample("flexbox1-finish", "", "100px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Puoi applicare `display: flex` e controllare lo spazio utilizzando la proprietà `justify-content`:
+È possibile applicare `display: flex` e controllare la spaziatura usando la proprietà `justify-content`:
 
-```css
+```css live-sample___flexbox1-finish
 nav ul {
   display: flex;
   justify-content: space-between;
@@ -77,19 +86,19 @@ nav ul {
 
 </details>
 
-## Compito 2
+## Flexbox 2
 
-In questo compito, gli elementi della lista hanno dimensioni diverse, ma vogliamo che vengano visualizzati come tre colonne di dimensioni uguali, indipendentemente dal contenuto presente in ciascun elemento.
+In questa attività, gli elementi di elenco hanno tutti dimensioni diverse, ma devono essere visualizzati come tre colonne di uguali dimensioni, indipendentemente dal contenuto di ciascun elemento.
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sottostante:
+**Domanda bonus:** È ora possibile rendere il primo elemento grande il doppio degli altri elementi?
 
-![Elementi flex disposti come tre colonne di uguali dimensioni con quantità diverse di contenuto.](flex-task2.png)
+Il punto di partenza dell'attività è questo:
 
-**Domanda bonus:** Puoi ora rendere il primo elemento grande il doppio degli altri elementi?
+{{EmbedLiveSample("flexbox2-start", "", "240px")}}
 
-Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___flexbox2
+```html live-sample___flexbox2-start live-sample___flexbox2-finish
 <ul>
   <li>I am small</li>
   <li>I have more content than the very small item.</li>
@@ -101,12 +110,12 @@ Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
 </ul>
 ```
 
-```css hidden live-sample___flexbox2
+```css live-sample___flexbox2-start live-sample___flexbox2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
 ul {
-  max-width: 700px;
+  max-width: 750px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -116,27 +125,29 @@ li {
   background-color: #4d7298;
   border: 2px solid #77a6b6;
   border-radius: 0.5em;
-  color: #fff;
+  color: white;
   padding: 0.5em;
 }
-```
 
-```css live-sample___flexbox2
 ul {
+  /* Add styles here */
 }
 
 li {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("flexbox2", "", "240px")}}
+Quando l'attività è completata, gli elementi dovrebbero apparire così:
+
+{{EmbedLiveSample("flexbox2-finish", "", "380px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-È meglio utilizzare gli shorthands, quindi in questo scenario `flex: 1` è probabilmente la risposta migliore, e quindi il risultato più ottimale sarebbe:
+È preferibile usare le abbreviazioni, quindi in questo scenario `flex: 1` è probabilmente la risposta migliore e il risultato più ottimale sarebbe:
 
-```css
+```css live-sample___flexbox2-finish
 ul {
   display: flex;
 }
@@ -146,9 +157,9 @@ li {
 }
 ```
 
-Per la domanda bonus, aggiungi un selettore che si rivolge al primo elemento e imposta `flex: 2;` (o `flex: 2 0 0;` o `flex-grow: 2`):
+Per la domanda bonus, aggiungere un selettore che selezioni il primo elemento e imposti `flex: 2;` (oppure `flex: 2 0 0;` o `flex-grow: 2`):
 
-```css
+```css live-sample___flexbox2-finish
 li:first-child {
   flex: 2;
 }
@@ -156,74 +167,17 @@ li:first-child {
 
 </details>
 
-## Compito 3
+## Flexbox 3
 
-In questo compito, ci sono due elementi nell'HTML sottostante, un elemento `<div>` con una classe `parent` che contiene un altro elemento `<div>` con una classe `child`. Usa flexbox per centrare il bambino all'interno del genitore. Esiste più di una soluzione possibile qui.
+In questa attività, viene richiesto di disporre gli elementi di elenco in righe.
 
-Il tuo risultato finale dovrebbe assomigliare all'immagine sottostante:
+Il punto di partenza dell'attività è questo:
 
-![Una casella centrata all'interno di un'altra casella.](flex-task3.png)
+{{EmbedLiveSample("flexbox3-start", "", "260px")}}
 
-Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
+Ecco il codice sottostante per questo punto di partenza:
 
-```html live-sample___flexbox3
-<div class="parent">
-  <div class="child">Center me.</div>
-</div>
-```
-
-```css hidden live-sample___flexbox3
-body {
-  font: 1.2em / 1.5 sans-serif;
-}
-.parent {
-  border: 2px solid #77a6b6;
-  border-radius: 0.5em;
-  height: 200px;
-}
-
-.child {
-  background-color: #4d7298;
-  color: #fff;
-  padding: 0.5em;
-  width: 150px;
-}
-```
-
-```css hidden live-sample___flexbox3
-.parent {
-}
-
-.child {
-}
-```
-
-{{EmbedLiveSample("flexbox3", "", "210px")}}
-
-<details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
-
-È necessario solo modificare gli stili del genitore per centrare un elemento orizzontalmente e verticalmente:
-
-```css
-.parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-```
-
-</details>
-
-## Compito 4
-
-In questo compito, vogliamo che tu disponga questi elementi in righe come nell'immagine sottostante:
-
-![Un insieme di elementi mostrati come righe.](flex-task4.png)
-
-Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
-
-```html live-sample___flexbox4
+```html live-sample___flexbox3-start live-sample___flexbox3-finish
 <ul>
   <li>Turnip</li>
   <li>greens</li>
@@ -238,7 +192,7 @@ Prova a aggiornare il codice sottostante per ricreare l'esempio finito:
 </ul>
 ```
 
-```css hidden live-sample___flexbox4
+```css live-sample___flexbox3-start live-sample___flexbox3-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
@@ -253,28 +207,30 @@ li {
   background-color: #4d7298;
   border: 2px solid #77a6b6;
   border-radius: 0.5em;
-  color: #fff;
+  color: white;
   padding: 0.5em;
   margin: 0.5em;
 }
-```
 
-```css live-sample___flexbox4
 ul {
+  /* Add styles here */
 }
 
 li {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("flexbox4", "", "260px")}}
+Quando l'attività è completata, gli elementi dovrebbero apparire così:
+
+{{EmbedLiveSample("flexbox3-finish", "", "260px")}}
 
 <details>
-<summary>Fai clic qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Questo compito richiede una comprensione della proprietà `flex-wrap` per avvolgere le righe flex. Inoltre, per assicurarti di ottenere qualcosa che assomigli all'esempio, devi impostare `flex: auto` sul figlio (o `flex: 1 1 auto;`).
+Questa attività richiede di comprendere la proprietà `flex-wrap` per mandare a capo le righe flex. Inoltre, per assicurarsi di ottenere un risultato simile all'esempio, è necessario impostare `flex: auto` sull'elemento figlio (oppure `flex: 1 1 auto;`).
 
-```css
+```css live-sample___flexbox3-finish
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -287,6 +243,4 @@ li {
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sullo stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Flexbox", "Learn_web_development/Core/CSS_layout/Grids", "Learn_web_development/Core/CSS_layout")}}

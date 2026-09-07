@@ -1,17 +1,17 @@
 ---
-title: "Metti alla prova le tue abilità: basi di stile CSS"
-short-title: Metti alla prova le tue abilità
+title: "Metti alla prova le tue competenze: nozioni di base sullo stile CSS"
+short-title: "Test: indice dei test sulle nozioni di base sullo stile"
 slug: Learn_web_development/Core/Styling_basics/Test_your_skills
 l10n:
-  sourceCommit: c44c4d14527eddf441079e3623abccd711adfc23
+  sourceCommit: 78bdd004c24d256efc8372f18204ea58f83a1b5e
 ---
 
-Questa pagina elenca dei test sulle basi di stile CSS che puoi provare per verificare se hai compreso il contenuto di questo modulo.
+Questa pagina elenca test sulle nozioni di base dello stile CSS che si possono provare per verificare di aver compreso i contenuti di questo modulo.
 
-## Metti alla prova le tue abilità di base di stile CSS per argomento
+## Metti alla prova le tue competenze sulle nozioni di base dello stile CSS per argomento
 
 {{SubpagesWithSummaries}}
 
 ## Vedi anche
 
-- [Basi di stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+- [Nozioni di base sullo stile CSS](/it/docs/Learn_web_development/Core/Styling_basics)

@@ -1,87 +1,87 @@
 ---
-title: Form e pulsanti in HTML
-short-title: Form e pulsanti
+title: Moduli e pulsanti in HTML
+short-title: Moduli e pulsanti
 slug: Learn_web_development/Core/Structuring_content/HTML_forms
 l10n:
-  sourceCommit: 874ad29df9150037acb8a4a3e7550a302c90a080
+  sourceCommit: 7d93b0f639e37e9340ed707e3cb7f9a75c1b3048
 ---
 
-{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Planet_data_table", "Learn_web_development/Core/Structuring_content/Debugging_HTML", "Learn_web_development/Core/Structuring_content")}}
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Planet_data_table", "Learn_web_development/Core/Structuring_content/Test_your_skills/Forms_and_buttons", "Learn_web_development/Core/Structuring_content")}}
 
-I form e i pulsanti HTML sono strumenti potenti per interagire con gli utenti di un sito web. Più comunemente, forniscono agli utenti i controlli per manipolare un'interfaccia utente (UI) o inserire dati quando richiesto.
+I moduli HTML e i pulsanti sono strumenti potenti per interagire con gli utenti di un sito web. Nella maggior parte dei casi, forniscono agli utenti controlli per manipolare un'interfaccia utente (UI) o inserire dati quando necessario.
 
-In questo articolo, forniamo un'introduzione alle basi dei form e dei pulsanti. C'è molto altro da sapere — molti tipi di input e funzionalità dei form non sono menzionati — ma questo articolo ti darà una solida base per la maggior parte dei casi. Puoi imparare gli utilizzi avanzati o specializzati quando necessario, come parte dell'apprendimento continuo che farai nel corso della tua carriera.
+In questo articolo viene fornita un'introduzione alle basi dei moduli e dei pulsanti. C'è molto altro da sapere — molti tipi di input e funzionalità dei moduli non vengono menzionati — ma questo articolo fornirà una solida base per la maggior parte dei casi. È possibile apprendere gli utilizzi avanzati o specializzati secondo necessità, nell'ambito dell'apprendimento continuo che accompagnerà l'intera carriera.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Familiarità di base con HTML, come coperto in
+        Familiarità di base con HTML, come illustrato in
         <a href="/it/docs/Learn_web_development/Core/Structuring_content/Basic_HTML_syntax"
           >Sintassi HTML di base</a
-        >. Semantica a livello di testo come <a href="/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
-          >titoli e paragrafi</a
+        >. Semantica a livello di testo, come <a href="/it/docs/Learn_web_development/Core/Structuring_content/Headings_and_paragraphs"
+          >intestazioni e paragrafi</a
         > e <a href="/it/docs/Learn_web_development/Core/Structuring_content/Lists"
-          >liste</a
+          >elenchi</a
         >. <a href="/it/docs/Learn_web_development/Core/Structuring_content/Structuring_documents"
           >HTML strutturale</a>.
       </td>
     </tr>
     <tr>
-      <th scope="row">Obiettivi dell'apprendimento:</th>
+      <th scope="row">Risultati di apprendimento:</th>
       <td>
         <ul>
-          <li>Apprezzare che i form e i pulsanti sono gli strumenti principali per gli utenti per interagire con un sito web, insieme ai link.</li>
-          <li>Diversi tipi di pulsanti.</li>
-          <li>Tipi comuni di <code>&lt;input&gt;</code>.</li>
-          <li>Attributi comuni come <code>name</code> e <code>value</code>.</li>
-          <li>L'elemento <code>&lt;form&gt;</code> e le basi dell'invio di un form.</li>
-          <li>Rendere i form accessibili con etichette e semantica corretta.</li>
-          <li>Altri tipi di controllo: <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code>, e <code>&lt;option&gt;</code>.</li>
-          <li>Le basi della validazione lato client.</li>
+          <li>Comprendere che i moduli e i pulsanti sono gli strumenti principali, insieme ai link, con cui gli utenti interagiscono con un sito web.</li>
+          <li>Diversi tipi di pulsante.</li>
+          <li>Tipi <code>&lt;input&gt;</code> comuni.</li>
+          <li>Attributi comuni quali <code>name</code> e <code>value</code>.</li>
+          <li>L'elemento <code>&lt;form&gt;</code> e le basi dell'invio dei moduli.</li>
+          <li>Rendere accessibili i moduli con etichette e semantica corretta.</li>
+          <li>Altri tipi di controllo: <code>&lt;textarea&gt;</code>, <code>&lt;select&gt;</code> e <code>&lt;option&gt;</code>.</li>
+          <li>Basi della validazione lato client.</li>
         </ul>
       </td>
     </tr>
   </tbody>
 </table>
 
-## Interazione con gli utenti
+## Interagire con gli utenti
 
-Finora nel corso, hai visto un paio di modi in cui gli utenti possono interagire con il web:
+Finora, nel corso sono stati illustrati alcuni modi in cui gli utenti possono interagire con il web:
 
-- [Link](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links) possono essere usati per navigare a sezioni diverse di contenuto, sia sulla stessa pagina che su una pagina diversa.
-- Gli elementi [`<video>` e `<audio>`](/it/docs/Learn_web_development/Core/Structuring_content/HTML_video_and_audio) generalmente dispongono di controlli come play/pausa, avanzamento veloce, riavvolgimento, etc., che consentono agli utenti di fruire del contenuto multimediale a loro piacimento.
+- I [link](/it/docs/Learn_web_development/Core/Structuring_content/Creating_links) possono essere utilizzati per navigare verso diverse sezioni di contenuto, nella stessa pagina oppure in una pagina diversa.
+- Gli elementi [`<video>` e `<audio>`](/it/docs/Learn_web_development/Core/Structuring_content/HTML_video_and_audio) generalmente includono controlli quali riproduzione/pausa, avanzamento rapido, riavvolgimento e così via, che consentono agli utenti di fruire dei contenuti multimediali come desiderano.
 
-Comunque, queste funzionalità tendono a facilitare interazioni unidirezionali, con gli utenti che consumano passivamente il contenuto. Questo va bene, ma il web è un'esperienza bidirezionale. Gli utenti del sito web impostano preferenze su come desiderano fruire del contenuto e dei servizi. Ordinano taxi e richiedono richiamate. Forniscono feedback e presentano reclami. Comprano prodotti e li fanno consegnare a casa.
+Tuttavia, queste funzionalità tendono a facilitare interazioni a senso unico, in cui gli utenti consumano passivamente i contenuti. Va bene così, ma il web è un'esperienza a doppio senso. Gli utenti di un sito web impostano preferenze su come desiderano fruire di contenuti e servizi. Ordinano taxi e richiedono di essere richiamati. Forniscono feedback e presentano reclami. Acquistano prodotti e li ricevono a domicilio.
 
-Per offrire questa esperienza bidirezionale, devi utilizzare pulsanti e form.
+Per offrire questa esperienza a doppio senso, è necessario utilizzare pulsanti e moduli.
 
-I pulsanti sono generalmente creati utilizzando elementi HTML {{htmlelement("button")}} (a volte vengono creati anche utilizzando elementi {{htmlelement("input")}} con i loro attributi `type` impostati su un valore come `button` o `submit`). Questi pulsanti spingibili sono a scopo generale — puoi collegarli per attivare qualsiasi funzionalità desideri, limitata solo dalla tua fantasia e dalle tue abilità di programmazione.
+I pulsanti vengono solitamente creati usando gli elementi HTML {{htmlelement("button")}} (talvolta vengono creati anche usando elementi {{htmlelement("input")}} con i rispettivi attributi `type` impostati su un valore come `button` o `submit`). Questi pulsanti sono di uso generale — è possibile collegarli per attivare qualsiasi funzionalità desiderata, limitati soltanto dall'immaginazione e dalle competenze di programmazione.
 
-I form sono creati utilizzando elementi come {{htmlelement("form")}}, {{htmlelement("label")}}, {{htmlelement("input")}}, e {{htmlelement("select")}}. Gli elementi del form possono essere utilizzati per creare controlli più complessi di quelli che semplici pulsanti consentono, ad esempio un menu a discesa contenente più opzioni che ti consentono di scegliere tra temi diversi per un elemento dell'interfaccia utente.
+I moduli vengono creati utilizzando elementi quali {{htmlelement("form")}}, {{htmlelement("label")}}, {{htmlelement("input")}} e {{htmlelement("select")}}. Gli elementi dei moduli possono essere utilizzati per creare controlli più complessi di quelli consentiti dai semplici pulsanti — per esempio, un menu a discesa contenente più opzioni che permettono di scegliere tra diversi temi per un elemento dell'interfaccia utente.
 
-Tuttavia, in modo cruciale, possono anche essere utilizzati per creare form che gli utenti compilano quando devono inviare informazioni al server di un sito web. Pensa ai siti di e-commerce — quando vuoi cercare un prodotto da acquistare, utilizzi un form per inserire i termini di ricerca. Quando vuoi pagare per alcuni articoli e finalizzare la consegna, utilizzi un form per inserire il tuo indirizzo postale e un altro form per inserire i dettagli della tua carta di credito.
+Tuttavia, soprattutto, possono essere utilizzati anche per creare moduli che gli utenti compilano quando devono inviare informazioni a un server web. Si pensi ai siti di e-commerce — quando si desidera cercare un prodotto da acquistare, si utilizza un modulo per inserire i termini di ricerca. Quando si desidera pagare alcuni articoli e finalizzare la consegna, si utilizza un modulo per inserire l'indirizzo postale e un altro modulo per inserire i dati della carta di credito.
 
-Ci concentreremo principalmente su questo uso — più tradizionale — degli elementi del form in questo articolo. Nota che i pulsanti sono spesso utilizzati all'interno dei form, per inviare i dati inseriti al server.
+In questo articolo ci concentreremo principalmente su questo utilizzo più tradizionale degli elementi dei moduli. Si noti che i pulsanti vengono comunemente utilizzati anche all'interno dei moduli per inviare al server i dati inseriti.
 
-Con questa importante teoria fuori dal tavolo, passiamo ad esplorare il codice e vedere come i pulsanti e i form vengono implementati.
+Dopo questa importante teoria, è il momento di esplorare il codice e vedere come vengono implementati pulsanti e moduli.
 
 ## Pulsanti
 
-Come accennato sopra, i pulsanti hanno un paio di usi principali sul web. Prima di tutto, sono utilizzati per attivare funzioni, il che è utile quando si creano controlli UI. Il pulsante più semplice è implementato utilizzando il seguente codice:
+Come accennato sopra, i pulsanti hanno alcuni utilizzi principali sul web. Prima di tutto, vengono utilizzati per attivare funzionalità, il che è utile durante la creazione di controlli dell'interfaccia utente. Il pulsante più semplice viene implementato usando il codice seguente:
 
 ```html live-sample___basic-button
 <button>Press me</button>
 ```
 
-Questo è reso come segue:
+Il risultato visualizzato è il seguente:
 
 {{EmbedLiveSample("basic-button", "100%", "60")}}
 
-Il testo che appare tra i tag `<button></button>` viene mostrato all'interno del pulsante e riceve un po' di stile di base dal browser, quindi sembrerà e si comporterà come un pulsante per impostazione predefinita. Fin qui tutto bene. Tuttavia, c'è un problema qui — il nostro pulsante solitario non farà nulla di utile da solo. Per farlo fare qualcosa di utile, devi metterlo all'interno di un form (che copriremo più avanti), o aggiungere un po' di JavaScript.
+Il testo visualizzato tra i tag `<button></button>` viene renderizzato all'interno del pulsante e il browser gli applica uno stile di base, quindi per impostazione predefinita avrà l'aspetto e il comportamento di un pulsante. Fin qui tutto bene. Tuttavia, c'è un problema: il pulsante da solo non farà nulla di utile. Per fare in modo che svolga qualcosa di utile, occorre inserirlo in un modulo (che verrà trattato più avanti) oppure aggiungere del JavaScript.
 
-Ad esempio, se applichi il seguente JavaScript al pulsante sopra:
+Per esempio, applicando il seguente JavaScript al pulsante precedente:
 
 ```html hidden live-sample___basic-button-with-js
 <button>Press me</button>
@@ -97,81 +97,93 @@ btn.addEventListener("click", () => {
 });
 ```
 
-Ottieni il seguente output — prova a cliccarci sopra:
+si otterrebbe il seguente risultato — provare a fare clic sul pulsante:
 
 {{EmbedLiveSample("basic-button-with-js", "100%", "60")}}
 
-Non ci si aspetta che tu capisca come funziona il JavaScript per ora. Imparerai di più su di esso più avanti nel corso.
+Per ora non è necessario comprendere come funziona il JavaScript. Se ne saprà di più più avanti nel corso.
 
-Nella prossima sezione, vedrai una dimostrazione del secondo uso principale dei pulsanti — inviare form.
+Nella sezione successiva verrà mostrata una dimostrazione del secondo utilizzo principale dei pulsanti: l'invio dei moduli.
 
-## L'anatomia di un form
+## L'anatomia di un modulo
 
-Un form di base contiene tre elementi:
+Un modulo di base contiene tre elementi:
 
-- Un elemento {{htmlelement("form")}}, che racchiude tutti gli altri contenuti del form. Qualsiasi controllo del form all'interno dei tag `<form></form>` fa parte dello stesso form e i loro dati vengono inclusi quando il form viene inviato.
-- Una o più coppie costituite ciascuna da un elemento {{htmlelement("label")}} e un elemento di controllo del form (solitamente un elemento {{htmlelement("input")}}, ma ci sono anche altri tipi come {{htmlelement("select")}}):
-  - L'elemento di controllo del form consente all'utente di scegliere o inserire alcuni dati, che verranno inviati al server quando il form viene inviato.
-  - L'elemento `<label>` fornisce un'etichetta identificativa associata al controllo del form, descrivendo i dati che dovrebbero essere inseriti.
-- Un elemento {{htmlelement("button")}}, utilizzato per inviare il form.
+- Un elemento {{htmlelement("form")}}, che racchiude tutti gli altri contenuti del modulo. Tutti i controlli del modulo all'interno dei tag `<form></form>` fanno parte dello stesso modulo e i relativi dati vengono inclusi quando il modulo viene inviato.
+- Una o più coppie, ciascuna composta da un elemento {{htmlelement("label")}} e un elemento di controllo del modulo (solitamente un elemento {{htmlelement("input")}}, ma esistono anche altri tipi, per esempio {{htmlelement("select")}}):
+  - L'elemento di controllo del modulo consente all'utente di scegliere o inserire dati, che verranno inviati al server quando il modulo viene inviato.
+  - L'elemento `<label>` fornisce un'etichetta identificativa associata al controllo del modulo, che descrive i dati da inserire.
+- Un elemento {{htmlelement("button")}}, utilizzato per inviare il modulo.
 
-Esaminiamo un esempio di base che include i tre elementi sopra menzionati. Questo form potrebbe essere utilizzato per chiedere il nome e l'email di un utente, per iscriverlo a una newsletter (non preoccuparti — non è collegato a nessun server, quindi attualmente non farà nulla).
+Vediamo un esempio di base che include i tre elementi precedenti. Questo modulo potrebbe essere utilizzato per richiedere il nome e l'email di un utente, per iscriverlo a una newsletter (nessuna preoccupazione — non è collegato a nessun server, quindi al momento non farà nulla).
 
 ```html live-sample___form-anatomy
-<form action="./submit_page" method="get">
-  <h2>Subscribe to our newsletter</h2>
-  <p>
-    <label for="name">Name (required):</label>
-    <input type="text" name="name" id="name" required />
-  </p>
-  <p>
-    <label for="email">Email (required):</label>
-    <input type="email" name="email" id="email" required />
-  </p>
-  <p>
-    <button>Sign me up!</button>
-  </p>
-</form>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>First form</title>
+  </head>
+  <body>
+    <form action="./submit_page" method="get">
+      <h2>Subscribe to our newsletter</h2>
+      <p>
+        <label for="name">Name (required):</label>
+        <input type="text" name="name" id="name" required />
+      </p>
+      <p>
+        <label for="email">Email (required):</label>
+        <input type="email" name="email" id="email" required />
+      </p>
+      <p>
+        <button>Sign me up!</button>
+      </p>
+    </form>
+  </body>
+</html>
 ```
 
-Questo è reso come segue:
+Il risultato visualizzato è il seguente:
 
-{{EmbedLiveSample("form-anatomy", "100%", "200")}}
+{{EmbedLiveSample("form-anatomy", "100%", "200", , , , , "allow-forms")}}
 
-Grazie al modo in cui funziona MDN, puoi inserire testo nei campi di input, ma non vedrai il form inviare correttamente quando premi il pulsante. Per seguire le prossime sezioni, copia il codice HTML sopra in un nuovo file HTML utilizzando il tuo [editor di codice](/it/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors) e aprilo in un nuovo tab del browser.
+Facendo immediatamente clic su "Sign me up!", verrà visualizzato un errore di validazione perché non sono stati inseriti dati. Se si compilano i campi con un nome e un indirizzo email, quindi si fa clic su "Sign me up!", verrà visualizzato un messaggio di errore `404`.
+
+Il motivo verrà spiegato più avanti. Prima di proseguire, copiare il precedente elenco di codice HTML in un nuovo file HTML utilizzando il proprio [editor di codice](/it/docs/Learn_web_development/Getting_started/Environment_setup/Code_editors) e aprirlo in una nuova scheda del browser.
 
 ### L'elemento `<form>`
 
-Come abbiamo detto in precedenza, l'elemento {{htmlelement("form")}} funge da wrapper esterno per il form, raggruppando insieme tutti i controlli del form al suo interno. Quando il `<button>` viene premuto, tutti i dati rappresentati dai controlli del form verranno inviati al server. L'elemento `<form>` può accettare molti attributi, ma i due più importanti, che abbiamo incluso qui, sono i seguenti:
+Come già detto, l'elemento {{htmlelement("form")}} funge da contenitore esterno per il modulo, raggruppando tutti i controlli del modulo al suo interno. Quando viene premuto `<button>`, tutti i dati rappresentati dai controlli del modulo verranno inviati al server. L'elemento `<form>` può accettare molti attributi, ma i due più importanti, inclusi nel nostro esempio, sono i seguenti:
 
-- `action`: Contiene un percorso alla pagina a cui vogliamo inviare i dati del form inviato per essere elaborati. Più avanti, dopo che avrai inviato il form, vedrai `/submit_page` incluso nell'URL. Riceverai anche una risposta di errore {{HTTPStatus("404")}} perché la pagina in realtà non esiste, ma va bene per ora.
-- `method`: Specifica il [metodo](/it/docs/Web/HTTP/Reference/Methods) di trasmissione dei dati che vuoi usare per inviare i dati del form al server. Non preoccuparti troppo di questo per ora; il valore `get` fa in modo che i dati vengano inviati come parametri allegati alla fine dell'URL.
+- `action`: contiene un percorso alla pagina a cui si desidera inviare i dati del modulo inviato affinché vengano elaborati. Più avanti, dopo l'invio del modulo, verrà visualizzato `/submit_page` nell'URL. Verrà inoltre ricevuta una risposta di errore {{HTTPStatus("404")}} perché la pagina non esiste realmente, ma per ora va bene così.
+- `method`: specifica il [metodo](/it/docs/Web/HTTP/Reference/Methods) di trasmissione dei dati da utilizzare per inviare i dati del modulo al server. Per ora non occorre preoccuparsi troppo di questo; il valore `get` fa sì che i dati vengano inviati come parametri aggiunti alla fine dell'URL.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Vai al esempio nel tab separato, prova a inserire un nome come "Bob" e un indirizzo email come "bob@bob.com".
->
-> I due attributi sopra causano l'invio dei dati del form in un URL lungo le seguenti linee:
->
-> `/some/url/submit_page?name=Bob&email=bob%40bob.com`
+#### Verificare i dati inviati
 
-#### Strutturare i form
+1. Andare all'esempio nella scheda separata e provare a inserire il nome "Bob" e l'indirizzo email "bob@bob.com".
+2. Premere `<button>`.
 
-Puoi includere qualsiasi elemento HTML desideri all'interno di un elemento `<form>` per strutturare gli elementi del form stessi e fornire contenitori su cui puntare con CSS per lo styling, ecc.
+Gli attributi `action` e `method` fanno sì che i dati del modulo vengano inviati in un URL simile al seguente:
 
-Nel nostro esempio, abbiamo incluso un [elemento di intestazione](/it/docs/Web/HTML/Reference/Elements/Heading_Elements) (`<h2>`) per descrivere lo scopo del form.
+```plain
+/some/url/submit_page?name=Bob&email=bob%40bob.com
+```
 
-Abbiamo anche messo ogni coppia input/label e il pulsante di invio all'interno di un separato {{htmlelement("p")}}, in modo che ognuno appaia su una linea separata. Questi elementi sono tutti inline per impostazione predefinita, il che significa che se non avessimo fatto questo, sarebbero tutti sulla stessa riga.
+#### Strutturare i moduli
 
-Questo è un modello comune per strutturare i form. Alcune persone usano elementi `<p>` per separare i loro elementi di form, alcune usano {{htmlelement("div")}}, {{htmlelement("section")}}, o addirittura elementi {{htmlelement("li")}}. Non importa molto, purché gli elementi utilizzati abbiano senso semanticamente. Ad esempio, ha senso dividere i gruppi di elementi di form in paragrafi separati o sezioni di contenuto o anche elementi in una lista. Sarebbe meno sensato rappresentarli come [citazioni di blocco](/it/docs/Web/HTML/Reference/Elements/blockquote), [asides](/it/docs/Web/HTML/Reference/Elements/aside), o [indirizzi](/it/docs/Web/HTML/Reference/Elements/address).
+All'interno di un elemento `<form>` è possibile includere qualsiasi elemento HTML per strutturare gli elementi del modulo e fornire contenitori a cui applicare CSS per lo stile e così via.
 
-Esiste un elemento specializzato per raggruppare gli elementi del form insieme chiamato {{htmlelement("fieldset")}}. Questo è utile in alcune circostanze, come nei form complessi, e quando si raggruppano insieme più checkbox e radio button. Esamineremo un paio di esempi di `<fieldset>` più avanti.
+Nel nostro esempio è stato incluso un [elemento di intestazione](/it/docs/Web/HTML/Reference/Elements/Heading_Elements) (`<h2>`) per descrivere lo scopo del modulo.
+
+Ogni coppia input/label e il pulsante di invio sono stati inoltre inseriti all'interno di un {{htmlelement("p")}} separato, in modo che ciascuno appaia su una riga distinta. Questi elementi sono tutti inline per impostazione predefinita, il che significa che, se non fosse stato fatto, sarebbero tutti sulla stessa riga.
+
+Questo è un modello comune per strutturare i moduli. Alcune persone utilizzano elementi `<p>` per separare gli elementi del modulo, altre utilizzano elementi {{htmlelement("div")}}, {{htmlelement("section")}} o persino {{htmlelement("li")}}. Non è particolarmente importante, purché gli elementi utilizzati abbiano senso dal punto di vista semantico. Per esempio, ha senso dividere gruppi di elementi del modulo in paragrafi o sezioni di contenuto distinti, oppure persino in elementi di un elenco. Avrebbe meno senso rappresentarli come [citazioni in blocco](/it/docs/Web/HTML/Reference/Elements/blockquote), [contenuti complementari](/it/docs/Web/HTML/Reference/Elements/aside) o [indirizzi](/it/docs/Web/HTML/Reference/Elements/address).
+
+Esiste un elemento specializzato per raggruppare gli elementi dei moduli, chiamato {{htmlelement("fieldset")}}. È utile in determinate circostanze, come nei moduli complessi e quando si raggruppano più checkbox e radio button. Più avanti verranno esaminati alcuni esempi di `<fieldset>`.
 
 ### Elementi `<input>`
 
-Gli elementi {{htmlelement("input")}} rappresentano i diversi elementi di dati inseriti nel form. Studiamo uno degli esempi dal nostro form di base:
+Gli elementi {{htmlelement("input")}} rappresentano i diversi dati inseriti nel modulo. Studiamo uno degli esempi del nostro modulo di base:
 
 ```html
 <input type="text" name="name" id="name" required />
@@ -179,52 +191,48 @@ Gli elementi {{htmlelement("input")}} rappresentano i diversi elementi di dati i
 
 Gli attributi sono i seguenti:
 
-- `type`: Specifica il tipo di controllo del form da creare. Ci sono molti tipi diversi di controlli del form, da campi di testo semplici di diversi tipi a radio button, checkbox e altro. Il tipo `text` rende un campo di testo di base che può accettare qualsiasi valore.
-- `name`: Specifica un nome per l'elemento di dati. Quando il form viene inviato, i dati vengono inviati in coppie nome/valore. In ciascun caso, il nome è uguale a questo valore di attributo `name`, e il valore è uguale al testo inserito nel campo di testo.
-- `id`: Specifica un ID che può essere usato per identificare l'elemento. In questo caso, viene usato per associare il controllo del form con il suo `<label>`.
-- `required`: Specifica che deve essere inserito un valore nel form element prima che il form possa essere inviato. Questo dovrebbe essere impostato solo su input che richiedi, non su campi facoltativi.
+- `type`: specifica il tipo di controllo del modulo da creare. Esistono molti tipi diversi di controlli del modulo, dai semplici campi di testo di vario tipo ai radio button, alle checkbox e altro ancora. Il tipo `text` renderizza un campo di testo di base che può accettare qualsiasi valore.
+- `name`: specifica un nome per il dato. Quando il modulo viene inviato, i dati vengono trasmessi in coppie nome/valore. In ogni caso, il nome è uguale al valore di questo attributo `name`, mentre il valore è uguale al testo inserito nel campo di testo.
+- `id`: specifica un ID che può essere utilizzato per identificare l'elemento. In questo caso viene utilizzato per associare il controllo del modulo al relativo `<label>`.
+- `required`: specifica che è necessario inserire un valore nell'elemento del modulo prima che il modulo possa essere inviato. Dovrebbe essere impostato solo sugli input obbligatori, non sui campi facoltativi.
 
-Dovresti essere consapevole che alcuni tipi di input di solito non ottengono i loro valori dal testo inserito in un campo. Ad esempio, un [`<input type="color">`](/it/docs/Web/HTML/Reference/Elements/input/color) rende un widget di selezione del colore da cui scegliere un colore, mentre un [`<input type="radio">`](/it/docs/Web/HTML/Reference/Elements/input/radio) rende un controllo del radiobutton che può essere selezionato, o meno.
+Occorre sapere che alcuni tipi di input solitamente non ottengono i valori dal testo inserito in un campo. Per esempio, [`<input type="color">`](/it/docs/Web/HTML/Reference/Elements/input/color) renderizza un widget di selezione del colore da cui scegliere un colore, mentre [`<input type="radio">`](/it/docs/Web/HTML/Reference/Elements/input/radio) renderizza un controllo radio button che può essere selezionato oppure no.
 
-Nel caso dei radio button, generalmente devi fornire il valore che verrebbe inviato se è selezionato all'interno di un attributo `value` specifico. Nota che _puoi_ specificare un attributo `value` su tipi di input come `text` e `color` — l'effetto è che il valore è pre-compilato nel campo del form quando viene mostrato per la prima volta.
+Nel caso dei radio button, generalmente è necessario fornire il valore che verrebbe inviato se fosse selezionato all'interno di un attributo `value` specifico. Si noti che è possibile specificare un attributo `value` su tipi di input come `text` e `color` — l'effetto è che il valore viene precompilato nel campo del modulo quando viene renderizzato per la prima volta.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> 1. Ancora una volta, vai all'esempio che hai caricato in un unico tab separato e prova a inviare il form senza inserire alcun valore in nessuno dei due campi. Vedrai apparire un messaggio di errore accanto al campo "Nome", che dice qualcosa come "Per favore compila questo campo" (varierà tra i diversi browser). Questo è l'attributo `required` — e la validazione del form lato client predefinita del browser — in azione.
-> 2. Ora prova a inviare il form con un nome valido inserito nel primo campo, ma un valore che non è un indirizzo email valido nel secondo campo (qualcosa come "aaaa" andrà bene). Questa volta vedrai apparire un messaggio di errore accanto al campo "Email" che dice qualcosa come "Per favore inserisci un indirizzo email".
-> 3. Per questo esercizio, sarà necessario modificare il codice del form. Puoi farlo aprendo il tuo esempio locale che hai creato nel tuo editor di testo, modificandolo lì e salvandolo. Prova a modificare il form per includere `value="Bob"` nel primo input. Quando ricarichi il codice, vedrai che nel primo campo è inserito di default un valore di "Bob".
+#### Attributi `required` e `value` in azione
 
-#### Input dei campi di testo specializzati
+1. Tornare all'esempio caricato in una scheda separata e provare a inviare il modulo senza inserire un valore in nessuno dei campi. Verrà visualizzato un messaggio di errore accanto al campo "Name" con un testo simile a "Please fill in this field" (varierà tra browser diversi). Questo è l'attributo `required` — e la validazione predefinita dei moduli lato client del browser — in azione.
+2. Ora provare a inviare il modulo con un nome valido nel primo campo, ma un valore che non sia un indirizzo email valido nel secondo campo (qualcosa come "aaaa" andrà bene). Questa volta verrà visualizzato un messaggio di errore accanto al campo "Email" con un testo simile a "Please enter an email address".
+3. Provare a modificare il modulo per includere `value="Bob"` nel primo input. Ricaricando il codice, si vedrà che il primo campo contiene per impostazione predefinita il valore "Bob".
 
-Il secondo esercizio sopra solleva un punto interessante. Il secondo campo di input si aspetta specificamente un indirizzo email e convalida i valori inseriti come tali. Se guardi di nuovo il codice del form, vedrai perché — il secondo `<input>` ha un `type` di `email`. Ci sono diversi tipi di campi di testo specializzati progettati per gestire tipi specifici di dati — [`<input type="number">`](/it/docs/Web/HTML/Reference/Elements/input/number), [`<input type="password">`](/it/docs/Web/HTML/Reference/Elements/input/password), [`<input type="tel">`](/it/docs/Web/HTML/Reference/Elements/input/tel), ecc.
+#### Input specializzati per campi di testo
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Segui alcuni dei link sopra per scoprire a cosa servono questi tipi di input. Dai un'occhiata alla nostra [referenza di `<input>`](/it/docs/Web/HTML/Reference/Elements/input) e vedi se riesci a trovare altri tipi di campi di testo specializzati.
+Il secondo esercizio precedente solleva un punto interessante. Il secondo campo di input si aspetta specificamente un indirizzo email e convalida i valori inseriti come tali. Osservando nuovamente il codice del modulo, è possibile capire perché: il secondo `<input>` ha un `type` pari a `email`.
+
+Esistono diversi tipi di input specializzati per campi di testo progettati per gestire tipi specifici di dati, come [`<input type="number">`](/it/docs/Web/HTML/Reference/Elements/input/number), [`<input type="password">`](/it/docs/Web/HTML/Reference/Elements/input/password), [`<input type="tel">`](/it/docs/Web/HTML/Reference/Elements/input/tel), [`<input type="url">`](/it/docs/Web/HTML/Reference/Elements/input/url) e così via.
+
+Seguire alcuni dei link precedenti per scoprire a cosa servono questi tipi di input. Consultare il riferimento di [`<input>`](/it/docs/Web/HTML/Reference/Elements/input) e vedere se è possibile trovare altri tipi di input specializzati per campi di testo.
 
 ### Elementi `<label>`
 
-Come abbiamo detto sopra, gli elementi {{htmlelement("label")}} forniscono etichette identificative associate ai controlli del form che descrivono i dati che dovrebbero essere inseriti in essi. Puoi mettere qualsiasi contenuto di testo desideri negli elementi `<label>`, ma dovrebbero descrivere accuratamente quali dati il controllo del form associato si aspetta. L'associazione è creata assegnando al controllo del form un attributo `id`, quindi fornendo all'elemento `<label>` un attributo `for` con lo stesso valore dell'`id` del controllo.
+Come detto sopra, gli elementi {{htmlelement("label")}} forniscono etichette identificative associate ai controlli dei moduli che descrivono i dati da inserire. Negli elementi `<label>` è possibile inserire qualsiasi contenuto testuale, ma dovrebbe descrivere accuratamente quali dati si aspetta il controllo del modulo associato. L'associazione viene creata assegnando al controllo del modulo un attributo `id`, quindi assegnando all'elemento `<label>` un attributo `for` con lo stesso valore dell'`id` del controllo.
 
-Ad esempio:
+Per esempio:
 
 ```html
 <label for="name">Name (required):</label>
 <input type="text" name="name" id="name" required />
 ```
 
-Gli elementi `<label>` sono importanti per diversi motivi, in particolare:
+Gli elementi `<label>` sono importanti per diversi motivi, in particolare perché:
 
-- Quando utenti non vedenti utilizzano un lettore di schermo per aiutarli a leggere e interagire con il contenuto delle pagine web, il lettore di schermo leggerà il testo dell'etichetta associata quando ciascun controllo viene incontrato. Questo rende più facile per gli utenti capire quali contenuti dovrebbero essere inseriti in ciascun controllo.
-- Consentono di focalizzare gli elementi del form facendo clic sul loro testo dell'etichetta oltre che sui controlli. Questo è particolarmente utile per gli utenti di telefoni cellulari, dove può essere difficile selezionare accuratamente un elemento del form con il dito su uno schermo touch. Rendere la **area di clic** più grande è utile in tali circostanze.
+- Quando gli utenti ipovedenti utilizzano uno screen reader per aiutarli a leggere e interagire con il contenuto della pagina web, lo screen reader leggerà il testo dell'etichetta associata quando incontra ciascun controllo. Questo rende più facile per gli utenti comprendere quali contenuti devono essere inseriti in ciascun controllo.
+- Consentono di mettere a fuoco gli elementi del modulo facendo clic sul testo dell'etichetta, oltre che sui controlli stessi. Questo è particolarmente utile per gli utenti di telefoni cellulari, per i quali può essere difficile selezionare accuratamente un elemento del modulo con il dito su uno schermo touch. Rendere più ampia l'**area di attivazione** è utile in tali circostanze.
 
-#### Etichette di form esplicite e implicite
+#### Etichette di modulo esplicite e implicite
 
-Lo stile delle etichette di form che hai visto sopra è chiamato **etichetta di form esplicita** — l'associazione tra controllo e etichetta è fatta esplicitamente tramite gli attributi `id` e `for`. Puoi anche implementare un'etichetta di form **implicita** annidando il controllo all'interno dell'etichetta, in questo modo:
+Lo stile di etichetta del modulo visto sopra è chiamato **etichetta di modulo esplicita** — l'associazione tra controllo ed etichetta viene creata esplicitamente tramite gli attributi `id` e `for`. È inoltre possibile implementare un'**etichetta di modulo implicita** annidando il controllo all'interno dell'etichetta, in questo modo:
 
 ```html
 <label>
@@ -233,128 +241,135 @@ Lo stile delle etichette di form che hai visto sopra è chiamato **etichetta di 
 </label>
 ```
 
-L'annidamento crea un'associazione implicita tra controllo e etichetta, e non hai più bisogno degli attributi `id` e `for`.
+L'annidamento crea un'associazione implicita tra controllo ed etichetta e gli attributi `id` e `for` non sono più necessari.
 
-Qualunque approccio va bene, ma consiglieremmo di utilizzare l'approccio di etichettatura esplicita. Questo perché l'associazione esplicita è di solito più facile da identificare e capire, specialmente quando il tuo codice HTML diventa più complesso. Inoltre, i lettori di schermo (e altre tecnologie assistive) a volte non gestiscono correttamente le etichette implicite.
+Entrambi gli approcci sono validi, ma è consigliabile utilizzare l'approccio di etichettatura esplicita. Questo perché l'associazione esplicita è solitamente più facile da identificare e comprendere, soprattutto quando il codice HTML diventa più complesso. Inoltre, gli screen reader (e altre tecnologie assistive) non sempre gestiscono correttamente le etichette implicite.
 
-Puoi leggere di più sulle migliori pratiche di etichettatura dei form in [HTML Inputs and Labels: A Love Story](https://css-tricks.com/html-inputs-and-labels-a-love-story/), csstricks.com (2021).
+Per ulteriori informazioni sulle migliori pratiche per le etichette dei moduli, vedere [HTML Inputs and Labels: A Love Story](https://css-tricks.com/html-inputs-and-labels-a-love-story/), css-tricks.com (2021).
 
 ### L'elemento `<button>`
 
-Quando un elemento {{htmlelement("button")}} è incluso all'interno di un elemento `<form>`, il suo comportamento predefinito è che invierà il form, a condizione che non ci siano dati non validi presenti che bloccano l'invio a causa della validazione del form lato client. Hai già visto questo comportamento quando hai giocato con il nostro esempio di form di base sopra.
+Quando un elemento {{htmlelement("button")}} è incluso all'interno di un elemento `<form>`, il suo comportamento predefinito è inviare il modulo, a condizione che non siano presenti dati non validi che causino il blocco dell'invio da parte della validazione dei moduli lato client. Questo comportamento è già stato osservato sperimentando con l'esempio di modulo di base precedente.
 
-Ci sono altri comportamenti dei pulsanti che possono essere specificati tramite l'attributo `type` dell'elemento `<button>`:
+Altri comportamenti dei pulsanti possono essere specificati tramite l'attributo `type` dell'elemento `<button>`:
 
-- `<button type="submit">` dichiara esplicitamente che un pulsante dovrebbe comportarsi come un pulsante di invio. Non è mai realmente necessario dichiararlo, a meno che per qualche motivo tu stia includendo altri pulsanti all'interno del tuo `<form>`, e vuoi chiarire quale sia il pulsante di invio. Questo sarà molto raro.
-- `<button type="reset">` crea un _pulsante di reset_ — questo elimina immediatamente tutti i dati dal form, reimpostandolo nello stato iniziale. **Non utilizzare i pulsanti di reset** — erano popolari nei primi giorni del web, ma sono di solito più fastidiosi che utili. La maggior parte delle persone ha sperimentato la compilazione di un lungo form solo per cliccare accidentalmente il pulsante di reset invece del pulsante di invio, il che significa che devono ricominciare da capo.
-- `<button type="button">` crea un pulsante con lo stesso comportamento dei pulsanti specificati al di fuori degli elementi `<form>`. Come abbiamo visto in precedenza, non fanno assolutamente nulla per impostazione predefinita, e è necessario JavaScript per dare loro funzionalità.
+- `<button type="submit">` dichiara esplicitamente che un pulsante deve comportarsi come un pulsante di invio. Non è realmente necessario dichiararlo, a meno che, per qualche ragione, non si includano altri pulsanti all'interno di `<form>` e si voglia rendere chiaro quale sia il pulsante di invio. Questo accadrà molto raramente.
+- `<button type="reset">` crea un _pulsante di ripristino_ — elimina immediatamente tutti i dati dal modulo, riportandolo allo stato iniziale. **Non usare pulsanti di ripristino** — erano popolari nei primi tempi del web, ma di solito sono più fastidiosi che utili. Molte persone hanno compilato un lungo modulo per poi fare accidentalmente clic sul pulsante di ripristino invece che su quello di invio, dovendo quindi ricominciare da capo.
+- `<button type="button">` crea un pulsante con lo stesso comportamento dei pulsanti specificati al di fuori degli elementi `<form>`. Come visto in precedenza, per impostazione predefinita non fanno assolutamente nulla e occorre JavaScript per fornire loro funzionalità.
+
+Sebbene sia possibile creare questi tipi di pulsante utilizzando un elemento `<input>` con gli stessi valori `type` — come [`<input type="submit">`](/it/docs/Web/HTML/Reference/Elements/input/submit), [`<input type="reset">`](/it/docs/Web/HTML/Reference/Elements/input/reset) e [`<input type="button">`](/it/docs/Web/HTML/Reference/Elements/input/button) — presentano molti svantaggi rispetto alle rispettive controparti `<button>`. È quindi preferibile utilizzare `<button>`.
 
 > [!NOTE]
-> Puoi anche creare i tipi di pulsanti sopra usando un elemento `<input>` con gli stessi valori di `type` specificati — [`<input type="submit">`](/it/docs/Web/HTML/Reference/Elements/input/submit), [`<input type="reset">`](/it/docs/Web/HTML/Reference/Elements/input/reset), e [`<input type="button">`](/it/docs/Web/HTML/Reference/Elements/input/button). Tuttavia, questi hanno molti svantaggi rispetto ai loro equivalenti `<button>`. Dovresti usare `<button>` invece.
+> Scrimba<sup>[_partner di apprendimento MDN_](/it/docs/MDN/Writing_guidelines/Learning_content#partner_links_and_embeds)</sup> offre una lezione gratuita — [The very basics of forms](https://scrimba.com/learn-responsive-web-design-c029/~031?via=mdn) — che fornisce un utile riepilogo interattivo delle basi dei moduli trattate precedentemente in questo articolo.
 
 ## Una nota sull'accessibilità
 
-Abbiamo già parlato dell'importanza delle etichette dei form per l'accessibilità, ma vogliamo includere anche qualche commento sull'importanza generale di utilizzare gli elementi semantici corretti per creare form (ad esempio, usa un `<button>` per inviare il tuo form, e non un `<div>` programmato per comportarsi come un `<button>`). È perfettamente possibile usare una combinazione di CSS e JavaScript per far apparire e comportarsi praticamente qualsiasi elemento HTML come un elemento di form. Gli sviluppatori di solito fanno questo per motivi di design — alcuni controlli del form sono difficili da stilare.
+È già stata discussa l'importanza delle etichette dei moduli per l'accessibilità, ma è utile aggiungere alcune osservazioni sull'importanza generale di utilizzare gli elementi semantici corretti per creare moduli (per esempio, utilizzare un `<button>` per inviare un modulo e non un `<div>` programmato per comportarsi come un `<button>`). È perfettamente possibile utilizzare una combinazione di CSS e JavaScript per fare in modo che praticamente qualsiasi elemento HTML abbia l'aspetto e il comportamento di un elemento di modulo. Gli sviluppatori solitamente lo fanno per motivi di design — alcuni controlli dei moduli sono difficili da stilizzare.
 
-Tuttavia, quando fai questo, rendi la vita più difficile a te stesso e ai tuoi utenti. Il browser fornisce diverse funzionalità per i `<button>` e i controlli di form per impostazione predefinita, senza bisogno di JavaScript o altro codice extra, per rendere i form più utilizzabili per tutti gli utenti.
+Tuttavia, quando si procede in questo modo, la vita diventa più difficile sia per lo sviluppatore sia per gli utenti. Il browser fornisce per impostazione predefinita diverse funzionalità dei controlli `<button>` e dei moduli, senza richiedere JavaScript o altro codice aggiuntivo, per rendere i moduli più utilizzabili da tutti gli utenti.
 
-Ad esempio:
+Per esempio:
 
-- Gli elementi semantici sono compresi dalla tecnologia assistiva come i lettori di schermo, che comunicano il loro significato agli utenti che non possono vederli.
-- I controlli di form e i pulsanti sono accessibili da tastiera per impostazione predefinita. Nell'esempio precedente, provare a spostarsi avanti e indietro tra gli elementi del form usando <kbd>Tab</kbd> e <kbd>Shift</kbd> + <kbd>Tab</kbd> (chiamato "tabbing").
-- Nota anche come il tabbing tra gli elementi del form causa l'evidenziazione dell'elemento focalizzato con un contorno blu (chiamato **contorno di focus**). Questa è una funzionalità importante per gli utenti da tastiera per sapere dove si trovano attualmente nel form.
+- Gli elementi semantici vengono compresi dalle tecnologie assistive, quali gli screen reader, che comunicano il loro significato agli utenti che non possono vederli.
+- I controlli dei moduli e i pulsanti sono accessibili tramite tastiera per impostazione predefinita. Nell'esempio precedente, provare a spostarsi in avanti e indietro tra gli elementi del modulo utilizzando <kbd>Tab</kbd> e <kbd>Shift</kbd> + <kbd>Tab</kbd> (operazione chiamata "tabbing").
+- Si noti inoltre che lo spostamento tramite tab tra gli elementi del modulo fa sì che l'elemento attivo venga evidenziato con un contorno blu (chiamato **contorno di focus**). Questa è una funzionalità importante affinché gli utenti della tastiera sappiano dove si trovano nel modulo.
 
-Se non utilizzi gli elementi semantici corretti per implementare i tuoi form, dovrai reimplementare tutte queste funzionalità, altrimenti i tuoi elementi del form non si comporteranno come gli utenti si aspettano, e quindi sembreranno rotti. Si somma tutto.
+Se non si utilizzano gli elementi semantici corretti per implementare i moduli, gli elementi del modulo non si comporteranno come gli utenti si aspettano e sembreranno non funzionanti. Sarà necessario reimplementare autonomamente tutte queste funzionalità, con ulteriore lavoro.
 
 ## Altri tipi di controllo
 
-Ci sono molti altri tipi di controllo che puoi usare per raccogliere dati in un form. Vediamo un esempio leggermente più complesso, e poi lo esploriamo e lo spieghiamo.
+Esistono molti altri tipi di controllo che è possibile utilizzare per raccogliere dati in un modulo. Vediamo un esempio leggermente più complesso, quindi lo esploreremo e spiegheremo.
 
 > [!NOTE]
-> In questo esempio, si suppone che l'utente sia già registrato e abbia effettuato l'accesso, quindi non è necessario raccogliere dettagli come nome e email.
+> In questo esempio, si presume che l'utente sia già registrato e abbia effettuato l'accesso, quindi non è necessario raccogliere dati quali nome ed email.
 
 ```html live-sample___form-other-controls
-<form action="./payment_page" method="get">
-  <h2>Register for the meetup</h2>
-  <fieldset>
-    <legend>Choose hotel room type (required):</legend>
-    <div>
-      <input
-        type="radio"
-        id="hotelChoice1"
-        name="hotel"
-        value="economy"
-        checked />
-      <label for="hotelChoice1">Economy (+$0)</label>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Second form</title>
+  </head>
+  <body>
+    <form action="./payment_page" method="get">
+      <h2>Register for the meetup</h2>
+      <fieldset>
+        <legend>Choose hotel room type:</legend>
+        <div>
+          <input
+            type="radio"
+            id="hotelChoice1"
+            name="hotel"
+            value="economy"
+            checked />
+          <label for="hotelChoice1">Economy (+$0)</label>
 
-      <input type="radio" id="hotelChoice2" name="hotel" value="superior" />
-      <label for="hotelChoice2">Superior (+$50)</label>
+          <input type="radio" id="hotelChoice2" name="hotel" value="superior" />
+          <label for="hotelChoice2">Superior (+$50)</label>
 
-      <input
-        type="radio"
-        id="hotelChoice3"
-        name="hotel"
-        value="penthouse"
-        disabled />
-      <label for="hotelChoice3">Penthouse (+$150)</label>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>Choose classes to attend:</legend>
-    <div>
-      <input type="checkbox" id="yoga" name="yoga" />
-      <label for="yoga">Yoga (+$10)</label>
+          <input
+            type="radio"
+            id="hotelChoice3"
+            name="hotel"
+            value="penthouse"
+            disabled />
+          <label for="hotelChoice3">Penthouse (+$150)</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Choose classes to attend:</legend>
+        <div>
+          <input type="checkbox" id="yoga" name="yoga" />
+          <label for="yoga">Yoga (+$10)</label>
 
-      <input type="checkbox" id="coffee" name="coffee" />
-      <label for="coffee">Coffee roasting (+$20)</label>
+          <input type="checkbox" id="coffee" name="coffee" />
+          <label for="coffee">Coffee roasting (+$20)</label>
 
-      <input type="checkbox" id="balloon" name="balloon" />
-      <label for="balloon">Balloon animal art (+$5)</label>
-    </div>
-  </fieldset>
-  <p>
-    <label for="transport">How are you getting here:</label>
-    <select name="transport" id="transport">
-      <option value="">--Please choose an option--</option>
-      <option value="plane">Plane</option>
-      <option value="bike">Bike</option>
-      <option value="walk">Walk</option>
-      <option value="bus">Bus</option>
-      <option value="train">Train</option>
-      <option value="jetPack">Jet pack</option>
-    </select>
-  </p>
-  <p>
-    <label for="comments">Any other comments:</label>
-    <textarea id="comments" name="comments" rows="5" cols="33"></textarea>
-  </p>
-  <p>
-    <button>Continue to payment</button>
-  </p>
-</form>
+          <input type="checkbox" id="balloon" name="balloon" />
+          <label for="balloon">Balloon animal art (+$5)</label>
+        </div>
+      </fieldset>
+      <p>
+        <label for="transport">How are you getting here:</label>
+        <select name="transport" id="transport">
+          <option value="">--Please choose an option--</option>
+          <option value="plane">Plane</option>
+          <option value="bike">Bike</option>
+          <option value="walk">Walk</option>
+          <option value="bus">Bus</option>
+          <option value="train">Train</option>
+          <option value="jetPack">Jet pack</option>
+        </select>
+      </p>
+      <p>
+        <label for="comments">Any other comments:</label>
+        <textarea id="comments" name="comments" rows="5" cols="33"></textarea>
+      </p>
+      <p>
+        <button>Continue to payment</button>
+      </p>
+    </form>
+  </body>
+</html>
 ```
 
-Questo è reso come segue:
+Il risultato visualizzato è il seguente:
 
-{{EmbedLiveSample("form-other-controls", "100%", "500")}}
+{{EmbedLiveSample("form-other-controls", "100%", "500", , , , , "allow-forms")}}
 
-Ti consigliamo di aprire questo esempio in un tab separato del browser mentre lavori alle prossime sezioni, in cui esamineremo ciascun tipo di controllo a turno. Per fare questo, copia il codice in un file HTML usando il tuo editor di codice e aprilo in un tab del browser.
+Si consiglia di aprire questo esempio in una scheda separata del browser mentre si procede con le prossime sezioni, nelle quali verrà esaminato ciascun tipo di controllo. Per farlo, copiare il codice in un file HTML utilizzando l'editor di codice e aprirlo in una scheda del browser.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prima di procedere, gioca con i diversi controlli del form, seleziona alcuni valori e prova a inviare il form.
+Prima di proseguire, sperimentare con i diversi controlli del modulo nella copia locale e selezionare alcuni valori. Provare a inviare il modulo e osservare l'aspetto dei dati inviati nell'URL.
 
 ### Radio button
 
-I pulsanti "Scegli il tipo di camera dell'hotel" sono implementati usando i controlli [`<input type="radio">`](/it/docs/Web/HTML/Reference/Elements/input/radio). Questi vengono resi come un insieme di controlli a pulsante premibili in cui solo uno dell'insieme può essere selezionato in un dato momento — non puoi selezionare più di uno contemporaneamente. Sono chiamati così per i pulsanti presenti sulle radio vecchio stile, dove premi un pulsante e quello precedentemente selezionato si solleva di nuovo.
+I pulsanti "Choose hotel room type" sono implementati utilizzando controlli [`<input type="radio">`](/it/docs/Web/HTML/Reference/Elements/input/radio). Vengono renderizzati come un insieme di controlli a pulsante di cui può essere selezionato solo uno alla volta — non è possibile selezionarne più di uno contemporaneamente. Prendono il nome dai pulsanti presenti nelle vecchie radio, in cui premendo un pulsante quello selezionato in precedenza tornava fuori.
 
-Il nostro codice di esempio sembra così:
+Il codice di esempio ha il seguente aspetto:
 
 ```html
 <fieldset>
-  <legend>Choose hotel room type (required):</legend>
+  <legend>Choose hotel room type:</legend>
   <div>
     <input
       type="radio"
@@ -378,38 +393,30 @@ Il nostro codice di esempio sembra così:
 </fieldset>
 ```
 
-I tipi di input `radio` funzionano per lo più allo stesso modo dei tipi di input `text`, ma con alcune differenze:
+I tipi di input `radio` funzionano per lo più come i tipi di input `text`, ma con alcune differenze:
 
-- Gli attributi `name` per ciascun insieme di radio button devono contenere lo stesso valore, per associarli insieme come un unico set. Se contengono valori diversi, saranno effettivamente set separati, con valori diversi all'invio.
-- Devi includere un attributo `value` contenente il valore da inviare per ciascun radio button. Il valore inviato sarà una coppia nome/valore, ma il nome sarà sempre lo stesso, ad esempio `hotel=economy` o `hotel=superior`.
-- L'etichetta `<label>` per ciascun radio button deve descrivere quella particolare scelta di valore, piuttosto che il valore complessivo che stai selezionando. Il modo preferito per fornire una descrizione della scelta di valore complessiva è racchiuderli in un elemento {{htmlelement("fieldset")}}, che accetta un elemento {{htmlelement("legend")}} come figlio che contiene la descrizione.
+- Gli attributi `name` per ciascun gruppo di radio button devono contenere lo stesso valore, per associarli in un unico gruppo. Se contengono valori diversi, saranno di fatto gruppi separati, con valori diversi al momento dell'invio.
+- È necessario includere un attributo `value` contenente il valore da inviare per ciascun radio button. Il valore inviato sarà una coppia nome/valore, ma il nome sarà sempre lo stesso, per esempio `hotel=economy` oppure `hotel=superior`.
+- Il `<label>` di ciascun radio button deve descrivere quella particolare scelta di valore, anziché il valore complessivo che si sta selezionando. Il modo preferito per descrivere la scelta di valore complessiva è racchiuderli in un {{htmlelement("fieldset")}}, che accetta come figlio un elemento {{htmlelement("legend")}} contenente la descrizione.
 
 > [!NOTE]
-> Oltre a strutturare e etichettare i form, i fieldset hanno altri usi, come [disabilitare](#disabilitare_i_controlli_del_form) un intero set di controlli come un'unità singola.
+> Oltre a strutturare ed etichettare i moduli, i fieldset hanno altri utilizzi, come [disabilitare](#disabilitare_i_controlli_dei_moduli) un intero gruppo di controlli come una singola unità.
 
-Vale anche la pena notare che abbiamo applicato l'attributo `checked` al primo radio button — questo fa sì che sia selezionato quando la pagina viene caricata per la prima volta. Questo è il modo in cui giustifichiamo il contrassegnare il valore del tipo di camera dell'hotel come "required" — un'opzione sarà sempre selezionata e non puoi deselezionare un radio button senza selezionare un altro.
+Vale inoltre la pena notare che al primo radio button è stato applicato l'attributo `checked` — ciò fa sì che venga selezionato al primo caricamento della pagina. Questo significa che sarà sempre selezionata un'opzione e che non è possibile deselezionare un radio button senza selezionarne un altro.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova a rimuovere l'attributo `checked` dal primo radio button, salva, poi ricarica, per vedere l'effetto che ha. Rimettilo prima di procedere.
+Provare a rimuovere l'attributo `checked` dal primo radio button, salvare e ricaricare per osservare l'effetto. Reinserirlo prima di proseguire.
 
-#### Disabilitare i controlli del form
+#### Disabilitare i controlli dei moduli
 
-Nell'esempio del radio button, noterai che il terzo radio button ha impostato l'attributo `disabled`. Questo fa sì che il controllo renderizzato sia grigiato e non selezionabile. Questo è utile in molte situazioni in cui un'opzione è normalmente disponibile, ma non in questo momento. Ad esempio, un prodotto potrebbe essere esaurito, o come nel caso del nostro esempio, le suite attico sono tutte prenotate!
+Nell'esempio dei radio button, si noterà che il terzo radio button ha l'attributo `disabled` impostato. Ciò fa sì che il controllo renderizzato sia disattivato e non selezionabile. È utile in molte situazioni in cui un'opzione è normalmente disponibile, ma non in quel momento. Per esempio, un prodotto potrebbe essere esaurito oppure, come nel caso del nostro esempio, tutte le suite attico potrebbero essere prenotate.
 
-Puoi impostare l'attributo `disabled` su qualsiasi controllo del form, compreso gli elementi `<button>`. Gli elementi `<fieldset>` possono anche accettare l'attributo `disabled` — questo fa sì che ogni controllo all'interno del fieldset sia disabilitato.
+L'attributo `disabled` può essere impostato su qualsiasi controllo del modulo, inclusi gli elementi `<button>`. Anche gli elementi `<fieldset>` possono accettare l'attributo `disabled` — ciò fa sì che ogni controllo del modulo all'interno del fieldset venga disabilitato.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> Prova a impostare l'attributo `disabled` sui due elementi `<fieldset>`, salva, poi ricarica, per vedere l'effetto che ha. Rimuovili di nuovo prima di procedere.
+Provare a impostare l'attributo `disabled` sui due elementi `<fieldset>`, salvare e ricaricare per osservare l'effetto. Rimuoverli nuovamente prima di proseguire.
 
 ### Checkbox
 
-I nostri selettori "classi da frequentare" sono implementati usando i controlli [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox). Questi vengono resi come un insieme di checkbox di stato acceso/spento. A differenza dei radio button, puoi selezionare più di uno contemporaneamente.
+I selettori "classes to attend" sono implementati utilizzando controlli [`<input type="checkbox">`](/it/docs/Web/HTML/Reference/Elements/input/checkbox). Vengono renderizzati come un insieme di checkbox con stato attivo/disattivo. A differenza dei radio button, è possibile selezionarne più di una alla volta.
 
 ```html
 <fieldset>
@@ -427,16 +434,16 @@ I nostri selettori "classi da frequentare" sono implementati usando i controlli 
 </fieldset>
 ```
 
-Come puoi vedere dagli spezzoni di codice, i radio button e i checkbox sono implementati in modo molto simile (possono anche prendere attributi `checked` per renderli preselezionati quando la pagina viene caricata). Si comportano anche in modo abbastanza simile, tranne per il fatto che i radio button ti permettono di scegliere zero o uno elementi su molti, e i checkbox ti permettono di scegliere zero o più elementi su molti.
+Come si può vedere dagli snippet di codice, radio button e checkbox vengono implementati in modo molto simile (possono inoltre accettare attributi `checked` per essere renderizzati preselezionati al caricamento della pagina). Si comportano inoltre in modo abbastanza simile, con la differenza che i radio button consentono di scegliere zero o un elemento tra molti, mentre le checkbox consentono di scegliere zero o più elementi tra molti.
 
-La principale differenza (a parte il valore di `type`!) è che ciascun checkbox ha un diverso valore `name`, e generalmente non vengono dati attributi `value`. Comportativamente, questo significa che rappresentano diversi valori di dati, mentre un set di radio button rappresenta solo uno. All'invio, ciascun valore viene inviato con un valore di `on` se il checkbox era selezionato — `yoga=on`, `balloon=on`, ecc.
+La differenza principale, oltre al valore `type`, è che ogni checkbox ha un valore `name` diverso e generalmente non riceve attributi `value`. Dal punto di vista del comportamento, questo significa che rappresentano valori di dati diversi, mentre un gruppo di radio button rappresenta un solo valore. Al momento dell'invio, ogni valore viene inviato con un valore di `on` se la checkbox era selezionata — `yoga=on`, `balloon=on` e così via.
 
 > [!NOTE]
-> È possibile cambiare il valore inviato per un checkbox assegnandogli un attributo `value`, ad esempio: `<input type="checkbox" id="yoga" name="yoga" value="yes" />` risulterebbe in `yoga=yes` inviato se selezionato. Tuttavia, non c'è molto scopo nel farlo. Un checkbox viene inviato con un singolo valore se selezionato, oppure non viene inviato affatto. Non importa realmente quale valore venga inviato al server.
+> È possibile modificare il valore inviato per una checkbox assegnandole un attributo `value`; per esempio: `<input type="checkbox" id="yoga" name="yoga" value="yes" />` determinerebbe l'invio di `yoga=yes` se selezionata.
 
 ### Menu a discesa
 
-I menu a discesa, ad esempio il controllo di selezione "Come stai arrivando qui" nel nostro esempio, sono implementati non con un tipo `<input>`, ma con gli elementi {{htmlelement("select")}} e {{htmlelement("option")}}:
+I menu a discesa, per esempio il controllo di selezione "How are you getting here" nel nostro esempio, non sono implementati con un tipo `<input>`, ma con gli elementi {{htmlelement("select")}} e {{htmlelement("option")}}:
 
 ```html
 <label for="transport">How are you getting here:</label>
@@ -451,52 +458,50 @@ I menu a discesa, ad esempio il controllo di selezione "Come stai arrivando qui"
 </select>
 ```
 
-L'elemento `<select>` racchiude tutte le diverse scelte di valore. È dove imposti l'attributo `id` che associa il controllo alla sua etichetta, e l'attributo `name` che imposta il nome dell'elemento di dati da inviare.
+L'elemento `<select>` racchiude tutte le diverse scelte di valore. È qui che si imposta l'attributo `id` che associa il controllo alla sua etichetta e l'attributo `name` che imposta il nome del dato da inviare.
 
-Ciascun valore possibile per l'elemento di dati è rappresentato da un elemento `<option>`, annidato all'interno dell'elemento `<select>`. Ogni elemento `<option>` può prendere un attributo `value`, che specifica il valore da inviare se quell'opzione è scelta dall'elenco a discesa. Se non specifichi un `value`, il testo all'interno dei tag `<option></option>` è usato come valore.
+Ogni possibile valore per il dato è rappresentato da un elemento `<option>`, annidato all'interno dell'elemento `<select>`. Ogni elemento `<option>` può accettare un attributo `value`, che specifica il valore da inviare se quell'opzione viene scelta dall'elenco a discesa. Se non viene specificato un `value`, viene utilizzato come valore il testo all'interno dei tag `<option></option>`.
+
+È inoltre possibile dividere le opzioni all'interno di un menu a discesa `<select>` in più sottogruppi utilizzando l'elemento {{htmlelement("optgroup")}}. Consultare la pagina di riferimento di questo elemento per scoprire come.
 
 > [!NOTE]
-> Se vuoi avere una specifica opzione selezionata al momento del caricamento della pagina, puoi aggiungere un attributo `selected` al relativo elemento `<option>`.
+> Per avere un'opzione specifica selezionata al caricamento della pagina, è possibile aggiungere un attributo `selected` all'elemento `<option>` pertinente.
 
-### Campi di input di testo multilinea
+### Campi di input di testo su più righe
 
-I campi di input di testo multilinea sono creati usando elementi {{htmlelement("textarea")}}:
+I campi di input di testo su più righe vengono creati utilizzando elementi {{htmlelement("textarea")}}:
 
 ```html
 <label for="comments">Any other comments:</label>
 <textarea id="comments" name="comments" rows="5" cols="33"></textarea>
 ```
 
-Si comportano nello stesso modo degli elementi `<input type="text">`, tranne per il fatto che consentono di inserire più righe di testo. L'attributo `rows` specifica il numero di righe di altezza che l'area di testo avrà per impostazione predefinita, mentre l'attributo `cols` specifica il numero di colonne di larghezza che l'area di testo avrà per impostazione predefinita. Se non sono specificati, i valori utilizzati sono `cols="20"` e `rows="2"`.
+Si comportano nello stesso modo degli elementi `<input type="text">`, tranne per il fatto che consentono l'inserimento di più righe di testo. L'attributo `rows` specifica il numero di righe di altezza predefinito dell'area di testo, mentre l'attributo `cols` specifica il numero di colonne di larghezza predefinito dell'area di testo. Se non vengono specificati, i valori utilizzati sono `cols="20"` e `rows="2"`.
 
-> [!CALLOUT]
->
-> **Provalo**
->
-> La maggior parte dei browser rende le aree di testo con una maniglia di trascinamento in un angolo, che può essere usata per ridimensionarla. Prova a usare questa per ridimensionare l'area di testo nel nostro demo.
+La maggior parte dei browser renderizza le aree di testo con una maniglia di trascinamento in un angolo, che può essere utilizzata per ridimensionarle. Provare a usarla per ridimensionare l'area di testo nella demo.
 
-## Validazione dei form
+## Validazione dei moduli
 
-In precedenza, abbiamo esaminato alcune delle validazioni di base dei form lato client fornite dal browser. L'attributo `required` è usato per specificare che un campo deve essere compilato prima che il form possa essere inviato; verifica anche che il tipo di valore corretto sia inserito per tipi di valore specifici come indirizzi email, URL, numeri, ecc. La validazione è importante per due main motivi:
+In precedenza sono state esaminate alcune delle funzionalità di base per la validazione dei moduli lato client fornite dal browser. L'attributo `required` viene utilizzato per specificare che un campo deve essere compilato prima che il modulo possa essere inviato; verifica inoltre che venga inserito il tipo di valore corretto per specifici tipi di valore, come indirizzi email, URL, numeri e così via. La validazione è importante per due ragioni principali:
 
-- Assicurarsi che i dati siano inviati nel formato corretto in modo che non causino errori nella tua applicazione.
-- Assicurarsi che i dati non causino problemi di sicurezza. Le persone malintenzionate sanno come inviare dati formattati specificamente in modo che, su applicazioni non sicure, possano eseguire comandi per eliminare database o prendere controllo di un sistema.
+- Assicurarsi che i dati vengano inviati nel formato corretto, in modo che non causino errori nell'applicazione.
+- Assicurarsi che i dati non causino problemi di sicurezza. I malintenzionati sanno come inviare dati formattati appositamente affinché, nelle applicazioni non sicure, possano eseguire comandi per eliminare database o assumere il controllo di un sistema.
 
-La validazione dei form è un argomento enorme che va oltre l'ambito di questo articolo, quindi lo lasceremo qui per ora. Tieni presente solo che ci sono due tipi di validazione dei form:
+La validazione dei moduli è un argomento vasto che va oltre lo scopo di questo articolo, quindi per ora ci fermeremo qui. È sufficiente tenere presente che esistono due tipi di validazione dei moduli:
 
-- Validazione lato client, che avviene nel browser, implementata utilizzando una combinazione di attributi di validazione dei form (come `required`) e JavaScript. La validazione lato client è utile per dare agli utenti suggerimenti istantanei quando hanno inserito dati errati, ma non è così efficace nel fermare i dati dannosi. È troppo facile disattivare JavaScript o alterare il codice lato client in modo che la validazione non funzioni più.
-- Validazione lato server, che avviene sul server, implementata utilizzando qualsiasi linguaggio il server stia utilizzando. Messaggi mal formati possono essere inviati a un server per errore o di proposito. La saggezza convenzionale è di assicurarsi che il tuo server non si fidi mai di ciò che un client sta inviando per evitare bug o problemi di sicurezza causati da messaggi mal formati. La validazione lato server è ottima per fermare i messaggi dannosi, poiché è più difficile manomettere il codice in esecuzione sul server. La validazione lato server non è così buona nel fornire suggerimenti agli utenti about dati errati perché i dati devono andare al server per essere convalidati, quindi il risultato deve essere inviato di nuovo al client prima che l'utente possa essere notificato.
+- La validazione lato client, che avviene nel browser, viene implementata utilizzando una combinazione di attributi di validazione dei moduli (come `required`) e JavaScript. La validazione lato client è utile per fornire agli utenti suggerimenti immediati quando hanno inserito dati errati, ma non è altrettanto efficace nel bloccare il passaggio di dati dannosi. È troppo facile disattivare JavaScript o modificare il codice lato client affinché la validazione non funzioni più.
+- La validazione lato server, che avviene sul server, viene implementata utilizzando qualsiasi linguaggio stia usando il server. Messaggi malformati possono essere inviati a un server per errore o intenzionalmente. La prassi consolidata è assicurarsi che il server non consideri attendibile nulla di ciò che invia un client, per evitare bug o problemi di sicurezza causati da messaggi malformati. La validazione lato server è ottima per bloccare messaggi dannosi, poiché è più difficile manomettere il codice in esecuzione sul server. La validazione lato server non è altrettanto efficace nel fornire agli utenti suggerimenti sui dati errati, perché i dati devono essere inviati al server per essere validati, quindi il risultato deve essere rimandato al client prima che l'utente possa essere avvisato.
 
-In breve, non decidere tra l'uso della validazione lato client o lato server - avrai bisogno di entrambi. Hai bisogno della validazione lato client per fornire feedback agli utenti sul loro input e della validazione lato server per assicurarti che i messaggi siano in un formato che il server possa gestire in modo sicuro. Se vuoi iniziare a saperne di più sulla validazione, un buon punto di partenza è [Validazione dei form lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation).
+In breve, non bisogna scegliere tra validazione lato client e lato server: servono entrambe. È necessaria la validazione lato client per fornire agli utenti feedback sui dati inseriti e la validazione lato server per assicurarsi che i messaggi abbiano un formato che il server possa gestire in sicurezza. Per iniziare a saperne di più sulla validazione, un buon punto di partenza è [Validazione dei moduli lato client](/it/docs/Learn_web_development/Extensions/Forms/Form_validation).
 
 ## Riepilogo
 
-Questo è tutto per ora. C'è molto altro da sapere sui form, ma per ora, ti abbiamo dato abbastanza conoscenza per andare avanti nei tuoi studi.
+Per ora è tutto. C'è ancora molto da sapere sui moduli, ma a questo punto è stata fornita una comprensione sufficiente per proseguire negli studi.
 
-Nel prossimo capitolo, esamineremo come eseguire il debug dei problemi nel tuo codice HTML.
+Successivamente verranno proposti alcuni test che consentono di verificare quanto siano state comprese e memorizzate le informazioni fornite sui moduli HTML.
 
 ## Vedi anche
 
 - [Moduli web — Lavorare con i dati degli utenti](/it/docs/Learn_web_development/Extensions/Forms)
 
-{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Planet_data_table", "Learn_web_development/Core/Structuring_content/Debugging_HTML", "Learn_web_development/Core/Structuring_content")}}
+{{PreviousMenuNext("Learn_web_development/Core/Structuring_content/Planet_data_table", "Learn_web_development/Core/Structuring_content/Test_your_skills/Forms_and_buttons", "Learn_web_development/Core/Structuring_content")}}

@@ -1,29 +1,29 @@
 ---
-title: "Guida Django Parte 4: Sito amministrativo di Django"
-short-title: "4: Sito amministrativo di Django"
+title: "Tutorial Django - Parte 4: sito di amministrazione Django"
+short-title: "4: sito di amministrazione Django"
 slug: Learn_web_development/Extensions/Server-side/Django/Admin_site
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 815f1a18f44059500b337719295c6eda14b6228e
 ---
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/Models", "Learn_web_development/Extensions/Server-side/Django/Home_page", "Learn_web_development/Extensions/Server-side/Django")}}
 
-Ora che abbiamo creato i modelli per il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Django/Tutorial_local_library_website), useremo il sito amministrativo di Django per aggiungere alcuni dati di libri "reali". Prima ti mostreremo come registrare i modelli con il sito amministrativo, poi ti mostreremo come effettuare il login e creare alcuni dati. Alla fine dell'articolo mostreremo alcuni dei modi in cui puoi ulteriormente migliorare la presentazione del sito amministrativo.
+Ora che sono stati creati i modelli per il sito web [LocalLibrary](/it/docs/Learn_web_development/Extensions/Server-side/Django/Tutorial_local_library_website), verrà utilizzato il sito di amministrazione Django per aggiungere alcuni dati di libri "reali". Per prima cosa verrà illustrato come registrare i modelli nel sito di amministrazione, quindi come effettuare l'accesso e creare alcuni dati. Alla fine dell'articolo verranno mostrati alcuni modi per migliorare ulteriormente la presentazione del sito di amministrazione.
 
 <table>
   <tbody>
     <tr>
       <th scope="row">Prerequisiti:</th>
       <td>
-        Completa prima: <a href="/it/docs/Learn_web_development/Extensions/Server-side/Django/Models"
-          >Guida Django Parte 3: Uso dei modelli</a
+        Completare prima: <a href="/it/docs/Learn_web_development/Extensions/Server-side/Django/Models"
+          >Tutorial Django - Parte 3: utilizzo dei modelli</a
         >.
       </td>
     </tr>
     <tr>
       <th scope="row">Obiettivo:</th>
       <td>
-        Comprendere i benefici e le limitazioni del sito amministrativo di Django e utilizzarlo per creare alcuni record per i nostri modelli.
+        Comprendere i vantaggi e i limiti del sito di amministrazione Django e utilizzarlo per creare alcuni record per i modelli.
       </td>
     </tr>
   </tbody>
@@ -31,15 +31,15 @@ Ora che abbiamo creato i modelli per il sito web [LocalLibrary](/it/docs/Learn_w
 
 ## Panoramica
 
-L'_applicazione_ amministrativa di Django può utilizzare i tuoi modelli per costruire automaticamente un'area del sito che puoi usare per creare, visualizzare, aggiornare ed eliminare record. Questo può farti risparmiare molto tempo durante lo sviluppo, rendendo molto facile testare i tuoi modelli e capire se hai i dati _giusti_. L'applicazione amministrativa può anche essere utile per gestire i dati in produzione, a seconda del tipo di sito web. Il progetto Django la raccomanda solo per la gestione interna dei dati (ovvero solo per l'uso da parte di amministratori, o persone interne alla tua organizzazione), poiché l'approccio centrato sui modelli non è necessariamente la miglior interfaccia possibile per tutti gli utenti ed espone molti dettagli inutili sui modelli.
+L'_applicazione_ di amministrazione Django può usare i modelli per costruire automaticamente un'area del sito utilizzabile per creare, visualizzare, aggiornare ed eliminare record. Questo può far risparmiare molto tempo durante lo sviluppo, rendendo molto semplice testare i modelli e verificare se i dati sono quelli _corretti_. L'applicazione di amministrazione può essere utile anche per gestire i dati in produzione, a seconda del tipo di sito web. Il progetto Django la raccomanda solo per la gestione interna dei dati (ovvero, solo per l'uso da parte degli amministratori o delle persone interne all'organizzazione), poiché l'approccio incentrato sul modello non è necessariamente la migliore interfaccia possibile per tutti gli utenti ed espone molti dettagli non necessari sui modelli.
 
-Tutta la configurazione richiesta per includere l'applicazione amministrativa nel tuo sito è stata fatta automaticamente quando hai [creato il progetto scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Django/skeleton_website) (per informazioni sulle reali dipendenze necessarie, vedi i [documenti di Django qui](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/)). Di conseguenza, tutto quello che **devi** fare per aggiungere i tuoi modelli all'applicazione amministrativa è _registrarli_. Alla fine di questo articolo forniremo una breve dimostrazione di come potresti ulteriormente configurare l'area amministrativa per visualizzare meglio i nostri dati del modello.
+Tutta la configurazione necessaria per includere l'applicazione di amministrazione nel sito web è stata eseguita automaticamente durante la [creazione del progetto scheletro](/it/docs/Learn_web_development/Extensions/Server-side/Django/skeleton_website) (per informazioni sulle dipendenze effettivamente necessarie, vedere la [documentazione Django qui](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/)). Di conseguenza, per aggiungere i modelli all'applicazione di amministrazione è **necessario** soltanto _registrarli_. Alla fine di questo articolo verrà fornita una breve dimostrazione di come configurare ulteriormente l'area di amministrazione per visualizzare meglio i dati dei modelli.
 
-Dopo aver registrato i modelli ti mostreremo come creare un nuovo "superuser", effettuare il login al sito e creare alcuni libri, autori, istanze di libri e generi. Questi saranno utili per testare le visualizzazioni e i template che inizieremo a creare nel prossimo tutorial.
+Dopo aver registrato i modelli verrà mostrato come creare un nuovo "superuser", effettuare l'accesso al sito e creare alcuni libri, autori, istanze di libri e generi. Questi saranno utili per testare le viste e i template che verranno creati nel prossimo tutorial.
 
-## Registrare i modelli
+## Registrazione dei modelli
 
-Per prima cosa, apri **admin.py** nell'applicazione catalogo (**/django-locallibrary-tutorial/catalog/admin.py**). Al momento appare così — nota che importa già `django.contrib.admin`:
+Per prima cosa, aprire **admin.py** nell'applicazione catalog (**/django-locallibrary-tutorial/catalog/admin.py**). Attualmente ha il seguente aspetto: notare che importa già `django.contrib.admin`:
 
 ```python
 from django.contrib import admin
@@ -47,7 +47,7 @@ from django.contrib import admin
 # Register your models here.
 ```
 
-Registrare i modelli copiando il seguente testo alla fine del file. Questo codice importa i modelli e poi chiama `admin.site.register` per registrare ciascuno di essi.
+Registrare i modelli copiando il testo seguente in fondo al file. Questo codice importa i modelli e quindi chiama `admin.site.register` per registrare ciascuno di essi.
 
 ```python
 from .models import Author, Genre, Book, BookInstance, Language
@@ -60,102 +60,100 @@ admin.site.register(Language)
 ```
 
 > [!NOTE]
-> Le righe sopra assumono che tu abbia accettato la sfida di creare un modello per rappresentare la lingua naturale di un libro ([vedi l'articolo del tutorial sui modelli](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models))!
+> Le righe precedenti presuppongono che sia stata accettata la sfida di creare un modello per rappresentare il linguaggio naturale di un libro ([vedere l'articolo del tutorial sui modelli](/it/docs/Learn_web_development/Extensions/Server-side/Django/Models))!
 
-Questo è il modo più semplice per registrare un modello o modelli con il sito. Il sito amministrativo è altamente personalizzabile, e parleremo di altri modi di registrare i tuoi modelli più avanti.
+Questo è il modo più semplice per registrare un modello, o dei modelli, nel sito. Il sito di amministrazione è altamente personalizzabile e le altre modalità di registrazione dei modelli saranno illustrate più avanti.
 
-## Creare un superuser
+## Creazione di un superuser
 
-Per effettuare il login al sito amministrativo, abbiamo bisogno di un account utente con lo stato _Staff_ abilitato. Per visualizzare e creare record abbiamo anche bisogno che questo utente abbia i permessi per gestire tutti i nostri oggetti. Puoi creare un account "superuser" che ha accesso completo al sito e tutti i permessi necessari usando **manage.py**.
+Per effettuare l'accesso al sito di amministrazione, è necessario un account utente con lo stato _Staff_ abilitato. Per visualizzare e creare record, è inoltre necessario che questo utente disponga delle autorizzazioni per gestire tutti gli oggetti. È possibile creare un account "superuser" che dispone di accesso completo al sito e di tutte le autorizzazioni necessarie usando **manage.py**.
 
-Esegui il seguente comando, nella stessa directory di **manage.py**, per creare il superuser. Ti verrà chiesto di inserire un nome utente, un indirizzo email e una password _forte_.
+Eseguire il comando seguente, nella stessa directory di **manage.py**, per creare il superuser. Verrà richiesto di inserire un nome utente, un indirizzo email e una password _robusta_.
 
 ```bash
 python3 manage.py createsuperuser
 ```
 
-Una volta completato questo comando, verrà aggiunto un nuovo superuser al database. Ora riavvia il server di sviluppo in modo che possiamo testare il login:
+Al termine di questo comando, un nuovo superuser sarà stato aggiunto al database. Riavviare ora il server di sviluppo per testare l'accesso:
 
 ```bash
 python3 manage.py runserver
 ```
 
-## Effettuare il login e usare il sito
+## Accesso e utilizzo del sito
 
-Per accedere al sito, apri l'URL _/admin_ (ad esempio, `http://127.0.0.1:8000/admin`) e inserisci le tue credenziali di userid e password del nuovo superuser (verrai reindirizzato alla pagina di _login_ e poi di nuovo all'URL _/admin_ dopo aver inserito i tuoi dettagli).
+Per effettuare l'accesso al sito, aprire l'URL _/admin_ (ad esempio, `http://127.0.0.1:8000/admin`) e inserire le nuove credenziali userid e password del superuser (si verrà reindirizzati alla pagina di _login_, quindi nuovamente all'URL _/admin_ dopo aver inserito i propri dati).
 
-Questa parte del sito visualizza tutti i nostri modelli, raggruppati per applicazione installata. Puoi cliccare su un nome di modello per andare a una schermata che elenca tutti i suoi record associati, e puoi cliccare ulteriormente su quei record per modificarli. Puoi anche cliccare direttamente sul link **Add** accanto a ciascun modello per iniziare a creare un record di quel tipo.
+Questa parte del sito mostra tutti i modelli, raggruppati per applicazione installata. È possibile fare clic sul nome di un modello per accedere a una schermata che elenca tutti i record associati e fare ulteriormente clic su tali record per modificarli. È anche possibile fare direttamente clic sul collegamento **Add** accanto a ciascun modello per iniziare a creare un record di quel tipo.
 
-![Admin Site - Home page](admin_home.png)
+![Sito di amministrazione - Pagina principale](admin_home.png)
 
-Clicca sul link **Add** a destra di _Books_ per creare un nuovo libro (questo visualizzerà una finestra di dialogo molto simile a quella sottostante). Nota come i titoli di ciascun campo, il tipo di widget utilizzato e il `help_text` (se presente) corrispondono ai valori che hai specificato nel modello.
+Fare clic sul collegamento **Add** a destra di _Books_ per creare un nuovo libro (verrà visualizzata una finestra di dialogo simile a quella seguente). Notare come i titoli di ciascun campo, il tipo di widget usato e il `help_text` (se presente) corrispondano ai valori specificati nel modello.
 
-Inserisci i valori per i campi. Puoi creare nuovi autori o generi premendo il pulsante **+** accanto ai rispettivi campi (o selezionare valori esistenti dalle liste se li hai già creati). Quando hai finito puoi premere **SAVE**, **Save and add another**, o **Save and continue editing** per salvare il record.
+Inserire i valori per i campi. È possibile creare nuovi autori o generi premendo il pulsante **+** accanto ai rispettivi campi (oppure selezionare valori esistenti dagli elenchi, se sono già stati creati). Al termine, è possibile premere **SAVE**, **Save and add another** o **Save and continue editing** per salvare il record.
 
-![Admin Site - Book Add](admin_book_add.png)
-
-> [!NOTE]
-> A questo punto ti invitiamo a dedicare un po' di tempo ad aggiungere alcuni libri, autori, lingue e generi (ad esempio, Fantasy) alla tua applicazione. Assicurati che ogni autore e genere includa un paio di libri diversi (questo renderà più interessanti le tue viste elenco e dettaglio quando le implementeremo successivamente nella serie di articoli).
-
-Quando hai finito di aggiungere libri, clicca sul link **Home** nel segnalibro superiore per tornare alla pagina principale dell'amministratore. Poi clicca sul link **Books** per visualizzare l'elenco attuale dei libri (o su uno degli altri link per vedere altri elenchi di modelli). Ora che hai aggiunto alcuni libri, l'elenco potrebbe risultare simile allo screenshot qui sotto. Viene visualizzato il titolo di ciascun libro; questo è il valore restituito nel metodo `__str__()` del modello Book che abbiamo specificato nel precedente articolo.
-
-![Admin Site - List of book objects](admin_book_list.png)
-
-Da questo elenco puoi eliminare i libri selezionando la casella di controllo accanto al libro che non desideri, selezionando l'azione _delete..._ dal menu a discesa _Action_ e quindi premendo il pulsante **Go**. Puoi anche aggiungere nuovi libri premendo il pulsante **ADD BOOK**.
-
-Puoi modificare un libro selezionando il suo nome nel link. La pagina di modifica di un libro, mostrata di seguito, è quasi identica alla pagina "Add". Le principali differenze sono il titolo della pagina (_Change book_) e l'aggiunta dei pulsanti **Delete**, **HISTORY** e **VIEW ON SITE** (quest'ultimo pulsante appare perché abbiamo definito il metodo `get_absolute_url()` nel nostro modello).
+![Sito di amministrazione - Aggiunta libro](admin_book_add.png)
 
 > [!NOTE]
-> Cliccando sul pulsante **VIEW ON SITE** si solleva un'eccezione `NoReverseMatch` perché il metodo `get_absolute_url()` tenta di `reverse()` un mapping URL denominato ('book-detail') che non è ancora stato definito.
-> Definiremo un mapping URL e una vista associata in [Guida Django Parte 6: Viste elenco e dettaglio generiche](/it/docs/Learn_web_development/Extensions/Server-side/Django/Generic_views).
+> A questo punto, dedicare del tempo all'aggiunta di alcuni libri, autori, lingue e generi (ad esempio, Fantasy) all'applicazione. Assicurarsi che ciascun autore e genere includa un paio di libri diversi: questo renderà più interessanti le viste elenco e dettaglio quando verranno implementate più avanti nella serie di articoli.
 
-![Admin Site - Book Edit](admin_book_modify.png)
+Dopo aver finito di aggiungere libri, fare clic sul collegamento **Home** nel segnalibro superiore per tornare alla pagina principale di amministrazione. Quindi fare clic sul collegamento **Books** per visualizzare l'elenco corrente dei libri, oppure su uno degli altri collegamenti per vedere gli altri elenchi di modelli. Ora che sono stati aggiunti alcuni libri, l'elenco potrebbe essere simile allo screenshot seguente. Viene visualizzato il titolo di ogni libro; questo è il valore restituito nel metodo `__str__()` del modello Book specificato nell'articolo precedente.
 
-Ora torna alla pagina **Home** (usando il link _Home_ nel breadcrumb) e poi visualizza l'elenco **Author** e **Genre** — dovresti già averne creati abbastanza quando hai aggiunto i nuovi libri, ma sentiti libero di aggiungerne altri.
+![Sito di amministrazione - Elenco di oggetti libro](admin_book_list.png)
 
-Quello che non avrai è un qualsiasi elemento _Book Instances_, perché questi non vengono creati dai Books (anche se puoi creare un `Book` da un `BookInstance` — questa è la natura del campo `ForeignKey`). Torna alla pagina _Home_ e premi il pulsante **Add** associato per visualizzare la schermata _Add book instance_ di seguito. Nota l'Id univoco globale grande, che può essere usato per identificare separatamente una singola copia di un libro in biblioteca.
+Da questo elenco è possibile eliminare libri selezionando la casella di controllo accanto al libro indesiderato, selezionando l'azione _delete…_ dall'elenco a discesa _Action_ e quindi premendo il pulsante **Go**. È inoltre possibile aggiungere nuovi libri premendo il pulsante **ADD BOOK**.
 
-![Admin Site - BookInstance Add](admin_bookinstance_add.png)
+È possibile modificare un libro selezionandone il nome nel collegamento. La pagina di modifica di un libro, mostrata di seguito, è quasi identica alla pagina "Add". Le principali differenze sono il titolo della pagina (_Change book_) e l'aggiunta dei pulsanti **Delete**, **HISTORY** e **VIEW ON SITE** (quest'ultimo pulsante viene visualizzato perché è stato definito il metodo `get_absolute_url()` nel modello).
 
-Crea un certo numero di questi record per ciascuno dei tuoi libri. Imposta lo stato come _Available_ per almeno alcuni record e _On loan_ per altri. Se lo stato **non** è _Available_, allora imposta anche una data _Due back_ futura.
+> [!NOTE]
+> Facendo clic sul pulsante **VIEW ON SITE** viene generata un'eccezione `NoReverseMatch`, poiché il metodo `get_absolute_url()` tenta di eseguire `reverse()` di una mappatura URL con nome ('book-detail') che non è stata ancora definita.
+> Una mappatura URL e la vista associata verranno definite in [Tutorial Django - Parte 6: viste generiche elenco e dettaglio](/it/docs/Learn_web_development/Extensions/Server-side/Django/Generic_views).
 
-Ecco fatto! Hai ora imparato come configurare e utilizzare il sito di amministrazione. Hai anche creato record per `Book`, `BookInstance`, `Genre`, `Language` e `Author` che saremo in grado di utilizzare una volta che avremo creato le nostre viste e template.
+![Sito di amministrazione - Modifica libro](admin_book_modify.png)
+
+Ora tornare alla pagina **Home** usando il collegamento _Home_ nel percorso di navigazione e quindi visualizzare gli elenchi **Author** e **Genre**. Dovrebbero già essercene parecchi, creati durante l'aggiunta dei nuovi libri, ma è possibile aggiungerne altri.
+
+Non saranno invece presenti _Book Instances_, poiché queste non vengono create a partire dai Books (anche se è possibile creare un `Book` da un `BookInstance`: questa è la natura del campo `ForeignKey`). Tornare alla pagina _Home_ e premere il pulsante **Add** associato per visualizzare la schermata _Add book instance_ seguente. Notare il grande Id univoco globale, che può essere usato per identificare separatamente una singola copia di un libro nella biblioteca.
+
+![Sito di amministrazione - Aggiunta BookInstance](admin_bookinstance_add.png)
+
+Creare alcuni di questi record per ciascuno dei libri. Impostare lo stato su _Available_ per almeno alcuni record e su _On loan_ per altri. Se lo stato **non** è _Available_, impostare anche una data futura per _Due back_.
+
+È tutto! Ora è stato appreso come configurare e usare il sito di amministrazione. Sono stati inoltre creati record per `Book`, `BookInstance`, `Genre`, `Language` e `Author`, che potranno essere usati una volta create le viste e i template personalizzati.
 
 ## Configurazione avanzata
 
-Django fa un buon lavoro nel creare un sito amministrativo di base usando le informazioni dai modelli registrati:
+Django svolge un ottimo lavoro nella creazione di un sito di amministrazione di base usando le informazioni dei modelli registrati:
 
-- Ogni modello ha un elenco di record individuali, identificati dalla stringa creata con il metodo `__str__()` del modello, e collegati alle viste/form di dettaglio per la modifica. Per impostazione predefinita, questa vista ha un menu azioni in cima che puoi utilizzare per eseguire operazioni di eliminazione in blocco sui record.
-- Le form di record di dettaglio del modello per la modifica e l'aggiunta di record contengono tutti i campi nel modello, disposti verticalmente nell'ordine di dichiarazione.
+- Ogni modello dispone di un elenco di singoli record, identificati dalla stringa creata con il metodo `__str__()` del modello e collegati a viste/moduli di dettaglio per la modifica. Per impostazione predefinita, questa vista contiene nella parte superiore un menu delle azioni utilizzabile per eseguire operazioni di eliminazione collettiva sui record.
+- I moduli dei record di dettaglio del modello per modificare e aggiungere record contengono tutti i campi del modello, disposti verticalmente nell'ordine della loro dichiarazione.
 
-Puoi ulteriormente personalizzare l'interfaccia per renderla ancora più facile da usare. Alcune delle cose che puoi fare sono:
+È possibile personalizzare ulteriormente l'interfaccia per renderla ancora più semplice da usare. Alcune delle operazioni possibili sono:
 
 - Viste elenco:
+  - Aggiungere ulteriori campi/informazioni visualizzati per ogni record.
+  - Aggiungere filtri per selezionare quali record vengono elencati, in base alla data o a un altro valore di selezione, ad esempio lo stato del prestito di un libro.
+  - Aggiungere ulteriori opzioni al menu delle azioni nelle viste elenco e scegliere dove visualizzare questo menu nel modulo.
 
-  - Aggiungi campi/informazioni aggiuntivi visualizzati per ciascun record.
-  - Aggiungi filtri per selezionare quali record sono elencati, basati su data o qualche altro valore di selezione (ad esempio, stato del prestito del libro).
-  - Aggiungi opzioni aggiuntive al menu delle azioni nelle viste elenco e scegli dove visualizzare questo menu nel form.
+- Viste dettaglio:
+  - Scegliere quali campi visualizzare, o escludere, insieme al loro ordine, raggruppamento, possibilità di modifica, widget usato, orientamento e così via.
+  - Aggiungere campi correlati a un record per consentire la modifica inline, ad esempio aggiungere la possibilità di aggiungere e modificare record di libri durante la creazione del record del relativo autore.
 
-- Viste dettaglio
+In questa sezione verranno esaminate alcune modifiche che miglioreranno l'interfaccia per _LocalLibrary_, incluso l'inserimento di ulteriori informazioni negli elenchi dei modelli `Book` e `Author` e il miglioramento del layout delle rispettive viste di modifica. La presentazione dei modelli `Language` e `Genre` non verrà modificata perché hanno un solo campo ciascuno, quindi non vi è alcun reale vantaggio nel farlo.
 
-  - Scegli quali campi visualizzare (o escludere), insieme al loro ordine, raggruppamento, se sono modificabili, il widget utilizzato, l'orientamento ecc.
-  - Aggiungi campi correlati a un record per consentire la modifica inline (ad esempio, aggiungi la possibilità di aggiungere e modificare i record dei libri mentre stai creando il loro record dell'autore).
-
-In questa sezione esamineremo alcune modifiche che miglioreranno l'interfaccia per la nostra _LocalLibrary_, includendo l'aggiunta di più informazioni agli elenchi di modelli `Book` e `Author` e il miglioramento del layout delle loro viste di modifica. Non cambieremo la presentazione del modello `Language` e `Genre` perché hanno solo un campo ciascuno, quindi non c'è un reale vantaggio nel farlo!
-
-Puoi trovare un riferimento completo di tutte le opzioni di personalizzazione del sito amministrativo ne [Il sito amministrativo di Django](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/) (Documenti di Django).
+È possibile trovare un riferimento completo di tutte le opzioni di personalizzazione del sito di amministrazione in [Il sito di amministrazione Django](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/) (Documentazione Django).
 
 ### Registrare una classe ModelAdmin
 
-Per cambiare come un modello viene visualizzato nell'interfaccia amministrativa, devi definire una classe [ModelAdmin](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#modeladmin-objects) (che descrive il layout) e registrarla con il modello.
+Per modificare il modo in cui un modello viene visualizzato nell'interfaccia di amministrazione, definire una classe [ModelAdmin](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#modeladmin-objects), che descrive il layout, e registrarla con il modello.
 
-Iniziamo con il modello `Author`. Apri **admin.py** nell'applicazione catalogo (**/django-locallibrary-tutorial/catalog/admin.py**). Commenta la tua registrazione originale (prefissala con un #) per il modello `Author`:
+Iniziare con il modello `Author`. Aprire **admin.py** nell'applicazione catalog (**/django-locallibrary-tutorial/catalog/admin.py**). Commentare la registrazione originale, anteponendo un #, per il modello `Author`:
 
 ```python
 # admin.site.register(Author)
 ```
 
-Ora aggiungi un nuovo `AuthorAdmin` e la registrazione come mostrato di seguito.
+Ora aggiungere un nuovo `AuthorAdmin` e la registrazione, come mostrato di seguito.
 
 ```python
 # Define the admin class
@@ -166,14 +164,14 @@ class AuthorAdmin(admin.ModelAdmin):
 admin.site.register(Author, AuthorAdmin)
 ```
 
-Ora aggiungeremo classi `ModelAdmin` per `Book` e `BookInstance`. Dobbiamo di nuovo commentare le registrazioni originali:
+Ora verranno aggiunte classi `ModelAdmin` per `Book` e `BookInstance`. Occorre nuovamente commentare le registrazioni originali:
 
 ```python
 # admin.site.register(Book)
 # admin.site.register(BookInstance)
 ```
 
-Ora per creare e registrare i nuovi modelli; per scopi dimostrativi, useremo invece il decorator `@register` per registrare i modelli (questo fa esattamente la stessa cosa della sintassi `admin.site.register()`):
+Ora creare e registrare i nuovi modelli. Ai fini di questa dimostrazione, verrà invece usato il decorator `@register` per registrare i modelli; questo esegue esattamente la stessa operazione della sintassi `admin.site.register()`:
 
 ```python
 # Register the Admin classes for Book using the decorator
@@ -187,36 +185,36 @@ class BookInstanceAdmin(admin.ModelAdmin):
     pass
 ```
 
-Attualmente tutte le nostre classi amministrative sono vuote (vedi `pass`) quindi il comportamento amministrativo rimarrà invariato! Possiamo ora estendere queste classi per definire comportamenti amministrativi specifici del nostro modello.
+Attualmente tutte le classi di amministrazione sono vuote, come indicato da `pass`, quindi il comportamento dell'amministrazione non verrà modificato. È ora possibile estenderle per definire il comportamento di amministrazione specifico per i modelli.
 
 ### Configurare le viste elenco
 
-Attualmente la _LocalLibrary_ elenca tutti gli autori usando il nome dell'oggetto generato dal metodo `__str__()` del modello. Questo va bene quando ci sono pochi autori, ma una volta che ce ne sono molti potresti finire con duplicati. Per differenziarli, o semplicemente perché vuoi mostrare informazioni più interessanti su ogni autore, puoi usare [list_display](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display) per aggiungere campi aggiuntivi alla vista.
+_LocalLibrary_ al momento elenca tutti gli autori usando il nome dell'oggetto generato dal metodo `__str__()` del modello. Questo va bene quando sono presenti solo pochi autori, ma con molti autori potrebbero esserci duplicati. Per distinguerli, o semplicemente perché si desidera mostrare informazioni più interessanti su ciascun autore, è possibile usare [list_display](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.list_display) per aggiungere ulteriori campi alla vista.
 
-Sostituisci la tua classe `AuthorAdmin` con il codice qui sotto. I nomi dei campi da visualizzare nell'elenco sono dichiarati in una _tupla_ nell'ordine richiesto, come mostrato (questi sono gli stessi nomi specificati nel tuo modello originale).
+Sostituire la classe `AuthorAdmin` con il codice seguente. I nomi dei campi da visualizzare nell'elenco sono dichiarati in una _tuple_ nell'ordine richiesto, come mostrato; sono gli stessi nomi specificati nel modello originale.
 
 ```python
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')
 ```
 
-Ora naviga verso l'elenco degli autori nel tuo sito web. I campi sopra dovrebbero essere ora visualizzati, in questo modo:
+Ora passare all'elenco degli autori nel sito web. I campi precedenti dovrebbero essere ora visualizzati come segue:
 
-![Admin Site - Improved Author List](admin_improved_author_list.png)
+![Sito di amministrazione - Elenco autori migliorato](admin_improved_author_list.png)
 
-Per il nostro modello `Book` visualizzeremo inoltre `author` e `genre`. L'`author` è un campo `ForeignKey` (relazione uno-a-molti), e quindi sarà rappresentato dal valore `__str__()` per il record associato. Sostituisci la classe `BookAdmin` con la versione sotto.
+Per il modello `Book` verranno inoltre visualizzati `author` e `genre`. `author` è una relazione di campo `ForeignKey` (uno-a-molti), quindi sarà rappresentato dal valore `__str__()` del record associato. Sostituire la classe `BookAdmin` con la versione seguente.
 
 ```python
 class BookAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'display_genre')
 ```
 
-Sfortunatamente non possiamo specificare direttamente il campo `genre` in `list_display` perché è un `ManyToManyField` (Django lo impedisce perché ci sarebbe un grande "costo" di accesso al database nel farlo). Invece definiremo una funzione `display_genre` per ottenere l'informazione come stringa (questa è la funzione che abbiamo chiamato sopra; la definiremo qui sotto).
+Purtroppo non è possibile specificare direttamente il campo `genre` in `list_display`, poiché è un `ManyToManyField` (Django lo impedisce perché comporterebbe un elevato "costo" di accesso al database). Verrà invece definita una funzione `display_genre` per ottenere le informazioni come stringa; è la funzione chiamata in precedenza e verrà definita qui sotto.
 
 > [!NOTE]
-> Ottenere il `genre` potrebbe non essere una buona idea qui, a causa del "costo" dell'operazione sul database. Ti stiamo mostrando come farlo perché chiamare funzioni nei tuoi modelli può essere molto utile per altri motivi — ad esempio per aggiungere un link _Delete_ accanto a ogni elemento nell'elenco.
+> Ottenere `genre` potrebbe non essere una buona idea in questo caso, a causa del "costo" dell'operazione sul database. Viene mostrato questo approccio perché chiamare funzioni nei modelli può essere molto utile per altri motivi, ad esempio per aggiungere un collegamento _Delete_ accanto a ogni elemento dell'elenco.
 
-Aggiungi il seguente codice nel tuo modello `Book` (**models.py**). Questo crea una stringa dai primi tre valori del campo `genre` (se esistono) e crea una `short_description` che può essere usata nel sito amministrativo per questo metodo.
+Aggiungere il codice seguente al modello `Book` (**models.py**). Questo crea una stringa dai primi tre valori del campo `genre`, se esistono, e crea una `short_description` che può essere usata nel sito di amministrazione per questo metodo.
 
 ```python
 def display_genre(self):
@@ -226,40 +224,40 @@ def display_genre(self):
 display_genre.short_description = 'Genre'
 ```
 
-Dopo aver salvato il modello e aggiornato l'admin, apri il tuo sito web e vai alla pagina dell'elenco _Books_; dovresti vedere un elenco di libri come quello qui sotto:
+Dopo aver salvato il modello e l'amministrazione aggiornata, aprire il sito web e andare alla pagina dell'elenco _Books_; dovrebbe essere visualizzato un elenco di libri simile a quello seguente:
 
-![Admin Site - Improved Book List](admin_improved_book_list.png)
+![Sito di amministrazione - Elenco libri migliorato](admin_improved_book_list.png)
 
-Il modello `Genre` (e il modello `Language`, se ne hai definito uno) entrambi hanno un singolo campo, quindi non ha senso creare un modello aggiuntivo per visualizzare campi aggiuntivi.
+Il modello `Genre`, e il modello `Language` se ne è stato definito uno, hanno entrambi un solo campo, quindi non ha senso creare un modello aggiuntivo per visualizzare ulteriori campi.
 
 > [!NOTE]
-> Vale la pena aggiornare l'elenco del modello `BookInstance` per mostrare almeno lo stato e la data di ritorno prevista. L'abbiamo aggiunto come una sfida alla fine di questo articolo!
+> Vale la pena aggiornare l'elenco del modello `BookInstance` affinché mostri almeno lo stato e la data di restituzione prevista. Questa attività è stata aggiunta come sfida alla fine dell'articolo.
 
-### Aggiungere filtri elenco
+### Aggiungere filtri agli elenchi
 
-Una volta che hai molti elementi in un elenco, può essere utile poter filtrare quali elementi sono visualizzati.
+Quando un elenco contiene molti elementi, può essere utile poter filtrare gli elementi visualizzati.
 Questo viene fatto elencando i campi nell'attributo `list_filter`.
-Sostituisci la tua classe `BookInstanceAdmin` attuale con il frammento di codice sotto.
+Sostituire la classe `BookInstanceAdmin` corrente con il frammento di codice seguente.
 
 ```python
 class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back')
 ```
 
-La vista elenco ora includerà una casella di filtro a destra. Nota come puoi scegliere date e stati per filtrare i valori:
+La vista elenco includerà ora una casella di filtro a destra. Notare come sia possibile scegliere date e stato per filtrare i valori:
 
-![Admin Site - BookInstance List Filters](admin_improved_bookinstance_list_filters.png)
+![Sito di amministrazione - Filtri elenco BookInstance](admin_improved_bookinstance_list_filters.png)
 
-### Organizzare il layout delle viste dettaglio
+### Organizzare il layout della vista dettaglio
 
-Per impostazione predefinita, le viste di dettaglio dispongono tutti i campi verticalmente, nel loro ordine di dichiarazione nel modello. Puoi cambiare l'ordine di dichiarazione, quali campi sono visualizzati (o esclusi), se si utilizzano sezioni per organizzare le informazioni, se i campi sono visualizzati orizzontalmente o verticalmente e persino quali widget di modifica sono usati nelle forme amministrative.
+Per impostazione predefinita, le viste dettaglio dispongono tutti i campi verticalmente, nell'ordine della loro dichiarazione nel modello. È possibile modificare l'ordine di dichiarazione, i campi visualizzati o esclusi, l'uso di sezioni per organizzare le informazioni, la visualizzazione orizzontale o verticale dei campi e persino i widget di modifica usati nei moduli di amministrazione.
 
 > [!NOTE]
-> I modelli _LocalLibrary_ sono relativamente semplici quindi non c'è un grande bisogno per noi di cambiare il layout; faremo comunque alcune modifiche, solo per mostrarti come.
+> I modelli di _LocalLibrary_ sono relativamente semplici, quindi non vi è una grande necessità di modificare il layout; verranno comunque apportate alcune modifiche, solo per mostrare come fare.
 
-#### Controllare quali campi vengono visualizzati e disposti
+#### Controllare quali campi vengono visualizzati e il loro layout
 
-Aggiorna la tua classe `AuthorAdmin` per aggiungere la riga `fields`, come mostrato qui sotto:
+Aggiornare la classe `AuthorAdmin` aggiungendo la riga `fields`, come mostrato di seguito:
 
 ```python
 class AuthorAdmin(admin.ModelAdmin):
@@ -268,20 +266,20 @@ class AuthorAdmin(admin.ModelAdmin):
     fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
 ```
 
-L'attributo `fields` elenca solo quei campi che devono essere visualizzati sul modulo, in ordine. I campi sono visualizzati verticalmente per impostazione predefinita, ma verranno visualizzati orizzontalmente se li raggruppi ulteriormente in una tupla (come mostrato nei campi "date" sopra).
+L'attributo `fields` elenca soltanto i campi da visualizzare nel modulo, nell'ordine indicato. Per impostazione predefinita i campi vengono visualizzati verticalmente, ma saranno visualizzati orizzontalmente se vengono ulteriormente raggruppati in una tuple, come mostrato per i campi "date" precedenti.
 
-Nel tuo sito web, vai alla vista dettaglio dell'autore — dovrebbe ora apparire come mostrato qui sotto:
+Nel sito web, passare alla vista dettaglio dell'autore: dovrebbe ora apparire come mostrato di seguito:
 
-![Admin Site - Improved Author Detail](admin_improved_author_detail.png)
+![Sito di amministrazione - Dettaglio autore migliorato](admin_improved_author_detail.png)
 
 > [!NOTE]
-> Puoi anche usare l'attributo `exclude` per dichiarare un elenco di attributi da escludere dal modulo (tutti gli altri attributi nel modello verranno visualizzati).
+> È possibile usare anche l'attributo `exclude` per dichiarare un elenco di attributi da escludere dal modulo; verranno visualizzati tutti gli altri attributi del modello.
 
-#### Inserire sezioni nella vista dettaglio
+#### Suddividere la vista dettaglio in sezioni
 
-Puoi aggiungere "sezioni" per raggruppare informazioni correlate al modello all'interno del modulo di dettaglio, usando l'attributo [fieldsets](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets).
+È possibile aggiungere "sezioni" per raggruppare informazioni correlate del modello nel modulo di dettaglio, usando l'attributo [fieldsets](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.fieldsets).
 
-Nel modello `BookInstance` abbiamo informazioni relative a cosa sia il libro (cioè, `name`, `imprint` e `id`) e quando sarà disponibile (`status`, `due_back`). Possiamo aggiungere queste informazioni alla nostra classe `BookInstanceAdmin` come mostrato di seguito, usando la proprietà `fieldsets`.
+Nel modello `BookInstance` sono presenti informazioni su quale sia il libro, ovvero `name`, `imprint` e `id`, e su quando sarà disponibile, ovvero `status` e `due_back`. È possibile aggiungerle alla classe `BookInstanceAdmin` come mostrato di seguito, usando la proprietà `fieldsets`.
 
 ```python
 @admin.register(BookInstance)
@@ -298,17 +296,17 @@ class BookInstanceAdmin(admin.ModelAdmin):
     )
 ```
 
-Ogni sezione ha il suo titolo (o `None` se non vuoi un titolo) e una tupla associata di campi in un dizionario — il formato è complicato da descrivere, ma abbastanza facile da capire se guardi al frammento di codice immediatamente sopra.
+Ogni sezione ha il proprio titolo, oppure `None` se non si desidera un titolo, e una tuple associata di campi in un dizionario. Il formato è complesso da descrivere, ma abbastanza facile da comprendere osservando il frammento di codice immediatamente precedente.
 
-Ora naviga verso la vista di un'istanza di libro nel tuo sito web; il form dovrebbe apparire come mostrato qui sotto:
+Ora passare a una vista di un'istanza di libro nel sito web; il modulo dovrebbe apparire come mostrato di seguito:
 
-![Admin Site - Improved BookInstance Detail with sections](admin_improved_bookinstance_detail_sections.png)
+![Sito di amministrazione - Dettaglio BookInstance migliorato con sezioni](admin_improved_bookinstance_detail_sections.png)
 
-### Modifica inline di record associati
+### Modifica inline dei record associati
 
-A volte può avere senso essere in grado di aggiungere record associati allo stesso tempo. Ad esempio, può avere senso avere sia le informazioni sui libri sia le informazioni sulle copie specifiche che hai nella stessa pagina di dettaglio.
+A volte può essere opportuno poter aggiungere record associati contemporaneamente. Ad esempio, può avere senso avere sia le informazioni sul libro sia le informazioni sulle copie specifiche disponibili nella stessa pagina di dettaglio.
 
-Puoi farlo dichiarando [inlines](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.inlines), di tipo [TabularInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.TabularInline) (layout orizzontale) o [StackedInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.StackedInline) (layout verticale, proprio come il layout del modello predefinito). Puoi aggiungere le informazioni `BookInstance` inline al nostro dettaglio `Book` specificando `inlines` nel tuo `BookAdmin`:
+Questo è possibile dichiarando [inlines](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.ModelAdmin.inlines), di tipo [TabularInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.TabularInline) per un layout orizzontale oppure [StackedInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.StackedInline) per un layout verticale, proprio come il layout predefinito del modello. È possibile aggiungere inline le informazioni `BookInstance` al dettaglio di `Book` specificando `inlines` in `BookAdmin`:
 
 ```python
 class BooksInstanceInline(admin.TabularInline):
@@ -321,29 +319,29 @@ class BookAdmin(admin.ModelAdmin):
     inlines = [BooksInstanceInline]
 ```
 
-Ora naviga verso una vista per un `Book` nel tuo sito web — in fondo dovresti ora vedere le istanze del libro relative a questo libro (immediatamente sotto i campi del genere del libro):
+Ora passare a una vista di un `Book` nel sito web: nella parte inferiore dovrebbero ora essere visibili le istanze del libro relative a questo libro, immediatamente sotto i campi del genere del libro.
 
-![Admin Site - Book with Inlines](admin_improved_book_detail_inlines.png)
+![Sito di amministrazione - Libro con elementi inline](admin_improved_book_detail_inlines.png)
 
-In questo caso tutto ciò che abbiamo fatto è dichiarare la nostra classe tabulare inline, che aggiunge semplicemente tutti i campi dal modello _inlined_. Puoi specificare ogni sorta di informazione aggiuntiva per il layout, inclusi i campi da visualizzare, il loro ordine, se sono di sola lettura o meno, ecc. (vedi [TabularInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.TabularInline) per ulteriori informazioni).
+In questo caso è stata soltanto dichiarata la classe inline tabulare, che aggiunge tutti i campi del modello _inline_. È possibile specificare molte altre informazioni per il layout, inclusi i campi da visualizzare, il loro ordine, se sono di sola lettura o meno e così via. Per ulteriori informazioni, vedere [TabularInline](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/#django.contrib.admin.TabularInline).
 
 > [!NOTE]
-> Ci sono alcuni limiti dolorosi in questa funzionalità! Nello screenshot sopra abbiamo tre istanze di libro esistenti, seguite da tre segnaposti per nuove istanze di libro (che sembrano molto simili!). Sarebbe meglio non avere istanze di libro in più per impostazione predefinita e aggiungerle solo con il link **Add another Book instance**, o essere in grado di elencare semplicemente le `BookInstance` come link non leggibili da qui. La prima opzione può essere fatta impostando l'attributo `extra` a `0` nel modello `BooksInstanceInline`, prova tu stesso.
+> Questa funzionalità presenta alcuni limiti problematici. Nello screenshot precedente sono presenti tre istanze di libro esistenti, seguite da tre segnaposto per nuove istanze di libro, che sembrano molto simili. Sarebbe preferibile non avere istanze di libro inutilizzate per impostazione predefinita e aggiungerle soltanto con il collegamento **Add another Book instance**, oppure poter semplicemente elencare i `BookInstance` come collegamenti non modificabili da qui. La prima opzione può essere ottenuta impostando l'attributo `extra` su `0` nel modello `BooksInstanceInline`; provare autonomamente.
 
-## Sfida te stesso
+## Mettiti alla prova
 
-Abbiamo imparato molto in questa sezione, quindi ora è il momento per te di provare alcune cose.
+In questa sezione sono stati appresi molti concetti, quindi è il momento di provare alcune attività.
 
-1. Per la vista elenco di `BookInstance`, aggiungi il codice per visualizzare il libro, lo stato, la data di ritorno prevista e l'id (anziché il testo `__str__()` predefinito).
-2. Aggiungi un elenco inline di elementi `Book` alla vista dettaglio `Author` utilizzando lo stesso approccio che abbiamo usato per `Book`/`BookInstance`.
+1. Per la vista elenco `BookInstance`, aggiungere codice per visualizzare il libro, lo stato, la data di restituzione prevista e l'id, anziché il testo `__str__()` predefinito.
+2. Aggiungere un elenco inline di elementi `Book` alla vista dettaglio `Author` usando lo stesso approccio usato per `Book`/`BookInstance`.
 
-## Sommario
+## Riepilogo
 
-Ecco fatto! Hai ora imparato come configurare il sito amministrativo nella sua forma più semplice e migliorata, come creare un superuser e come navigare nel sito amministrativo e visualizzare, eliminare e aggiornare i record. Lungo la strada hai creato un sacco di Books, BookInstances, Genres e Authors che saremo in grado di elencare e visualizzare una volta che creiamo la nostra vista e templates.
+È tutto! Ora è stato appreso come configurare il sito di amministrazione sia nella sua forma più semplice sia in quella migliorata, come creare un superuser e come navigare nel sito di amministrazione per visualizzare, eliminare e aggiornare record. Nel frattempo sono stati creati molti Books, BookInstances, Genres e Authors che potranno essere elencati e visualizzati una volta create le viste e i template personalizzati.
 
 ## Ulteriori letture
 
-- [Scrivere la tua prima app Django, parte 2: Introduzione al sito amministrativo di Django](https://docs.djangoproject.com/en/5.0/intro/tutorial02/#introducing-the-django-admin) (documenti di Django)
-- [Il sito amministrativo di Django](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/) (Documenti di Django)
+- [Scrivere la prima app Django, parte 2: introduzione all'amministrazione Django](https://docs.djangoproject.com/en/5.0/intro/tutorial02/#introducing-the-django-admin) (Documentazione Django)
+- [Il sito di amministrazione Django](https://docs.djangoproject.com/en/5.0/ref/contrib/admin/) (Documentazione Django)
 
 {{PreviousMenuNext("Learn_web_development/Extensions/Server-side/Django/Models", "Learn_web_development/Extensions/Server-side/Django/Home_page", "Learn_web_development/Extensions/Server-side/Django")}}

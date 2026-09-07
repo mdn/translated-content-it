@@ -3,23 +3,23 @@ title: Come aggiungere un'ombra al testo
 short-title: Aggiungere un'ombra al testo
 slug: Learn_web_development/Howto/Solve_CSS_problems/Add_a_text_shadow
 l10n:
-  sourceCommit: 479ea4c8bff4b900a7968413287c77dde2b0c20f
+  sourceCommit: a862f7714755b140b150bd2c724589f6f95a19a2
 ---
 
-In questa guida scoprirai come aggiungere un'ombra a qualsiasi testo sulla tua pagina.
+In questa guida viene illustrato come aggiungere un'ombra a qualsiasi testo nella pagina.
 
-## Aggiunta di ombre al testo
+## Aggiungere ombre al testo
 
-Nella nostra [guida su come aggiungere un'ombra ai box](/it/docs/Learn_web_development/Howto/Solve_CSS_problems/Add_a_shadow), puoi scoprire come aggiungere un'ombra a qualsiasi elemento sulla tua pagina. Tuttavia, quella tecnica aggiunge solo ombre al contorno del box dell'elemento. Per aggiungere un'ombra all'interno del box, al testo, hai bisogno di una proprietà CSS diversa — {{cssxref("text-shadow")}}.
+La nostra [guida per aggiungere un'ombra ai riquadri](/it/docs/Learn_web_development/Howto/Solve_CSS_problems/Add_a_shadow) spiega come aggiungere un'ombra a qualsiasi elemento nella pagina. Tuttavia, questa tecnica aggiunge ombre soltanto al riquadro circostante dell'elemento. Per aggiungere un'ombra esterna al testo stesso, è necessaria un'altra proprietà CSS: {{cssxref("text-shadow")}}.
 
-La proprietà `text-shadow` accetta un numero di valori:
+La proprietà `text-shadow` accetta diversi valori:
 
-- Lo scostamento sull'asse x
-- Lo scostamento sull'asse y
+- L'offset sull'asse x
+- L'offset sull'asse y
 - Un raggio di sfocatura
 - Un colore
 
-Nell'esempio qui sotto, abbiamo impostato lo scostamento sull'asse x a 2px, lo scostamento sull'asse y a 4px, il raggio di sfocatura a 4px e il colore a un blu semi-trasparente. Gioca con i diversi valori per vedere come modificano l'ombra.
+Nell'esempio seguente, l'offset sull'asse x è impostato su `2px`, l'offset sull'asse y su `4px`, il raggio di sfocatura su `4px` e il colore su un blu semitrasparente. È possibile modificare i diversi valori per osservare come cambiano l'effetto dell'ombra.
 
 ```html live-sample___text-shadow
 <div class="wrapper">
@@ -34,7 +34,7 @@ h1 {
 }
 ```
 
-{{EmbedLiveSample("text-shadow")}}
+{{EmbedLiveSample("Text_shadow")}}
 
 > [!NOTE]
-> Può essere abbastanza facile rendere il testo difficile da leggere con le ombre. Assicurati che le scelte che fai rendano ancora il tuo testo leggibile e forniscano abbastanza [contrasto di colore](/it/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast) per i visitatori che hanno difficoltà con il testo a basso contrasto.
+> Quando si aggiungono ombre al testo, il testo potrebbe diventare involontariamente difficile da leggere. Assicurarsi che le scelte offrano un [contrasto di colore](/it/docs/Web/Accessibility/Guides/Understanding_WCAG/Perceivable/Color_contrast) sufficiente per mantenere il testo leggibile.

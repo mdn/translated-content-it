@@ -1,27 +1,29 @@
 ---
-title: "Metti alla prova le tue abilità: Floats"
-short-title: Floats
+title: "Metti alla prova le tue competenze: Float"
+short-title: "Test: Float"
 slug: Learn_web_development/Core/CSS_layout/Test_your_skills/Floats
 l10n:
-  sourceCommit: 48d220a8cffdfd5f088f8ca89724a9a92e34d8c0
+  sourceCommit: 143f7345a4276156679d816a153470fe1fc6f3f8
 ---
 
-L'obiettivo di questo test di abilità è valutare se comprendi [i float in CSS](/it/docs/Learn_web_development/Core/CSS_layout/Floats) utilizzando le proprietà e i valori {{CSSxRef("float")}} e {{CSSxRef("clear")}} oltre ad altri metodi per eliminare i float. Lavorerai su tre piccoli compiti che utilizzano diversi elementi del materiale che hai appena coperto.
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Floats", "Learn_web_development/Core/CSS_layout/Positioning", "Learn_web_development/Core/CSS_layout")}}
+
+Lo scopo di questo test di competenze è aiutare a valutare se si comprendono i [float in CSS](/it/docs/Learn_web_development/Core/CSS_layout/Floats), utilizzando le proprietà e i valori {{CSSxRef("float")}} e {{CSSxRef("clear")}}, nonché altri metodi per cancellare i float. Verranno proposti tre piccoli esercizi che utilizzano diversi elementi del materiale appena trattato.
 
 > [!NOTE]
-> Clicca su **"Play"** nei blocchi di codice qui sotto per modificare gli esempi nel Playground di MDN.
-> Puoi anche copiare il codice (clicca sull'icona degli appunti) e incollarlo in un editor online come [CodePen](https://codepen.io/), [JSFiddle](https://jsfiddle.net/) o [Glitch](https://glitch.com/).
-> Se rimani bloccato, puoi contattarci in uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
+> Per ottenere assistenza, leggere la guida sull'uso di [Metti alla prova le tue competenze](/it/docs/Learn_web_development#test_your_skills). È anche possibile contattarci tramite uno dei nostri [canali di comunicazione](/it/docs/MDN/Community/Communication_channels).
 
-## Compito 1
+## Float 1
 
-In questo compito, devi posizionare gli elementi con una classe `float1` e `float2` a sinistra e a destra, rispettivamente. Il testo dovrebbe apparire tra i due riquadri, come nell'immagine qui sotto:
+Per completare questo esercizio, applicare il float a sinistra e a destra rispettivamente ai due elementi con classi `float1` e `float2`. Il testo dovrebbe quindi apparire tra i due elementi.
 
-![Due blocchi visualizzati a sinistra e a destra di un testo.](float-task1.png)
+Il punto di partenza dell'esercizio è il seguente:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("float1-start", "", "440px")}}
 
-```html live-sample___float1
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___float1-start live-sample___float1-finish
 <div class="box">
   <div class="float float1">One</div>
   <div class="float float2">Two</div>
@@ -29,43 +31,48 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___float1
+```css live-sample___float1-start live-sample___float1-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
+
 .box {
   padding: 0.5em;
 }
+
 .float {
   margin: 15px;
   width: 150px;
   height: 150px;
   border-radius: 5px;
   background-color: rebeccapurple;
-  color: #fff;
+  color: white;
   padding: 1em;
 }
-```
 
-```css live-sample___float1
 .float1 {
+  /* Add styles here */
 }
 
 .float2 {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("float1", "", "210px")}}
+Una volta completato l'esercizio, il layout dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("float1-finish", "", "210px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Puoi usare `float` per entrambi i riquadri:
+È possibile usare `float` per entrambi i riquadri:
 
-```css
+```css live-sample___float1-finish
 .float1 {
   float: left;
 }
@@ -77,17 +84,20 @@ Puoi usare `float` per entrambi i riquadri:
 
 </details>
 
-## Compito 2
+## Float 2
 
-In questo compito, l'elemento con una classe `float` dovrebbe essere posizionato a sinistra. Poi vogliamo che la prima riga di testo venga mostrata accanto a quell'elemento, ma la riga di testo successiva (che ha una classe `below`) venga visualizzata sotto di esso.
+Per completare questo esercizio:
 
-Il risultato finale dovrebbe apparire come nell'immagine qui sotto:
+1. Applicare il float a sinistra all'elemento con classe `float`.
+2. Aggiornare il codice in modo che la prima riga di testo venga visualizzata accanto a quell'elemento, mentre la riga di testo successiva, con classe `below`, venga visualizzata sotto di esso.
 
-![Un riquadro visualizzato a sinistra di una riga di testo, con altro testo sotto.](float-task2.png)
+Il punto di partenza dell'esercizio è il seguente:
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+{{EmbedLiveSample("float2-start", "", "300px")}}
 
-```html live-sample___float2
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___float2-start live-sample___float2-finish
 <div class="box">
   <div class="float">Float</div>
   <p>This sentence appears next to the float.</p>
@@ -95,43 +105,48 @@ Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
 </div>
 ```
 
-```css hidden live-sample___float2
+```css live-sample___float2-start live-sample___float2-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
+
 .box {
   padding: 0.5em;
 }
+
 .float {
   margin: 15px;
   width: 150px;
   height: 150px;
   border-radius: 5px;
   background-color: rebeccapurple;
-  color: #fff;
+  color: white;
   padding: 1em;
 }
-```
 
-```css live-sample___float2
 .float {
+  /* Add styles here */
 }
 
 .below {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("float2", "", "300px")}}
+Il layout completato dovrebbe essere simile a questo:
+
+{{EmbedLiveSample("float2-finish", "", "300px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Devi posizionare l'elemento a sinistra, quindi aggiungere `clear: left` alla classe per il secondo paragrafo:
+Occorre posizionare l'elemento a sinistra, quindi aggiungere `clear: left` alla classe per il secondo paragrafo:
 
-```css
+```css live-sample___float2-finish
 .float {
   float: left;
 }
@@ -143,25 +158,30 @@ Devi posizionare l'elemento a sinistra, quindi aggiungere `clear: left` alla cla
 
 </details>
 
-## Compito 3
+## Float 3
 
-In questo compito, abbiamo un elemento fluttuante. Il riquadro che avvolge il float e il testo viene visualizzato dietro il float. Usa il metodo più aggiornato disponibile per fare in modo che lo sfondo del riquadro si estenda sotto il float, come nell'immagine qui sotto:
+In questo esercizio è presente un elemento con float. Il riquadro di sfondo che avvolge il float e il testo attualmente non si estende sotto l'elemento con float.
 
-![Un blocco visualizzato a destra di un testo entrambi avvolti da un riquadro con un colore di sfondo.](float-task3.png)
+Per completare questo esercizio, utilizzare il metodo più aggiornato per assicurarsi che il riquadro di sfondo contenga l'elemento con float e si estenda sotto di esso.
 
-Prova ad aggiornare il codice qui sotto per ricreare l'esempio finale:
+Il punto di partenza dell'esercizio è il seguente:
 
-```html live-sample___float3
+{{EmbedLiveSample("float3-start", "", "220px")}}
+
+Ecco il codice sottostante per questo punto di partenza:
+
+```html live-sample___float3-start live-sample___float3-finish
 <div class="box">
   <div class="float">Float</div>
   <p>This sentence appears next to the float.</p>
 </div>
 ```
 
-```css hidden live-sample___float3
+```css live-sample___float3-start live-sample___float3-finish
 body {
   font: 1.2em / 1.5 sans-serif;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -177,34 +197,35 @@ body {
   border-radius: 5px;
   background-color: rgb(207 232 220);
   padding: 1em;
-  color: #fff;
+  color: white;
 }
 
 .box {
   background-color: rebeccapurple;
   padding: 10px;
-  color: #fff;
+  color: white;
 }
-```
 
-```css live-sample___float3
 .float {
   float: right;
 }
 
 .box {
+  /* Add styles here */
 }
 ```
 
-{{EmbedLiveSample("float3", "", "300px")}}
+Una volta completato l'esercizio, il riquadro di sfondo e l'elemento con float dovrebbero apparire così:
+
+{{EmbedLiveSample("float3-finish", "", "220px")}}
 
 <details>
-<summary>Clicca qui per mostrare la soluzione</summary>
+<summary>Fare clic qui per mostrare la soluzione</summary>
 
-Elimina l'effetto di float al di sotto dell'elemento fluttuante aggiungendo `display: flow-root` alla classe per `.box`.
-Altri metodi potrebbero essere l'uso di `overflow` o un hack clearfix, tuttavia i materiali di apprendimento descrivono il metodo `flow-root` come il modo moderno per ottenere questo risultato.
+Cancellare il riquadro sotto l'elemento con float aggiungendo `display: flow-root` alla classe `.box`.
+Altri metodi potrebbero utilizzare `overflow` o un hack clearfix; tuttavia, il materiale didattico descrive il metodo `flow-root` come il modo moderno per ottenere questo risultato.
 
-```css
+```css live-sample___float3-finish
 .box {
   display: flow-root;
 }
@@ -212,6 +233,4 @@ Altri metodi potrebbero essere l'uso di `overflow` o un hack clearfix, tuttavia 
 
 </details>
 
-## Vedi anche
-
-- [Nozioni di base sulla stilizzazione CSS](/it/docs/Learn_web_development/Core/Styling_basics)
+{{PreviousMenuNext("Learn_web_development/Core/CSS_layout/Floats", "Learn_web_development/Core/CSS_layout/Positioning", "Learn_web_development/Core/CSS_layout")}}
